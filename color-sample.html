@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>スタイルガイド（簡易案）</title>
+  <link rel="stylesheet" href="color.css" />
+  <!-- scssをつなぐ↓コメントオン -->
+  <link rel="stylesheet" href="scss/style.css">
+  <!-- GoogleFonts↓ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+  rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Noto Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+  <body>
+    <h1>Typography ( Font Family )</h1>
+    <section class="font-family">
+      <div class="grid-container">
+      <div class="left">heading 1 見出し</div>
+      <div class="right zen-kaku-gothic-new-regular">Zen Kaku Gothic New Regular 400
+        <p>見出し　タイトル</p>
+      </div>
+      </div>
+      <div class="grid-container">
+      <div class="left">heading 2 サブタイトル</div>
+      <div class="right zen-maru-gothic-regular"><p >Zen Maru Gothic Regular 400</p>
+      <p>見出し　タイトル</p></div>
+      </div>
+      <div class="grid-container">
+      <div class="left">heading 3 小見出し</div>
+      <div class="right zen-maru-gothic-regular"><p>Zen Maru Gothic Regular 400</p>
+      <p>見出し　タイトル</p></div>
+      </div>
+      <div class="grid-container">
+      <div class="left">paragraph1　段落1</div>
+      <div class="right kiwi-maru-regular">
+      <p>Kiwi Maru Regular 200<br>
+      <span class="heading kiwi-maru-regular">つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。</span></p></div>
+      </div>
+      <div class="grid-container">
+      <div class="left">paragraph2　段落2</div>
+      <div class="right zen-kurenaido-regular"><p>Zen Kurenaido Regular 200<br>
+      つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。</p></div>
+      </div>
+      <div class="grid-container">
+      <div class="left">text テキスト</div>
+      <div class="right font"><p>"游ゴシック体", "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;</p>
+      <p><span class="font">つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。</span></p></div>
+      </div>
+      </div>
+      <div class="grid-container">
+      <div class="left">UI - User Interface</div>
+      <div class="right m-plus-1p-regular"><p>M PLUS 1p Regular 400</p><p>
+      <span class="m-plus-1p-regular">| START | STOP | RESET | 3min. | 4min. | 5min. |</span></p></div>
+      </div>
+      </section>
+
+          <h1>Color Sample</h1>
+    <section class="color-sample">
+      <!-- お茶でも淹れましょうか -->
+      <div class="color-block" style="color:#f5f5f5;text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25)">
+        Take a Break<br />#f5f5f5
+      </div>
+      <!-- ティタイマー -->
+      <div class="color-block" style="color: #f4efe8">
+        Brew<br />#f4efe8
+      </div>
+      <div class="color-block" style="color: #f2f2f2">
+        Heading<br />#f2f2f2
+      </div>
+            <!-- 湯気のフィルター -->
+      <div class="color-block" style="background: rgba(255, 255, 255, 0.4); border: 1px solid #ccc">
+        Steam White<br />#FFF 透明化40%
+      </div>
+      <!-- はじまりの音 -->
+      <div class="color-block" style="color: #b1e6ff;background: linear-gradient(
+    to bottom,
+    rgba(18, 23, 79, 1) 0%,
+    rgba(229, 234, 251, 1) 100%
+  );">
+        The Beginning<br />#b1e6ff
+      </div>
+      <!-- ゆらぎと法則 -->
+            <div class="color-block" style="color: #e1f3ff;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 16, 32, 0.5) 0%,
+    rgba(180, 210, 234, 0.5) 100%
+  );">
+        Yuragi<br />#e1f3ff
+      </div>
+      <!-- 星と時間 -->
+            <div class="color-block" style="color: #d9e8f7;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 28, 57, 1) 0%,
+    rgba(30, 43, 79, 1) 40%,
+    rgba(217, 232, 247, 1) 100%
+  );">
+        Stars<br />#d9e8f7
+      </div>
+      <!-- ゆるやかな問い -->
+            <div class="color-block" style="color: #2e2e2e;
+  text-shadow: 0px 2px 1.5px rgba(59, 59, 59, 0.2);
+  background: radial-gradient(circle at 100%, #f9f9fa, #c2c2c2 50%, #fafafa 75%, #1e1e1e 75%);">
+        Question<br />#2e2e2e
+      </div>
+      <!-- 還りゆく光 -->
+            <div class="color-block" style="color: #888;
+  background-color: #fff8e7;">
+        Light<br />#888888
+      </div>
+      <!-- Leafloop テキスト -->
+            <div class="color-block" style="background: #f5f7f4;color: #2f3e2e;">
+        Leafloop<br />#2f3e2e
+      </div>
+      <div
+        class="color-block"
+        style="background: #ffffff; border: 1px solid #ccc"
+      >
+        Silence White<br />#ffffff
+      </div>
+            <div
+        class="color-block"
+        style="background: #5d5f5f; border: 1px solid #ccc;color: #ffffff;"
+      >
+        Main Color<br />#5d5f5f
+      </div>
+            <div
+        class="color-block"
+        style="background: #f5f5f5; border: 1px solid #ccc"
+      >
+        Sub color<br />#f5f5f5
+      </div>
+            <div
+        class="color-block"
+        style="background: #747878; border: 1px solid #ccc;color:#fcf8f8;"
+      >
+        Accent<br />#747878
+      </div>
+    </section>
+
+    <h1>Font Style</h1>
+    <!-- 3. スタイルガイド用HTML構成（簡易案） -->
+    <section class="typography-section typography-box">
+      <h2>hero メインテキスト</h2>
+      <div class="text_suu typography-box">
+        <div class="zen-maru-gothic-regular typography-item">
+          <span>Zen Maru Gothic</span>
+          すう〜
+        </div>
+      </div>
+      <h2>hero サブテキスト</h2>
+      <div class="text_ocha typography-box">
+        <div class="zen-maru-gothic-regular typography-item">
+          <span>Zen Maru Gothic</span>
+          お茶でも淹れましょうか
+        </div>
+      </div>
+      <h2>hero タイマー</h2>
+      <div class="text_timer timer-container">
+        <!-- カウントダウン Kiwi Maru ／ コントロール M PLUS 1p -->
+        <div class="timer-box m-plus-1p-regular">
+        カウントダウン　タイマー表示<br>
+        Kiwi Maru<br>
+        UI表示<br>
+        M PLUS 1p<br>
+          <h3 class="kiwi-maru-regular">03:00</h3>
+          <!-- 3分 4分 5分 -->
+          <div class="grid-box preset-box">
+            <span class="preset grid-item text_preset">3</span>
+            <span class="preset grid-item text_preset">4</span
+            ><span class="preset grid-item text_preset">5</span>
+          </div>
+          <!-- 操作ボタン -->
+          <div class="button-group">
+            <button class="control">
+              <span class="material-symbols-outlined icon-size">refresh
+              </span>
+            </button>
+            <button class="control">
+              <span class="material-symbols-outlined icon-size">play_circle
+                </span>
+                </button>
+            <button class="control">
+              <span class="material-symbols-outlined icon-size">volume_off
+                </span>
+            </button>
+          </div>
+      </div>
+      </div>
+      <div class="text_title">
+        <div class="zen-kaku-gothic-new-regular">
+          Zen Kaku Gothic New
+          <div class="text_gallery">世界のお茶を少しだけ</div>
+          <div class="text_universe">遠くのことを少しだけ</div>
+        </div>
+        <div class="kiwi-maru-regular">
+          Kiwi Maru
+          <div class="text_gallery">世界のお茶を少しだけ</div>
+          <div class="text_universe">遠くのことを少しだけ</div>
+        </div>
+      </div>
+    </section>
+    <section class="universe">
+      <h1>遠くのことを少しだけ　タイポ＆カラー</h1>
+      <table>
+        <tr>
+          <th>用途</th>
+          <th>フォント</th>
+          <th>HEXコード</th>
+          <th>メモ</th>
+        </tr>
+        <tr class="chapter0">
+          <th>はじまり</th>
+          <td>なし</td>
+          <td>なし</td>
+          <td></td>
+        </tr>
+        <tr class="chapter1 kiwi-maru-regular">
+          <th>第1章｜はじまりの音</th>
+          <td>Kiwi Maru</td>
+          <td>#B1E6FF</td>
+          <td>ビッグバン・始まり</td>
+        </tr>
+        <tr class="chapter2 kiwi-maru-regular">
+          <th>第2章｜ゆらぎと法則</th>
+          <td>Kiwi Maru</td>
+          <td>#E1F3FF</td>
+          <td>重力波・粒子・電磁波</td>
+        </tr>
+        <tr class="chapter3 kiwi-maru-regular">
+          <th>第3章｜星と時間</th>
+          <td>Kiwi Maru</td>
+          <td>#d9e8f7</td>
+          <td>星屑・星雲・暗黒</td>
+        </tr>
+        <tr class="chapter4 zen-kurenaido-regular">
+          <th>第4章｜ゆるやかな問い</th>
+          <td>Zen Kurenaido</td>
+          <td>#444444</td>
+          <td>静寂</td>
+        </tr>
+
+        <tr class="chapter5 kiwi-maru-regular"">
+          <th>第5章｜還りゆく光</th>
+          <td>Kiwi Maru</td>
+          <td>#888888</td>
+          <td>白・余白・宙・輪郭</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="background">
+      <h1>UI</h1>
+        <!-- 右上　メニューパネル -->
+        <div class="menu-container">
+          <div class="glass-frost menu">
+            <button class="close-button zen-kaku-gothic-new-bold">×</button>
+            <ul class="menu-list zen-kaku-gothic-new-light">
+              <li><span class="link-text">ホーム</span></li>
+              <li><span class="link-text">世界のお茶を少しだけ</span></li>
+              <li><span class="link-text">遠くのことを少しだけ</span></li>
+              <li><span class="link-text">このサイトについて</span></li>
+            </ul>
+            <div class="clock-icon">
+            <svg width="227" height="199" viewBox="0 0 227 199" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g style="mix-blend-mode:soft-light" filter="url(#filter0_d_157_368)">
+                <path d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z" fill="#FFF8E7" fill-opacity="0.3"/>
+                </g>
+            <path d="M113.001 108.493L167.124 139.741" stroke="white" stroke-linecap="round"/>
+            <path d="M113 108.493V16" stroke="white" stroke-linecap="round"/>
+            <path d="M113 109L187.995 109" stroke="white" stroke-linecap="round"/>
+                <defs>
+                <filter id="filter0_d_157_368" x="0" y="0" width="226.594" height="199" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="1"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_157_368"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_157_368" result="shape"/>
+                </filter>
+                </defs>
+            </svg>
+            </div>
+          </div>
+        </div>
+        <!-- 左下　ミニタイマーパネル -->
+               <!-- /* ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ ミニタイマーここから ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ */ -->
+      <div class="section-mini-timer timer-mini-container">
+        <div class="timer-mini-items glass-panel mini-timer-glass">
+          <!-- カウントダウン表示 -->
+          <div class="timer_count kiwi-maru-regular">
+            <span id="countdown">3:00</span>
+          </div>
+          <!-- プリセット・タイマー -->
+          <div class="timer-mini-options m-plus-1p-regular">
+            <span class="timer-mini-button">3</span>
+            <span class="timer-mini-button">4</span>
+            <span class="timer-mini-button">5</span>
+          </div>
+          <!-- タイマー操作 -->
+          <div class="control-mini-buttons">
+            <span class="control-mini-button material-symbols-outlined icon-size">refresh
+            </span>
+            <span class="control-mini-button material-symbols-outlined icon-size">play_circle
+            </span>
+            <span class="control-mini-button material-symbols-outlined icon-size">volume_off
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- /* ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ タイマーここまで ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ */ -->
+    </section>
+
+
+
+    <section class="color-swatch">
+      <h1>Color Swatch HEX|rgb|HSV</h1>
+        <h2>hero</h2>
+          <div style="background: #f5f5f5">#f5f5f5 | 245 245 245 | 0,0,96 font　ギャラリーページ　font</div>
+          <div style="background: #f4efe8">#f4efe8 | 244 239 232 | 35,5,96 font</div>
+          <div style="background: #f2f2f2">#f2f2f2 hero テキストカラー（figmaでUI見出し共に使用中）</div>
+          <div style="background: rgba(252, 245, 234, 0.5)">#fcf5ea 50% clock 一番上の小さいベージュ</div>
+          <div style="background: rgba(157, 197, 175, 0.76)">#9dc5af 76% clock 2番目の右寄りグリーン</div>
+          <div style="background: rgba(216, 233, 246, 0.65)">#D8E9F6 65% clock 3番目の大きめうすいブルー</div>
+          <div style="background: rgba(194, 194, 194, 1)">#c2c2c2 100% clock 長針 静思グレー 3px</div>
+          <div style="background: rgba(30, 30, 30, 1)">#1e1e1e 100% clock 短針 黒曜 3px</div>
+          <div style="background: rgba(194, 194, 194, 1)">#c2c2c2 100% clock 秒針 静思グレー 0.5px</div>
+        <h2>universe</h2>
+          <div style="background: #f8faff">1:はじまりの音 星霧ホワイト</div>
+          <div style="background: #b1e6ff">1:はじまりの音 #b1e6ff | 177, 230, 255, 1 | 199,31,100 [font]<br>
+          ビッグバン
+* 始まり
+ 光のひとしずく
+ 宇宙の夜明け
+* 透明
+ 解放
+ 時間
+ 空間
+ 物質
+* 呼吸
+</div>
+          <div style="background: #12174f">1:はじまりの音 青白グラデ |12174f 18, 23, 79, 1 235 77 31 |</div>
+          <div style="background: #e5eafb">1:はじまりの音 青白グラデ</div>
+          <div style="background: #f8faff">１：予備　無地　白くて柔らかい霧</div>
+          <!-- ---しきり線--- -->
+          <div style="color: orange">● ● ●● ● ●● ● ●● ● ●● ● ●</div>
+          <div style="background: #0e1020">2:ネビュラグレイ 透明度50% グラデ</div>
+          <div style="background: #b4d2ea">2:微光ブルー　透明度50% グラデ</div>
+          <div style="background: #e1f3ff">2章　共通　透明度100% [font]<br>
+          * 重力波* 粒子* 電磁波</div>
+          <div style="color: gray">>>></div>
+          <div style="background: #b4d2ea">2a:粒子　微光ブルー　透明度50% グラデ上</div>
+          <div style="background: #0e1020">2a:粒子　ネビュラグレイ 透明度50% グラデ</div>
+          <div style="background: #9adbeb">2a:粒子　ネビュラグレイ 透明度70% グリッド線色</div>
+          <div style="color: gray">>>></div>
+          <div style="background: #b4d2ea">2b:渦　上グラデop50%　微光ブルー　線形グラデ　透明度50% ブレンド：焼き込み</div>
+          <div style="background: #0e1020">2b:渦　上グラデop50% ネビュラグレイ　線形グラデ　透明度50% ブレンド：焼き込み</div>
+          <div style="background: #0e1020">2b:渦　下グラデop50% ネビュラグレイ　線形グラデ　透明度50% ブレンド：暗さをプラス</div>
+          <div style="background: #3b4386">2b:渦　下グラデop50%　線形グラデ　透明度50% ブレンド：暗さをプラス</div>
+          <div style="background: #9adbeb">2b:渦　op70% 0.5pt[グリッド線色]</div>
+          <div style="color: gray">>>></div>
+          <div style="background: #0e1020">2c:重力波　ネビュラグレイ 透明度50% グラデ</div>
+          <div style="background: #b4d2ea">2c:重力波　微光ブルー　透明度50% グラデ上</div>
+          <div style="background: #fff">2c:重力波　ネビュラグレイ 透明度100% 0.2pt グリッド線色</div>
+          <div style="background: #e1f3ff">2c:重力波　透明度100% [font]</div>
+          <div style="color: orange">>>></div>
+          <div style="background: #b4d2ea">2d:電磁波　上グラデop50%　微光ブルー　線形グラデ　透明度100%</div>
+          <div style="background: #0e1020">2d:電磁波　上グラデop50% ネビュラグレイ　線形グラデ　透明度0%</div>
+          <div style="background: #0e1020">2d:電磁波　下グラデop50% ネビュラグレイ　線形グラデ　透明度100%</div>
+          <div style="background: #3b4386">2d:電磁波　下グラデop50%　線形グラデ　透明度0%</div>
+          <div style="background: #fff">2d:電磁波　op100% 0.2pt[グリッド線色]</div>
+          <div style="color: orange">● ● ●● ● ●● ● ●● ● ●● ● ●</div>
+          <div style="background: #0b1c39">３：星雲ネイビー　星雲グラデ</div>
+          <div style="background: #1e2b4f">３：星辰ブルー（中間色）星雲グラデ</div>
+          <div style="background: #d9e8f7">３：宇宙銀青 星雲グラデ</div>
+          <div style="color: orange">● ● ●● ● ●● ●ゆるやかな問い ●● ● ●● ● ●</div>
+          <div style="background: #fafafa">４：0%グラデ100% 墨白</div>
+          <div style="background: #fafafa">４：19%グラデ64% 墨白</div>
+          <div style="background: #d7d7d7">４：46%グラデ81% 墨白</div>
+          <div style="background: #9c9c9c">４：73%グラデ70%　中心が白</div>
+          <div style="background: #3e3e3e">４：100%グラデ40%　中心が白</div>
+          <div style="background: #fafafa">４：塗り100%　重ね塗り</div>
+          <div style="background: #2E2E2E">透明度100% [font] ドロップシャドウ0px 2px 1.5px #3b3b3b 20%<br>
+          4章｜ゆるやかな問い（心・思索）
+* 無
+* 兆し
+* 残響
+* 思念
+* まなざし
+* ゆらぎ
+* 不確定
+* 予感
+* 間（ま）
+* 静寂
+🌿 ここから抽象に踏み込んでいくイメージ。</div>
+          <div style="color: orange">>>></div>
+          <div style="background: #c2c2c2">４：グラデ　静思グレー</div>
+          <div style="background: #1e1e1e">４：グラデ　黒曜</div>
+          <div style="background: #fafafa">４：グラデ 墨白</div>
+          <div style="color: orange">● ● ●● ● ●● ● ●● ● ●● ● ●</div>
+          <div style="background: #fff8e7">５：コズミックラテ　fff8e7</div>
+          <div style="background: #f4efe8">５：ピュアホワイト</div>
+          <div style="background: #FFF8E7">５：還りゆく光（帰還と余白）文字色[font]</div>
+          <div style="background: #f0cd90">５：還りゆく光（帰還と余白）　透明度100% [font]<br>*白
+
+* 余白
+
+*宙
+
+* 輪郭
+
+*幻
+
+* ふるえ
+
+* やさしさ
+ * 遠さ
+
+* 帰還
+
+* すべて
+</div>
+          <div style="background: #FFFFFF">InterrudeFontWhite 透明度50%〜80%</div>
+          <div style="background: #888">InterrudeFontGray 透明度50%〜80%</div>
+          <div style="background: #0c0e2d">星の間奏グラデ</div>
+          <div style="background: #1a1c3f">星の間奏グラデ</div>
+          <div style="background: #f8f6f0">呼吸の間奏グラデ</div>
+          <div style="background: #fff8e7">呼吸の間奏グラデ</div>
+          <div style="background: #000">章の転換グラデ</div>
+          <div style="background: #fff">章の転換グラデ</div>
+          <div style="background: #121212">BGグラデ</div>
+          <div style="background: #fff8e7">BGグラデ</div>
+          <!-- ---しきり線--- -->
+           <div style="color: gray">● ● ●● ● ●● ● ●● ● ●● ● ●</div>
+          <div style="background: #f4efe8">ベージュ [font]</div>
+
+    </section>
+
+
+  <h1>お試し Sample</h1>
+<section class="styleguide-glass-test test-sample2 bg-gradient1">
+  <div class="glass">Glass Basic</div>
+  <div class="mini-timer-glass">Mini Glass</div>
+  <div class="glass-frost">Frost UI</div>
+</section>
+<section class="glass-sample-gallery">
+  <div class="glass">Glass Basic</div>
+  <div class="mini-timer-glass">Mini Glass</div>
+  <div class="glass-frost">Modal UI</div>
+
+  <div class="figma-glass"><svg width="360" height="520" viewBox="0 0 360 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="360" height="520" rx="40" fill="black" fill-opacity="0.01"/>
+</svg>
+</div>
+<div class="figma-timer-frost-svg"><svg width="360" height="180" viewBox="0 0 360 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="360" height="180" rx="40" fill="black" fill-opacity="0.01"/>
+</svg>
+</div>
+</section>
+<section class="bg-gradient">
+  <div class="bg-gradient1"></div>
+</section>
+  </body>
+</html>
