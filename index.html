@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>leaf.loop | hero</title>
+    <link rel="stylesheet" href="hero.css" />
+    <!-- GoogleFonts↓ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Noto Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="content hero">
+    <!-- 動画の背景 -->
+    <!-- autoplay：ページが読み込まれた時に自動で再生 -->
+    <!-- muted：音声をミュートに設定 -->
+    <!-- loop：動画を繰り返し再生 -->
+    <video autoplay muted loop id="background-video">
+      <source src="images/5835661-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+      お使いのブラウザは動画タグに対応していません。
+    </video>
+    <!-- grid　親 -->
+    <main class="hero-container">
+      <!-- ■ grid01 sectionタイマー -->
+      <div class="hero-item section">
+        <!-- カウントダウン表示 -->
+        <div class="timer_count">
+          <span id="countdown">3:00</span>
+        </div>
+        <!-- プリセット・タイマー -->
+        <div class="timer-options">
+          <span class="timer_button">3</span>
+          <span class="timer_button">4</span>
+          <span class="timer_button">5</span>
+        </div>
+        <!-- タイマー操作 -->
+        <div class="control_buttons">
+          <span class="control_button material-symbols-outlined">refresh</span>
+          <span class="control_button material-symbols-outlined"
+            >play_circle</span
+          >
+          <span class="control_button material-symbols-outlined"
+            >volume_off</span
+          >
+        </div>
+      </div>
+      <!-- ■ grid02-ギャラリー -->
+      <div class="hero-item">
+        <a href="gallery.html" class="hover-link">
+          <!-- hoverする画像 -->
+          <div class="hover-img">
+            <img src="frame_02_gallery_mobile.png" alt="グリーンの背景" />
+          </div>
+          <!-- 画像をhoverした時に表示させる要素 -->
+          <div class="hover-text">ギャラリー</div>
+        </a>
+      </div>
+
+      <!-- ■ grid03-宇宙 -->
+      <div class="hero-item">
+        <a href="universe.html" class="hover-link">
+          <!-- hoverする画像 -->
+          <div class="hover-img">
+            <img
+              src="frame_03_space_mobile.png"
+              alt="濃紺から透明のグラデーションの背景"
+            />
+          </div>
+          <!-- 画像をhoverした時に表示させる要素 -->
+          <div class="hover-text">遠くのことを少しだけ</div>
+        </a>
+      </div>
+
+      <!-- ■ grid04-メインテキスト -->
+      <div class="text">
+        <div class="suu">すぅ〜</div>
+        <div class="tea">お茶でも淹れましょうか</div>
+      </div>
+    </main>
+  </body>
+</html>
