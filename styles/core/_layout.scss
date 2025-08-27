@@ -1,0 +1,44 @@
+// 余白・中央寄せ・共通コンテナなどレイアウト共通部分
+// 高さはなるべく縛らない、幅は拡げすぎない」
+
+// ① hero
+// grid
+// hero4等分
+.grid-parent-hero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100vh;
+}
+
+// 中央寄せ
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 💡 1. 横幅：基本は % や max-width
+.container {
+  width: 100%;
+  max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
+  margin: 0 auto;
+  padding: 0 16px; /* 横に余白 */
+}
+// これだけで モバイル〜デスクトップまで柔軟に拡がる幅が作れます。
+
+// 💡 2. 高さ：できるだけ「中身に任せる」
+.section {
+  padding: 80px 0;
+}
+// * これは高さを「固定」してないけど、見た目は安定して見える
+// * 中に入れるテキスト・画像が自然に高さを決めてくれる
+
+// 💡 3. 高さを画面いっぱいにしたいときだけ、100vh or 100svh
+.fullscreen-section {
+  height: 100vh; /* PCで全画面 */
+  height: 100svh; /* モバイルでアドレスバー考慮 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// これで上下中央に要素を配置したり「最初のビューにドーンと画像を表示」みたいな構成ができます。

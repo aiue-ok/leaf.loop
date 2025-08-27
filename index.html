@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>leaf.loop | hero</title>
-    <link rel="stylesheet" href="hero.css" />
+    <link rel="stylesheet" href="styles/style.css" />
     <!-- GoogleFonts↓ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,72 +25,93 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <script src="js/timer-hero.js" defer></script>
   </head>
-  <body class="content hero">
+  <body class="hero content">
     <!-- 動画の背景 -->
     <!-- autoplay：ページが読み込まれた時に自動で再生 -->
     <!-- muted：音声をミュートに設定 -->
     <!-- loop：動画を繰り返し再生 -->
     <video autoplay muted loop id="background-video">
-      <source src="images/5835661-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+      <source
+        src="assets/mp4/5835661-uhd_3840_2160_25fps.mp4"
+        type="video/mp4"
+      />
       お使いのブラウザは動画タグに対応していません。
     </video>
     <!-- grid　親 -->
-    <main class="hero-container">
-      <!-- ■ grid01 sectionタイマー -->
-      <div class="hero-item section">
-        <!-- カウントダウン表示 -->
-        <div class="timer_count">
-          <span id="countdown">3:00</span>
+    <main class="grid-parent-hero">
+      <div class="center timer-grid-container timer">
+        <button id="themeToggle">🌙</button>
+        <h1 class="kiwi-maru-regular" id="timer">00:00</h1>
+        <div class="inputs">
+          <label
+            >分： <input type="number" id="minutesInput" value="3" min="0"
+          /></label>
+          <label
+            >秒：
+            <input type="number" id="secondsInput" value="0" min="0" max="59" />
+          </label>
         </div>
-        <!-- プリセット・タイマー -->
-        <div class="timer-options">
-          <span class="timer_button">3</span>
-          <span class="timer_button">4</span>
-          <span class="timer_button">5</span>
-        </div>
-        <!-- タイマー操作 -->
-        <div class="control_buttons">
-          <span class="control_button material-symbols-outlined">refresh</span>
-          <span class="control_button material-symbols-outlined"
-            >play_circle</span
-          >
-          <span class="control_button material-symbols-outlined"
-            >volume_off</span
-          >
-        </div>
-      </div>
-      <!-- ■ grid02-ギャラリー -->
-      <div class="hero-item">
-        <a href="gallery.html" class="hover-link">
-          <!-- hoverする画像 -->
-          <div class="hover-img">
-            <img src="frame_02_gallery_mobile.png" alt="グリーンの背景" />
+        <div class="buttons">
+          <button id="startBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >play_circle
+            </span>
+          </button>
+          <button id="stopBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >stop_circle
+            </span>
+          </button>
+          <button id="resetBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >refresh
+            </span>
+          </button>
+          <div>
+            <label
+              >音量：
+              <input
+                type="range"
+                id="volumeControl"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              />
+            </label>
           </div>
-          <!-- 画像をhoverした時に表示させる要素 -->
-          <div class="hover-text">ギャラリー</div>
-        </a>
-      </div>
+        </div>
 
-      <!-- ■ grid03-宇宙 -->
-      <div class="hero-item">
-        <a href="universe.html" class="hover-link">
-          <!-- hoverする画像 -->
-          <div class="hover-img">
-            <img
-              src="frame_03_space_mobile.png"
-              alt="濃紺から透明のグラデーションの背景"
-            />
-          </div>
-          <!-- 画像をhoverした時に表示させる要素 -->
-          <div class="hover-text">遠くのことを少しだけ</div>
-        </a>
+        <audio
+          id="alarmSound"
+          src="/assets/mp3/alarm.mp3"
+          preload="auto"
+        ></audio>
       </div>
-
-      <!-- ■ grid04-メインテキスト -->
-      <div class="text">
-        <div class="suu">すぅ〜</div>
-        <div class="tea">お茶でも淹れましょうか</div>
+      <div class="center link zen-kaku-gothic-new-regular">
+        <div class="hover-area bg-gallery">
+          <a href="gallery.html" class="hover-link">
+            <div class="text hover-text">世界のお茶を少しだけ</div>
+          </a>
+        </div>
+      </div>
+      <div class="center link zen-kaku-gothic-new-regular">
+        <div class="hover-area bg-universe">
+          <a href="universe.html" class="hover-link">
+            <div class="text hover-text">遠くのことを少しだけ</div>
+          </a>
+        </div>
+      </div>
+      <div class="center">
+        <div class="text zen-kaku-gothic-new-regular">
+          <div class="suu">すぅ〜</div>
+          <div class="tea">お茶でも淹れましょうか</div>
+        </div>
       </div>
     </main>
   </body>

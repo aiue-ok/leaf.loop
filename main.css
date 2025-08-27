@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+/* HTMLとbodyの高さを100%に設定 */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
+}
+
+/* 動画を背景として全画面に広げる */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 動画が画面に収まるように拡大/縮小 */
+  z-index: -1; /* 背景に表示するため、コンテンツの後ろに配置 */
+}
+
+/* メインコンテンツ */
+.content {
+  position: relative;
+  z-index: 1; /* コンテンツが動画の前に表示されるようにする */
+}
+
+/* @media (min-width: 23.4375rem) and (max-width: 50rem) {} */
+/* 375px以上800px以下 */
+@media (23.4375rem <= width <= 52rem) {
+  div.hero-item {
+    height: 100vh; /* 1ページ分の高さを画面いっぱいに */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    scroll-snap-align: start; /* スナップポイント */
+  }
+
+  .box-g {
+    background-image: url(assets/png/hero/frame_02_gallery_mobile.png);
+  }
+  .box-u {
+    background-image: url(assets/png/hero/frame_03_space_mobile.png);
+  }
+}

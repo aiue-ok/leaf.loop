@@ -36,23 +36,38 @@ body {
   padding: 50px;
 }
 
+/* 同じ意味のメディアクエリ */
+/* @media (min-width: 23.4375rem) and (max-width: 50rem) {} */
+/* 375px以上800px以下 */
+@media (23.4375rem <= width <= 52rem) {
+  .hero-container {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+  }
+  /* 各gridアイテム */
+  .hero-item {
+    width: 100svw;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+}
+
 /* ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ grid ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ */
-.hero-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  height: 100vh;
-  background-image: url("hero_Desktop\ -\ test1.png");
-}
+@media (min-width: 840px) {
+  .hero-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100vh;
+  }
 
-/* 各gridアイテム */
-.hero-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  padding: 0;
+  /* 各gridアイテム */
+  .hero-item {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 }
-
 .hero-item button,
 .hero-item input {
   all: unset;
@@ -84,6 +99,11 @@ img {
 .hover-img {
   width: 100%;
   height: auto;
+  opacity: 0;
+}
+
+.hover-img:hover {
+  opacity: 1;
 }
 
 .hover-text {

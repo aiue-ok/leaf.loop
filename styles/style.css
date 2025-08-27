@@ -1,0 +1,367 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* HTMLとbodyの高さを100%に設定 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input {
+  all: unset;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Zen Maru Gothic: CSS class */
+.zen-maru-gothic-regular {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Zen Kaku Gothic New: CSS class */
+.zen-kaku-gothic-new-light {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-regular {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-bold {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* IBM Plex Sans JP: CSS class */
+.ibm-plex-sans-jp-regular {
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Kiwi Maru: CSS class */
+.kiwi-maru-regular {
+  font-family: "Kiwi Maru", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Zen Kurenaido: CSS class */
+.zen-kurenaido-regular {
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* M PLUS 1p */
+.m-plus-1p-regular {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kosugi-maru-regular {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font {
+  font-family: "游ゴシック体", "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+.grid-parent-hero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
+  margin: 0 auto;
+  padding: 0 16px; /* 横に余白 */
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.fullscreen-section {
+  height: 100vh; /* PCで全画面 */
+  height: 100svh; /* モバイルでアドレスバー考慮 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+/* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
+.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --button-bg: #333333;
+  --button-text: #ffffff;
+}
+
+.timer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+#timer {
+  font-size: 5vw;
+  margin: 30px 0;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+.inputs,
+.buttons {
+  margin: 20px 0;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+/* 数値を入力するためのコントロールです。
+      スピナーを表示し、既定の検証を追加します。
+      動的キーボードを持つ一部の端末では、テンキーを表示します。 */
+input[type=number] {
+  font-size: 4vw;
+  width: 5vw;
+  text-align: center;
+}
+
+button {
+  font-size: 4vw;
+  margin: 2px;
+  padding: 1px 2px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 10px;
+}
+
+#themeToggle {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  font-size: 4vw;
+  padding: 5px 10px;
+}
+
+/* wordsと色を揃える系（currentColor に追従） */
+.timer-mini-container,
+.timer-mini-container * {
+  color: currentColor;
+}
+
+/* ミニタイマー基調 */
+.timer-mini-container {
+  color: var(--timer-fg);
+  opacity: var(--timer-opacity);
+}
+
+/* 数字だけ少しなじませる（必要なら .timer-display をHTMLに付与）*/
+.timer-mini-container .timer-display {
+  opacity: 0.85;
+}
+
+/* ▼▼ Hover（プリセット、セットボタン） */
+.timer-mini-preset-button:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  background-color: var(--timer-hover-bg);
+  border-color: var(--timer-hover-border);
+  color: var(--timer-hover-fg);
+}
+
+.timer-mini-set-button:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  color: var(--timer-hover-bg);
+  border-color: color-mix(in oklab, var(--timer-hover-bg) 50%, transparent);
+  /* outlineは消すなら必ずフォーカス可視化を別途用意（下でやる）*/
+  outline: none;
+}
+
+/* ▼▼ focus-visible（キーボード操作の見やすさ） */
+.timer-mini-preset-button:focus-visible {
+  border: 3px double var(--timer-focus-border);
+  box-shadow: 0 0 8px var(--timer-focus-shadow);
+  transform: scale(1.1);
+}
+
+.timer-mini-set-button:focus-visible {
+  box-shadow: 0 0 0 2px var(--timer-focus-shadow);
+}
+
+.timer-mini-set-button:focus-visible span {
+  color: var(--timer-focus-icon);
+  transform: scale(1.1);
+}
+
+/* お好みで：動きを弱める（全体適用なら core/_a11y.scss へ） */
+@media (prefers-reduced-motion: reduce) {
+  .timer-mini-preset-button,
+  .timer-mini-set-button {
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+  }
+}
+body.hero {
+  color: #f5f5f5;
+  text-shadow: 1px 1px 3px #c2c2c2;
+  max-width: 1440px;
+  /* やかんの動画を背景として全画面に広げる */
+  /* メインコンテンツ */
+  /* テキスト共通 */
+  /* すぅ〜 */
+  /* お茶でも淹れましょうか */
+}
+body.hero main {
+  background: rgba(161, 161, 161, 0.4);
+}
+body.hero #background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 動画が画面に収まるように拡大/縮小 */
+  z-index: -1; /* 背景に表示するため、コンテンツの後ろに配置 */
+}
+body.hero .content {
+  position: relative;
+  z-index: 1; /* コンテンツが動画の前に表示されるようにする */
+}
+body.hero .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+body.hero .text {
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  /* 全体に高さを与える */
+  justify-content: center;
+  align-items: center;
+  filter: none;
+}
+body.hero .hover-area {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 0 16px; /* 横に余白 */
+}
+body.hero .bg-gallery {
+  background-image: url(/assets/png/hero/frame_02_gallery_mobile.png);
+  position: sticky;
+  z-index: 1;
+  filter: brightness(1) opacity(0%);
+}
+body.hero .bg-universe {
+  background-image: url(/assets/png/hero/frame_03_space_mobile.png);
+  position: sticky;
+  z-index: 1;
+  filter: brightness(1) opacity(0%);
+}
+body.hero .center > .bg-gallery:hover {
+  background-image: url(/assets/png/hero/frame_02_gallery_mobile.png);
+  filter: brightness(1.1) opacity(95%);
+}
+body.hero .center > .bg-universe:hover {
+  background-image: url(/assets/png/hero/frame_03_space_mobile.png);
+  filter: brightness(1.1) opacity(95%);
+}
+body.hero .hover-link,
+body.hero .hover-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: none;
+}
+body.hero .hover-link:hover,
+body.hero .hover-text:hover {
+  opacity: 1;
+  filter: none;
+}
+body.hero .suu {
+  font-size: 1.6rem;
+  padding: 1rem 0;
+}
+body.hero .tea {
+  font-size: 1.2rem;
+}
+body.hero div.timer-grid-container {
+  display: grid;
+  grid-auto-flow: row; /* アイテムを行方向に配置 (縦並びがデフォルト) */
+  border: 1px solid red;
+  margin: auto 0;
+  padding: 0 20px;
+}/*# sourceMappingURL=style.css.map */

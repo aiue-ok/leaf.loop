@@ -1,0 +1,10 @@
+// styles/core/_index.scss
+@forward "variables";
+// @forward "breakpoints";
+// @forward "mixins";
+@forward "base";
+@forward "layout";
+@forward "a11y";
+
+// 以後は @use "core/index" as core; とするだけで
+// core.$bp-sm や @include core.down(...) が使える。

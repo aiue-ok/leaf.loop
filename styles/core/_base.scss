@@ -1,0 +1,109 @@
+// * {} や body {}、フォント設定
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* HTMLとbodyの高さを100%に設定 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input {
+  all: unset;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Zen Maru Gothic: CSS class */
+.zen-maru-gothic-regular {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Zen Kaku Gothic New: CSS class */
+.zen-kaku-gothic-new-light {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-regular {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zen-kaku-gothic-new-bold {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* IBM Plex Sans JP: CSS class */
+.ibm-plex-sans-jp-regular {
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Kiwi Maru: CSS class */
+.kiwi-maru-regular {
+  font-family: "Kiwi Maru", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Zen Kurenaido: CSS class */
+.zen-kurenaido-regular {
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* M PLUS 1p */
+.m-plus-1p-regular {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kosugi-maru-regular {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font {
+  font-family: "游ゴシック体", "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
+  font-weight: 300;
+  margin: 0;
+}

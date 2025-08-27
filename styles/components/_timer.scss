@@ -1,0 +1,117 @@
+@use "../core/index" as core;
+
+/* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
+.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --button-bg: #333333;
+  --button-text: #ffffff;
+}
+
+.timer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+#timer {
+  font-size: 5vw;
+  margin: 30px 0;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+.inputs,
+.buttons {
+  margin: 20px 0;
+  border: 1px dotted rgba(172, 255, 47, 0.493);
+}
+
+/* 数値を入力するためのコントロールです。
+      スピナーを表示し、既定の検証を追加します。
+      動的キーボードを持つ一部の端末では、テンキーを表示します。 */
+input[type="number"] {
+  font-size: 4vw;
+  width: 5vw;
+  text-align: center;
+}
+
+button {
+  font-size: 4vw;
+  margin: 2px;
+  padding: 1px 2px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 10px;
+}
+
+#themeToggle {
+  //   position: absolute;
+  position: relative;
+  top: 10px;
+  right: 10px;
+  font-size: 4vw;
+  padding: 5px 10px;
+}
+
+/* wordsと色を揃える系（currentColor に追従） */
+
+.timer-mini-container,
+.timer-mini-container * {
+  color: currentColor;
+}
+/* ミニタイマー基調 */
+
+.timer-mini-container {
+  color: var(--timer-fg);
+  opacity: var(--timer-opacity);
+}
+/* 数字だけ少しなじませる（必要なら .timer-display をHTMLに付与）*/
+
+.timer-mini-container .timer-display {
+  opacity: 0.85;
+}
+/* ▼▼ Hover（プリセット、セットボタン） */
+
+.timer-mini-preset-button:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  background-color: var(--timer-hover-bg);
+  border-color: var(--timer-hover-border);
+  color: var(--timer-hover-fg);
+}
+.timer-mini-set-button:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  color: var(--timer-hover-bg);
+  border-color: color-mix(in oklab, var(--timer-hover-bg) 50%, transparent);
+  /* outlineは消すなら必ずフォーカス可視化を別途用意（下でやる）*/
+  outline: none;
+}
+/* ▼▼ focus-visible（キーボード操作の見やすさ） */
+
+.timer-mini-preset-button:focus-visible {
+  border: 3px double var(--timer-focus-border);
+  box-shadow: 0 0 8px var(--timer-focus-shadow);
+  transform: scale(1.1);
+}
+.timer-mini-set-button:focus-visible {
+  box-shadow: 0 0 0 2px var(--timer-focus-shadow);
+}
+.timer-mini-set-button:focus-visible span {
+  color: var(--timer-focus-icon);
+  transform: scale(1.1);
+}
+/* お好みで：動きを弱める（全体適用なら core/_a11y.scss へ） */
+
+@media (prefers-reduced-motion: reduce) {
+  .timer-mini-preset-button,
+  .timer-mini-set-button {
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+  }
+}
