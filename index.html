@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>leaf.loop | hero</title>
+    <title>leaf.loop | 🌱hero</title>
     <link rel="stylesheet" href="styles/style.css" />
     <!-- GoogleFonts↓ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,36 +42,31 @@
     <!-- grid　親 -->
     <main class="grid-parent-hero">
       <div class="center timer-grid-container timer">
-        <button id="themeToggle">🌙</button>
-        <h1 class="kiwi-maru-regular" id="timer">00:00</h1>
-        <div class="inputs">
-          <label
-            >分： <input type="number" id="minutesInput" value="3" min="0"
-          /></label>
-          <label
-            >秒：
-            <input type="number" id="secondsInput" value="0" min="0" max="59" />
-          </label>
-        </div>
-        <div class="buttons">
-          <button id="startBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >play_circle
-            </span>
-          </button>
-          <button id="stopBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >stop_circle
-            </span>
-          </button>
-          <button id="resetBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >refresh
-            </span>
-          </button>
+        <div class="timer-grid-item">
+          <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+          <!-- 初期設定ボタン -->
+          <div class="buttons">
+            <button class="setTimeBtn" data-minutes="3">3分</button>
+            <button class="setTimeBtn" data-minutes="4">4分</button>
+            <button class="setTimeBtn" data-minutes="5">5分</button>
+          </div>
+          <div class="buttons">
+            <button id="startBtn">
+              <span class="set-button material-symbols-outlined icon-size"
+                >play_circle
+              </span>
+            </button>
+            <button id="stopBtn">
+              <span class="set-button material-symbols-outlined icon-size"
+                >stop_circle
+              </span>
+            </button>
+            <button id="resetBtn">
+              <span class="set-button material-symbols-outlined icon-size"
+                >refresh
+              </span>
+            </button>
+          </div>
           <div>
             <label
               >音量：

@@ -36,7 +36,6 @@ body.hero {
 
   /* テキスト共通 */
   .text {
-    padding: auto;
     display: flex;
     flex-direction: column;
     /* 全体に高さを与える */
@@ -104,13 +103,5 @@ body.hero {
   /* お茶でも淹れましょうか */
   .tea {
     font-size: 1.2rem;
-  }
-
-  div.timer-grid-container {
-    display: grid;
-    grid-auto-flow: row; /* アイテムを行方向に配置 (縦並びがデフォルト) */
-    border: core.$test;
-    margin: auto 0;
-    padding: 0 20px;
   }
 }

@@ -1,63 +1,93 @@
 @use "../core/index" as core;
 
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
-.dark {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --button-bg: #333333;
-  --button-text: #ffffff;
-}
+// 🌳 メイン タイマー
 
 .timer {
-  background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: sans-serif;
   text-align: center;
-  margin: 0;
-  padding: 20px;
-  border: 1px dotted rgba(172, 255, 47, 0.493);
+  /* 親要素 */
+  width: 100%;
+  padding: 0 16px;
 }
 
+/* h1 カウントダウン表示 */
 #timer {
-  font-size: 5vw;
-  margin: 30px 0;
-  border: 1px dotted rgba(172, 255, 47, 0.493);
+  // 幅が1000px-6vwは60px、ビューポートの幅が500px-6vwは30px
+  font-size: 6vw;
+  margin-bottom: 1.5rem;
 }
 
-.inputs,
 .buttons {
-  margin: 20px 0;
-  border: 1px dotted rgba(172, 255, 47, 0.493);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  padding: 0 8px;
+  &span {
+    display: block;
+  }
 }
 
-/* 数値を入力するためのコントロールです。
-      スピナーを表示し、既定の検証を追加します。
-      動的キーボードを持つ一部の端末では、テンキーを表示します。 */
-input[type="number"] {
-  font-size: 4vw;
-  width: 5vw;
-  text-align: center;
+// 3/4/5分初期設定ボタン
+.setTimeBtn {
+  border: solid 2.27px var(--text-color);
+  border-radius: 9999px;
+  line-height: 2.3rem;
+  box-shadow: var(--timer-shadow);
 }
 
-button {
-  font-size: 4vw;
-  margin: 2px;
-  padding: 1px 2px;
+.setTimeBtn:hover {
   background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 10px;
+  box-shadow: var(--timer-shadow-hover);
 }
 
-#themeToggle {
-  //   position: absolute;
-  position: relative;
-  top: 10px;
-  right: 10px;
-  font-size: 4vw;
-  padding: 5px 10px;
+.set-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3.4rem;
+  padding: 0.5rem 1.5rem;
+  width: 17rem;
+  margin: 0 auto;
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
+    radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(100px);
 }
 
+span.set-button {
+  color: inherit;
+}
+
+span.set-button:hover {
+  color: var(--button-bg);
+  text-shadow: var(--timer-shadow-hover);
+}
+
+volume-control {
+  border: core.$test;
+}
+
+/* タイマー操作部分 */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* css連結でサイズを上書きする */
+span.icon-size {
+  font-size: 42px;
+  /* font-size: 32px; */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// ⛳️ 各ページのミニタイマー
 /* wordsと色を揃える系（currentColor に追従） */
 
 .timer-mini-container,
