@@ -1,15 +1,6 @@
 // 余白・中央寄せ・共通コンテナなどレイアウト共通部分
 // 高さはなるべく縛らない、幅は拡げすぎない」
 
-// ① hero
-// grid
-// hero4等分
-.grid-parent-hero {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  height: 100vh;
-}
-
 // 中央寄せ
 .center {
   display: flex;
@@ -18,7 +9,7 @@
 }
 
 // 💡 1. 横幅：基本は % や max-width
-.container {
+.container-off {
   width: 100%;
   max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
   margin: 0 auto;

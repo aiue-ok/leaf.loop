@@ -27,22 +27,22 @@
     />
     <script src="js/timer-hero.js" defer></script>
   </head>
-  <body class="hero content">
+  <body class="hero">
     <!-- 動画の背景 -->
     <!-- autoplay：ページが読み込まれた時に自動で再生 -->
     <!-- muted：音声をミュートに設定 -->
     <!-- loop：動画を繰り返し再生 -->
-    <video autoplay muted loop id="background-video">
+    <video autoplay muted loop playsinline id="background-video">
       <source
         src="assets/mp4/5835661-uhd_3840_2160_25fps.mp4"
         type="video/mp4"
       />
       お使いのブラウザは動画タグに対応していません。
     </video>
-    <!-- grid　親 -->
-    <main class="grid-parent-hero">
-      <div class="center timer-grid-container timer">
-        <div class="timer-grid-item">
+    <!-- flexbox　親 -->
+    <main class="container content">
+      <div class="item item1 timer-grid-container timer">
+        <div class="timer-grid-item m-plus-1p-regular">
           <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
           <!-- 初期設定ボタン -->
           <div class="buttons">
@@ -50,7 +50,7 @@
             <button class="setTimeBtn" data-minutes="4">4分</button>
             <button class="setTimeBtn" data-minutes="5">5分</button>
           </div>
-          <div class="buttons">
+          <div class="buttons set-buttons">
             <button id="startBtn">
               <span class="set-button material-symbols-outlined icon-size"
                 >play_circle
@@ -67,7 +67,7 @@
               </span>
             </button>
           </div>
-          <div>
+          <div class="volume-control">
             <label
               >音量：
               <input
@@ -81,28 +81,28 @@
             </label>
           </div>
         </div>
-
         <audio
           id="alarmSound"
-          src="/assets/mp3/alarm.mp3"
+          src="assets/mp3/alarm.mp3"
           preload="auto"
         ></audio>
       </div>
-      <div class="center link zen-kaku-gothic-new-regular">
+
+      <div class="item item2 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-gallery">
           <a href="gallery.html" class="hover-link">
-            <div class="text hover-text">世界のお茶を少しだけ</div>
+            <div class="text hover-text"><p>世界のお茶を少しだけ</p></div>
           </a>
         </div>
       </div>
-      <div class="center link zen-kaku-gothic-new-regular">
+      <div class="item item3 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-universe">
           <a href="universe.html" class="hover-link">
-            <div class="text hover-text">遠くのことを少しだけ</div>
+            <div class="text hover-text"><p>遠くのことを少しだけ</p></div>
           </a>
         </div>
       </div>
-      <div class="center">
+      <div class="item item4">
         <div class="text zen-kaku-gothic-new-regular">
           <div class="suu">すぅ〜</div>
           <div class="tea">お茶でも淹れましょうか</div>

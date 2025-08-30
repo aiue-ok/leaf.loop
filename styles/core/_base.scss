@@ -13,6 +13,8 @@
 
 html {
   font-size: 16px;
+  // オートテキスト拡大
+  -webkit-text-size-adjust: 100%;
 }
 
 /* HTMLとbodyの高さを100%に設定 */
@@ -106,4 +108,17 @@ input {
   font-family: "游ゴシック体", "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
   font-weight: 300;
   margin: 0;
+}
+
+/* タイマー操作部分のgoogleアイコン */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* アイコンサイズを上書きする */
+span.icon-size {
+  font-size: 42px;
+  /* font-size: 32px; */
+  display: inline-block;
+  vertical-align: middle;
 }
