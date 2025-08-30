@@ -47,7 +47,6 @@ body.hero {
     place-items: center;
     min-width: 21vw;
     min-height: 160px;
-    border: 1px solid hotpink;
   }
 
   /* area割当（既存の .itemX を活用） */
@@ -155,17 +154,27 @@ body.hero {
         "item1"
         "item2"
         "item3";
-      min-height: auto;
+      min-height: 100svh;
+    }
+    .item4 {
+      grid-area: item4;
+      min-height: 25dvh;
+      min-height: 25svh;
+    }
+    .item1 {
+      grid-area: item1;
+      min-height: 25dvh;
+      min-height: 20svh;
     }
     .item2 {
       grid-area: item2;
-      min-height: 25dvh;
-      min-height: 20svh;
+      min-height: 10dvh;
+      min-height: 10svh;
     }
     .item3 {
       grid-area: item3;
-      min-height: 25dvh;
-      min-height: 20svh;
+      min-height: 10dvh;
+      min-height: 10svh;
     }
     .hover-area {
       height: 100%;

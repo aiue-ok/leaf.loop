@@ -1,126 +1,82 @@
 @use "../core/index" as core;
 
-/* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
-// 🌳 メイン タイマー
-// centerアイテム1番目：heroタイマー
-//📍 幅1100px以上の時だけ
-@media screen and (min-width: 1100px) {
-  body.hero {
-    .timer {
-      color: var(--main-color);
-      text-align: center;
-      /* 親要素 */
-      width: 100%;
-      padding: 0 16px;
+body {
+  color: var(--main-color);
+  // gridコンテナ親
+  .timer-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: clamp(8px, 1.5vmin, 16px);
+    /* カウント → プリセット → 操作 → ボリューム、の縦並び */
+    grid-template-areas:
+      "count"
+      "presets"
+      "controls"
+      "volume";
+    /* 横向きで横詰めにしたい時は later で template 変えるだけ */
+    /* 親要素 */
+    width: 100%;
+  }
+  .timer1 {
+    grid-area: count;
+    height: 20dvh;
+    margin-top: 25dvh;
+    justify-content: center;
+  }
+  .timer2 {
+    grid-area: presets;
+  }
+  .timer3 {
+    grid-area: controls;
+  }
+  .timer4 {
+    grid-area: volume;
+    width: 20vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &span {
+      display: block;
+      font-size: 24px;
     }
-    .timer-grid-container {
-      display: grid;
-      gap: clamp(8px, 2vmin, 16px);
-      /* カウント → プリセット → 操作 → ボリューム、の縦並び */
-      grid-template-areas:
-        "count"
-        "presets"
-        "controls"
-        "volume";
-      /* 横向きで横詰めにしたい時は later で template 変えるだけ */
-      text-align: center;
-    }
-    /* h1 カウントダウン表示 */
-    // * 好みに寄せる微調整
-    // * もっと小さめにしたい → 8vmin → 6.5vmin
-    // * もっと大きめにしたい → 8vmin → 9vmin
-    // * 4Kで暴れがちなら最大値を 56px に
+  }
+
+  /* h1 カウントダウン表示 */
+  .timer_count {
+    text-align: center;
+    /* 画面の短辺基準で流体。最小48px、最大105.6px */
     // vmin は「短いほうの辺の1%」。
-    #timer {
-      font-size: clamp(36px, 8vmin, 64px);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+    font-size: clamp(3rem, 12vmin, 3.4rem);
+    line-height: 1.1;
+  }
+  // ボタン・グループ　（ボタン用grid親）
+  .buttons {
+    display: grid;
+    grid-template-columns: 3rem 3rem 3rem;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    padding: 1vw;
+    &span {
+      display: block;
     }
-
-    .timer_count {
-      grid-area: count;
-      text-align: center;
-      /* 画面の短辺基準で流体。最小36px、最大64px */
-      font-size: clamp(36px, 8vmin, 64px);
-      line-height: 1.1;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr;
-      justify-content: center;
-      align-items: center;
-      column-gap: 0.6rem;
-      margin-bottom: 1.2rem;
-      padding: 0 8px;
-      &span {
-        display: block;
-      }
-    }
-    //heroからコピー
-    .buttons {
-      grid-area: presets;
-      display: flex;
-      gap: clamp(8px, 2vmin, 12px);
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .set-buttons {
-      grid-area: controls;
-      display: flex;
-      gap: clamp(10px, 2.2vmin, 16px);
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .setTimeBtn,
-    .set-buttons button {
-      inline-size: clamp(44px, 9vmin, 72px); /* 幅 */
-      block-size: clamp(44px, 9vmin, 72px); /* 高さ */
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      /* 中のアイコン/数字のサイズ */
-      font-size: clamp(12px, 2.5vmin, 18px);
-    }
-    .set-buttons .material-symbols-outlined {
-      font-size: clamp(20px, 4vmin, 28px);
-      line-height: 1;
-    }
-
-    /* コントロールの“台座”に幅制限を付けて折返しを許可 */
-    .set-buttons,
-    .buttons,
-    .volume-control {
-      inline-size: min(92vw, 420px);
-    }
-    // 3/4/5分初期設定ボタン
+    // 3/4/5分初期設定ボタン　子
     .setTimeBtn {
       border: solid 2.27px var(--main-color);
-      border-radius: 9999px;
-      line-height: 2.3rem;
+      min-width: 3rem;
+      min-height: 3rem;
+      border-radius: 50%;
       box-shadow: var(--timer-shadow);
+      text-align: center;
     }
 
     .setTimeBtn:hover {
       background-color: var(--button-bg);
       box-shadow: var(--timer-shadow-hover);
-    }
-
-    .set-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 3.4rem;
-      padding: 0.5rem 1.5rem;
-      width: 17rem;
-      margin: 0 auto;
-      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
-        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
-      background: rgba(255, 255, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 9999px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(100px);
     }
 
     span.set-button {
@@ -132,63 +88,50 @@
       text-shadow: var(--timer-shadow-hover);
     }
 
-    volume-control {
-      border: core.$test;
-      grid-area: volume;
-      display: grid;
-      gap: 6px;
-      justify-items: center;
+    .volume-control {
+      margin: 0 auto;
+      appearance: none;
+      width: 18vw;
+      height: 16px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #377494 50%, #dddddd 50%);
+      cursor: pointer;
+    }
+
+    /* ツマミ：Chrome, Safari, Edge用 */
+    .volume-control::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
+    }
+
+    /* ツマミ：Firefox用 */
+    .volume-control::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
     }
   }
 }
 
-//📍📍 幅1099px以下で画面が横向きの時だけ
-@media screen and (max-width: 1099px) and (orientation: landscape) {
+/* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
+// 🌳 メイン タイマー
+// centerアイテム1番目：heroタイマー
+//📍 幅1100px以上の時だけ
+@media screen and (min-width: 1100px) and (orientation: landscape) {
   body.hero {
+    // hero > main > container > item1 =
     .timer {
-      color: var(--main-color);
-      text-align: center;
-      /* 親要素 */
-      width: 100%;
-      padding: 0 1rem;
+      max-width: 23vw;
     }
-
-    /* h1 カウントダウン表示 */
-    #timer {
-      // 幅が1000px-6vwは60px、ビューポートの幅が500px-6vwは30px
-      font-size: 5vw;
-      // font-size: clamp(24px, 6vw, 56px);
-      margin-bottom: 1.5rem;
-    }
-
-    // ボタン・グループ　（親）
-    .buttons {
-      display: grid;
-      grid-template-columns: 3rem 3rem 3rem;
-      grid-template-rows: 1fr;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      margin: 1rem 0;
-      &span {
-        display: block;
-      }
-    }
-
-    // 3/4/5分初期設定ボタン　子
-    .setTimeBtn {
-      border: solid 2.27px var(--main-color);
-      min-width: 3rem;
-      min-height: 3rem;
-      border-radius: 50%;
-      box-shadow: var(--timer-shadow);
-    }
-
-    .setTimeBtn:hover {
-      background-color: var(--button-bg);
-      box-shadow: var(--timer-shadow-hover);
-    }
-
     // 操作ボタンの背景　アイコン位置調整
     .set-buttons {
       gap: 1.5rem;
@@ -201,166 +144,140 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       backdrop-filter: blur(100px);
     }
+  }
+}
 
-    span.set-button {
-      color: inherit;
+//📍📍 幅769px以上1099px以下で画面が横向きの時だけ
+@media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
+  body.hero {
+    .buttons {
+      gap: 10px;
     }
-
-    span.set-button:hover {
-      color: var(--button-bg);
-      text-shadow: var(--timer-shadow-hover);
-    }
-
-    .volume-control {
-      border: core.$test;
-      width: 20vw;
+    // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
+    .set-buttons {
       margin: 0 auto;
-    }
-    /* ベーススタイルに Track も合わせて設定 */
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
-      cursor: pointer;
-      width: 100%;
-      /* Track のスタイル */
-      background: var(--main-color);
-      height: 8px;
+      padding: 4px 0;
+      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
+        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
+      background: rgba(255, 255, 255, 0.3);
+      border: 0.8px solid rgba(255, 255, 255, 0.35);
       border-radius: 8px;
-    }
-    /* Thumb: Chrome, Safari, Opera, Edge Chromium */
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 20px;
-      width: 20px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(100px);
     }
 
-    /* Thumb: Firefox */
-    input[type="range"]::-moz-range-thumb {
-      border: none;
-      height: 20px;
-      width: 20px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
+    .timer4 {
+      font-size: 0.9rem;
+    }
+    .volume-control {
+      appearance: none;
+      width: 12vw;
+      height: 16px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #377494 50%, #dddddd 50%);
+      cursor: pointer;
+    }
+
+    /* ツマミ：Chrome, Safari, Edge用 */
+    .volume-control::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
+    }
+
+    /* ツマミ：Firefox用 */
+    .volume-control::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
     }
   }
 }
 
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
-@media (orientation: portrait) {
-  /* h1 カウントダウン表示 */
-  #timer {
-    font-size: clamp(40px, 8vmin, 60px);
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  body.hero {
+    .timer_count {
+      margin-bottom: 1rem;
+    }
+    .timer1 {
+      margin-top: 0;
+      height: auto;
+    }
+    .buttons {
+      gap: 16px;
+    }
+    .timer4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      &span {
+        display: block;
+        font-size: 24px;
+      }
+    }
+    .volume-control {
+      margin: 0 auto;
+      appearance: none;
+      width: 100px;
+      height: 16px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #377494 50%, #dddddd 50%);
+      cursor: pointer;
+    }
   }
 }
 
 //📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (max-width: 768px) and (orientation: landscape) {
   body.hero {
-    .timer {
-      color: var(--main-color);
-      text-align: center;
-      /* 親要素 */
-      width: 100%;
-      padding: 0 1rem;
+    .timer1 {
+      margin-top: 0;
     }
-
-    /* h1 カウントダウン表示 */
-    #timer {
-      font-size: clamp(36px, 9vmin, 64px);
-      margin-bottom: 1.5rem;
+    .timer4 {
+      width: 30vw;
+      font-size: 0.9rem;
     }
-
-    // ボタン・グループ　（親）
-    .buttons {
-      display: grid;
-      grid-template-columns: 3rem 3rem 3rem;
-      grid-template-rows: 1fr;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      margin: 1rem 0;
-      &span {
-        display: block;
-      }
-    }
-
-    // 3/4/5分初期設定ボタン　子
-    .setTimeBtn {
-      border: solid 2.27px var(--main-color);
-      min-width: 3rem;
-      min-height: 3rem;
-      border-radius: 50%;
-      box-shadow: var(--timer-shadow);
-    }
-
-    .setTimeBtn:hover {
-      background-color: var(--button-bg);
-      box-shadow: var(--timer-shadow-hover);
-    }
-
-    // 操作ボタンの背景　アイコン位置調整
-    .set-buttons {
-      // width: min(50% 18rem);
-      gap: 1.5rem;
-      padding: 0.2rem 0;
-      margin: 0 auto;
-      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
-        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
-      background: rgba(255, 255, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 9999px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(100px);
-    }
-
-    span.set-button {
-      color: inherit;
-      font-size: 3rem;
-    }
-
-    span.set-button:hover {
-      color: var(--button-bg);
-      text-shadow: var(--timer-shadow-hover);
-    }
-
     .volume-control {
-      border: core.$test;
+      appearance: none;
       width: 20vw;
-      margin: 0 auto;
-    }
-    /* ベーススタイルに Track も合わせて設定 */
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
+      height: 16px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #377494 50%, #dddddd 50%);
       cursor: pointer;
-      width: 100%;
-      /* Track のスタイル */
-      background: var(--main-color);
-      height: 8px;
-      border-radius: 8px;
-    }
-    /* Thumb: Chrome, Safari, Opera, Edge Chromium */
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 20px;
-      width: 20px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
     }
 
-    /* Thumb: Firefox */
-    input[type="range"]::-moz-range-thumb {
-      border: none;
-      height: 20px;
-      width: 20px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
+    /* ツマミ：Chrome, Safari, Edge用 */
+    .volume-control::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
+    }
+
+    /* ツマミ：Firefox用 */
+    .volume-control::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #333333;
+      border-radius: 9999px;
+      background: #06b6d4;
+      box-shadow: none;
     }
   }
 }

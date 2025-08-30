@@ -39,18 +39,20 @@
       />
       お使いのブラウザは動画タグに対応していません。
     </video>
-    <!-- flexbox　親 -->
+    <!-- grid　親 -->
     <main class="container content">
-      <div class="item item1 timer-grid-container timer">
-        <div class="timer-grid-item m-plus-1p-regular">
-          <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+      <div class="item item1 timer m-plus-1p-regular">
+        <div class="timer-grid-container">
+          <div class="timer1">
+            <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+          </div>
           <!-- 初期設定ボタン -->
-          <div class="buttons">
+          <div class="timer2 buttons preset-buttons">
             <button class="setTimeBtn" data-minutes="3">3分</button>
             <button class="setTimeBtn" data-minutes="4">4分</button>
             <button class="setTimeBtn" data-minutes="5">5分</button>
           </div>
-          <div class="buttons set-buttons">
+          <div class="timer3 buttons set-buttons">
             <button id="startBtn">
               <span class="set-button material-symbols-outlined icon-size"
                 >play_circle
@@ -67,25 +69,25 @@
               </span>
             </button>
           </div>
-          <div class="volume-control">
-            <label
-              >音量：
+          <div class="timer4">
+            <span class="material-symbols-outlined icon-size">
+              volume_mute
+            </span>
+            <label>
               <input
                 type="range"
-                id="volumeControl"
+                name="range"
+                value="50"
                 min="0"
-                max="1"
-                step="0.01"
-                value="1"
+                max="100"
+                step="any"
+                id="volumeControl"
+                class="volume-control"
               />
             </label>
+            <span class="material-symbols-outlined icon-size"> volume_up </span>
           </div>
         </div>
-        <audio
-          id="alarmSound"
-          src="assets/mp3/alarm.mp3"
-          preload="auto"
-        ></audio>
       </div>
 
       <div class="item item2 link zen-kaku-gothic-new-regular">
@@ -109,5 +111,6 @@
         </div>
       </div>
     </main>
+    <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>

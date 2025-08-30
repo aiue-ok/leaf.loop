@@ -65,3 +65,13 @@ document.querySelectorAll(".setTimeBtn").forEach((button) => {
 
 // 初期表示更新
 updateDisplay();
+
+// ボリュームのツマミの前後で色を塗り分ける
+const inputRange = document.getElementById("volumeControl");
+const activeColor = "#377494";
+const inactiveColor = "#dddddd";
+
+inputRange.addEventListener("input", function () {
+  const ratio = ((this.value - this.min) / (this.max - this.min)) * 100;
+  this.style.background = `linear-gradient(90deg, ${activeColor} ${ratio}%, ${inactiveColor} ${ratio}%)`;
+});
