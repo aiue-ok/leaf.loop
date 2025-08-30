@@ -350,7 +350,7 @@ body .buttons .volume-control::-moz-range-thumb {
   }
 }
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
-@media screen and (max-width: 768px) and (orientation: portrait) {
+@media screen and (max-width: 1024px) and (orientation: portrait) {
   body.hero .timer_count {
     margin-bottom: 1rem;
   }
