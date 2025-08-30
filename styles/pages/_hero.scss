@@ -1,5 +1,6 @@
 @use "../core/index" as core;
 @use "../components/timer" as time;
+@use "../components/info" as info;
 body.hero {
   color: #f5f5f5;
   text-shadow: 1px 1px 3px #c2c2c2;
