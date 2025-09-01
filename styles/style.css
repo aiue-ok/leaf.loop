@@ -452,176 +452,171 @@ body .buttons .volume-control::-moz-range-thumb {
     box-shadow: none;
   }
 }
+/* 共通ミニタイマー（ギャラリー/ユニバース/アバウト） */
 body.gallery .timer,
 body.universe .timer,
 body.about .timer {
   position: fixed;
-  left: 1.25rem;
-  bottom: 1.25rem;
+  left: max(12px, env(safe-area-inset-left) + 12px);
+  bottom: max(12px, env(safe-area-inset-bottom) + 12px);
   z-index: 5;
-  border: 1px solid hotpink;
-  /* h1 カウントダウン表示 */
-}
-body.gallery .timer span.icon-size,
-body.universe .timer span.icon-size,
-body.about .timer span.icon-size {
-  font-size: 1.6rem;
+  /* ミニカードの箱（幅を決める） */
+  /* カウント */
+  /* プリセット */
+  /* 操作ボタン列 */
+  /* 音量（ラベル＋スライダー） */
 }
 body.gallery .timer .timer-grid-container,
 body.universe .timer .timer-grid-container,
 body.about .timer .timer-grid-container {
   display: grid;
-  grid-template-columns: 1.2fr 3rem 3rem;
-  grid-template-rows: 1fr;
-  gap: 8px;
-  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
-  grid-template-areas: "count presets controls" "volume volume volume";
-  /* 横向きで横詰めにしたい時は later で template 変えるだけ */
-  /* 親要素 */
-  justify-content: left;
+  grid-template-columns: 1fr 3rem 3rem;
+  grid-template-rows: auto auto; /* ← 2行にする */
+  grid-template-areas: "count  presets controls" "volume volume  volume";
+  gap: 8px 8px;
   align-items: center;
-  width: 100%;
+  justify-items: center;
+  inline-size: min(78vw, 360px); /* ← ミニ幅 */
+  padding: 10px 12px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 body.gallery .timer .timer1,
 body.universe .timer .timer1,
 body.about .timer .timer1 {
   grid-area: count;
-  height: auto;
-  margin-top: 0;
-  display: block;
-  font-size: clamp(3rem, 12vw, 3.4rem); /* あとで調整 */
+  inline-size: 100%;
   text-align: center;
-  border: 1px solid hotpink;
+  /* 小さめでも破綻しない流体サイズ */
+}
+body.gallery .timer .timer1 .timer_count,
+body.universe .timer .timer1 .timer_count,
+body.about .timer .timer1 .timer_count {
+  font-size: clamp(24px, 7vmin, 48px);
+  line-height: 1.1;
+  margin: 0;
 }
 body.gallery .timer .timer2,
 body.universe .timer .timer2,
 body.about .timer .timer2 {
   grid-area: presets;
-  width: 3rem;
-  border: 1px solid hotpink;
+  inline-size: 100%;
+  display: grid;
+  grid-template-rows: 2rem 2rem 2rem;
+  gap: 6px;
+  justify-items: stretch;
+}
+body.gallery .timer .timer2 .setTimeBtn,
+body.universe .timer .timer2 .setTimeBtn,
+body.about .timer .timer2 .setTimeBtn {
+  min-inline-size: 3rem;
+  min-block-size: 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--main-color);
+  box-shadow: var(--timer-shadow);
+  text-align: center;
+  font-size: 0.9rem;
+}
+body.gallery .timer .timer2 .setTimeBtn:hover,
+body.universe .timer .timer2 .setTimeBtn:hover,
+body.about .timer .timer2 .setTimeBtn:hover {
+  background-color: var(--button-bg);
+  box-shadow: var(--timer-shadow-hover);
 }
 body.gallery .timer .timer3,
 body.universe .timer .timer3,
 body.about .timer .timer3 {
   grid-area: controls;
-  width: 3rem;
-  border: 1px solid hotpink;
+  inline-size: 100%;
+  display: grid;
+  grid-template-rows: 2rem 2rem 2rem;
+  gap: 6px;
+  justify-items: stretch;
+}
+body.gallery .timer .timer3 button,
+body.universe .timer .timer3 button,
+body.about .timer .timer3 button {
+  min-block-size: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+}
+body.gallery .timer .timer3 span.icon-size,
+body.universe .timer .timer3 span.icon-size,
+body.about .timer .timer3 span.icon-size {
+  font-size: 1.4rem;
 }
 body.gallery .timer .timer4,
 body.universe .timer .timer4,
 body.about .timer .timer4 {
   grid-area: volume;
-  width: 20rem;
-  height: 2rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid hotpink;
-}
-body.gallery .timer .timer4span,
-body.universe .timer .timer4span,
-body.about .timer .timer4span {
-  display: block;
-  font-size: 16px;
-}
-body.gallery .timer .timer_count,
-body.universe .timer .timer_count,
-body.about .timer .timer_count {
-  /* 画面の短辺基準で流体。最小48px、最大105.6px */
-  font-size: clamp(2rem, 10vmin, 3rem);
-  line-height: 1.1;
-  margin-left: 0;
-}
-body.gallery .timer .buttons,
-body.universe .timer .buttons,
-body.about .timer .buttons {
+  inline-size: 100%;
   display: grid;
-  grid-template-rows: 2rem 2rem 2rem;
-  grid-template-columns: 1fr;
-  justify-content: center;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 1vh;
-  padding: 1vw;
-  width: 3rem;
-  text-align: center;
-  /* ツマミ：Chrome, Safari, Edge用 */
-  /* ツマミ：Firefox用 */
+  gap: 8px;
+  /* ← ここは `& span` か `span` */
+  /* input[type=range] をクラスでも取れるように */
+  /* WebKit: トラック */
+  /* WebKit: 親指 */
+  /* Firefox: トラック/親指 */
 }
-body.gallery .timer .buttonsspan,
-body.universe .timer .buttonsspan,
-body.about .timer .buttonsspan {
-  display: block;
+body.gallery .timer .timer4 span,
+body.universe .timer .timer4 span,
+body.about .timer .timer4 span {
+  font-size: 0.9rem;
 }
-body.gallery .timer .buttons .setTimeBtn,
-body.universe .timer .buttons .setTimeBtn,
-body.about .timer .buttons .setTimeBtn {
-  border: solid 2.27px var(--main-color);
-  min-width: 3rem;
-  min-height: 2rem;
-  border-radius: 16px;
-  box-shadow: var(--timer-shadow);
-  text-align: center;
-}
-body.gallery .timer .buttons .setTimeBtn:hover,
-body.universe .timer .buttons .setTimeBtn:hover,
-body.about .timer .buttons .setTimeBtn:hover {
-  background-color: var(--button-bg);
-  box-shadow: var(--timer-shadow-hover);
-}
-body.gallery .timer .buttons span.set-button,
-body.universe .timer .buttons span.set-button,
-body.about .timer .buttons span.set-button {
-  color: inherit;
-}
-body.gallery .timer .buttons span.set-button:hover,
-body.universe .timer .buttons span.set-button:hover,
-body.about .timer .buttons span.set-button:hover {
-  color: var(--button-bg);
-  text-shadow: var(--timer-shadow-hover);
-}
-body.gallery .timer .buttons .volume-control,
-body.universe .timer .buttons .volume-control,
-body.about .timer .buttons .volume-control {
-  -webkit-appearance: none;
+body.gallery .timer .timer4 input.volume-control,
+body.universe .timer .timer4 input.volume-control,
+body.about .timer .timer4 input.volume-control {
   appearance: none;
-  height: 20px;
+  -webkit-appearance: none;
+  inline-size: 100%;
+  block-size: 10px; /* 高さは本体ではなく track にも指定する */
+  background: transparent; /* 本体は透明に */
   border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  background-color: aqua;
-  width: 10rem;
-  margin: 0 auto;
   cursor: pointer;
 }
-body.gallery .timer .buttons .volume-control::-webkit-slider-thumb,
-body.universe .timer .buttons .volume-control::-webkit-slider-thumb,
-body.about .timer .buttons .volume-control::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
+body.gallery .timer .timer4 input.volume-control::-webkit-slider-runnable-track,
+body.universe .timer .timer4 input.volume-control::-webkit-slider-runnable-track,
+body.about .timer .timer4 input.volume-control::-webkit-slider-runnable-track {
+  block-size: 10px;
   border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+  background: linear-gradient(to right, var(--main-color) 0 var(--volume-fill, 60%), rgba(255, 255, 255, 0.2) 0), rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
-body.gallery .timer .buttons .volume-control::-moz-range-thumb,
-body.universe .timer .buttons .volume-control::-moz-range-thumb,
-body.about .timer .buttons .volume-control::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
+body.gallery .timer .timer4 input.volume-control::-webkit-slider-thumb,
+body.universe .timer .timer4 input.volume-control::-webkit-slider-thumb,
+body.about .timer .timer4 input.volume-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  inline-size: 20px;
+  block-size: 20px;
+  margin-top: -5px; /* 親指をトラック中央に */
   border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+body.gallery .timer .timer4 input.volume-control::-moz-range-track,
+body.universe .timer .timer4 input.volume-control::-moz-range-track,
+body.about .timer .timer4 input.volume-control::-moz-range-track {
+  block-size: 10px;
+  border-radius: 9999px;
   background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+body.gallery .timer .timer4 input.volume-control::-moz-range-thumb,
+body.universe .timer .timer4 input.volume-control::-moz-range-thumb,
+body.about .timer .timer4 input.volume-control::-moz-range-thumb {
+  inline-size: 20px;
+  block-size: 20px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* wordsと色を揃える系（currentColor に追従） */
