@@ -18,12 +18,14 @@ body {
     /* 親要素 */
     width: 100%;
   }
+  // カウント
   .timer1 {
     grid-area: count;
     height: 20dvh;
     margin-top: 25dvh;
     justify-content: center;
   }
+
   .timer2 {
     grid-area: presets;
   }
@@ -255,6 +257,7 @@ body {
       }
     }
     .volume-control {
+      -webkit-appearance: none;
       margin: 0 auto;
       appearance: none;
       width: 100px;
@@ -324,6 +327,171 @@ body {
   }
 }
 // ⛳️ 各ページのミニタイマー
+// 各ページタイマー
+body.gallery,
+body.universe,
+body.about {
+  // 位置
+  .timer {
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    // width: 20rem;
+    // height: 10rem;
+    z-index: 5;
+    // color: var(--main-color);
+    border: 1px solid hotpink;
+    span.icon-size {
+      font-size: 1.6rem;
+    }
+    // gridコンテナ親
+    .timer-grid-container {
+      display: grid;
+      grid-template-columns: 1.2fr 3rem 3rem;
+      grid-template-rows: 1fr;
+      gap: 8px;
+      /* カウント → プリセット → 操作 → ボリューム、の縦並び */
+      grid-template-areas:
+        "count presets controls"
+        "volume volume volume";
+      /* 横向きで横詰めにしたい時は later で template 変えるだけ */
+      /* 親要素 */
+      justify-content: left;
+      align-items: center;
+      width: 100%;
+    }
+    // カウント
+    .timer1 {
+      grid-area: count;
+      height: auto;
+      margin-top: 0;
+      //引き継いだcss
+      display: block;
+      font-size: clamp(3rem, 12vw, 3.4rem); /* あとで調整 */
+      text-align: center;
+      border: 1px solid hotpink;
+    }
+    .timer2 {
+      grid-area: presets;
+      width: 3rem;
+      // height: 10rem;
+      border: 1px solid hotpink;
+    }
+    .timer3 {
+      grid-area: controls;
+      width: 3rem;
+      // height: 10rem;
+      border: 1px solid hotpink;
+    }
+    .timer4 {
+      grid-area: volume;
+      width: 20rem;
+      height: 2rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 1px solid hotpink;
+      &span {
+        display: block;
+        font-size: 16px;
+      }
+    }
+
+    /* h1 カウントダウン表示 */
+    .timer_count {
+      /* 画面の短辺基準で流体。最小48px、最大105.6px */
+      // vmin は「短いほうの辺の1%」。
+      font-size: clamp(2rem, 10vmin, 3rem);
+      line-height: 1.1;
+      margin-left: 0;
+    }
+    // ボタン・グループ　（ボタン用grid親）
+    .buttons {
+      display: grid;
+      grid-template-rows: 2rem 2rem 2rem;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      gap: 1vh;
+      padding: 1vw;
+      width: 3rem;
+      text-align: center;
+      &span {
+        display: block;
+      }
+      // 3/4/5分初期設定ボタン　子
+      .setTimeBtn {
+        border: solid 2.27px var(--main-color);
+        min-width: 3rem;
+        min-height: 2rem;
+        border-radius: 16px;
+        box-shadow: var(--timer-shadow);
+        text-align: center;
+      }
+
+      .setTimeBtn:hover {
+        background-color: var(--button-bg);
+        box-shadow: var(--timer-shadow-hover);
+      }
+
+      span.set-button {
+        color: inherit;
+      }
+
+      span.set-button:hover {
+        color: var(--button-bg);
+        text-shadow: var(--timer-shadow-hover);
+      }
+
+      .volume-control {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 20px;
+        border-radius: 9999px;
+        backdrop-filter: blur(8px) saturate(140%);
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+        background-color: aqua;
+        width: 10rem;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+
+      /* ツマミ：Chrome, Safari, Edge用 */
+      .volume-control::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        border: 2px solid #333333;
+        border-radius: 9999px;
+        backdrop-filter: blur(8px) saturate(140%);
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+        box-shadow: none;
+      }
+
+      /* ツマミ：Firefox用 */
+      .volume-control::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #333333;
+        border-radius: 9999px;
+        backdrop-filter: blur(8px) saturate(140%);
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+        box-shadow: none;
+      }
+    }
+  }
+}
+
 /* wordsと色を揃える系（currentColor に追従） */
 
 .timer-mini-container,
@@ -340,6 +508,24 @@ body {
 
 .timer-mini-container .timer-display {
   opacity: 0.85;
+}
+
+.timer-mini-glass {
+  border-radius: 16px;
+  border: 1px solid rgb(255 255 255 / 20%); // 境界線を少し光らせる
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  background: rgba(245, 245, 245, 0.4);
+  color: inherit;
+  transition: background 0.3s ease, filter 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  &:hover {
+    background: rgb(255 255 255 /70%);
+    outline: none; // ブラウザのデフォルトの青い枠を消す
+    filter: brightness(1) contrast(1.05) saturate(1.05);
+  }
 }
 /* ▼▼ Hover（プリセット、セットボタン） */
 

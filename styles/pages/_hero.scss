@@ -139,6 +139,13 @@ body.hero {
     text-align: center;
   }
 
+  /* キーボード操作での見やすいフォーカス */
+  .hover-link:focus-visible span {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
   /* すぅ〜 */
   .suu {
     font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -323,5 +330,14 @@ body.hero {
   body.hero .container {
     padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
     padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
+  }
+}
+
+/* hover可能端末だけ見た目の変化を強める */
+@media (hover: hover) {
+  .hover-link:hover span {
+    color: #ffffff;
+    border-bottom-color: rgba(255, 255, 255, 0.7);
+    text-underline-offset: 0.2em;
   }
 }

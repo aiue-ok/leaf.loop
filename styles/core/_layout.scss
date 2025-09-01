@@ -34,6 +34,16 @@
 }
 // これで上下中央に要素を配置したり「最初のビューにドーンと画像を表示」みたいな構成ができます。
 
+.grid-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 1rem;
+  text-align: center;
+}
+
 // SCSS（ブレイクポイント＋向きで切替）メモ
 @media screen and (orientation: landscape) {
 }

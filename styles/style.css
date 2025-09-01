@@ -157,6 +157,16 @@ span.icon-size {
   justify-content: center;
 }
 
+.grid-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 1rem;
+  text-align: center;
+}
+
 /* スマホ縦：1列積み */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -382,6 +392,7 @@ body .buttons .volume-control::-moz-range-thumb {
     font-size: 16px;
   }
   body.hero .volume-control {
+    -webkit-appearance: none;
     margin: 0 auto;
     appearance: none;
     width: 100px;
@@ -441,6 +452,178 @@ body .buttons .volume-control::-moz-range-thumb {
     box-shadow: none;
   }
 }
+body.gallery .timer,
+body.universe .timer,
+body.about .timer {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 5;
+  border: 1px solid hotpink;
+  /* h1 カウントダウン表示 */
+}
+body.gallery .timer span.icon-size,
+body.universe .timer span.icon-size,
+body.about .timer span.icon-size {
+  font-size: 1.6rem;
+}
+body.gallery .timer .timer-grid-container,
+body.universe .timer .timer-grid-container,
+body.about .timer .timer-grid-container {
+  display: grid;
+  grid-template-columns: 1.2fr 3rem 3rem;
+  grid-template-rows: 1fr;
+  gap: 8px;
+  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
+  grid-template-areas: "count presets controls" "volume volume volume";
+  /* 横向きで横詰めにしたい時は later で template 変えるだけ */
+  /* 親要素 */
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+body.gallery .timer .timer1,
+body.universe .timer .timer1,
+body.about .timer .timer1 {
+  grid-area: count;
+  height: auto;
+  margin-top: 0;
+  display: block;
+  font-size: clamp(3rem, 12vw, 3.4rem); /* あとで調整 */
+  text-align: center;
+  border: 1px solid hotpink;
+}
+body.gallery .timer .timer2,
+body.universe .timer .timer2,
+body.about .timer .timer2 {
+  grid-area: presets;
+  width: 3rem;
+  border: 1px solid hotpink;
+}
+body.gallery .timer .timer3,
+body.universe .timer .timer3,
+body.about .timer .timer3 {
+  grid-area: controls;
+  width: 3rem;
+  border: 1px solid hotpink;
+}
+body.gallery .timer .timer4,
+body.universe .timer .timer4,
+body.about .timer .timer4 {
+  grid-area: volume;
+  width: 20rem;
+  height: 2rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid hotpink;
+}
+body.gallery .timer .timer4span,
+body.universe .timer .timer4span,
+body.about .timer .timer4span {
+  display: block;
+  font-size: 16px;
+}
+body.gallery .timer .timer_count,
+body.universe .timer .timer_count,
+body.about .timer .timer_count {
+  /* 画面の短辺基準で流体。最小48px、最大105.6px */
+  font-size: clamp(2rem, 10vmin, 3rem);
+  line-height: 1.1;
+  margin-left: 0;
+}
+body.gallery .timer .buttons,
+body.universe .timer .buttons,
+body.about .timer .buttons {
+  display: grid;
+  grid-template-rows: 2rem 2rem 2rem;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  padding: 1vw;
+  width: 3rem;
+  text-align: center;
+  /* ツマミ：Chrome, Safari, Edge用 */
+  /* ツマミ：Firefox用 */
+}
+body.gallery .timer .buttonsspan,
+body.universe .timer .buttonsspan,
+body.about .timer .buttonsspan {
+  display: block;
+}
+body.gallery .timer .buttons .setTimeBtn,
+body.universe .timer .buttons .setTimeBtn,
+body.about .timer .buttons .setTimeBtn {
+  border: solid 2.27px var(--main-color);
+  min-width: 3rem;
+  min-height: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--timer-shadow);
+  text-align: center;
+}
+body.gallery .timer .buttons .setTimeBtn:hover,
+body.universe .timer .buttons .setTimeBtn:hover,
+body.about .timer .buttons .setTimeBtn:hover {
+  background-color: var(--button-bg);
+  box-shadow: var(--timer-shadow-hover);
+}
+body.gallery .timer .buttons span.set-button,
+body.universe .timer .buttons span.set-button,
+body.about .timer .buttons span.set-button {
+  color: inherit;
+}
+body.gallery .timer .buttons span.set-button:hover,
+body.universe .timer .buttons span.set-button:hover,
+body.about .timer .buttons span.set-button:hover {
+  color: var(--button-bg);
+  text-shadow: var(--timer-shadow-hover);
+}
+body.gallery .timer .buttons .volume-control,
+body.universe .timer .buttons .volume-control,
+body.about .timer .buttons .volume-control {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  background-color: aqua;
+  width: 10rem;
+  margin: 0 auto;
+  cursor: pointer;
+}
+body.gallery .timer .buttons .volume-control::-webkit-slider-thumb,
+body.universe .timer .buttons .volume-control::-webkit-slider-thumb,
+body.about .timer .buttons .volume-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #333333;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+body.gallery .timer .buttons .volume-control::-moz-range-thumb,
+body.universe .timer .buttons .volume-control::-moz-range-thumb,
+body.about .timer .buttons .volume-control::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #333333;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
 /* wordsと色を揃える系（currentColor に追従） */
 .timer-mini-container,
 .timer-mini-container * {
@@ -456,6 +639,23 @@ body .buttons .volume-control::-moz-range-thumb {
 /* 数字だけ少しなじませる（必要なら .timer-display をHTMLに付与）*/
 .timer-mini-container .timer-display {
   opacity: 0.85;
+}
+
+.timer-mini-glass {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: rgba(245, 245, 245, 0.4);
+  color: inherit;
+  transition: background 0.3s ease, filter 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.timer-mini-glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+  outline: none;
+  filter: brightness(1) contrast(1.05) saturate(1.05);
 }
 
 /* ▼▼ Hover（プリセット、セットボタン） */
@@ -592,6 +792,7 @@ body.hero {
   /* area割当（既存の .itemX を活用） */
   /* テキスト共通 */
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
+  /* キーボード操作での見やすいフォーカス */
   /* すぅ〜 */
   /* お茶でも淹れましょうか */
 }
@@ -705,6 +906,11 @@ body.hero .hover-link {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+body.hero .hover-link:focus-visible span {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+  border-radius: 6px;
 }
 body.hero .suu {
   font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -838,6 +1044,14 @@ body.hero .tea {
   body.hero .container {
     padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
     padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
+  }
+}
+/* hover可能端末だけ見た目の変化を強める */
+@media (hover: hover) {
+  .hover-link:hover span {
+    color: #ffffff;
+    border-bottom-color: rgba(255, 255, 255, 0.7);
+    text-underline-offset: 0.2em;
   }
 }
 body.gallery {
@@ -1208,117 +1422,4 @@ body.gallery .lightbox .lightbox-content .fade-in {
     margin-top: 0.4rem;
     font-size: 1rem;
   }
-}
-body.gallery {
-  color: var(--main-color);
-  /* h1 カウントダウン表示 */
-}
-body.gallery .timer-grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: clamp(8px, 1.5vmin, 16px);
-  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
-  grid-template-areas: "count" "presets" "controls" "volume";
-  /* 横向きで横詰めにしたい時は later で template 変えるだけ */
-  /* 親要素 */
-  width: 100%;
-}
-body.gallery .timer1 {
-  grid-area: count;
-  height: 20dvh;
-  margin-top: 25dvh;
-  justify-content: center;
-}
-body.gallery .timer2 {
-  grid-area: presets;
-}
-body.gallery .timer3 {
-  grid-area: controls;
-}
-body.gallery .timer4 {
-  grid-area: volume;
-  width: 20vw;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-body.gallery .timer4span {
-  display: block;
-  font-size: 24px;
-}
-body.gallery .timer_count {
-  text-align: center;
-  /* 画面の短辺基準で流体。最小48px、最大105.6px */
-  font-size: clamp(3rem, 12vmin, 3.4rem);
-  line-height: 1.1;
-}
-body.gallery .buttons {
-  display: grid;
-  grid-template-columns: 3rem 3rem 3rem;
-  grid-template-rows: 1fr;
-  justify-content: center;
-  align-items: center;
-  gap: 5vh;
-  padding: 1vw;
-  text-align: center;
-  /* ツマミ：Chrome, Safari, Edge用 */
-  /* ツマミ：Firefox用 */
-}
-body.gallery .buttonsspan {
-  display: block;
-}
-body.gallery .buttons .setTimeBtn {
-  border: solid 2.27px var(--main-color);
-  min-width: 3rem;
-  min-height: 3rem;
-  border-radius: 50%;
-  box-shadow: var(--timer-shadow);
-  text-align: center;
-}
-body.gallery .buttons .setTimeBtn:hover {
-  background-color: var(--button-bg);
-  box-shadow: var(--timer-shadow-hover);
-}
-body.gallery .buttons span.set-button {
-  color: inherit;
-}
-body.gallery .buttons span.set-button:hover {
-  color: var(--button-bg);
-  text-shadow: var(--timer-shadow-hover);
-}
-body.gallery .buttons .volume-control {
-  margin: 0 auto;
-  appearance: none;
-  width: 18vw;
-  height: 16px;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-}
-body.gallery .buttons .volume-control::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
-}
-body.gallery .buttons .volume-control::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
 }/*# sourceMappingURL=style.css.map */
