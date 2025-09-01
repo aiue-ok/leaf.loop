@@ -128,5 +128,17 @@
       </div>
     </footer>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
+    <script type="module">
+      import { startTimer, stopTimer, initTimerDisplay } from "./timer.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        initTimerDisplay("#timer");
+        document
+          .querySelector("#startBtn")
+          ?.addEventListener("click", startTimer);
+        document
+          .querySelector("#stopBtn")
+          ?.addEventListener("click", stopTimer);
+      });
+    </script>
   </body>
 </html>
