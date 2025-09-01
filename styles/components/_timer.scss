@@ -61,6 +61,7 @@ body {
     align-items: center;
     gap: 5vh;
     padding: 1vw;
+    text-align: center;
     &span {
       display: block;
     }
@@ -135,7 +136,7 @@ body {
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
 // 🌳 メイン タイマー
 // centerアイテム1番目：heroタイマー
-//📍 幅1100px以上の時だけ
+//📍 幅1100px以上の横向き時だけ
 @media screen and (min-width: 1100px) and (orientation: landscape) {
   body.hero {
     // hero > main > container > item1 =
@@ -163,6 +164,9 @@ body {
     .buttons {
       gap: 10px;
     }
+    span.icon-size {
+      font-size: 2rem;
+    }
     // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     .set-buttons {
       margin: 0 auto;
@@ -171,7 +175,7 @@ body {
         radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
       background: rgba(255, 255, 255, 0.3);
       border: 0.8px solid rgba(255, 255, 255, 0.35);
-      border-radius: 8px;
+      border-radius: 999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       backdrop-filter: blur(100px);
     }
@@ -225,14 +229,18 @@ body {
 @media screen and (max-width: 1024px) and (orientation: portrait) {
   body.hero {
     .timer_count {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
     .timer1 {
       margin-top: 0;
       height: auto;
     }
     .buttons {
-      gap: 16px;
+      // gap: 16px;
+      gap: clamp(16px, 2rem, 36px);
+    }
+    span.icon-size {
+      font-size: 2rem;
     }
     .timer4 {
       display: flex;
@@ -241,9 +249,9 @@ body {
       width: 100%;
       text-align: center;
       font-size: 0.9rem;
-      &span {
+      &span.icon-size {
         display: block;
-        font-size: 24px;
+        font-size: 16px;
       }
     }
     .volume-control {
@@ -266,6 +274,9 @@ body {
   body.hero {
     .timer1 {
       margin-top: 0;
+    }
+    span.icon-size {
+      font-size: 2rem;
     }
     .timer4 {
       width: 30vw;

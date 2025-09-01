@@ -220,6 +220,7 @@ body .buttons {
   align-items: center;
   gap: 5vh;
   padding: 1vw;
+  text-align: center;
   /* ツマミ：Chrome, Safari, Edge用 */
   /* ツマミ：Firefox用 */
 }
@@ -303,13 +304,16 @@ body .buttons .volume-control::-moz-range-thumb {
   body.hero .buttons {
     gap: 10px;
   }
+  body.hero span.icon-size {
+    font-size: 2rem;
+  }
   body.hero .set-buttons {
     margin: 0 auto;
     padding: 4px 0;
     background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)), radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
     background: rgba(255, 255, 255, 0.3);
     border: 0.8px solid rgba(255, 255, 255, 0.35);
-    border-radius: 8px;
+    border-radius: 999px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(100px);
   }
@@ -352,14 +356,17 @@ body .buttons .volume-control::-moz-range-thumb {
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (max-width: 1024px) and (orientation: portrait) {
   body.hero .timer_count {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   body.hero .timer1 {
     margin-top: 0;
     height: auto;
   }
   body.hero .buttons {
-    gap: 16px;
+    gap: clamp(16px, 2rem, 36px);
+  }
+  body.hero span.icon-size {
+    font-size: 2rem;
   }
   body.hero .timer4 {
     display: flex;
@@ -369,9 +376,9 @@ body .buttons .volume-control::-moz-range-thumb {
     text-align: center;
     font-size: 0.9rem;
   }
-  body.hero .timer4span {
+  body.hero .timer4span.icon-size {
     display: block;
-    font-size: 24px;
+    font-size: 16px;
   }
   body.hero .volume-control {
     margin: 0 auto;
@@ -392,6 +399,9 @@ body .buttons .volume-control::-moz-range-thumb {
   }
   body.hero .timer1 {
     margin-top: 0;
+  }
+  body.hero span.icon-size {
+    font-size: 2rem;
   }
   body.hero .timer4 {
     width: 30vw;
@@ -516,7 +526,7 @@ body .buttons .volume-control::-moz-range-thumb {
 .sideitem:nth-child(1) {
   position: absolute;
   right: clamp(12px, 3vmin, 28px);
-  bottom: clamp(80px, 3vmin, 100px);
+  bottom: clamp(72px, 2vmin, 100px);
   z-index: 3;
 }
 
