@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- GoogleFonts↓ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Noto Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="js/gallery.js" defer></script>
+    <script src="js/timer-hero.js" defer></script>
+    <title>世界のお茶を少しだけ</title>
+  </head>
+  <body class="gallery">
+    <header>
+      <!-- ハンバーガーメニューが必要ならここに -->
+      <!-- ボタン内 -->
+      <button class="menu-btn" aria-label="メニューを開く">
+        <span
+          class="material-icons"
+          style="font-variation-settings: 'wght' 300, 'GRAD' -25"
+        >
+          menu
+        </span>
+      </button>
+      <!-- 右上　メニューパネル
+             <div class="menu-container">-->
+      <div class="menu-container">
+        <div class="glass-frost menu">
+          <button class="close-button zen-kaku-gothic-new-bold">×</button>
+          <ul class="menu-list zen-kaku-gothic-new-light">
+            <li>
+              <a href="index.html"><span class="link-text">ホーム</span></a>
+            </li>
+            <li><span class="link-text">世界のお茶を少しだけ</span></li>
+            <li><span class="link-text">遠くのことを少しだけ</span></li>
+            <li><span class="link-text">このサイトについて</span></li>
+          </ul>
+          <div class="clock-icon">
+            <svg
+              width="227"
+              height="199"
+              viewBox="0 0 227 199"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                style="mix-blend-mode: soft-light"
+                filter="url(#filter0_d_157_368)"
+              >
+                <path
+                  d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
+                  fill="#FFF8E7"
+                  fill-opacity="0.3"
+                />
+              </g>
+              <path
+                d="M113.001 108.493L167.124 139.741"
+                stroke="white"
+                stroke-linecap="round"
+              />
+              <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
+              <path
+                d="M113 109L187.995 109"
+                stroke="white"
+                stroke-linecap="round"
+              />
+              <defs>
+                <filter
+                  id="filter0_d_157_368"
+                  x="0"
+                  y="0"
+                  width="226.594"
+                  height="199"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy="1" />
+                  <feGaussianBlur stdDeviation="1" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_157_368"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_157_368"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <h1>世界のお茶を少しだけ</h1>
+      <h2>世界のお茶をテーマにした視覚的サンプルです。</h2>
+    </header>
+    <main>
+      <div class="photo-container zen-maru-gothic-regular">
+        <div class="photo-box">
+          <img
+            src="images/teas/timothy-newman-_ZH-GRbh0iE-unsplash.jpg"
+            alt="茶の木"
+            data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas//na-visky-3hRRT4qztzs-unsplash.jpg"
+            alt="緑茶"
+            data-caption="１日のはじまりは緑茶から"
+          />
+        </div>
+
+        <div class="photo-box">
+          <img
+            src="images/teas/matcha-co-TIxtjq1qdRs-unsplash.jpg"
+            alt="抹茶"
+            data-caption="抹茶の苦味・甘味・香り・色"
+          />
+        </div>
+
+        <div class="photo-box">
+          <img
+            src="images/teas/alice-pasqual-2yZxFxn1938-unsplash.jpg"
+            alt="ドライハーブ"
+            data-caption="チャノキ以外の薬草・香草が持つ魅力"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/md-mehedi-hassan-sharif-Zqai2COyXBw-unsplash.jpg"
+            alt="ジャスミンの花"
+            data-caption="ジャスミンの花の甘く濃厚な香り"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/merve-sehirli-nasir--feoAbhn8Pc-unsplash.jpg"
+            alt="ハーブティ"
+            data-caption="お湯を注いで飲むまでの抽出時間"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/helen-van-rJWJLdOgLzA-unsplash.jpg"
+            alt="青いハーブティ"
+            data-caption="レモンを加えると色が変化するパタフライピー"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/teacora-rooibos-Mp2HHad-QF0-unsplash.jpg"
+            alt="ルイボスティ"
+            data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/teacreativelife-soo-chung-EE6fFDyEtRc-unsplash.jpg"
+            alt="ルビーのように赤いハイビスカスティ"
+            data-caption="クエン酸の酸味とルビー色が特徴のハイビスカスティ"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/tea-cups-assortment-wooden-board.jpg"
+            alt="多種多様な中国茶"
+            data-caption="中国茶はお茶の種類が多くあり奥が深い"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/sergey-n-szmge3ABe94-unsplash.jpg"
+            alt="茶器"
+            data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/jelleke-vanooteghem-qfRsevOtQXE-unsplash.jpg"
+            alt="忘れてはいけない英国茶"
+            data-caption="午後を優雅に英国発祥アフタヌーンティー"
+          />
+        </div>
+
+        <div class="photo-box">
+          <img
+            src="images/teas/emily-wade-wCeYehOEJ48-unsplash.jpg"
+            alt="ミルクやスパイスを入れてもお茶"
+            data-caption="ミルクやスパイスを入れるとまた違った味に"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/messrro-svBi79E4viI-unsplash.jpg"
+            alt="a cup of tea"
+            data-caption="早朝の一杯の紅茶"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/anita-austvika-bVELgdlCfIw-unsplash.jpg"
+            alt="雨の日も晴れの日も"
+            data-caption="気分を変えてくれるかもしれない一杯のお茶"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/ewien-van-bergeijk-kwant-LIbXABpmzfc-unsplash.jpg"
+            alt="外でいただく特別な一杯"
+            data-caption="時間や場所を変えて楽しむお茶は格別"
+          />
+        </div>
+        <div class="photo-box">
+          <img
+            src="images/teas/vivek-kumar-JS_ohjocm00-unsplash.jpg"
+            alt="茶園"
+            data-caption="お茶のない日を想像するとすごく寂しい"
+          />
+        </div>
+      </div>
+    </main>
+
+    <!-- /* ≡≡≡ ミニタイマーここから */ -->
+    <div class="item item1 timer m-plus-1p-regular">
+      <div class="timer-grid-container">
+        <div class="timer1">
+          <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+        </div>
+        <!-- 初期設定ボタン -->
+        <div class="timer2 buttons preset-buttons">
+          <button class="setTimeBtn" data-minutes="3">3分</button>
+          <button class="setTimeBtn" data-minutes="4">4分</button>
+          <button class="setTimeBtn" data-minutes="5">5分</button>
+        </div>
+        <div class="timer3 buttons set-buttons">
+          <button id="startBtn">
+            <span class="set-button material-symbols-outlined icon-size"
+              >play_circle
+            </span>
+          </button>
+          <button id="stopBtn">
+            <span class="set-button material-symbols-outlined icon-size"
+              >stop_circle
+            </span>
+          </button>
+          <button id="resetBtn">
+            <span class="set-button material-symbols-outlined icon-size"
+              >refresh
+            </span>
+          </button>
+        </div>
+        <div class="timer4">
+          <span class="material-symbols-outlined icon-size"> volume_mute </span>
+          <label>
+            <input
+              type="range"
+              name="range"
+              value="50"
+              min="0"
+              max="100"
+              step="any"
+              id="volumeControl"
+              class="volume-control"
+            />
+          </label>
+          <span class="material-symbols-outlined icon-size"> volume_up </span>
+        </div>
+      </div>
+    </div>
+    <!-- /* ≡≡≡ Lightboxここから */ -->
+    <div id="lightbox" class="lightbox hidden">
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="" />
+        <p id="lightbox-caption"></p>
+        <button id="prev-btn" class="nav-button left">&larr;</button>
+        <button id="next-btn" class="nav-button right">&rarr;</button>
+        <div class="lightbox-header-parent">
+          <button id="toggle-fit" class="fit-toggle-btn">
+            <!-- 🔍 拡大率切り替え -->
+            <span class="material-symbols-outlined" id="message"> zoom_in </span
+            ><br />拡大率
+          </button>
+          <button id="lightbox-close">
+            <span class="material-symbols-outlined"> close </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,11 +2,12 @@
 @use "core/index" as core;
 
 // Components
-// @use "components/timer";
+@use "components/timer";
+@use "components/info";
 
 // Pages
 @use "pages/hero";
-// @use "pages/gallery";
+@use "pages/gallery";
 // @use "pages/universe";
 // @use "pages/about";
 // 絶対パス /styles/... は使わない。相対

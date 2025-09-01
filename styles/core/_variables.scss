@@ -16,3 +16,11 @@ $test: 1px solid red;
   // スライダーのつまみなど
   --accent-color: #4cabe2;
 }
+
+// ▼ギャラリー
+$g-col-blueblack: rgb(21 26 37 / 1); //blue-black#151a25
+$color-text-light-rgba: rgb(245 245 245 / 70%);
+// === Backgrounds ===
+$color-bg-base: #eae5da; // コズミックラテ（ベース）
+$color-bg-muted: #f5f5f5; // 明るいミュート背景
+$color-bg-gallery: #fff; // ギャラリー白
