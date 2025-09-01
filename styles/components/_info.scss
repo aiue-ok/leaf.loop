@@ -44,3 +44,8 @@
   outline: 2px solid rgba(255, 255, 255, 0.9);
   outline-offset: 3px;
 }
+
+/* アイコンサイズを上書きする */
+span.help-icon-size {
+  font-size: 1rem;
+}
