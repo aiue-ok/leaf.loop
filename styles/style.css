@@ -609,6 +609,9 @@ body.hero .text {
   justify-content: center;
   align-items: center;
 }
+body.hero .hero-link {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
 body.hero .hover-area {
   position: relative;
   width: 100%;
@@ -624,6 +627,10 @@ body.hero .bg-universe {
   filter: brightness(1);
   opacity: 0.5;
   z-index: 1;
+}
+body.hero .bg-gallery:not(p),
+body.hero .bg-universe:not(p) {
+  opacity: 0.9;
 }
 body.hero .bg-gallery {
   background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
@@ -656,7 +663,6 @@ body.hero .suu {
   padding: 1rem 0;
 }
 body.hero .tea {
-  font-size: 1.2rem;
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
 

@@ -79,6 +79,10 @@ body.hero {
     align-items: center;
   }
 
+  .hero-link {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+  }
+
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
   .hover-area {
     position: relative;
@@ -98,6 +102,10 @@ body.hero {
     z-index: 1;
   }
 
+  .bg-gallery:not(p),
+  .bg-universe:not(p) {
+    opacity: 0.9;
+  }
   .bg-gallery {
     background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
   }
@@ -138,7 +146,6 @@ body.hero {
   }
   /* お茶でも淹れましょうか */
   .tea {
-    font-size: 1.2rem;
     font-size: clamp(1rem, 2vw, 1.2rem);
   }
 }
