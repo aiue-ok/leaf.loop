@@ -75,3 +75,27 @@ inputRange.addEventListener("input", function () {
   const ratio = ((this.value - this.min) / (this.max - this.min)) * 100;
   this.style.background = `linear-gradient(90deg, ${activeColor} ${ratio}%, ${inactiveColor} ${ratio}%)`;
 });
+
+const vc = document.querySelector(".volume-control");
+const update = () =>
+  vc.style.setProperty("--volume-fill", vc.value * 100 + "%");
+vc.addEventListener("input", update);
+update();
+
+const alarm = document.getElementById("alarmSound"); // 既存の <audio>
+const muteBtn = document.getElementById("muteBtn");
+
+function syncMuteUI() {
+  muteBtn.classList.toggle("is-muted", alarmSound.muted);
+  muteBtn.setAttribute("aria-pressed", alarmSound.muted ? "true" : "false");
+  // アイコンを切り替えたいなら：
+  muteBtn.querySelector(".material-symbols-outlined").textContent =
+    alarmSound.muted ? "volume_off" : "volume_up";
+}
+
+muteBtn.addEventListener("click", () => {
+  alarmSound.muted = !alarmSound.muted;
+  syncMuteUI();
+});
+
+syncMuteUI();

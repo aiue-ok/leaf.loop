@@ -23,7 +23,6 @@ body {
     grid-area: count;
     height: 20dvh;
     margin-top: 25dvh;
-    justify-content: center;
   }
 
   .timer2 {
@@ -332,20 +331,60 @@ body {
 body.gallery,
 body.universe,
 body.about {
+  /* 共通ボタン */
+  .timer .btn {
+    --btn-ring: var(--main-color);
+    --btn-bg: rgba(255, 255, 255, 0.12);
+    --btn-bg-hover: rgba(255, 255, 255, 0.18);
+
+    display: grid;
+    place-items: center;
+    inline-size: 2rem;
+    block-size: 2rem; /* 丸ボタン基準 */
+    border-radius: 999px;
+    border: 2px solid var(--btn-ring);
+    background: var(--btn-bg);
+    box-shadow: var(--timer-shadow);
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  }
+
+  .timer .btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 2px;
+  }
+
+  /* “選択中”の見た目（プリセットやミュート状態に付ける） */
+  .timer .btn.is-active {
+    background: var(--button-bg);
+    box-shadow: var(--timer-shadow-hover);
+    color: #fff;
+  }
+
+  /* プリセットは pill 形にしたい場合 */
+  .timer .btn--pill {
+    inline-size: auto;
+    padding-inline: 0.6em;
+    border-radius: 16px;
+  }
+
   .timer {
     position: fixed;
     left: max(12px, env(safe-area-inset-left) + 12px);
     bottom: max(12px, env(safe-area-inset-bottom) + 12px);
     z-index: 5;
+    opacity: var(--timer-opacity);
+    color: var(--main-color);
 
     /* ミニカードの箱（幅を決める） */
     .timer-grid-container {
       display: grid;
-      grid-template-columns: 1fr 3rem 3rem;
+      grid-template-columns: 1fr 3.2rem 3.2rem;
       grid-template-rows: auto auto; /* ← 2行にする */
       grid-template-areas:
         "count  presets controls"
-        "volume volume  volume";
+        "volume volume controls";
       gap: 8px 8px;
       align-items: center;
       justify-items: center;
@@ -362,8 +401,11 @@ body.about {
     /* カウント */
     .timer1 {
       grid-area: count;
+
       inline-size: 100%;
       text-align: center;
+      margin-top: 0;
+      height: auto;
       /* 小さめでも破綻しない流体サイズ */
       .timer_count {
         font-size: clamp(24px, 7vmin, 48px);
@@ -375,6 +417,7 @@ body.about {
     /* プリセット */
     .timer2 {
       grid-area: presets;
+
       inline-size: 100%;
       display: grid;
       grid-template-rows: 2rem 2rem 2rem;
@@ -399,6 +442,7 @@ body.about {
     /* 操作ボタン列 */
     .timer3 {
       grid-area: controls;
+
       inline-size: 100%;
       display: grid;
       grid-template-rows: 2rem 2rem 2rem;
@@ -419,9 +463,13 @@ body.about {
     /* 音量（ラベル＋スライダー） */
     .timer4 {
       grid-area: volume;
+
       inline-size: 100%;
+      // inline-size: 12rem;
+      /* もしくは min(45vw, 12rem) */
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto min(8rem, 36vw) auto;
+      column-gap: 8px;
       align-items: center;
       gap: 8px;
 
@@ -430,6 +478,16 @@ body.about {
         font-size: 0.9rem;
       }
 
+      .timer4 .vol-icons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .timer4 .vol-icons .material-symbols-outlined {
+        font-size: 1.1rem;
+        line-height: 1;
+        opacity: 0.8;
+      }
       /* input[type=range] をクラスでも取れるように */
       input.volume-control {
         appearance: none;
@@ -491,17 +549,6 @@ body.about {
 .timer-mini-container * {
   color: currentColor;
 }
-/* ミニタイマー基調 */
-
-.timer-mini-container {
-  color: var(--timer-fg);
-  opacity: var(--timer-opacity);
-}
-/* 数字だけ少しなじませる（必要なら .timer-display をHTMLに付与）*/
-
-.timer-mini-container .timer-display {
-  opacity: 0.85;
-}
 
 .timer-mini-glass {
   border-radius: 16px;
@@ -520,43 +567,19 @@ body.about {
     filter: brightness(1) contrast(1.05) saturate(1.05);
   }
 }
-/* ▼▼ Hover（プリセット、セットボタン） */
-
-.timer-mini-preset-button:hover {
-  transform: scale(1.05);
-  transition: all 0.2s ease;
-  background-color: var(--timer-hover-bg);
-  border-color: var(--timer-hover-border);
-  color: var(--timer-hover-fg);
-}
-.timer-mini-set-button:hover {
-  transform: scale(1.05);
-  transition: all 0.2s ease;
-  color: var(--timer-hover-bg);
-  border-color: color-mix(in oklab, var(--timer-hover-bg) 50%, transparent);
-  /* outlineは消すなら必ずフォーカス可視化を別途用意（下でやる）*/
-  outline: none;
-}
-/* ▼▼ focus-visible（キーボード操作の見やすさ） */
-
-.timer-mini-preset-button:focus-visible {
-  border: 3px double var(--timer-focus-border);
-  box-shadow: 0 0 8px var(--timer-focus-shadow);
-  transform: scale(1.1);
-}
-.timer-mini-set-button:focus-visible {
-  box-shadow: 0 0 0 2px var(--timer-focus-shadow);
-}
-.timer-mini-set-button:focus-visible span {
-  color: var(--timer-focus-icon);
-  transform: scale(1.1);
-}
-/* お好みで：動きを弱める（全体適用なら core/_a11y.scss へ） */
 
 @media (prefers-reduced-motion: reduce) {
   .timer-mini-preset-button,
   .timer-mini-set-button {
     transition-duration: 0.001ms !important;
     transform: none !important;
+  }
+}
+
+@media (hover: hover) {
+  .timer .btn:hover {
+    background: var(--btn-bg-hover);
+    box-shadow: var(--timer-shadow-hover);
+    transform: translateY(-1px);
   }
 }
