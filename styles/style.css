@@ -550,6 +550,38 @@ span.help-icon-size {
   font-size: 1rem;
 }
 
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  body.hero .sideitem:nth-child(1) {
+    position: absolute;
+    right: clamp(138px, 36vmin, 150px);
+    bottom: clamp(12px, 3vmin, 28px);
+    z-index: 3;
+  }
+}
+/* スマホ縦：1列積み */
+@media (max-width: 1024px) and (orientation: portrait) {
+  body.hero .sideitem {
+    position: absolute;
+    right: -3.3rem;
+    bottom: clamp(12px, 3vmin, 28px);
+  }
+  body.hero .sideitem:nth-child(1) {
+    position: absolute;
+    right: -7.8rem;
+    bottom: clamp(72px, 2vmin, 100px);
+    z-index: 3;
+  }
+  body.hero .sideitem::before {
+    content: none;
+  }
+  body.hero span.leaf-text {
+    font-size: larger;
+    text-shadow: 1px 1px 1px #fff;
+  }
+  body.hero .sideitem:nth-child(1):hover {
+    right: clamp(12px, 3vmin, 28px);
+  }
+}
 body.hero {
   color: #f5f5f5;
   text-shadow: 1px 1px 3px #c2c2c2;
@@ -766,6 +798,8 @@ body.hero .tea {
     min-height: 20svh;
   }
   body.hero .item4 {
+    align-items: start;
+    padding-top: 1rem;
     /* 50vh相当 */
   }
   body.hero #background-video {

@@ -49,3 +49,46 @@
 span.help-icon-size {
   font-size: 1rem;
 }
+
+//📍📍📍 幅768px（スマホ横向き）以下
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  body.hero {
+    .sideitem:nth-child(1) {
+      position: absolute;
+      right: clamp(138px, 36vmin, 150px);
+      bottom: clamp(12px, 3vmin, 28px);
+      z-index: 3;
+    }
+  }
+}
+
+/* スマホ縦：1列積み */
+// 幅1024px（スマホたて向き）以下
+@media (max-width: 1024px) and (orientation: portrait) {
+  body.hero {
+    .sideitem {
+      position: absolute;
+      // right: clamp(12px, 3vmin, 28px);
+      right: -3.3rem;
+      bottom: clamp(12px, 3vmin, 28px);
+    }
+
+    .sideitem:nth-child(1) {
+      position: absolute;
+      // right: clamp(12px, 3vmin, 28px);
+      right: -7.8rem;
+      bottom: clamp(72px, 2vmin, 100px);
+      z-index: 3;
+    }
+    .sideitem::before {
+      content: none;
+    }
+    span.leaf-text {
+      font-size: larger;
+      text-shadow: 1px 1px 1px #fff;
+    }
+    .sideitem:nth-child(1):hover {
+      right: clamp(12px, 3vmin, 28px);
+    }
+  }
+}
