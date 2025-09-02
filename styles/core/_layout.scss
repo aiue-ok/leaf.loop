@@ -48,7 +48,6 @@
 @media screen and (orientation: landscape) {
 }
 
-/* スマホ縦：1列積み */
 //📍 幅1100px以上の横向き時だけ
 @media screen and (min-width: 1100px) and (orientation: landscape) {
   body.hero {
