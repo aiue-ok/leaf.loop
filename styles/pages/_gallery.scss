@@ -7,13 +7,18 @@
 // ─────────────────────────────
 
 body.gallery {
+  --timer-h: clamp(64px, 12vh, 112px); /* 端末に応じて伸び縮み */
   // core.$color-bg-base: #eae5da; // コズミックラテ（ベース）
   background-color: core.$color-bg-base;
   color: core.$g-col-blueblack;
   font-family: "Zen Kaku Gothic New", sans-serif;
+  /* iOSのセーフエリアも考慮 */
+  padding-bottom: calc(
+    var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
+  );
 
   main {
-    padding-bottom: 10rem;
+    // padding-bottom: 10rem;
   }
 
   h2 {

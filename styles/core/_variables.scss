@@ -17,6 +17,7 @@ $test: 1px solid red;
   --soan-color-hover: blue;
   // スライダーのつまみなど
   --accent-color: #4cabe2;
+  --timer-h: clamp(64px, 12vh, 112px);
 }
 
 // ▼ギャラリー

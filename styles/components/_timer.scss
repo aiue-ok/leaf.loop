@@ -3,6 +3,7 @@
 // タイマー見た目全体共通
 body {
   color: var(--timer-main-color);
+
   // gridコンテナ親
   .timer-grid-container {
     display: grid;
@@ -693,6 +694,25 @@ body.about {
   body.gallery,
   body.universe,
   body.about {
+    .timer-shell {
+      left: auto;
+      right: 1rem;
+      width: min(420px, 46vw);
+    }
+
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+    .timer-shell .timer-grid-container {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .timer-shell.is-idle .timer-grid-container {
+      transform: translateY(30%); /* 下にちょい隠す */
+      opacity: 0.85;
+    }
+    .timer-shell:hover .timer-grid-container,
+    .timer-shell:focus-within .timer-grid-container {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 
@@ -701,6 +721,25 @@ body.about {
   body.gallery,
   body.universe,
   body.about {
+    .timer-shell {
+      left: auto;
+      right: 1rem;
+      width: min(420px, 46vw);
+    }
+
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+    .timer-shell .timer-grid-container {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .timer-shell.is-idle .timer-grid-container {
+      transform: translateY(30%); /* 下にちょい隠す */
+      opacity: 0.85;
+    }
+    .timer-shell:hover .timer-grid-container,
+    .timer-shell:focus-within .timer-grid-container {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 
