@@ -387,6 +387,17 @@ body.gallery {
       }
     }
   }
+  /* ミニカードの箱（ギャラリー専用背景） */
+  .timer-grid-container {
+    background: rgba(14, 16, 32, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(234, 229, 218, 0.3);
+  }
+  /* カウント */
+  .timer1 h1 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
 } //🛑
 
 @media (max-width: 37.5rem) {
