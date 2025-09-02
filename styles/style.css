@@ -10,6 +10,7 @@
   --span-color: orange;
   --soan-color-hover: blue;
   --accent-color: #4cabe2;
+  --timer-h: clamp(64px, 12vh, 112px);
 }
 
 *,
@@ -822,6 +823,74 @@ body.about .timer4 input.volume-control::-moz-range-thumb {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   }
 }
+@media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
+  body.gallery,
+  body.universe,
+  body.about {
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+  }
+  body.gallery .timer-shell,
+  body.universe .timer-shell,
+  body.about .timer-shell {
+    left: auto;
+    right: 1rem;
+    width: min(420px, 46vw);
+  }
+  body.gallery .timer-shell .timer-grid-container,
+  body.universe .timer-shell .timer-grid-container,
+  body.about .timer-shell .timer-grid-container {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  body.gallery .timer-shell.is-idle .timer-grid-container,
+  body.universe .timer-shell.is-idle .timer-grid-container,
+  body.about .timer-shell.is-idle .timer-grid-container {
+    transform: translateY(30%); /* 下にちょい隠す */
+    opacity: 0.85;
+  }
+  body.gallery .timer-shell:hover .timer-grid-container,
+  body.gallery .timer-shell:focus-within .timer-grid-container,
+  body.universe .timer-shell:hover .timer-grid-container,
+  body.universe .timer-shell:focus-within .timer-grid-container,
+  body.about .timer-shell:hover .timer-grid-container,
+  body.about .timer-shell:focus-within .timer-grid-container {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+  body.gallery,
+  body.universe,
+  body.about {
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+  }
+  body.gallery .timer-shell,
+  body.universe .timer-shell,
+  body.about .timer-shell {
+    left: auto;
+    right: 1rem;
+    width: min(420px, 46vw);
+  }
+  body.gallery .timer-shell .timer-grid-container,
+  body.universe .timer-shell .timer-grid-container,
+  body.about .timer-shell .timer-grid-container {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  body.gallery .timer-shell.is-idle .timer-grid-container,
+  body.universe .timer-shell.is-idle .timer-grid-container,
+  body.about .timer-shell.is-idle .timer-grid-container {
+    transform: translateY(30%); /* 下にちょい隠す */
+    opacity: 0.85;
+  }
+  body.gallery .timer-shell:hover .timer-grid-container,
+  body.gallery .timer-shell:focus-within .timer-grid-container,
+  body.universe .timer-shell:hover .timer-grid-container,
+  body.universe .timer-shell:focus-within .timer-grid-container,
+  body.about .timer-shell:hover .timer-grid-container,
+  body.about .timer-shell:focus-within .timer-grid-container {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .wrapper {
   position: relative;
   font-size: small;
@@ -1178,15 +1247,15 @@ body.hero .tea {
   }
 }
 body.gallery {
+  --timer-h: clamp(64px, 12vh, 112px); /* 端末に応じて伸び縮み */
   background-color: #eae5da;
   color: rgb(21, 26, 37);
   font-family: "Zen Kaku Gothic New", sans-serif;
+  /* iOSのセーフエリアも考慮 */
+  padding-bottom: calc(var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px);
   /* メニュー */
   /* ミニカードの箱（ギャラリー専用背景） */
   /* カウント */
-}
-body.gallery main {
-  padding-bottom: 10rem;
 }
 body.gallery h2 {
   font-weight: 400;

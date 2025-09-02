@@ -1,1 +1,99 @@
-<audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- GoogleFonts↓ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Noto Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="word.js" defer></script>
+    <script src="whiteout-once.js" defer></script>
+    <title>遠くのことを少しだけ</title>
+  </head>
+  <body class="universe booting">
+    <div class="title-wrapper">
+      <div id="whiteout" aria-hidden="true"></div>
+      <h1 id="page-title" class="text title-vertical">遠くのことを 少しだけ</h1>
+    </div>
+    <header id="page-header">
+      <!-- <a href="index.html" class="back">戻る</a> -->
+      <!-- ハンバーガーメニューが必要ならここに -->
+      <!-- ボタン内 -->
+      <button class="menu-btn" aria-label="メニューを開く">
+        <span
+          class="material-icons"
+          style="font-variation-settings: 'wght' 300, 'GRAD' -25"
+        >
+          menu
+        </span>
+      </button>
+    </header>
+    <main>
+      <!-- // 一語ずつ詩的に出現させる場所 -->
+      <section class="universe-words">
+        <!-- JSで順次表示 -->
+        <p class="word" id="word"></p>
+      </section>
+      <!-- /* ≡≡ ミニタイマーここから ≡≡ */ -->
+      <div class="timer-mini-container">
+        <div class="timer-mini-box timer-mini-glasss universe-timer">
+          <!-- カウントダウン表示 -->
+          <div class="timer-mini-countdown-text kiwi-maru-regular">
+            <span id="countdown">3:00</span>
+          </div>
+          <!-- プリセット・タイマー -->
+          <div class="timer-mini-preset-parent m-plus-1p-regular">
+            <button class="timer-mini-preset-button">3</button>
+            <button class="timer-mini-preset-button">4</button>
+            <button class="timer-mini-preset-button">5</button>
+          </div>
+          <!-- タイマー操作 -->
+          <div class="timer-mini-set-parent">
+            <button class="unset">
+              <span
+                class="timer-mini-set-button material-symbols-outlined icon-size"
+                >refresh
+              </span>
+            </button>
+            <button class="unset">
+              <span
+                class="timer-mini-set-button material-symbols-outlined icon-size"
+                >play_circle
+              </span>
+            </button>
+            <button class="unset">
+              <span
+                class="timer-mini-set-button material-symbols-outlined icon-size"
+                >volume_off
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /* ≡≡ タイマーここまで ≡≡ */ -->
+    </main>
+    <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+  </body>
+</html>
