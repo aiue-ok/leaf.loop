@@ -23,20 +23,32 @@ function countdown() {
   timerId = setTimeout(countdown, 1000);
 }
 
-document.getElementById("startBtn").addEventListener("click", () => {
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function setTransportState(state) {
+  // 'start' | 'stop' | 'idle'
+  [startBtn, stopBtn, resetBtn].forEach((b) => b.classList.remove("is-active"));
+  if (state === "start") startBtn.classList.add("is-active");
+  if (state === "stop") stopBtn.classList.add("is-active");
+  // reset は視覚的に“点灯なし”でも良い
+}
+
+startBtn.addEventListener("click", () => {
   if (!timerId) {
     countdown();
   }
 });
 
-document.getElementById("stopBtn").addEventListener("click", () => {
+stopBtn.addEventListener("click", () => {
   if (timerId) {
     clearTimeout(timerId);
     timerId = null;
   }
 });
 
-document.getElementById("resetBtn").addEventListener("click", () => {
+resetBtn.addEventListener("click", () => {
   // タイマーを止める
   if (timerId) {
     clearTimeout(timerId);
@@ -48,18 +60,28 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   updateDisplay();
 });
 
-// 初期時間設定ボタン処理
-document.querySelectorAll(".setTimeBtn").forEach((button) => {
-  button.addEventListener("click", () => {
-    const minutes = parseInt(button.getAttribute("data-minutes"));
-    totalSeconds = minutes * 60;
-    updateDisplay();
+const presetBtns = Array.from(document.querySelectorAll(".setTimeBtn"));
+presetBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    presetBtns.forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
 
-    // タイマーが動いていたら止める
-    if (timerId) {
-      clearTimeout(timerId);
-      timerId = null;
-    }
+    // 初期時間設定ボタン処理
+    document.querySelectorAll(".setTimeBtn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const minutes = parseInt(button.getAttribute("data-minutes"));
+        totalSeconds = minutes * 60;
+        updateDisplay();
+
+        // タイマーが動いていたら止める
+        if (timerId) {
+          clearTimeout(timerId);
+          timerId = null;
+        }
+      });
+    });
+    // 既存のロジック：ここで開始時間などを設定
+    // setPresetMinutes(+btn.dataset.minutes);
   });
 });
 
@@ -82,20 +104,20 @@ const update = () =>
 vc.addEventListener("input", update);
 update();
 
-const alarm = document.getElementById("alarmSound"); // 既存の <audio>
+// ミュートのUI表示（押済み状態）
 const muteBtn = document.getElementById("muteBtn");
 
 function syncMuteUI() {
-  muteBtn.classList.toggle("is-muted", alarmSound.muted);
-  muteBtn.setAttribute("aria-pressed", alarmSound.muted ? "true" : "false");
-  // アイコンを切り替えたいなら：
-  muteBtn.querySelector(".material-symbols-outlined").textContent =
-    alarmSound.muted ? "volume_off" : "volume_up";
+  const isMuted = !!alarmSound.muted;
+  muteBtn.classList.toggle("is-muted", isMuted); // 見た目用
+  muteBtn.classList.toggle("is-active", isMuted); // 汎用の“選択中”クラス
+  muteBtn.setAttribute("aria-pressed", isMuted ? "true" : "false");
+  muteBtn.querySelector(".material-symbols-outlined").textContent = isMuted
+    ? "volume_off"
+    : "volume_up";
 }
-
 muteBtn.addEventListener("click", () => {
   alarmSound.muted = !alarmSound.muted;
   syncMuteUI();
 });
-
 syncMuteUI();

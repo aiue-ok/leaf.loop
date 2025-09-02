@@ -393,23 +393,23 @@ body.gallery {
   .lightbox-image {
     max-width: 90vw;
     max-height: 80vh;
-  }
-  p {
-    justify-content: center;
-    max-width: 37.5rem;
-    margin: 1rem auto 0 auto;
-    padding: 0.5rem 1rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-size: 0.8rem;
-    font-family: "Zen Kurenaido", sans-serif;
-    line-height: 1.6;
-    text-align: left;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-    animation: fadeInUp 0.5s ease-out;
+    & p {
+      justify-content: center;
+      max-width: 37.5rem;
+      margin: 1rem auto 0 auto;
+      padding: 0.5rem 1rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 0.8rem;
+      font-family: "Zen Kurenaido", sans-serif;
+      line-height: 1.6;
+      text-align: left;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      animation: fadeInUp 0.5s ease-out;
+    }
   }
 }
 
