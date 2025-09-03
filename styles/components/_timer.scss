@@ -30,9 +30,8 @@ body {
   /* h1 カウントダウン表示 */
   .timer_count {
     text-align: center;
-    /* 画面の短辺基準で流体。最小48px、最大105.6px */
     // vmin は「短いほうの辺の1%」。
-    font-size: clamp(3rem, 12vmin, 3.4rem);
+    font-size: clamp(3rem, 11vmin, 5rem);
     line-height: 1.1;
   }
 
@@ -48,7 +47,7 @@ body {
   // ボタン・グループ　（ボタン用grid親）
   .buttons {
     display: grid;
-    grid-template-columns: 3rem 3rem 3rem;
+    grid-template-columns: repeat(3, clamp(3rem, 3.33vw, 5rem));
     grid-template-rows: 1fr;
     justify-content: center;
     align-items: center;
@@ -68,14 +67,22 @@ body {
 
   // 3/4/5分初期設定ボタン　子
   .setTimeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: solid 2.27px var(--timer-main-color);
-    min-width: 3rem;
-    min-height: 3rem;
+    /* 円の大きさ */
+    width: clamp(3rem, 4vw, 6rem);
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     color: inherit;
     text-align: center;
     background-color: transparent;
     box-shadow: var(--timer-shadow);
+    /* フォントサイズは直径に比例 */
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    box-sizing: border-box;
+    // font-size: clamp(1rem, 1.111vw, 32px);
   }
 
   button.setTimeBtn:hover {
@@ -384,21 +391,28 @@ body.about {
 
   .timer {
     position: fixed;
-    left: max(12px, env(safe-area-inset-left) + 12px);
-    bottom: max(12px, env(safe-area-inset-bottom) + 12px);
+    left: 30px;
+    right: 100px;
+    // left: max(12px, env(safe-area-inset-left) + 12px);
+    // bottom: max(12px, env(safe-area-inset-bottom) + 12px);
     z-index: 5;
     opacity: var(--timer-opacity);
     color: var(--timer-main-color);
+    // カードサイズ
+    width: 360px;
+    height: 180px;
+    background-color: rgba(39, 212, 154, 0.547);
   }
   /* ミニカードの箱（幅を決める） */
   .timer-grid-container {
     display: grid;
-    grid-template-columns: 1fr 3.2rem 3.2rem;
+    // grid-template-columns: 1fr 3.2rem 3.2rem;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto auto; /* ← 2行にする */
     grid-template-areas:
       "count  presets controls"
-      "volume volume controls";
-    gap: 8px 8px;
+      "volume presets controls";
+    // gap: 8px 8px;
     align-items: center;
     justify-items: center;
     inline-size: min(78vw, 360px); /* ← ミニ幅 */
@@ -415,10 +429,13 @@ body.about {
   .timer1 {
     grid-area: count;
     inline-size: 100%;
+    // カードサイズ
+    width: 200px;
+    height: 100px;
+    border: 1px red solid;
     text-align: center;
     margin-top: 0;
     height: auto;
-    /* 小さめでも破綻しない流体サイズ */
     .timer_count {
       font-size: clamp(24px, 7vmin, 48px);
       line-height: 1.1;
@@ -429,20 +446,29 @@ body.about {
   /* プリセット */
   .timer2 {
     grid-area: presets;
-    inline-size: 100%;
-    display: grid;
-    grid-template-rows: 2rem 2rem 2rem;
-    gap: 6px;
-    justify-items: stretch;
+    inline-size: 30%;
+    // カードサイズ
+    width: 40px;
+    height: 150px;
+    border: 1px red solid;
+    // display: grid;
+    // grid-template-rows: 2rem 2rem 2rem;
+    // gap: 6px;
+    // justify-items: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
     .setTimeBtn {
       min-inline-size: 3rem;
       min-block-size: 2rem;
-      border-radius: 12px;
+      border-radius: 50%; /* 丸 */
+      box-sizing: border-box;
       border: 2px solid var(--timer-main-color);
       box-shadow: var(--timer-shadow);
       text-align: center;
-      font-size: 0.9rem;
+      font-size: clamp(0.9rem, 1.5vw, 2rem);
       background-color: var(--timer-button-bg);
     }
     // .setTimeBtn:hover {
@@ -454,18 +480,24 @@ body.about {
   /* 操作ボタン列 */
   .timer3 {
     grid-area: controls;
-
-    inline-size: 100%;
-    display: grid;
-    grid-template-rows: 2rem 2rem 2rem;
-    gap: 6px;
-    justify-items: stretch;
+    // カードサイズ
+    width: 40px;
+    height: 150px;
+    background-color: rgba(255, 0, 0, 0.336);
+    // display: grid;
+    // grid-template-rows: 2rem 2rem 2rem;
+    // gap: 6px;
+    // justify-items: stretch;
 
     button {
       min-block-size: 2rem;
       border-radius: 999px;
-      display: grid;
-      place-items: center;
+      // display: grid;
+      // place-items: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
     span.icon-size {
       font-size: 1.4rem;
@@ -475,8 +507,10 @@ body.about {
   /* 音量（ラベル＋スライダー） */
   .timer4 {
     grid-area: volume;
-
-    inline-size: 100%;
+    // カードサイズ
+    width: 200px;
+    height: 30px;
+    background-color: rgba(255, 0, 0, 0.336);
     // inline-size: 12rem;
     /* もしくは min(45vw, 12rem) */
     display: grid;

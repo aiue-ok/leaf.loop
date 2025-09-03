@@ -202,8 +202,7 @@ body .timer1 {
 }
 body .timer_count {
   text-align: center;
-  /* 画面の短辺基準で流体。最小48px、最大105.6px */
-  font-size: clamp(3rem, 12vmin, 3.4rem);
+  font-size: clamp(3rem, 11vmin, 5rem);
   line-height: 1.1;
 }
 body .timer2 {
@@ -214,7 +213,7 @@ body .timer3 {
 }
 body .buttons {
   display: grid;
-  grid-template-columns: 3rem 3rem 3rem;
+  grid-template-columns: repeat(3, clamp(3rem, 3.33vw, 5rem));
   grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
@@ -230,14 +229,21 @@ body .button.setTimeBtn {
   color: inherit;
 }
 body .setTimeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: solid 2.27px var(--timer-main-color);
-  min-width: 3rem;
-  min-height: 3rem;
+  /* 円の大きさ */
+  width: clamp(3rem, 4vw, 6rem);
+  aspect-ratio: 1/1;
   border-radius: 50%;
   color: inherit;
   text-align: center;
   background-color: transparent;
   box-shadow: var(--timer-shadow);
+  /* フォントサイズは直径に比例 */
+  font-size: clamp(1rem, 1.5vw, 2rem);
+  box-sizing: border-box;
 }
 body button.setTimeBtn:hover {
   cursor: pointer;
@@ -506,20 +512,22 @@ body.gallery .timer,
 body.universe .timer,
 body.about .timer {
   position: fixed;
-  left: max(12px, env(safe-area-inset-left) + 12px);
-  bottom: max(12px, env(safe-area-inset-bottom) + 12px);
+  left: 30px;
+  right: 100px;
   z-index: 5;
   opacity: var(--timer-opacity);
   color: var(--timer-main-color);
+  width: 360px;
+  height: 180px;
+  background-color: rgba(39, 212, 154, 0.547);
 }
 body.gallery .timer-grid-container,
 body.universe .timer-grid-container,
 body.about .timer-grid-container {
   display: grid;
-  grid-template-columns: 1fr 3.2rem 3.2rem;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto; /* ← 2行にする */
-  grid-template-areas: "count  presets controls" "volume volume controls";
-  gap: 8px 8px;
+  grid-template-areas: "count  presets controls" "volume presets controls";
   align-items: center;
   justify-items: center;
   inline-size: min(78vw, 360px); /* ← ミニ幅 */
@@ -535,10 +543,12 @@ body.universe .timer1,
 body.about .timer1 {
   grid-area: count;
   inline-size: 100%;
+  width: 200px;
+  height: 100px;
+  border: 1px red solid;
   text-align: center;
   margin-top: 0;
   height: auto;
-  /* 小さめでも破綻しない流体サイズ */
 }
 body.gallery .timer1 .timer_count,
 body.universe .timer1 .timer_count,
@@ -551,41 +561,45 @@ body.gallery .timer2,
 body.universe .timer2,
 body.about .timer2 {
   grid-area: presets;
-  inline-size: 100%;
-  display: grid;
-  grid-template-rows: 2rem 2rem 2rem;
-  gap: 6px;
-  justify-items: stretch;
+  inline-size: 30%;
+  width: 40px;
+  height: 150px;
+  border: 1px red solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 body.gallery .timer2 .setTimeBtn,
 body.universe .timer2 .setTimeBtn,
 body.about .timer2 .setTimeBtn {
   min-inline-size: 3rem;
   min-block-size: 2rem;
-  border-radius: 12px;
+  border-radius: 50%; /* 丸 */
+  box-sizing: border-box;
   border: 2px solid var(--timer-main-color);
   box-shadow: var(--timer-shadow);
   text-align: center;
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 1.5vw, 2rem);
   background-color: var(--timer-button-bg);
 }
 body.gallery .timer3,
 body.universe .timer3,
 body.about .timer3 {
   grid-area: controls;
-  inline-size: 100%;
-  display: grid;
-  grid-template-rows: 2rem 2rem 2rem;
-  gap: 6px;
-  justify-items: stretch;
+  width: 40px;
+  height: 150px;
+  background-color: rgba(255, 0, 0, 0.336);
 }
 body.gallery .timer3 button,
 body.universe .timer3 button,
 body.about .timer3 button {
   min-block-size: 2rem;
   border-radius: 999px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 body.gallery .timer3 span.icon-size,
 body.universe .timer3 span.icon-size,
@@ -596,7 +610,9 @@ body.gallery .timer4,
 body.universe .timer4,
 body.about .timer4 {
   grid-area: volume;
-  inline-size: 100%;
+  width: 200px;
+  height: 30px;
+  background-color: rgba(255, 0, 0, 0.336);
   /* もしくは min(45vw, 12rem) */
   display: grid;
   grid-template-columns: auto min(8rem, 36vw) auto;
