@@ -1,23 +1,44 @@
 // 色、フォントサイズ、transitionなど
 
-// test用ボーダー core.$testで使う
-$test: 1px solid red;
+// test用ボーダー
+// border:core.$test;
+$test1: 1px solid red;
+$test2: 1px solid rgb(255, 200, 0);
+$test3: 1px solid rgb(0, 251, 255);
+$test4: 1px solid rgb(255, 0, 238);
+$test-bg1: rgba(200, 255, 0, 0.564);
+$test-bg2: rgba(69, 110, 198, 0.549);
+$test-bg3: rgba(44, 251, 48, 0.607);
+$test-bg4: rgba(255, 0, 64, 0.435);
 
 //var(--accent-color)で使う
 //var()
-.timer {
+.timer,
+.timer-mini-container {
   --timer-test: red;
   --timer-bg-color: rgba(255, 255, 255, 0.05);
   --timer-main-color: #f5f5f5;
   --timer-shadow: 1px, 1px, 3px, rgba(0, 0, 0, 0.25);
+  --timer-shadow2: 0 1px 2px rgba(0, 0, 0, 0.25);
   --timer-shadow-hover: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  --timer-color-hover: beige;
+  --timer-color-hover: rgb(216 176 140 / 70%);
+  --timer-border-hover: rgb(216 176 140 / 70%);
   --timer-button-bg: #6f7070;
   --span-color: orange;
-  --soan-color-hover: blue;
+  --span-color-hover: rgb(255 255 255 / 55%);
+  --timer-font-color: rgb(216 176 140 / 1);
+  --timer-bg-color: rgb(255 255 255 /15%);
+  --timer-bd: 2.2px solid rgb(216 176 140 / 70%);
+  --timer-sh-color: 0.04rem 0.04rem 0.04rem rgb(208 208 208 / 30%);
+  //hover
+  --timer-fo-hov-color: rgb(255 255 255 / 85%);
+  --timer-bg-hov-color: rgb(216 176 140 / 70%);
+  --timer-bd-hov-color: 2.2px solid rgb(216 176 140 / 70%);
+  --timer-sh-hov-color: 0.04rem 0.04rem 0.04rem rgb(208 208 208 / 30%);
   // スライダーのつまみなど
   --accent-color: #4cabe2;
   --timer-h: clamp(64px, 12vh, 112px);
+  --gap-g-button: 8px;
 }
 
 // ▼ギャラリー
@@ -27,3 +48,7 @@ $color-text-light-rgba: rgb(245 245 245 / 70%);
 $color-bg-base: #eae5da; // コズミックラテ（ベース）
 $color-bg-muted: #f5f5f5; // 明るいミュート背景
 $color-bg-gallery: #fff; // ギャラリー白
+
+// ▼z-index
+$z-menu: 10;
+$z-timer-mini: 5;

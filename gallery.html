@@ -257,47 +257,54 @@
         </div>
       </div>
     </main>
-
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="item item1 timer m-plus-1p-regular timer-shell">
-      <div class="timer-grid-container timer-mini-container">
-        <div class="timer1">
-          <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+    <div class="timer-mini-container">
+      <div class="timer-mini-box timer-mini-background">
+        <!-- カウントダウン表示 -->
+        <div class="timer-mini-countdown-text kiwi-maru-regular">
+          <div class="timer-count" id="timer">3:00</div>
         </div>
-        <!-- 初期設定ボタン -->
-        <div class="timer2">
-          <!-- プリセット -->
-          <button class="setTimeBtn btn btn--pill" data-minutes="3">3分</button>
-          <button class="setTimeBtn btn btn--pill" data-minutes="4">4分</button>
-          <button class="setTimeBtn btn btn--pill" data-minutes="5">5分</button>
+        <!-- プリセット・タイマー -->
+        <div class="timer-mini-preset-parent m-plus-1p-regular">
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="3">
+            3
+          </button>
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="4">
+            4
+          </button>
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="5">
+            5
+          </button>
         </div>
-        <div class="timer3">
-          <button id="startBtn" class="btn">
-            <span class="set-button material-symbols-outlined icon-size"
-              >play_circle
-            </span>
-          </button>
-          <button id="stopBtn" class="btn">
-            <span class="set-button material-symbols-outlined icon-size"
-              >stop_circle
-            </span>
-          </button>
-          <button id="resetBtn" class="btn">
-            <span class="set-button material-symbols-outlined icon-size"
+        <!-- タイマー操作 -->
+        <div class="timer-mini-set-parent">
+          <button class="unset" aria-label="リセット" id="resetBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
               >refresh
             </span>
           </button>
-          <button
-            id="muteBtn"
-            class="mute-btn btn"
-            aria-label="ミュート切替"
-            aria-pressed="false"
-            title="ミュート"
-          >
-            <span class="material-symbols-outlined">volume_off</span>
+          <button class="unset" aria-label="再生" id="startBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >play_circle
+            </span>
+          </button>
+          <button class="unset" id="stopBtn" aria-label="停止">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >stop_circle
+            </span>
+          </button>
+          <button class="unset" aria-label="音量" id="muteBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >volume_off
+            </span>
           </button>
         </div>
-        <div class="timer4">
+
+        <div class="timer-mini-volume">
           <span class="vol-label">音量：</span>
           <input
             type="range"
@@ -311,6 +318,7 @@
         </div>
       </div>
     </div>
+
     <!-- /* ≡≡≡ Lightboxここから */ -->
     <div id="lightbox" class="lightbox hidden">
       <div class="lightbox-content">
