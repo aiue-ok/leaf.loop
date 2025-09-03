@@ -245,3 +245,78 @@ body.about {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   }
 }
+
+/* タブレット: 600–1024px を目安。必要なら調整してね */
+// se縦 調整項目〜カウントダウン大きさ、ボタンの枠文字サイズはOK アイコン映ってない、ボリューム映ってない
+// se横　幅OK 文字サイズoK　もっと隠しておおけー　頭のヘリ6~70%沈める
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+  body.gallery,
+  body.universe,
+  body.about {
+    .timer-shell {
+      left: auto;
+      right: 1rem;
+      width: min(420px, 46vw);
+    }
+    .timer-mini-container {
+      position: fixed;
+      left: 1.25rem;
+      bottom: 5.25rem;
+      //   w360px h180px　ビューポートに依る
+      //   width: 22.5rem;height: 11.25rem;
+      width: clamp(360px, 25vw, 380px);
+      height: max(180px, 17.58vh);
+      z-index: core.$z-timer-mini;
+    }
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+    .timer-shell .timer-mini-box {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .timer-shell.is-idle .timer-mini-box {
+      transform: translateY(90%); /* 下にちょい隠す */
+      opacity: 0.85;
+    }
+    .timer-shell:hover .timer-mini-box,
+    .timer-shell:focus-within .timer-mini-box {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+/* タブレット: 600–1024px を目安。必要なら調整してね */
+// se縦 調整項目〜カウントダウン大きさ、ボタンの枠文字サイズはOK アイコン映ってない、ボリューム映ってない
+// se横　幅OK 文字サイズoK　もっと隠しておおけー　頭のヘリ6~70%沈める
+@media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
+  body.gallery,
+  body.universe,
+  body.about {
+    .timer-shell {
+      left: auto;
+      right: 1rem;
+      width: min(420px, 46vw);
+    }
+    .timer-mini-container {
+      position: fixed;
+      left: 1.25rem;
+      bottom: 5.25rem;
+      //   w360px h180px　ビューポートに依る
+      //   width: 22.5rem;height: 11.25rem;
+      width: clamp(360px, 25vw, 380px);
+      height: max(180px, 17.58vh);
+      z-index: core.$z-timer-mini;
+    }
+    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
+    .timer-shell .timer-mini-box {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .timer-shell.is-idle .timer-mini-box {
+      transform: translateX(90%); /* 下にちょい隠す */
+      opacity: 0.85;
+    }
+    .timer-shell:hover .timer-mini-box,
+    .timer-shell:focus-within .timer-mini-box {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

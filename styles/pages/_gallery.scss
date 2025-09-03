@@ -2,6 +2,7 @@
 @use "../components/timer" as time;
 @use "../components/timer-mini" as mini;
 @use "../components/info" as info;
+@use "../components/site-menu" as menu;
 
 // ─────────────────────────────
 // 🌿 世界のお茶を少しだけ（Leaf.Loop Style Guide）
@@ -33,18 +34,20 @@ body.gallery {
   /* メニュー */
   .menu-container {
     // 🍎確認のため
+    background-color: core.$test-bg1;
     position: relative;
   }
 
   .menu {
     // 🍎確認のため
     border: green 0.3px solid;
+    // background-color: core.$test-bg1;
     position: absolute;
     // top: 1rem;
     // right: 1.4rem;
-    bottom: 0px;
-    right: 0px;
-    z-index: -5;
+    // bottom: 0px;
+    // right: 0px;
+    // z-index: -5;
     width: min(90vw, 22.5rem); /* スマホなら90%、PCなら最大320px */
     /* height: auto; */
     height: 32.5rem;
@@ -59,70 +62,21 @@ body.gallery {
     transition: background 0.15s ease-in;
   }
 
-  .menu:hover {
-    // 🍎確認のため透明なし 0.01から
-    background: rgba(255, 255, 255, 0.01);
-  }
-  ul {
-    padding-left: 0;
-  }
+  // .close-button {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 2rem;
+  //   height: 2rem;
+  //   margin-bottom: 1rem;
+  //   border-color: core.$g-col-blueblack;
+  //   border-radius: 50%;
+  //   background: rgba(208, 208, 208, 1);
+  //   color: core.$g-col-blueblack;
+  //   font-size: 1.4rem; /* 小さめ、でも見える */
+  // }
 
-  li::before {
-    margin-right: 0.3em;
-    color: rgba(255, 255, 255, 0.6);
-    content: "› ";
-  }
-
-  li {
-    // list-style: none;
-    list-style: square;
-    list-style-position: inside;
-  }
-
-  .link-text {
-    display: inline-block;
-    transition: color 0.3s;
-  }
-
-  .link-text:hover {
-    color: #d8b08c;
-    font-weight: 400;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  button.close-button {
-    margin-left: 17rem;
-  }
-
-  .close-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2rem;
-    height: 2rem;
-    margin-bottom: 1rem;
-    border-color: core.$g-col-blueblack;
-    border-radius: 50%;
-    background: rgba(208, 208, 208, 1);
-    color: core.$g-col-blueblack;
-    font-size: 1.4rem; /* 小さめ、でも見える */
-  }
-
-  .close-button:hover {
-    transform: scale(1.1);
-    background-color: rgba(208, 208, 208, 0.15);
-    color: #747878;
-    cursor: pointer;
-  }
-
-  .clock-icon {
-    opacity: 0.85;
-    margin-top: 1rem;
-    text-align: center;
-    // 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
-    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3));
-  }
+  // ↑ここまでヘッダー・メニュー
 
   // 写真用箱div 親
   .photo-container {
