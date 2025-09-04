@@ -1,1 +1,280 @@
-<audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文庫本スタイル</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- GoogleFonts↓ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Noto Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="js/timer-base.js" defer></script>
+    <!-- <script src="js/timer-shell.js" defer></script> -->
+    <script src="js/site-menu.js" defer></script>
+  </head>
+  <body class="about">
+    <header class="site-header">
+      <!-- メニューアイコン -->
+      <button
+        class="menu--btn hamburger"
+        aria-label="メニューを開く"
+        aria-controls="site-menu"
+        aria-expanded="false"
+      >
+        <span
+          class="material-icons hamburger-icon material-symbols-outlined icon-size"
+          aria-hidden="true"
+        >
+          menu
+        </span>
+      </button>
+    </header>
+    <!-- 右端で待機するメニュー-->
+    <nav id="site-menu" class="offcanvas hidden">
+      <div class="offcanvas__head">
+        <span class="offcanvas__title">Menu</span>
+        <button
+          class="zen-kaku-gothic-new-bold offcanvas__close"
+          aria-label="メニューを閉じる"
+        >
+          ×
+        </button>
+      </div>
+      <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
+        <li>
+          <a href="index.html"><span class="link--text">ホーム</span></a>
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/gallery.html">世界のお茶を少しだけ</a></span
+          >
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/universe.html">遠くのことを少しだけ</a></span
+          >
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/about.html">このサイトについて</a></span
+          >
+        </li>
+      </ul>
+      <!-- 時計 -->
+      <div class="clock-icon svg-container">
+        <svg
+          width="227"
+          height="199"
+          viewBox="0 0 227 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            style="mix-blend-mode: soft-light"
+            filter="url(#filter0_d_157_368)"
+          >
+            <path
+              d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
+              fill="#FFF8E7"
+              fill-opacity="0.3"
+            />
+          </g>
+          <path
+            d="M113.001 108.493L167.124 139.741"
+            stroke="white"
+            stroke-linecap="round"
+          />
+          <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
+          <path
+            d="M113 109L187.995 109"
+            stroke="white"
+            stroke-linecap="round"
+          />
+          <defs>
+            <filter
+              id="filter0_d_157_368"
+              x="0"
+              y="0"
+              width="226.594"
+              height="199"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="1" />
+              <feGaussianBlur stdDeviation="1" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+              />
+              <feBlend
+                mode="normal"
+                in2="BackgroundImageFix"
+                result="effect1_dropShadow_157_368"
+              />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="effect1_dropShadow_157_368"
+                result="shape"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </nav>
+    <section class="about-page">
+      <h2>プロローグ</h2>
+      <p class="prologue">
+        忙しい日のあいまに、深呼吸のための小さな間。ことばと色と時間を、静かに並べています。
+      </p>
+      <span class="one-line">“leaf.loop” は、日常の余白をひらく実験室。</span>
+      <div class="divider"></div>
+
+      <h2>サイト名について</h2>
+      <p>
+        leaf は葉、loop はめぐり。<br />すこし休んで、また歩きだす循環のイメージ。
+      </p>
+      <h2>体験のしかた</h2>
+
+      <ul>
+        <li><p>タイマーをセットして“眺める”だけでもOK</p></li>
+        <li><p>音は静かめ。必要ならミュートしやすく</p></li>
+        <li><p>モバイルでもゆっくり読める文字幅にしています</p></li>
+      </ul>
+
+      <h2>デザインノート</h2>
+      <p>
+        色・余白・フォントは「目にやさしいコントラスト」を基準に調整しています。
+      </p>
+      <h2>制作・技術</h2>
+      <p>HTML/CSS/JavaScript と Figma を中心に、少しずつ育てています。</p>
+      <h2>クレジット</h2>
+      <div class="credits">
+        <div class="label">フォント</div>
+        <div class="value">Zen Kaku / Zen Maru / Kiwi Maru …</div>
+        <div class="label">画像素材</div>
+        <div class="value">
+          <p>
+            クレジットは <a href="/assets_credit.html">assets_credit</a> に記載
+          </p>
+        </div>
+        <div class="label">サウンド</div>
+        <div class="value">
+          <p>無音 ささやかな環境音（ページによる）</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <h2>エピローグ</h2>
+      <p class="prologue">
+        ここでの3分が、あなたの一日のどこかをやわらげますように。
+      </p>
+      <blockquote>blockquote?</blockquote>
+      <span class="note" data-tip="OKLCH は目に自然な色補間">oklch</span>
+    </section>
+    <div class="tooltip">
+      <button class="preset-button">③ぼぼぼぼぼぼb</button>
+      <span class="tooltip-text">3分タイマー</span>
+    </div>
+    <!-- /* ≡≡≡ ミニタイマーここから */ -->
+    <div class="timer-mini-container timer-shell">
+      <div class="timer-mini-box timer-mini-background">
+        <!-- カウントダウン表示 -->
+        <div class="timer-mini-countdown-text kiwi-maru-regular">
+          <div class="timer-count" id="timer">3:00</div>
+        </div>
+        <!-- プリセット・タイマー -->
+        <div class="timer-mini-preset-parent m-plus-1p-regular">
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="3">
+            3
+          </button>
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="4">
+            4
+          </button>
+          <button class="timer-mini-preset-button setTimeBtn" data-minutes="5">
+            5
+          </button>
+        </div>
+        <!-- タイマー操作 -->
+        <div class="timer-mini-set-parent">
+          <button class="unset" aria-label="リセット" id="resetBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >refresh
+            </span>
+          </button>
+          <button class="unset" aria-label="再生" id="startBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >play_circle
+            </span>
+          </button>
+          <button class="unset" id="stopBtn" aria-label="停止">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >stop_circle
+            </span>
+          </button>
+          <button class="unset" aria-label="音量" id="muteBtn">
+            <span
+              class="timer-mini-set-button material-symbols-outlined icon-size"
+              >volume_off
+            </span>
+          </button>
+        </div>
+
+        <div class="timer-mini-volume">
+          <span class="vol-label">音量：</span>
+          <input
+            type="range"
+            class="volume-control"
+            id="volumeControl"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+          />
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="wrapper">
+        <div class="sideitem">
+          <span class="leaf-text">🌱</span>
+          <p>このサイトについて</p>
+        </div>
+        <div class="sideitem">
+          <span class="material-symbols-outlined help-icon-size"> help </span>
+          <p>ヘルプ</p>
+        </div>
+      </div>
+    </footer>
+    <!-- 背景クリック用 -->
+    <div class="offcanvas-backdrop" hidden></div>
+    <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+  </body>
+</html>

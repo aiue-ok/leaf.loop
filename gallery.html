@@ -36,100 +36,125 @@
   </head>
   <body class="gallery">
     <header class="site-header">
-<!-- メニューアイコン -->
-      <button class="menu--btn hamburger" aria-label="メニューを開く" aria-controls="site-menu" aria-expanded="false">
-        <span class="material-icons hamburger-icon material-symbols-outlined icon-size" aria-hidden="true">
+      <!-- メニューアイコン -->
+      <button
+        class="menu--btn hamburger"
+        aria-label="メニューを開く"
+        aria-controls="site-menu"
+        aria-expanded="false"
+      >
+        <span
+          class="material-icons hamburger-icon material-symbols-outlined icon-size"
+          aria-hidden="true"
+        >
           menu
         </span>
       </button>
     </header>
-      <!-- 右端で待機するメニュー-->
+    <!-- 右端で待機するメニュー-->
     <nav id="site-menu" class="offcanvas hidden">
-        <div class="offcanvas__head">
-            <span class="offcanvas__title">Menu</span>
-            <button class="zen-kaku-gothic-new-bold offcanvas__close" aria-label="メニューを閉じる">×</button>
-        </div>
-            <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
-              <li>
-                <a href="index.html"><span class="link--text">ホーム</span></a>
-              </li>
-              <li><span class="link--text"><a href="/gallery.html">世界のお茶を少しだけ</a></span></li>
-              <li><span class="link--text"><a href="/universe.html">遠くのことを少しだけ</a></span></li>
-              <li><span class="link--text"><a href="/about.html">このサイトについて</a></span></li>
-            </ul>
-          <!-- 時計 -->
-            <div class="clock-icon svg-container">
-              <svg
-                width="227"
-                height="199"
-                viewBox="0 0 227 200"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  style="mix-blend-mode: soft-light"
-                  filter="url(#filter0_d_157_368)"
-                >
-                  <path
-                    d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
-                    fill="#FFF8E7"
-                    fill-opacity="0.3"
-                  />
-                </g>
-                <path
-                  d="M113.001 108.493L167.124 139.741"
-                  stroke="white"
-                  stroke-linecap="round"
-                />
-                <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
-                <path
-                  d="M113 109L187.995 109"
-                  stroke="white"
-                  stroke-linecap="round"
-                />
-                <defs>
-                  <filter
-                    id="filter0_d_157_368"
-                    x="0"
-                    y="0"
-                    width="226.594"
-                    height="199"
-                    filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
-                  >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix
-                      in="SourceAlpha"
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                      result="hardAlpha"
-                    />
-                    <feOffset dy="1" />
-                    <feGaussianBlur stdDeviation="1" />
-                    <feComposite in2="hardAlpha" operator="out" />
-                    <feColorMatrix
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in2="BackgroundImageFix"
-                      result="effect1_dropShadow_157_368"
-                    />
-                    <feBlend
-                      mode="normal"
-                      in="SourceGraphic"
-                      in2="effect1_dropShadow_157_368"
-                      result="shape"
-                    />
-                  </filter>
-                </defs>
-              </svg>
-          </div>
+      <div class="offcanvas__head">
+        <span class="offcanvas__title">Menu</span>
+        <button
+          class="zen-kaku-gothic-new-bold offcanvas__close"
+          aria-label="メニューを閉じる"
+        >
+          ×
+        </button>
+      </div>
+      <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
+        <li>
+          <a href="index.html"><span class="link--text">ホーム</span></a>
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/gallery.html">世界のお茶を少しだけ</a></span
+          >
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/universe.html">遠くのことを少しだけ</a></span
+          >
+        </li>
+        <li>
+          <span class="link--text"
+            ><a href="/about.html">このサイトについて</a></span
+          >
+        </li>
+      </ul>
+      <!-- 時計 -->
+      <div class="clock-icon svg-container">
+        <svg
+          width="227"
+          height="199"
+          viewBox="0 0 227 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            style="mix-blend-mode: soft-light"
+            filter="url(#filter0_d_157_368)"
+          >
+            <path
+              d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
+              fill="#FFF8E7"
+              fill-opacity="0.3"
+            />
+          </g>
+          <path
+            d="M113.001 108.493L167.124 139.741"
+            stroke="white"
+            stroke-linecap="round"
+          />
+          <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
+          <path
+            d="M113 109L187.995 109"
+            stroke="white"
+            stroke-linecap="round"
+          />
+          <defs>
+            <filter
+              id="filter0_d_157_368"
+              x="0"
+              y="0"
+              width="226.594"
+              height="199"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="1" />
+              <feGaussianBlur stdDeviation="1" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+              />
+              <feBlend
+                mode="normal"
+                in2="BackgroundImageFix"
+                result="effect1_dropShadow_157_368"
+              />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="effect1_dropShadow_157_368"
+                result="shape"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </div>
     </nav>
     <main>
-          <h1>世界のお茶を少しだけ</h1>
-    <h2>世界のお茶をテーマにした視覚的サンプルです。</h2>
+      <h1>世界のお茶を少しだけ</h1>
+      <h2>世界のお茶をテーマにした視覚的サンプルです。</h2>
       <div class="photo-container zen-maru-gothic-regular">
         <div class="photo-box">
           <img
@@ -315,7 +340,6 @@
           />
         </div>
       </div>
-  </div>
     </div>
 
     <!-- /* ≡≡≡ Lightboxここから */ -->
@@ -336,8 +360,21 @@
           </button>
         </div>
       </div>
-    </div>    <!-- 背景クリック用 -->
-<div class="offcanvas-backdrop" hidden></div>
+    </div>
+    <footer>
+      <div class="wrapper">
+        <div class="sideitem">
+          <span class="leaf-text">🌱</span>
+          <p>このサイトについて</p>
+        </div>
+        <div class="sideitem">
+          <span class="material-symbols-outlined help-icon-size"> help </span>
+          <p>ヘルプ</p>
+        </div>
+      </div>
+    </footer>
+    <!-- 背景クリック用 -->
+    <div class="offcanvas-backdrop" hidden></div>
     <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>
