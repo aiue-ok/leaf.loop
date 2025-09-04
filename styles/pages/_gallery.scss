@@ -31,53 +31,6 @@ body.gallery {
     color: inherit;
   }
 
-  /* メニュー */
-  .menu-container {
-    // 🍎確認のため
-    background-color: core.$test-bg1;
-    position: relative;
-  }
-
-  .menu {
-    // 🍎確認のため
-    border: green 0.3px solid;
-    // background-color: core.$test-bg1;
-    position: absolute;
-    // top: 1rem;
-    // right: 1.4rem;
-    // bottom: 0px;
-    // right: 0px;
-    // z-index: -5;
-    width: min(90vw, 22.5rem); /* スマホなら90%、PCなら最大320px */
-    /* height: auto; */
-    height: 32.5rem;
-    padding: 1.8rem;
-    // color: #eae5da;
-    color: #747878;
-    font-size: 1.4rem;
-    font-weight: 300;
-    line-height: 2em;
-    text-align: left;
-    text-shadow: 1px 1px 1px #fff;
-    transition: background 0.15s ease-in;
-  }
-
-  // .close-button {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   width: 2rem;
-  //   height: 2rem;
-  //   margin-bottom: 1rem;
-  //   border-color: core.$g-col-blueblack;
-  //   border-radius: 50%;
-  //   background: rgba(208, 208, 208, 1);
-  //   color: core.$g-col-blueblack;
-  //   font-size: 1.4rem; /* 小さめ、でも見える */
-  // }
-
-  // ↑ここまでヘッダー・メニュー
-
   // 写真用箱div 親
   .photo-container {
     display: grid;
@@ -360,7 +313,7 @@ body.gallery {
   }
 } //🛑
 
-@media (max-width: 37.5rem) {
+@media (max-width: 600px) {
   .lightbox-image {
     max-width: 90vw;
     max-height: 80vh;
@@ -385,7 +338,8 @@ body.gallery {
 }
 
 // スマホ🟢
-@media (min-width: 600px) {
+// 幅1024px（スマホたて向き）以下
+@media (max-width: 1024px) and (orientation: portrait) {
   body.gallery {
     // 例：スマホ時の背景色やパディングなど
     padding: 1rem;
@@ -408,16 +362,19 @@ body.gallery {
 } //🛑
 
 //🟡
-@media (min-width: 601px) and (max-width: 1024px) {
+//📍📍 幅769px以上1099px以下で画面が横向きの時だけ
+@media screen and (max-width: 1099px) and (orientation: landscape) {
   body.gallery {
     main {
       padding-bottom: 6rem;
     }
     h1 {
+      margin-left: 2rem;
       font-size: 1.4rem;
     }
     h2 {
       margin-top: 0.4rem;
+      margin-left: 2rem;
       font-size: 1rem;
     }
   }

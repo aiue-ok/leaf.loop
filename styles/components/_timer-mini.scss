@@ -5,9 +5,9 @@ body.universe,
 body.about {
   // ここからギャラリー専用タイマ
   .timer-mini-container {
-    position: fixed;
-    left: 1.25rem;
-    bottom: 1.25rem;
+    position: var(--timer-position);
+    left: var(--timer-left);
+    bottom: var(--timer-bottom);
     //   w360px h180px　ビューポートに依る
     //   width: 22.5rem;height: 11.25rem;
     width: clamp(360px, 25vw, 380px);
@@ -15,16 +15,17 @@ body.about {
     z-index: core.$z-timer-mini;
   }
 
+  // 背景
   .timer-mini-background {
-    border-radius: 16px;
-    border: 1px solid rgba(234, 229, 218, 0.3);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background: rgba(14, 16, 32, 0.4);
-    transition: background 0.3s ease, filter 0.3s ease;
-    backdrop-filter: blur(8px) saturate(140%);
-    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    border-radius: var(--timer-border-radius);
+    border: var(--timer-border);
+    box-shadow: var(--timer-box-shadow);
+    background: var(--timer-background);
+    transition: b 0.3s ease, filter 0.3s ease;
+    backdrop-filter: var(--timer-backdrop-filter);
+    -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
     &:hover {
+      background: var(--timer-hover-background);
       outline: none; // ブラウザのデフォルトの青い枠を消す
       backdrop-filter: blur(8.5px) saturate(130%);
       -webkit-backdrop-filter: blur(8.5px) saturate(130%);
@@ -40,7 +41,7 @@ body.about {
   }
   /* アイコンサイズを上書きする */
   span.icon-size {
-    font-size: 36px;
+    font-size: var(--timer-mini-icon-size);
   }
 
   button {
@@ -68,7 +69,7 @@ body.about {
   .timer-mini-countdown-text {
     grid-area: count;
     display: block;
-    font-size: clamp(3rem, 12vw, 3.4rem);
+    font-size: var(--timer-count-font-size);
     text-shadow: var(--timer-shadow2);
     text-align: center;
     inline-size: max-content;
@@ -89,31 +90,33 @@ body.about {
 
   .timer-mini-preset-button {
     /* 円の大きさ */
-    width: clamp(2.6rem, 3vw, 5rem);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    color: inherit;
-    text-align: center;
+    width: var(--timer-mini-width);
+    aspect-ratio: var(--timer-mini-aspect-ratio);
+    border-radius: var(--timer-mini-border-radius);
     background-color: transparent;
-    border: solid 2.27px var(--timer-main-color);
+    border: solid var(--timer-mini-border-width) var(--timer-main-color);
     box-shadow: var(--timer-shadow);
+    text-align: center;
     /* フォントサイズは直径に比例 */
-    font-size: clamp(1rem, 1.5vw, 2rem);
+    font-size: var(--timer-mini-preset-font-size);
+    color: var(--timer-color);
     text-shadow: var(--timer-shadow2);
     box-sizing: border-box;
   }
 
   .timer-mini-preset-button:hover {
     color: inherit;
-    border: solid 2.27px var(--timer-border-color);
-    background-color: var(--span-color-hover);
+    border: solid var(--timer-mini-border-width) var(--timer-border-color);
+    background-color: var(--timer-mini-preset-background-hover);
     outline: none; // ブラウザのデフォルトの青い枠を消す
   }
 
   .timer-mini-preset-button:focus-visible,
-  .timer-mini-set-button:focus-visible {
-    border-color: rgb(90 74 70 / 80%); // 少し濃く
-    box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  .timer-mini-set-parent button:focus-visible {
+    color: var(--timer-button-focus-visible-border-color);
+    font-weight: bold;
+    border-color: var(--timer-button-focus-visible-border-color); // 少し濃く
+    box-shadow: var(--timer-button-focus-visible-box-shadow);
   }
 
   /* タイマー操作部分 div 親 */
@@ -129,8 +132,14 @@ body.about {
   /* タイマー操作部分 div 子 */
   .timer-mini-set-button {
     flex: auto;
-    line-height: 2rem;
+    // line-height: 2rem;
     transition: all 0.18s ease;
+    /* 円の大きさ */
+    aspect-ratio: var(--timer-mini-aspect-ratio);
+    border-radius: var(--timer-mini-border-radius);
+    background-color: var(--timer-color);
+    box-shadow: var(--timer-shadow);
+    text-align: center;
   }
 
   .timer-mini-set-button:hover {
@@ -141,16 +150,16 @@ body.about {
   /* 音量（ラベル＋スライダー） */
   .timer-mini-volume {
     grid-area: volume;
-    inline-size: min(45vw, 12rem);
+    inline-size: var(--timer-mini-inline-size);
     display: grid;
-    grid-template-columns: auto min(8rem, 36vw) auto;
-    column-gap: var(--gap-g-button);
+    grid-template-columns: auto min(6rem, 36vw) auto;
     align-items: center;
+    justify-content: end;
     gap: var(--gap-g-button);
   }
 
   span.vol-label {
-    font-size: 0.9rem;
+    font-size: var(--timer-mini-vol-label-font-size);
   }
 
   .volume-control {
@@ -259,14 +268,7 @@ body.about {
       width: min(420px, 46vw);
     }
     .timer-mini-container {
-      position: fixed;
-      left: 1.25rem;
       bottom: 5.25rem;
-      //   w360px h180px　ビューポートに依る
-      //   width: 22.5rem;height: 11.25rem;
-      width: clamp(360px, 25vw, 380px);
-      height: max(180px, 17.58vh);
-      z-index: core.$z-timer-mini;
     }
     /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
     .timer-shell .timer-mini-box {
@@ -283,40 +285,66 @@ body.about {
     }
   }
 }
-/* タブレット: 600–1024px を目安。必要なら調整してね */
+
 // se縦 調整項目〜カウントダウン大きさ、ボタンの枠文字サイズはOK アイコン映ってない、ボリューム映ってない
 // se横　幅OK 文字サイズoK　もっと隠しておおけー　頭のヘリ6~70%沈める
 @media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
-    .timer-shell {
-      left: auto;
-      right: 1rem;
-      width: min(420px, 46vw);
-    }
     .timer-mini-container {
-      position: fixed;
-      left: 1.25rem;
-      bottom: 5.25rem;
-      //   w360px h180px　ビューポートに依る
-      //   width: 22.5rem;height: 11.25rem;
-      width: clamp(360px, 25vw, 380px);
-      height: max(180px, 17.58vh);
-      z-index: core.$z-timer-mini;
+      right: 16px;
+      top: 0;
+      width: 70svw;
+      height: 20svh;
     }
-    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
-    .timer-shell .timer-mini-box {
-      transition: transform 0.25s ease, opacity 0.25s ease;
+
+    /*  === grid ===  */
+    .timer-mini-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto; /* ← 2行にする */
+      grid-template-areas:
+        "count volume volume"
+        "presets controls controls";
+      gap: var(--gap-g-button);
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      padding: 0 0.4rem;
+      // 上下0px 左右22.4px
     }
-    .timer-shell.is-idle .timer-mini-box {
-      transform: translateX(90%); /* 下にちょい隠す */
-      opacity: 0.85;
+    // アイテム１ーカウントダウン表示  === */
+    .timer-mini-countdown-text {
+      font-size: var(--timer-count-font-size-mobile);
+      margin: 0;
     }
-    .timer-shell:hover .timer-mini-box,
-    .timer-shell:focus-within .timer-mini-box {
-      transform: translateY(0);
-      opacity: 1;
+    /*  === アイテム２ー3/4/5 === */
+    /*  === プリセット・タイマー 親  === */
+    .timer-mini-preset-parent {
+      display: flex;
+      gap: var(--gap-g-button-mobile);
+      inline-size: var(--timer-mini-inline-size-mobile);
+    }
+
+    .timer-mini-preset-button {
+      /* 円の大きさ */
+      width: var(--timer-mini-width-mobile);
+      aspect-ratio: var(--timer-mini-aspect-ratio);
+      border-radius: var(--timer-mini-border-radius-mobile);
+    }
+    /* タイマー操作部分 div 親 */
+    .timer-mini-set-parent {
+      flex-direction: row;
+      gap: var(--gap-g-button-mobile);
+      inline-size: var(--timer-mini-inline-size-mobile);
+    }
+    /* 音量（ラベル＋スライダー） */
+    .timer-mini-volume {
+      inline-size: var(--timer-mini-inline-size-mobile);
+      grid-template-columns: auto min(5rem, 18vw) auto;
+      gap: var(--gap-g-button-mobile);
     }
   }
 }

@@ -6,9 +6,9 @@
 
 body.about {
   background-color: oklch(97% 0.01 95);
-  background: core.$test-bg1;
 
   .about-page {
+    background: core.$test-bg1;
     /* 幅と中央寄せ */
     max-width: 640px;
     margin: 0 auto;
@@ -21,17 +21,20 @@ body.about {
     -webkit-font-smoothing: antialiased;
 
     /* ベース色（やさしい生成り＋深い文字色） */
-    background: oklch(97% 0.01 95);
+    // background: oklch(97% 0.01 95);
     color: oklch(28% 0.03 260);
     font-family: "M PLUS 1p", sans-serif;
   }
+
   .about-page p + p {
     margin-top: 1.05em;
   } /* 段落間 */
+
   .about-page h2 {
     margin: 2.5rem 0 1rem;
     font-size: 1.15rem;
   }
+
   .about-page h3 {
     margin: 2rem 0 0.75rem;
     font-size: 1.05rem;

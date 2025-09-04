@@ -8,30 +8,83 @@
   --gap: clamp(8px, 0.7vw, 16px);
 }
 
-.timer,
-.timer-mini-container {
-  --timer-test: red;
-  --timer-main-color: #f5f5f5;
-  --timer-bg-color: rgba(255, 255, 255, 0.05);
-  --timer-bg-color: rgb(255 255 255 /15%);
-  --timer-font-color: rgb(216 176 140 / 1);
-  --timer-color-hover: rgb(216 176 140 / 70%);
-  --span-color: orange;
+body .timer,
+body .timer-mini-container {
+  --timer-position: fixed;
+  --timer-left: 1.25rem;
+  --timer-bottom: 1.25rem;
+  --timer-mini-width: clamp(360px, 25vw, 380px);
+  --timer-mini-height: max(180px, 17.58vh);
+  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
+  --timer-count-font-size-mobile: clamp(24px, 1.5rem, 32px);
+  --gap-g-button: 8px;
+  --gap-g-button-mobile: 5px;
+  --timer-mini-icon-size: 36px;
+  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
+  --timer-mini-width-mobile: 24px;
+  --timer-mini-aspect-ratio: 1 / 1;
+  --timer-mini-aspect-ratio-mobile: 1 / 2;
+  --timer-mini-border-radius: 50%;
+  --timer-mini-border-radius-mobile: 8px;
+  --timer-mini-border-width: 2.27px;
+  --timer-mini-border-less: 0;
+  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
+  --timer-mini-inline-size: min(36vw, 12rem);
+  --timer-mini-inline-size-mobile: max-content;
+  --timer-mini-vol-label-font-size: 0.9rem;
+  --timer-transition: background 0.3s ease, filter 0.3s ease;
+}
+
+body.gallery .timer,
+body.gallery .timer-mini-container {
+  --timer-main-color: #eae5da;
+  --timer-color-hover: #fff;
   --timer-shadow: 1px, 1px, 3px, rgba(0, 0, 0, 0.25);
   --timer-shadow2: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --timer-sh-color: 0.04rem 0.04rem 0.04rem rgb(208 208 208 / 30%);
   --timer-shadow-hover: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  --timer-bd: 2.2px solid rgb(216 176 140 / 70%);
-  --timer-bd-hov-color: 2.2px solid rgb(216 176 140 / 70%);
-  --timer-button-bg: #6f7070;
-  --timer-fo-hov-color: rgb(255 255 255 / 85%);
-  --timer-bg-hov-color: rgb(216 176 140 / 70%);
-  --span-color-hover: rgb(255 255 255 / 55%);
-  --timer-border-hover: rgb(216 176 140 / 70%);
-  --timer-sh-hov-color: 0.04rem 0.04rem 0.04rem rgb(208 208 208 / 30%);
-  --accent-color: #4cabe2;
+  --timer-border-radius: 16px;
+  --timer-border-radius-mobile: 0;
+  --timer-border: 1px solid rgba(234, 229, 218, 0.3);
+  --timer-border-mobile: none;
+  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  --timer-box-shadow-mobile: none;
+  --timer-background: rgba(14, 16, 32, 0.4);
+  --timer-background-mobile: transparent;
+  --timer-color: inherit;
+  --timer-backdrop-filter: blur(8px) saturate(140%);
+  --timer-backdrop-filter-mobile: none;
+  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
+  --timer--webkit-backdrop-filter-mobile: none;
+  --timer-hover-background: rgba(14, 16, 32, 0.5);
+  --timer-mini-preset-background-color: transparent;
+  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
+  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  --timer-hover-container: rgb(255 255 255 /70%);
   --timer-h: clamp(64px, 12vh, 112px);
-  --gap-g-button: 8px;
+}
+
+body.universe .timer,
+body.universe .timer-mini-container {
+  --timer-main-color: #f5f5f5;
+  --timer-color-hover: rgb(205 227 213 / 70%);
+  --timer-shadow: 1px, 1px, 3px, rgba(0, 0, 0, 0.25);
+  --timer-shadow2: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --timer-shadow-hover: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  --timer-border-radius: 16px;
+  --timer-border: 1px solid rgb(255 255 255 / 20%);
+  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  --timer-background: rgb(205 227 213 / 70%);
+  --timer-color: inherit;
+  --timer-backdrop-filter: blur(12px);
+  --timer--webkit-backdrop-filter: blur(12px);
+  --timer-hover-background: rgba(245, 245, 220, 0.584);
+  --timer-mini-preset-background-color: transparent;
+  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
+  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  --timer-hover-container: rgb(255 255 255 /70%);
+  --timer-h: clamp(64px, 12vh, 112px);
 }
 
 /* フォントサイズは直径に比例 */
@@ -503,9 +556,9 @@ body.about {
 body.gallery .timer-mini-container,
 body.universe .timer-mini-container,
 body.about .timer-mini-container {
-  position: fixed;
-  left: 1.25rem;
-  bottom: 1.25rem;
+  position: var(--timer-position);
+  left: var(--timer-left);
+  bottom: var(--timer-bottom);
   width: clamp(360px, 25vw, 380px);
   height: max(180px, 17.58vh);
   z-index: 5;
@@ -513,18 +566,18 @@ body.about .timer-mini-container {
 body.gallery .timer-mini-background,
 body.universe .timer-mini-background,
 body.about .timer-mini-background {
-  border-radius: 16px;
-  border: 1px solid rgba(234, 229, 218, 0.3);
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background: rgba(14, 16, 32, 0.4);
-  transition: background 0.3s ease, filter 0.3s ease;
-  backdrop-filter: blur(8px) saturate(140%);
-  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border-radius: var(--timer-border-radius);
+  border: var(--timer-border);
+  box-shadow: var(--timer-box-shadow);
+  background: var(--timer-background);
+  transition: b 0.3s ease, filter 0.3s ease;
+  backdrop-filter: var(--timer-backdrop-filter);
+  -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
 }
 body.gallery .timer-mini-background:hover,
 body.universe .timer-mini-background:hover,
 body.about .timer-mini-background:hover {
+  background: var(--timer-hover-background);
   outline: none;
   backdrop-filter: blur(8.5px) saturate(130%);
   -webkit-backdrop-filter: blur(8.5px) saturate(130%);
@@ -541,7 +594,7 @@ body.about .timer-count {
 body.gallery span.icon-size,
 body.universe span.icon-size,
 body.about span.icon-size {
-  font-size: 36px;
+  font-size: var(--timer-mini-icon-size);
 }
 body.gallery button,
 body.universe button,
@@ -567,7 +620,7 @@ body.universe .timer-mini-countdown-text,
 body.about .timer-mini-countdown-text {
   grid-area: count;
   display: block;
-  font-size: clamp(3rem, 12vw, 3.4rem);
+  font-size: var(--timer-count-font-size);
   text-shadow: var(--timer-shadow2);
   text-align: center;
   inline-size: max-content;
@@ -588,16 +641,16 @@ body.gallery .timer-mini-preset-button,
 body.universe .timer-mini-preset-button,
 body.about .timer-mini-preset-button {
   /* 円の大きさ */
-  width: clamp(2.6rem, 3vw, 5rem);
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  color: inherit;
-  text-align: center;
+  width: var(--timer-mini-width);
+  aspect-ratio: var(--timer-mini-aspect-ratio);
+  border-radius: var(--timer-mini-border-radius);
   background-color: transparent;
-  border: solid 2.27px var(--timer-main-color);
+  border: solid var(--timer-mini-border-width) var(--timer-main-color);
   box-shadow: var(--timer-shadow);
+  text-align: center;
   /* フォントサイズは直径に比例 */
-  font-size: clamp(1rem, 1.5vw, 2rem);
+  font-size: var(--timer-mini-preset-font-size);
+  color: var(--timer-color);
   text-shadow: var(--timer-shadow2);
   box-sizing: border-box;
 }
@@ -605,18 +658,20 @@ body.gallery .timer-mini-preset-button:hover,
 body.universe .timer-mini-preset-button:hover,
 body.about .timer-mini-preset-button:hover {
   color: inherit;
-  border: solid 2.27px var(--timer-border-color);
-  background-color: var(--span-color-hover);
+  border: solid var(--timer-mini-border-width) var(--timer-border-color);
+  background-color: var(--timer-mini-preset-background-hover);
   outline: none;
 }
 body.gallery .timer-mini-preset-button:focus-visible,
-body.gallery .timer-mini-set-button:focus-visible,
+body.gallery .timer-mini-set-parent button:focus-visible,
 body.universe .timer-mini-preset-button:focus-visible,
-body.universe .timer-mini-set-button:focus-visible,
+body.universe .timer-mini-set-parent button:focus-visible,
 body.about .timer-mini-preset-button:focus-visible,
-body.about .timer-mini-set-button:focus-visible {
-  border-color: rgba(90, 74, 70, 0.8);
-  box-shadow: 0 0 0 2px rgba(90, 74, 70, 0.4);
+body.about .timer-mini-set-parent button:focus-visible {
+  color: var(--timer-button-focus-visible-border-color);
+  font-weight: bold;
+  border-color: var(--timer-button-focus-visible-border-color);
+  box-shadow: var(--timer-button-focus-visible-box-shadow);
 }
 body.gallery .timer-mini-set-parent,
 body.universe .timer-mini-set-parent,
@@ -632,8 +687,13 @@ body.gallery .timer-mini-set-button,
 body.universe .timer-mini-set-button,
 body.about .timer-mini-set-button {
   flex: auto;
-  line-height: 2rem;
   transition: all 0.18s ease;
+  /* 円の大きさ */
+  aspect-ratio: var(--timer-mini-aspect-ratio);
+  border-radius: var(--timer-mini-border-radius);
+  background-color: var(--timer-color);
+  box-shadow: var(--timer-shadow);
+  text-align: center;
 }
 body.gallery .timer-mini-set-button:hover,
 body.universe .timer-mini-set-button:hover,
@@ -645,17 +705,17 @@ body.gallery .timer-mini-volume,
 body.universe .timer-mini-volume,
 body.about .timer-mini-volume {
   grid-area: volume;
-  inline-size: min(45vw, 12rem);
+  inline-size: var(--timer-mini-inline-size);
   display: grid;
-  grid-template-columns: auto min(8rem, 36vw) auto;
-  column-gap: var(--gap-g-button);
+  grid-template-columns: auto min(6rem, 36vw) auto;
   align-items: center;
+  justify-content: end;
   gap: var(--gap-g-button);
 }
 body.gallery span.vol-label,
 body.universe span.vol-label,
 body.about span.vol-label {
-  font-size: 0.9rem;
+  font-size: var(--timer-mini-vol-label-font-size);
 }
 body.gallery .volume-control,
 body.universe .volume-control,
@@ -764,12 +824,7 @@ body.about input.volume-control::-moz-range-thumb {
   body.gallery .timer-mini-container,
   body.universe .timer-mini-container,
   body.about .timer-mini-container {
-    position: fixed;
-    left: 1.25rem;
     bottom: 5.25rem;
-    width: clamp(360px, 25vw, 380px);
-    height: max(180px, 17.58vh);
-    z-index: 5;
   }
   body.gallery .timer-shell .timer-mini-box,
   body.universe .timer-shell .timer-mini-box,
@@ -792,49 +847,72 @@ body.about input.volume-control::-moz-range-thumb {
     opacity: 1;
   }
 }
-/* タブレット: 600–1024px を目安。必要なら調整してね */
 @media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
-    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
-  }
-  body.gallery .timer-shell,
-  body.universe .timer-shell,
-  body.about .timer-shell {
-    left: auto;
-    right: 1rem;
-    width: min(420px, 46vw);
+    /*  === grid ===  */
+    /*  === アイテム２ー3/4/5 === */
+    /*  === プリセット・タイマー 親  === */
+    /* タイマー操作部分 div 親 */
+    /* 音量（ラベル＋スライダー） */
   }
   body.gallery .timer-mini-container,
   body.universe .timer-mini-container,
   body.about .timer-mini-container {
-    position: fixed;
-    left: 1.25rem;
-    bottom: 5.25rem;
-    width: clamp(360px, 25vw, 380px);
-    height: max(180px, 17.58vh);
-    z-index: 5;
+    right: 16px;
+    top: 0;
+    width: 70svw;
+    height: 20svh;
   }
-  body.gallery .timer-shell .timer-mini-box,
-  body.universe .timer-shell .timer-mini-box,
-  body.about .timer-shell .timer-mini-box {
-    transition: transform 0.25s ease, opacity 0.25s ease;
+  body.gallery .timer-mini-box,
+  body.universe .timer-mini-box,
+  body.about .timer-mini-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto; /* ← 2行にする */
+    grid-template-areas: "count volume volume" "presets controls controls";
+    gap: var(--gap-g-button);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0 0.4rem;
   }
-  body.gallery .timer-shell.is-idle .timer-mini-box,
-  body.universe .timer-shell.is-idle .timer-mini-box,
-  body.about .timer-shell.is-idle .timer-mini-box {
-    transform: translateX(90%); /* 下にちょい隠す */
-    opacity: 0.85;
+  body.gallery .timer-mini-countdown-text,
+  body.universe .timer-mini-countdown-text,
+  body.about .timer-mini-countdown-text {
+    font-size: var(--timer-count-font-size-mobile);
+    margin: 0;
   }
-  body.gallery .timer-shell:hover .timer-mini-box,
-  body.gallery .timer-shell:focus-within .timer-mini-box,
-  body.universe .timer-shell:hover .timer-mini-box,
-  body.universe .timer-shell:focus-within .timer-mini-box,
-  body.about .timer-shell:hover .timer-mini-box,
-  body.about .timer-shell:focus-within .timer-mini-box {
-    transform: translateY(0);
-    opacity: 1;
+  body.gallery .timer-mini-preset-parent,
+  body.universe .timer-mini-preset-parent,
+  body.about .timer-mini-preset-parent {
+    display: flex;
+    gap: var(--gap-g-button-mobile);
+    inline-size: var(--timer-mini-inline-size-mobile);
+  }
+  body.gallery .timer-mini-preset-button,
+  body.universe .timer-mini-preset-button,
+  body.about .timer-mini-preset-button {
+    /* 円の大きさ */
+    width: var(--timer-mini-width-mobile);
+    aspect-ratio: var(--timer-mini-aspect-ratio);
+    border-radius: var(--timer-mini-border-radius-mobile);
+  }
+  body.gallery .timer-mini-set-parent,
+  body.universe .timer-mini-set-parent,
+  body.about .timer-mini-set-parent {
+    flex-direction: row;
+    gap: var(--gap-g-button-mobile);
+    inline-size: var(--timer-mini-inline-size-mobile);
+  }
+  body.gallery .timer-mini-volume,
+  body.universe .timer-mini-volume,
+  body.about .timer-mini-volume {
+    inline-size: var(--timer-mini-inline-size-mobile);
+    grid-template-columns: auto min(5rem, 18vw) auto;
+    gap: var(--gap-g-button-mobile);
   }
 }
 .wrapper {
@@ -925,6 +1003,21 @@ span.help-icon-size {
   /* ギャラリーと調和する濃紺ガラス 初期値0.78*/
   --panel-bg: rgba(14, 16, 32, 0.6);
   --panel-bd: rgba(255, 255, 255, 0.18);
+}
+
+body.gallery span.icon-size,
+body.universe span.icon-size,
+body.about span.icon-size {
+  font-size: 44px;
+}
+@media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
+  body.gallery header.site-header,
+  body.universe header.site-header,
+  body.about header.site-header {
+    width: 100svw;
+    height: 10svh;
+    background-color: rgba(255, 0, 64, 0.435);
+  }
 }
 
 .offcanvas,
@@ -1359,7 +1452,6 @@ body.gallery {
   font-family: "Zen Kaku Gothic New", sans-serif;
   /* iOSのセーフエリアも考慮 */
   padding-bottom: calc(var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px);
-  /* メニュー */
   /* ミニカードの箱（ギャラリー専用背景） */
   /* カウント */
 }
@@ -1368,25 +1460,6 @@ body.gallery h2 {
 }
 body.gallery .menu-btn .material-icons {
   color: inherit;
-}
-body.gallery .menu-container {
-  background-color: rgba(200, 255, 0, 0.564);
-  position: relative;
-}
-body.gallery .menu {
-  border: green 0.3px solid;
-  position: absolute;
-  width: min(90vw, 22.5rem); /* スマホなら90%、PCなら最大320px */
-  /* height: auto; */
-  height: 32.5rem;
-  padding: 1.8rem;
-  color: #747878;
-  font-size: 1.4rem;
-  font-weight: 300;
-  line-height: 2em;
-  text-align: left;
-  text-shadow: 1px 1px 1px #fff;
-  transition: background 0.15s ease-in;
 }
 body.gallery .photo-container {
   display: grid;
@@ -1624,7 +1697,7 @@ body.gallery .timer1 h1 {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 37.5rem) {
+@media (max-width: 600px) {
   .lightbox-image {
     max-width: 90vw;
     max-height: 80vh;
@@ -1647,7 +1720,7 @@ body.gallery .timer1 h1 {
     animation: fadeInUp 0.5s ease-out;
   }
 }
-@media (min-width: 600px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   body.gallery {
     padding: 1rem;
   }
@@ -1664,15 +1737,187 @@ body.gallery .timer1 h1 {
     margin-left: 2rem;
   }
 }
-@media (min-width: 601px) and (max-width: 1024px) {
+@media screen and (max-width: 1099px) and (orientation: landscape) {
   body.gallery main {
     padding-bottom: 6rem;
   }
   body.gallery h1 {
+    margin-left: 2rem;
     font-size: 1.4rem;
   }
   body.gallery h2 {
     margin-top: 0.4rem;
+    margin-left: 2rem;
     font-size: 1rem;
   }
+}
+body.about {
+  background-color: oklch(97% 0.01 95deg);
+  /* 段落間 */
+  /* h2 の上に小さく澄んだ ＊ を1つ */
+  /* ふわっとした点線の区切り */
+  /* 1章の最初の p にだけ */
+  /* 章の最初は大きめ、末尾は少し多めに呼吸 */
+}
+body.about .about-page {
+  background: rgba(200, 255, 0, 0.564);
+  /* 幅と中央寄せ */
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  /* 読み心地 */
+  line-height: 1.85;
+  text-wrap: pretty; /* 自然な改行 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* ベース色（やさしい生成り＋深い文字色） */
+  color: oklch(28% 0.03 260deg);
+  font-family: "M PLUS 1p", sans-serif;
+}
+body.about .about-page p + p {
+  margin-top: 1.05em;
+}
+body.about .about-page h2 {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.15rem;
+}
+body.about .about-page h3 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.05rem;
+}
+body.about .about-page h2::before {
+  content: "＊";
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: oklch(55% 0.02 260deg / 0.35);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+body.about .about-page .divider {
+  height: 1px;
+  background: repeating-linear-gradient(to right, oklch(55% 0.02 260deg / 0.15) 0 6px, transparent 6px 12px);
+  margin: 2rem 0;
+}
+body.about .about-page .prologue:first-of-type::first-letter {
+  float: left;
+  font-family: "Kiwi Maru", serif;
+  font-size: 2.6em;
+  line-height: 0.9;
+  padding-right: 0.08em;
+  color: oklch(35% 0.05 260deg);
+}
+body.about .about-page .one-line {
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: oklch(45% 0.02 260deg / 0.85);
+  margin: 1.8rem 0;
+}
+body.about .about-page blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1rem;
+  border-left: 2px solid oklch(55% 0.04 260deg / 0.35);
+  background: oklch(98% 0.01 95deg / 0.6);
+  font-size: 1.02rem;
+  font-style: italic;
+  color: oklch(30% 0.03 260deg);
+}
+body.about .about-page blockquote footer {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+body.about .about-page .credits {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0.5rem 1rem;
+  margin: 2rem 0;
+}
+body.about .about-page .credits .label {
+  color: oklch(45% 0.03 260deg);
+  opacity: 0.9;
+}
+body.about .about-page .credits .value {
+  color: oklch(28% 0.03 260deg);
+}
+@media (max-width: 480px) {
+  body.about .about-page .credits {
+    grid-template-columns: 1fr;
+  }
+}
+body.about .about-page section {
+  margin: 2.5rem 0;
+}
+body.about .about-page section + section {
+  margin-top: 3rem;
+}
+@media (max-width: 480px) {
+  body.about .about-page {
+    padding: 3rem 1.25rem;
+  }
+  body.about .about-page section {
+    margin: 2rem 0;
+  }
+}
+body.about .about-page a {
+  text-decoration: none;
+  border-bottom: 1px dotted oklch(45% 0.05 260deg / 0.45);
+  padding-bottom: 1px;
+  transition: filter 180ms ease, border-color 180ms ease;
+}
+body.about .about-page a:hover,
+body.about .about-page a:focus-visible {
+  filter: brightness(1.1);
+  border-color: oklch(45% 0.05 260deg / 0.7);
+  outline: none;
+}
+body.about .about-page .note {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted oklch(45% 0.03 260deg / 0.5);
+}
+body.about .about-page .note:hover::after,
+body.about .about-page .note:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transform: translateY(0.35rem);
+  white-space: nowrap;
+  background: oklch(22% 0.03 260deg);
+  color: white;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  z-index: 10;
+}
+body.about .tooltip {
+  position: relative;
+  display: inline-block;
+}
+body.about .tooltip-text {
+  visibility: hidden;
+  width: 80px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  /* ボタンの上に表示 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+body.about .tooltip:hover .tooltip-text,
+body.about .tooltip:focus-within .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }/*# sourceMappingURL=style.css.map */

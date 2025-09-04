@@ -7,6 +7,22 @@
   --panel-bd: rgba(255, 255, 255, 0.18);
 }
 
+body.gallery,
+body.universe,
+body.about {
+  span.icon-size {
+    font-size: 44px;
+  }
+
+  @media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
+    header.site-header {
+      width: 100svw;
+      height: 10svh;
+      background-color: core.$test-bg4;
+    }
+  }
+}
+
 .offcanvas,
 .offcanvas-backdrop {
   position: fixed;
