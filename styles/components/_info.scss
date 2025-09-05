@@ -49,6 +49,53 @@
 span.help-icon-size {
   font-size: 1rem;
 }
+.mini-help {
+  position: fixed;
+  right: 12px;
+  bottom: 88px;
+  z-index: 60;
+}
+.mini-help > summary {
+  list-style: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(14, 16, 32, 0.35);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.mini-help[open] > summary {
+  visibility: hidden;
+} /* カード表示時は?隠す */
+
+.mini-help__card {
+  min-width: 220px;
+  max-width: 280px;
+  background: var(--timer-surface);
+  color: var(--timer-fg);
+  border: 1px solid var(--timer-border);
+  border-radius: 12px;
+  box-shadow: var(--timer-shadow);
+  padding: 12px 14px;
+  backdrop-filter: blur(10px) saturate(140%);
+}
+.mini-help__card ul {
+  margin: 6px 0 10px;
+  padding-left: 1em;
+}
+.mini-help__close {
+  width: 100%;
+  border-radius: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mini-help__card {
+    transition: none;
+  }
+}
 
 //📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (max-width: 768px) and (orientation: landscape) {

@@ -80,6 +80,13 @@
             ><a href="/about.html">このサイトについて</a></span
           >
         </li>
+        <li>
+          <span class="link--text">
+            <a href="#" class="menu-help" data-help
+              >ヘルプ（タイマーの使い方）</a
+            >
+          </span>
+        </li>
       </ul>
       <!-- 時計 -->
       <div class="clock-icon svg-container">
@@ -376,6 +383,19 @@
         </div>
       </div>
     </footer>
+    <details id="mini-help" class="mini-help" data-help>
+      <summary aria-label="ヘルプを開く">❔</summary>
+      <div class="mini-help__card" role="dialog" aria-label="タイマーの使い方">
+        <b>タイマーの使い方</b>
+        <ul>
+          <li>時間をタップで開始／停止</li>
+          <li>長押しでリセット（安全）</li>
+          <li>🔈でミュート切替</li>
+        </ul>
+        <button class="mini-help__close">閉じる</button>
+      </div>
+    </details>
+
     <!-- 背景クリック用 -->
     <div class="offcanvas-backdrop" hidden></div>
     <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>

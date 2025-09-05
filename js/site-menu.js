@@ -90,3 +90,31 @@
   btnClose?.addEventListener("click", unsyncTimer);
   backdrop.addEventListener("click", unsyncTimer);
 })();
+
+(() => {
+  const d = document,
+    key = "miniHelpSeen";
+  const help = d.querySelector("#mini-help");
+  if (!help) return;
+
+  // 初回だけ自動オープン
+  if (!localStorage.getItem(key)) {
+    help.setAttribute("open", "");
+  }
+  help.addEventListener("toggle", () => {
+    if (help.open) localStorage.setItem(key, "1");
+  });
+
+  // 閉じるボタン
+  help.querySelector(".mini-help__close")?.addEventListener("click", () => {
+    help.removeAttribute("open");
+  });
+
+  // ハンバーガーの「ヘルプ」からも開ける
+  d.querySelectorAll("[data-help]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (el.matches("a")) e.preventDefault();
+      help.toggleAttribute("open");
+    });
+  });
+})();
