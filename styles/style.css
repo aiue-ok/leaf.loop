@@ -1027,9 +1027,6 @@ body.about input.volume-control::-moz-range-thumb {
     backdrop-filter: var(--timer-backdrop-filter);
     -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
     /* ヒット面44px＋視覚28px（ズレない版） */
-    /* トラックを細く */
-    /* つまみ */
-    /* Firefox */
   }
   body.gallery .timer-mini-background:hover,
   body.universe .timer-mini-background:hover,
@@ -1141,57 +1138,16 @@ body.about input.volume-control::-moz-range-thumb {
   body.universe .timer-mini-background .timer-mini-volume,
   body.about .timer-mini-background .timer-mini-volume {
     inline-size: var(--timer-mini-inline-size);
-    grid-template-columns: min(6rem, 25vw) auto;
     align-items: center;
     justify-content: end;
     min-height: 0;
     align-self: center;
-  }
-  body.gallery .timer-mini-background .timer-volume-range,
-  body.universe .timer-mini-background .timer-volume-range,
-  body.about .timer-mini-background .timer-volume-range {
-    inline-size: min(140px, 48vw); /* 親の中で収める */
-    box-sizing: border-box;
   }
   body.gallery .timer-mini-background span.vol-label,
   body.universe .timer-mini-background span.vol-label,
   body.about .timer-mini-background span.vol-label {
     font-size: var(--timer-mini-vol-label-font-size);
     line-height: 1;
-  }
-  body.gallery .timer-mini-background input[type=range],
-  body.universe .timer-mini-background input[type=range],
-  body.about .timer-mini-background input[type=range] {
-    appearance: none;
-    -webkit-appearance: none;
-    height: 4px; /* 太→細 */
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: var(--timer-border-radius-mobile);
-    padding-bottom: 4px;
-  }
-  body.gallery .timer-mini-background input[type=range]::-webkit-slider-thumb,
-  body.universe .timer-mini-background input[type=range]::-webkit-slider-thumb,
-  body.about .timer-mini-background input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px; /* 触りやすい最小 */
-    border-radius: var(--timer-border-radius);
-    background: var(--timer-main-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-  body.gallery .timer-mini-background input[type=range]::-moz-range-track,
-  body.universe .timer-mini-background input[type=range]::-moz-range-track,
-  body.about .timer-mini-background input[type=range]::-moz-range-track {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
-  }
-  body.gallery .timer-mini-background input[type=range]::-moz-range-thumb,
-  body.universe .timer-mini-background input[type=range]::-moz-range-thumb,
-  body.about .timer-mini-background input[type=range]::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: var(--timer-border-radius);
-    background: var(--timer-main-color);
   }
 }
 .wrapper {

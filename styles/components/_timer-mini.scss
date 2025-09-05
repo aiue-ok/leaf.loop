@@ -522,49 +522,16 @@ body.about {
       }
       .timer-mini-volume {
         inline-size: var(--timer-mini-inline-size);
-        grid-template-columns: min(6rem, 25vw) auto;
+        // grid-template-columns: min(6rem, 25vw) auto;
         align-items: center;
         justify-content: end;
         min-height: 0;
         align-self: center;
       }
 
-      .timer-volume-range {
-        inline-size: min(140px, 48vw); /* 親の中で収める */
-        box-sizing: border-box;
-      }
       span.vol-label {
         font-size: var(--timer-mini-vol-label-font-size);
         line-height: 1;
-      }
-      /* トラックを細く */
-      input[type="range"] {
-        appearance: none;
-        -webkit-appearance: none;
-        height: 4px; /* 太→細 */
-        background: rgba(255, 255, 255, 0.25);
-        border-radius: var(--timer-border-radius-mobile);
-        padding-bottom: 4px;
-      }
-      /* つまみ */
-      input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 18px;
-        height: 18px; /* 触りやすい最小 */
-        border-radius: var(--timer-border-radius);
-        background: var(--timer-main-color);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
-      /* Firefox */
-      input[type="range"]::-moz-range-track {
-        height: 8px;
-        background: rgba(255, 255, 255, 0.5);
-      }
-      input[type="range"]::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: var(--timer-border-radius);
-        background: var(--timer-main-color);
       }
     }
   }
