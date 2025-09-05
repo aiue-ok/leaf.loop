@@ -152,7 +152,7 @@ body.about {
     grid-area: volume;
     inline-size: var(--timer-mini-inline-size);
     display: grid;
-    grid-template-columns: auto min(6rem, 36vw) auto;
+    grid-template-columns: min(6rem, 36vw) auto;
     align-items: center;
     justify-content: end;
     gap: var(--gap-g-button);
@@ -255,96 +255,317 @@ body.about {
   }
 }
 
-/* タブレット: 600–1024px を目安。必要なら調整してね */
-// se縦 調整項目〜カウントダウン大きさ、ボタンの枠文字サイズはOK アイコン映ってない、ボリューム映ってない
-// se横　幅OK 文字サイズoK　もっと隠しておおけー　頭のヘリ6~70%沈める
-@media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+// ７４４px〜1080px タブレット　portrait　サイズ
+@media (min-width: 744px) and (max-width: 1080px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
-    .timer-shell {
-      left: auto;
-      right: 1rem;
-      width: min(420px, 46vw);
+    /* 1) ハンバーガー：左上に固定（安全域対応） */
+    .hamburger {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 8px);
+      left: 8px;
+      z-index: 120; /* タイマーより上、メニューより下で調整 */
+      inline-size: 44px;
+      block-size: 44px; /* ヒット面 */
+      display: grid;
+      place-items: center;
+      background: core.$test-bg1;
     }
+
+    /* 2) タイマー帯（上部固定／左右16pxの余白を確保） */
+    /* 位置と器の大きさ：ここが“効く”幅 */
     .timer-mini-container {
-      bottom: 5.25rem;
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 8px);
+      right: calc(env(safe-area-inset-top, 8px) + 8px);
+      left: auto;
+      bottom: unset;
+      z-index: 100;
+      /* スマホでもはみ出さないように器の上限だけ決める */
+      inline-size: auto; /* 内容に合わせる */
+      /* 器をゆるく（広めに） */
+      max-inline-size: clamp(320px, 70vw, 560px);
+      max-block-size: clamp(72px, 1svh, 80px);
+      pointer-events: none; /* 下を触れるように。中身で戻す */
     }
-    /* アイドル時は少し隠す（ホバー/フォーカスで戻る） */
-    .timer-shell .timer-mini-box {
-      transition: transform 0.25s ease, opacity 0.25s ease;
+
+    /* 3) 中身を右寄せ・狭い所は1段、広がったら2段へ */
+    .timer-mini-box {
+      pointer-events: auto;
+      display: flex;
+      flex-wrap: nowrap; /* ← 1段に固定 */
+      justify-content: flex-end; /* 右寄せ */
+      column-gap: 0.5rem;
+      row-gap: 0;
+      align-items: center;
     }
-    .timer-shell.is-idle .timer-mini-box {
-      transform: translateY(90%); /* 下にちょい隠す */
-      opacity: 0.85;
+    .timer-mini-countdown-text {
+      order: 1;
     }
-    .timer-shell:hover .timer-mini-box,
-    .timer-shell:focus-within .timer-mini-box {
-      transform: translateY(0);
-      opacity: 1;
+    .timer-mini-preset-parent {
+      order: 2;
+      flex: 0 0 auto;
+      display: inline-flex;
+      gap: 0.4rem;
+    }
+    .timer-mini-set-parent {
+      order: 3;
+      flex-basis: 100%;
+      flex: 0 0 auto;
+      display: inline-flex;
+      gap: 0.25rem;
+    }
+    .timer-mini-volume {
+      order: 4;
+      flex-basis: 100%;
+      display: inline-flex;
+      gap: 0.25rem;
+    }
+    // 背景
+    .timer-mini-background {
+      border-radius: var(--timer-border-radius-mobile);
+      border: var(--timer-border);
+      box-shadow: var(--timer-box-shadow);
+      background: var(--timer-background);
+      transition: background 0.3s ease, filter 0.3s ease;
+      backdrop-filter: var(--timer-backdrop-filter);
+      -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
+      &:hover {
+        background: var(--timer-hover-background);
+        outline: none; // ブラウザのデフォルトの青い枠を消す
+        backdrop-filter: blur(8.5px) saturate(130%);
+        -webkit-backdrop-filter: blur(8.5px) saturate(130%);
+      }
+
+      /* ヒット面44px＋視覚28px（ズレない版） */
+      .timer-mini-preset-button {
+        --visual: 28px;
+        --hit: 44px;
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        inline-size: var(--visual);
+        block-size: var(--visual);
+        line-height: 1;
+        border-radius: var(--timer-border-radius-mobile);
+      }
+      .timer-mini-preset-button::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--icon-hit);
+        height: var(--icon-hit);
+        transform: translate(-50%, -50%);
+      }
+      .timer-mini-countdown-text {
+        font-size: var(--timer-count-font-size-mobile);
+        line-height: 1; /* ←これで上下の余白をカット */
+        margin: 0 auto;
+      }
+      .timer-mini-container span.icon-size,
+      span.timer-mini-set-button,
+      span.mute {
+        font-size: var(--timer-mini-icon-size-mobile);
+      }
+      .timer-mini-set-parent {
+        grid-area: controls;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: var(--gap-g-button);
+      }
+      .timer-mini-volume input[type="range"] {
+        inline-size: clamp(120px, 15vw, 200px);
+      }
     }
   }
 }
 
-// se縦 調整項目〜カウントダウン大きさ、ボタンの枠文字サイズはOK アイコン映ってない、ボリューム映ってない
-// se横　幅OK 文字サイズoK　もっと隠しておおけー　頭のヘリ6~70%沈める
-@media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
+/* スマホ（～390pxあたり） */
+@media (max-width: 743px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
-    .timer-mini-container {
-      right: 16px;
-      top: 0;
-      width: 70svw;
-      height: 20svh;
-    }
-
-    /*  === grid ===  */
-    .timer-mini-box {
+    /* 1) ハンバーガー：左上に固定（安全域対応） */
+    .hamburger {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 8px);
+      left: 8px;
+      z-index: 120; /* タイマーより上、メニューより下で調整 */
+      inline-size: 44px;
+      block-size: 44px; /* ヒット面 */
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto; /* ← 2行にする */
-      grid-template-areas:
-        "count volume volume"
-        "presets controls controls";
-      gap: var(--gap-g-button);
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: auto;
-      padding: 0 0.4rem;
-      // 上下0px 左右22.4px
-    }
-    // アイテム１ーカウントダウン表示  === */
-    .timer-mini-countdown-text {
-      font-size: var(--timer-count-font-size-mobile);
-      margin: 0;
-    }
-    /*  === アイテム２ー3/4/5 === */
-    /*  === プリセット・タイマー 親  === */
-    .timer-mini-preset-parent {
-      display: flex;
-      gap: var(--gap-g-button-mobile);
-      inline-size: var(--timer-mini-inline-size-mobile);
+      place-items: center;
+      background: core.$test-bg1;
     }
 
-    .timer-mini-preset-button {
-      /* 円の大きさ */
-      width: var(--timer-mini-width-mobile);
-      aspect-ratio: var(--timer-mini-aspect-ratio);
-      border-radius: var(--timer-mini-border-radius-mobile);
+    /* 2) タイマー帯（上部固定／左右16pxの余白を確保） */
+    /* 位置と器の大きさ：ここが“効く”幅 */
+    .timer-mini-container {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 8px);
+      right: calc(env(safe-area-inset-top, 8px) + 8px);
+      left: auto;
+      bottom: unset;
+      z-index: 100;
+      height: auto;
+      /* スマホでもはみ出さないように器の上限だけ決める */
+      inline-size: auto; /* 内容に合わせる */
+      max-inline-size: clamp(220px, 60vw, 270px);
+      max-block-size: clamp(96px, 17svh, 120px);
+      pointer-events: none; /* 下を触れるように。中身で戻す */
     }
-    /* タイマー操作部分 div 親 */
-    .timer-mini-set-parent {
-      flex-direction: row;
-      gap: var(--gap-g-button-mobile);
-      inline-size: var(--timer-mini-inline-size-mobile);
+
+    /* 3) 中身を右寄せ・狭い所は1段、広がったら2段へ */
+    .timer-mini-box {
+      pointer-events: auto;
+      display: grid;
+      grid-template-columns: 1fr auto; /* 左=時間／右=操作 */
+      grid-template-rows: auto auto; /* 上=時間+操作／下=プリセット */
+      grid-template-areas:
+        "count  presets controls"
+        "volume presets controls";
+      gap: 0.05rem 0.5rem;
+      align-items: center;
     }
-    /* 音量（ラベル＋スライダー） */
-    .timer-mini-volume {
-      inline-size: var(--timer-mini-inline-size-mobile);
-      grid-template-columns: auto min(5rem, 18vw) auto;
-      gap: var(--gap-g-button-mobile);
+
+    // 背景
+    .timer-mini-background {
+      border-radius: var(--timer-border-radius-mobile);
+      border: var(--timer-border);
+      box-shadow: var(--timer-box-shadow);
+      background: var(--timer-background);
+      transition: background 0.3s ease, filter 0.3s ease;
+      backdrop-filter: var(--timer-backdrop-filter);
+      -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
+      &:hover {
+        background: var(--timer-hover-background);
+        outline: none; // ブラウザのデフォルトの青い枠を消す
+        backdrop-filter: blur(8.5px) saturate(130%);
+        -webkit-backdrop-filter: blur(8.5px) saturate(130%);
+      }
+      .timer-mini-preset-parent {
+        min-height: 0;
+        align-self: center;
+        row-gap: 4px;
+      }
+      /* ヒット面44px＋視覚28px（ズレない版） */
+      .timer-mini-preset-button {
+        --visual: 28px;
+        --hit: 44px;
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        inline-size: var(--visual);
+        block-size: var(--visual);
+        line-height: 1;
+        border: solid 1px var(--timer-main-color);
+        border-radius: var(--timer-border-radius-mobile);
+      }
+      .timer-mini-preset-button::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: var(--icon-hit);
+        height: var(--icon-hit);
+        transform: translate(-50%, -50%);
+      }
+      .timer-mini-countdown-text {
+        font-size: var(--timer-count-font-size-mobile);
+        margin: 0 auto;
+        min-height: 0;
+        align-self: center;
+      }
+      .timer-count {
+        line-height: 1.2;
+      }
+      .timer-mini-container span.icon-size,
+      span.timer-mini-set-button,
+      span.mute {
+        font-size: var(--timer-mini-icon-size-mobile);
+      }
+
+      .setTimeBtn:active,
+      .timer-ctrl__btn:active {
+        transform: translateY(0.5px) scale(0.98);
+        filter: saturate(115%);
+        transition: transform 0.08s ease-out;
+      }
+
+      .timer-mini-countdown-text {
+        min-height: 0;
+        align-self: center;
+      }
+      .timer-count {
+        line-height: 1.2;
+      }
+      .timer-mini-preset-parent {
+        min-height: 0;
+        align-self: center;
+        row-gap: 4px;
+      }
+      .timer-mini-preset-button {
+        border: solid 1px var(--timer-main-color);
+      }
+      .timer-mini-set-parent {
+        min-height: 0;
+        align-self: center;
+        row-gap: 4px;
+      }
+      .timer-mini-volume {
+        inline-size: var(--timer-mini-inline-size);
+        grid-template-columns: min(6rem, 25vw) auto;
+        align-items: center;
+        justify-content: end;
+        min-height: 0;
+        align-self: center;
+      }
+
+      .timer-volume-range {
+        inline-size: min(140px, 48vw); /* 親の中で収める */
+        box-sizing: border-box;
+      }
+      span.vol-label {
+        font-size: var(--timer-mini-vol-label-font-size);
+        line-height: 1;
+      }
+      /* トラックを細く */
+      input[type="range"] {
+        appearance: none;
+        -webkit-appearance: none;
+        height: 4px; /* 太→細 */
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: var(--timer-border-radius-mobile);
+        padding-bottom: 4px;
+      }
+      /* つまみ */
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px; /* 触りやすい最小 */
+        border-radius: var(--timer-border-radius);
+        background: var(--timer-main-color);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      /* Firefox */
+      input[type="range"]::-moz-range-track {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: var(--timer-border-radius);
+        background: var(--timer-main-color);
+      }
     }
   }
 }

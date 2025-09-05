@@ -117,8 +117,7 @@ input {
 
 /* アイコンサイズを上書きする */
 span.icon-size {
-  font-size: 42px;
-  /* font-size: 32px; */
+  font-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
   display: inline-block;
   vertical-align: middle;
 }

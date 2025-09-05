@@ -30,7 +30,6 @@
     />
     <script src="js/gallery.js" defer></script>
     <script src="js/timer-base.js" defer></script>
-    <!-- <script src="js/timer-shell.js" defer></script> -->
     <script src="js/site-menu.js" defer></script>
     <title>世界のお茶を少しだけ</title>
   </head>
@@ -281,63 +280,84 @@
       </div>
     </main>
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="timer-mini-container timer-shell">
+    <div class="timer-mini-container timer">
       <div class="timer-mini-box timer-mini-background">
         <!-- カウントダウン表示 -->
-        <div class="timer-mini-countdown-text kiwi-maru-regular">
+        <div
+          class="timer-bar__left timer-bar__count timer-mini-countdown-text kiwi-maru-regular"
+        >
           <div class="timer-count" id="timer">3:00</div>
         </div>
         <!-- プリセット・タイマー -->
-        <div class="timer-mini-preset-parent m-plus-1p-regular">
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="3">
+        <div
+          class="timer-bar__center timer-bar__presets timer-mini-preset-parent m-plus-1p-regular"
+        >
+          <button
+            class="timer-mini-preset-button setTimeBtn timer-preset__btn"
+            data-minutes="3"
+          >
             3
           </button>
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="4">
+          <button
+            class="timer-mini-preset-button setTimeBtn timer-preset__btn"
+            data-minutes="4"
+          >
             4
           </button>
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="5">
+          <button
+            class="timer-mini-preset-button setTimeBtn timer-preset__btn"
+            data-minutes="5"
+          >
             5
           </button>
         </div>
         <!-- タイマー操作 -->
-        <div class="timer-mini-set-parent">
-          <button class="unset" aria-label="リセット" id="resetBtn">
+        <div class="timer-bar__right timer-bar__actions timer-mini-set-parent">
+          <button
+            class="unset timer-ctrl__btn"
+            aria-label="リセット"
+            id="resetBtn"
+          >
             <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >refresh
             </span>
           </button>
-          <button class="unset" aria-label="再生" id="startBtn">
+          <button class="unset timer-ctrl__btn" aria-label="再生" id="startBtn">
             <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >play_circle
             </span>
           </button>
-          <button class="unset" id="stopBtn" aria-label="停止">
+          <button class="unset timer-ctrl__btn" id="stopBtn" aria-label="停止">
             <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >stop_circle
             </span>
           </button>
-          <button class="unset" aria-label="音量" id="muteBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >volume_off
-            </span>
-          </button>
         </div>
 
         <div class="timer-mini-volume">
-          <span class="vol-label">音量：</span>
-          <input
-            type="range"
-            class="volume-control"
-            id="volumeControl"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-          />
+          <div class="volume-box">
+            <!-- <span class="vol-label">音量：</span> -->
+            <input
+              type="range"
+              class="volume-control"
+              id="volumeControl"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+          </div>
+          <div class="mute-box">
+            <button class="unset" aria-label="音量" id="muteBtn">
+              <span
+                class="timer-mini-set-button mute material-symbols-outlined icon-size"
+                >volume_off
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

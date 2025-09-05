@@ -6,6 +6,7 @@ $test1: 1px solid red;
 $test2: 1px solid rgb(255, 200, 0);
 $test3: 1px solid rgb(0, 251, 255);
 $test4: 1px solid rgb(255, 0, 238);
+//background:core.$test-bg1;
 $test-bg1: rgba(200, 255, 0, 0.564);
 $test-bg2: rgba(69, 110, 198, 0.549);
 $test-bg3: rgba(44, 251, 48, 0.607);
@@ -25,10 +26,15 @@ $test-bg4: rgba(255, 0, 64, 0.435);
 }
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
+// アイコンサイズ 最小44px,最大56px
+$icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
+$icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
+// スマホ両脇
+// 16〜20px + safe-area
 
 //❓ 使い方：var(--accent-color)で使う
-body .timer,
-body .timer-mini-container {
+.timer,
+.timer-mini-container {
   //タイマーのデフォルト 変更なし
   // --timer-test: red;
 
@@ -43,11 +49,15 @@ body .timer-mini-container {
   // z-index: 5;
   // カウントダウン表示　００：００
   --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.5rem, 32px);
+  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
   // ボタンの配置間隔
   --gap-g-button: 8px;
   --gap-g-button-mobile: 5px;
+  // アイコンfont
   --timer-mini-icon-size: 36px;
+  --timer-mini-icon-size-mobile: 28px;
+  --icon-visual: 28px; /* 見た目 */
+  --icon-hit: 44px; /* タップ面 */
   // プリセットボタンの円    /* 円の大きさ */
   --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
   --timer-mini-width-mobile: 24px;

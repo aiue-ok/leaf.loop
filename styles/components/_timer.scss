@@ -3,6 +3,9 @@
 // タイマー見た目全体共通
 body {
   color: var(--timer-main-color);
+  span.icon-size {
+    font-size: core.$icon-size;
+  }
 
   // gridコンテナ親
   .timer-grid-container {
@@ -30,8 +33,7 @@ body {
   /* h1 カウントダウン表示 */
   .timer_count {
     text-align: center;
-    // vmin は「短いほうの辺の1%」。
-    font-size: clamp(3rem, 11vmin, 5rem);
+    font-size: clamp(48px, 36.732px + 3.005vw, 80px);
     line-height: 1.1;
   }
 
@@ -51,7 +53,7 @@ body {
     grid-template-rows: 1fr;
     justify-content: center;
     align-items: center;
-    gap: 5vh;
+    gap: 1rem;
     padding: 1vw;
     text-align: center;
     &span {
@@ -70,9 +72,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 2.27px var(--timer-main-color);
+    border: solid 2.27px core.$LeafMist;
     /* 円の大きさ */
-    width: clamp(3rem, 4vw, 6rem);
+    width: core.$setTimeBtn-width;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     color: inherit;
@@ -80,23 +82,26 @@ body {
     background-color: transparent;
     box-shadow: var(--timer-shadow);
     /* フォントサイズは直径に比例 */
-    font-size: clamp(1rem, 1.5vw, 2rem);
+    font-size: core.$setTimeBtn-font-size;
     box-sizing: border-box;
     // font-size: clamp(1rem, 1.111vw, 32px);
   }
 
   button.setTimeBtn:hover {
     cursor: pointer;
-    color: var(--timer-color-hover);
-    text-shadow: var(--timer-shadow-hover);
-    border: solid 3.27px var(--timer-color-hover);
-    box-shadow: solid 2.27px var(--timer-shadow-hover);
+    color: #110b0fa2;
+    text-shadow: #f4eef2;
+    border: solid 3.27px core.$LeafMist;
+    background-color: core.$LeafMist;
+    box-shadow: solid 2.27px #f4eef2;
   }
 
-  span.set-button:hover {
+  .set-buttons span:hover {
     cursor: pointer;
-    color: var(--timer-color-hover);
-    text-shadow: var(--timer-shadow-hover);
+    color: #110b0f4e;
+    text-shadow: solid 2.27px #f4eef2;
+    // color: var(--timer-color-hover);
+    // text-shadow: var(--timer-shadow-hover);
   }
 
   // ボリューム調整部分
@@ -108,9 +113,9 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    &span {
+    & span {
       display: block;
-      font-size: 24px;
+      font-size: core.$icon-size-nottap;
     }
   }
 
@@ -168,18 +173,30 @@ body {
     .timer {
       max-width: 23vw;
     }
-    // 操作ボタンの背景　アイコン位置調整
+    // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     .set-buttons {
-      gap: 1.5rem;
-      padding: 0.2rem 0;
-      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
-        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 23dvw;
+      width: 23svw;
+      padding: clamp(4px, 2.592px + 0.376vw, 8px);
       background: rgba(255, 255, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      border: 0.8px solid rgba(255, 255, 255, 0.35);
       border-radius: 9999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(100px);
     }
+    // 操作ボタンの背景　アイコン位置調整
+    // .set-buttons {
+    //   gap: 1.5rem;
+    //   padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
+    //   background: rgba(255, 255, 255, 0.3);
+    //   border: 1px solid rgba(255, 255, 255, 0.35);
+    //   border-radius: 9999px;
+    //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    //   backdrop-filter: blur(100px);
+    // }
   }
 }
 // ━━━━━━
@@ -187,22 +204,21 @@ body {
 @media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
   body.hero {
     .buttons {
-      gap: 10px;
-    }
-    span.icon-size {
-      font-size: 2rem;
+      gap: var(--gap);
     }
     // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     .set-buttons {
-      margin: 0 auto;
-      padding: 4px 0;
-      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08)),
-        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3));
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 23dvw;
+      width: 23svw;
+      // padding: clamp(4px, 2.592px + 0.376vw, 8px);
       background: rgba(255, 255, 255, 0.3);
       border: 0.8px solid rgba(255, 255, 255, 0.35);
-      border-radius: 999px;
+      border-radius: 9999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(100px);
     }
 
     .timer4 {
@@ -210,7 +226,8 @@ body {
     }
     .volume-control {
       appearance: none;
-      width: 12vw;
+      width: 12dvw;
+      width: 12svw;
       height: 16px;
       border-radius: 9999px;
       backdrop-filter: blur(8px) saturate(140%);
@@ -253,6 +270,10 @@ body {
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (max-width: 1024px) and (orientation: portrait) {
   body.hero {
+    .timer-grid-container {
+      gap: clamp(16px, 1.5vmin, 20px);
+    }
+
     .timer_count {
       margin-bottom: 2rem;
     }
@@ -261,11 +282,7 @@ body {
       height: auto;
     }
     .buttons {
-      // gap: 16px;
-      gap: clamp(16px, 2rem, 36px);
-    }
-    span.icon-size {
-      font-size: 2rem;
+      gap: 32px;
     }
     .timer4 {
       display: flex;
@@ -273,14 +290,9 @@ body {
       align-items: center;
       width: 100%;
       text-align: center;
-      font-size: 0.9rem;
-      &span.icon-size {
-        display: block;
-        font-size: 16px;
-      }
     }
     .volume-control {
-      width: 100px;
+      width: 160px;
     }
   }
 }
@@ -293,12 +305,9 @@ body {
     .timer1 {
       margin-top: 0;
     }
-    span.icon-size {
-      font-size: 2rem;
-    }
+
     .timer4 {
       width: 30vw;
-      font-size: 0.9rem;
     }
     .volume-control {
       appearance: none;
