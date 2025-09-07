@@ -536,12 +536,12 @@ body.about {
     }
   }
 }
-@media (width >= 744px) and (width <= 1080px) and (orientation: portrait) {
-  .timer-mini-box {
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-  }
-  .timer-mini-volume input[type="range"] {
-    inline-size: clamp(120px, 22vw, 200px);
-  }
-}
+// @media (width >= 744px) and (width <= 1080px) and (orientation: portrait) {
+//   .timer-mini-box {
+//     flex-wrap: nowrap;
+//     justify-content: flex-end;
+//   }
+//   .timer-mini-volume input[type="range"] {
+//     inline-size: clamp(120px, 22vw, 200px);
+//   }
+// }
