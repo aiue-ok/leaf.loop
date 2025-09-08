@@ -109,6 +109,7 @@
             </button>
           </div>
           <div class="timer4">
+            <label for="vol" class="sr-only">音量</label>
             <span class="material-symbols-outlined icon-size">
               volume_mute
             </span>
@@ -119,7 +120,9 @@
                 value="50"
                 min="0"
                 max="100"
-                step="any"
+                step="1"
+                value="70"
+                aria-valuetext="70パーセント"
                 id="volumeControl"
                 class="volume-control"
               />
