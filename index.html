@@ -57,7 +57,21 @@
       <div class="item item1 timer m-plus-1p-regular">
         <div class="timer-grid-container">
           <div class="timer1">
+            <!-- 見えるタイマー表示 -->
+            <div
+              id="timerDisplay"
+              role="timer"
+              aria-label="お茶のタイマー 残り時間"
+            >
             <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+            </div>
+            <!-- 読み上げ専用（視覚には非表示） -->
+            <div
+              id="timerLive"
+              class="sr-only"
+              aria-live="polite"
+              aria-atomic="true"
+            ></div>
           </div>
           <!-- 初期設定ボタン -->
           <div class="timer2 buttons preset-buttons">

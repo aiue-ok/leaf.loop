@@ -121,3 +121,33 @@ muteBtn.addEventListener("click", () => {
   syncMuteUI();
 });
 syncMuteUI();
+
+const live = document.getElementById("timerLive");
+const disp = document.getElementById("timerDisplay");
+
+function say(msg) {
+  // 一部のSRは同一文だと読まないので微更新
+  live.textContent = "";
+  setTimeout(() => (live.textContent = msg), 20);
+}
+
+// 例：節目のみ告知（毎秒はNG）
+function onTick(totalSec) {
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  disp.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(
+    2,
+    "0"
+  )}`;
+
+  if (totalSec === 180) say("3分に設定");
+  if (totalSec === 60) say("残り1分");
+  if (totalSec <= 10 && totalSec > 0) say(`残り ${totalSec} 秒`);
+  if (totalSec === 0) say("お湯の準備ができました");
+}
+
+const vol = document.getElementById("vol");
+vol.addEventListener("input", (e) => {
+  const v = Number(e.target.value);
+  vol.setAttribute("aria-valuetext", v === 0 ? "ミュート" : `${v}パーセント`);
+});
