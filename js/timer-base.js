@@ -1,3 +1,21 @@
+// 1) 要素参照
+const ding = document.getElementById("alarmSound");
+const toast = document.getElementById("toast");
+const liveDone = document.getElementById("finalLive");
+
+// 2) デバッグしやすいよう “名前付きで” window に公開
+window.notify = {
+  ding,
+  toast,
+  liveDone,
+  playDing,
+  vibratePattern,
+  showToast,
+  announceSR,
+  onTimerDone,
+  test: testNotify,
+};
+
 let totalSeconds = 180;
 let timerId = null;
 const timerEl = document.getElementById("timer");
