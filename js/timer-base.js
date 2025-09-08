@@ -16,6 +16,12 @@ window.notify = {
   test: testNotify,
 };
 
+if (new URLSearchParams(location.search).get("debug") === "1") {
+  document
+    .querySelector(".notify-controls")
+    ?.style.setProperty("display", "flex");
+}
+
 let totalSeconds = 180;
 let timerId = null;
 const timerEl = document.getElementById("timer");
