@@ -7,6 +7,7 @@
     transition-duration: 0.001ms !important;
   }
 }
+
 /* 視覚的に隠すがスクリーンリーダーには届く */
 .sr-only {
   position: absolute;
@@ -19,3 +20,38 @@
   overflow: hidden;
 }
 
+button,
+.timer-controls button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+input[type="range"] {
+  height: 16px;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.95);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35); /* 反転背景でも見えるよう二重 */
+  border-radius: 12px;
+}
+
+/* キーボード操作での見やすいフォーカス */
+.hover-link:focus-visible span {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-fade,
+  .parallax,
+  .word-dissolve {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-video {
+    display: none !important;
+  } /* どうしても動くなら切る */
+}
