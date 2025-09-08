@@ -130,6 +130,44 @@
             </label>
             <span class="material-symbols-outlined icon-size"> volume_up </span>
           </div>
+          <!-- 通知オプション -->
+          <fieldset
+            class="notify-controls"
+            role="group"
+            aria-labelledby="notifyLegend"
+          >
+            <legend id="notifyLegend" class="sr-only">通知</legend>
+
+            <label
+              ><input id="optSound" type="checkbox" checked />
+              <span>音で知らせる</span></label
+            >
+            <label
+              ><input id="optVibrate" type="checkbox" checked />
+              <span>バイブで知らせる</span></label
+            >
+            <label
+              ><input id="optToast" type="checkbox" checked />
+              <span>画面に表示する</span></label
+            >
+
+            <button id="testNotify" type="button" aria-label="通知をテスト">
+              通知テスト
+            </button>
+          </fieldset>
+
+          <!-- 画面表示（トースト） -->
+          <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+            お湯の準備ができました
+          </div>
+
+          <!-- 読み上げ（最終告知は assertive） -->
+          <div
+            id="finalLive"
+            class="sr-only"
+            aria-live="assertive"
+            aria-atomic="true"
+          ></div>
         </div>
       </div>
 

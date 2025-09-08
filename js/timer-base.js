@@ -151,3 +151,81 @@ vol.addEventListener("input", (e) => {
   const v = Number(e.target.value);
   vol.setAttribute("aria-valuetext", v === 0 ? "ミュート" : `${v}パーセント`);
 });
+
+const optSound = document.getElementById("optSound");
+const optVibrate = document.getElementById("optVibrate");
+const optToast = document.getElementById("optToast");
+
+let audioUnlocked = false;
+function unlockAudioOnce() {
+  if (audioUnlocked) return;
+  // 一瞬再生→即停止で解錠（音が出ないよう小さい無音区間でOK）
+  const vol = ding.volume;
+  ding.volume = 0;
+  ding
+    .play()
+    .then(() => {
+      ding.pause();
+      ding.currentTime = 0;
+      ding.volume = vol;
+      audioUnlocked = true;
+      document.removeEventListener("pointerdown", unlockAudioOnce);
+    })
+    .catch(() => {
+      // 失敗してもユーザーのテストボタンで解錠できる
+    });
+}
+document.addEventListener("pointerdown", unlockAudioOnce);
+
+function playDing() {
+  if (!optSound.checked) return;
+  ding.currentTime = 0;
+  ding.play().catch(() => {
+    /* ブラウザが拒否したら無視 */
+  });
+}
+
+function vibratePattern() {
+  if (!optVibrate.checked) return;
+  if ("vibrate" in navigator) {
+    // 120ms振動→80ms休止→120ms振動
+    navigator.vibrate([120, 80, 120]);
+  }
+  // iOS Safari は未対応：自然に無視される
+}
+
+function showToast(msg) {
+  if (!optToast.checked) return;
+  toast.textContent = msg;
+  toast.hidden = false;
+  toast.classList.add("show");
+  // 4秒後に消す
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 4000);
+  setTimeout(() => {
+    toast.hidden = true;
+  }, 4500);
+}
+
+function announceSR(msg) {
+  finalLive.textContent = ""; // 同文でも読まれるようリセット
+  setTimeout(() => (finalLive.textContent = msg), 20);
+}
+
+// テストボタン
+document.getElementById("testNotify").addEventListener("click", () => {
+  playDing();
+  vibratePattern();
+  showToast("お湯の準備ができました（テスト）");
+  announceSR("お湯の準備ができました（テスト）");
+});
+
+// ★ タイマー終了時にこれを呼ぶ
+function onTimerDone() {
+  const msg = "お湯の準備ができました";
+  playDing();
+  vibratePattern();
+  showToast(msg);
+  announceSR(msg);
+}
