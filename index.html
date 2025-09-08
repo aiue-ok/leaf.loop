@@ -31,6 +31,7 @@
   <body class="hero">
     <!-- 動画の背景 -->
     <div class="hero-media" aria-hidden="true">
+      <!-- 非フォーカス（装飾だから） -->
       <img class="hero-poster" src="assets/jpg/hero-bg.jpg" alt="" />
       <video
         class="hero-video"
@@ -63,7 +64,7 @@
               role="timer"
               aria-label="お茶のタイマー 残り時間"
             >
-            <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
+              <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
             </div>
             <!-- 読み上げ専用（視覚には非表示） -->
             <div
@@ -160,15 +161,24 @@
       <!-- heroのみ表示 -->
       <div class="wrapper info item5">
         <!-- アイテム：about.html -->
-        <div class="sideitem">
-          <span class="leaf-text">🌱</span>
-          <p>このサイトについて</p>
-        </div>
+        <a href="#" class="a-about">
+          <div class="sideitem item-about">
+            <span class="leaf-text" aria-hidden="true">🌱</span>
+            <p>このサイトについて</p>
+          </div></a
+        >
         <!-- ヘルプ -->
-        <div class="sideitem">
-          <span class="material-symbols-outlined help-icon-size"> help </span>
-          <p>ヘルプ</p>
-        </div>
+        <a href="#" class="a-help"
+          ><div class="sideitem item-help">
+            <span
+              class="material-symbols-outlined help-icon-size"
+              aria-hidden="true"
+            >
+              help
+            </span>
+            <p>ヘルプ</p>
+          </div>
+        </a>
       </div>
     </main>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>

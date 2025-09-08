@@ -24,11 +24,48 @@
   gap: 0.5em;
   z-index: 3;
 }
-.sideitem:nth-child(1) {
+.item-about {
   position: absolute;
   right: clamp(12px, 3vmin, 28px);
   bottom: clamp(72px, 2vmin, 100px);
   z-index: 3;
+}
+
+/* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
+.wrapper.info a {
+  display: inline-block; /* 中身サイズにフィット（幅は変えない） */
+  text-decoration: none; /* 通常は下線オフ */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
+.wrapper.info a:focus-visible .sideitem {
+  /* 任意：あなたのトークンに置き換え可 */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+  /* 視認性UPのための微弱な影（レイアウト不変） */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
+}
+
+/* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
+.wrapper.info a:focus-visible p {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px; /* 太めで見えやすく */
+}
+
+/* ホバーと揃えたい場合はお好みで */
+.wrapper.info a:hover .sideitem {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
+.wrapper.info a:focus {
+  outline: none;
 }
 
 .sideitem:hover {
@@ -39,10 +76,6 @@
 .sideitem::before {
   content: "↗";
   opacity: 0.9;
-}
-.sideitem:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 3px;
 }
 
 /* アイコンサイズを上書きする */
