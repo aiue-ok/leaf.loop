@@ -113,29 +113,30 @@ span.help-icon-size {
 // 幅1024px（スマホたて向き）以下
 @media (max-width: 1024px) and (orientation: portrait) {
   body.hero {
-    .sideitem {
-      position: absolute;
-      // right: clamp(12px, 3vmin, 28px);
-      right: -3.3rem;
-      bottom: clamp(12px, 3vmin, 28px);
-    }
-
-    .sideitem:nth-child(1) {
-      position: absolute;
-      // right: clamp(12px, 3vmin, 28px);
-      right: -7.8rem;
-      bottom: clamp(72px, 2vmin, 100px);
-      z-index: 3;
-    }
     .sideitem::before {
       content: none;
     }
-    span.leaf-text {
-      font-size: larger;
-      text-shadow: 1px 1px 1px #fff;
+  }
+}
+
+@media screen and (max-height: 860px) and (orientation: portrait) {
+  body.hero {
+    .wrapper {
+      // position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      font-size: small;
+      padding-bottom: max(12px, env(safe-area-inset-bottom) + 12px);
     }
-    .sideitem:nth-child(1):hover {
-      right: clamp(12px, 3vmin, 28px);
+
+    .sideitem {
+      flex: 0 0 auto;
+      position: unset;
+    }
+    .hero-link p {
+      font-size: small;
     }
   }
 }

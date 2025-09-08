@@ -204,7 +204,8 @@ body {
 @media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
   body.hero {
     .buttons {
-      gap: var(--gap);
+      gap: 2dvw;
+      gap: 2svw;
     }
     // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     .set-buttons {
@@ -214,11 +215,17 @@ body {
       align-items: center;
       width: 23dvw;
       width: 23svw;
+      height: 50px;
+      height: 50px;
       // padding: clamp(4px, 2.592px + 0.376vw, 8px);
       background: rgba(255, 255, 255, 0.3);
       border: 0.8px solid rgba(255, 255, 255, 0.35);
       border-radius: 9999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    span.set-button {
+      font-size: 2.5rem;
     }
 
     .timer4 {

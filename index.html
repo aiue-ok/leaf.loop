@@ -26,19 +26,32 @@
       rel="stylesheet"
     />
     <script src="js/timer-base.js" defer></script>
+    <script src="js/hero.js" defer></script>
   </head>
   <body class="hero">
     <!-- 動画の背景 -->
-    <!-- autoplay：ページが読み込まれた時に自動で再生 -->
-    <!-- muted：音声をミュートに設定 -->
-    <!-- loop：動画を繰り返し再生 -->
-    <video autoplay muted loop playsinline id="background-video">
-      <source
-        src="assets/mp4/5835661-uhd_3840_2160_25fps.mp4"
-        type="video/mp4"
-      />
-      お使いのブラウザは動画タグに対応していません。
-    </video>
+    <div class="hero-media" aria-hidden="true">
+      <!-- <img class="hero-poster" src="assets/jpg/hero-bg.jpg" alt="" /> -->
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster="assets/jpg/hero-bg.jpg"
+        id="background-video"
+      >
+        <source
+          src="assets/mp4/5835661-uhd_3840_2160_25fps.mp4"
+          type="video/mp4"
+        />
+        お使いのブラウザは動画タグに対応していません。
+        <!-- autoplay：ページが読み込まれた時に自動で再生 -->
+        <!-- muted：音声をミュートに設定 -->
+        <!-- loop：動画を繰り返し再生 -->
+      </video>
+    </div>
     <!-- grid　親 -->
     <main class="container content">
       <div class="item item1 timer m-plus-1p-regular">
@@ -92,7 +105,7 @@
 
       <div class="item item2 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-gallery">
-          <a href="gallery.html" class="hover-link">
+          <a href="#" class="hover-link">
             <div class="text hover-text hero-link">
               <p>世界のお茶を少しだけ</p>
             </div>
@@ -101,7 +114,7 @@
       </div>
       <div class="item item3 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-universe">
-          <a href="universe.html" class="hover-link">
+          <a href="#" class="hover-link">
             <div class="text hover-text hero-link">
               <p>遠くのことを少しだけ</p>
             </div>
@@ -114,19 +127,21 @@
           <div class="tea">お茶でも淹れましょうか</div>
         </div>
       </div>
-    </main>
-    <footer>
-      <div class="wrapper">
+
+      <!-- heroのみ表示 -->
+      <div class="wrapper info item5">
+        <!-- アイテム：about.html -->
         <div class="sideitem">
           <span class="leaf-text">🌱</span>
           <p>このサイトについて</p>
         </div>
+        <!-- ヘルプ -->
         <div class="sideitem">
           <span class="material-symbols-outlined help-icon-size"> help </span>
           <p>ヘルプ</p>
         </div>
       </div>
-    </footer>
+    </main>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>
