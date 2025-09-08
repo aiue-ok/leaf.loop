@@ -1,11 +1,33 @@
+/* 1) ベース：全体のモーションを弱める（最初に置く） */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
+    /* 0.001ms ハックでもOK。JSの transitionend を必要としないなら 0s でも可 */
+    animation-duration: 0s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    transition-duration: 0s !important;
   }
+}
+
+/* 2) 非必須アニメーションは “完全停止” （ベースの後に置く） */
+@media (prefers-reduced-motion: reduce) {
+  .bg-fade,
+  .parallax,
+  .word-dissolve {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none !important;
+  }
+  .hero-poster {
+    display: block !important;
+  } /* 念のため明示 */
 }
 
 /* 視覚的に隠すがスクリーンリーダーには届く */

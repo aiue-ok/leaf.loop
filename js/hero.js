@@ -8,3 +8,12 @@ if (slow) {
   v.style.display = "none";
   p.style.display = "block";
 }
+
+const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+if (mediaQuery.matches) {
+  const v = document.querySelector(".hero-video");
+  if (v) {
+    v.pause();
+    v.currentTime = 0;
+  }
+}
