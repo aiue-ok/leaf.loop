@@ -1,4 +1,21 @@
 // 色、フォントサイズ、transitionなど
+
+:root {
+  /* ベース文字 */
+  // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
+  // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
+  --fs: clamp(16px, 1.111vw, 32px);
+
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
+
+  /* 行間なども同様に */
+  --gap: clamp(8px, 0.7vw, 16px);
+
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
+}
+
 $main-color: #f5f5f5;
 
 // ════════════════════════════════
@@ -21,6 +38,8 @@ $LeafMist: #eef4f0;
 $setTimeBtn-width: clamp(3rem, 4vw, 6rem);
 /* フォントサイズは直径に比例 */
 $setTimeBtn-font-size: clamp(1rem, 1.5vw, 2rem);
+
+$volume-control-slider-background: #f5f5f560;
 
 // test用ボーダー
 // border:core.$test;
@@ -54,11 +73,6 @@ $icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
 $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
 // スマホ両脇
 // 16〜20px + safe-area
-
-// ▼hero
-// ▽フィルター
-// 柳鼠フィルター
-$filter-yanaginezu: rgba(140, 140, 140, 0.3);
 
 // ▼ギャラリー
 $g-col-blueblack: rgb(21 26 37 / 1); //blue-black#151a25
@@ -235,3 +249,15 @@ body.universe .timer-mini-container {
   // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
   --timer-h: clamp(64px, 12vh, 112px);
 }
+
+// test用ボーダー
+// border:core.$test;
+$test1: 1px solid red;
+$test2: 1px solid rgb(255, 200, 0);
+$test3: 1px solid rgb(0, 251, 255);
+$test4: 1px solid rgb(255, 0, 238);
+//background:core.$test-bg1;
+$test-bg1: rgba(200, 255, 0, 0.564);
+$test-bg2: rgba(69, 110, 198, 0.549);
+$test-bg3: rgba(44, 251, 48, 0.607);
+$test-bg4: rgba(255, 0, 64, 0.435);

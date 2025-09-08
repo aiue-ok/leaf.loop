@@ -99,3 +99,24 @@ input[type="range"] {
     background: rgba(0, 0, 0, 0.45);
   }
 }
+
+.pill {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+}
+@media (prefers-contrast: more) {
+  .pill {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* 文字の背後に細い帯（行の高さ分だけ） */
+.contrast-underline {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background-repeat: no-repeat;
+  background-size: 100% 1.1em; /* 行の高さぶん */
+  background-position: 0 60%;
+  padding-inline: 0.15em; /* 文字左右だけ少し */
+  border-radius: 0.2em;
+}

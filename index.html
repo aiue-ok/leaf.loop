@@ -64,9 +64,7 @@
               role="timer"
               aria-label="お茶のタイマー 残り時間"
             >
-              <h1 class="timer_count kiwi-maru-regular contrast-pad" id="timer">
-                00:00
-              </h1>
+              <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
             </div>
             <!-- 読み上げ専用（視覚には非表示） -->
             <div
@@ -110,13 +108,19 @@
                 >refresh
               </span>
             </button>
+            <button class="unset" aria-label="ミュート" id="muteBtn">
+              <span
+                class="set-button timer-mini-set-button mute material-symbols-outlined icon-size"
+                >volume_off
+              </span>
+            </button>
           </div>
           <div class="timer4">
             <label for="vol" class="sr-only">音量</label>
             <span class="material-symbols-outlined icon-size">
               volume_mute
             </span>
-            <label>
+            <label aria-label="音量調節">
               <input
                 type="range"
                 name="range"
@@ -194,7 +198,7 @@
       <div class="item item4">
         <div class="text zen-kaku-gothic-new-regular">
           <div class="suu">すぅ〜</div>
-          <div class="tea">お茶でも淹れましょうか</div>
+          <div class="tea contrast-underline">お茶でも淹れましょうか</div>
         </div>
       </div>
 

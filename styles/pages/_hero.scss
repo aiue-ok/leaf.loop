@@ -36,12 +36,19 @@ body.hero {
     inset: 0;
     background: linear-gradient(
       to right,
-      rgba(200, 211, 192, 0.4),
-      rgba(200, 211, 192, 0.4)
-    );
-    /* ↑必要なら柳鼠トーンの rgba に変更 */
+        rgba(200, 211, 192, var(--yanagi-alpha)),
+        rgba(200, 211, 192, var(--yanagi-alpha))
+      ),
+      rgba(0, 0, 0, var(--hero-veil));
   }
-
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(200, 211, 192, var(--yanagi-alpha));
+    mix-blend-mode: multiply; /* ← ここがポイント。明度は上がらない */
+    pointer-events: none;
+  }
   /* 既定は静止画だけを見せる */
   .hero-video {
     display: none;
@@ -167,7 +174,8 @@ body.hero {
     opacity: 0.9;
   }
   .bg-gallery {
-    background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
+    background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
+      rgba(0, 0, 0, var(--hero-veil, 0.32));
   }
   .bg-universe {
     background-image: url("../assets/png/hero/frame_03_space_mobile.png");
@@ -176,6 +184,19 @@ body.hero {
   .bg-gallery p,
   .bg-universe p {
     opacity: 1;
+  }
+
+  .bg-gallery p {
+    background-color: darkolivegreen;
+    text-shadow: core.$hero-shadow 1px 1px 1px;
+  }
+
+  .bg-universe p {
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 38, 59, 1) 40%,
+      rgba(27, 38, 59, 1) 100%
+    );
   }
 
   .item > .bg-gallery:hover {
@@ -285,6 +306,14 @@ body.hero {
     .bg-universe {
       background: none;
     }
+    .bg-gallery p {
+      background-color: transparent;
+      text-shadow: core.$hero-shadow 1px 1px 1px;
+    }
+
+    .bg-universe p {
+      background: transparent;
+    }
   }
 }
 
@@ -345,6 +374,14 @@ body.hero {
     .bg-universe {
       font-family: inherit;
       background: none;
+    }
+    .bg-gallery p {
+      background-color: transparent;
+      text-shadow: core.$hero-shadow 1px 1px 1px;
+    }
+
+    .bg-universe p {
+      background: transparent;
     }
     // 背景の帯
     .hover-text {
