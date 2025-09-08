@@ -77,3 +77,25 @@ input[type="range"] {
     display: none !important;
   } /* どうしても動くなら切る */
 }
+
+/* テキスト専用の薄い台座：レイアウトは変えない */
+.contrast-pad {
+  position: relative;
+}
+.contrast-pad::before {
+  content: "";
+  position: absolute;
+  inset: -0.01em;
+  // text-shadow: 10px 10px 2px rgba(0, 0, 0, 0.28); /* 初期は28%の黒ベール */
+  background: rgba(0, 0, 0, 0.28); /* 初期は28%の黒ベール */
+  border-radius: 0.2em;
+  filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
+  z-index: -1;
+}
+
+/* もっとコントラストが要る人に寄り添う */
+@media (prefers-contrast: more) {
+  .contrast-pad::before {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
