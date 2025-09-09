@@ -187,8 +187,10 @@ body.hero {
   }
 
   .bg-gallery p {
-    background-color: darkolivegreen;
-    text-shadow: core.$hero-shadow 1px 1px 1px;
+    background-color: rgba(86 89 70 / 75%);
+    text-shadow: rgb(0 0 0 / 25%) 1px 1px 3px;
+    border-radius: 0.2em;
+    backdrop-filter: blur(8px);
   }
 
   .bg-universe p {
@@ -197,6 +199,7 @@ body.hero {
       rgba(27, 38, 59, 1) 40%,
       rgba(27, 38, 59, 1) 100%
     );
+    // text-shadow: rgb(255 255 255 / 100%) 1px 1px 2px;
   }
 
   .item > .bg-gallery:hover {
@@ -206,7 +209,7 @@ body.hero {
   }
   .item > .bg-universe:hover {
     // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
-    filter: brightness(1.2);
+    filter: brightness(1.1);
     opacity: 1;
   }
 
