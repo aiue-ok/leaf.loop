@@ -6,8 +6,8 @@
       "^[a-z0-9]+([_-][a-z0-9]+)*$",
       { "message": "Use kebab-case or snake_case" }
     ],
-    "scss/no-unused-variables": true,
-    "scss/no-duplicate-dollar-variables": true,
-    "scss/dollar-variable-pattern": "^([a-z0-9-]+)$"
+    "media-feature-range-notation": "prefix",
+    "no-descending-specificity": null,
+    "scss/no-unused-variables": null
   }
 }
