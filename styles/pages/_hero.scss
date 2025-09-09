@@ -6,7 +6,7 @@ body.hero {
   main {
     width: 100%;
     height: 100%;
-    background: rgb(161 161 161 / 40%);
+    background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
 
@@ -204,7 +204,7 @@ body.hero {
 
   .bg-gallery p {
     background-color: #202410;
-    text-shadow: rgb(0 0 0 / 25%) 1px 1px 3px;
+    text-shadow: rgb(0 0 0 / 0.25) 1px 1px 3px;
     border-radius: 0.2em;
     backdrop-filter: blur(8px);
   }
@@ -212,8 +212,8 @@ body.hero {
   .bg-universe p {
     background: linear-gradient(
       to bottom,
-      rgb(27 38 59 / 100%) 40%,
-      rgb(27 38 59 / 100%) 100%
+      rgb(27 38 59 / 1) 40%,
+      rgb(27 38 59 / 1) 100%
     );
 
     // text-shadow: rgb(255 255 255 / 100%) 1px 1px 2px;
@@ -328,9 +328,9 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgb(10 16 32 / 0%),
-        rgb(10 16 32 / 32%),
-        rgb(10 16 32 / 0%)
+        rgb(10 16 32 / 0),
+        rgb(10 16 32 / 0.32),
+        rgb(10 16 32 / 0)
       );
       border-radius: 12px;
 
@@ -432,9 +432,9 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgb(10 16 32 / 0%),
-        rgb(10 16 32 / 32%),
-        rgb(10 16 32 / 0%)
+        rgb(10 16 32 / 0),
+        rgb(10 16 32 / 0.32),
+        rgb(10 16 32 / 0)
       );
       border-radius: 12px;
 
@@ -457,7 +457,7 @@ body.hero {
 @media (hover: hover) {
   .hover-link:hover span {
     color: #fff;
-    border-bottom-color: rgb(255 255 255 / 70%);
+    border-bottom-color: rgb(255 255 255 / 0.7);
     text-underline-offset: 0.2em;
   }
 }
