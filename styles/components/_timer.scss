@@ -305,47 +305,13 @@ body {
       font-size: 0.9rem;
     }
     .volume-control {
-      appearance: none;
       width: 12dvw;
       width: 12svw;
       height: 16px;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-    }
-
-    /* ツマミ：Chrome, Safari, Edge用 */
-    .volume-control::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 24px;
-      height: 24px;
-      border: 2px solid #333333;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      box-shadow: none;
-    }
-
-    /* ツマミ：Firefox用 */
-    .volume-control::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
-      border: 2px solid #333333;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      box-shadow: none;
     }
   }
 }
+
 // ━━━━━━
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (max-width: 1024px) and (orientation: portrait) {
@@ -411,33 +377,13 @@ body {
         inset 0 0 0 1px rgba(255, 255, 255, 0.35);
       cursor: pointer;
     }
-
-    /* ツマミ：Chrome, Safari, Edge用 */
-    .volume-control::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 24px;
-      height: 24px;
-      border: 2px solid #333333;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      box-shadow: none;
+    /* WebKit系: トラック */
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 15px;
     }
-
-    /* ツマミ：Firefox用 */
-    .volume-control::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
-      border: 2px solid #333333;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      box-shadow: none;
+    /* Firefox */
+    input[type="range"]::-moz-range-track {
+      height: 15px;
     }
   }
 }

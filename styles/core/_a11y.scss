@@ -120,3 +120,19 @@ input[type="range"] {
   padding-inline: 0.15em; /* 文字左右だけ少し */
   border-radius: 0.2em;
 }
+
+/* ボリューム 高コントラストを望む人へ少し強める */
+@media (prefers-contrast: more) {
+  .volume-control {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  input[type="range"]::-webkit-slider-runnable-track,
+  input[type="range"]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-moz-range-thumb {
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}

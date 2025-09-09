@@ -114,8 +114,8 @@ updateDisplay();
 
 // ボリュームのツマミの前後で色を塗り分ける
 const inputRange = document.getElementById("volumeControl");
-const activeColor = "#cdd1d4";
-const inactiveColor = "#eef4f0";
+const activeColor = "rgba(205, 209, 212, 0.8)";
+const inactiveColor = "rgba(238, 244, 240, 0.8)";
 
 inputRange.addEventListener("input", function () {
   const ratio = ((this.value - this.min) / (this.max - this.min)) * 100;
