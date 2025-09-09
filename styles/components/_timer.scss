@@ -72,7 +72,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 2.27px core.$LeafMist;
+    // border: solid 2.27px core.$LeafMist;
+    border: 0.8px solid rgba(255, 255, 255, 0.35);
     /* 円の大きさ */
     width: core.$setTimeBtn-width;
     aspect-ratio: 1 / 1;
@@ -80,7 +81,7 @@ body {
     color: inherit;
     text-align: center;
     background-color: transparent;
-    box-shadow: var(--timer-shadow);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     /* フォントサイズは直径に比例 */
     font-size: core.$setTimeBtn-font-size;
     box-sizing: border-box;
@@ -91,8 +92,8 @@ body {
     cursor: pointer;
     color: #110b0fa2;
     text-shadow: #f4eef2;
-    border: solid 3.27px core.$LeafMist;
-    background-color: core.$LeafMist;
+    border: solid 3.27px core.$main-color;
+    background-color: core.$main-color;
     box-shadow: solid 2.27px #f4eef2;
   }
 
