@@ -73,7 +73,7 @@ body {
     align-items: center;
     justify-content: center;
     // border: solid 2.27px core.$LeafMist;
-    border: 0.8px solid rgba(255, 255, 255, 0.35);
+    border: 0.8px solid rgba(245, 245, 245, 0.35);
     /* 円の大きさ */
     width: core.$setTimeBtn-width;
     aspect-ratio: 1 / 1;
@@ -99,7 +99,7 @@ body {
 
   .set-buttons span:hover {
     cursor: pointer;
-    color: #110b0f4e;
+    color: rgba(17, 11, 15, 0.306);
     text-shadow: solid 2.27px #f4eef2;
     // color: var(--timer-color-hover);
     // text-shadow: var(--timer-shadow-hover);
@@ -249,13 +249,14 @@ body {
     .set-buttons {
       display: flex;
       flex-direction: row;
+      flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
       width: 23dvw;
       width: 23svw;
       padding: clamp(4px, 2.592px + 0.376vw, 8px);
       background: transparent;
-      border: 0.8px solid rgba(255, 255, 255, 0.35);
+      border: 0.8px solid rgba(245, 245, 245, 0.35);
       border-radius: 9999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
@@ -263,8 +264,8 @@ body {
     // .set-buttons {
     //   gap: 1.5rem;
     //   padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-    //   background: rgba(255, 255, 255, 0.3);
-    //   border: 1px solid rgba(255, 255, 255, 0.35);
+    //   background: rgba(245, 245, 245, 0.3);
+    //   border: 1px solid rgba(245, 245, 245, 0.35);
     //   border-radius: 9999px;
     //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     //   backdrop-filter: blur(100px);
@@ -290,8 +291,8 @@ body {
       height: 50px;
       height: 50px;
       // padding: clamp(4px, 2.592px + 0.376vw, 8px);
-      // background: rgba(255, 255, 255, 0.1);
-      border: 0.8px solid rgba(255, 255, 255, 0.35);
+      // background: rgba(245, 245, 245, 0.1);
+      border: 0.8px solid rgba(245, 245, 245, 0.35);
       border-radius: 9999px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
