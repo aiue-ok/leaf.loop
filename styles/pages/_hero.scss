@@ -1,6 +1,7 @@
 @use "../core/index" as core;
 @use "../components/timer" as time;
 @use "../components/info" as info;
+
 body.hero {
   main {
     width: 100%;
@@ -20,6 +21,7 @@ body.hero {
     top: 0;
     left: 0;
   }
+
   .hero-media {
     position: fixed;
     inset: 0;
@@ -35,20 +37,22 @@ body.hero {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      to right,
-        rgba(200, 211, 192, var(--yanagi-alpha)),
-        rgba(200, 211, 192, var(--yanagi-alpha))
+        to right,
+        rgb(200 211 192 / var(--yanagi-alpha)),
+        rgb(200 211 192 / var(--yanagi-alpha))
       ),
-      rgba(0, 0, 0, var(--hero-veil));
+      rgb(0 0 0 / var(--hero-veil));
   }
+
   .hero-media::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(200, 211, 192, var(--yanagi-alpha));
+    background: rgb(200 211 192 / var(--yanagi-alpha));
     mix-blend-mode: multiply; /* ← ここがポイント。明度は上がらない */
     pointer-events: none;
   }
+
   /* 既定は静止画だけを見せる */
   .hero-video {
     display: none;
@@ -56,6 +60,7 @@ body.hero {
     height: 100%;
     object-fit: cover;
   }
+
   .hero-poster {
     display: block;
     width: 100%;
@@ -64,11 +69,12 @@ body.hero {
   }
 
   /* 画面が広い＋動きOKなら動画を解禁 */
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     @media (prefers-reduced-motion: no-preference) {
       .hero-video {
         display: block;
       }
+
       .hero-poster {
         display: none;
       }
@@ -80,6 +86,7 @@ body.hero {
     .hero-video {
       display: none;
     }
+
     .hero-poster {
       display: block;
     }
@@ -96,6 +103,7 @@ body.hero {
   .container {
     display: grid;
     align-items: stretch;
+
     /* デスクトップ */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: minmax(192px, 1fr);
@@ -118,12 +126,15 @@ body.hero {
   .item1 {
     grid-area: item1;
   }
+
   .item2 {
     grid-area: item2;
   }
+
   .item3 {
     grid-area: item3;
   }
+
   .item2,
   .item3 {
     position: relative;
@@ -134,13 +145,16 @@ body.hero {
   .item4 {
     grid-area: item4;
   }
+
   .item5 {
     grid-area: item5;
   }
+
   /* テキスト共通 */
   .text {
     display: flex;
     flex-direction: column;
+
     /* 全体に高さを与える */
     justify-content: center;
     align-items: center;
@@ -169,16 +183,18 @@ body.hero {
     z-index: 1;
   }
 
+  .bg-gallery {
+    background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
+      rgb(0 0 0 / var(--hero-veil, 0.32));
+  }
+
+  .bg-universe {
+    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+  }
+
   .bg-gallery:not(p),
   .bg-universe:not(p) {
     opacity: 0.9;
-  }
-  .bg-gallery {
-    background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
-      rgba(0, 0, 0, var(--hero-veil, 0.32));
-  }
-  .bg-universe {
-    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
   }
 
   .bg-gallery p,
@@ -196,9 +212,10 @@ body.hero {
   .bg-universe p {
     background: linear-gradient(
       to bottom,
-      rgba(27, 38, 59, 1) 40%,
-      rgba(27, 38, 59, 1) 100%
+      rgb(27 38 59 / 100%) 40%,
+      rgb(27 38 59 / 100%) 100%
     );
+
     // text-shadow: rgb(255 255 255 / 100%) 1px 1px 2px;
   }
 
@@ -207,6 +224,7 @@ body.hero {
     filter: brightness(1.1);
     opacity: 1;
   }
+
   .item > .bg-universe:hover {
     // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
     filter: brightness(1.1);
@@ -228,6 +246,7 @@ body.hero {
     font-size: clamp(1.2rem, 3vw, 1.6rem);
     padding: 1rem 0;
   }
+
   /* お茶でも淹れましょうか */
   .tea {
     font-size: clamp(1rem, 2vw, 1.2rem);
@@ -236,7 +255,7 @@ body.hero {
 
 /* スマホ縦：1列積み */
 // 幅1024px（スマホたて向き）以下
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (width <= 1024px) and (orientation: portrait) {
   body.hero {
     .container {
       grid-template-columns: 1fr;
@@ -249,38 +268,51 @@ body.hero {
         "item5";
       min-height: 100svh;
     }
+
     .item4 {
       grid-area: item4;
       min-height: 25dvh;
       min-height: 25svh;
     }
+
     .item1 {
       grid-area: item1;
       min-height: 25dvh;
       min-height: 20svh;
     }
+
     .item2 {
       grid-area: item2;
       min-height: 7dvh;
       min-height: 7svh;
     }
+
     .item3 {
       grid-area: item3;
       min-height: 7dvh;
       min-height: 7svh;
     }
+
     .item5 {
       grid-area: item5;
       min-height: 6dvh;
       min-height: 6svh;
     }
+
     .hover-area {
       height: auto;
     }
+
     .bg-gallery,
     .bg-universe {
       filter: brightness(1);
     }
+
+    // .bg-gallery,
+    // .bg-universe {
+    //   background: none;
+    // }
+
     // 背景の帯
     .hover-text {
       position: relative;
@@ -296,19 +328,17 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgba(10, 16, 32, 0),
-        rgba(10, 16, 32, 0.32),
-        rgba(10, 16, 32, 0)
+        rgb(10 16 32 / 0%),
+        rgb(10 16 32 / 32%),
+        rgb(10 16 32 / 0%)
       );
       border-radius: 12px;
+
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
       z-index: -1;
     }
-    .bg-gallery,
-    .bg-universe {
-      background: none;
-    }
+
     .bg-gallery p {
       background-color: transparent;
       text-shadow: core.$hero-shadow 1px 1px 1px;
@@ -320,18 +350,13 @@ body.hero {
   }
 }
 
-//📍📍📍 幅768px（スマホ横向き）以下
-@media screen and (max-width: 768px) and (orientation: landscape) {
+// 📍📍📍 幅768px（スマホ横向き）以下
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
-    //📍📍📍 幅768px（スマホ横向き）以下
+    // 📍📍📍 幅768px（スマホ横向き）以下
     .container {
       height: 100svh;
-      grid-template-columns: 1.2fr 1fr; /* 左やや広め */
-      grid-template-rows: 1fr 1fr 2fr;
-      grid-template-areas:
-        "item1 item2"
-        "item1 item3"
-        "item1 item4";
+      grid-template: "item1 item2" 1fr "item1 item3" 1fr "item1 item4" 2fr / 1.2fr 1fr; /* 左やや広め */
       min-height: 100svh;
       min-width: 100svh;
       overflow: clip;
@@ -350,11 +375,14 @@ body.hero {
     .item2,
     .item3 {
       min-height: 20svh;
+
       // border: 2px double pink;
     }
+
     .item4 {
       align-items: start;
       padding-top: 1rem;
+
       /* 50vh相当 */
       // border: 2px solid yellowgreen;
     }
@@ -368,6 +396,7 @@ body.hero {
       object-fit: cover;
       z-index: -1;
     }
+
     /* 手前に出すレイヤー（content） */
     // .content {
     //   position: relative;
@@ -378,6 +407,7 @@ body.hero {
       font-family: inherit;
       background: none;
     }
+
     .bg-gallery p {
       background-color: transparent;
       text-shadow: core.$hero-shadow 1px 1px 1px;
@@ -386,6 +416,7 @@ body.hero {
     .bg-universe p {
       background: transparent;
     }
+
     // 背景の帯
     .hover-text {
       position: relative;
@@ -401,11 +432,12 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgba(10, 16, 32, 0),
-        rgba(10, 16, 32, 0.32),
-        rgba(10, 16, 32, 0)
+        rgb(10 16 32 / 0%),
+        rgb(10 16 32 / 32%),
+        rgb(10 16 32 / 0%)
       );
       border-radius: 12px;
+
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
       z-index: -1;
@@ -424,8 +456,8 @@ body.hero {
 /* hover可能端末だけ見た目の変化を強める */
 @media (hover: hover) {
   .hover-link:hover span {
-    color: #ffffff;
-    border-bottom-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+    border-bottom-color: rgb(255 255 255 / 70%);
     text-underline-offset: 0.2em;
   }
 }

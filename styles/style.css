@@ -6,8 +6,23 @@
   --pad: clamp(16px, 1.111vw, 32px);
   /* 行間なども同様に */
   --gap: clamp(8px, 0.7vw, 16px);
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
 }
 
+/* フォントサイズは直径に比例 */
+:root {
+  /* ベース文字 */
+  --fs: clamp(16px, 1.111vw, 32px);
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
+  /* 行間なども同様に */
+  --gap: clamp(8px, 0.7vw, 16px);
+}
+
+/* フォントサイズは直径に比例 */
+/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
+/* 使う場所で OKLCH に変換して指定する */
 .timer,
 .timer-mini-container {
   --timer-position: fixed;
@@ -42,23 +57,23 @@ body.gallery .timer,
 body.gallery .timer-mini-container {
   --timer-main-color: #eae5da;
   --timer-color-hover: #fff;
-  --timer-shadow: 1px, 1px, 3px, rgba(0, 0, 0, 0.25);
-  --timer-shadow2: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --timer-shadow-hover: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
+  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
   --timer-border-radius: 16px;
   --timer-border-radius-mobile: 0;
-  --timer-border: 1px solid rgba(234, 229, 218, 0.3);
+  --timer-border: 1px solid rgb(234 229 218 / 30%);
   --timer-border-mobile: none;
   --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
   --timer-box-shadow-mobile: none;
-  --timer-background: rgba(14, 16, 32, 0.4);
+  --timer-background: rgb(14 16 32 / 40%);
   --timer-background-mobile: transparent;
   --timer-color: inherit;
   --timer-backdrop-filter: blur(8px) saturate(140%);
   --timer-backdrop-filter-mobile: none;
   --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
   --timer--webkit-backdrop-filter-mobile: none;
-  --timer-hover-background: rgba(14, 16, 32, 0.5);
+  --timer-hover-background: rgb(14 16 32 / 50%);
   --timer-mini-preset-background-color: transparent;
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
@@ -71,9 +86,9 @@ body.universe .timer,
 body.universe .timer-mini-container {
   --timer-main-color: #f5f5f5;
   --timer-color-hover: rgb(205 227 213 / 70%);
-  --timer-shadow: 1px, 1px, 3px, rgba(0, 0, 0, 0.25);
-  --timer-shadow2: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --timer-shadow-hover: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
+  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
   --timer-border-radius: 16px;
   --timer-border: 1px solid rgb(255 255 255 / 20%);
   --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
@@ -81,7 +96,7 @@ body.universe .timer-mini-container {
   --timer-color: inherit;
   --timer-backdrop-filter: blur(12px);
   --timer--webkit-backdrop-filter: blur(12px);
-  --timer-hover-background: rgba(245, 245, 220, 0.584);
+  --timer-hover-background: rgb(245 245 220 / 58.4%);
   --timer-mini-preset-background-color: transparent;
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
@@ -90,9 +105,6 @@ body.universe .timer-mini-container {
   --timer-h: clamp(64px, 12vh, 112px);
 }
 
-/* フォントサイズは直径に比例 */
-/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
-/* 使う場所で OKLCH に変換して指定する */
 *,
 *::before,
 *::after {
@@ -106,7 +118,7 @@ body.universe .timer-mini-container {
 
 html {
   font-size: 16px;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* HTMLとbodyの高さを100%に設定 */
@@ -214,6 +226,41 @@ span.icon-size {
   vertical-align: middle;
 }
 
+/* base.scss の下の方に追加（all:unset の“あと”に書く） */
+input[type=checkbox] {
+  all: revert; /* 既定のUIに戻す */
+  accent-color: var(--accent, #78c37b); /* チェック色だけ合わせる */
+  width: 1.1rem;
+  height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
+}
+
+.notify-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.notify-controls label {
+  /* クリックしやすさUP（見た目は変えない） */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  min-height: 44px; /* タップ領域だけ確保（横幅は伸ばさない） */
+}
+
+/* フォーカス可視（サイズ不変更） */
+input[type=checkbox]:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.95);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35);
+}
+
+.notify-controls {
+  display: none;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -249,20 +296,149 @@ span.icon-size {
   text-align: center;
 }
 
+/* 1) ベース：全体のモーションを弱める（最初に置く） */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
+    /* 0.001ms ハックでもOK。JSの transitionend を必要としないなら 0s でも可 */
+    animation-duration: 0s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    transition-duration: 0s !important;
+  }
+}
+/* 2) 非必須アニメーションは “完全停止” （ベースの後に置く） */
+@media (prefers-reduced-motion: reduce) {
+  .bg-fade,
+  .parallax,
+  .word-dissolve {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none !important;
+  }
+  .hero-poster {
+    display: block !important;
+  } /* 念のため明示 */
+}
+/* 視覚的に隠すがスクリーンリーダーには届く */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+button,
+.timer-controls button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+input[type=range] {
+  height: 16px;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.95);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35); /* 反転背景でも見えるよう二重 */
+  border-radius: 12px;
+}
+
+/* キーボード操作での見やすいフォーカス */
+.hover-link:focus-visible span {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-fade,
+  .parallax,
+  .word-dissolve {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-video {
+    display: none !important;
+  } /* どうしても動くなら切る */
+}
+/* テキスト専用の薄い台座：レイアウトは変えない */
+.contrast-pad {
+  position: relative;
+}
+
+.contrast-pad::before {
+  content: "";
+  position: absolute;
+  inset: -0.01em;
+  background: rgba(0, 0, 0, 0.28); /* 初期は28%の黒ベール */
+  border-radius: 0.2em;
+  filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
+  z-index: -1;
+}
+
+/* もっとコントラストが要る人に寄り添う */
+@media (prefers-contrast: more) {
+  .contrast-pad::before {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
+.pill {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+}
+
+@media (prefers-contrast: more) {
+  .pill {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+/* 文字の背後に細い帯（行の高さ分だけ） */
+.contrast-underline {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background-repeat: no-repeat;
+  background-size: 100% 1.1em; /* 行の高さぶん */
+  background-position: 0 60%;
+  padding-inline: 0.15em; /* 文字左右だけ少し */
+  border-radius: 0.2em;
+}
+
+/* ボリューム 高コントラストを望む人へ少し強める */
+@media (prefers-contrast: more) {
+  .volume-control {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  input[type=range]::-webkit-slider-runnable-track,
+  input[type=range]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+  input[type=range]::-webkit-slider-thumb,
+  input[type=range]::-moz-range-thumb {
+    border-color: rgba(0, 0, 0, 0.6);
   }
 }
 body {
   color: var(--timer-main-color);
   /* h1 カウントダウン表示 */
-  /* ツマミ：Chrome, Safari, Edge用 */
-  /* ツマミ：Firefox用 */
+  /* range は見た目だけ上書き。サイズは変更しない */
+  /* WebKit系: トラック */
+  /* WebKit系: サム */
+  /* Firefox */
+  /* フォーカス可視（見た目サイズは変えない） */
+  /* スクリーンリーダー専用 */
+  /* トースト */
 }
 body span.icon-size {
   font-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
@@ -314,7 +490,7 @@ body .setTimeBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 2.27px #eef4f0;
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
   /* 円の大きさ */
   width: clamp(3rem, 4vw, 6rem);
   aspect-ratio: 1/1;
@@ -322,7 +498,7 @@ body .setTimeBtn {
   color: inherit;
   text-align: center;
   background-color: transparent;
-  box-shadow: var(--timer-shadow);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   /* フォントサイズは直径に比例 */
   font-size: clamp(1rem, 1.5vw, 2rem);
   box-sizing: border-box;
@@ -331,14 +507,9 @@ body button.setTimeBtn:hover {
   cursor: pointer;
   color: rgba(17, 11, 15, 0.6352941176);
   text-shadow: #f4eef2;
-  border: solid 3.27px #eef4f0;
-  background-color: #eef4f0;
+  border: solid 3.27px #f5f5f5;
+  background-color: #f5f5f5;
   box-shadow: solid 2.27px #f4eef2;
-}
-body .set-buttons span:hover {
-  cursor: pointer;
-  color: rgba(17, 11, 15, 0.3058823529);
-  text-shadow: solid 2.27px #f4eef2;
 }
 body .timer4 {
   grid-area: volume;
@@ -353,67 +524,118 @@ body .timer4 span {
   display: block;
   font-size: clamp(24px, 16.958px + 1.878vw, 44px);
 }
+body .set-buttons span:hover {
+  cursor: pointer;
+  color: rgba(17, 11, 15, 0.3);
+  text-shadow: solid 2.27px #f4eef2;
+}
 body .volume-control {
-  -webkit-appearance: none;
   margin: 0 auto;
   appearance: none;
   width: 18vw;
-  height: 16px;
+  height: 20px;
   border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  background: transparent;
+  backdrop-filter: blur(6px) saturate(120%);
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
   cursor: pointer;
 }
-body .volume-control::-webkit-slider-thumb {
-  -webkit-appearance: none;
+body input[type=range] {
   appearance: none;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+  width: 100%;
+  background: transparent;
+  height: 36px; /* タップ領域だけ確保（見た目は変えない） */
 }
-body .volume-control::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333333;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  box-shadow: none;
+body input[type=range]::-webkit-slider-runnable-track {
+  height: 20px;
+  border-radius: 999px;
+  background: transparent;
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
+}
+body input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -6px; /* トラック中央に合わせる（8px の半分 + 枠分） */
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
+}
+body input[type=range]::-moz-range-track {
+  height: 15px;
+  border-radius: 999px;
+  background: transparent;
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
+}
+body input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: 0.8px solid rgba(245, 245, 245, 0.35);
+}
+body input[type=range]:focus-visible {
+  outline: 3px solid rgba(245, 245, 245, 0.95);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35);
+}
+body .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+body .toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0, 0, 0, 0.84);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 30;
+}
+body .toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  body .toast {
+    transition: none;
+  }
 }
 
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
-@media screen and (min-width: 1100px) and (orientation: landscape) {
+@media screen and (width >= 1100px) and (orientation: landscape) {
   body.hero .timer {
     max-width: 23vw;
   }
   body.hero .set-buttons {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     width: 23dvw;
     width: 23svw;
     padding: clamp(4px, 2.592px + 0.376vw, 8px);
-    background: rgba(255, 255, 255, 0.3);
-    border: 0.8px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    border: 0.8px solid rgba(245, 245, 245, 0.35);
     border-radius: 9999px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 }
-@media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
-  body.hero {
-    /* ツマミ：Chrome, Safari, Edge用 */
-    /* ツマミ：Firefox用 */
-  }
+@media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
   body.hero .buttons {
-    gap: var(--gap);
+    gap: 0.5rem;
   }
   body.hero .set-buttons {
     display: flex;
@@ -422,50 +644,25 @@ body .volume-control::-moz-range-thumb {
     align-items: center;
     width: 23dvw;
     width: 23svw;
-    background: rgba(255, 255, 255, 0.3);
-    border: 0.8px solid rgba(255, 255, 255, 0.35);
+    height: 50px;
+    border: 0.8px solid rgba(245, 245, 245, 0.35);
     border-radius: 9999px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  body.hero span.set-button {
+    font-size: 2.5rem;
   }
   body.hero .timer4 {
     font-size: 0.9rem;
   }
   body.hero .volume-control {
-    appearance: none;
     width: 12dvw;
     width: 12svw;
     height: 16px;
-    border-radius: 9999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-  }
-  body.hero .volume-control::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #333333;
-    border-radius: 9999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    box-shadow: none;
-  }
-  body.hero .volume-control::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #333333;
-    border-radius: 9999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    box-shadow: none;
   }
 }
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
-@media screen and (max-width: 1024px) and (orientation: portrait) {
+@media screen and (width <= 1024px) and (orientation: portrait) {
   body.hero .timer-grid-container {
     gap: clamp(16px, 1.5vmin, 20px);
   }
@@ -479,6 +676,11 @@ body .volume-control::-moz-range-thumb {
   body.hero .buttons {
     gap: 32px;
   }
+  body.hero .timer3.buttons {
+    grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
+    gap: 1rem;
+    padding: 1vw;
+  }
   body.hero .timer4 {
     display: flex;
     justify-content: center;
@@ -491,13 +693,18 @@ body .volume-control::-moz-range-thumb {
   }
 }
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
-@media screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
-    /* ツマミ：Chrome, Safari, Edge用 */
-    /* ツマミ：Firefox用 */
+    /* WebKit系: トラック */
+    /* Firefox */
   }
   body.hero .timer1 {
     margin-top: 0;
+  }
+  body.hero .timer3.buttons {
+    grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
+    gap: 1rem;
+    padding: 1vw;
   }
   body.hero .timer4 {
     width: 30vw;
@@ -512,27 +719,11 @@ body .volume-control::-moz-range-thumb {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
     cursor: pointer;
   }
-  body.hero .volume-control::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #333333;
-    border-radius: 9999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    box-shadow: none;
+  body.hero input[type=range]::-webkit-slider-runnable-track {
+    height: 15px;
   }
-  body.hero .volume-control::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #333333;
-    border-radius: 9999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    box-shadow: none;
+  body.hero input[type=range]::-moz-range-track {
+    height: 15px;
   }
 }
 body.gallery,
@@ -571,8 +762,7 @@ body.about .timer-mini-background {
   box-shadow: var(--timer-box-shadow);
   background: var(--timer-background);
   transition: b 0.3s ease, filter 0.3s ease;
-  backdrop-filter: var(--timer-backdrop-filter);
-  -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
+  backdrop-filter: var(--timer--webkit-backdrop-filter);
 }
 body.gallery .timer-mini-background:hover,
 body.universe .timer-mini-background:hover,
@@ -580,7 +770,6 @@ body.about .timer-mini-background:hover {
   background: var(--timer-hover-background);
   outline: none;
   backdrop-filter: blur(8.5px) saturate(130%);
-  -webkit-backdrop-filter: blur(8.5px) saturate(130%);
 }
 body.gallery .timer-mini-container,
 body.gallery .timer-count,
@@ -605,9 +794,7 @@ body.gallery .timer-mini-box,
 body.universe .timer-mini-box,
 body.about .timer-mini-box {
   display: grid;
-  grid-template-columns: 1fr 3.2rem 3.2rem;
-  grid-template-rows: auto auto; /* ← 2行にする */
-  grid-template-areas: "count  presets controls" "volume presets controls";
+  grid-template: "count  presets controls" auto "volume presets controls" auto/1fr 3.2rem 3.2rem; /* ← 2行にする */
   gap: var(--gap-g-button);
   justify-content: center;
   align-items: center;
@@ -720,7 +907,6 @@ body.about span.vol-label {
 body.gallery .volume-control,
 body.universe .volume-control,
 body.about .volume-control {
-  -webkit-appearance: none;
   margin: 0 auto;
   appearance: none;
   width: 18vw;
@@ -735,7 +921,6 @@ body.gallery input.volume-control,
 body.universe input.volume-control,
 body.about input.volume-control {
   appearance: none;
-  -webkit-appearance: none;
   inline-size: 100%;
   block-size: 10px; /* 高さは本体ではなく track にも指定する */
   background: transparent; /* 本体は透明に */
@@ -745,11 +930,10 @@ body.about input.volume-control {
 body.gallery .volume-control::-webkit-slider-thumb,
 body.universe .volume-control::-webkit-slider-thumb,
 body.about .volume-control::-webkit-slider-thumb {
-  -webkit-appearance: none;
   appearance: none;
   width: 24px;
   height: 24px;
-  border: 2px solid #333333;
+  border: 2px solid #333;
   border-radius: 9999px;
   backdrop-filter: blur(8px) saturate(140%);
   background: rgba(255, 255, 255, 0.16);
@@ -761,7 +945,7 @@ body.universe .volume-control::-moz-range-thumb,
 body.about .volume-control::-moz-range-thumb {
   width: 24px;
   height: 24px;
-  border: 2px solid #333333;
+  border: 2px solid #333;
   border-radius: 9999px;
   backdrop-filter: blur(8px) saturate(140%);
   background: rgba(255, 255, 255, 0.16);
@@ -779,7 +963,7 @@ body.about input.volume-control::-webkit-slider-runnable-track {
 body.gallery input.volume-control::-webkit-slider-thumb,
 body.universe input.volume-control::-webkit-slider-thumb,
 body.about input.volume-control::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  appearance: none;
   inline-size: 20px;
   block-size: 20px;
   margin-top: -5px; /* 親指をトラック中央に */
@@ -807,7 +991,7 @@ body.about input.volume-control::-moz-range-thumb {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 744px) and (max-width: 1080px) and (orientation: portrait) {
+@media (width >= 744px) and (width <= 1080px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
@@ -827,7 +1011,7 @@ body.about input.volume-control::-moz-range-thumb {
     block-size: 44px; /* ヒット面 */
     display: grid;
     place-items: center;
-    background: rgba(200, 255, 0, 0.564);
+    background: rgb(200, 255, 0);
   }
   body.gallery .timer-mini-container,
   body.universe .timer-mini-container,
@@ -852,8 +1036,7 @@ body.about input.volume-control::-moz-range-thumb {
     display: flex;
     flex-wrap: nowrap; /* ← 1段に固定 */
     justify-content: flex-end; /* 右寄せ */
-    column-gap: 0.5rem;
-    row-gap: 0;
+    gap: 0 0.5rem;
     align-items: center;
   }
   body.gallery .timer-mini-countdown-text,
@@ -894,8 +1077,7 @@ body.about input.volume-control::-moz-range-thumb {
     box-shadow: var(--timer-box-shadow);
     background: var(--timer-background);
     transition: background 0.3s ease, filter 0.3s ease;
-    backdrop-filter: var(--timer-backdrop-filter);
-    -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
+    backdrop-filter: var(--timer--webkit-backdrop-filter);
     /* ヒット面44px＋視覚28px（ズレない版） */
   }
   body.gallery .timer-mini-background:hover,
@@ -904,7 +1086,6 @@ body.about input.volume-control::-moz-range-thumb {
     background: var(--timer-hover-background);
     outline: none;
     backdrop-filter: blur(8.5px) saturate(130%);
-    -webkit-backdrop-filter: blur(8.5px) saturate(130%);
   }
   body.gallery .timer-mini-background .timer-mini-preset-button,
   body.universe .timer-mini-background .timer-mini-preset-button,
@@ -967,7 +1148,7 @@ body.about input.volume-control::-moz-range-thumb {
   }
 }
 /* スマホ（～390pxあたり） */
-@media (max-width: 743px) and (orientation: portrait) {
+@media (width <= 743px) and (orientation: portrait) {
   body.gallery,
   body.universe,
   body.about {
@@ -987,7 +1168,7 @@ body.about input.volume-control::-moz-range-thumb {
     block-size: 44px; /* ヒット面 */
     display: grid;
     place-items: center;
-    background: rgba(200, 255, 0, 0.564);
+    background: rgb(200, 255, 0);
   }
   body.gallery .timer-mini-container,
   body.universe .timer-mini-container,
@@ -1010,9 +1191,7 @@ body.about input.volume-control::-moz-range-thumb {
   body.about .timer-mini-box {
     pointer-events: auto;
     display: grid;
-    grid-template-columns: 1fr auto; /* 左=時間／右=操作 */
-    grid-template-rows: auto auto; /* 上=時間+操作／下=プリセット */
-    grid-template-areas: "count  presets controls" "volume presets controls";
+    grid-template: "count  presets controls" auto "volume presets controls" auto/1fr auto; /* 左=時間／右=操作 */ /* 上=時間+操作／下=プリセット */
     gap: 0.05rem 0.5rem;
     align-items: center;
   }
@@ -1024,8 +1203,7 @@ body.about input.volume-control::-moz-range-thumb {
     box-shadow: var(--timer-box-shadow);
     background: var(--timer-background);
     transition: background 0.3s ease, filter 0.3s ease;
-    backdrop-filter: var(--timer-backdrop-filter);
-    -webkit-backdrop-filter: var(--timer--webkit-backdrop-filter);
+    backdrop-filter: var(--timer--webkit-backdrop-filter);
     /* ヒット面44px＋視覚28px（ズレない版） */
   }
   body.gallery .timer-mini-background:hover,
@@ -1034,7 +1212,6 @@ body.about input.volume-control::-moz-range-thumb {
     background: var(--timer-hover-background);
     outline: none;
     backdrop-filter: blur(8.5px) saturate(130%);
-    -webkit-backdrop-filter: blur(8.5px) saturate(130%);
   }
   body.gallery .timer-mini-background .timer-mini-preset-parent,
   body.universe .timer-mini-background .timer-mini-preset-parent,
@@ -1164,7 +1341,7 @@ body.about input.volume-control::-moz-range-thumb {
   padding: 0.6em 1.1em;
   border-radius: 999px;
   backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.16);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
   color: #fff;
   text-decoration: none;
@@ -1174,26 +1351,48 @@ body.about input.volume-control::-moz-range-thumb {
   z-index: 3;
 }
 
-.sideitem:nth-child(1) {
+.item-about {
   position: absolute;
   right: clamp(12px, 3vmin, 28px);
   bottom: clamp(72px, 2vmin, 100px);
   z-index: 3;
 }
 
+/* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
+.wrapper.info a {
+  display: inline-block; /* 中身サイズにフィット（幅は変えない） */
+  text-decoration: none; /* 通常は下線オフ */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
+.wrapper.info a:focus-visible .sideitem {
+  /* 任意：あなたのトークンに置き換え可 */
+  background-color: rgba(0, 0, 0, 0.1); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+  /* 視認性UPのための微弱な影（レイアウト不変） */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
+}
+
+/* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
+.wrapper.info a:focus-visible p {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px; /* 太めで見えやすく */
+}
+
+/* ホバーと揃えたい場合はお好みで */
+.wrapper.info a:hover .sideitem {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
+.wrapper.info a:focus {
+  outline: none;
+}
+
 .sideitem:hover {
   filter: brightness(1.3);
   cursor: pointer;
-}
-
-.sideitem::before {
-  content: "↗";
-  opacity: 0.9;
-}
-
-.sideitem:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 3px;
 }
 
 /* アイコンサイズを上書きする */
@@ -1252,7 +1451,7 @@ span.help-icon-size {
     transition: none;
   }
 }
-@media screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero .sideitem:nth-child(1) {
     position: absolute;
     right: clamp(138px, 36vmin, 150px);
@@ -1261,34 +1460,33 @@ span.help-icon-size {
   }
 }
 /* スマホ縦：1列積み */
-@media (max-width: 1024px) and (orientation: portrait) {
-  body.hero .sideitem {
-    position: absolute;
-    right: -3.3rem;
-    bottom: clamp(12px, 3vmin, 28px);
-  }
-  body.hero .sideitem:nth-child(1) {
-    position: absolute;
-    right: -7.8rem;
-    bottom: clamp(72px, 2vmin, 100px);
-    z-index: 3;
-  }
+@media (width <= 1024px) and (orientation: portrait) {
   body.hero .sideitem::before {
     content: none;
   }
-  body.hero span.leaf-text {
-    font-size: larger;
-    text-shadow: 1px 1px 1px #fff;
+}
+@media screen and (height <= 860px) and (orientation: portrait) {
+  body.hero .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: small;
+    padding-bottom: max(12px, env(safe-area-inset-bottom) + 12px);
   }
-  body.hero .sideitem:nth-child(1):hover {
-    right: clamp(12px, 3vmin, 28px);
+  body.hero .sideitem {
+    flex: 0 0 auto;
+    position: unset;
+  }
+  body.hero .hero-link p {
+    font-size: small;
   }
 }
 :root {
   --menu-w: min(360px, 86vw);
-  /* ギャラリーと調和する濃紺ガラス 初期値0.78*/
-  --panel-bg: rgba(14, 16, 32, 0.6);
-  --panel-bd: rgba(255, 255, 255, 0.18);
+  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
+  --panel-bg: rgb(14 16 32 / 60%);
+  --panel-bd: rgb(255 255 255 / 18%);
 }
 
 body.gallery span.icon-size,
@@ -1296,7 +1494,7 @@ body.universe span.icon-size,
 body.about span.icon-size {
   font-size: 44px;
 }
-@media (min-width: 375px) and (max-width: 1080px) and (orientation: portrait) {
+@media (width >= 375px) and (width <= 1080px) and (orientation: portrait) {
   body.gallery header.site-header,
   body.universe header.site-header,
   body.about header.site-header {
@@ -1319,7 +1517,6 @@ body.about span.icon-size {
   padding: 16px clamp(12px, 3vw, 24px);
   background: var(--panel-bg);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-left: 1px solid var(--panel-bd);
   transform: translateX(100%);
   transition: transform 0.28s ease;
@@ -1336,7 +1533,6 @@ body.about span.icon-size {
   right: 0;
   background: rgba(234, 229, 218, 0.6078431373);
   backdrop-filter: blur(10px) saturate(130%);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
   border-left: 1px solid var(--panel-bd);
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -1417,7 +1613,7 @@ nav div.clock-icon {
 }
 
 /* タブレット最適化：少しだけ狭める＆文字を大きめに */
-@media (min-width: 800px) and (max-width: 1280px) and (orientation: portrait) {
+@media (width >= 800px) and (width <= 1280px) and (orientation: portrait) {
   :root {
     --menu-w: min(400px, 60vw);
   }
@@ -1426,7 +1622,7 @@ nav div.clock-icon {
     font-size: 1.05rem;
   }
 }
-@media screen and (min-width: 375px) and (max-width: 999px) and (orientation: landscape) and (hover: none) {
+@media screen and (width >= 375px) and (width <= 999px) and (orientation: landscape) and (hover: none) {
   :root {
     --menu-w: min(300px, 50vw);
   }
@@ -1459,15 +1655,15 @@ nav div.clock-icon {
   }
 }
 body.hero {
-  color: #f5f5f5;
-  text-shadow: 1px 1px 3px #c2c2c2;
-  /* やかんの動画を背景として全画面に広げる */
+  /* 半透明オーバーレイ（柳鼠の“気配”だけ足す。filter 不要） */
+  /* 既定は静止画だけを見せる */
+  /* 画面が広い＋動きOKなら動画を解禁 */
+  /* 動きを控えたい人の設定を尊重 */
   /* メインコンテンツ */
   /* タイルの中身の潰れ対策（共通） */
   /* area割当（既存の .itemX を活用） */
   /* テキスト共通 */
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
-  /* キーボード操作での見やすいフォーカス */
   /* すぅ〜 */
   /* お茶でも淹れましょうか */
 }
@@ -1475,15 +1671,66 @@ body.hero main {
   width: 100%;
   height: 100%;
   background: rgba(161, 161, 161, 0.4);
+  color: #f5f5f5;
 }
 body.hero #background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: fixed; /* もしくは absolute + 親を relative + inset:0 */
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 動画が画面に収まるように拡大/縮小 */
-  z-index: -1; /* 背景に表示するため、コンテンツの後ろに配置 */
+  object-fit: cover; /* ← これが決定打（posterにも効く） */
+  object-position: center;
+  z-index: -1; /* 背景に回すなら */
+  top: 0;
+  left: 0;
+}
+body.hero .hero-media {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* 背景 */
+  background: var(rgba(200, 211, 192, 0.4)); /* #9fa9a3←あなたのトークンに置換 */
+}
+body.hero .hero-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgb(200, 211, 192, var(--yanagi-alpha)), rgb(200, 211, 192, var(--yanagi-alpha))), rgb(0, 0, 0, var(--hero-veil));
+}
+body.hero .hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(200, 211, 192, var(--yanagi-alpha));
+  mix-blend-mode: multiply; /* ← ここがポイント。明度は上がらない */
+  pointer-events: none;
+}
+body.hero .hero-video {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body.hero .hero-poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (width >= 768px) and (prefers-reduced-motion: no-preference) {
+  body.hero .hero-video {
+    display: block;
+  }
+  body.hero .hero-poster {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.hero .hero-video {
+    display: none;
+  }
+  body.hero .hero-poster {
+    display: block;
+  }
 }
 body.hero.content,
 body.hero .content {
@@ -1526,6 +1773,9 @@ body.hero .item3 {
 body.hero .item4 {
   grid-area: item4;
 }
+body.hero .item5 {
+  grid-area: item5;
+}
 body.hero .text {
   display: flex;
   flex-direction: column;
@@ -1539,32 +1789,41 @@ body.hero .hero-link {
 body.hero .hover-area {
   position: relative;
   width: 100%;
-  height: 100%; /* ← 100vh をやめる */
+  height: 100%;
   padding: 0 16px;
 }
 body.hero .bg-gallery,
 body.hero .bg-universe {
-  position: static; /* ← sticky を外す */
+  position: static;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; /* 必要に応じて cover/contain */
+  background-size: cover;
   filter: brightness(1);
   opacity: 0.5;
   z-index: 1;
+}
+body.hero .bg-gallery {
+  background: url("../assets/png/hero/frame_02_gallery_mobile.png"), rgb(0, 0, 0, var(--hero-veil, 0.32));
+}
+body.hero .bg-universe {
+  background-image: url("../assets/png/hero/frame_03_space_mobile.png");
 }
 body.hero .bg-gallery:not(p),
 body.hero .bg-universe:not(p) {
   opacity: 0.9;
 }
-body.hero .bg-gallery {
-  background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
-}
-body.hero .bg-universe {
-  background-image: url("../assets/png/hero/frame_03_space_mobile.png");
-}
 body.hero .bg-gallery p,
 body.hero .bg-universe p {
   opacity: 1;
+}
+body.hero .bg-gallery p {
+  background-color: #202410;
+  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
+  border-radius: 0.2em;
+  backdrop-filter: blur(8px);
+}
+body.hero .bg-universe p {
+  background: linear-gradient(to bottom, rgb(27, 38, 59) 40%, rgb(27, 38, 59) 100%);
 }
 body.hero .item > .bg-gallery:hover {
   filter: brightness(1.1);
@@ -1582,11 +1841,6 @@ body.hero .hover-link {
   justify-content: center;
   text-align: center;
 }
-body.hero .hover-link:focus-visible span {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 4px;
-  border-radius: 6px;
-}
 body.hero .suu {
   font-size: clamp(1.2rem, 3vw, 1.6rem);
   padding: 1rem 0;
@@ -1596,11 +1850,11 @@ body.hero .tea {
 }
 
 /* スマホ縦：1列積み */
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (width <= 1024px) and (orientation: portrait) {
   body.hero .container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-template-areas: "item4" "item1" "item2" "item3";
+    grid-template-areas: "item4" "item1" "item2" "item3" "item5";
     min-height: 100svh;
   }
   body.hero .item4 {
@@ -1615,16 +1869,21 @@ body.hero .tea {
   }
   body.hero .item2 {
     grid-area: item2;
-    min-height: 10dvh;
-    min-height: 10svh;
+    min-height: 7dvh;
+    min-height: 7svh;
   }
   body.hero .item3 {
     grid-area: item3;
-    min-height: 10dvh;
-    min-height: 10svh;
+    min-height: 7dvh;
+    min-height: 7svh;
+  }
+  body.hero .item5 {
+    grid-area: item5;
+    min-height: 6dvh;
+    min-height: 6svh;
   }
   body.hero .hover-area {
-    height: 100%;
+    height: auto;
   }
   body.hero .bg-gallery,
   body.hero .bg-universe {
@@ -1641,18 +1900,21 @@ body.hero .tea {
     content: "";
     position: absolute;
     inset: -6px -12px;
-    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.28), rgba(10, 16, 32, 0));
+    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.32), rgba(10, 16, 32, 0));
     border-radius: 12px;
     /* ほんのりガラス */
     backdrop-filter: blur(4px);
     z-index: -1;
   }
-  body.hero .bg-gallery,
-  body.hero .bg-universe {
-    background: none;
+  body.hero .bg-gallery p {
+    background-color: transparent;
+    text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
+  }
+  body.hero .bg-universe p {
+    background: transparent;
   }
 }
-@media screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     /* 背景動画の下敷き設定はそのままOK */
@@ -1660,16 +1922,13 @@ body.hero .tea {
   }
   body.hero .container {
     height: 100svh;
-    grid-template-columns: 1.2fr 1fr; /* 左やや広め */
-    /* 右側を 25vh/25vh/50vh 相当で“比率”を近似（svh優先） */
-    grid-template-rows: 1fr 1fr 2fr;
-    grid-template-areas: "item1 item2" "item1 item3" "item1 item4";
+    grid-template: "item1 item2" 1fr "item1 item3" 1fr "item1 item4" 2fr/1.2fr 1fr; /* 左やや広め */
     min-height: 100svh;
     min-width: 100svh;
     overflow: clip;
   }
   body.hero .hover-area {
-    height: 100%;
+    height: auto;
     padding: 0 12px;
   }
   body.hero .item1 {
@@ -1697,6 +1956,13 @@ body.hero .tea {
     font-family: inherit;
     background: none;
   }
+  body.hero .bg-gallery p {
+    background-color: transparent;
+    text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
+  }
+  body.hero .bg-universe p {
+    background: transparent;
+  }
   body.hero .hover-text {
     position: relative;
     padding: 0.6em 1em;
@@ -1708,7 +1974,7 @@ body.hero .tea {
     content: "";
     position: absolute;
     inset: -6px -12px;
-    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.28), rgba(10, 16, 32, 0));
+    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.32), rgba(10, 16, 32, 0));
     border-radius: 12px;
     /* ほんのりガラス */
     backdrop-filter: blur(4px);
@@ -1725,7 +1991,7 @@ body.hero .tea {
 /* hover可能端末だけ見た目の変化を強める */
 @media (hover: hover) {
   .hover-link:hover span {
-    color: #ffffff;
+    color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.7);
     text-underline-offset: 0.2em;
   }
@@ -1754,15 +2020,8 @@ body.gallery .photo-container {
   width: 100dvw;
   max-height: 90vh;
   padding: 2rem 3rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem 3%;
-  overflow-y: auto;
-  width: 100dvw;
-  max-height: 90vh;
-  padding: 2rem 3rem;
 }
-@media (max-width: 37.5rem) {
+@media (width <= 37.5rem) {
   body.gallery .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 6rem;
@@ -1839,7 +2098,7 @@ body.gallery .lightbox .lightbox-content img {
 body.gallery .lightbox .lightbox-content p {
   justify-content: center;
   max-width: 37.5rem;
-  margin: 1rem auto 0 auto;
+  margin: 1rem auto 0;
   padding: 1rem 1.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -1905,7 +2164,7 @@ body.gallery .lightbox .lightbox-content button#lightbox-close:hover {
 body.gallery .lightbox .lightbox-content .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
 }
-@media (max-width: 600px) {
+@media (width <= 600px) {
   body.gallery .lightbox .lightbox-content .nav-button.left,
   body.gallery .lightbox .lightbox-content .nav-button.right {
     top: auto;
@@ -1982,7 +2241,7 @@ body.gallery .timer1 h1 {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .lightbox-image {
     max-width: 90vw;
     max-height: 80vh;
@@ -1990,7 +2249,7 @@ body.gallery .timer1 h1 {
   .lightbox-image p {
     justify-content: center;
     max-width: 37.5rem;
-    margin: 1rem auto 0 auto;
+    margin: 1rem auto 0;
     padding: 0.5rem 1rem;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -2000,12 +2259,11 @@ body.gallery .timer1 h1 {
     font-family: "Zen Kurenaido", sans-serif;
     line-height: 1.6;
     text-align: left;
-    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     animation: fadeInUp 0.5s ease-out;
   }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (width <= 1024px) and (orientation: portrait) {
   body.gallery {
     padding: 1rem;
   }
@@ -2022,7 +2280,7 @@ body.gallery .timer1 h1 {
     margin-left: 2rem;
   }
 }
-@media screen and (max-width: 1099px) and (orientation: landscape) {
+@media screen and (width <= 1099px) and (orientation: landscape) {
   body.gallery main {
     padding-bottom: 6rem;
   }
@@ -2045,7 +2303,7 @@ body.about {
   /* 章の最初は大きめ、末尾は少し多めに呼吸 */
 }
 body.about .about-page {
-  background: rgba(200, 255, 0, 0.564);
+  background: rgb(200, 255, 0);
   /* 幅と中央寄せ */
   max-width: 640px;
   margin: 0 auto;
@@ -2053,7 +2311,7 @@ body.about .about-page {
   /* 読み心地 */
   line-height: 1.85;
   text-wrap: pretty; /* 自然な改行 */
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   /* ベース色（やさしい生成り＋深い文字色） */
   color: oklch(28% 0.03 260deg);
@@ -2127,7 +2385,7 @@ body.about .about-page .credits .label {
 body.about .about-page .credits .value {
   color: oklch(28% 0.03 260deg);
 }
-@media (max-width: 480px) {
+@media (width <= 480px) {
   body.about .about-page .credits {
     grid-template-columns: 1fr;
   }
@@ -2138,7 +2396,7 @@ body.about .about-page section {
 body.about .about-page section + section {
   margin-top: 3rem;
 }
-@media (max-width: 480px) {
+@media (width <= 480px) {
   body.about .about-page {
     padding: 3rem 1.25rem;
   }

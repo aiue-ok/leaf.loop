@@ -13,8 +13,9 @@
 
 html {
   font-size: 16px;
+
   // オートテキスト拡大
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* HTMLとbodyの高さを100%に設定 */
@@ -136,6 +137,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   align-items: center;
 }
+
 .notify-controls label {
   /* クリックしやすさUP（見た目は変えない） */
   display: inline-flex;
@@ -147,10 +149,11 @@ input[type="checkbox"] {
 
 /* フォーカス可視（サイズ不変更） */
 input[type="checkbox"]:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.95);
+  outline: 3px solid rgb(255 255 255 / 95%);
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 3px rgb(0 0 0 / 35%);
 }
+
 .notify-controls {
   display: none;
 }

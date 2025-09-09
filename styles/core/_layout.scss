@@ -15,12 +15,14 @@
   margin: 0 auto;
   padding: 0 16px; /* 横に余白 */
 }
+
 // これだけで モバイル〜デスクトップまで柔軟に拡がる幅が作れます。
 
 // 💡 2. 高さ：できるだけ「中身に任せる」
 .section {
   padding: 80px 0;
 }
+
 // * これは高さを「固定」してないけど、見た目は安定して見える
 // * 中に入れるテキスト・画像が自然に高さを決めてくれる
 
@@ -32,6 +34,7 @@
   align-items: center;
   justify-content: center;
 }
+
 // これで上下中央に要素を配置したり「最初のビューにドーンと画像を表示」みたいな構成ができます。
 
 .grid-parent {
@@ -48,26 +51,26 @@
 @media screen and (orientation: landscape) {
 }
 
-//📍 幅1100px以上の横向き時だけ
-@media screen and (min-width: 1100px) and (orientation: landscape) {
+// 📍 幅1100px以上の横向き時だけ
+@media screen and (width >= 1100px) and (orientation: landscape) {
   body.hero {
   }
 }
 
-//📍📍 幅769px以上1099px以下で画面が横向きの時だけ
-@media screen and (max-width: 1099px) and (min-width: 769px) and (orientation: landscape) {
+// 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
+@media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
   body.hero {
   }
 }
 
 // 幅1024px（スマホたて向き）以下
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (width <= 1024px) and (orientation: portrait) {
   body.hero {
   }
 }
 
-//📍📍📍 幅768px（スマホ横向き）以下
-@media screen and (max-width: 768px) and (orientation: landscape) {
+// 📍📍📍 幅768px（スマホ横向き）以下
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
   }
 }

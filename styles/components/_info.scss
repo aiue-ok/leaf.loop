@@ -14,9 +14,9 @@
   padding: 0.6em 1.1em;
   border-radius: 999px;
   backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(0, 0, 0, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  background: rgb(0 0 0 / 16%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
   color: #fff;
   text-decoration: none;
   display: inline-flex;
@@ -24,6 +24,7 @@
   gap: 0.5em;
   z-index: 3;
 }
+
 .item-about {
   position: absolute;
   right: clamp(12px, 3vmin, 28px);
@@ -41,14 +42,15 @@
 /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
 .wrapper.info a:focus-visible .sideitem {
   /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.1
+  background-color: rgb(
+    0
+    0
+    0 /
+    10%
   ); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+
   /* 視認性UPのための微弱な影（レイアウト不変） */
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
 }
 
 /* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
@@ -60,7 +62,7 @@
 
 /* ホバーと揃えたい場合はお好みで */
 .wrapper.info a:hover .sideitem {
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: rgb(0 0 0 / 6%);
 }
 
 /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
@@ -82,12 +84,14 @@
 span.help-icon-size {
   font-size: 1rem;
 }
+
 .mini-help {
   position: fixed;
   right: 12px;
   bottom: 88px;
   z-index: 60;
 }
+
 .mini-help > summary {
   list-style: none;
   cursor: pointer;
@@ -96,11 +100,12 @@ span.help-icon-size {
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: rgba(14, 16, 32, 0.35);
+  background: rgb(14 16 32 / 35%);
   color: #fff;
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgb(255 255 255 / 18%);
 }
+
 .mini-help[open] > summary {
   visibility: hidden;
 } /* カード表示時は?隠す */
@@ -116,22 +121,25 @@ span.help-icon-size {
   padding: 12px 14px;
   backdrop-filter: blur(10px) saturate(140%);
 }
+
 .mini-help__card ul {
   margin: 6px 0 10px;
   padding-left: 1em;
 }
+
 .mini-help__close {
   width: 100%;
   border-radius: 8px;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .mini-help__card {
     transition: none;
   }
 }
 
-//📍📍📍 幅768px（スマホ横向き）以下
-@media screen and (max-width: 768px) and (orientation: landscape) {
+// 📍📍📍 幅768px（スマホ横向き）以下
+@media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
     .sideitem:nth-child(1) {
       position: absolute;
@@ -144,7 +152,7 @@ span.help-icon-size {
 
 /* スマホ縦：1列積み */
 // 幅1024px（スマホたて向き）以下
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (width <= 1024px) and (orientation: portrait) {
   body.hero {
     .sideitem::before {
       content: none;
@@ -152,7 +160,7 @@ span.help-icon-size {
   }
 }
 
-@media screen and (max-height: 860px) and (orientation: portrait) {
+@media screen and (height <= 860px) and (orientation: portrait) {
   body.hero {
     .wrapper {
       // position: relative;
@@ -168,6 +176,7 @@ span.help-icon-size {
       flex: 0 0 auto;
       position: unset;
     }
+
     .hero-link p {
       font-size: small;
     }
