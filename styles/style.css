@@ -255,6 +255,11 @@ input[type=checkbox]:focus-visible {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35);
 }
 
+/* 既定は非表示 */
+.notify-controls[hidden] {
+  display: none;
+}
+
 /* デバッグ時だけ出したいなら：html[data-debug="1"] .notify-controls { display:flex } */
 .notify-controls {
   display: flex;
@@ -1570,19 +1575,12 @@ body.hero::before {
   inset: 0; /* ← padding-box まできっちり覆う */
   pointer-events: none;
   z-index: 1;
+  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
 }
 body.hero .hero-media {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-body.hero .hero-media::before {
-  content: "";
-  position: absolute;
-  inset: 0; /* ← padding-box まできっちり覆う */
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
 }
 body.hero .hero-media > video,
 body.hero .hero-media > img {
@@ -1597,8 +1595,7 @@ body.hero .notify-controls {
 }
 body.hero main {
   width: 100%;
-  height: auto;
-  background: rgba(161, 161, 161, 0.4);
+  height: 100vh;
   color: #f5f5f5;
 }
 body.hero #background-video {
@@ -1711,7 +1708,8 @@ body.hero .bg-universe {
   z-index: 1;
 }
 body.hero .bg-gallery {
-  background: url("../assets/png/hero/frame_02_gallery_mobile.png"), rgb(0, 0, 0, var(--hero-veil, 0.32));
+  background-color: rgba(238, 244, 240, 0.3);
+  filter: brightness(1.1);
 }
 body.hero .bg-universe {
   background-image: url("../assets/png/hero/frame_03_space_mobile.png");
@@ -1734,7 +1732,7 @@ body.hero .bg-universe p {
   background: linear-gradient(to bottom, rgb(27, 38, 59) 40%, rgb(27, 38, 59) 100%);
 }
 body.hero .item > .bg-gallery:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.2);
   opacity: 1;
 }
 body.hero .item > .bg-universe:hover {
@@ -1775,6 +1773,9 @@ body.hero .tea {
     /* 共通（高さを中身に任せる等） */
     /* 置き場所は個別に */
   }
+  body.hero::before {
+    background: transparent;
+  }
   body.hero .hero-media {
     position: fixed; /* 画面に固定（スクロールしても動かない） */
     inset: 0; /* 画面いっぱい */
@@ -1807,6 +1808,9 @@ body.hero .tea {
   }
 }
 @media (width <= 1024px) and (orientation: portrait) {
+  body.hero main {
+    height: auto;
+  }
   body.hero .container {
     display: grid;
     grid-template-columns: 1fr;

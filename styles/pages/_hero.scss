@@ -12,31 +12,31 @@ body.hero {
     inset: 0; /* ← padding-box まできっちり覆う */
     pointer-events: none;
     z-index: 1;
-    // background: linear-gradient(
-    //     to right,
-    //     rgba(200, 211, 192, 0.4),
-    //     rgba(200, 211, 192, 0.4)
-    //   ),
-    //   rgba(0, 0, 0, var(--hero-veil, 0.28));
+    background: linear-gradient(
+        to right,
+        rgba(200, 211, 192, 0.4),
+        rgba(200, 211, 192, 0.4)
+      ),
+      rgba(0, 0, 0, var(--hero-veil, 0.28));
   }
   /* 背景メディアは最背面 */
   .hero-media {
     position: absolute;
     inset: 0;
     z-index: 0;
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0; /* ← padding-box まできっちり覆う */
-      pointer-events: none;
-      z-index: 1;
-      background: linear-gradient(
-          to right,
-          rgba(200, 211, 192, 0.4),
-          rgba(200, 211, 192, 0.4)
-        ),
-        rgba(0, 0, 0, var(--hero-veil, 0.28));
-    }
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   inset: 0; /* ← padding-box まできっちり覆う */
+    //   pointer-events: none;
+    //   z-index: 1;
+    //   background: linear-gradient(
+    //       to right,
+    //       rgba(200, 211, 192, 0.4),
+    //       rgba(200, 211, 192, 0.4)
+    //     ),
+    //     rgba(0, 0, 0, var(--hero-veil, 0.28));
+    // }
     > video,
     > img {
       width: 100%;
@@ -53,8 +53,8 @@ body.hero {
 
   main {
     width: 100%;
-    height: auto;
-    background: rgb(161 161 161 / 0.4);
+    height: 100vh;
+    // background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
 
@@ -201,8 +201,15 @@ body.hero {
   }
 
   .bg-gallery {
-    background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
-      rgb(0 0 0 / var(--hero-veil, 0.32));
+    // background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
+    // background: linear-gradient(
+    //   180deg,
+    //   rgba(181, 53, 32, 0.1) 0%,
+    //   rgba(226, 169, 16, 0.05) 100%
+    // );
+    // rgb(0 0 0 / var(--hero-veil, 0.32));
+    background-color: rgba(238, 244, 240, 0.3);
+    filter: brightness(1.1);
   }
 
   .bg-universe {
@@ -238,7 +245,7 @@ body.hero {
 
   .item > .bg-gallery:hover {
     // background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
-    filter: brightness(1.1);
+    filter: brightness(1.2);
     opacity: 1;
   }
 
@@ -284,6 +291,9 @@ body.hero {
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
+    &::before {
+      background: transparent;
+    }
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     .hero-media {
       position: fixed; /* 画面に固定（スクロールしても動かない） */
@@ -327,6 +337,12 @@ body.hero {
       }
     }
 
+    main {
+      // width: 100%;
+      height: auto;
+      // background: rgb(161 161 161 / 0.4);
+      // color: core.$main-color;
+    }
     .container {
       display: grid;
       grid-template-columns: 1fr;
