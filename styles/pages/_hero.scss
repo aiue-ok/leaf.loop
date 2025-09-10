@@ -3,10 +3,57 @@
 @use "../components/info" as info;
 
 body.hero {
+  position: relative;
+
+  /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* ← padding-box まできっちり覆う */
+    pointer-events: none;
+    z-index: 1;
+    // background: linear-gradient(
+    //     to right,
+    //     rgba(200, 211, 192, 0.4),
+    //     rgba(200, 211, 192, 0.4)
+    //   ),
+    //   rgba(0, 0, 0, var(--hero-veil, 0.28));
+  }
+  /* 背景メディアは最背面 */
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    > video,
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; /* ← padding-box まできっちり覆う */
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(
+          to right,
+          rgba(200, 211, 192, 0.4),
+          rgba(200, 211, 192, 0.4)
+        ),
+        rgba(0, 0, 0, var(--hero-veil, 0.28));
+    }
+  }
+  /* コンテンツ/UIは前面へ */
+  .hero .container,
+  .notify-controls {
+    position: relative;
+    z-index: 2;
+  }
   main {
     width: 100%;
-    height: 100%;
-    background: rgb(161 161 161 / 0.4);
+    height: auto;
+    // background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
 
@@ -20,37 +67,6 @@ body.hero {
     z-index: -1; /* 背景に回すなら */
     top: 0;
     left: 0;
-  }
-
-  .hero-media {
-    position: fixed;
-    inset: 0;
-    z-index: -1; /* 背景 */
-    background: var(
-      core.$filter-yanaginezu
-    ); /* #9fa9a3←あなたのトークンに置換 */
-  }
-
-  /* 半透明オーバーレイ（柳鼠の“気配”だけ足す。filter 不要） */
-  .hero-media::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to right,
-        rgb(200 211 192 / var(--yanagi-alpha)),
-        rgb(200 211 192 / var(--yanagi-alpha))
-      ),
-      rgb(0 0 0 / var(--hero-veil));
-  }
-
-  .hero-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgb(200 211 192 / var(--yanagi-alpha));
-    mix-blend-mode: multiply; /* ← ここがポイント。明度は上がらない */
-    pointer-events: none;
   }
 
   /* 既定は静止画だけを見せる */
@@ -257,46 +273,88 @@ body.hero {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
-    .container {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      grid-template-areas:
-        "item4"
-        "item1"
-        "item2"
-        "item3"
-        "item5";
-      min-height: 100svh;
+    /* 自然スクロール + 下部安全域 */
+    padding-block: clamp(48px, 8svh, 96px);
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    /* 背景レイヤーの土台：ページの一番うしろに固定 */
+    .hero-media {
+      position: fixed; /* 画面に固定（スクロールしても動かない） */
+      inset: 0; /* 画面いっぱい */
+      z-index: 0; /* コンテンツより背面、でも負数は使わない */
+      pointer-events: none; /* タップを遮らない */
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0; /* ← padding-box まできっちり覆う */
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(
+            to right,
+            rgba(200, 211, 192, 0.4),
+            rgba(200, 211, 192, 0.4)
+          ),
+          rgba(0, 0, 0, var(--hero-veil, 0.28));
+      }
     }
 
+    /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
+    #background-video {
+      width: 100%; /* 画面幅にフィット */
+      height: 100svh; /* まずは小さいvh（アドレスバー配慮） */
+      object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
+      object-position: center;
+    }
+
+    /* 新しい単位が使える環境では、動的vhでより正確に */
+    @supports (height: 100dvh) {
+      #background-video {
+        height: 100dvh;
+      }
+    }
+
+    /* 動画を控えめにしたいとき（設定済みならそのまま） */
+    @media (prefers-reduced-motion: reduce) {
+      #background-video {
+        display: none !important;
+      }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "item4" /* 見出し */
+        "item1" /* タイマー */
+        "item2" /* ギャラリー導線 */
+        "item3" /* ユニバース導線 */
+        "item5"; /* ヘルプ等 */
+      gap: clamp(12px, 2svh, 24px);
+      min-height: unset; /* ← ここで“固定高さ”はやめる */
+    }
+    // す〜
     .item4 {
       grid-area: item4;
-      min-height: 25dvh;
-      min-height: 25svh;
+      min-height: clamp(120px, calc(var(--vh) * 25), 320px);
     }
-
+    // タイマー
     .item1 {
       grid-area: item1;
-      min-height: 25dvh;
-      min-height: 20svh;
+      min-height: clamp(200px, calc(var(--vh) * 40), 560px);
+    }
+    /* 共通（高さを中身に任せる等） */
+    :is(.item2, .item3, .item5) {
+      min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
     }
 
+    /* 置き場所は個別に */
     .item2 {
       grid-area: item2;
-      min-height: 7dvh;
-      min-height: 7svh;
     }
-
     .item3 {
       grid-area: item3;
-      min-height: 7dvh;
-      min-height: 7svh;
     }
-
     .item5 {
       grid-area: item5;
-      min-height: 6dvh;
-      min-height: 6svh;
     }
 
     .hover-area {
