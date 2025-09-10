@@ -131,21 +131,21 @@ input[type="checkbox"] {
   height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
 }
 
-.notify-controls {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+// .notify-controls {
+//   display: flex;
+//   gap: 0.75rem;
+//   flex-wrap: wrap;
+//   align-items: center;
+// }
 
-.notify-controls label {
-  /* クリックしやすさUP（見た目は変えない） */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  cursor: pointer;
-  min-height: 44px; /* タップ領域だけ確保（横幅は伸ばさない） */
-}
+// .notify-controls label {
+//   /* クリックしやすさUP（見た目は変えない） */
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 0.45rem;
+//   cursor: pointer;
+//   min-height: 44px; /* タップ領域だけ確保（横幅は伸ばさない） */
+// }
 
 /* フォーカス可視（サイズ不変更） */
 input[type="checkbox"]:focus-visible {
@@ -155,5 +155,80 @@ input[type="checkbox"]:focus-visible {
 }
 
 .notify-controls {
+  // display: none;
+}
+
+/* デバッグ時だけ出したいなら：html[data-debug="1"] .notify-controls { display:flex } */
+.notify-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  position: relative;
+  z-index: 2; /* オーバーレイより前 */
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+.visually-hidden {
+  font-size: 14px;
+}
+
+/* 共通チップ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  // min-height: 44px;
+  // padding: 8px 14px;
+  border-radius: 9999px;
+  // border: 1px solid var(--chip-bd);
+  // background: var(--chip-bg);
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.2;
+  font-size: 14px;
+}
+
+/* 入力本体は見せないがフォーカスは可視化 */
+.chip > input {
+  // position: absolute;
+  // inset: 0;
+  // opacity: 1;
+  pointer-events: auto; /* ラベル全体クリック可 */
+}
+.chip:focus-within {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* チェック状態の見た目（Safari OK） */
+.chip:has(input:checked) {
+  background: var(--chip-bg-active);
+  border-color: var(--chip-bd-active);
+}
+
+/* テストボタンも同じ見た目に */
+.chip--action {
+  cursor: pointer;
+  border: 1px solid var(--chip-bd-active);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+.chip--action:active {
+  transform: translateY(1px);
+}
+
+/* アイコンはお好みで小さめに */
+.chip__icon {
+  font-size: 20px;
+}
+
+span.chip__text {
   display: none;
 }

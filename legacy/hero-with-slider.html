@@ -25,8 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <script src="js/timer-base.js" defer></script>
-    <script src="js/hero.js" defer></script>
+    <!-- <script src="js/timer-base.js" defer></script> -->
+    <script src="../legacy/js/timer-with-volume.js" defer></script>
+
+    <!-- <script src="js/hero.js" defer></script> -->
   </head>
   <body class="hero">
     <!-- 動画の背景 -->
@@ -59,17 +61,13 @@
         <div class="timer-grid-container">
           <div class="timer1">
             <!-- 見えるタイマー表示 -->
-            <div class="timer-display">
-              <h1
-                id="timer"
-                class="timer_count kiwi-maru-regular"
-                role="timer"
-                aria-label="お茶のタイマー 残り時間"
-              >
-                00:00
-              </h1>
+            <div
+              id="timerDisplay"
+              role="timer"
+              aria-label="お茶のタイマー 残り時間"
+            >
+              <h1 class="timer_count kiwi-maru-regular" id="timer">00:00</h1>
             </div>
-
             <!-- 読み上げ専用（視覚には非表示） -->
             <div
               id="timerLive"
@@ -119,57 +117,52 @@
             </button>
           </div>
           <div class="timer4">
-            <!-- 通知オプション -->
-            <fieldset class="notify-controls" aria-describedby="notifyHint">
-              <legend class="visually-hidden">通知の方法</legend>
-              <p id="notifyHint" class="visually-hidden">
-                音・バイブ・画面表示のオン/オフを切り替えます
-              </p>
-
-              <!-- 音 -->
-              <label class="chip">
-                <input id="optSound" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">音で知らせる</span>
-              </label>
-
-              <!-- バイブ -->
-              <label class="chip">
-                <input id="optVibrate" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">バイブで知らせる</span>
-              </label>
-
-              <!-- トースト -->
-              <label class="chip">
-                <input id="optToast" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">画面に表示する</span>
-              </label>
-
-              <!-- テスト -->
-              <button
-                id="testNotify"
-                type="button"
-                class="chip chip--action"
-                aria-label="通知テスト"
-              >
-                通知テスト
-              </button>
-            </fieldset>
+            <label for="vol" class="sr-only">音量</label>
+            <span class="material-symbols-outlined icon-size">
+              volume_mute
+            </span>
+            <label aria-label="音量調節">
+              <input
+                type="range"
+                name="range"
+                value="50"
+                min="0"
+                max="100"
+                step="1"
+                value="70"
+                aria-valuetext="70パーセント"
+                id="volumeControl"
+                class="volume-control"
+              />
+            </label>
+            <span class="material-symbols-outlined icon-size"> volume_up </span>
           </div>
+          <!-- 通知オプション -->
+          <fieldset
+            class="notify-controls"
+            role="group"
+            aria-labelledby="notifyLegend"
+          >
+            <legend id="notifyLegend" class="sr-only">通知</legend>
+
+            <label
+              ><input id="optSound" type="checkbox" checked />
+              <span>音で知らせる</span></label
+            >
+            <label
+              ><input id="optVibrate" type="checkbox" checked />
+              <span>バイブで知らせる</span></label
+            >
+            <label
+              ><input id="optToast" type="checkbox" checked />
+              <span>画面に表示する</span></label
+            >
+
+            <button id="testNotify" type="button" aria-label="通知をテスト">
+              通知テスト
+            </button>
+          </fieldset>
+
           <!-- 画面表示（トースト） -->
           <div id="toast" class="toast" role="status" aria-live="polite" hidden>
             お湯の準備ができました
@@ -233,6 +226,21 @@
         </a>
       </div>
     </main>
+    <footer>
+      <div class="timer-mini-volume">
+        <h4>各ページのミニタイマー用の音量スライダー</h4>
+        <span class="vol-label">音量：</span>
+        <input
+          type="range"
+          class="volume-control"
+          id="volumeControl"
+          min="0"
+          max="1"
+          step="0.01"
+          value="1"
+        />
+      </div>
+    </footer>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>

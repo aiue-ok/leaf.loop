@@ -125,21 +125,3 @@ input[type="range"] {
   padding-inline: 0.15em; /* 文字左右だけ少し */
   border-radius: 0.2em;
 }
-
-/* ボリューム 高コントラストを望む人へ少し強める */
-@media (prefers-contrast: more) {
-  .volume-control {
-    background: rgb(0 0 0 / 50%);
-  }
-
-  input[type="range"]::-webkit-slider-runnable-track,
-  input[type="range"]::-moz-range-track {
-    background: rgb(255 255 255 / 28%);
-    border-color: rgb(255 255 255 / 75%);
-  }
-
-  input[type="range"]::-webkit-slider-thumb,
-  input[type="range"]::-moz-range-thumb {
-    border-color: rgb(0 0 0 / 60%);
-  }
-}

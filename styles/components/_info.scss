@@ -42,12 +42,7 @@
 /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
 .wrapper.info a:focus-visible .sideitem {
   /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgb(
-    0
-    0
-    0 /
-    10%
-  ); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+  background-color: rgb(0 0 0 / 10%); /* or var(--focus-bg, rgba(0,0,0,.10)) */
 
   /* 視認性UPのための微弱な影（レイアウト不変） */
   box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
@@ -141,7 +136,7 @@ span.help-icon-size {
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
-    .sideitem:nth-child(1) {
+    .item-about {
       position: absolute;
       right: clamp(138px, 36vmin, 150px);
       bottom: clamp(12px, 3vmin, 28px);
@@ -154,6 +149,42 @@ span.help-icon-size {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
+    .wrapper {
+      display: flex;
+      font-size: small;
+    }
+
+    .sideitem {
+      flex: auto;
+      inline-size: max-content;
+      max-inline-size: min(70vw, 420px);
+      padding: 0.6em 1.1em;
+      border-radius: 999px;
+      backdrop-filter: blur(8px) saturate(140%);
+      background: rgb(0 0 0 / 16%);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+        inset 0 0 0 1px rgb(255 255 255 / 35%);
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      z-index: 3;
+    }
+
+    .item-about {
+      position: absolute;
+      right: clamp(12px, 3vmin, 28px);
+      bottom: clamp(72px, 2vmin, 100px);
+      z-index: 3;
+    }
+
+    /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
+    .wrapper.info a {
+      display: inline-block; /* 中身サイズにフィット（幅は変えない） */
+      text-decoration: none; /* 通常は下線オフ */
+      -webkit-tap-highlight-color: transparent;
+    }
     .sideitem::before {
       content: none;
     }

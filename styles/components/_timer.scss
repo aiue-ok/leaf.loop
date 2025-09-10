@@ -109,16 +109,10 @@ body {
   // ボリューム調整部分
   .timer4 {
     grid-area: volume;
-    width: 20vw;
+    width: 22vw;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
     & span {
       display: block;
-      font-size: core.$icon-size-nottap;
     }
   }
 
@@ -129,87 +123,6 @@ body {
 
     // color: var(--timer-color-hover);
     // text-shadow: var(--timer-shadow-hover);
-  }
-
-  .volume-control {
-    margin: 0 auto;
-    appearance: none;
-    width: 18vw;
-    height: 20px;
-    border-radius: 9999px;
-
-    // background: rgba(0, 0, 0, 0.38); /* 面は黒38%前後が目安 */
-    background: transparent;
-    backdrop-filter: blur(6px) saturate(120%);
-
-    // border: 1px solid rgba(245, 245, 245, 0.1);
-    border: 0.8px solid rgb(245 245 245 / 35%);
-
-    // box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-    // inset 0 0 0 1px rgba(245, 245, 245, 0.35);
-    cursor: pointer;
-  }
-
-  /* range は見た目だけ上書き。サイズは変更しない */
-  input[type="range"] {
-    appearance: none;
-    width: 100%;
-    background: transparent;
-    height: 36px; /* タップ領域だけ確保（見た目は変えない） */
-  }
-
-  /* WebKit系: トラック */
-  input[type="range"]::-webkit-slider-runnable-track {
-    height: 20px;
-    border-radius: 999px;
-    background: transparent;
-
-    // border: 1px solid rgba(245, 245, 245, 0.55); /* ← 明るい“輪郭”を付ける */
-    border: 0.8px solid rgb(245 245 245 / 35%);
-
-    // box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35); /* ← 内側に薄い影で立体感 */
-  }
-
-  /* WebKit系: サム */
-  input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    margin-top: -6px; /* トラック中央に合わせる（8px の半分 + 枠分） */
-    border-radius: 50%;
-    background: #f5f5f5;
-
-    // border: 1px solid rgba(0, 0, 0, 0.45); /* ← 濃い“輪郭”で埋もれを防ぐ */
-    border: 0.8px solid rgb(245 245 245 / 35%);
-  }
-
-  /* Firefox */
-  input[type="range"]::-moz-range-track {
-    height: 15px;
-    border-radius: 999px;
-    background: transparent;
-
-    // border: 1px solid rgba(245, 245, 245, 0.55);
-    border: 0.8px solid rgb(245 245 245 / 35%);
-
-    // box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #f5f5f5;
-
-    // border: 1px solid rgba(0, 0, 0, 0.45);
-    border: 0.8px solid rgb(245 245 245 / 35%);
-  }
-
-  /* フォーカス可視（見た目サイズは変えない） */
-  input[type="range"]:focus-visible {
-    outline: 3px solid rgb(245 245 245 / 95%);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 3px rgb(0 0 0 / 35%);
   }
 
   /* スクリーンリーダー専用 */
@@ -328,12 +241,6 @@ body {
     .timer4 {
       font-size: 0.9rem;
     }
-
-    .volume-control {
-      width: 12dvw;
-      width: 12svw;
-      height: 16px;
-    }
   }
 }
 
@@ -372,10 +279,6 @@ body {
       width: 100%;
       text-align: center;
     }
-
-    .volume-control {
-      width: 160px;
-    }
   }
 }
 
@@ -395,30 +298,9 @@ body {
       padding: 1vw;
     }
 
+    // ここどうするかな
     .timer4 {
       width: 30vw;
-    }
-
-    .volume-control {
-      appearance: none;
-      width: 20vw;
-      height: 16px;
-      border-radius: 9999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgb(255 255 255 / 16%);
-      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-        inset 0 0 0 1px rgb(255 255 255 / 35%);
-      cursor: pointer;
-    }
-
-    /* WebKit系: トラック */
-    input[type="range"]::-webkit-slider-runnable-track {
-      height: 15px;
-    }
-
-    /* Firefox */
-    input[type="range"]::-moz-range-track {
-      height: 15px;
     }
   }
 }
