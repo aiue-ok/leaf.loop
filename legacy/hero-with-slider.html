@@ -25,8 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <script src="js/timer-base.js" defer></script>
-    <script src="js/hero.js" defer></script>
+    <!-- <script src="js/timer-base.js" defer></script> -->
+    <script src="../legacy/js/timer-with-volume.js" defer></script>
+
+    <!-- <script src="js/hero.js" defer></script> -->
   </head>
   <body class="hero">
     <!-- 動画の背景 -->
@@ -224,6 +226,21 @@
         </a>
       </div>
     </main>
+    <footer>
+      <div class="timer-mini-volume">
+        <h4>各ページのミニタイマー用の音量スライダー</h4>
+        <span class="vol-label">音量：</span>
+        <input
+          type="range"
+          class="volume-control"
+          id="volumeControl"
+          min="0"
+          max="1"
+          step="0.01"
+          value="1"
+        />
+      </div>
+    </footer>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>

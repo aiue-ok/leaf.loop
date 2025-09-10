@@ -112,22 +112,6 @@ presetBtns.forEach((btn) => {
 // 初期表示更新
 updateDisplay();
 
-// ボリュームのツマミの前後で色を塗り分ける
-const inputRange = document.getElementById("volumeControl");
-const activeColor = "rgba(205, 209, 212, 0.8)";
-const inactiveColor = "rgba(238, 244, 240, 0.8)";
-
-inputRange.addEventListener("input", function () {
-  const ratio = ((this.value - this.min) / (this.max - this.min)) * 100;
-  this.style.background = `linear-gradient(90deg, ${activeColor} ${ratio}%, ${inactiveColor} ${ratio}%)`;
-});
-
-const vc = document.querySelector(".volume-control");
-const update = () =>
-  vc.style.setProperty("--volume-fill", vc.value * 100 + "%");
-vc.addEventListener("input", update);
-update();
-
 // ミュートのUI表示（押済み状態）
 const muteBtn = document.getElementById("muteBtn");
 
