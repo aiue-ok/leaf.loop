@@ -1,9 +1,206 @@
-// 1) 要素参照
-const ding = document.getElementById("alarmSound");
-const toast = document.getElementById("toast");
-const liveDone = document.getElementById("finalLive");
+// ===== 要素参照 =====
+const ding = document.getElementById("alarmSound"); // 音
+const toast = document.getElementById("toast"); // トースト
+const liveDone = document.getElementById("finalLive"); // 最終告知 (aria-live)
+const live = document.getElementById("timerLive"); // tick用 (aria-live)
+const disp = document.getElementById("timer"); // h1を表示先に固定
 
-// 2) デバッグしやすいよう “名前付きで” window に公開
+// ===== デバッグUIの表示（?debug=1 で表示）=====
+if (new URLSearchParams(location.search).get("debug") === "1") {
+  document
+    .querySelector(".notify-controls")
+    ?.style.setProperty("display", "flex");
+}
+
+// ===== タイマー状態 =====
+let totalSeconds = 180;
+let timerId = null;
+
+// ===== 表示更新 =====
+function updateDisplay() {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  if (disp)
+    disp.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(
+      2,
+      "0"
+    )}`;
+}
+
+// SR 補助（同文抑止対策）
+function say(msg, node = live) {
+  if (!node) return;
+  node.textContent = "";
+  setTimeout(() => (node.textContent = msg), 20);
+}
+
+// ===== 交通機関ボタン（状態表示）=====
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function setTransportState(state) {
+  [startBtn, stopBtn, resetBtn].forEach((b) =>
+    b?.classList.remove("is-active")
+  );
+  if (state === "start") startBtn?.classList.add("is-active");
+  if (state === "stop") stopBtn?.classList.add("is-active");
+}
+
+// ===== オプション（なければ既定でON扱い）=====
+const optSound = document.getElementById("optSound");
+const optVibrate = document.getElementById("optVibrate");
+const optToast = document.getElementById("optToast");
+const isChecked = (el, def = true) => (el ? !!el.checked : def);
+
+// ===== iOS系：初回タップで音を“解錠” =====
+let audioUnlocked = false;
+function unlockAudioOnce() {
+  if (audioUnlocked || !ding) return;
+  const v = ding.volume;
+  ding.volume = 0;
+  ding
+    .play()
+    .then(() => {
+      ding.pause();
+      ding.currentTime = 0;
+      ding.volume = v;
+      audioUnlocked = true;
+      document.removeEventListener("pointerdown", unlockAudioOnce);
+    })
+    .catch(() => {
+      /* ユーザーのテストで解錠可 */
+    });
+}
+document.addEventListener("pointerdown", unlockAudioOnce);
+
+// ===== 通知系 =====
+function playDing() {
+  if (!ding) return;
+  if (!isChecked(optSound, true)) return;
+  ding.currentTime = 0;
+  ding.play().catch(() => {
+    /* ブラウザが拒否した場合は無視 */
+  });
+}
+function vibratePattern() {
+  if (!isChecked(optVibrate, true)) return;
+  if ("vibrate" in navigator) navigator.vibrate([120, 80, 120]);
+}
+function showToast(msg) {
+  if (!isChecked(optToast, true) || !toast) return;
+  toast.textContent = msg;
+  toast.hidden = false;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 4000);
+  setTimeout(() => (toast.hidden = true), 4500);
+}
+function announceSR(msg) {
+  say(msg, liveDone);
+}
+
+// ===== タイマー本体 =====
+function tickOnce() {
+  updateDisplay();
+
+  // 節目アナウンス（毎秒は避ける）
+  if (totalSeconds === 180) say("3分に設定");
+  if (totalSeconds === 60) say("残り1分");
+  if (totalSeconds <= 10 && totalSeconds > 0) say(`残り ${totalSeconds} 秒`);
+
+  if (totalSeconds <= 0) {
+    onTimerDone();
+    timerId = null;
+    setTransportState("stop");
+    return;
+  }
+  totalSeconds--;
+  timerId = setTimeout(tickOnce, 1000);
+}
+
+function onTimerDone() {
+  const msg = "お湯の準備ができました";
+  playDing();
+  vibratePattern();
+  showToast(msg);
+  announceSR(msg);
+}
+
+// ===== ボタン動作 =====
+startBtn?.addEventListener("click", () => {
+  if (!timerId) {
+    setTransportState("start");
+    tickOnce();
+  }
+});
+stopBtn?.addEventListener("click", () => {
+  if (timerId) {
+    clearTimeout(timerId);
+    timerId = null;
+  }
+  setTransportState("stop");
+});
+resetBtn?.addEventListener("click", () => {
+  if (timerId) {
+    clearTimeout(timerId);
+    timerId = null;
+  }
+  totalSeconds = 180; // 初期値
+  updateDisplay();
+  setTransportState(); // idle
+});
+
+// ===== プリセット（分） =====
+const presetBtns = Array.from(document.querySelectorAll(".setTimeBtn"));
+presetBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    presetBtns.forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+
+    const minutes = parseInt(btn.getAttribute("data-minutes") || "3", 10);
+    totalSeconds = minutes * 60;
+    if (timerId) {
+      clearTimeout(timerId);
+      timerId = null;
+    }
+    updateDisplay();
+    say(`${minutes}分に設定`);
+    setTransportState(); // idle
+  });
+});
+
+// ===== Mute ボタン =====
+const muteBtn = document.getElementById("muteBtn");
+function syncMuteUI() {
+  if (!muteBtn || !ding) return;
+  const isMuted = !!ding.muted;
+  muteBtn.classList.toggle("is-muted", isMuted);
+  muteBtn.classList.toggle("is-active", isMuted);
+  muteBtn.querySelector(".material-symbols-outlined").textContent = isMuted
+    ? "volume_off"
+    : "volume_up";
+}
+muteBtn?.addEventListener("click", () => {
+  if (!ding) return;
+  ding.muted = !ding.muted;
+  syncMuteUI();
+});
+
+// ===== テストボタン（任意）=====
+function testNotify() {
+  playDing();
+  vibratePattern();
+  showToast("お湯の準備ができました（テスト）");
+  announceSR("お湯の準備ができました（テスト）");
+}
+document.getElementById("testNotify")?.addEventListener("click", testNotify);
+
+// 初期化
+if (ding) ding.volume = 1; // スライダー撤去につき固定
+updateDisplay();
+syncMuteUI();
+
+// ===== デバッグ露出（開発時の窓口）=====
 window.notify = {
   ding,
   toast,
@@ -15,225 +212,3 @@ window.notify = {
   onTimerDone,
   test: testNotify,
 };
-
-if (new URLSearchParams(location.search).get("debug") === "1") {
-  document
-    .querySelector(".notify-controls")
-    ?.style.setProperty("display", "flex");
-}
-
-let totalSeconds = 180;
-let timerId = null;
-const timerEl = document.getElementById("timer");
-const alarmSound = document.getElementById("alarmSound");
-
-function updateDisplay() {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  timerEl.textContent = `${String(minutes).padStart(2, "0")}:${String(
-    seconds
-  ).padStart(2, "0")}`;
-}
-
-function countdown() {
-  updateDisplay();
-
-  if (totalSeconds <= 0) {
-    alarmSound.play();
-    return;
-  }
-
-  totalSeconds--;
-  timerId = setTimeout(countdown, 1000);
-}
-
-const startBtn = document.getElementById("startBtn");
-const stopBtn = document.getElementById("stopBtn");
-const resetBtn = document.getElementById("resetBtn");
-
-function setTransportState(state) {
-  // 'start' | 'stop' | 'idle'
-  [startBtn, stopBtn, resetBtn].forEach((b) => b.classList.remove("is-active"));
-  if (state === "start") startBtn.classList.add("is-active");
-  if (state === "stop") stopBtn.classList.add("is-active");
-  // reset は視覚的に“点灯なし”でも良い
-}
-
-startBtn.addEventListener("click", () => {
-  if (!timerId) {
-    countdown();
-  }
-});
-
-stopBtn.addEventListener("click", () => {
-  if (timerId) {
-    clearTimeout(timerId);
-    timerId = null;
-  }
-});
-
-resetBtn.addEventListener("click", () => {
-  // タイマーを止める
-  if (timerId) {
-    clearTimeout(timerId);
-    timerId = null;
-  }
-
-  // 初期時間（例：3分）に戻す
-  totalSeconds = 180; // ←ここを変更すれば初期値を変えられます
-  updateDisplay();
-});
-
-const presetBtns = Array.from(document.querySelectorAll(".setTimeBtn"));
-presetBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    presetBtns.forEach((b) => b.classList.remove("is-active"));
-    btn.classList.add("is-active");
-
-    // 初期時間設定ボタン処理
-    document.querySelectorAll(".setTimeBtn").forEach((button) => {
-      button.addEventListener("click", () => {
-        const minutes = parseInt(button.getAttribute("data-minutes"));
-        totalSeconds = minutes * 60;
-        updateDisplay();
-
-        // タイマーが動いていたら止める
-        if (timerId) {
-          clearTimeout(timerId);
-          timerId = null;
-        }
-      });
-    });
-    // 既存のロジック：ここで開始時間などを設定
-    // setPresetMinutes(+btn.dataset.minutes);
-  });
-});
-
-// 初期表示更新
-updateDisplay();
-
-// ミュートのUI表示（押済み状態）
-const muteBtn = document.getElementById("muteBtn");
-
-function syncMuteUI() {
-  const isMuted = !!alarmSound.muted;
-  muteBtn.classList.toggle("is-muted", isMuted); // 見た目用
-  muteBtn.classList.toggle("is-active", isMuted); // 汎用の“選択中”クラス
-  muteBtn.setAttribute("aria-pressed", isMuted ? "true" : "false");
-  muteBtn.querySelector(".material-symbols-outlined").textContent = isMuted
-    ? "volume_off"
-    : "volume_up";
-}
-muteBtn.addEventListener("click", () => {
-  alarmSound.muted = !alarmSound.muted;
-  syncMuteUI();
-});
-syncMuteUI();
-
-const live = document.getElementById("timerLive");
-const disp = document.getElementById("timerDisplay");
-
-function say(msg) {
-  // 一部のSRは同一文だと読まないので微更新
-  live.textContent = "";
-  setTimeout(() => (live.textContent = msg), 20);
-}
-
-// 例：節目のみ告知（毎秒はNG）
-function onTick(totalSec) {
-  const m = Math.floor(totalSec / 60);
-  const s = totalSec % 60;
-  disp.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(
-    2,
-    "0"
-  )}`;
-
-  if (totalSec === 180) say("3分に設定");
-  if (totalSec === 60) say("残り1分");
-  if (totalSec <= 10 && totalSec > 0) say(`残り ${totalSec} 秒`);
-  if (totalSec === 0) say("お湯の準備ができました");
-}
-
-const vol = document.getElementById("vol");
-vol.addEventListener("input", (e) => {
-  const v = Number(e.target.value);
-  vol.setAttribute("aria-valuetext", v === 0 ? "ミュート" : `${v}パーセント`);
-});
-
-const optSound = document.getElementById("optSound");
-const optVibrate = document.getElementById("optVibrate");
-const optToast = document.getElementById("optToast");
-
-let audioUnlocked = false;
-function unlockAudioOnce() {
-  if (audioUnlocked) return;
-  // 一瞬再生→即停止で解錠（音が出ないよう小さい無音区間でOK）
-  const vol = ding.volume;
-  ding.volume = 0;
-  ding
-    .play()
-    .then(() => {
-      ding.pause();
-      ding.currentTime = 0;
-      ding.volume = vol;
-      audioUnlocked = true;
-      document.removeEventListener("pointerdown", unlockAudioOnce);
-    })
-    .catch(() => {
-      // 失敗してもユーザーのテストボタンで解錠できる
-    });
-}
-document.addEventListener("pointerdown", unlockAudioOnce);
-
-function playDing() {
-  if (!optSound.checked) return;
-  ding.currentTime = 0;
-  ding.play().catch(() => {
-    /* ブラウザが拒否したら無視 */
-  });
-}
-
-function vibratePattern() {
-  if (!optVibrate.checked) return;
-  if ("vibrate" in navigator) {
-    // 120ms振動→80ms休止→120ms振動
-    navigator.vibrate([120, 80, 120]);
-  }
-  // iOS Safari は未対応：自然に無視される
-}
-
-function showToast(msg) {
-  if (!optToast.checked) return;
-  toast.textContent = msg;
-  toast.hidden = false;
-  toast.classList.add("show");
-  // 4秒後に消す
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 4000);
-  setTimeout(() => {
-    toast.hidden = true;
-  }, 4500);
-}
-
-function announceSR(msg) {
-  finalLive.textContent = ""; // 同文でも読まれるようリセット
-  setTimeout(() => (finalLive.textContent = msg), 20);
-}
-
-// テストボタン
-document.getElementById("testNotify").addEventListener("click", () => {
-  playDing();
-  vibratePattern();
-  showToast("お湯の準備ができました（テスト）");
-  announceSR("お湯の準備ができました（テスト）");
-});
-
-// ★ タイマー終了時にこれを呼ぶ
-function onTimerDone() {
-  const msg = "お湯の準備ができました";
-  playDing();
-  vibratePattern();
-  showToast(msg);
-  announceSR(msg);
-}
