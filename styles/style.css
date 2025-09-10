@@ -1377,9 +1377,6 @@ span.help-icon-size {
     flex: 0 0 auto;
     position: unset;
   }
-  body.hero .hero-link p {
-    font-size: small;
-  }
 }
 :root {
   --menu-w: min(360px, 86vw);
@@ -1688,7 +1685,8 @@ body.hero .text {
   justify-content: center;
   align-items: center;
 }
-body.hero .hero-link {
+body.hero .bg-gallery .hero-link,
+body.hero .bg-universe .hero-link {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
 }
 body.hero .hover-area {
@@ -1927,6 +1925,7 @@ body.hero .tea {
   body.hero .bg-gallery p {
     background-color: transparent;
     text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
+    font-size: 16px;
   }
   body.hero .bg-universe p {
     background: transparent;

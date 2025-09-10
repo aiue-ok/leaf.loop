@@ -177,7 +177,8 @@ body.hero {
     align-items: center;
   }
 
-  .hero-link {
+  .bg-gallery .hero-link,
+  .bg-universe .hero-link {
     font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
 
@@ -501,6 +502,7 @@ body.hero {
     .bg-gallery p {
       background-color: transparent;
       text-shadow: core.$hero-shadow 1px 1px 1px;
+      font-size: 16px;
     }
 
     .bg-universe p {
