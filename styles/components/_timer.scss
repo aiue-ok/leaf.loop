@@ -109,16 +109,10 @@ body {
   // ボリューム調整部分
   .timer4 {
     grid-area: volume;
-    width: 20vw;
+    width: 22vw;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
     & span {
       display: block;
-      font-size: core.$icon-size-nottap;
     }
   }
 

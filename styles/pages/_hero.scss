@@ -24,12 +24,6 @@ body.hero {
     position: absolute;
     inset: 0;
     z-index: 0;
-    > video,
-    > img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
     &::before {
       content: "";
       position: absolute;
@@ -43,6 +37,12 @@ body.hero {
         ),
         rgba(0, 0, 0, var(--hero-veil, 0.28));
     }
+    > video,
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   /* コンテンツ/UIは前面へ */
   .hero .container,
@@ -50,10 +50,11 @@ body.hero {
     position: relative;
     z-index: 2;
   }
+
   main {
     width: 100%;
     height: auto;
-    // background: rgb(161 161 161 / 0.4);
+    background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
 
@@ -266,6 +267,13 @@ body.hero {
   /* お茶でも淹れましょうか */
   .tea {
     font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+}
+
+// 📍 幅769px以上の横向き時だけ
+@media screen and (width >= 769px) and (orientation: landscape) {
+  body.hero {
+    overflow: hidden;
   }
 }
 
