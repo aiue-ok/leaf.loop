@@ -167,16 +167,6 @@ body.hero {
     grid-area: item5;
   }
 
-  /* テキスト共通 */
-  .text {
-    display: flex;
-    flex-direction: column;
-
-    /* 全体に高さを与える */
-    justify-content: center;
-    align-items: center;
-  }
-
   .bg-gallery .hero-link,
   .bg-universe .hero-link {
     font-size: clamp(1rem, 1.6vw, 1.2rem);
@@ -426,7 +416,7 @@ body.hero {
     }
 
     .bg-universe p {
-      background: transparent;
+      // background: transparent;
     }
 
     .hover-link {

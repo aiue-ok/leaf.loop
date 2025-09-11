@@ -228,6 +228,7 @@ input {
   margin: 0;
 }
 
+/* テキスト共通 */
 /* タイマー操作部分のgoogleアイコン */
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
@@ -1561,7 +1562,6 @@ body.hero {
   /* メインコンテンツ */
   /* タイルの中身の潰れ対策（共通） */
   /* area割当（既存の .itemX を活用） */
-  /* テキスト共通 */
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
   /* すぅ〜 */
   /* お茶でも淹れましょうか */
@@ -1677,13 +1677,6 @@ body.hero .item4 {
 }
 body.hero .item5 {
   grid-area: item5;
-}
-body.hero .text {
-  display: flex;
-  flex-direction: column;
-  /* 全体に高さを与える */
-  justify-content: center;
-  align-items: center;
 }
 body.hero .bg-gallery .hero-link,
 body.hero .bg-universe .hero-link {
@@ -1866,9 +1859,6 @@ body.hero .tea {
   body.hero .bg-gallery p {
     background-color: transparent;
     text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
-  }
-  body.hero .bg-universe p {
-    background: transparent;
   }
   body.hero .hover-link {
     display: flex;
