@@ -141,29 +141,6 @@ input[type="checkbox"] {
   height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
 }
 
-// .notify-controls {
-//   display: flex;
-//   gap: 0.75rem;
-//   flex-wrap: wrap;
-//   align-items: center;
-// }
-
-// .notify-controls label {
-//   /* クリックしやすさUP（見た目は変えない） */
-//   display: inline-flex;
-//   align-items: center;
-//   gap: 0.45rem;
-//   cursor: pointer;
-//   min-height: 44px; /* タップ領域だけ確保（横幅は伸ばさない） */
-// }
-
-/* フォーカス可視（サイズ不変更） */
-input[type="checkbox"]:focus-visible {
-  outline: 3px solid rgb(255 255 255 / 95%);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgb(0 0 0 / 35%);
-}
-
 /* 既定は非表示 */
 .notify-controls[hidden] {
   display: none;
@@ -173,41 +150,37 @@ input[type="checkbox"]:focus-visible {
 .notify-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 12px;
   position: relative;
   z-index: 2; /* オーバーレイより前 */
-  padding: 8px;
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
 }
 
-.visually-hidden {
-  font-size: 14px;
-}
-
 /* 共通チップ */
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  // min-height: 44px;
-  // padding: 8px 14px;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
   border-radius: 9999px;
-  // border: 1px solid var(--chip-bd);
-  // background: var(--chip-bg);
+  border: 1px solid var(--chip-bd);
+  background: var(--chip-bg);
   color: #fff;
   text-decoration: none;
   line-height: 1.2;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* 入力本体は見せないがフォーカスは可視化 */
 .chip > input {
-  // position: absolute;
-  // inset: 0;
-  // opacity: 1;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
   pointer-events: auto; /* ラベル全体クリック可 */
 }
 .chip:focus-within {
@@ -238,8 +211,4 @@ input[type="checkbox"]:focus-visible {
 /* アイコンはお好みで小さめに */
 .chip__icon {
   font-size: 20px;
-}
-
-span.chip__text {
-  display: none;
 }
