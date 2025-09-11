@@ -454,6 +454,7 @@ body.hero {
         "item1 item2" 1fr
         "item1 item3" 1fr
         "item1 item5" 1fr;
+      gap: clamp(12px, 2svh, 24px);
       min-height: 100svh;
       min-width: 100svh;
       overflow: clip;
@@ -474,7 +475,6 @@ body.hero {
     .item3,
     .item5 {
       min-height: auto;
-      border: 2px double pink;
     }
 
     .item4 {
@@ -482,7 +482,6 @@ body.hero {
       padding-top: 1rem;
       width: 100%;
       height: 40vh;
-      border: 2px solid yellowgreen;
     }
 
     /* 背景動画の下敷き設定はそのままOK */
