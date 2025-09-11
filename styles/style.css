@@ -1671,16 +1671,13 @@ body.hero .item3 {
   position: relative;
   min-height: 100dvh;
   min-height: 100svh;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
 }
 body.hero .item4 {
   grid-area: item4;
 }
 body.hero .item5 {
   grid-area: item5;
-}
-body.hero .bg-gallery .hero-link,
-body.hero .bg-universe .hero-link {
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
 }
 body.hero .hover-area {
   position: relative;

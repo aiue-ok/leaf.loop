@@ -157,6 +157,7 @@ body.hero {
     position: relative;
     min-height: 100dvh;
     min-height: 100svh;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
 
   .item4 {
@@ -165,11 +166,6 @@ body.hero {
 
   .item5 {
     grid-area: item5;
-  }
-
-  .bg-gallery .hero-link,
-  .bg-universe .hero-link {
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
 
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
