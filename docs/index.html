@@ -120,59 +120,65 @@
           </div>
           <div class="timer4">
             <!-- 通知オプション -->
-            <fieldset class="notify-controls" aria-describedby="notifyHint">
+            <fieldset
+              class="notify-controls"
+              aria-describedby="notifyHint"
+              hidden
+            >
               <legend class="visually-hidden">通知の方法</legend>
-              <p id="notifyHint" class="visually-hidden">
+              <p id="notifyHint" class="visually-hidden explanation">
                 音・バイブ・画面表示のオン/オフを切り替えます
               </p>
 
-              <!-- 音 -->
-              <label class="chip">
-                <input id="optSound" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">音で知らせる</span>
-              </label>
-
-              <!-- バイブ -->
-              <label class="chip">
-                <input id="optVibrate" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">バイブで知らせる</span>
-              </label>
-
-              <!-- トースト -->
-              <label class="chip">
-                <input id="optToast" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">画面に表示する</span>
-              </label>
-
+              <div class="label-box">
+                <!-- 音 -->
+                <label class="chip">
+                  <input id="optSound" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                  >
+                    sound_sampler
+                  </span>
+                  <span class="chip__text">音</span>
+                </label>
+                <!-- バイブ -->
+                <label class="chip">
+                  <input id="optVibrate" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                    >mobile_vibrate</span
+                  >
+                  <span class="chip__text">ふるえ</span>
+                </label>
+                <!-- トースト -->
+                <label class="chip">
+                  <input id="optToast" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                    >toast</span
+                  >
+                  <span class="chip__text">画面表示</span>
+                </label>
+              </div>
               <!-- テスト -->
-              <button
-                id="testNotify"
-                type="button"
-                class="chip chip--action"
-                aria-label="通知テスト"
-              >
-                通知テスト
-              </button>
+              <div class="test-button-box">
+                <button
+                  id="testNotify"
+                  type="button"
+                  class="chip chip--action"
+                  aria-label="通知テスト"
+                >
+                  通知テスト
+                </button>
+              </div>
             </fieldset>
           </div>
           <!-- 画面表示（トースト） -->
           <div id="toast" class="toast" role="status" aria-live="polite" hidden>
-            お湯の準備ができました
+            お茶の準備ができました
           </div>
 
           <!-- 読み上げ（最終告知は assertive） -->
@@ -188,7 +194,7 @@
       <div class="item item2 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-gallery">
           <a href="#" class="hover-link">
-            <div class="text hover-text hero-link">
+            <div class="hover-text">
               <p>世界のお茶を少しだけ</p>
             </div>
           </a>
@@ -197,30 +203,32 @@
       <div class="item item3 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-universe">
           <a href="#" class="hover-link">
-            <div class="text hover-text hero-link">
+            <div class="hover-text">
               <p class="contrast-underline">遠くのことを少しだけ</p>
             </div>
           </a>
         </div>
       </div>
       <div class="item item4">
-        <div class="text zen-kaku-gothic-new-regular">
-          <div class="suu">すぅ〜</div>
-          <div class="tea contrast-underline">お茶でも淹れましょうか</div>
+        <div class="text">
+          <div class="suu zen-maru-gothic-regular">すぅ〜</div>
+          <div class="tea contrast-underline zen-kaku-gothic-new-regular">
+            お茶でも淹れましょうか
+          </div>
         </div>
       </div>
 
       <!-- heroのみ表示 -->
       <div class="wrapper info item5">
         <!-- アイテム：about.html -->
-        <a href="#" class="a-about">
+        <a href="#" class="a-about zen-kaku-gothic-new-regular">
           <div class="sideitem item-about">
             <span class="leaf-text" aria-hidden="true">🌱</span>
             <p>このサイトについて</p>
           </div></a
         >
         <!-- ヘルプ -->
-        <a href="#" class="a-help"
+        <a href="#" class="a-help zen-kaku-gothic-new-regular"
           ><div class="sideitem item-help">
             <span
               class="material-symbols-outlined help-icon-size"

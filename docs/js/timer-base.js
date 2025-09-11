@@ -119,7 +119,7 @@ function tickOnce() {
 }
 
 function onTimerDone() {
-  const msg = "お湯の準備ができました";
+  const msg = "お茶の準備ができました";
   playDing();
   vibratePattern();
   showToast(msg);
@@ -190,8 +190,8 @@ muteBtn?.addEventListener("click", () => {
 function testNotify() {
   playDing();
   vibratePattern();
-  showToast("お湯の準備ができました（テスト）");
-  announceSR("お湯の準備ができました（テスト）");
+  showToast("お茶の準備ができました（テスト）");
+  announceSR("お茶の準備ができました（テスト）");
 }
 document.getElementById("testNotify")?.addEventListener("click", testNotify);
 
