@@ -264,7 +264,12 @@ input[type=checkbox] {
   display: none;
 }
 
-/* デバッグ時だけ出したいなら：html[data-debug="1"] .notify-controls { display:flex } */
+/* デバッグ時だけ出したいなら：html[data-debug="1"]
+.notify-controls { display:flex } */
+：html[data-debug="1"] .notify-controls {
+  display: flex;
+}
+
 .notify-controls {
   display: flex;
   flex-wrap: wrap;
@@ -288,10 +293,6 @@ input[type=checkbox] {
   justify-content: stretch;
   align-items: center;
   gap: 1rem;
-}
-
-.test-button-box button {
-  background-color: rgba(173, 255, 47, 0.5);
 }
 
 /* 共通チップ */
