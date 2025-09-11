@@ -122,52 +122,54 @@
             <!-- 通知オプション -->
             <fieldset class="notify-controls" aria-describedby="notifyHint">
               <legend class="visually-hidden">通知の方法</legend>
-              <p id="notifyHint" class="visually-hidden">
+              <p id="notifyHint" class="visually-hidden explanation">
                 音・バイブ・画面表示のオン/オフを切り替えます
               </p>
 
-              <!-- 音 -->
-              <label class="chip">
-                <input id="optSound" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">音で知らせる</span>
-              </label>
-
-              <!-- バイブ -->
-              <label class="chip">
-                <input id="optVibrate" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">バイブで知らせる</span>
-              </label>
-
-              <!-- トースト -->
-              <label class="chip">
-                <input id="optToast" type="checkbox" checked />
-                <span
-                  class="chip__icon material-symbols-outlined"
-                  aria-hidden="true"
-                  >done</span
-                >
-                <span class="chip__text">画面に表示する</span>
-              </label>
-
+              <div class="label-box">
+                <!-- 音 -->
+                <label class="chip">
+                  <input id="optSound" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                  >
+                    sound_sampler
+                  </span>
+                  <span class="chip__text">音</span>
+                </label>
+                <!-- バイブ -->
+                <label class="chip">
+                  <input id="optVibrate" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                    >mobile_vibrate</span
+                  >
+                  <span class="chip__text">ふるえ</span>
+                </label>
+                <!-- トースト -->
+                <label class="chip">
+                  <input id="optToast" type="checkbox" checked />
+                  <span
+                    class="chip__icon material-symbols-outlined"
+                    aria-hidden="true"
+                    >toast</span
+                  >
+                  <span class="chip__text">画面表示</span>
+                </label>
+              </div>
               <!-- テスト -->
-              <button
-                id="testNotify"
-                type="button"
-                class="chip chip--action"
-                aria-label="通知テスト"
-              >
-                通知テスト
-              </button>
+              <div class="test-button-box">
+                <button
+                  id="testNotify"
+                  type="button"
+                  class="chip chip--action"
+                  aria-label="通知テスト"
+                >
+                  通知テスト
+                </button>
+              </div>
             </fieldset>
           </div>
           <!-- 画面表示（トースト） -->

@@ -151,6 +151,7 @@ input[type="checkbox"] {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
   position: relative;
   z-index: 2; /* オーバーレイより前 */
   padding: 12px;
@@ -158,6 +159,21 @@ input[type="checkbox"] {
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
+}
+
+.explanation p {
+  width: 100%;
+}
+
+.label-box {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1rem;
+}
+
+.test-button-box button {
+  background-color: rgba(173 255 47 / 0.5);
 }
 
 /* 共通チップ */
@@ -211,4 +227,20 @@ input[type="checkbox"] {
 /* アイコンはお好みで小さめに */
 .chip__icon {
   font-size: 20px;
+}
+.timer4 span.chip__text {
+  display: none;
+}
+
+@media screen and (orientation: portrait) {
+  .notify-controls {
+    margin: 24px;
+  }
+  .timer4 span.chip__text {
+    display: none;
+  }
+  .test-button-box {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
