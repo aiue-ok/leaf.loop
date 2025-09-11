@@ -11,21 +11,24 @@
   /* ベース文字 */
   // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
   // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
-  --fs: clamp(16px, 1.111vw, 32px);
+  & {
+    --fs: clamp(16px, 1.111vw, 32px);
 
-  /* 余白（例：内側パディング 16→32） */
-  --pad: clamp(16px, 1.111vw, 32px);
+    /* 余白（例：内側パディング 16→32） */
+    --pad: clamp(16px, 1.111vw, 32px);
 
-  /* 行間なども同様に */
-  --gap: clamp(8px, 0.7vw, 16px);
-  --hero-veil: 0.4;
-  --yanagi-alpha: 0.18;
+    /* 行間なども同様に */
+    --gap: clamp(8px, 0.7vw, 16px);
+    --hero-veil: 0.4;
 
-  // notify-controls “プリセット風チップUI”
-  --chip-bg: rgba(255, 255, 255, 0.08);
-  --chip-bg-active: rgba(255, 255, 255, 0.18);
-  --chip-bd: rgba(255, 255, 255, 0.55);
-  --chip-bd-active: rgba(255, 255, 255, 0.85);
+    --yanagi-alpha: 0.18;
+
+    // notify-controls “プリセット風チップUI”
+    --chip-bg: rgba(255, 255, 255, 0.08);
+    --chip-bg-active: rgba(255, 255, 255, 0.18);
+    --chip-bd: rgba(255, 255, 255, 0.55);
+    --chip-bd-active: rgba(255, 255, 255, 0.85);
+  }
 }
 
 $main-color: #f5f5f5;

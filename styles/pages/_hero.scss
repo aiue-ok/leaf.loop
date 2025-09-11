@@ -290,6 +290,7 @@ body.hero {
       inset: 0; /* 画面いっぱい */
       z-index: 0; /* コンテンツより背面、でも負数は使わない */
       pointer-events: none; /* タップを遮らない */
+
       &::before {
         content: "";
         position: absolute;
@@ -445,7 +446,11 @@ body.hero {
     // 📍📍📍 幅768px（スマホ横向き）以下
     .container {
       height: 100svh;
-      grid-template: "item1 item2" 1fr "item1 item3" 1fr "item1 item4" 2fr / 1.2fr 1fr; /* 左やや広め */
+      grid-template:
+        "item1 item4" 1fr
+        "item1 item2" 1fr
+        "item1 item3" 1fr
+        "item1 item5" 1fr;
       min-height: 100svh;
       min-width: 100svh;
       overflow: clip;
@@ -458,22 +463,23 @@ body.hero {
 
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     .item1 {
-      min-height: 375px;
+      // min-height: 375px;
+      height: auto;
     }
 
     .item2,
-    .item3 {
-      min-height: 20svh;
-
-      // border: 2px double pink;
+    .item3,
+    .item5 {
+      min-height: auto;
+      border: 2px double pink;
     }
 
     .item4 {
-      align-items: start;
+      // align-items: start;
       padding-top: 1rem;
-
-      /* 50vh相当 */
-      // border: 2px solid yellowgreen;
+      width: 100%;
+      height: 40vh;
+      border: 2px solid yellowgreen;
     }
 
     /* 背景動画の下敷き設定はそのままOK */

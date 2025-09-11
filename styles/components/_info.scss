@@ -4,11 +4,7 @@
   position: relative;
   font-size: small;
 }
-
 .sideitem {
-  position: absolute;
-  right: clamp(12px, 3vmin, 28px);
-  bottom: clamp(12px, 3vmin, 28px);
   inline-size: max-content;
   max-inline-size: min(70vw, 420px);
   padding: 0.6em 1.1em;
@@ -22,14 +18,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  z-index: 3;
-}
-
-.item-about {
-  position: absolute;
-  right: clamp(12px, 3vmin, 28px);
-  bottom: clamp(72px, 2vmin, 100px);
-  z-index: 3;
+  z-index: core.$z-sideitem;
+  border: core.$test1 1px solid;
 }
 
 /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
@@ -70,14 +60,69 @@
   cursor: pointer;
 }
 
-// .sideitem::before {
-//   content: "↗";
-//   opacity: 1;
-// }
+body {
+  // デスクトップと横向きの時
+  // position:absoluteで右下位置固定
+  @media screen and (orientation: landscape) {
+    & .wrapper {
+      position: relative;
+      font-size: small;
+    }
+    & .item-help {
+      position: absolute;
+      right: clamp(12px, 3vmin, 28px);
+      bottom: clamp(16px, 3vmin, 28px);
+    }
+    & .item-about {
+      position: absolute;
+      right: clamp(12px, 3vmin, 28px);
+      bottom: clamp(72px, 2vmin, 100px);
+      z-index: core.$z-sideitem;
+    }
+  }
 
-/* アイコンサイズを上書きする */
-span.help-icon-size {
-  font-size: 1rem;
+  // 📍📍📍 幅768px（スマホ横向き）以下
+  // ヘルプの高さに位置を合わせる　平に並べる
+  @media screen and (width <= 768px) and (orientation: landscape) {
+    & .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    & .item-help,
+    .item-about {
+      position: unset;
+    }
+    & .sideitem {
+      flex: auto;
+      z-index: 0;
+    }
+  }
+
+  /* スマホ縦：1列積み */
+  @media screen and (orientation: portrait) {
+    & .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+    & .item-help,
+    .item-about {
+      position: unset;
+    }
+    & .sideitem {
+      flex: auto;
+      margin: 0.8rem auto;
+      z-index: 0;
+    }
+  }
+
+  /* アイコンサイズを上書きする */
+  span.help-icon-size {
+    font-size: 1rem;
+  }
 }
 
 .mini-help {
@@ -130,82 +175,5 @@ span.help-icon-size {
 @media (prefers-reduced-motion: reduce) {
   .mini-help__card {
     transition: none;
-  }
-}
-
-// 📍📍📍 幅768px（スマホ横向き）以下
-@media screen and (width <= 768px) and (orientation: landscape) {
-  body.hero {
-    .item-about {
-      position: absolute;
-      right: clamp(138px, 36vmin, 150px);
-      bottom: clamp(12px, 3vmin, 28px);
-      z-index: 3;
-    }
-  }
-}
-
-/* スマホ縦：1列積み */
-// 幅1024px（スマホたて向き）以下
-@media (width <= 1024px) and (orientation: portrait) {
-  body.hero {
-    .wrapper {
-      display: flex;
-      font-size: small;
-    }
-
-    .sideitem {
-      flex: auto;
-      inline-size: max-content;
-      max-inline-size: min(70vw, 420px);
-      padding: 0.6em 1.1em;
-      border-radius: 999px;
-      backdrop-filter: blur(8px) saturate(140%);
-      background: rgb(0 0 0 / 16%);
-      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-        inset 0 0 0 1px rgb(255 255 255 / 35%);
-      color: #fff;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-      z-index: 3;
-    }
-
-    .item-about {
-      position: absolute;
-      right: clamp(12px, 3vmin, 28px);
-      bottom: clamp(72px, 2vmin, 100px);
-      z-index: 3;
-    }
-
-    /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
-    .wrapper.info a {
-      display: inline-block; /* 中身サイズにフィット（幅は変えない） */
-      text-decoration: none; /* 通常は下線オフ */
-      -webkit-tap-highlight-color: transparent;
-    }
-    .sideitem::before {
-      content: none;
-    }
-  }
-}
-
-@media screen and (height <= 860px) and (orientation: portrait) {
-  body.hero {
-    .wrapper {
-      // position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      font-size: small;
-      padding-bottom: max(12px, env(safe-area-inset-bottom) + 12px);
-    }
-
-    .sideitem {
-      flex: 0 0 auto;
-      position: unset;
-    }
   }
 }
