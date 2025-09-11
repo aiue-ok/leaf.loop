@@ -200,7 +200,12 @@ body.hero {
   }
 
   .bg-universe {
-    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 38, 59, 1) 40%,
+      rgba(15, 26, 43, 0) 100%
+    );
+    // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
   }
 
   .bg-gallery:not(p),
@@ -214,8 +219,8 @@ body.hero {
   }
 
   .bg-gallery p {
-    background-color: #202410;
-    text-shadow: rgb(0 0 0 / 0.25) 1px 1px 3px;
+    background-color: #5d5f5f;
+    text-shadow: core.$hero-shadow 1px 1px 1px;
     border-radius: 0.2em;
     backdrop-filter: blur(8px);
   }
@@ -226,8 +231,6 @@ body.hero {
       rgb(27 38 59 / 1) 40%,
       rgb(27 38 59 / 1) 100%
     );
-
-    // text-shadow: rgb(255 255 255 / 100%) 1px 1px 2px;
   }
 
   .item > .bg-gallery:hover {
@@ -375,9 +378,18 @@ body.hero {
       overflow: hidden;
     }
 
+    // .bg-gallery,
+    // .bg-universe {
+    //   filter: brightness(1);
+    // }
+
     .bg-gallery,
-    .bg-universe {
-      filter: brightness(1);
+    .bg-universe,
+    .bg-gallery .contrast-underline,
+    .bg-universe .contrast-underline {
+      background-color: transparent;
+      background-image: none;
+      filter: unset;
     }
 
     // 背景の帯
@@ -386,7 +398,7 @@ body.hero {
       padding: 0.6em 1em;
       line-height: 1.2;
       white-space: nowrap;
-      text-shadow: core.$hover-shadow;
+      // text-shadow: core.$hover-shadow;
     }
 
     .hover-text::before {
@@ -395,34 +407,34 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgb(10 16 32 / 0),
-        rgb(10 16 32 / 0.32),
-        rgb(10 16 32 / 0)
+        transparent,
+        rgb(88 88 88 / 0.94),
+        rgb(88 88 88 / 0.94),
+        rgb(88 88 88 / 0.94),
+        transparent
       );
       border-radius: 12px;
-
+      // filter: unset;
       /* ほんのりガラス */
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(140px);
       z-index: -1;
     }
 
+    // background: linear-gradient(
+    //   90deg,
+    //   // rgb(10 16 32 / 0),
+    //   rgb(10 16 32 / 0.32),
+    //   rgb(10 16 32 / 0)
+    // );
+
     .bg-gallery p {
       background-color: transparent;
-      text-shadow: core.$hero-shadow 1px 1px 1px;
-    }
-
-    .bg-universe p {
-      // background: transparent;
     }
 
     .hover-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       width: 100%;
       height: 100%; /* ← これが重要！ */
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-      text-decoration: none;
     }
   }
 }
@@ -510,12 +522,13 @@ body.hero {
       inset: -6px -12px;
       background: linear-gradient(
         90deg,
-        rgb(10 16 32 / 0),
-        rgb(10 16 32 / 0.32),
-        rgb(10 16 32 / 0)
+        rgb(93 95 95 / 0),
+        rgb(88 88 88 / 0.94),
+        rgb(88 88 88 / 0.94),
+        rgb(88 88 88 / 0.94),
+        rgb(93 95 95 / 0)
       );
       border-radius: 12px;
-
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
       z-index: -1;
