@@ -3,6 +3,16 @@
   /* まずはビューポート単位のフォールバック変数 */
   --vh: 1svh;
   /* ベース文字 */
+}
+@supports (height: 1dvh) {
+  :root {
+    /* 新しいdvhが使える環境では上書き */
+  }
+  :root :root {
+    --vh: 1dvh;
+  }
+}
+:root {
   --fs: clamp(16px, 1.111vw, 32px);
   /* 余白（例：内側パディング 16→32） */
   --pad: clamp(16px, 1.111vw, 32px);
@@ -14,14 +24,6 @@
   --chip-bg-active: rgba(255, 255, 255, 0.18);
   --chip-bd: rgba(255, 255, 255, 0.55);
   --chip-bd-active: rgba(255, 255, 255, 0.85);
-}
-@supports (height: 1dvh) {
-  :root {
-    /* 新しいdvhが使える環境では上書き */
-  }
-  :root :root {
-    --vh: 1dvh;
-  }
 }
 
 /* フォントサイズは直径に比例 */
@@ -229,6 +231,14 @@ input {
 }
 
 /* テキスト共通 */
+.text {
+  display: flex;
+  flex-direction: column;
+  /* 全体に高さを与える */
+  justify-content: center;
+  align-items: center;
+}
+
 /* タイマー操作部分のgoogleアイコン */
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
@@ -1195,13 +1205,11 @@ body.about span.vol-label {
 }
 .wrapper {
   position: relative;
-  font-size: small;
+  font-size: 1rem;
+  margin: 1rem;
 }
 
 .sideitem {
-  position: absolute;
-  right: clamp(12px, 3vmin, 28px);
-  bottom: clamp(12px, 3vmin, 28px);
   inline-size: max-content;
   max-inline-size: min(70vw, 420px);
   padding: 0.6em 1.1em;
@@ -1215,13 +1223,7 @@ body.about span.vol-label {
   align-items: center;
   gap: 0.5em;
   z-index: 3;
-}
-
-.item-about {
-  position: absolute;
-  right: clamp(12px, 3vmin, 28px);
-  bottom: clamp(72px, 2vmin, 100px);
-  z-index: 3;
+  border: 1px solid red 1px solid;
 }
 
 /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
@@ -1261,8 +1263,60 @@ body.about span.vol-label {
   cursor: pointer;
 }
 
-/* アイコンサイズを上書きする */
-span.help-icon-size {
+body {
+  /* スマホ縦：1列積み */
+  /* アイコンサイズを上書きする */
+}
+@media screen and (orientation: landscape) {
+  body .wrapper {
+    position: relative;
+  }
+  body .item-help {
+    position: absolute;
+    right: clamp(12px, 3vmin, 28px);
+    bottom: clamp(16px, 3vmin, 28px);
+  }
+  body .item-about {
+    position: absolute;
+    right: clamp(12px, 3vmin, 28px);
+    bottom: clamp(72px, 2vmin, 100px);
+    z-index: 3;
+  }
+}
+@media screen and (width <= 768px) and (orientation: landscape) {
+  body .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body .item-help,
+  body .item-about {
+    position: unset;
+  }
+  body .sideitem {
+    flex: auto;
+    z-index: 0;
+  }
+}
+@media screen and (orientation: portrait) {
+  body .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  body .item-help,
+  body .item-about {
+    position: unset;
+  }
+  body .sideitem {
+    flex: auto;
+    margin: 0.8rem auto;
+    z-index: 0;
+  }
+}
+body span.help-icon-size {
   font-size: 1rem;
 }
 
@@ -1315,68 +1369,6 @@ span.help-icon-size {
 @media (prefers-reduced-motion: reduce) {
   .mini-help__card {
     transition: none;
-  }
-}
-@media screen and (width <= 768px) and (orientation: landscape) {
-  body.hero .item-about {
-    position: absolute;
-    right: clamp(138px, 36vmin, 150px);
-    bottom: clamp(12px, 3vmin, 28px);
-    z-index: 3;
-  }
-}
-/* スマホ縦：1列積み */
-@media (width <= 1024px) and (orientation: portrait) {
-  body.hero {
-    /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
-  }
-  body.hero .wrapper {
-    display: flex;
-    font-size: small;
-  }
-  body.hero .sideitem {
-    flex: auto;
-    inline-size: max-content;
-    max-inline-size: min(70vw, 420px);
-    padding: 0.6em 1.1em;
-    border-radius: 999px;
-    backdrop-filter: blur(8px) saturate(140%);
-    background: rgba(0, 0, 0, 0.16);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-    color: #fff;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    z-index: 3;
-  }
-  body.hero .item-about {
-    position: absolute;
-    right: clamp(12px, 3vmin, 28px);
-    bottom: clamp(72px, 2vmin, 100px);
-    z-index: 3;
-  }
-  body.hero .wrapper.info a {
-    display: inline-block; /* 中身サイズにフィット（幅は変えない） */
-    text-decoration: none; /* 通常は下線オフ */
-    -webkit-tap-highlight-color: transparent;
-  }
-  body.hero .sideitem::before {
-    content: none;
-  }
-}
-@media screen and (height <= 860px) and (orientation: portrait) {
-  body.hero .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    font-size: small;
-    padding-bottom: max(12px, env(safe-area-inset-bottom) + 12px);
-  }
-  body.hero .sideitem {
-    flex: 0 0 auto;
-    position: unset;
   }
 }
 :root {
@@ -1700,7 +1692,7 @@ body.hero .bg-gallery {
   filter: brightness(1.1);
 }
 body.hero .bg-universe {
-  background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+  background: linear-gradient(to bottom, rgb(27, 38, 59) 40%, rgba(15, 26, 43, 0) 100%);
 }
 body.hero .bg-gallery:not(p),
 body.hero .bg-universe:not(p) {
@@ -1711,8 +1703,8 @@ body.hero .bg-universe p {
   opacity: 1;
 }
 body.hero .bg-gallery p {
-  background-color: #202410;
-  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
+  background-color: #5d5f5f;
+  text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
   border-radius: 0.2em;
   backdrop-filter: blur(8px);
 }
@@ -1736,11 +1728,11 @@ body.hero .hover-link {
   text-align: center;
 }
 body.hero .suu {
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   padding: 1rem 0;
 }
 body.hero .tea {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 @media screen and (width >= 769px) and (orientation: landscape) {
@@ -1803,16 +1795,19 @@ body.hero .tea {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: "item4" "item1" "item2" "item3" "item5"; /* ヘルプ等 */
-    gap: clamp(12px, 2svh, 24px);
+    gap: 8px;
     min-height: unset; /* ← ここで“固定高さ”はやめる */
   }
   body.hero .item4 {
     grid-area: item4;
-    min-height: clamp(120px, var(--vh) * 25, 320px);
+    min-height: clamp(120px, var(--vh) * 25, 280px);
+  }
+  body.hero .suu {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
   }
   body.hero .item1 {
     grid-area: item1;
-    min-height: clamp(200px, var(--vh) * 40, 560px);
+    min-height: clamp(200px, var(--vh) * 40, 360px);
   }
   body.hero :is(.item2, .item3, .item5) {
     min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
@@ -1833,38 +1828,36 @@ body.hero .tea {
     overflow: hidden;
   }
   body.hero .bg-gallery,
-  body.hero .bg-universe {
-    filter: brightness(1);
+  body.hero .bg-universe,
+  body.hero .bg-gallery .contrast-underline,
+  body.hero .bg-universe .contrast-underline {
+    background-color: transparent;
+    background-image: none;
+    filter: unset;
   }
   body.hero .hover-text {
     position: relative;
     padding: 0.6em 1em;
     line-height: 1.2;
     white-space: nowrap;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
   body.hero .hover-text::before {
     content: "";
     position: absolute;
     inset: -6px -12px;
-    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.32), rgba(10, 16, 32, 0));
+    background: linear-gradient(90deg, transparent, rgba(88, 88, 88, 0.94), rgba(88, 88, 88, 0.94), rgba(88, 88, 88, 0.94), transparent);
     border-radius: 12px;
     /* ほんのりガラス */
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(140px);
     z-index: -1;
   }
   body.hero .bg-gallery p {
     background-color: transparent;
-    text-shadow: 1px 1px 3px #c2c2c2 1px 1px 1px;
   }
   body.hero .hover-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%; /* ← これが重要！ */
     padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-    text-decoration: none;
   }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
@@ -1875,7 +1868,7 @@ body.hero .tea {
   }
   body.hero .container {
     height: 100svh;
-    grid-template: "item1 item2" 1fr "item1 item3" 1fr "item1 item4" 2fr/1.2fr 1fr; /* 左やや広め */
+    grid-template: "item1 item4" 1fr "item1 item2" 1fr "item1 item3" 1fr "item1 item5" 1fr;
     min-height: 100svh;
     min-width: 100svh;
     overflow: clip;
@@ -1885,16 +1878,19 @@ body.hero .tea {
     padding: 0 12px;
   }
   body.hero .item1 {
-    min-height: 375px;
+    height: auto;
   }
   body.hero .item2,
-  body.hero .item3 {
-    min-height: 20svh;
+  body.hero .item3,
+  body.hero .item5 {
+    min-height: auto;
+    border: 2px double pink;
   }
   body.hero .item4 {
-    align-items: start;
     padding-top: 1rem;
-    /* 50vh相当 */
+    width: 100%;
+    height: 40vh;
+    border: 2px solid yellowgreen;
   }
   body.hero #background-video {
     position: fixed;
@@ -1928,7 +1924,7 @@ body.hero .tea {
     content: "";
     position: absolute;
     inset: -6px -12px;
-    background: linear-gradient(90deg, rgba(10, 16, 32, 0), rgba(10, 16, 32, 0.32), rgba(10, 16, 32, 0));
+    background: linear-gradient(90deg, rgba(93, 95, 95, 0), rgba(88, 88, 88, 0.94), rgba(88, 88, 88, 0.94), rgba(88, 88, 88, 0.94), rgba(93, 95, 95, 0));
     border-radius: 12px;
     /* ほんのりガラス */
     backdrop-filter: blur(4px);

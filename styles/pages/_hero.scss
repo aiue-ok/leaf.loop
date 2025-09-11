@@ -257,13 +257,13 @@ body.hero {
 
   /* すぅ〜 */
   .suu {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     padding: 1rem 0;
   }
 
   /* お茶でも淹れましょうか */
   .tea {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: clamp(1rem, 2vw, 1.5rem);
   }
 }
 
@@ -343,18 +343,21 @@ body.hero {
         "item2" /* ギャラリー導線 */
         "item3" /* ユニバース導線 */
         "item5"; /* ヘルプ等 */
-      gap: clamp(12px, 2svh, 24px);
+      gap: 8px;
       min-height: unset; /* ← ここで“固定高さ”はやめる */
     }
     // す〜
     .item4 {
       grid-area: item4;
-      min-height: clamp(120px, calc(var(--vh) * 25), 320px);
+      min-height: clamp(120px, calc(var(--vh) * 25), 280px);
+    }
+    .suu {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
     }
     // タイマー
     .item1 {
       grid-area: item1;
-      min-height: clamp(200px, calc(var(--vh) * 40), 560px);
+      min-height: clamp(200px, calc(var(--vh) * 40), 360px);
     }
     /* 共通（高さを中身に任せる等） */
     :is(.item2, .item3, .item5) {

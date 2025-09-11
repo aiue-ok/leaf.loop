@@ -2,7 +2,8 @@
 
 .wrapper {
   position: relative;
-  font-size: small;
+  font-size: 1rem;
+  margin: 1rem;
 }
 .sideitem {
   inline-size: max-content;
@@ -66,7 +67,6 @@ body {
   @media screen and (orientation: landscape) {
     & .wrapper {
       position: relative;
-      font-size: small;
     }
     & .item-help {
       position: absolute;
