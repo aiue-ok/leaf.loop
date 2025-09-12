@@ -31,8 +31,12 @@
   <body class="hero">
     <!-- 動画の背景 -->
     <div class="hero-media" aria-hidden="true">
-      <!-- 非フォーカス（装飾だから） -->
+      <!-- 非フォーカス（装飾のため） -->
       <img class="hero-poster" src="assets/jpg/hero-bg.jpg" alt="" />
+      <!-- autoplay：ページが読み込まれた時に自動で再生 -->
+      <!-- muted：音声をミュートに設定 -->
+      <!-- loop：動画を繰り返し再生 -->
+      <!-- playsinline:iOSで全画面化を防ぐ -->
       <video
         class="hero-video"
         autoplay
@@ -48,17 +52,16 @@
           type="video/mp4"
         />
         お使いのブラウザは動画タグに対応していません。
-        <!-- autoplay：ページが読み込まれた時に自動で再生 -->
-        <!-- muted：音声をミュートに設定 -->
-        <!-- loop：動画を繰り返し再生 -->
       </video>
     </div>
-    <!-- grid　親 -->
+    <!-- 【main】 grid　親 -->
     <main class="container content">
+      <!-- ❶　タイマー -->
       <div class="item item1 timer m-plus-1p-regular">
+        <!-- タイマーgrid 親 -->
         <div class="timer-grid-container">
+          <!-- タイマー子１：見えるタイマー表示 -->
           <div class="timer1">
-            <!-- 見えるタイマー表示 -->
             <div class="timer-display">
               <h1
                 id="timer"
@@ -69,7 +72,6 @@
                 00:00
               </h1>
             </div>
-
             <!-- 読み上げ専用（視覚には非表示） -->
             <div
               id="timerLive"
@@ -78,7 +80,8 @@
               aria-atomic="true"
             ></div>
           </div>
-          <!-- 初期設定ボタン -->
+          <!-- タイマー子２：初期設定（プリセット）ボタン -->
+          <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
           <div class="timer2 buttons preset-buttons">
             <button class="setTimeBtn" data-minutes="3" aria-label="3分に設定">
               <span aria-hidden="true">3分</span>
@@ -90,6 +93,7 @@
               <span aria-hidden="true">5分</span>
             </button>
           </div>
+          <!-- タイマー子３：操作（コントロール）ボタン -->
           <div class="timer3 buttons set-buttons">
             <button id="startBtn" aria-pressed="false" aria-label="再生">
               <span
@@ -118,6 +122,7 @@
               </span>
             </button>
           </div>
+          <!-- タイマー子４：「通知テスト」開発用 -->
           <div class="timer4">
             <!-- 通知オプション -->
             <fieldset
@@ -129,7 +134,7 @@
               <p id="notifyHint" class="visually-hidden explanation">
                 音・バイブ・画面表示のオン/オフを切り替えます
               </p>
-
+              <!-- input checkbox -->
               <div class="label-box">
                 <!-- 音 -->
                 <label class="chip">
@@ -150,7 +155,7 @@
                     aria-hidden="true"
                     >mobile_vibrate</span
                   >
-                  <span class="chip__text">ふるえ</span>
+                  <span class="chip__text">バイブ</span>
                 </label>
                 <!-- トースト -->
                 <label class="chip">
@@ -163,7 +168,7 @@
                   <span class="chip__text">画面表示</span>
                 </label>
               </div>
-              <!-- テスト -->
+              <!-- テスト ボタン-->
               <div class="test-button-box">
                 <button
                   id="testNotify"
@@ -176,11 +181,10 @@
               </div>
             </fieldset>
           </div>
-          <!-- 画面表示（トースト） -->
+          <!-- 画面表示（トースト） スクリーンリーダーが読んでくれる-->
           <div id="toast" class="toast" role="status" aria-live="polite" hidden>
             お茶の準備ができました
           </div>
-
           <!-- 読み上げ（最終告知は assertive） -->
           <div
             id="finalLive"
@@ -190,7 +194,7 @@
           ></div>
         </div>
       </div>
-
+      <!-- ❷　galleryへのアンカー -->
       <div class="item item2 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-gallery">
           <a href="#" class="hover-link">
@@ -200,6 +204,7 @@
           </a>
         </div>
       </div>
+      <!-- ❸universeへのアンカー -->
       <div class="item item3 link zen-kaku-gothic-new-regular">
         <div class="hover-area bg-universe">
           <a href="#" class="hover-link">
@@ -209,6 +214,7 @@
           </a>
         </div>
       </div>
+      <!-- ❹メインテキスト -->
       <div class="item item4">
         <div class="text">
           <div class="suu zen-maru-gothic-regular">すぅ〜</div>
@@ -217,7 +223,7 @@
           </div>
         </div>
       </div>
-
+      <!-- ❺about & help 表示（heroのみ） -->
       <!-- heroのみ表示 -->
       <div class="wrapper info item5">
         <!-- アイテム：about.html -->

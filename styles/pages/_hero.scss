@@ -140,18 +140,19 @@ body.hero {
   }
 
   /* area割当（既存の .itemX を活用） */
+  // タイマー
   .item1 {
     grid-area: item1;
   }
-
+  // gallery
   .item2 {
     grid-area: item2;
   }
-
+  // universe
   .item3 {
     grid-area: item3;
   }
-
+  // gallery・universe共通
   .item2,
   .item3 {
     position: relative;
@@ -159,11 +160,11 @@ body.hero {
     min-height: 100svh;
     font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
-
+  // メインテキスト
   .item4 {
     grid-area: item4;
   }
-
+  // ヘルプ・about
   .item5 {
     grid-area: item5;
   }
@@ -360,6 +361,7 @@ body.hero {
       min-height: clamp(200px, calc(var(--vh) * 40), 360px);
     }
     /* 共通（高さを中身に任せる等） */
+    // :is() 全一致の擬似クラス
     :is(.item2, .item3, .item5) {
       min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
       align-self: stretch;
