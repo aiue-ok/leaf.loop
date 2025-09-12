@@ -117,6 +117,12 @@ body.hero {
     grid-template-areas: "item1 item2 item3 item4";
     min-height: min(100svh, 900px);
   }
+  /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
+  @supports (height: 100dvh) {
+    .hero .container {
+      min-height: 100dvh;
+    }
+  }
 
   /* タイルの中身の潰れ対策（共通） */
   .item {
