@@ -185,13 +185,7 @@ body.hero {
   }
 
   .bg-gallery {
-    // background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
-    // background: linear-gradient(
-    //   180deg,
-    //   rgba(181, 53, 32, 0.1) 0%,
-    //   rgba(226, 169, 16, 0.05) 100%
-    // );
-    // rgb(0 0 0 / var(--hero-veil, 0.32));
+    background-image: url("../assets/png/frame_02_gallery_mobile.png");
     background-color: rgba(238, 244, 240, 0.3);
     filter: brightness(1.1);
   }
@@ -275,18 +269,10 @@ body.hero {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
+    height: auto;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
-    &::before {
-      background: transparent;
-    }
-    /* 背景レイヤーの土台：ページの一番うしろに固定 */
-    .hero-media {
-      position: fixed; /* 画面に固定（スクロールしても動かない） */
-      inset: 0; /* 画面いっぱい */
-      z-index: 0; /* コンテンツより背面、でも負数は使わない */
-      pointer-events: none; /* タップを遮らない */
 
       &::before {
         content: "";
@@ -301,6 +287,13 @@ body.hero {
           ),
           rgba(0, 0, 0, var(--hero-veil, 0.28));
       }
+
+    /* 背景レイヤーの土台：ページの一番うしろに固定 */
+    .hero-media {
+      position: fixed; /* 画面に固定（スクロールしても動かない） */
+      inset: 0; /* 画面いっぱい */
+      z-index: core.$z-deeper; /* コンテンツより背面、でも負数は使わない */
+      pointer-events: none; /* タップを遮らない */
     }
 
     /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
