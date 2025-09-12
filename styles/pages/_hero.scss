@@ -4,6 +4,8 @@
 
 body.hero {
   position: relative;
+  // 要素の上に独立したスタッキング文脈（重なりの世界）を作る
+  isolation: isolate;
 
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
@@ -11,7 +13,7 @@ body.hero {
     position: absolute;
     inset: 0; /* ← padding-box まできっちり覆う */
     pointer-events: none;
-    z-index: 1;
+    z-index: core.$z-back;
     background: linear-gradient(
         to right,
         rgba(200, 211, 192, 0.4),
@@ -23,20 +25,8 @@ body.hero {
   .hero-media {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   inset: 0; /* ← padding-box まできっちり覆う */
-    //   pointer-events: none;
-    //   z-index: 1;
-    //   background: linear-gradient(
-    //       to right,
-    //       rgba(200, 211, 192, 0.4),
-    //       rgba(200, 211, 192, 0.4)
-    //     ),
-    //     rgba(0, 0, 0, var(--hero-veil, 0.28));
-    // }
+    pointer-events: none;
+    z-index: core.$z-deeper;
     > video,
     > img {
       width: 100%;
@@ -48,7 +38,7 @@ body.hero {
   .hero .container,
   .notify-controls {
     position: relative;
-    z-index: 2;
+    z-index: core.$z-main;
   }
 
   main {
@@ -65,7 +55,7 @@ body.hero {
     height: 100%;
     object-fit: cover; /* ← これが決定打（posterにも効く） */
     object-position: center;
-    z-index: -1; /* 背景に回すなら */
+    z-index: core.$z-deeper;
     top: 0;
     left: 0;
   }
@@ -114,7 +104,7 @@ body.hero {
   .content {
     // bodyにも子要素にも効く
     position: relative;
-    z-index: 1;
+    z-index: core.$z-main;
   }
 
   .container {
@@ -126,6 +116,12 @@ body.hero {
     grid-template-rows: minmax(192px, 1fr);
     grid-template-areas: "item1 item2 item3 item4";
     min-height: min(100svh, 900px);
+  }
+  /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
+  @supports (height: 100dvh) {
+    .hero .container {
+      min-height: 100dvh;
+    }
   }
 
   /* タイルの中身の潰れ対策（共通） */
@@ -140,18 +136,19 @@ body.hero {
   }
 
   /* area割当（既存の .itemX を活用） */
+  // タイマー
   .item1 {
     grid-area: item1;
   }
-
+  // gallery
   .item2 {
     grid-area: item2;
   }
-
+  // universe
   .item3 {
     grid-area: item3;
   }
-
+  // gallery・universe共通
   .item2,
   .item3 {
     position: relative;
@@ -159,11 +156,11 @@ body.hero {
     min-height: 100svh;
     font-size: clamp(1rem, 1.6vw, 1.2rem);
   }
-
+  // メインテキスト
   .item4 {
     grid-area: item4;
   }
-
+  // ヘルプ・about
   .item5 {
     grid-area: item5;
   }
@@ -184,17 +181,11 @@ body.hero {
     background-size: cover;
     filter: brightness(1);
     opacity: 0.5;
-    z-index: 1;
+    z-index: core.$z-main;
   }
 
   .bg-gallery {
-    // background: url("../assets/png/hero/frame_02_gallery_mobile.png"),
-    // background: linear-gradient(
-    //   180deg,
-    //   rgba(181, 53, 32, 0.1) 0%,
-    //   rgba(226, 169, 16, 0.05) 100%
-    // );
-    // rgb(0 0 0 / var(--hero-veil, 0.32));
+    background-image: url("../assets/png/frame_02_gallery_mobile.png");
     background-color: rgba(238, 244, 240, 0.3);
     filter: brightness(1.1);
   }
@@ -278,25 +269,17 @@ body.hero {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
+    height: auto;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
-    &::before {
-      background: transparent;
-    }
-    /* 背景レイヤーの土台：ページの一番うしろに固定 */
-    .hero-media {
-      position: fixed; /* 画面に固定（スクロールしても動かない） */
-      inset: 0; /* 画面いっぱい */
-      z-index: 0; /* コンテンツより背面、でも負数は使わない */
-      pointer-events: none; /* タップを遮らない */
 
       &::before {
         content: "";
         position: absolute;
         inset: 0; /* ← padding-box まできっちり覆う */
         pointer-events: none;
-        z-index: 1;
+      z-index: core.$z-back;
         background: linear-gradient(
             to right,
             rgba(200, 211, 192, 0.4),
@@ -304,6 +287,13 @@ body.hero {
           ),
           rgba(0, 0, 0, var(--hero-veil, 0.28));
       }
+
+    /* 背景レイヤーの土台：ページの一番うしろに固定 */
+    .hero-media {
+      position: fixed; /* 画面に固定（スクロールしても動かない） */
+      inset: 0; /* 画面いっぱい */
+      z-index: core.$z-deeper; /* コンテンツより背面、でも負数は使わない */
+      pointer-events: none; /* タップを遮らない */
     }
 
     /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
@@ -360,6 +350,7 @@ body.hero {
       min-height: clamp(200px, calc(var(--vh) * 40), 360px);
     }
     /* 共通（高さを中身に任せる等） */
+    // :is() 全一致の擬似クラス
     :is(.item2, .item3, .item5) {
       min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
       align-self: stretch;
@@ -491,7 +482,7 @@ body.hero {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1;
+      z-index: core.$z-deeper;
     }
 
     /* 手前に出すレイヤー（content） */

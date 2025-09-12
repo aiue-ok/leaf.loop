@@ -1247,7 +1247,7 @@ body.about span.vol-label {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  z-index: 3;
+  z-index: 2;
 }
 
 /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
@@ -1304,7 +1304,7 @@ body {
     position: absolute;
     right: clamp(12px, 3vmin, 28px);
     bottom: clamp(72px, 2vmin, 100px);
-    z-index: 3;
+    z-index: 2;
   }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
@@ -1569,6 +1569,7 @@ nav div.clock-icon {
 }
 body.hero {
   position: relative;
+  isolation: isolate;
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   /* 背景メディアは最背面 */
   /* コンテンツ/UIは前面へ */
@@ -1576,6 +1577,7 @@ body.hero {
   /* 画面が広い＋動きOKなら動画を解禁 */
   /* 動きを控えたい人の設定を尊重 */
   /* メインコンテンツ */
+  /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
   /* タイルの中身の潰れ対策（共通） */
   /* area割当（既存の .itemX を活用） */
   /* 画像リンク面の高さは「タイルに合わせて100%」に */
@@ -1587,13 +1589,14 @@ body.hero::before {
   position: absolute;
   inset: 0; /* ← padding-box まできっちり覆う */
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
   background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
 }
 body.hero .hero-media {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  pointer-events: none;
+  z-index: -2;
 }
 body.hero .hero-media > video,
 body.hero .hero-media > img {
@@ -1604,7 +1607,7 @@ body.hero .hero-media > img {
 body.hero .hero .container,
 body.hero .notify-controls {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 body.hero main {
   width: 100%;
@@ -1618,7 +1621,7 @@ body.hero #background-video {
   height: 100%;
   object-fit: cover; /* ← これが決定打（posterにも効く） */
   object-position: center;
-  z-index: -1; /* 背景に回すなら */
+  z-index: -2;
   top: 0;
   left: 0;
 }
@@ -1653,7 +1656,7 @@ body.hero .hero-poster {
 body.hero.content,
 body.hero .content {
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 body.hero .container {
   display: grid;
@@ -1663,6 +1666,11 @@ body.hero .container {
   grid-template-rows: minmax(192px, 1fr);
   grid-template-areas: "item1 item2 item3 item4";
   min-height: min(100svh, 900px);
+}
+@supports (height: 100dvh) {
+  body.hero .hero .container {
+    min-height: 100dvh;
+  }
 }
 body.hero .item {
   box-sizing: border-box;
@@ -1709,9 +1717,10 @@ body.hero .bg-universe {
   background-size: cover;
   filter: brightness(1);
   opacity: 0.5;
-  z-index: 1;
+  z-index: 0;
 }
 body.hero .bg-gallery {
+  background-image: url("../assets/png/frame_02_gallery_mobile.png");
   background-color: rgba(238, 244, 240, 0.3);
   filter: brightness(1.1);
 }
@@ -1767,32 +1776,28 @@ body.hero .tea {
 /* スマホ縦：1列積み */
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
+    height: auto;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
-    /* 新しい単位が使える環境では、動的vhでより正確に */
-    /* 動画を控えめにしたいとき（設定済みならそのまま） */
     /* 共通（高さを中身に任せる等） */
     /* 置き場所は個別に */
   }
   body.hero::before {
-    background: transparent;
-  }
-  body.hero .hero-media {
-    position: fixed; /* 画面に固定（スクロールしても動かない） */
-    inset: 0; /* 画面いっぱい */
-    z-index: 0; /* コンテンツより背面、でも負数は使わない */
-    pointer-events: none; /* タップを遮らない */
-  }
-  body.hero .hero-media::before {
     content: "";
     position: absolute;
     inset: 0; /* ← padding-box まできっちり覆う */
     pointer-events: none;
-    z-index: 1;
+    z-index: -1;
     background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
+  }
+  body.hero .hero-media {
+    position: fixed; /* 画面に固定（スクロールしても動かない） */
+    inset: 0; /* 画面いっぱい */
+    z-index: -2; /* コンテンツより背面、でも負数は使わない */
+    pointer-events: none; /* タップを遮らない */
   }
   body.hero #background-video {
     width: 100%; /* 画面幅にフィット */
@@ -1800,18 +1805,6 @@ body.hero .tea {
     object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
     object-position: center;
   }
-  @supports (height: 100dvh) {
-    body.hero #background-video {
-      height: 100dvh;
-    }
-  }
-}
-@media (width <= 1024px) and (orientation: portrait) and (prefers-reduced-motion: reduce) {
-  body.hero #background-video {
-    display: none !important;
-  }
-}
-@media (width <= 1024px) and (orientation: portrait) {
   body.hero main {
     height: auto;
   }
@@ -1921,7 +1914,7 @@ body.hero .tea {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: -2;
   }
   body.hero .bg-gallery,
   body.hero .bg-universe {

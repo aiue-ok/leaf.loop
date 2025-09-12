@@ -1,3 +1,4 @@
+// 回線状況で静止画にフォールバック
 const v = document.querySelector(".hero-video");
 const p = document.querySelector(".hero-poster");
 const conn =

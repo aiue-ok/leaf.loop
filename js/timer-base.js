@@ -103,7 +103,7 @@ function announceSR(msg) {
 function tickOnce() {
   updateDisplay();
 
-  // 節目アナウンス（毎秒は避ける）
+  // 節目アナウンス（毎秒は避ける） 隠し live 領域を用意し、節目だけ文で告げる
   if (totalSeconds === 180) say("3分に設定");
   if (totalSeconds === 60) say("残り1分");
   if (totalSeconds <= 10 && totalSeconds > 0) say(`残り ${totalSeconds} 秒`);
