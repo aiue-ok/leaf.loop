@@ -106,7 +106,13 @@ $color-bg-muted-alpha: #f5f5f530; // 明るいミュート背景
 $color-bg-gallery: #fff; // ギャラリー白
 
 // ▼z-index
-$z-sideitem: 3;
+// === hero ===
+$z-deeper: -2;
+$z-back: -1;
+$z-main: 0;
+$z-front: 1;
+$z-closer: 2;
+// === 各ページ ===
 $z-timer-mini: 5;
 $z-menu-offcanvas: 80;
 $z-menu-backdrop: 70;

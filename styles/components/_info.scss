@@ -19,7 +19,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  z-index: core.$z-sideitem;
+  z-index: core.$z-closer;
 }
 
 /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
@@ -76,7 +76,7 @@ body {
       position: absolute;
       right: clamp(12px, 3vmin, 28px);
       bottom: clamp(72px, 2vmin, 100px);
-      z-index: core.$z-sideitem;
+      z-index: core.$z-closer;
     }
   }
 
