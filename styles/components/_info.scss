@@ -63,20 +63,12 @@
 body {
   // デスクトップと横向きの時
   // position:absoluteで右下位置固定
-  @media screen and (orientation: landscape) {
+  @media screen and (min-width: 769px) and (orientation: landscape) {
     & .wrapper {
-      position: relative;
-    }
-    & .item-help {
       position: absolute;
+      z-index: core.$z-closer;
       right: clamp(12px, 3vmin, 28px);
       bottom: clamp(16px, 3vmin, 28px);
-    }
-    & .item-about {
-      position: absolute;
-      right: clamp(12px, 3vmin, 28px);
-      bottom: clamp(72px, 2vmin, 100px);
-      z-index: core.$z-closer;
     }
   }
 
