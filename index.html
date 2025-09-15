@@ -37,18 +37,27 @@
       <!-- muted：音声をミュートに設定 -->
       <!-- loop：動画を繰り返し再生 -->
       <!-- playsinline:iOSで全画面化を防ぐ -->
+      <!-- 画面揺れ防止に width/height を与えてCLS低減 -->
       <video
+        id="background-video"
         class="hero-video"
+        width="960"
+        height="540"
         autoplay
         muted
         loop
         playsinline
         preload="none"
         poster="assets/jpg/hero-bg.jpg"
-        id="background-video"
       >
+        <!-- 幅が広い環境ではHDを選択、その他はSD -->
         <source
-          src="assets/mp4/5835661-uhd_3840_2160_25fps.mp4"
+          src="assets/mp4/5835661-hd_1920_1080_25fps.mp4"
+          type="video/mp4"
+          media="(min-width: 1024px)"
+        />
+        <source
+          src="assets/mp4/5835661-sd_960_540_25fps.mp4"
           type="video/mp4"
         />
         お使いのブラウザは動画タグに対応していません。
