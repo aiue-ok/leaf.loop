@@ -132,6 +132,7 @@ body {
     font-size: 2rem;
     display: inline-block;
     vertical-align: middle;
+    color: var(--help-icon);
   }
 }
 .info-help-card.is-open {
@@ -146,11 +147,28 @@ body {
   height: auto;
 }
 /* 背景 */
+/* Moss */
+.theme-moss {
+  --help-bg: rgba(24, 36, 28, 0.72);
+  --help-fg: #ebf3ef;
+  --help-h: #ffffff;
+  --help-border: rgba(196, 214, 205, 0.35);
+  --help-icon: #c8e5d6;
+}
+/* Dew */
+.theme-dew {
+  --help-bg: rgba(240, 245, 243, 0.82);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgba(11, 28, 57, 0.15);
+  --help-icon: #0e1020;
+}
+
 .visual-card-help-bg {
-  border-radius: 16px;
-  background: rgb(0 0 0 / 76%);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  border-radius: 20px;
+  background: var(--help-bg);
+  border: 1px solid var(--help-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 .visual-card-help-bg:hover {
   background: rgba(0 0 0 / 55%);
@@ -160,7 +178,7 @@ body {
 // テキスト関係
 .help-content {
   padding: 1rem;
-  color: core.$main-color;
+  color: var(--help-fg);
   text-decoration: none;
   font-size: 1rem;
   text-align: left;
@@ -174,15 +192,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.6;
   padding: 0.5rem;
   text-align: center;
   & h2 {
     display: block;
-    & span {
+  }
+  & span.help-icon {
       margin-right: 10px;
     }
   }
-}
 
 // ボタン内　中央寄せ
 .info-help-card button.close-button {
@@ -191,8 +210,8 @@ body {
 }
 
 // ボタン見た目と配置
-.close-button {
-  color: #fff;
+.info-help-card .close-button {
+  color: var(--help-icon);
   font-size: 1.4rem;
   width: 32px;
   height: 32px;
@@ -217,7 +236,7 @@ body {
 }
 
 // 行間
-h3 {
+.info-help-card h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
 }
 
@@ -227,12 +246,13 @@ h3 {
 }
 
 // pタグ内のアイコンフォントのテキスト関係
-span.p-icon-size {
+.info-help-card span.p-icon-size {
   font-size: 1.2rem;
   display: inline-block;
   vertical-align: middle;
   margin: 0 0.2rem;
   line-height: 1.5;
+  color: var(--help-icon);
 }
 
 // pタグ内の行揃え

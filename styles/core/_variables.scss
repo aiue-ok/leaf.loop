@@ -7,13 +7,12 @@
     :root {
       --vh: 1dvh;
     } /* 新しいdvhが使える環境では上書き */
-  }
+
   /* ベース文字 */
   // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
   // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
-  & {
     --fs: clamp(16px, 1.111vw, 32px);
-
+    --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
     /* 余白（例：内側パディング 16→32） */
     --pad: clamp(16px, 1.111vw, 32px);
 
@@ -28,6 +27,13 @@
     --chip-bg-active: rgba(255, 255, 255, 0.18);
     --chip-bd: rgba(255, 255, 255, 0.55);
     --chip-bd-active: rgba(255, 255, 255, 0.85);
+
+    /* Theme: default = charcoal leaf */
+    --help-bg: rgba(12, 14, 16, 0.78);
+    --help-fg: #eaeaea;
+    --help-h: #ffffff;
+    --help-border: rgba(255, 255, 255, 0.12);
+    --help-icon: #b4d2ea;
   }
 }
 
@@ -106,13 +112,15 @@ $color-bg-muted-alpha: #f5f5f530; // 明るいミュート背景
 $color-bg-gallery: #fff; // ギャラリー白
 
 // ▼z-index
-// === hero ===
+// === 基本　hero ===
 $z-deeper: -2;
 $z-back: -1;
 $z-main: 0;
 $z-front: 1;
 $z-closer: 2;
 // === 各ページ ===
+// ヘルプカード
+$z-help: 10;
 $z-timer-mini: 5;
 $z-menu-offcanvas: 80;
 $z-menu-backdrop: 70;
