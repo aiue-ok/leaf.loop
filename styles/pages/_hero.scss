@@ -147,6 +147,7 @@ body.hero {
     padding: 0;
     display: grid;
     place-items: center;
+    height: 100%;
     min-width: 21vw;
     min-height: 160px;
   }
@@ -168,9 +169,8 @@ body.hero {
   .item2,
   .item3 {
     position: relative;
-    min-height: 100dvh;
-    min-height: 100svh;
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    // min-height: 100vh;
+    // min-height: 30svh;
   }
   // メインテキスト
   .item4 {
@@ -198,21 +198,7 @@ body.hero {
     filter: brightness(1);
     opacity: 0.5;
     z-index: core.$z-main;
-  }
-
-  .bg-gallery {
-    background-image: url("../assets/png/frame_02_gallery_mobile.png");
-    background-color: rgba(238, 244, 240, 0.3);
-    filter: brightness(1.1);
-  }
-
-  .bg-universe {
-    background: linear-gradient(
-      to bottom,
-      rgba(27, 38, 59, 1) 40%,
-      rgba(15, 26, 43, 0) 100%
-    );
-    // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+    // background: transparent;
   }
 
   .bg-gallery:not(p),
@@ -223,31 +209,32 @@ body.hero {
   .bg-gallery p,
   .bg-universe p {
     opacity: 1;
-  }
-
-  .bg-gallery p {
-    background-color: #5d5f5f;
-    text-shadow: core.$hero-shadow 1px 1px 1px;
+    font-size: clamp(18px, 1.97vw, 20px);
     border-radius: 0.2em;
-    backdrop-filter: blur(8px);
-  }
-
-  .bg-universe p {
-    background: linear-gradient(
-      to bottom,
-      rgb(27 38 59 / 1) 40%,
-      rgb(27 38 59 / 1) 100%
-    );
   }
 
   .item > .bg-gallery:hover {
-    // background-image: url("../assets/png/hero/frame_02_gallery_mobile.png");
+    background: linear-gradient(
+        to top,
+        rgba(237, 224, 212, 0.326),
+        rgba(191, 192, 185, 0.612),
+        rgba(153, 147, 138, 0.898),
+        rgba(142, 136, 128, 0.342),
+        rgba(125, 124, 120, 0.227)
+      ),
+      url("../assets/png/hero/frame_02_gallery_mobile.png");
     filter: brightness(1.2);
-    opacity: 1;
+    opacity: 0.8;
   }
 
   .item > .bg-universe:hover {
-    // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+    // .bg-universe:hover {
+    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 38, 59, 1) 40%,
+      rgba(15, 26, 43, 0) 100%
+    );
     filter: brightness(1.1);
     opacity: 1;
   }
