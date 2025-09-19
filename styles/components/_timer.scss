@@ -19,9 +19,7 @@ body {
     grid-template-areas:
       "count"
       "presets"
-      "controls"
-      "volume";
-
+      "controls";
     /* 親要素 */
     width: 100%;
   }
@@ -237,10 +235,6 @@ body {
     span.set-button {
       font-size: 2.5rem;
     }
-
-    .timer4 {
-      font-size: 0.9rem;
-    }
   }
 }
 
@@ -269,15 +263,7 @@ body {
     .timer3.buttons {
       grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
       gap: 1rem;
-      padding: 1vw;
-    }
-
-    .timer4 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      text-align: center;
+      padding: 0;
     }
   }
 }
