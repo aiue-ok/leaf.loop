@@ -6,7 +6,7 @@ body.hero {
   position: relative;
   // 要素の上に独立したスタッキング文脈（重なりの世界）を作る
   isolation: isolate;
-
+  font-size: var(--text-hero);
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
     content: "";
@@ -251,13 +251,17 @@ body.hero {
 
   /* すぅ〜 */
   .suu {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
     padding: 1rem 0;
   }
 
-  /* お茶でも淹れましょうか */
   .tea {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    white-space: nowrap;
+  }
+
+  .text {
+    gap: 6vh;
   }
 }
 
@@ -344,9 +348,7 @@ body.hero {
       grid-area: item4;
       min-height: clamp(120px, calc(var(--vh) * 25), 280px);
     }
-    .suu {
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-    }
+
     // タイマー
     .item1 {
       grid-area: item1;
@@ -433,6 +435,17 @@ body.hero {
       width: 100%;
       height: 100%; /* ← これが重要！ */
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
+      margin: 0 auto;
+    }
+    /* すぅ〜 */
+    .suu {
+      font-size: clamp(24px, 4vw, 28px);
+      padding: 1rem 0;
+    }
+
+    .tea {
+      font-size: clamp(1.25rem, 2.7vw, 1.5rem);
+      white-space: nowrap;
     }
   }
 }
@@ -534,6 +547,22 @@ body.hero {
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
       z-index: -1;
+    }
+    .hover-link {
+      width: 100%;
+      width: fit-content;
+      padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
+      margin: 0 auto;
+    }
+    /* すぅ〜 */
+    .suu {
+      font-size: clamp(24px, 4vw, 28px);
+      padding: 1rem 0;
+    }
+
+    .tea {
+      font-size: clamp(1.25rem, 2.7vw, 1.5rem);
+      white-space: nowrap;
     }
   }
 }
