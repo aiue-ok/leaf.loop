@@ -34,7 +34,7 @@ function say(msg, node = live) {
   setTimeout(() => (node.textContent = msg), 20);
 }
 
-// ===== 交通機関ボタン（状態表示）=====
+// ===== ボタン（状態表示）=====
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const resetBtn = document.getElementById("resetBtn");

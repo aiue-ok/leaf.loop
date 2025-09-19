@@ -2,18 +2,13 @@
 :root {
   /* まずはビューポート単位のフォールバック変数 */
   --vh: 1svh;
-  /* ベース文字 */
 }
 @supports (height: 1dvh) {
   :root {
     /* 新しいdvhが使える環境では上書き */
-  }
-  :root :root {
-    --vh: 1dvh;
-  }
-}
-:root {
+    /* ベース文字 */
   --fs: clamp(16px, 1.111vw, 32px);
+    --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
   /* 余白（例：内側パディング 16→32） */
   --pad: clamp(16px, 1.111vw, 32px);
   /* 行間なども同様に */
@@ -24,18 +19,19 @@
   --chip-bg-active: rgba(255, 255, 255, 0.18);
   --chip-bd: rgba(255, 255, 255, 0.55);
   --chip-bd-active: rgba(255, 255, 255, 0.85);
+    /* Theme: default = charcoal leaf */
+    --help-bg: rgba(12, 14, 16, 0.78);
+    --help-fg: #eaeaea;
+    --help-h: #ffffff;
+    --help-border: rgba(255, 255, 255, 0.12);
+    --help-icon: #b4d2ea;
+  }
+  :root :root {
+    --vh: 1dvh;
+  }
 }
 
 /* フォントサイズは直径に比例 */
-:root {
-  /* ベース文字 */
-  --fs: clamp(16px, 1.111vw, 32px);
-  /* 余白（例：内側パディング 16→32） */
-  --pad: clamp(16px, 1.111vw, 32px);
-  /* 行間なども同様に */
-  --gap: clamp(8px, 0.7vw, 16px);
-}
-
 /* フォントサイズは直径に比例 */
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
 /* 使う場所で OKLCH に変換して指定する */
@@ -1344,6 +1340,205 @@ body span.help-icon-size {
   font-size: 1rem;
 }
 
+.info-help-card[hidden] {
+  display: none;
+}
+
+.info-help-card {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: transform 0.4s ease, right 0.4s ease;
+  z-index: 10;
+  /* アイコンサイズを上書きする */
+}
+.info-help-card span.help-icon-size {
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--help-icon);
+}
+
+.info-help-card.is-open {
+  right: 0;
+}
+
+.info-hidden {
+  display: none;
+}
+
+/* ヘルプエリア w h */
+.info-help-container {
+  width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
+  height: auto;
+}
+
+/* 背景 */
+/* Moss */
+.theme-moss {
+  --help-bg: rgba(24, 36, 28, 0.72);
+  --help-fg: #ebf3ef;
+  --help-h: #ffffff;
+  --help-border: rgba(196, 214, 205, 0.35);
+  --help-icon: #c8e5d6;
+}
+
+/* Dew */
+.theme-dew {
+  --help-bg: rgba(240, 245, 243, 0.82);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgba(11, 28, 57, 0.15);
+  --help-icon: #0e1020;
+}
+
+.visual-card-help-bg {
+  border-radius: 20px;
+  background: var(--help-bg);
+  border: 1px solid var(--help-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.visual-card-help-bg:hover {
+  background: rgba(0, 0, 0, 0.55);
+  transition: background 0.3s ease-in;
+}
+
+.help-content {
+  padding: 1rem;
+  color: var(--help-fg);
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: left;
+}
+.help-content p {
+  padding-left: 0.8rem;
+}
+
+.flex-parent-help-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6;
+  padding: 0.5rem;
+  text-align: center;
+}
+.flex-parent-help-h h2 {
+  display: block;
+}
+.flex-parent-help-h span.help-icon {
+  margin-right: 10px;
+}
+
+.info-help-card button.close-button {
+  text-align: center;
+  margin: 0;
+}
+
+.info-help-card .close-button {
+  color: var(--help-icon);
+  font-size: 1.4rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(96, 96, 96, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-help-card .close-button:hover {
+  background-color: #606060;
+  scale: 105%;
+  cursor: pointer;
+}
+
+.info-help-card .close-button:focus-visible {
+  text-decoration-thickness: 2px; /* 太めで見えやすく */
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.info-help-card h3 {
+  line-height: 1.8; /* フォントサイズの1.5倍に設定 */
+}
+
+.info-line-spacing {
+  margin: 6px 0;
+}
+
+.info-help-card span.p-icon-size {
+  font-size: 1.2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.2rem;
+  line-height: 1.5;
+  color: var(--help-icon);
+}
+
+.flex-parent-help-p {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  body {
+    /* ヘルプエリア w h */
+  }
+  body .info-help-container {
+    width: 90vw;
+    height: auto;
+  }
+  body .flex-parent-help-unit {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+  }
+  body .wrap-help-unit-l {
+    width: 50%;
+  }
+  body .wrap-help-unit-r {
+    width: 50%;
+    border: 1px solid #f0f0f0;
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
+}
+ul {
+  padding-left: 0;
+}
+
+li::before {
+  content: "› ";
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 0.3em;
+}
+
+li {
+  list-style: none;
+}
+
+.link-text {
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.link-text:hover {
+  color: #fff; /* hoverで文字の色変化とか */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clock-icon {
+  margin-top: 1rem;
+  /* filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3)); */
+  /* opacity: 0.85; */
+  /* 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
+}
+
 .mini-help {
   position: fixed;
   right: 12px;
@@ -1805,6 +2000,22 @@ body.hero .tea {
     object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
     object-position: center;
   }
+  @supports (height: 100dvh) {
+    body.hero #background-video {
+      height: 100dvh;
+    }
+  }
+}
+@media (width <= 1024px) and (orientation: portrait) and (prefers-reduced-motion: reduce) {
+  body.hero #background-video {
+    display: none !important;
+  }
+}
+@media (width <= 1024px) and (orientation: portrait) {
+  body.hero .title h1 {
+    font-size: 24px;
+    white-space: nowrap;
+  }
   body.hero main {
     height: auto;
   }
@@ -1881,7 +2092,24 @@ body.hero .tea {
   body.hero {
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     /* 背景動画の下敷き設定はそのままOK */
-    /* 手前に出すレイヤー（content） */
+    /* すぅ〜 */
+  }
+  body.hero .title h1 {
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  body.hero .main {
+    position: fixed;
+    width: 100%;
+    min-height: fit-content;
+    overflow: auto;
+    /* 背景メディアは最背面 */
+    background-image: url("../../assets/jpg/hero-bg.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center; /* 背景画像を画面の中心に配置 */
+    height: auto;
   }
   body.hero .container {
     height: 100svh;

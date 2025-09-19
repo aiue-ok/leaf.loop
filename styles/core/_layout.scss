@@ -35,9 +35,15 @@
   justify-content: center;
 }
 
-// これで上下中央に要素を配置したり「最初のビューにドーンと画像を表示」みたいな構成ができます。
+.grid-parent-timer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: center;
+}
 
-.grid-parent {
+.flex-parent {
   display: flex;
   flex-direction: column;
   justify-content: center;

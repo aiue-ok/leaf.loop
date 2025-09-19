@@ -3,7 +3,6 @@
 .wrapper {
   position: relative;
   font-size: 1rem;
-  margin: 1rem;
 }
 .sideitem {
   inline-size: max-content;
@@ -14,7 +13,7 @@
   background: rgb(0 0 0 / 16%);
   box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  color: #fff;
+  color: core.$main-color;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -63,20 +62,12 @@
 body {
   // デスクトップと横向きの時
   // position:absoluteで右下位置固定
-  @media screen and (orientation: landscape) {
+  @media screen and (min-width: 769px) and (orientation: landscape) {
     & .wrapper {
-      position: relative;
-    }
-    & .item-help {
       position: absolute;
+      z-index: core.$z-closer;
       right: clamp(12px, 3vmin, 28px);
       bottom: clamp(16px, 3vmin, 28px);
-    }
-    & .item-about {
-      position: absolute;
-      right: clamp(12px, 3vmin, 28px);
-      bottom: clamp(72px, 2vmin, 100px);
-      z-index: core.$z-closer;
     }
   }
 
@@ -105,7 +96,8 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem 0.75rem;
     }
     & .item-help,
     .item-about {
@@ -124,6 +116,218 @@ body {
   }
 }
 
+// ▼ヘルプパネル　位置
+.info-help-card[hidden] {
+  display: none;
+}
+.info-help-card {
+  // position: absolute;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: transform 0.4s ease, right 0.4s ease;
+  z-index: core.$z-help;
+  /* アイコンサイズを上書きする */
+  & span.help-icon-size {
+    font-size: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--help-icon);
+  }
+}
+.info-help-card.is-open {
+  right: 0;
+}
+.info-hidden {
+  display: none;
+}
+/* ヘルプエリア w h */
+.info-help-container {
+  width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
+  height: auto;
+}
+/* 背景 */
+/* Moss */
+.theme-moss {
+  --help-bg: rgba(24, 36, 28, 0.72);
+  --help-fg: #ebf3ef;
+  --help-h: #ffffff;
+  --help-border: rgba(196, 214, 205, 0.35);
+  --help-icon: #c8e5d6;
+}
+/* Dew */
+.theme-dew {
+  --help-bg: rgba(240, 245, 243, 0.82);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgba(11, 28, 57, 0.15);
+  --help-icon: #0e1020;
+}
+
+.visual-card-help-bg {
+  border-radius: 20px;
+  background: var(--help-bg);
+  border: 1px solid var(--help-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+.visual-card-help-bg:hover {
+  background: rgba(0 0 0 / 55%);
+  transition: background 0.3s ease-in;
+}
+
+// テキスト関係
+.help-content {
+  padding: 1rem;
+  color: var(--help-fg);
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+  & p {
+    padding-left: 0.8rem;
+  }
+}
+
+// ヘルプ＆閉じるボタン　タイトル部分
+.flex-parent-help-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6;
+  padding: 0.5rem;
+  text-align: center;
+  & h2 {
+    display: block;
+  }
+  & span.help-icon {
+      margin-right: 10px;
+    }
+  }
+
+// ボタン内　中央寄せ
+.info-help-card button.close-button {
+  text-align: center;
+  margin: 0;
+}
+
+// ボタン見た目と配置
+.info-help-card .close-button {
+  color: var(--help-icon);
+  font-size: 1.4rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(96 96 96 / 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 閉じるボタン　ホバー
+.info-help-card .close-button:hover {
+  background-color: #606060;
+  scale: 105%;
+  cursor: pointer;
+}
+
+.info-help-card .close-button:focus-visible {
+  text-decoration-thickness: 2px; /* 太めで見えやすく */
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+// 行間
+.info-help-card h3 {
+  line-height: 1.8; /* フォントサイズの1.5倍に設定 */
+  margin-block: 0.25rem 0.5rem;
+  color: #b4d2ea;
+}
+
+// 間隔
+.info-line-spacing {
+  margin: 6px 0;
+}
+
+// pタグ内のアイコンフォントのテキスト関係
+.info-help-card span.p-icon-size {
+  font-size: 1.2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.2rem;
+  line-height: 1.5;
+  color: var(--help-icon);
+  opacity: 0.9;
+}
+
+// pタグ内の行揃え
+.flex-parent-help-p {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+  margin-block: 0.1rem;
+}
+
+// 📍📍📍 高さ500px以下（スマホ横向きなど）以下
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  body {
+    /* ヘルプエリア w h */
+    .info-help-container {
+      width: 90vw;
+      height: auto; //ここなおす1️⃣
+    }
+    .flex-parent-help-unit {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      text-align: left;
+    }
+
+    .wrap-help-unit-l {
+      width: 50%;
+    }
+    .wrap-help-unit-r {
+      width: 50%;
+      border: 1px solid #f0f0f0;
+      padding: 0.4rem;
+      border-radius: 8px;
+    }
+  }
+}
+
+ul {
+  padding-left: 0;
+}
+
+li::before {
+  content: "› ";
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 0.3em;
+}
+
+li {
+  list-style: none;
+}
+
+.link-text {
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.link-text:hover {
+  color: #fff; /* hoverで文字の色変化とか */
+  text-decoration: underline;
+  cursor: pointer;
+}
+.clock-icon {
+  margin-top: 1rem;
+  /* filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3)); */
+  /* opacity: 0.85; */
+  /* 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
+}
+
+// ---
+// ▼ミニヘルプ（各ページ）
 .mini-help {
   position: fixed;
   right: 12px;
