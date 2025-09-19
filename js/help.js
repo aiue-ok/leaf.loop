@@ -1,21 +1,54 @@
-// z-index
-const help = document.querySelector(".a-help");
-const helpCard = document.querySelector(".info-help-card");
-console.log(help);
-help.addEventListener("click", function () {
-  // 現在のカードの位置が画面外かどうかをチェック
-  if (helpCard.style.zIndex === -10) {
-    // 画面内に表示されている場合、画面外に戻す
-    helpCard.style.zIndex = -10;
-  } else {
-    // 画面外にある場合、画面内に表示する
-    helpCard.style.zIndex = 10;
-  }
-  console.log("🍪");
-});
+(() => {
+  const trigger = document.getElementById("helpBtn");
+  const card = document.getElementById("helpCard");
+  const close = document.getElementById("helpCloseBtn");
+  if (!trigger || !card || !close) return;
 
-// 「閉じる」ボタンのクリックイベント（カードを画面外に移動）
-document.getElementById("closeBtn").addEventListener("click", function (event) {
-  helpCard.style.zIndex = -10; // 画面外に移動
-  event.stopPropagation(); // 親のクリックイベントが発動しないように
-});
+  let lastFocus = null;
+
+  const open = () => {
+    if (!card.hidden) return;
+    lastFocus = document.activeElement;
+    card.hidden = false;
+    card.classList.add("is-open");
+    trigger.setAttribute("aria-expanded", "true");
+    (card.querySelector("#helpTitle") || card).focus({ preventScroll: true });
+    document.addEventListener("keydown", onKey);
+  };
+
+  const shutdown = () => {
+    if (card.hidden) return;
+    card.classList.remove("is-open");
+    trigger.setAttribute("aria-expanded", "false");
+    const finalize = () => {
+      card.hidden = true;
+      card.removeEventListener("transitionend", finalize);
+    };
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? finalize()
+      : card.addEventListener("transitionend", finalize);
+    document.removeEventListener("keydown", onKey);
+    (lastFocus || trigger).focus({ preventScroll: true });
+  };
+
+  const toggle = () => (card.hidden ? open() : shutdown());
+
+  const onKey = (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      shutdown();
+    }
+  };
+  console.log("🍪");
+  trigger.addEventListener("click", toggle);
+  trigger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggle();
+    }
+  });
+  close.addEventListener("click", (e) => {
+    console.log("close");
+    shutdown();
+  });
+})();
