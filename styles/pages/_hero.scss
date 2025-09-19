@@ -131,7 +131,6 @@ body.hero {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: minmax(192px, 1fr);
     grid-template-areas: "item1 item2 item3 item4";
-    min-height: min(100svh, 900px);
   }
   /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
   @supports (height: 100dvh) {
@@ -268,7 +267,7 @@ body.hero {
 // 📍 幅769px以上の横向き時だけ
 @media screen and (width >= 769px) and (orientation: landscape) {
   body.hero {
-    overflow: hidden;
+    overflow-y: scroll;
   }
 }
 
@@ -326,22 +325,24 @@ body.hero {
     }
 
     main {
-      // width: 100%;
       height: auto;
-      // background: rgb(161 161 161 / 0.4);
-      // color: core.$main-color;
     }
     .container {
       display: grid;
       grid-template-columns: 1fr;
+      // 無視される
+      grid-template-rows: 20vh max(400px, 4fr) 80px 80px 1fr;
       grid-template-areas:
         "item4" /* 見出し */
         "item1" /* タイマー */
         "item2" /* ギャラリー導線 */
         "item3" /* ユニバース導線 */
         "item5"; /* ヘルプ等 */
-      gap: 8px;
-      min-height: unset; /* ← ここで“固定高さ”はやめる */
+      gap: 1rem;
+    }
+    /* 共通（高さを中身に任せる等） */
+    .item {
+      min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
     }
     // す〜
     .item4 {
@@ -352,13 +353,8 @@ body.hero {
     // タイマー
     .item1 {
       grid-area: item1;
+      height: fit-content;
       min-height: clamp(200px, calc(var(--vh) * 40), 360px);
-    }
-    /* 共通（高さを中身に任せる等） */
-    // :is() 全一致の擬似クラス
-    :is(.item2, .item3, .item5) {
-      min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
-      align-self: stretch;
     }
 
     /* 置き場所は個別に */
@@ -370,6 +366,8 @@ body.hero {
     }
     .item5 {
       grid-area: item5;
+      width: fit-content;
+      margin: 1rem auto;
     }
 
     .hover-area {
@@ -461,18 +459,21 @@ body.hero {
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
+    height: 100vh; /* 互換性のため */
+    height: 100dvh; /* アドレスバーを考慮 */
+    min-height: 100dvh;
+    min-width: 100svw;
+    // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .container {
-      height: 100svh;
       grid-template:
         "item1 item4" 1fr
         "item1 item2" 1fr
         "item1 item3" 1fr
         "item1 item5" 1fr;
       gap: clamp(12px, 2svh, 24px);
-      min-height: 100svh;
-      min-width: 100svh;
-      overflow: clip;
+
+      overflow: auto;
     }
 
     .hover-area {
@@ -484,7 +485,7 @@ body.hero {
 
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     .item1 {
-      // min-height: 375px;
+      min-height: 375px;
       height: auto;
     }
 
