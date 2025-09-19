@@ -373,9 +373,10 @@ body.hero {
     }
 
     .hover-area {
+      width: 100%;
+      height: 100%;
       min-height: clamp(56px, 10svh, 128px);
-      border-radius: 12px;
-      overflow: hidden;
+      // overflow: hidden;
     }
 
     // .bg-gallery,
@@ -384,56 +385,63 @@ body.hero {
     // }
 
     .bg-gallery,
-    .bg-universe,
-    .bg-gallery .contrast-underline,
-    .bg-universe .contrast-underline {
+    .bg-universe {
+      min-height: 10dvh;
+      min-height: 10svh;
       background-color: transparent;
+      background: none;
       background-image: none;
       filter: unset;
     }
 
+    .item > .bg-gallery:hover,
+    .item > .bg-universe:hover {
+      background: transparent;
+      filter: unset;
+      opacity: 1;
+    }
     // 背景の帯
     .hover-text {
       position: relative;
       padding: 0.6em 1em;
       line-height: 1.2;
       white-space: nowrap;
-      // text-shadow: core.$hover-shadow;
     }
 
     .hover-text::before {
       content: "";
       position: absolute;
       inset: -6px -12px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgb(88 88 88 / 0.94),
-        rgb(88 88 88 / 0.94),
-        rgb(88 88 88 / 0.94),
-        transparent
-      );
       border-radius: 12px;
       // filter: unset;
       /* ほんのりガラス */
       backdrop-filter: blur(140px);
       z-index: -1;
     }
-
-    // background: linear-gradient(
-    //   90deg,
-    //   // rgb(10 16 32 / 0),
-    //   rgb(10 16 32 / 0.32),
-    //   rgb(10 16 32 / 0)
-    // );
-
-    .bg-gallery p {
-      background-color: transparent;
+    .bg-gallery .hover-text::before {
+      background: transparent;
+      backdrop-filter: blur(8px) saturate(140%);
+      // background: rgb(0 0 0 / 16%);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+        inset 0 0 0 1px rgb(255 255 255 / 35%);
     }
 
+    .bg-universe .hover-text::before {
+      background: transparent;
+      backdrop-filter: blur(8px) saturate(140%);
+      // background: rgb(0 0 0 / 16%);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+        inset 0 0 0 1px rgb(255 255 255 / 35%);
+    }
+
+    .bg-gallery p,
+    .bg-universe p {
+      background-color: transparent;
+      font-size: clamp(18px, 2vw, 20px);
+    }
     .hover-link {
       width: 100%;
-      height: 100%; /* ← これが重要！ */
+      width: fit-content;
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
       margin: 0 auto;
     }
@@ -468,8 +476,10 @@ body.hero {
     }
 
     .hover-area {
-      height: auto;
-      padding: 0 12px;
+      min-height: clamp(56px, 10svh, 128px);
+      overflow: hidden;
+      padding: 0 8px;
+      display: block;
     }
 
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
@@ -512,14 +522,11 @@ body.hero {
       background: none;
     }
 
-    .bg-gallery p {
-      background-color: transparent;
-      text-shadow: core.$hero-shadow 1px 1px 1px;
-      font-size: 16px;
-    }
-
-    .bg-universe p {
+    .item > .bg-gallery:hover,
+    .item > .bg-universe:hover {
       background: transparent;
+      filter: unset;
+      opacity: 1;
     }
 
     // 背景の帯
@@ -535,14 +542,9 @@ body.hero {
       content: "";
       position: absolute;
       inset: -6px -12px;
-      background: linear-gradient(
-        90deg,
-        rgb(93 95 95 / 0),
-        rgb(88 88 88 / 0.94),
-        rgb(88 88 88 / 0.94),
-        rgb(88 88 88 / 0.94),
-        rgb(93 95 95 / 0)
-      );
+      background-color: transparent;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+      border: 0.8px solid rgb(245 245 245 / 35%);
       border-radius: 12px;
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
