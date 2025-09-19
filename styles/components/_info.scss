@@ -124,12 +124,9 @@ body {
   // position: absolute;
   position: fixed;
   top: 0;
-  right: 0;
-  transition: right 0.5s ease; /* アニメーションで移動 */
-  z-index: -10;
-  // safari用 transformの3DのZ値を調整
-  transform: translateZ(1px);
-  overflow: hidden;
+  right: -100%;
+  transition: transform 0.4s ease, right 0.4s ease;
+  z-index: core.$z-help;
   /* アイコンサイズを上書きする */
   & span.help-icon-size {
     font-size: 2rem;
@@ -137,7 +134,9 @@ body {
     vertical-align: middle;
   }
 }
-
+.info-help-card.is-open {
+  right: 0;
+}
 .info-hidden {
   display: none;
 }
@@ -186,7 +185,7 @@ body {
 }
 
 // ボタン内　中央寄せ
-button.close-button {
+.info-help-card button.close-button {
   text-align: center;
   margin: 0;
 }
@@ -205,11 +204,18 @@ button.close-button {
 }
 
 // 閉じるボタン　ホバー
-.close-button:hover {
+.info-help-card .close-button:hover {
   background-color: #606060;
   scale: 105%;
   cursor: pointer;
 }
+
+.info-help-card .close-button:focus-visible {
+  text-decoration-thickness: 2px; /* 太めで見えやすく */
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
 // 行間
 h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */

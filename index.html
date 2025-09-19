@@ -193,7 +193,12 @@
             <p>このサイトについて</p>
           </div></a
         ><!-- ヘルプ -->
-        <a href="#" class="a-help zen-kaku-gothic-new-regular"
+        <a
+          href="#"
+          id="helpBtn"
+          class="a-help zen-kaku-gothic-new-regular"
+          aria-expanded="false"
+          aria-controls="helpCard"
           ><div id="showCard" class="sideitem item-help">
             <span
               class="material-symbols-outlined help-icon-size"
@@ -206,7 +211,14 @@
       </div>
     </main>
     <!-- ヘルプカード -->
-    <section id="openCard" class="info-help-card">
+    <section
+      id="helpCard"
+      class="info-help-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="helpTitle"
+      hidden
+    >
       <div class="info-help-container">
         <div class="visual-card-help-bg help-content m-plus-1p-regular">
           <!-- ヘッド -->
@@ -219,7 +231,12 @@
               >ヘルプ
             </h2>
             <!-- 閉じるボタン -->
-            <button id="closeBtn" class="close-button">
+            <button
+              id="helpCloseBtn"
+              type="button"
+              aria-label="閉じる"
+              class="close-button"
+            >
               <span
                 class="material-symbols-outlined help-icon-size"
                 aria-hidden="true"
@@ -229,7 +246,9 @@
           </div>
           <!-- 本文 -->
           <div class="m-plus-1p--regular">
-            <div><span class="link-text">タイマーの使い方</span></div>
+            <div id="helpTitle">
+              <span class="link-text">タイマーの使い方</span>
+            </div>
             <div class="flex-parent-help-unit">
               <div class="wrap-help-unit-l">
                 <div class="info-line-spacing">
