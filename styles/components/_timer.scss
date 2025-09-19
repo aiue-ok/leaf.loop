@@ -8,13 +8,33 @@ body {
     font-size: core.$icon-size;
   }
 
+  .timer {
+    width: 100%;
+    min-height: 340px;
+    margin: 0 auto;
+    padding: 0 16px; /* 横に余白 */
+  }
+
+  .timer-deco {
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    @supports (
+      (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+    ) {
+      backdrop-filter: blur(8px) saturate(140%);
+      -webkit-backdrop-filter: blur(8px) saturate(140%);
+      /* うっすら境界 */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+  }
+
   // gridコンテナ親
   .timer-grid-container {
     display: grid;
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
     gap: clamp(8px, 1.5vmin, 16px);
-
     /* カウント → プリセット → 操作 → ボリューム、の縦並び */
     grid-template-areas:
       "count"
@@ -22,20 +42,24 @@ body {
       "controls";
     /* 親要素 */
     width: 100%;
+    place-content: center;
   }
 
-  // カウント
+  // timer grid アイテム＝カウント
   .timer1 {
     grid-area: count;
-    height: 20dvh;
-    margin-top: 25dvh;
+  }
+
+  .timer-count-display {
+    max-width: 20vw;
+    margin: 0 auto;
   }
 
   /* h1 カウントダウン表示 */
   .timer_count {
     text-align: center;
     font-size: clamp(48px, 36.732px + 3.005vw, 80px);
-    line-height: 1.1;
+    line-height: 1.2;
   }
 
   // ３・４・５分ボタン部分
@@ -50,18 +74,15 @@ body {
 
   // ボタン・グループ　（ボタン用grid親）
   .buttons {
-    display: grid;
-    grid-template-columns: repeat(3, clamp(3rem, 3.33vw, 5rem));
-    grid-template-rows: 1fr;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1vw;
-    text-align: center;
-
+    width: 20vw;
+    margin: 0 auto;
     &span {
       display: block;
     }
+  }
+
+  button {
+    margin: 0 auto;
   }
 
   // キーカラーに
@@ -75,8 +96,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // border: solid 2.27px core.$LeafMist;
     border: 0.8px solid rgb(245 245 245 / 35%);
 
     /* 円の大きさ */
@@ -87,40 +106,45 @@ body {
     text-align: center;
     background-color: transparent;
     box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
-
-    /* フォントサイズは直径に比例 */
-    font-size: core.$setTimeBtn-font-size;
-    box-sizing: border-box;
-
-    // font-size: clamp(1rem, 1.111vw, 32px);
   }
 
   button.setTimeBtn:hover {
     cursor: pointer;
-    color: #110b0fa2;
-    text-shadow: #f4eef2;
+    // color: #110b0fa2;
+    color: #606060;
     border: solid 3.27px core.$main-color;
     background-color: core.$main-color;
-    box-shadow: solid 2.27px #f4eef2;
+  }
+  // 操作ボタンの背景　アイコン位置調整
+  .set-buttons {
+    padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
+    background: rgba(245, 245, 245, 0.3);
+    border: 1px solid rgba(245, 245, 245, 0.35);
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
-  // ボリューム調整部分
+  span.set-buttons {
+    white-space: nowrap;
+  }
+
+  span.set-button:hover {
+    cursor: pointer;
+    color: #606060;
+  }
+
+  div.timer3 > .grid-parent-timer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  // デバッグ用通知テスト
   .timer4 {
     grid-area: volume;
-    width: 22vw;
+    width: 20vw;
     margin: 0 auto;
     & span {
       display: block;
     }
-  }
-
-  .set-buttons span:hover {
-    cursor: pointer;
-    color: rgb(17 11 15 / 30%);
-    text-shadow: solid 2.27px #f4eef2;
-
-    // color: var(--timer-color-hover);
-    // text-shadow: var(--timer-shadow-hover);
   }
 
   /* スクリーンリーダー専用 */
@@ -138,9 +162,10 @@ body {
 
   /* トースト */
   .toast {
-    position: fixed;
+    position: absolute;
     left: 50%;
-    bottom: 1rem;
+    top: 1rem;
+    // bottom: 1rem;
     transform: translateX(-50%) translateY(8px);
     background: rgb(0 0 0 / 84%);
     color: #fff;
@@ -174,34 +199,28 @@ body {
   body.hero {
     // hero > main > container > item1 =
     .timer {
-      max-width: 23vw;
-    }
-
-    // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
-    .set-buttons {
+      max-width: 21vw;
+      min-width: 21vw;
+      height: auto;
       display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
       align-items: center;
-      width: 23dvw;
-      width: 23svw;
-      padding: clamp(4px, 2.592px + 0.376vw, 8px);
-      background: transparent;
-      border: 0.8px solid rgb(245 245 245 / 35%);
-      border-radius: 9999px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+      justify-content: center;
+    }
+    .timer-grid-container {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: 3fr 1fr 1fr;
+      grid-template-columns: 1fr;
+      // gap: clamp(16px, 1.5vmin, 20px);
+      gap: 20px;
+      margin: 0 auto;
+      align-items: center;
     }
 
     // 操作ボタンの背景　アイコン位置調整
-    // .set-buttons {
-    //   gap: 1.5rem;
-    //   padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-    //   background: rgba(245, 245, 245, 0.3);
-    //   border: 1px solid rgba(245, 245, 245, 0.35);
-    //   border-radius: 9999px;
-    //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    //   backdrop-filter: blur(100px);
-    // }
+    .set-buttons {
+      padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
+    }
   }
 }
 
@@ -209,29 +228,44 @@ body {
 // 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
 @media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
   body.hero {
-    .buttons {
-      gap: 0.5rem;
-
-      // gap: 2svw;
-    }
-
-    // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
-    .set-buttons {
+    .timer {
+      padding: 0;
+      min-width: 21vw;
+      height: 100vh; /* PCで全画面 */
+      height: 100svh; /* モバイルでアドレスバー考慮 */
       display: flex;
-      flex-direction: row;
-      justify-content: center;
       align-items: center;
-      width: 23dvw;
-      width: 23svw;
-      height: 50px;
-
-      // padding: clamp(4px, 2.592px + 0.376vw, 8px);
-      // background: rgba(245, 245, 245, 0.1);
-      border: 0.8px solid rgb(245 245 245 / 35%);
-      border-radius: 9999px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+      justify-content: center;
+    }
+    .timer-grid-container {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: 3fr 1fr 1fr;
+      grid-template-columns: 1fr;
+      // gap: clamp(16px, 1.5vmin, 20px);
+      gap: 20px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    // カウント
+    .timer1 {
+      margin-top: 0;
+    }
+    .timer_count {
+      font-size: clamp(48px, 6vw, 56px);
+      line-height: 1.2;
     }
 
+    .buttons {
+      width: 100%;
+      margin: 0;
+    }
+
+    .set-buttons {
+      padding: 0;
+      border-radius: 8px;
+    }
+    // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     span.set-button {
       font-size: 2.5rem;
     }
@@ -243,21 +277,47 @@ body {
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (width <= 1024px) and (orientation: portrait) {
   body.hero {
-    .timer-grid-container {
-      gap: clamp(16px, 1.5vmin, 20px);
+    .item {
+      width: 100svw;
+      width: 100dvw;
+      min-height: auto;
+      min-width: fit-content;
+      padding: 16px;
+      overflow: hidden;
     }
-
-    .timer_count {
-      margin-bottom: 2rem;
+    .timer {
+      width: 100vw;
+      min-height: auto;
+      min-width: fit-content;
+      padding: 16px;
+    }
+    .timer-grid-container {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: 3fr 1fr 1fr;
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 1.5vmin, 20px);
+      margin: 0 auto;
+      align-items: center;
     }
 
     .timer1 {
       margin-top: 0;
       height: auto;
     }
+    .timer-count-display {
+      max-width: fit-content;
+    }
+    // 幅を文字に合わせる
+    .timer_count {
+      width: max-content;
+      display: block;
+    }
 
     .buttons {
-      gap: 32px;
+      width: 100%;
+      max-width: 19rem;
+      padding: 0 8px;
     }
 
     .timer3.buttons {
@@ -268,25 +328,51 @@ body {
   }
 }
 
-/* 縦向き：最小値をちょい上げて読みやすさ優先 */
-// 🔺🔺🔺@media screen and (max-width: 1024px) and (orientation: portrait)
 // ━━━━━━
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
+    .timer {
+      padding: 0;
+      min-height: 375px;
+      height: 100vh; /* PCで全画面 */
+      height: 100svh; /* モバイルでアドレスバー考慮 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    // 割合を変更
+    .timer-grid-container {
+      grid-template-rows: 2fr 1fr 1fr;
+      // 無視される
+      grid-area: "count" "preset" "control";
+      align-items: center;
+      gap: 16px;
+    }
+
+    .timer-count-display {
+      max-width: fit-content;
+    }
+
+    // 中央寄せ
+    .timer1,
+    .timer2,
+    .timer3 {
+      padding: 0 16px;
+    }
+    // マージントップを削除
     .timer1 {
+      height: auto;
       margin-top: 0;
     }
-
-    .timer3.buttons {
-      grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
-      gap: 1rem;
-      padding: 1vw;
+    // 幅を文字に合わせる
+    .timer_count {
+      width: max-content;
+      display: block;
     }
-
-    // ここどうするかな
-    .timer4 {
-      width: 30vw;
+    .buttons {
+      width: 100%;
+      padding: 0 8px;
     }
   }
 }
