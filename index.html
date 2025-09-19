@@ -27,6 +27,7 @@
     />
     <script src="js/timer-base.js" defer></script>
     <script src="js/hero.js" defer></script>
+    <script src="js/help.js" defer></script>
   </head>
   <body class="hero">
     <!-- 動画の背景 -->
@@ -63,15 +64,18 @@
         お使いのブラウザは動画タグに対応していません。
       </video>
     </div>
+    <header class="title zen-maru-gothic-regular">
+      <h1>leaf.loop - portfolio version1</h1>
+    </header>
     <!-- 【main】 grid　親 -->
     <main class="container content">
       <!-- ❶　タイマー -->
-      <div class="item item1 timer m-plus-1p-regular">
-        <!-- タイマーgrid 親 -->
-        <div class="timer-grid-container">
-          <!-- タイマー子１：見えるタイマー表示 -->
-          <div class="timer1">
-            <div class="timer-display">
+      <div class="item item1 center">
+        <div class="timer timer--deco m-plus-1p-regular">
+          <!-- タイマーgrid 親 -->
+          <div class="timer-grid-container">
+            <!-- タイマー子①：見えるタイマー表示 -->
+            <div class="timer1 timer-count-display">
               <h1
                 id="timer"
                 class="timer_count kiwi-maru-regular"
@@ -80,127 +84,74 @@
               >
                 00:00
               </h1>
+              <!-- 読み上げ専用（視覚には非表示） -->
+              <div
+                id="timerLive"
+                class="sr-only"
+                aria-live="polite"
+                aria-atomic="true"
+              ></div>
             </div>
-            <!-- 読み上げ専用（視覚には非表示） -->
-            <div
-              id="timerLive"
-              class="sr-only"
-              aria-live="polite"
-              aria-atomic="true"
-            ></div>
-          </div>
-          <!-- タイマー子２：初期設定（プリセット）ボタン -->
-          <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-          <div class="timer2 buttons preset-buttons">
-            <button class="setTimeBtn" data-minutes="3" aria-label="3分に設定">
-              <span aria-hidden="true">3分</span>
-            </button>
-            <button class="setTimeBtn" data-minutes="4" aria-label="4分に設定">
-              <span aria-hidden="true">4分</span>
-            </button>
-            <button class="setTimeBtn" data-minutes="5" aria-label="5分に設定">
-              <span aria-hidden="true">5分</span>
-            </button>
-          </div>
-          <!-- タイマー子３：操作（コントロール）ボタン -->
-          <div class="timer3 buttons set-buttons">
-            <button id="startBtn" aria-pressed="false" aria-label="再生">
-              <span
-                class="set-button material-symbols-outlined icon-size"
-                aria-hidden="true"
-                >play_circle
-              </span>
-            </button>
-            <button id="stopBtn" aria-pressed="false" aria-label="停止">
-              <span
-                class="set-button material-symbols-outlined icon-size"
-                aria-hidden="true"
-                >stop_circle
-              </span>
-            </button>
-            <button id="resetBtn" aria-label="リセット">
-              <span
-                class="set-button material-symbols-outlined icon-size"
-                aria-hidden="true"
-                >refresh
-              </span>
-            </button>
-            <button aria-label="ミュート" id="muteBtn">
-              <span class="set-button mute material-symbols-outlined icon-size"
-                >volume_off
-              </span>
-            </button>
-          </div>
-          <!-- タイマー子４：「通知テスト」開発用 -->
-          <div class="timer4">
-            <!-- 通知オプション -->
-            <fieldset
-              class="notify-controls"
-              aria-describedby="notifyHint"
-              hidden
-            >
-              <legend class="visually-hidden">通知の方法</legend>
-              <p id="notifyHint" class="visually-hidden explanation">
-                音・バイブ・画面表示のオン/オフを切り替えます
-              </p>
-              <!-- input checkbox -->
-              <div class="label-box">
-                <!-- 音 -->
-                <label class="chip">
-                  <input id="optSound" type="checkbox" checked />
-                  <span
-                    class="chip__icon material-symbols-outlined"
-                    aria-hidden="true"
-                  >
-                    sound_sampler
-                  </span>
-                  <span class="chip__text">音</span>
-                </label>
-                <!-- バイブ -->
-                <label class="chip">
-                  <input id="optVibrate" type="checkbox" checked />
-                  <span
-                    class="chip__icon material-symbols-outlined"
-                    aria-hidden="true"
-                    >mobile_vibrate</span
-                  >
-                  <span class="chip__text">バイブ</span>
-                </label>
-                <!-- トースト -->
-                <label class="chip">
-                  <input id="optToast" type="checkbox" checked />
-                  <span
-                    class="chip__icon material-symbols-outlined"
-                    aria-hidden="true"
-                    >toast</span
-                  >
-                  <span class="chip__text">画面表示</span>
-                </label>
-              </div>
-              <!-- テスト ボタン-->
-              <div class="test-button-box">
+            <!-- タイマー子②：初期設定（プリセット）ボタン -->
+            <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
+            <div class="timer2 buttons">
+              <div class="grid-parent-timer">
                 <button
-                  id="testNotify"
-                  type="button"
-                  class="chip chip--action"
-                  aria-label="通知テスト"
+                  class="setTimeBtn"
+                  data-minutes="3"
+                  aria-label="3分に設定"
                 >
-                  通知テスト
+                  <span aria-hidden="true">3分</span>
+                </button>
+                <button
+                  class="setTimeBtn"
+                  data-minutes="4"
+                  aria-label="4分に設定"
+                >
+                  <span aria-hidden="true">4分</span>
+                </button>
+                <button
+                  class="setTimeBtn"
+                  data-minutes="5"
+                  aria-label="5分に設定"
+                >
+                  <span aria-hidden="true">5分</span>
                 </button>
               </div>
-            </fieldset>
+            </div>
+            <!-- タイマー子③：操作（コントロール）ボタン -->
+            <div class="timer3 buttons set-buttons">
+              <div class="grid-parent-timer">
+                <button id="startBtn" aria-pressed="false" aria-label="再生">
+                  <span
+                    class="set-button material-symbols-outlined icon-size"
+                    aria-hidden="true"
+                    >play_circle
+                  </span>
+                </button>
+                <button id="stopBtn" aria-pressed="false" aria-label="停止">
+                  <span
+                    class="set-button material-symbols-outlined icon-size"
+                    aria-hidden="true"
+                    >stop_circle
+                  </span>
+                </button>
+                <button id="resetBtn" aria-label="リセット">
+                  <span
+                    class="set-button material-symbols-outlined icon-size"
+                    aria-hidden="true"
+                    >refresh
+                  </span>
+                </button>
+                <button aria-label="ミュート" id="muteBtn">
+                  <span
+                    class="set-button mute material-symbols-outlined icon-size"
+                    >volume_off
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
-          <!-- 画面表示（トースト） スクリーンリーダーが読んでくれる-->
-          <div id="toast" class="toast" role="status" aria-live="polite" hidden>
-            お茶の準備ができました
-          </div>
-          <!-- 読み上げ（最終告知は assertive） -->
-          <div
-            id="finalLive"
-            class="sr-only"
-            aria-live="assertive"
-            aria-atomic="true"
-          ></div>
         </div>
       </div>
       <!-- ❷　galleryへのアンカー -->
@@ -241,21 +192,164 @@
             <span class="leaf-text" aria-hidden="true">🌱</span>
             <p>このサイトについて</p>
           </div></a
-        >
-        <!-- ヘルプ -->
+        ><!-- ヘルプ -->
         <a href="#" class="a-help zen-kaku-gothic-new-regular"
-          ><div class="sideitem item-help">
+          ><div id="showCard" class="sideitem item-help">
             <span
               class="material-symbols-outlined help-icon-size"
               aria-hidden="true"
-            >
-              help
+              >help
             </span>
             <p>ヘルプ</p>
           </div>
         </a>
       </div>
     </main>
+    <!-- ヘルプカード -->
+    <section id="openCard" class="info-help-card">
+      <div class="info-help-container">
+        <div class="visual-card-help-bg help-content m-plus-1p-regular">
+          <!-- ヘッド -->
+          <div class="flex-parent-help-h">
+            <h2>
+              <span
+                class="material-symbols-outlined help-icon-size"
+                aria-hidden="true"
+                >help </span
+              >ヘルプ
+            </h2>
+            <!-- 閉じるボタン -->
+            <button id="closeBtn" class="close-button">
+              <span
+                class="material-symbols-outlined help-icon-size"
+                aria-hidden="true"
+                >close
+              </span>
+            </button>
+          </div>
+          <!-- 本文 -->
+          <div class="m-plus-1p--regular">
+            <div><span class="link-text">タイマーの使い方</span></div>
+            <div class="flex-parent-help-unit">
+              <div class="wrap-help-unit-l">
+                <div class="info-line-spacing">
+                  <h3>時間設定</h3>
+                  <p>3分・4分・5分から選びます<br />（初期設定は3分です）</p>
+                </div>
+                <div class="info-line-spacing">
+                  <h3>操作方法</h3>
+                  <p>各マークをタップまたはクリックすると操作できます</p>
+                </div>
+              </div>
+              <div class="wrap-help-unit-r">
+                <div class="flex-parent-help-p info-line-spacing">
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >play_circle
+                  </span>
+                  <p>再生：カウントダウン開始</p>
+                </div>
+                <div class="flex-parent-help-p info-line-spacing">
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >stop_circle
+                  </span>
+                  <p>
+                    停止：一時停止
+                    <span
+                      class="material-symbols-outlined p-icon-size"
+                      aria-hidden="true"
+                      >play_circle </span
+                    >再生マークでカウントダウン再開
+                  </p>
+                </div>
+                <div class="flex-parent-help-p info-line-spacing">
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >refresh
+                  </span>
+                  <p>リフレッシュマーク:表示リセット</p>
+                </div>
+                <div class="flex-parent-help-p">
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >volume_off
+                  </span>
+                  <p>音量マーク:ミュート（消音）</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-hidden">
+            <!-- 通知オプション -->
+            <h2>通知テスト</h2>
+            <h3>通知の方法</h3>
+            <div class="notify-controls">
+              <label
+                ><input id="optSound" type="checkbox" checked />
+                <span
+                  class="material-symbols-outlined help-icon-size"
+                  aria-hidden="true"
+                  >sound_sampler
+                </span>
+                音で知らせる</label
+              >
+              <label
+                ><input id="optVibrate" type="checkbox" checked />
+                <span
+                  class="material-symbols-outlined help-icon-size"
+                  aria-hidden="true"
+                  >mobile_vibrate
+                </span>
+                バイブで知らせる</label
+              >
+              <label
+                ><input id="optToast" type="checkbox" checked />
+                <span
+                  class="material-symbols-outlined help-icon-size"
+                  aria-hidden="true"
+                  >toast
+                </span>
+                画面に表示する</label
+              >
+              <button
+                id="testNotify"
+                type="button"
+                aria-label="通知をテスト"
+                class="help-button-look"
+              >
+                <span
+                  class="material-symbols-outlined help-icon-size"
+                  aria-hidden="true"
+                  >play_circle
+                </span>
+                通知テスト
+              </button>
+            </div>
+            <!-- 音（あなたのC音に差し替え） -->
+            <audio
+              id="ding"
+              src="assets/audio/alarm.mp3"
+              preload="auto"
+            ></audio>
+            <!-- 画面表示（トースト） -->
+            <div
+              id="toast"
+              class="toast"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              お湯の準備ができました
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>
