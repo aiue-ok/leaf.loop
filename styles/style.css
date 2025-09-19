@@ -1805,6 +1805,22 @@ body.hero .tea {
     object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
     object-position: center;
   }
+  @supports (height: 100dvh) {
+    body.hero #background-video {
+      height: 100dvh;
+    }
+  }
+}
+@media (width <= 1024px) and (orientation: portrait) and (prefers-reduced-motion: reduce) {
+  body.hero #background-video {
+    display: none !important;
+  }
+}
+@media (width <= 1024px) and (orientation: portrait) {
+  body.hero .title h1 {
+    font-size: 24px;
+    white-space: nowrap;
+  }
   body.hero main {
     height: auto;
   }
@@ -1881,7 +1897,24 @@ body.hero .tea {
   body.hero {
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     /* 背景動画の下敷き設定はそのままOK */
-    /* 手前に出すレイヤー（content） */
+    /* すぅ〜 */
+  }
+  body.hero .title h1 {
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  body.hero .main {
+    position: fixed;
+    width: 100%;
+    min-height: fit-content;
+    overflow: auto;
+    /* 背景メディアは最背面 */
+    background-image: url("../../assets/jpg/hero-bg.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center; /* 背景画像を画面の中心に配置 */
+    height: auto;
   }
   body.hero .container {
     height: 100svh;
