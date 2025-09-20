@@ -15,11 +15,11 @@ body.hero {
     pointer-events: none;
     z-index: core.$z-back;
     background: linear-gradient(
-        to right,
-        rgba(200, 211, 192, 0.4),
-        rgba(200, 211, 192, 0.4)
-      ),
-      rgba(0, 0, 0, var(--hero-veil, 0.28));
+      to right,
+      rgba(200, 211, 192, 0.4),
+      rgba(200, 211, 192, 0.4)
+    );
+    mix-blend-mode: multiply;
   }
   /* 背景メディアは最背面 */
   .hero-media {
@@ -51,11 +51,20 @@ body.hero {
   .title {
     // padding: 1rem;
     color: core.$main-color;
-    font-size: clamp(1.4rem, 3.2vw, 3rem);
+    font-size: clamp(1.1rem, 3.2vw, 3rem);
     line-height: 1.15;
     letter-spacing: 0.02em;
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    @supports (backdrop-filter: blur(2px)) {
+      .title {
+        backdrop-filter: blur(2px);
+        background: color-mix(in oklab, #000 6%, transparent);
+        padding-inline: 0.5rem;
+        border-radius: 0.5rem;
+      }
+    }
   }
   main {
     width: 100%;
@@ -280,19 +289,18 @@ body.hero {
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
 
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0; /* ← padding-box まできっちり覆う */
-        pointer-events: none;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; /* ← padding-box まできっちり覆う */
+      pointer-events: none;
       z-index: core.$z-back;
-        background: linear-gradient(
-            to right,
-            rgba(200, 211, 192, 0.4),
-            rgba(200, 211, 192, 0.4)
-          ),
-          rgba(0, 0, 0, var(--hero-veil, 0.28));
-      }
+      background: linear-gradient(
+        to right,
+        rgba(200, 211, 192, 0.4),
+        rgba(200, 211, 192, 0.4)
+      );
+    }
 
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     .hero-media {
@@ -323,7 +331,9 @@ body.hero {
         display: none !important;
       }
     }
-
+    .title h1 {
+      white-space: nowrap;
+    }
     main {
       height: auto;
     }
@@ -465,6 +475,22 @@ body.hero {
     min-width: 100svw;
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
+    .title h1 {
+      white-space: nowrap;
+    }
+    .main {
+      position: fixed;
+      width: 100%;
+      min-height: fit-content;
+      overflow: auto;
+      /* 背景メディアは最背面 */
+      background-image: url("../../assets/jpg/hero-bg.jpg");
+      background-size: contain;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center center; /* 背景画像を画面の中心に配置 */
+      height: auto;
+    }
     .container {
       grid-template:
         "item1 item4" 1fr
