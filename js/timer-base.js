@@ -54,25 +54,26 @@ const optToast = document.getElementById("optToast");
 const isChecked = (el, def = true) => (el ? !!el.checked : def);
 
 // ===== iOS系：初回タップで音を“解錠” =====
-let audioUnlocked = false;
-function unlockAudioOnce() {
-  if (audioUnlocked || !ding) return;
-  const v = ding.volume;
-  ding.volume = 0;
-  ding
-    .play()
-    .then(() => {
-      ding.pause();
-      ding.currentTime = 0;
-      ding.volume = v;
-      audioUnlocked = true;
-      document.removeEventListener("pointerdown", unlockAudioOnce);
-    })
-    .catch(() => {
-      /* ユーザーのテストで解錠可 */
-    });
-}
-document.addEventListener("pointerdown", unlockAudioOnce);
+// 正常に動かせるまで使わない
+// let audioUnlocked = false;
+// function unlockAudioOnce() {
+//   if (audioUnlocked || !ding) return;
+//   const v = ding.volume;
+//   ding.volume = 0;
+//   ding
+//     .play()
+//     .then(() => {
+//       ding.pause();
+//       ding.currentTime = 0;
+//       ding.volume = v;
+//       audioUnlocked = true;
+//       document.removeEventListener("pointerdown", unlockAudioOnce);
+//     })
+//     .catch(() => {
+//       /* ユーザーのテストで解錠可 */
+//     });
+// }
+// document.addEventListener("pointerdown", unlockAudioOnce);
 
 // ===== 通知系 =====
 function playDing() {
