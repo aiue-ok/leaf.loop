@@ -1,0 +1,13 @@
+ styles/components/_info.scss  |  5 -----
+ styles/components/_timer.scss | 13 -------------
+ styles/pages/_hero.scss       | 39 +++++----------------------------------
+ 3 files changed, 5 insertions(+), 52 deletions(-)
+
+
+leaf.loop % git worktree add ../ww-fix fix/hero-polish-5
+Preparing worktree (checking out 'fix/hero-polish-5')
+Updating files: 100% (136/136), done.
+HEAD is now at 506bd37 fix(timer): resolve overflow in timer area layout
+leaf.loop % git worktree add ../ww-release release/v0.1.0-hero
+Preparing worktree (checking out 'release/v0.1.0-hero')
+HEAD is now at 978339c Merge pull request #1 from aiue-ok/fix/hero-polish-4
