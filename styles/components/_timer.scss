@@ -106,15 +106,22 @@ body {
     text-align: center;
     background-color: transparent;
     box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+    // 追加視認性UP
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    /* ほんのり輪郭 */
+    outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+    outline-offset: -2px;
   }
 
-  button.setTimeBtn:hover {
+  button.setTimeBtn:hover,
+  button.setTimeBtn:focus-visible {
     cursor: pointer;
     // color: #110b0fa2;
     color: #606060;
     border: solid 3.27px core.$main-color;
     background-color: core.$main-color;
   }
+
   // 操作ボタンの背景　アイコン位置調整
   .set-buttons {
     padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
@@ -126,6 +133,15 @@ body {
 
   span.set-buttons {
     white-space: nowrap;
+  }
+
+  span.set-button {
+    // 追加視認性UP
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    /* ほんのり輪郭 */
+    outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+    outline-offset: -2px;
+    border-radius: 0.5rem;
   }
 
   span.set-button:hover {

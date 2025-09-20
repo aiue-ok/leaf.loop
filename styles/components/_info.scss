@@ -181,6 +181,7 @@ body {
   color: var(--help-fg);
   text-decoration: none;
   font-size: 1rem;
+  line-height: 1.6;
   text-align: left;
   & p {
     padding-left: 0.8rem;
@@ -199,9 +200,9 @@ body {
     display: block;
   }
   & span.help-icon {
-      margin-right: 10px;
-    }
+    margin-right: 10px;
   }
+}
 
 // ボタン内　中央寄せ
 .info-help-card button.close-button {
@@ -238,6 +239,8 @@ body {
 // 行間
 .info-help-card h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
+  margin-block: 0.25rem 0.5rem;
+  color: #b4d2ea;
 }
 
 // 間隔
@@ -253,6 +256,7 @@ body {
   margin: 0 0.2rem;
   line-height: 1.5;
   color: var(--help-icon);
+  opacity: 0.9;
 }
 
 // pタグ内の行揃え
@@ -261,6 +265,7 @@ body {
   justify-content: left;
   align-items: center;
   text-align: left;
+  margin-block: 0.1rem;
 }
 
 // 📍📍📍 高さ500px以下（スマホ横向きなど）以下
