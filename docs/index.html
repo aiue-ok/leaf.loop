@@ -25,6 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json" />
+
     <script src="js/timer-base.js" defer></script>
     <script src="js/hero.js" defer></script>
     <script src="js/help.js" defer></script>
@@ -306,69 +310,69 @@
             </div>
           </div>
           <section id="notify-controls" hidden aria-hidden="true">
-          <div class="info-hidden">
-            <!-- 通知オプション -->
-            <h2>通知テスト</h2>
-            <h3>通知の方法</h3>
-            <div class="notify-controls">
-              <label
-                ><input id="optSound" type="checkbox" checked />
-                <span
-                  class="material-symbols-outlined help-icon-size"
-                  aria-hidden="true"
-                  >sound_sampler
-                </span>
-                音で知らせる</label
+            <div class="info-hidden">
+              <!-- 通知オプション -->
+              <h2>通知テスト</h2>
+              <h3>通知の方法</h3>
+              <div class="notify-controls">
+                <label
+                  ><input id="optSound" type="checkbox" checked />
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >sound_sampler
+                  </span>
+                  音で知らせる</label
+                >
+                <label
+                  ><input id="optVibrate" type="checkbox" checked />
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >mobile_vibrate
+                  </span>
+                  バイブで知らせる</label
+                >
+                <label
+                  ><input id="optToast" type="checkbox" checked />
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >toast
+                  </span>
+                  画面に表示する</label
+                >
+                <button
+                  id="testNotify"
+                  type="button"
+                  aria-label="通知をテスト"
+                  class="help-button-look"
+                >
+                  <span
+                    class="material-symbols-outlined help-icon-size"
+                    aria-hidden="true"
+                    >play_circle
+                  </span>
+                  通知テスト
+                </button>
+              </div>
+              <!-- 音（あなたのC音に差し替え） -->
+              <audio
+                id="ding"
+                src="assets/audio/alarm.mp3"
+                preload="auto"
+              ></audio>
+              <!-- 画面表示（トースト） -->
+              <div
+                id="toast"
+                class="toast"
+                role="status"
+                aria-live="polite"
+                hidden
               >
-              <label
-                ><input id="optVibrate" type="checkbox" checked />
-                <span
-                  class="material-symbols-outlined help-icon-size"
-                  aria-hidden="true"
-                  >mobile_vibrate
-                </span>
-                バイブで知らせる</label
-              >
-              <label
-                ><input id="optToast" type="checkbox" checked />
-                <span
-                  class="material-symbols-outlined help-icon-size"
-                  aria-hidden="true"
-                  >toast
-                </span>
-                画面に表示する</label
-              >
-              <button
-                id="testNotify"
-                type="button"
-                aria-label="通知をテスト"
-                class="help-button-look"
-              >
-                <span
-                  class="material-symbols-outlined help-icon-size"
-                  aria-hidden="true"
-                  >play_circle
-                </span>
-                通知テスト
-              </button>
+                お湯の準備ができました
+              </div>
             </div>
-            <!-- 音（あなたのC音に差し替え） -->
-            <audio
-              id="ding"
-              src="assets/audio/alarm.mp3"
-              preload="auto"
-            ></audio>
-            <!-- 画面表示（トースト） -->
-            <div
-              id="toast"
-              class="toast"
-              role="status"
-              aria-live="polite"
-              hidden
-            >
-              お湯の準備ができました
-            </div>
-          </div>
           </section>
         </div>
       </div>
