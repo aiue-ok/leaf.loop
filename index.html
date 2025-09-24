@@ -96,6 +96,8 @@
                 aria-atomic="true"
               ></div>
             </div>
+            <!-- デバッグ中だけ -->
+            <button id="pingAudio" type="button">🔊 テスト</button>
             <!-- タイマー子②：初期設定（プリセット）ボタン -->
             <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
             <div class="timer2 buttons">
@@ -124,22 +126,32 @@
               </div>
             </div>
             <!-- タイマー子③：操作（コントロール）ボタン -->
-            <div class="timer3 buttons set-buttons">
+            <div
+              class="timer3 buttons set-buttons"
+              id="timerPanel"
+              aria-live="polite"
+            >
               <div class="grid-parent-timer">
-                <button id="startBtn" aria-pressed="false" aria-label="再生">
-                  <span
-                    class="set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >play_circle
-                  </span>
-                </button>
-                <button id="stopBtn" aria-pressed="false" aria-label="停止">
-                  <span
-                    class="set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >stop_circle
-                  </span>
-                </button>
+                <div>
+                  <button
+                    id="toggleTimer"
+                    class="timer-toggle"
+                    aria-pressed="false"
+                    aria-label="Start"
+                    aria-controls="timerPanel"
+                  >
+                    <span
+                      class="set-button material-symbols-outlined icon-size"
+                      aria-hidden="true"
+                      >play_circle
+                    </span>
+                    <span
+                      class="set-button material-symbols-outlined icon-size"
+                      aria-hidden="true"
+                      >stop_circle
+                    </span>
+                  </button>
+                </div>
                 <button id="resetBtn" aria-label="リセット">
                   <span
                     class="set-button material-symbols-outlined icon-size"
@@ -356,27 +368,20 @@
                   通知テスト
                 </button>
               </div>
-              <!-- 音（あなたのC音に差し替え） -->
-              <audio
-                id="ding"
-                src="assets/audio/alarm.mp3"
-                preload="auto"
-              ></audio>
-              <!-- 画面表示（トースト） -->
-              <div
-                id="toast"
-                class="toast"
-                role="status"
-                aria-live="polite"
-                hidden
-              >
-                お湯の準備ができました
-              </div>
             </div>
           </section>
         </div>
       </div>
     </section>
-    <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
+    <audio
+      id="alarmSound"
+      src="assets/mp3/alarm.mp3"
+      preload="auto"
+      playsinline
+    ></audio>
+    <!-- 画面表示（トースト） -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+      お湯の準備ができました
+    </div>
   </body>
 </html>
