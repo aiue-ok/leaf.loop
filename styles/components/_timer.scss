@@ -51,15 +51,43 @@ body {
   }
 
   .timer-count-display {
+    min-width: 5ch;
     max-width: 20vw;
     margin: 0 auto;
   }
 
   /* h1 カウントダウン表示 */
   .timer_count {
+    display: inline-block;
     text-align: center;
+    // ch は「0 の幅」を基準にした長さ
+    width: 5ch;
     font-size: clamp(48px, 36.732px + 3.005vw, 80px);
     line-height: 1.2;
+    background: color-mix(in oklch, var(--milk-white) 5%, transparent);
+    border-radius: 0.6rem;
+    padding-inline: 0.8rem;
+    padding-block: 0.2rem;
+    backdrop-filter: blur(3px) saturate(95%) contrast(92%);
+    outline: 1px solid rgba(255, 255, 255, 0.12); /* 境界は“線”でなく“気配” */
+  }
+
+  /* 数字だけ相棒フォント + 等幅数字をON */
+  .digits {
+    font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+    // 等幅数字（桁ごとに同じ幅）をON
+    font-variant-numeric: tabular-nums; /* 等幅数字 */
+    font-feature-settings: "tnum" 1; /* 念のため保険として */
+    // フォントにその太さ/斜体が無いとき、ブラウザが“偽ボールド/偽イタリック”を合成するのを禁止
+    font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */
+    letter-spacing: 0.01em; /* “leaf.loop”の空気感に合わせて極小トラッキング */
+    font-weight: 500;
+    letter-spacing: 0.0125em;
+    color: var(--milk-white);
+    // ※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
+    text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55),
+      /* エッジの微光 */ 0 0 0.18rem rgba(255, 255, 255, 0.3),
+      /* 近距離の霧 */ 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
   }
 
   // ３・４・５分ボタン部分
@@ -126,8 +154,9 @@ body {
     border-radius: 50%;
     color: inherit;
     text-align: center;
-    background-color: transparent;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+    background-color: var(--panel);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 15%),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     // 追加視認性UP
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
     /* ほんのり輪郭 */

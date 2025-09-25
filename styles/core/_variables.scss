@@ -21,6 +21,11 @@
     --hero-veil: 0.4;
 
     --yanagi-alpha: 0.18;
+    // タイマー表示
+    /* night-indigo 上で映える柔白（OKLCH） */
+    --milk-white: oklch(96% 0.01 110); /* #fffより柔らかい */
+    --stroke: rgba(255, 255, 255, 0.2); /* 0.30 → 0.20 に */
+    --panel: color-mix(in oklch, var(--milk-white) 6%, rgba(0, 0, 0, 0.15));
 
     // notify-controls “プリセット風チップUI”
     --chip-bg: rgba(255, 255, 255, 0.08);
