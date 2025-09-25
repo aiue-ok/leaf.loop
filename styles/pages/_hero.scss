@@ -7,6 +7,7 @@ body.hero {
   // 要素の上に独立したスタッキング文脈（重なりの世界）を作る
   isolation: isolate;
   font-size: var(--text-hero);
+  overflow-x: hidden;
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
     content: "";
@@ -20,6 +21,9 @@ body.hero {
       rgba(200, 211, 192, 0.4)
     );
     mix-blend-mode: multiply;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   /* 背景メディアは最背面 */
   .hero-media {
@@ -32,6 +36,7 @@ body.hero {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      inline-size: 100%;
     }
   }
   /* コンテンツ/UIは前面へ */
@@ -341,7 +346,7 @@ body.hero {
       display: grid;
       grid-template-columns: 1fr;
       // 無視される
-      grid-template-rows: 20vh max(400px, 4fr) 80px 80px 1fr;
+      grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
       grid-template-areas:
         "item4" /* 見出し */
         "item1" /* タイマー */
@@ -463,6 +468,9 @@ body.hero {
       font-size: clamp(1.25rem, 2.7vw, 1.5rem);
       white-space: nowrap;
     }
+    .text {
+      gap: 3vh;
+    }
   }
 }
 
@@ -476,10 +484,13 @@ body.hero {
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .title h1 {
+      font-size: smaller;
       white-space: nowrap;
     }
     .main {
-      position: fixed;
+      position: absolute; /* もともとfixedなら切り替え */
+      inset: 0;
+      // position: fixed;
       width: 100%;
       min-height: fit-content;
       overflow: auto;
@@ -611,4 +622,10 @@ body.hero {
     border-bottom-color: rgb(255 255 255 / 0.7);
     text-underline-offset: 0.2em;
   }
+}
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  } /* clipの方がわずかに安全 */
 }
