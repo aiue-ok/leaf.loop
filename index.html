@@ -136,26 +136,25 @@
               aria-live="polite"
             >
               <div class="grid-parent-timer">
-                <div>
-                  <button
-                    id="toggleTimer"
-                    class="timer-toggle"
-                    aria-pressed="false"
-                    aria-label="Start"
-                    aria-controls="timerPanel"
-                  >
-                    <span
-                      class="set-button material-symbols-outlined icon-size"
-                      aria-hidden="true"
-                      >play_circle
-                    </span>
-                    <span
-                      class="set-button material-symbols-outlined icon-size"
-                      aria-hidden="true"
-                      >stop_circle
-                    </span>
-                  </button>
-                </div>
+                <button
+                  id="toggleTimer"
+                  class="timer-toggle"
+                  aria-pressed="false"
+                  aria-label="Start"
+                  aria-controls="timerPanel"
+                >
+                  <span
+                    class="icon-play set-button material-symbols-outlined icon-size"
+                    aria-hidden="true"
+                    >play_circle
+                  </span>
+                  <span
+                    class="icon-stop set-button material-symbols-outlined icon-size"
+                    aria-hidden="true"
+                    >stop_circle
+                  </span>
+                </button>
+
                 <button id="resetBtn" aria-label="リセット">
                   <span
                     class="set-button material-symbols-outlined icon-size"
@@ -312,7 +311,7 @@
                     aria-hidden="true"
                     >refresh
                   </span>
-                  <p>リフレッシュマーク:表示リセット</p>
+                  <p>表示リセット</p>
                 </div>
                 <div class="flex-parent-help-p">
                   <span
@@ -320,7 +319,7 @@
                     aria-hidden="true"
                     >volume_off
                   </span>
-                  <p>音量マーク:ミュート（消音）</p>
+                  <p>ミュート：消音</p>
                 </div>
               </div>
             </div>

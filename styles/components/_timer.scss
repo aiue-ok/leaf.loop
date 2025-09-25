@@ -102,12 +102,14 @@ body {
 
   .timer-toggle {
     position: relative;
-    inline-size: 48px;
-    block-size: 48px;
+    min-width: auto;
+    min-height: auto;
+    // inline-size: 44px;
+    // block-size: 44px;
     display: inline-grid;
     place-items: center;
   }
-  .timer-toggle .icon {
+  .timer-toggle span {
     grid-area: 1/1;
     width: 100%;
     height: 100%;
@@ -198,20 +200,6 @@ body {
   span.set-button:hover {
     cursor: pointer;
     color: #606060;
-  }
-  // トグルでボタンが３つに
-  // div.timer3 > .grid-parent-timer {
-  //   grid-template-columns: repeat(4, 1fr);
-  // }
-
-  // デバッグ用通知テスト
-  .timer4 {
-    grid-area: volume;
-    width: 20vw;
-    margin: 0 auto;
-    & span {
-      display: block;
-    }
   }
 
   /* スクリーンリーダー専用 */
@@ -390,7 +378,7 @@ body {
     .timer3.buttons {
       grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
       gap: 1rem;
-      padding: 0;
+      // padding: 0;
     }
   }
 }
