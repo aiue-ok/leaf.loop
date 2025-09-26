@@ -16,18 +16,18 @@
     --hero-veil: 0.4;
     --yanagi-alpha: 0.18;
     /* night-indigo 上で映える柔白（OKLCH） */
-    --milk-white: oklch(96% 0.01 110); /* #fffより柔らかい */
-    --stroke: rgba(255, 255, 255, 0.2); /* 0.30 → 0.20 に */
-    --panel: color-mix(in oklch, var(--milk-white) 6%, rgba(0, 0, 0, 0.15));
-    --chip-bg: rgba(255, 255, 255, 0.08);
-    --chip-bg-active: rgba(255, 255, 255, 0.18);
-    --chip-bd: rgba(255, 255, 255, 0.55);
-    --chip-bd-active: rgba(255, 255, 255, 0.85);
+    --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
+    --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
+    --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+    --chip-bg: rgb(255 255 255 / 8%);
+    --chip-bg-active: rgb(255 255 255 / 18%);
+    --chip-bd: rgb(255 255 255 / 55%);
+    --chip-bd-active: rgb(255 255 255 / 85%);
     /* Theme: default = charcoal leaf */
-    --help-bg: rgba(12, 14, 16, 0.78);
+    --help-bg: rgb(12 14 16 / 78%);
     --help-fg: #eaeaea;
-    --help-h: #ffffff;
-    --help-border: rgba(255, 255, 255, 0.12);
+    --help-h: #fff;
+    --help-border: rgb(255 255 255 / 12%);
     --help-icon: #b4d2ea;
   }
   :root :root {
@@ -44,7 +44,6 @@
   --timer-position: fixed;
   --timer-left: 1.25rem;
   --timer-bottom: 1.25rem;
-  --timer-mini-width: clamp(360px, 25vw, 380px);
   --timer-mini-height: max(180px, 17.58vh);
   --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
   --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
@@ -94,7 +93,7 @@ body.gallery .timer-mini-container {
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
   --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 /70%);
+  --timer-hover-container: rgb(255 255 255 70%);
   --timer-h: clamp(64px, 12vh, 112px);
 }
 
@@ -117,7 +116,7 @@ body.universe .timer-mini-container {
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
   --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 /70%);
+  --timer-hover-container: rgb(255 255 255 70%);
   --timer-h: clamp(64px, 12vh, 112px);
 }
 
@@ -130,7 +129,6 @@ body.universe .timer-mini-container {
 * {
   margin: 0;
   padding: 0;
-  outline: 1px solid green;
 }
 
 html {
@@ -558,7 +556,6 @@ body .timer-deco {
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   body .timer-deco {
     backdrop-filter: blur(8px) saturate(140%);
-    -webkit-backdrop-filter: blur(8px) saturate(140%);
     /* うっすら境界 */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
   }
@@ -599,8 +596,7 @@ body .digits {
   font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
   font-variant-numeric: tabular-nums; /* 等幅数字 */
   font-feature-settings: "tnum" 1; /* 念のため保険として */
-  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */
-  letter-spacing: 0.01em; /* “leaf.loop”の空気感に合わせて極小トラッキング */
+  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
   font-weight: 500;
   letter-spacing: 0.0125em;
   color: var(--milk-white);
@@ -1196,7 +1192,7 @@ body.about span.vol-label {
     gap: var(--gap-g-button);
   }
 }
-/* スマホ（～390pxあたり） */
+/* スマホ */
 @media (width <= 743px) and (orientation: portrait) {
   body.gallery,
   body.universe,
@@ -1520,19 +1516,19 @@ body span.help-icon-size {
 /* 背景 */
 /* Moss */
 .theme-moss {
-  --help-bg: rgba(24, 36, 28, 0.72);
+  --help-bg: rgb(24 36 28 / 72%);
   --help-fg: #ebf3ef;
-  --help-h: #ffffff;
-  --help-border: rgba(196, 214, 205, 0.35);
+  --help-h: #fff;
+  --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
 }
 
 /* Dew */
 .theme-dew {
-  --help-bg: rgba(240, 245, 243, 0.82);
+  --help-bg: rgb(240 245 243 / 82%);
   --help-fg: #1e2b4f;
   --help-h: #0b1c39;
-  --help-border: rgba(11, 28, 57, 0.15);
+  --help-border: rgb(11 28 57 / 15%);
   --help-icon: #0e1020;
 }
 
@@ -1600,7 +1596,7 @@ body span.help-icon-size {
 
 .info-help-card .close-button:focus-visible {
   text-decoration-thickness: 2px; /* 太めで見えやすく */
-  outline: 2px solid currentColor;
+  outline: 2px solid currentcolor;
   outline-offset: 4px;
 }
 
