@@ -162,11 +162,12 @@ input[type="checkbox"] {
   position: relative;
   z-index: 2; /* オーバーレイより前 */
   padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgb(255 255 255 / 50%);
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgb(0 0 0 / 15%);
   backdrop-filter: blur(6px);
 }
+
 .help-button-look {
   background-color: #f5f5f5;
   color: #0a0a0a;
@@ -177,6 +178,7 @@ input[type="checkbox"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .explanation p {
   width: 100%;
 }
@@ -211,6 +213,7 @@ input[type="checkbox"] {
   opacity: 0;
   pointer-events: auto; /* ラベル全体クリック可 */
 }
+
 .chip:focus-within {
   outline: 2px solid #fff;
   outline-offset: 3px;
@@ -228,10 +231,11 @@ input[type="checkbox"] {
   border: 1px solid var(--chip-bd-active);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.1)
+    rgb(255 255 255 / 20%),
+    rgb(255 255 255 / 10%)
   );
 }
+
 .chip--action:active {
   transform: translateY(1px);
 }
@@ -240,6 +244,7 @@ input[type="checkbox"] {
 .chip__icon {
   font-size: 20px;
 }
+
 .timer4 span.chip__text {
   display: none;
 }
@@ -248,9 +253,11 @@ input[type="checkbox"] {
   .notify-controls {
     margin: 24px;
   }
+
   .timer4 span.chip__text {
     display: none;
   }
+
   .test-button-box {
     width: 100%;
     margin: 0 auto;

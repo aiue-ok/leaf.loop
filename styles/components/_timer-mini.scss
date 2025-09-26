@@ -306,7 +306,7 @@ body.about {
   }
 }
 
-/* スマホ（～390pxあたり） */
+/* スマホ */
 @media (width <= 743px) and (orientation: portrait) {
   body.gallery,
   body.universe,
@@ -422,25 +422,6 @@ body.about {
         transform: translateY(0.5px) scale(0.98);
         filter: saturate(115%);
         transition: transform 0.08s ease-out;
-      }
-
-      .timer-mini-countdown-text {
-        min-height: 0;
-        align-self: center;
-      }
-
-      .timer-count {
-        line-height: 1.2;
-      }
-
-      .timer-mini-preset-parent {
-        min-height: 0;
-        align-self: center;
-        row-gap: 4px;
-      }
-
-      .timer-mini-preset-button {
-        border: solid 1px var(--timer-main-color);
       }
 
       .timer-mini-set-parent {

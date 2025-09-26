@@ -16,16 +16,17 @@ body {
   }
 
   .timer-deco {
-    background: rgba(0, 0, 0, 0.16);
+    background: rgb(0 0 0 / 16%);
     border-radius: 16px;
+
     @supports (
       (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
     ) {
       backdrop-filter: blur(8px) saturate(140%);
-      -webkit-backdrop-filter: blur(8px) saturate(140%);
+
       /* うっすら境界 */
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+        inset 0 0 0 1px rgb(255 255 255 / 35%);
     }
   }
 
@@ -35,11 +36,13 @@ body {
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
     gap: clamp(8px, 1.5vmin, 16px);
+
     /* カウント → プリセット → 操作 → ボリューム、の縦並び */
     grid-template-areas:
       "count"
       "presets"
       "controls";
+
     /* 親要素 */
     width: 100%;
     place-content: center;
@@ -60,6 +63,7 @@ body {
   .timer_count {
     display: inline-block;
     text-align: center;
+
     // ch は「0 の幅」を基準にした長さ
     width: 5ch;
     font-size: clamp(48px, 36.732px + 3.005vw, 80px);
@@ -69,25 +73,26 @@ body {
     padding-inline: 0.8rem;
     padding-block: 0.2rem;
     backdrop-filter: blur(3px) saturate(95%) contrast(92%);
-    outline: 1px solid rgba(255, 255, 255, 0.12); /* 境界は“線”でなく“気配” */
+    outline: 1px solid rgb(255 255 255 / 12%); /* 境界は“線”でなく“気配” */
   }
 
   /* 数字だけ相棒フォント + 等幅数字をON */
   .digits {
     font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+
     // 等幅数字（桁ごとに同じ幅）をON
     font-variant-numeric: tabular-nums; /* 等幅数字 */
     font-feature-settings: "tnum" 1; /* 念のため保険として */
     // フォントにその太さ/斜体が無いとき、ブラウザが“偽ボールド/偽イタリック”を合成するのを禁止
-    font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */
-    letter-spacing: 0.01em; /* “leaf.loop”の空気感に合わせて極小トラッキング */
+    font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
     font-weight: 500;
     letter-spacing: 0.0125em;
     color: var(--milk-white);
+
     // ※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
-    text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55),
-      /* エッジの微光 */ 0 0 0.18rem rgba(255, 255, 255, 0.3),
-      /* 近距離の霧 */ 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
+    text-shadow: 0 0 0.03rem rgb(255 255 255 / 55%),
+      /* エッジの微光 */ 0 0 0.18rem rgb(255 255 255 / 30%),
+      /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
   }
 
   // ３・４・５分ボタン部分
@@ -104,22 +109,27 @@ body {
     position: relative;
     min-width: auto;
     min-height: auto;
+
     // inline-size: 44px;
     // block-size: 44px;
     display: inline-grid;
     place-items: center;
   }
+
   .timer-toggle span {
     grid-area: 1/1;
     width: 100%;
     height: 100%;
   }
+
   .timer-toggle .icon-stop {
     display: none;
   }
+
   .timer-toggle[aria-pressed="true"] .icon-play {
     display: none;
   }
+
   .timer-toggle[aria-pressed="true"] .icon-stop {
     display: block;
   }
@@ -128,6 +138,7 @@ body {
   .buttons {
     width: 20vw;
     margin: 0 auto;
+
     &span {
       display: block;
     }
@@ -157,10 +168,11 @@ body {
     color: inherit;
     text-align: center;
     background-color: var(--panel);
-    box-shadow: 0 2px 6px rgb(0 0 0 / 15%),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 15%), inset 0 1px 0 rgb(255 255 255 / 10%);
+
     // 追加視認性UP
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+
     /* ほんのり輪郭 */
     outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
     outline-offset: -2px;
@@ -169,6 +181,7 @@ body {
   button.setTimeBtn:hover,
   button.setTimeBtn:focus-visible {
     cursor: pointer;
+
     // color: #110b0fa2;
     color: #606060;
     border: solid 3.27px core.$main-color;
@@ -178,10 +191,10 @@ body {
   // 操作ボタンの背景　アイコン位置調整
   .set-buttons {
     padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-    background: rgba(245, 245, 245, 0.3);
-    border: 1px solid rgba(245, 245, 245, 0.35);
+    background: rgb(245 245 245 / 30%);
+    border: 1px solid rgb(245 245 245 / 35%);
     border-radius: 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
   }
 
   span.set-buttons {
@@ -190,7 +203,8 @@ body {
 
   span.set-button {
     // 追加視認性UP
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+
     /* ほんのり輪郭 */
     outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
     outline-offset: -2px;
@@ -220,6 +234,7 @@ body {
     position: absolute;
     left: 50%;
     top: 1rem;
+
     // bottom: 1rem;
     transform: translateX(-50%) translateY(8px);
     background: rgb(0 0 0 / 84%);
@@ -261,11 +276,13 @@ body {
       align-items: center;
       justify-content: center;
     }
+
     .timer-grid-container {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       grid-template-rows: 3fr 1fr 1fr;
       grid-template-columns: 1fr;
+
       // gap: clamp(16px, 1.5vmin, 20px);
       gap: 20px;
       margin: 0 auto;
@@ -292,20 +309,24 @@ body {
       align-items: center;
       justify-content: center;
     }
+
     .timer-grid-container {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       grid-template-rows: 3fr 1fr 1fr;
       grid-template-columns: 1fr;
+
       // gap: clamp(16px, 1.5vmin, 20px);
       gap: 20px;
       margin: 0 auto;
       align-items: center;
     }
+
     // カウント
     .timer1 {
       margin-top: 0;
     }
+
     .timer_count {
       font-size: clamp(48px, 6vw, 56px);
       line-height: 1.2;
@@ -320,6 +341,7 @@ body {
       padding: 0;
       border-radius: 8px;
     }
+
     // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     span.set-button {
       font-size: 2.5rem;
@@ -340,12 +362,14 @@ body {
       padding: 16px;
       overflow: hidden;
     }
+
     .timer {
       width: 100vw;
       min-height: auto;
       min-width: fit-content;
       padding: 16px;
     }
+
     .timer-grid-container {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
@@ -360,9 +384,11 @@ body {
       margin-top: 0;
       height: auto;
     }
+
     .timer-count-display {
       max-width: fit-content;
     }
+
     // 幅を文字に合わせる
     .timer_count {
       width: max-content;
@@ -378,6 +404,7 @@ body {
     .timer3.buttons {
       grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
       gap: 1rem;
+
       // padding: 0;
     }
   }
@@ -396,9 +423,11 @@ body {
       align-items: center;
       justify-content: center;
     }
+
     // 割合を変更
     .timer-grid-container {
       grid-template-rows: 2fr 1fr 1fr;
+
       // 無視される
       grid-area: "count" "preset" "control";
       align-items: center;
@@ -415,16 +444,19 @@ body {
     .timer3 {
       padding: 0 16px;
     }
+
     // マージントップを削除
     .timer1 {
       height: auto;
       margin-top: 0;
     }
+
     // 幅を文字に合わせる
     .timer_count {
       width: max-content;
       display: block;
     }
+
     .buttons {
       width: 100%;
       padding: 0 8px;

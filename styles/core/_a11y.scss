@@ -118,7 +118,7 @@ input[type="range"] {
 
 /* 文字の背後に細い帯（行の高さ分だけ） */
 .contrast-underline {
-  background-image: linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.5));
+  background-image: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%));
   background-repeat: no-repeat;
   background-size: 100% 1.1em; /* 行の高さぶん */
   background-position: 0 60%;
