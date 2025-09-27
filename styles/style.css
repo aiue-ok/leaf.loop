@@ -946,6 +946,13 @@ body .toast.show {
     line-height: 1.2;
   }
 }
+/* 論理プロパティ非対応ブラウザへのフォールバック */
+@supports not (min-inline-size: 1px) {
+  .preset .btn {
+    min-width: clamp(48px, 11vw, 72px);
+    min-height: clamp(44px, 9vw, 60px);
+  }
+}
 body.gallery,
 body.universe,
 body.about {
