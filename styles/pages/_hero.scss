@@ -518,7 +518,24 @@ body.hero {
     height: 100dvh; /* アドレスバーを考慮 */
     min-height: 100dvh;
     min-width: 100svw;
+    /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
+    background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
+    overscroll-behavior-y: contain; /* iOS16+ で有効 */
+    overflow: visible !important;
 
+    &::before {
+      transform: none !important;
+      will-change: auto !important;
+    }
+    /* ヘッダー */
+    header.title {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0) + 0.5rem);
+      z-index: core.$z-closer;
+      /* 背景が透けるなら */
+      /* background: color-mix(in oklab, var(--bg) 85%, black 15%); */
+      /* backdrop-filter: blur(6px); */
+    }
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .title h1 {
@@ -529,19 +546,12 @@ body.hero {
     .main {
       position: absolute; /* もともとfixedなら切り替え */
       inset: 0;
-
-      // position: fixed;
       width: 100%;
+      height: auto;
       min-height: fit-content;
       overflow: auto;
-
-      /* 背景メディアは最背面 */
-      background-image: url("../../assets/jpg/hero-bg.jpg");
-      background-size: contain;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-position: center center; /* 背景画像を画面の中心に配置 */
-      height: auto;
+      /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
+      padding-top: clamp(0.8rem, 6vh, 2.4rem);
     }
 
     .container {

@@ -2293,6 +2293,18 @@ body.hero .text {
     /* 手前に出すレイヤー（content） */
     /* すぅ〜 */
   }
+  body.hero::before {
+    transform: none !important;
+    will-change: auto !important;
+  }
+  body.hero header.title {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0) + 0.5rem);
+    z-index: 2;
+    /* 背景が透けるなら */
+    /* background: color-mix(in oklab, var(--bg) 85%, black 15%); */
+    /* backdrop-filter: blur(6px); */
+  }
   body.hero .title h1 {
     font-size: smaller;
     white-space: nowrap;
@@ -2301,15 +2313,11 @@ body.hero .text {
     position: absolute; /* もともとfixedなら切り替え */
     inset: 0;
     width: 100%;
+    height: auto;
     min-height: fit-content;
     overflow: auto;
-    /* 背景メディアは最背面 */
-    background-image: url("../../assets/jpg/hero-bg.jpg");
-    background-size: contain;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center; /* 背景画像を画面の中心に配置 */
-    height: auto;
+    /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
+    padding-top: clamp(0.8rem, 6vh, 2.4rem);
   }
   body.hero .container {
     grid-template: "item1 item4" 1fr "item1 item2" 1fr "item1 item3" 1fr "item1 item5" 1fr;
