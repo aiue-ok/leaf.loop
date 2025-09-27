@@ -2217,6 +2217,7 @@ body.hero .text {
     pointer-events: none;
     z-index: -1;
     background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4));
+    mix-blend-mode: multiply;
   }
   body.hero .hero-media {
     position: fixed; /* 画面に固定（スクロールしても動かない） */
