@@ -570,6 +570,7 @@ body {
   color: var(--timer-main-color);
   /* h1 カウントダウン表示 */
   /* 数字だけ相棒フォント + 等幅数字をON */
+  /* active：押し込み感を1pxだけ */
   /* スクリーンリーダー専用 */
   /* トースト */
 }
@@ -1410,29 +1411,6 @@ body.about span.vol-label {
     transform: translateY(0.5px) scale(0.98);
     filter: saturate(115%);
     transition: transform 0.08s ease-out;
-  }
-  body.gallery .timer-mini-background .timer-mini-countdown-text,
-  body.universe .timer-mini-background .timer-mini-countdown-text,
-  body.about .timer-mini-background .timer-mini-countdown-text {
-    min-height: 0;
-    align-self: center;
-  }
-  body.gallery .timer-mini-background .timer-count,
-  body.universe .timer-mini-background .timer-count,
-  body.about .timer-mini-background .timer-count {
-    line-height: 1.2;
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-parent,
-  body.universe .timer-mini-background .timer-mini-preset-parent,
-  body.about .timer-mini-background .timer-mini-preset-parent {
-    min-height: 0;
-    align-self: center;
-    row-gap: 4px;
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-button,
-  body.universe .timer-mini-background .timer-mini-preset-button,
-  body.about .timer-mini-background .timer-mini-preset-button {
-    border: solid 1px var(--timer-main-color);
   }
   body.gallery .timer-mini-background .timer-mini-set-parent,
   body.universe .timer-mini-background .timer-mini-set-parent,
