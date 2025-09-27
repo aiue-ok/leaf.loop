@@ -2331,7 +2331,10 @@ body.hero .text {
     /* backdrop-filter: blur(6px); */
   }
   body.hero .title h1 {
-    font-size: smaller;
+    font-size: clamp(1rem, 2.6vw, 2rem);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    max-inline-size: 18ch;
     white-space: nowrap;
   }
   body.hero .main {
@@ -2427,6 +2430,15 @@ body.hero .text {
   body.hero .container {
     padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
     padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
+  }
+}
+/* 横向き スマホ */
+@media (orientation: landscape) and (max-height: 600px) {
+  header.title h1 {
+    font-size: clamp(1rem, 2.6vw, 2rem);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    max-inline-size: 18ch;
   }
 }
 /* hover可能端末だけ見た目の変化を強める */

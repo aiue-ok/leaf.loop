@@ -68,6 +68,7 @@ body.hero {
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
     text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+    // max-inline-size: 22ch;
 
     @supports (backdrop-filter: blur(2px)) {
       .title {
@@ -539,7 +540,10 @@ body.hero {
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .title h1 {
-      font-size: smaller;
+      font-size: clamp(1rem, 2.6vw, 2rem);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      max-inline-size: 18ch;
       white-space: nowrap;
     }
 
@@ -666,6 +670,16 @@ body.hero {
   body.hero .container {
     padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
     padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
+  }
+}
+
+/* 横向き スマホ */
+@media (orientation: landscape) and (max-height: 600px) {
+  header.title h1 {
+    font-size: clamp(1rem, 2.6vw, 2rem);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    max-inline-size: 18ch;
   }
 }
 
