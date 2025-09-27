@@ -2313,6 +2313,11 @@ body.hero .text {
     height: 100dvh; /* アドレスバーを考慮 */
     min-height: 100dvh;
     min-width: 100svw;
+    /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
+    background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
+    overscroll-behavior-y: contain; /* iOS16+ で有効 */
+    overflow: visible !important;
+    /* ヘッダー */
     /* あなたの意図を引き継ぎつつborderデバッグは任意で */
     /* 背景動画の下敷き設定はそのままOK */
     /* 手前に出すレイヤー（content） */
