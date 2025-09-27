@@ -2146,7 +2146,14 @@ body.hero .hover-link {
 }
 body.hero .suu {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  padding: 1rem 0;
+  display: inline-block;
+  padding-inline: 0.35em 0.45em; /* 左右に少し差をつけて自然に */
+  padding-block: 0.1em 0.2em;
+  line-height: 1.28; /* 縦の呼吸 */
+  letter-spacing: 0.04em; /* 横の呼吸（カナが気持ちよく） */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+  /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ）*/
+  font-feature-settings: "palt" 1;
 }
 body.hero .tea {
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -2302,7 +2309,6 @@ body.hero .text {
   }
   body.hero .suu {
     font-size: clamp(24px, 4vw, 28px);
-    padding: 1rem 0;
   }
   body.hero .tea {
     font-size: clamp(1.25rem, 2.7vw, 1.5rem);
@@ -2428,7 +2434,9 @@ body.hero .text {
   }
   body.hero .suu {
     font-size: clamp(24px, 4vw, 28px);
-    padding: 1rem 0;
+    padding-inline: 0.3em 0.4em;
+    line-height: 1.22;
+    letter-spacing: 0.03em;
   }
   body.hero .tea {
     font-size: clamp(1.25rem, 2.7vw, 1.5rem);
