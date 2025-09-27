@@ -3,6 +3,7 @@
 :root {
   /* まずはビューポート単位のフォールバック変数 */
   --vh: 1svh;
+
   @supports (height: 1dvh) {
     :root {
       --vh: 1dvh;
@@ -13,28 +14,39 @@
     // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
     --fs: clamp(16px, 1.111vw, 32px);
     --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
+
     /* 余白（例：内側パディング 16→32） */
     --pad: clamp(16px, 1.111vw, 32px);
 
     /* 行間なども同様に */
     --gap: clamp(8px, 0.7vw, 16px);
     --hero-veil: 0.4;
-
     --yanagi-alpha: 0.18;
 
+    // タイマー表示
+
+    /* night-indigo 上で映える柔白（OKLCH） */
+    --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
+    --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
+    --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+
     // notify-controls “プリセット風チップUI”
-    --chip-bg: rgba(255, 255, 255, 0.08);
-    --chip-bg-active: rgba(255, 255, 255, 0.18);
-    --chip-bd: rgba(255, 255, 255, 0.55);
-    --chip-bd-active: rgba(255, 255, 255, 0.85);
+    --chip-bg: rgb(255 255 255 / 8%);
+    --chip-bg-active: rgb(255 255 255 / 18%);
+    --chip-bd: rgb(255 255 255 / 55%);
+    --chip-bd-active: rgb(255 255 255 / 85%);
 
     /* Theme: default = charcoal leaf */
-    --help-bg: rgba(12, 14, 16, 0.78);
+    --help-bg: rgb(12 14 16 / 78%);
     --help-fg: #eaeaea;
-    --help-h: #ffffff;
-    --help-border: rgba(255, 255, 255, 0.12);
+    --help-h: #fff;
+    --help-border: rgb(255 255 255 / 12%);
     --help-icon: #b4d2ea;
   }
+  // border/blur/影の係数
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: 6px;
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 $main-color: #f5f5f5;
@@ -67,7 +79,7 @@ $volume-control-slider-background: #f5f5f560;
 
 // test用ボーダー
 // border:core.$test;
-$test1: 1px solid red;
+$test1: 1px solid rgb(255 0 0 / 35.6%);
 $test2: 1px solid rgb(255 200 0);
 $test3: 1px solid rgb(0 251 255);
 $test4: 1px solid rgb(255 0 238);
@@ -76,7 +88,7 @@ $test4: 1px solid rgb(255 0 238);
 $test-bg1: rgb(200 255 0 / 40%);
 $test-bg2: rgb(69 110 198 / 40%);
 $test-bg3: rgb(44 251 48 / 70%);
-$test-bg4: rgb(255 0 64 / 50%);
+$test-bg4: rgb(255 0 64 / 30%);
 
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
@@ -89,7 +101,7 @@ $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
 // 16〜20px + safe-area
 
 // ▼ギャラリー
-$g-col-blueblack: rgb(21 26 37 /100%); // blue-black#151a25
+$g-col-blueblack: rgb(21 26 37 / 100%); // blue-black#151a25
 $color-text-light-rgba: rgb(245 245 245 / 70%);
 
 // === Backgrounds ===
@@ -105,6 +117,7 @@ $z-back: -1;
 $z-main: 0;
 $z-front: 1;
 $z-closer: 2;
+
 // === 各ページ ===
 // ヘルプカード
 $z-help: 10;
@@ -166,7 +179,7 @@ $saturate-hover: saturate(130%);
 
   //   w360px h180px　ビューポートに依る
   //   width: 22.5rem;height: 11.25rem;
-  --timer-mini-width: clamp(360px, 25vw, 380px);
+  // --timer-mini-width: clamp(360px, 25vw, 380px);
   --timer-mini-height: max(180px, 17.58vh);
 
   // z-index: 5;
@@ -247,7 +260,7 @@ body.gallery .timer-mini-container {
   --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
 
   // hover
-  --timer-hover-container: rgb(255 255 255 /70%);
+  --timer-hover-container: rgb(255 255 255 70%);
 
   // スライダーのつまみなど
 
@@ -290,7 +303,7 @@ body.universe .timer-mini-container {
   --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
 
   // hover
-  --timer-hover-container: rgb(255 255 255 /70%);
+  --timer-hover-container: rgb(255 255 255 70%);
 
   // スライダーのつまみなど
 

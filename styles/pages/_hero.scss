@@ -4,9 +4,12 @@
 
 body.hero {
   position: relative;
+
   // 要素の上に独立したスタッキング文脈（重なりの世界）を作る
   isolation: isolate;
   font-size: var(--text-hero);
+  overflow-x: hidden;
+
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
     content: "";
@@ -16,30 +19,38 @@ body.hero {
     z-index: core.$z-back;
     background: linear-gradient(
       to right,
-      rgba(200, 211, 192, 0.4),
-      rgba(200, 211, 192, 0.4)
+      rgb(200 211 192 / 40%),
+      rgb(200 211 192 / 40%)
     );
     mix-blend-mode: multiply;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
+
   /* 背景メディアは最背面 */
   .hero-media {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: core.$z-deeper;
+
     > video,
     > img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      inline-size: 100%;
     }
   }
+
   /* コンテンツ/UIは前面へ */
   .hero .container,
   .notify-controls {
     position: relative;
     z-index: core.$z-main;
   }
+
   header {
     position: absolute;
     top: 0;
@@ -56,7 +67,9 @@ body.hero {
     letter-spacing: 0.02em;
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+    // max-inline-size: 22ch;
+
     @supports (backdrop-filter: blur(2px)) {
       .title {
         backdrop-filter: blur(2px);
@@ -66,9 +79,11 @@ body.hero {
       }
     }
   }
+
   main {
     width: 100%;
     height: 100vh;
+
     // background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
@@ -141,6 +156,7 @@ body.hero {
     grid-template-rows: minmax(192px, 1fr);
     grid-template-areas: "item1 item2 item3 item4";
   }
+
   /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
   @supports (height: 100dvh) {
     .hero .container {
@@ -165,25 +181,31 @@ body.hero {
   .item1 {
     grid-area: item1;
   }
+
   // gallery
   .item2 {
     grid-area: item2;
   }
+
   // universe
   .item3 {
     grid-area: item3;
   }
+
   // gallery・universe共通
   .item2,
   .item3 {
     position: relative;
+
     // min-height: 100vh;
     // min-height: 30svh;
   }
+
   // メインテキスト
   .item4 {
     grid-area: item4;
   }
+
   // ヘルプ・about
   .item5 {
     grid-area: item5;
@@ -206,6 +228,7 @@ body.hero {
     filter: brightness(1);
     opacity: 0.5;
     z-index: core.$z-main;
+
     // background: transparent;
   }
 
@@ -224,11 +247,11 @@ body.hero {
   .item > .bg-gallery:hover {
     background: linear-gradient(
         to top,
-        rgba(237, 224, 212, 0.326),
-        rgba(191, 192, 185, 0.612),
-        rgba(153, 147, 138, 0.898),
-        rgba(142, 136, 128, 0.342),
-        rgba(125, 124, 120, 0.227)
+        rgb(237 224 212 / 32.6%),
+        rgb(191 192 185 / 61.2%),
+        rgb(153 147 138 / 89.8%),
+        rgb(142 136 128 / 34.2%),
+        rgb(125 124 120 / 22.7%)
       ),
       url("../assets/png/hero/frame_02_gallery_mobile.png");
     filter: brightness(1.2);
@@ -240,8 +263,8 @@ body.hero {
     background-image: url("../assets/png/hero/frame_03_space_mobile.png");
     background: linear-gradient(
       to bottom,
-      rgba(27, 38, 59, 1) 40%,
-      rgba(15, 26, 43, 0) 100%
+      rgb(27 38 59 / 100%) 40%,
+      rgb(15 26 43 / 0%) 100%
     );
     filter: brightness(1.1);
     opacity: 1;
@@ -260,7 +283,14 @@ body.hero {
   /* すぅ〜 */
   .suu {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
-    padding: 1rem 0;
+    display: inline-block;
+    padding-inline: 0.35em 0.45em; /* 左右に少し差をつけて自然に */
+    padding-block: 0.1em 0.2em;
+    line-height: 1.28; /* 縦の呼吸 */
+    letter-spacing: 0.04em; /* 横の呼吸（カナが気持ちよく） */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ）*/
+    font-feature-settings: "palt" 1;
   }
 
   .tea {
@@ -285,6 +315,7 @@ body.hero {
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
     height: auto;
+
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
@@ -297,9 +328,10 @@ body.hero {
       z-index: core.$z-back;
       background: linear-gradient(
         to right,
-        rgba(200, 211, 192, 0.4),
-        rgba(200, 211, 192, 0.4)
+        rgb(200 211 192 / 40%),
+        rgb(200 211 192 / 40%)
       );
+      mix-blend-mode: multiply;
     }
 
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
@@ -331,29 +363,36 @@ body.hero {
         display: none !important;
       }
     }
+
     .title h1 {
       white-space: nowrap;
     }
+
     main {
       height: auto;
     }
+
     .container {
       display: grid;
       grid-template-columns: 1fr;
+
       // 無視される
-      grid-template-rows: 20vh max(400px, 4fr) 80px 80px 1fr;
+      grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
       grid-template-areas:
         "item4" /* 見出し */
         "item1" /* タイマー */
         "item2" /* ギャラリー導線 */
         "item3" /* ユニバース導線 */
         "item5"; /* ヘルプ等 */
+
       gap: 1rem;
     }
+
     /* 共通（高さを中身に任せる等） */
     .item {
       min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
     }
+
     // す〜
     .item4 {
       grid-area: item4;
@@ -371,9 +410,11 @@ body.hero {
     .item2 {
       grid-area: item2;
     }
+
     .item3 {
       grid-area: item3;
     }
+
     .item5 {
       grid-area: item5;
       width: fit-content;
@@ -384,6 +425,7 @@ body.hero {
       width: 100%;
       height: 100%;
       min-height: clamp(56px, 10svh, 128px);
+
       // overflow: hidden;
     }
 
@@ -408,6 +450,7 @@ body.hero {
       filter: unset;
       opacity: 1;
     }
+
     // 背景の帯
     .hover-text {
       position: relative;
@@ -421,14 +464,18 @@ body.hero {
       position: absolute;
       inset: -6px -12px;
       border-radius: 12px;
+
       // filter: unset;
+
       /* ほんのりガラス */
       backdrop-filter: blur(140px);
       z-index: -1;
     }
+
     .bg-gallery .hover-text::before {
       background: transparent;
       backdrop-filter: blur(8px) saturate(140%);
+
       // background: rgb(0 0 0 / 16%);
       box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
         inset 0 0 0 1px rgb(255 255 255 / 35%);
@@ -437,6 +484,7 @@ body.hero {
     .bg-universe .hover-text::before {
       background: transparent;
       backdrop-filter: blur(8px) saturate(140%);
+
       // background: rgb(0 0 0 / 16%);
       box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
         inset 0 0 0 1px rgb(255 255 255 / 35%);
@@ -447,21 +495,26 @@ body.hero {
       background-color: transparent;
       font-size: clamp(18px, 2vw, 20px);
     }
+
     .hover-link {
       width: 100%;
       width: fit-content;
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
       margin: 0 auto;
     }
+
     /* すぅ〜 */
     .suu {
       font-size: clamp(24px, 4vw, 28px);
-      padding: 1rem 0;
     }
 
     .tea {
       font-size: clamp(1.25rem, 2.7vw, 1.5rem);
       white-space: nowrap;
+    }
+
+    .text {
+      gap: 3vh;
     }
   }
 }
@@ -473,24 +526,45 @@ body.hero {
     height: 100dvh; /* アドレスバーを考慮 */
     min-height: 100dvh;
     min-width: 100svw;
+    /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
+    background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
+    overscroll-behavior-y: contain; /* iOS16+ で有効 */
+    overflow: visible !important;
+
+    &::before {
+      transform: none !important;
+      will-change: auto !important;
+    }
+    /* ヘッダー */
+    header.title {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0) + 0.5rem);
+      z-index: core.$z-closer;
+      /* 背景が透けるなら */
+      /* background: color-mix(in oklab, var(--bg) 85%, black 15%); */
+      /* backdrop-filter: blur(6px); */
+    }
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .title h1 {
+      font-size: clamp(1rem, 2.6vw, 2rem);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      max-inline-size: 18ch;
       white-space: nowrap;
     }
+
     .main {
-      position: fixed;
+      position: absolute; /* もともとfixedなら切り替え */
+      inset: 0;
       width: 100%;
+      height: auto;
       min-height: fit-content;
       overflow: auto;
-      /* 背景メディアは最背面 */
-      background-image: url("../../assets/jpg/hero-bg.jpg");
-      background-size: contain;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-position: center center; /* 背景画像を画面の中心に配置 */
-      height: auto;
+      /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
+      padding-top: clamp(0.8rem, 6vh, 2.4rem);
     }
+
     .container {
       grid-template:
         "item1 item4" 1fr
@@ -498,7 +572,6 @@ body.hero {
         "item1 item3" 1fr
         "item1 item5" 1fr;
       gap: clamp(12px, 2svh, 24px);
-
       overflow: auto;
     }
 
@@ -573,20 +646,25 @@ body.hero {
       box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
       border: 0.8px solid rgb(245 245 245 / 35%);
       border-radius: 12px;
+
       /* ほんのりガラス */
       backdrop-filter: blur(4px);
       z-index: -1;
     }
+
     .hover-link {
       width: 100%;
       width: fit-content;
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
       margin: 0 auto;
     }
+
     /* すぅ〜 */
     .suu {
       font-size: clamp(24px, 4vw, 28px);
-      padding: 1rem 0;
+      padding-inline: 0.3em 0.4em;
+      line-height: 1.22;
+      letter-spacing: 0.03em;
     }
 
     .tea {
@@ -604,11 +682,28 @@ body.hero {
   }
 }
 
+/* 横向き スマホ */
+@media (orientation: landscape) and (max-height: 600px) {
+  header.title h1 {
+    font-size: clamp(1rem, 2.6vw, 2rem);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    max-inline-size: 18ch;
+  }
+}
+
 /* hover可能端末だけ見た目の変化を強める */
 @media (hover: hover) {
   .hover-link:hover span {
     color: #fff;
-    border-bottom-color: rgb(255 255 255 / 0.7);
+    border-bottom-color: rgb(255 255 255 / 70%);
     text-underline-offset: 0.2em;
   }
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  } /* clipの方がわずかに安全 */
 }

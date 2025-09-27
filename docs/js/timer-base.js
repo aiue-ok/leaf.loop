@@ -34,6 +34,9 @@ function say(msg, node = live) {
   setTimeout(() => (node.textContent = msg), 20);
 }
 
+// === 状態 ===
+let isRunning = false; // 単一の真偽値に寄せる（timerId連動でもOK）
+const toggleBtn = document.getElementById("toggleTimer");
 // ===== ボタン（状態表示）=====
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
@@ -53,29 +56,8 @@ const optVibrate = document.getElementById("optVibrate");
 const optToast = document.getElementById("optToast");
 const isChecked = (el, def = true) => (el ? !!el.checked : def);
 
-// ===== iOS系：初回タップで音を“解錠” =====
-// 正常に動かせるまで使わない
-// let audioUnlocked = false;
-// function unlockAudioOnce() {
-//   if (audioUnlocked || !ding) return;
-//   const v = ding.volume;
-//   ding.volume = 0;
-//   ding
-//     .play()
-//     .then(() => {
-//       ding.pause();
-//       ding.currentTime = 0;
-//       ding.volume = v;
-//       audioUnlocked = true;
-//       document.removeEventListener("pointerdown", unlockAudioOnce);
-//     })
-//     .catch(() => {
-//       /* ユーザーのテストで解錠可 */
-//     });
-// }
-// document.addEventListener("pointerdown", unlockAudioOnce);
-
 // ===== 通知系 =====
+// === タイマー完了時・外部停止時にもUIを同期 ===
 function playDing() {
   if (!ding) return;
   if (!isChecked(optSound, true)) return;
@@ -125,22 +107,57 @@ function onTimerDone() {
   vibratePattern();
   showToast(msg);
   announceSR(msg);
+  stopTimerUnified(); // 状態とUIを確実に止める
 }
 
 // ===== ボタン動作 =====
-startBtn?.addEventListener("click", () => {
-  if (!timerId) {
-    setTransportState("start");
-    tickOnce();
-  }
-});
-stopBtn?.addEventListener("click", () => {
+// startBtn?.addEventListener("click", async () => {
+//   await window.ensureAudioUnlocked();
+//   if (!timerId) {
+//     setTransportState("start");
+//     tickOnce();
+//   }
+// });
+// stopBtn?.addEventListener("click", () => {
+//   if (timerId) {
+//     clearTimeout(timerId);
+//     timerId = null;
+//   }
+//   setTransportState("stop");
+// });
+
+function updateToggleUI(running) {
+  isRunning = !!running;
+  toggleBtn.setAttribute("aria-pressed", String(isRunning));
+  toggleBtn.setAttribute("aria-label", isRunning ? "Stop" : "Start");
+}
+
+// === 開始・停止を一本化 ===
+function startTimerUnified() {
+  if (timerId) return; // 二重開始を防止
+  setTransportState("start");
+  tickOnce();
+  updateToggleUI(true);
+}
+
+function stopTimerUnified() {
   if (timerId) {
     clearTimeout(timerId);
     timerId = null;
   }
   setTransportState("stop");
+  updateToggleUI(false);
+}
+
+// === トグル（ユーザー操作内で解錠も実施） ===
+toggleBtn.addEventListener("click", async () => {
+  await window.ensureAudioUnlocked(); // ← ユーザー操作内で解錠
+
+  const willRun = !isRunning;
+  if (willRun) startTimerUnified();
+  else stopTimerUnified();
 });
+
 resetBtn?.addEventListener("click", () => {
   if (timerId) {
     clearTimeout(timerId);
@@ -160,13 +177,16 @@ presetBtns.forEach((btn) => {
 
     const minutes = parseInt(btn.getAttribute("data-minutes") || "3", 10);
     totalSeconds = minutes * 60;
-    if (timerId) {
+    // === 開始・停止を一本化 ===
+    function startTimerUnified() {
+      if (timerId) return;
       clearTimeout(timerId);
       timerId = null;
     }
     updateDisplay();
     say(`${minutes}分に設定`);
     setTransportState(); // idle
+    updateToggleUI(false);
   });
 });
 
@@ -213,3 +233,88 @@ window.notify = {
   onTimerDone,
   test: testNotify,
 };
+/* ================================
+   Audio Unlock Unified Unit (iOS/Safari対応)
+   ================================ */
+(function () {
+  const d = document,
+    w = window;
+
+  // すでに解錠済みなら何もしない（複数ファイルから読み込まれても安全）
+  if (w.__audioUnlocked) return;
+
+  let unlocked = false;
+  let ctx = null;
+
+  // 任意のaudio要素。なければnullでもOK（Web Audioだけで解錠できる場合もある）
+  const audio = d.getElementById("alarmSound");
+
+  async function unlockOnce() {
+    if (unlocked || w.__audioUnlocked) return true;
+
+    // 1) Web Audio を解錠（ユーザー操作内で）
+    try {
+      if (!ctx) ctx = new (w.AudioContext || w.webkitAudioContext)();
+      if (ctx.state !== "running") await ctx.resume();
+
+      // 無音の超短い発音（“手続き上の再生”）
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      gain.gain.value = 0; // 無音
+      osc.connect(gain).connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.04);
+    } catch (e) {
+      // Safari以外ではここでコケることもあるが問題なし
+    }
+
+    // 2) <audio> も解錠（できる環境なら）
+    if (audio) {
+      try {
+        audio.muted = false; // 念のため
+        audio.currentTime = 0;
+        const p = audio.play(); // ← ここがユーザー操作内であることが重要
+        if (p && typeof p.then === "function") await p;
+        audio.pause(); // “再生できる権利”を得るだけでOK
+      } catch (e) {
+        // NotAllowedError 等は無視してOK（Web Audio解錠だけで足りることも多い）
+      }
+    }
+
+    unlocked = true;
+    w.__audioUnlocked = true;
+    d.dispatchEvent(new CustomEvent("audio:unlocked")); // 任意でUIに通知
+    return true;
+  }
+
+  // 公開API：任意のイベントハンドラ内で await して使える
+  w.ensureAudioUnlocked = unlockOnce;
+
+  // 保険：最初のジェスチャで自動解錠（どこを押してもOK）
+  const handler = () => {
+    unlockOnce();
+    d.removeEventListener("pointerdown", handler, true);
+    d.removeEventListener("click", handler, true);
+    d.removeEventListener("touchstart", handler, true);
+  };
+  d.addEventListener("pointerdown", handler, true);
+  d.addEventListener("click", handler, true); // 旧環境の保険
+  d.addEventListener("touchstart", handler, true); // iOS古参端末の保険
+})();
+
+//<audio> の状態をイベントで拾う
+// 動作が安定している間は、ログはそのまま
+const a = document.getElementById("alarmSound");
+["loadstart", "loadeddata", "canplaythrough", "error", "play", "pause"].forEach(
+  (ev) => {
+    a.addEventListener(ev, () => console.log("[alarm]", ev, a.currentTime));
+  }
+);
+// 仕上げの“安心テスト”ミニボタンをデバッグ中だけ
+document.getElementById("pingAudio")?.addEventListener("click", async () => {
+  await window.ensureAudioUnlocked();
+  const a = document.getElementById("alarmSound");
+  a.currentTime = 0;
+  await a.play();
+  setTimeout(() => a.pause(), 300); // ピッと短く
+});
