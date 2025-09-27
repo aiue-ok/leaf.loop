@@ -43,6 +43,10 @@
     --help-border: rgb(255 255 255 / 12%);
     --help-icon: #b4d2ea;
   }
+  // border/blur/影の係数
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: 6px;
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 $main-color: #f5f5f5;

@@ -118,10 +118,27 @@ input[type="range"] {
 
 /* 文字の背後に細い帯（行の高さ分だけ） */
 .contrast-underline {
-  background-image: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%));
-  background-repeat: no-repeat;
-  background-size: 100% 1.1em; /* 行の高さぶん */
-  background-position: 0 60%;
-  padding-inline: 0.15em; /* 文字左右だけ少し */
-  border-radius: 0.2em;
+  display: inline-block;
+  padding: 0.45em 0.8em;
+  border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
+  // color: #fff;
+  /* 透明黒＋ほんのりガラス */
+  background: color-mix(in oklab, black 42%, transparent);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+
+  /* 内外の二層影：フチが立ちすぎないよう弱めに */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  max-inline-size: 28ch; /* 行が伸びすぎないように */
+  text-wrap: balance; /* 気持ちよく改行 */
+}
+/* 横向きは半歩フラットにして読みやすさ優先 */
+@media (orientation: landscape) and (max-width: 736px) {
+  .contrast-underline {
+    border-radius: clamp(8px, 2.8vw, 12px);
+    padding: 0.4em 0.7em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
+  }
 }
