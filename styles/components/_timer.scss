@@ -184,7 +184,7 @@ body {
 
     // color: #110b0fa2;
     color: #606060;
-    border: solid 3.27px core.$main-color;
+    border: solid 2.27px core.$main-color;
     background-color: core.$main-color;
   }
 
@@ -404,8 +404,10 @@ body {
     .timer3.buttons {
       grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
       gap: 1rem;
-
       // padding: 0;
+    }
+    .setTimeBtn {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     }
   }
 }
@@ -461,17 +463,17 @@ body {
       width: 100%;
       padding: 0 8px;
     }
-    // 3/4/5分初期設定ボタン　子
+    .grid-parent-timer {
+      gap: clamp(8px, 2.2vw, 16px);
+    }
     .setTimeBtn {
+      margin: 0; /* ← これが肝！ */
+      flex: 0 0 auto; /* 勝手に伸びない */
       min-inline-size: clamp(48px, 11vw, 72px);
-      min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール死守 */
+      min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
       padding-inline: 0.6rem;
       border-radius: 999px;
       line-height: 1.2;
-    }
-    // 3/4/5分初期設定ボタン　子
-    .setTimeBtn span {
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     }
   }
 }

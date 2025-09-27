@@ -680,7 +680,7 @@ body button.setTimeBtn:hover,
 body button.setTimeBtn:focus-visible {
   cursor: pointer;
   color: #606060;
-  border: solid 3.27px #f5f5f5;
+  border: solid 2.27px #f5f5f5;
   background-color: #f5f5f5;
 }
 body .set-buttons {
@@ -845,6 +845,9 @@ body .toast.show {
     grid-template-columns: repeat(4, clamp(3rem, 3.33vw, 5rem));
     gap: 1rem;
   }
+  body.hero .setTimeBtn {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
   body.hero .timer {
@@ -882,15 +885,17 @@ body .toast.show {
     width: 100%;
     padding: 0 8px;
   }
+  body.hero .grid-parent-timer {
+    gap: clamp(8px, 2.2vw, 16px);
+  }
   body.hero .setTimeBtn {
+    margin: 0; /* ← これが肝！ */
+    flex: 0 0 auto; /* 勝手に伸びない */
     min-inline-size: clamp(48px, 11vw, 72px);
-    min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール死守 */
+    min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
     padding-inline: 0.6rem;
     border-radius: 999px;
     line-height: 1.2;
-  }
-  body.hero .setTimeBtn span {
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   }
 }
 body.gallery,
