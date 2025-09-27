@@ -882,6 +882,16 @@ body .toast.show {
     width: 100%;
     padding: 0 8px;
   }
+  body.hero .setTimeBtn {
+    min-inline-size: clamp(48px, 11vw, 72px);
+    min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール死守 */
+    padding-inline: 0.6rem;
+    border-radius: 999px;
+    line-height: 1.2;
+  }
+  body.hero .setTimeBtn span {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  }
 }
 body.gallery,
 body.universe,
