@@ -1,6 +1,8 @@
 {
   "extends": ["stylelint-config-standard-scss"],
   "overrides": [{ "files": ["**/*.scss"], "customSyntax": "postcss-scss" }],
+  "plugins": ["stylelint-scss"],
+  "stylelint.validate": ["css", "scss"],
   "rules": {
     "selector-class-pattern": [
       "^[a-z0-9]+([_-][a-z0-9]+)*$",
@@ -8,6 +10,8 @@
     ],
     "media-feature-range-notation": "prefix",
     "no-descending-specificity": null,
-    "scss/no-unused-variables": null
+    "scss/no-duplicate-dollar-variables": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   }
 }
