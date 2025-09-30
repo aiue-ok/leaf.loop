@@ -18,6 +18,13 @@
   /* 余白（例：内側パディング 16→32） */
   --pad: clamp(16px, 1.111vw, 32px);
 
+  // iPhone横向き専用“安全マクロ”
+  // ツールバー・ノッチ・セーフエリアを全部飲み込むプリセット。
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
   /* 行間なども同様に */
   --gap: clamp(8px, 0.7vw, 16px);
   --hero-veil: 0.4;

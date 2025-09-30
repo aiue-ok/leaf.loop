@@ -10,3 +10,10 @@
 
 // 以後は @use "core/index" as core; とするだけで
 // core.$bp-sm や @include core.down(...) が使える。
+
+// index 側にも「受け皿」変数を用意してパススルー
+// $enable-debug: false !default;
+
+// @forward "debug" with (
+//   $enable-debug: $enable-debug
+// );

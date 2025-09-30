@@ -1,11 +1,26 @@
-* {
-  // デバッグ用
-  outline: 1px solid green;
+// デフォは無効。style.scss から上書きできるよう !default
+// $enable-debug: false !default;
+
+// @layer debug {
+//   @if $enable-debug {
+:where(*) {
+  outline: 1px dashed rgba(147, 238, 135, 0.35);
+  outline-offset: -1px;
 }
+
+/* 必要ならデバッグ用クラスもここに */
+.debug-safe-area {
+  outline: 2px solid magenta;
+  padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right))
+    max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
+}
+
+//   }
+// }
 
 // test用ボーダー
 // border:core.$test;
-$test1: 1px solid rgb(255 0 0 / 35.6%);
+$test1: 1px solid rgb(255 0 0 / 30%);
 $test2: 1px solid rgb(255 200 0);
 $test3: 1px solid rgb(0 251 255);
 $test4: 1px solid rgb(255 0 238);
