@@ -151,7 +151,7 @@ input[type="checkbox"] {
 
 /* デバッグ時だけ出したいなら：html[data-debug="1"]
 .notify-controls { display:flex } */
-：html[data-debug="1"] {
+:html[data-debug="1"] {
   .notify-controls {
     display: flex;
   }

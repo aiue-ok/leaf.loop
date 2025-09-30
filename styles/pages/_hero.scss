@@ -68,6 +68,7 @@ body.hero {
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
     text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+
     // max-inline-size: 22ch;
 
     @supports (backdrop-filter: blur(2px)) {
@@ -288,8 +289,9 @@ body.hero {
     padding-block: 0.1em 0.2em;
     line-height: 1.28; /* 縦の呼吸 */
     letter-spacing: 0.04em; /* 横の呼吸（カナが気持ちよく） */
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
-    /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ）*/
+    text-shadow: 0 1px 1px rgb(0 0 0 / 28%);
+
+    /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ） */
     font-feature-settings: "palt" 1;
   }
 
@@ -438,9 +440,7 @@ body.hero {
     .bg-universe {
       min-height: 10dvh;
       min-height: 10svh;
-      background-color: transparent;
       background: none;
-      background-image: none;
       filter: unset;
     }
 
@@ -526,6 +526,7 @@ body.hero {
     height: 100dvh; /* アドレスバーを考慮 */
     min-height: 100dvh;
     min-width: 100svw;
+
     /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
     background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
     overscroll-behavior-y: contain; /* iOS16+ で有効 */
@@ -535,15 +536,20 @@ body.hero {
       transform: none !important;
       will-change: auto !important;
     }
+
     /* ヘッダー */
     header.title {
       position: sticky;
       top: calc(env(safe-area-inset-top, 0) + 0.5rem);
       z-index: core.$z-closer;
+
       /* 背景が透けるなら */
+
       /* background: color-mix(in oklab, var(--bg) 85%, black 15%); */
+
       /* backdrop-filter: blur(6px); */
     }
+
     // overflow-y: scroll;
     // 📍📍📍 幅768px（スマホ横向き）以下
     .title h1 {
@@ -561,7 +567,8 @@ body.hero {
       height: auto;
       min-height: fit-content;
       overflow: auto;
-      /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
+
+      /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用） */
       padding-top: clamp(0.8rem, 6vh, 2.4rem);
     }
 

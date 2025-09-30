@@ -32,7 +32,7 @@
 /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
 .wrapper.info a:focus-visible .sideitem {
   /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgb(0 0 0 / 10%); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+  background-color: rgb(0 0 0 / 10%); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
 
   /* 視認性UPのための微弱な影（レイアウト不変） */
   box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
@@ -342,11 +342,11 @@ li {
 .clock-icon {
   margin-top: 1rem;
 
-  /* filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3)); */
+  /* filter: drop-shadow(0 1px 2px rgb(255 255 255 / 0.3)); */
 
   /* opacity: 0.85; */
 
-  /* 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
+  /* 背景にうす〜く rgb(255 255 255 / 0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
 }
 
 // ---

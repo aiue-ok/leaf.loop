@@ -158,7 +158,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.8px solid rgb(245 245 245 / 0.18);
+    border: 0.8px solid rgb(245 245 245 / 18%);
 
     /* 円の大きさ */
     width: core.$setTimeBtn-width;
@@ -172,9 +172,9 @@ body {
     filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
 
     /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-      /* ← これが“内側の光沢” */ inset 0 8px 20px rgba(255, 255, 255, 0.06),
-      /* ほんのり天面の白 */ 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 16%),
+      /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
+      /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
     position: relative;
   }
 
@@ -188,9 +188,9 @@ body {
     /* 上半分だけに効く柔らかいグロス */
     background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0.12) 35%,
-      rgba(255, 255, 255, 0) 60%
+      rgb(255 255 255 / 28%) 0%,
+      rgb(255 255 255 / 12%) 35%,
+      rgb(255 255 255 / 0%) 60%
     );
     mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
   }
@@ -204,17 +204,17 @@ body {
     border: solid 2.27px core.$main-color;
     background-color: core.$main-color;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75),
-      /* 外側に暗い縁 */ 0 0 0 3px rgba(255, 255, 255, 0.45),
-      /* その外に明るい縁 */ inset 0 0 0 1px rgba(255, 255, 255, 0.3),
-      0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
+      /* 外側に暗い縁 */ 0 0 0 3px rgb(255 255 255 / 45%),
+      /* その外に明るい縁 */ inset 0 0 0 1px rgb(255 255 255 / 30%),
+      0 8px 24px rgb(0 0 0 / 25%);
   }
 
   /* active：押し込み感を1pxだけ */
   button.setTimeBtn:active {
     transform: translateY(1px);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22),
-      inset 0 6px 14px rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%),
+      inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
   }
 
   // 操作ボタンの背景　アイコン位置調整
@@ -291,12 +291,12 @@ body {
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
   .setTimeBtn:hover {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32),
-      inset 0 10px 24px rgba(255, 255, 255, 0.08),
-      0 10px 28px rgba(0, 0, 0, 0.28);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 32%),
+      inset 0 10px 24px rgb(255 255 255 / 8%), 0 10px 28px rgb(0 0 0 / 28%);
     transform: translateY(-0.5px);
   }
 }
+
 // ━━━━━━
 
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
@@ -443,9 +443,11 @@ body {
       width: 100%;
       padding: 0 8px;
     }
+
     .grid-parent-timer {
       gap: clamp(8px, 2.2vw, 16px);
     }
+
     .setTimeBtn {
       font-size: clamp(0.95rem, 1.8vw, 1.15rem);
       margin: 0 auto;
@@ -509,9 +511,11 @@ body {
       width: 100%;
       padding: 0 8px;
     }
+
     .grid-parent-timer {
       gap: clamp(8px, 2.2vw, 16px);
     }
+
     .setTimeBtn {
       margin: 0; /* ← これが肝！ */
       flex: 0 0 auto; /* 勝手に伸びない */
