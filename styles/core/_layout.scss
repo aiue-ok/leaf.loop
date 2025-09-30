@@ -86,10 +86,7 @@
     }
 
     body.hero {
-      padding-left: max(1rem, var(--safe-left));
-      padding-right: max(1rem, var(--safe-right));
-      padding-top: max(0.5rem, var(--safe-top));
-      padding-bottom: max(0.75rem, var(--safe-bottom));
+      padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right)) max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
       min-height: 100dvh; /* ここもdvh */
     }
   }
