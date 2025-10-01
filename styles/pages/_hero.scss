@@ -13,7 +13,7 @@ body.hero {
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0; /* ← padding-box まできっちり覆う */
     pointer-events: none;
     z-index: core.$z-back;
@@ -452,25 +452,11 @@ body.hero {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
-    height: auto;
-
+    // height: auto;
+    background: blueviolet;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0; /* ← padding-box まできっちり覆う */
-      pointer-events: none;
-      z-index: core.$z-back;
-      background: linear-gradient(
-        to right,
-        rgb(200 211 192 / 40%),
-        rgb(200 211 192 / 40%)
-      );
-      mix-blend-mode: multiply;
-    }
 
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     .hero-media {
@@ -507,7 +493,7 @@ body.hero {
     }
 
     main {
-      height: auto;
+      // height: auto;
     }
 
     // 旧
