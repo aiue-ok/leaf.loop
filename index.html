@@ -16,11 +16,11 @@
       href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Noto Sans -->
-    <link
+    <!-- Noto Sans 未使用-->
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
       rel="stylesheet"
-    />
+    /> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
@@ -75,159 +75,175 @@
     <header class="title zen-maru-gothic-regular">
       <h1>leaf.loop - portfolio</h1>
     </header>
-    <!-- 【main】 grid　親 -->
+    <!-- 旧 -->
     <main class="container content">
-      <!-- ❶　タイマー -->
-      <div class="item item1 center">
-        <div class="timer timer--deco m-plus-1p-regular">
-          <!-- タイマーgrid 親 -->
-          <div class="timer-grid-container">
-            <!-- タイマー子①：見えるタイマー表示 -->
-            <div class="timer1 timer-count-display">
-              <h1
-                id="timer"
-                class="timer_count digits"
-                role="timer"
-                aria-label="お茶のタイマー 残り時間"
-              >
-                00:00
-              </h1>
-              <!-- 読み上げ専用（視覚には非表示） -->
-              <div
-                id="timerLive"
-                class="sr-only"
-                aria-live="polite"
-                aria-atomic="true"
-              ></div>
-            </div>
-            <!-- デバッグ中だけ -->
-            <button id="pingAudio" type="button">🔊 テスト</button>
-            <!-- タイマー子②：初期設定（プリセット）ボタン -->
-            <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-            <div class="timer2 buttons">
-              <div class="grid-parent-timer">
-                <button
-                  class="setTimeBtn"
-                  data-minutes="3"
-                  aria-label="3分に設定"
+      <!-- 新 -->
+      <section class="hero__content">
+        <div class="hero__grid">
+          <!-- ❶　タイマー -->
+          <div class="item item1 center hero__slot hero__slot--timer">
+            <div class="timer timer--deco m-plus-1p-regular">
+              <!-- タイマーgrid 親 -->
+              <div class="timer-grid-container">
+                <!-- タイマー子①：見えるタイマー表示 -->
+                <div class="timer1 timer-count-display">
+                  <h1
+                    id="timer"
+                    class="timer_count digits"
+                    role="timer"
+                    aria-label="お茶のタイマー 残り時間"
+                  >
+                    00:00
+                  </h1>
+                  <!-- 読み上げ専用（視覚には非表示） -->
+                  <div
+                    id="timerLive"
+                    class="sr-only"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  ></div>
+                </div>
+                <!-- デバッグ中だけ -->
+                <button id="pingAudio" type="button">🔊 テスト</button>
+                <!-- タイマー子②：初期設定（プリセット）ボタン -->
+                <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
+                <div class="timer2 buttons">
+                  <div class="grid-parent-timer">
+                    <button
+                      class="setTimeBtn"
+                      data-minutes="3"
+                      aria-label="3分に設定"
+                    >
+                      <span aria-hidden="true">3分</span>
+                    </button>
+                    <button
+                      class="setTimeBtn"
+                      data-minutes="4"
+                      aria-label="4分に設定"
+                    >
+                      <span aria-hidden="true">4分</span>
+                    </button>
+                    <button
+                      class="setTimeBtn"
+                      data-minutes="5"
+                      aria-label="5分に設定"
+                    >
+                      <span aria-hidden="true">5分</span>
+                    </button>
+                  </div>
+                </div>
+                <!-- タイマー子③：操作（コントロール）ボタン -->
+                <div
+                  class="timer3 buttons set-buttons"
+                  id="timerPanel"
+                  aria-live="polite"
                 >
-                  <span aria-hidden="true">3分</span>
-                </button>
-                <button
-                  class="setTimeBtn"
-                  data-minutes="4"
-                  aria-label="4分に設定"
-                >
-                  <span aria-hidden="true">4分</span>
-                </button>
-                <button
-                  class="setTimeBtn"
-                  data-minutes="5"
-                  aria-label="5分に設定"
-                >
-                  <span aria-hidden="true">5分</span>
-                </button>
-              </div>
-            </div>
-            <!-- タイマー子③：操作（コントロール）ボタン -->
-            <div
-              class="timer3 buttons set-buttons"
-              id="timerPanel"
-              aria-live="polite"
-            >
-              <div class="grid-parent-timer">
-                <button
-                  id="toggleTimer"
-                  class="timer-toggle"
-                  aria-pressed="false"
-                  aria-label="Start"
-                  aria-controls="timerPanel"
-                >
-                  <span
-                    class="icon-play set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >play_circle
-                  </span>
-                  <span
-                    class="icon-stop set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >stop_circle
-                  </span>
-                </button>
+                  <div class="grid-parent-timer">
+                    <button
+                      id="toggleTimer"
+                      class="timer-toggle"
+                      aria-pressed="false"
+                      aria-label="Start"
+                      aria-controls="timerPanel"
+                    >
+                      <span
+                        class="icon-play set-button material-symbols-outlined icon-size"
+                        aria-hidden="true"
+                        >play_circle
+                      </span>
+                      <span
+                        class="icon-stop set-button material-symbols-outlined icon-size"
+                        aria-hidden="true"
+                        >stop_circle
+                      </span>
+                    </button>
 
-                <button id="resetBtn" aria-label="リセット">
-                  <span
-                    class="set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >refresh
-                  </span>
-                </button>
-                <button aria-label="ミュート" id="muteBtn">
-                  <span
-                    class="set-button mute material-symbols-outlined icon-size"
-                    >volume_off
-                  </span>
-                </button>
+                    <button id="resetBtn" aria-label="リセット">
+                      <span
+                        class="set-button material-symbols-outlined icon-size"
+                        aria-hidden="true"
+                        >refresh
+                      </span>
+                    </button>
+                    <button aria-label="ミュート" id="muteBtn">
+                      <span
+                        class="set-button mute material-symbols-outlined icon-size"
+                        >volume_off
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- ❷　galleryへのアンカー -->
-      <div class="item item2 link zen-kaku-gothic-new-regular">
-        <div class="hover-area bg-gallery">
-          <a href="#" class="hover-link">
-            <div class="hover-text">
-              <p class="contrast-underline">世界のお茶を少しだけ</p>
+          <!-- ❷　galleryへのアンカー -->
+          <div
+            class="item item2 zen-kaku-gothic-new-regular hero__slot hero__slot--gallery"
+          >
+            <div class="hover-area hero__tap-target bg-gallery hero__bg">
+              <a href="#" class="hover-link hero__link">
+                <div class="hover-text">
+                  <p class="contrast-underline">世界のお茶を少しだけ</p>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
-      </div>
-      <!-- ❸universeへのアンカー -->
-      <div class="item item3 link zen-kaku-gothic-new-regular">
-        <div class="hover-area bg-universe">
-          <a href="#" class="hover-link">
-            <div class="hover-text">
-              <p class="contrast-underline">遠くのことを少しだけ</p>
+          </div>
+          <!-- ❸universeへのアンカー -->
+          <div
+            class="item item3 zen-kaku-gothic-new-regular hero__slot hero__slot--universe"
+          >
+            <div class="hover-area hero__tap-target bg-universe hero__bg">
+              <a href="#" class="hover-link hero__link">
+                <div class="hover-text">
+                  <p class="contrast-underline">遠くのことを少しだけ</p>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
-      </div>
-      <!-- ❹メインテキスト -->
-      <div class="item item4">
-        <div class="text">
-          <div class="suu zen-maru-gothic-regular">すぅ〜</div>
-          <div class="tea contrast-underline zen-kaku-gothic-new-regular">
-            お茶でも淹れましょうか
+          </div>
+          <!-- ❹メインテキスト -->
+          <div class="item item4 hero__slot hero__slot--cta">
+            <div class="hero__head">
+              <div class="suu hero__heading zen-maru-gothic-regular">
+                すぅ〜
+              </div>
+              <div
+                class="tea hero__subheading contrast-underline zen-kaku-gothic-new-regular"
+              >
+                お茶でも淹れましょうか
+              </div>
+            </div>
+          </div>
+          <!-- ❺about & help 表示（heroのみ） -->
+          <!-- heroのみ表示 -->
+          <div
+            class="wrapper info item5 hero__slot hero__slot--side"
+            id="myElement"
+          >
+            <!-- アイテム：about.html -->
+            <a href="#" class="a-about zen-kaku-gothic-new-regular">
+              <div class="sideitem item-about">
+                <span class="leaf-text" aria-hidden="true">🌱</span>
+                <p>このサイトについて</p>
+              </div></a
+            ><!-- ヘルプ -->
+            <a
+              href="#"
+              id="helpBtn"
+              class="a-help zen-kaku-gothic-new-regular"
+              aria-expanded="false"
+              aria-controls="helpCard"
+              ><div id="showCard" class="sideitem item-help">
+                <span
+                  class="material-symbols-outlined help-icon-size"
+                  aria-hidden="true"
+                  >help
+                </span>
+                <p>ヘルプ</p>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
-      <!-- ❺about & help 表示（heroのみ） -->
-      <!-- heroのみ表示 -->
-      <div class="wrapper info item5" id="myElement">
-        <!-- アイテム：about.html -->
-        <a href="#" class="a-about zen-kaku-gothic-new-regular">
-          <div class="sideitem item-about">
-            <span class="leaf-text" aria-hidden="true">🌱</span>
-            <p>このサイトについて</p>
-          </div></a
-        ><!-- ヘルプ -->
-        <a
-          href="#"
-          id="helpBtn"
-          class="a-help zen-kaku-gothic-new-regular"
-          aria-expanded="false"
-          aria-controls="helpCard"
-          ><div id="showCard" class="sideitem item-help">
-            <span
-              class="material-symbols-outlined help-icon-size"
-              aria-hidden="true"
-              >help
-            </span>
-            <p>ヘルプ</p>
-          </div>
-        </a>
-      </div>
+      </section>
     </main>
     <!-- ヘルプカード -->
     <section
