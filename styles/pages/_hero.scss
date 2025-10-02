@@ -76,11 +76,11 @@ body.hero {
   }
 
   /* コンテンツ/UIは前面へ */
-  .hero .container,
-  .notify-controls {
-    position: relative;
-    z-index: core.$z-main;
-  }
+  // .hero .container,
+  // .notify-controls {
+  //   position: relative;
+  //   z-index: core.$z-main;
+  // }
 
   // ↑旧↓新
   .hero .hero__grid,
@@ -118,19 +118,12 @@ body.hero {
     }
   }
 
-  main {
+  .hero__inner {
     width: 100%;
     height: 100vh;
-    // background: rgb(161 161 161 / 0.4);
-    color: core.$main-color;
-  }
-
-  /* メインコンテンツ 　旧*/
-  &.content,
-  .content {
-    // bodyにも子要素にも効く
-    position: relative;
-    z-index: core.$z-main;
+    // あとで消す🚨
+    border: core.$test3;
+    background: core.$test-bg3; //黄緑
   }
 
   /* メインコンテンツ 動画より前 新*/
@@ -162,19 +155,6 @@ body.hero {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: minmax(192px, 1fr);
     grid-template-areas: "item1 item2 item3 item4";
-  }
-
-  /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
-  @supports (height: 100dvh) {
-    // 旧　消す方
-    .hero .container {
-      min-height: 100dvh;
-    }
-
-    // 新　残す方
-    .hero .hero__grid {
-      min-height: 100dvh;
-    }
   }
 
   /* タイルの中身の潰れ対策（共通） */
@@ -481,26 +461,31 @@ body.hero {
       white-space: nowrap;
     }
 
-    main {
-      // height: auto;
+    // タブレット・スマホ縦向き
+    .hero__inner {
+      width: 100%;
+      height: auto;
+      // あとで消す🚨
+      border: core.$test3;
+      background: core.$test-bg3; //黄緑
     }
 
     // 旧
-    .container {
-      display: grid;
-      grid-template-columns: 1fr;
+    // .container {
+    //   display: grid;
+    //   grid-template-columns: 1fr;
 
-      // 無視される
-      grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
-      grid-template-areas:
-        "item4" /* 見出し */
-        "item1" /* タイマー */
-        "item2" /* ギャラリー導線 */
-        "item3" /* ユニバース導線 */
-        "item5"; /* ヘルプ等 */
+    //   // 無視される
+    //   grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
+    //   grid-template-areas:
+    //     "item4" /* 見出し */
+    //     "item1" /* タイマー */
+    //     "item2" /* ギャラリー導線 */
+    //     "item3" /* ユニバース導線 */
+    //     "item5"; /* ヘルプ等 */
 
-      gap: 1rem;
-    }
+    //   gap: 1rem;
+    // }
 
     // 新
     .hero__grid {
@@ -771,28 +756,20 @@ body.hero {
       white-space: nowrap;
     }
 
-    .main {
-      position: absolute; /* もともとfixedなら切り替え */
-      inset: 0;
+    .hero__inner {
       width: 100%;
       height: auto;
-      min-height: fit-content;
-      overflow: auto;
-
-      /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用） */
-      padding-top: clamp(0.8rem, 6vh, 2.4rem);
     }
-
     // 旧
-    .container {
-      grid-template:
-        "item1 item4" 1fr
-        "item1 item2" 1fr
-        "item1 item3" 1fr
-        "item1 item5" 1fr;
-      gap: clamp(12px, 2svh, 24px);
-      overflow: auto;
-    }
+    // .container {
+    //   grid-template:
+    //     "item1 item4" 1fr
+    //     "item1 item2" 1fr
+    //     "item1 item3" 1fr
+    //     "item1 item5" 1fr;
+    //   gap: clamp(12px, 2svh, 24px);
+    //   overflow: auto;
+    // }
 
     // 新　container
     .hero__grid {
