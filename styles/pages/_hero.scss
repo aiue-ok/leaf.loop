@@ -179,9 +179,9 @@ body.hero {
   }
 
   // タイマー旧
-  .item1 {
-    grid-area: item1;
-  }
+  // .item1 {
+  //   grid-area: item1;
+  // }
 
   // 新
   .hero__slot--timer {
@@ -189,20 +189,20 @@ body.hero {
   }
 
   // gallery
-  .item2 {
-    grid-area: item2;
-  }
+  // .item2 {
+  //   grid-area: item2;
+  // }
 
   // universe
-  .item3 {
-    grid-area: item3;
-  }
+  // .item3 {
+  //   grid-area: item3;
+  // }
 
   // gallery・universe共通
-  .item2,
-  .item3 {
-    position: relative;
-  }
+  // .item2,
+  // .item3 {
+  //   position: relative;
+  // }
 
   // gallery
   .hero__slot--gallery {
@@ -221,9 +221,9 @@ body.hero {
   }
 
   // メインテキスト
-  .item4 {
-    grid-area: item4;
-  }
+  // .item4 {
+  //   grid-area: item4;
+  // }
 
   // メインテキスト
   .hero__slot--cta {
@@ -231,9 +231,9 @@ body.hero {
   }
 
   // ヘルプ・about
-  .item5 {
-    grid-area: item5;
-  }
+  // .item5 {
+  //   grid-area: item5;
+  // }
 
   // ヘルプ・about
   .hero__slot--side {
@@ -504,11 +504,11 @@ body.hero {
     }
 
     // タイマー旧
-    .item1 {
-      grid-area: item1;
-      height: fit-content;
-      min-height: clamp(200px, calc(var(--vh) * 40), 360px);
-    }
+    // .item1 {
+    //   grid-area: item1;
+    //   height: fit-content;
+    //   min-height: clamp(200px, calc(var(--vh) * 40), 360px);
+    // }
 
     .hero__slot--timer {
       grid-area: item1;
@@ -516,38 +516,38 @@ body.hero {
       min-height: clamp(200px, calc(var(--vh) * 40), 360px);
     }
 
-    .item2 {
-      grid-area: item2;
-    }
+    // .item2 {
+    //   grid-area: item2;
+    // }
 
     .hero__slot--gallery {
       grid-area: item2;
     }
 
-    .item3 {
-      grid-area: item3;
-    }
+// .item3 {
+//   grid-area: item3;
+// }
 
     .hero__slot--universe {
       grid-area: item2;
     }
 
     // す〜
-    .item4 {
-      grid-area: item4;
-      min-height: clamp(120px, calc(var(--vh) * 25), 280px);
-    }
+    // .item4 {
+    //   grid-area: item4;
+    //   min-height: clamp(120px, calc(var(--vh) * 25), 280px);
+    // }
 
     .hero__slot--cta {
       grid-area: item4;
       min-height: clamp(120px, calc(var(--vh) * 25), 280px);
     }
 
-    .item5 {
-      grid-area: item5;
-      width: fit-content;
-      margin: 1rem auto;
-    }
+    // .item5 {
+    //   grid-area: item5;
+    //   width: fit-content;
+    //   margin: 1rem auto;
+    // }
 
     .hero__slot--side {
       grid-area: item5;
@@ -791,10 +791,10 @@ body.hero {
     }
 
     // 旧
-    .item1 {
-      min-height: 375px;
-      height: auto;
-    }
+    // .item1 {
+    //   min-height: 375px;
+    //   height: auto;
+    // }
 
     .hero__slot--timer {
       min-height: 375px;
@@ -802,11 +802,11 @@ body.hero {
     }
 
     // 旧
-    .item2,
-    .item3,
-    .item5 {
-      min-height: auto;
-    }
+    // .item2,
+    // .item3,
+    // .item5 {
+    //   min-height: auto;
+    // }
 
     .hero__slot--gallery,
     .hero__slot--universe,
@@ -815,11 +815,11 @@ body.hero {
     }
 
     // 旧
-    .item4 {
-      padding-top: 1rem;
-      width: 100%;
-      height: 40vh;
-    }
+    // .item4 {
+    //   padding-top: 1rem;
+    //   width: 100%;
+    //   height: 40vh;
+    // }
 
     .hero__slot--cta {
       padding-top: 1rem;
