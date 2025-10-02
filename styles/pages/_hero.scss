@@ -427,10 +427,15 @@ body.hero {
 
     // 新
     .nav-tile {
-      display: grid;
+      display: inline-grid; /* ブロック→インライン化で横幅が内容起点に */
+      place-self: start center;
+
+      /* 親グリッドに対して左上寄せ（stretch無効化） */
+      width: max-content; /* 内容幅にフィット（fit-content より狙いが明確） */
       place-items: center;
       text-decoration: none;
-      position: relative; /* for ::before layers on label if needed */
+      position: relative;
+      /* for ::before layers on label if needed */
       min-height: var(--tile-min-h, 12rem);
     }
 
