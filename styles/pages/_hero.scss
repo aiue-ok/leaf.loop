@@ -76,13 +76,6 @@ body.hero {
   }
 
   /* コンテンツ/UIは前面へ */
-  // .hero .container,
-  // .notify-controls {
-  //   position: relative;
-  //   z-index: core.$z-main;
-  // }
-
-  // ↑旧↓新
   .hero .hero__grid,
   .notify-controls {
     position: relative;
@@ -130,18 +123,6 @@ body.hero {
     z-index: core.$z-main;
   }
 
-  // 旧
-  // .container {
-  //   display: grid;
-  //   align-items: stretch;
-
-  /* デスクトップ */
-  //   grid-template-columns: 1fr 1fr 1fr 1fr;
-  //   grid-template-rows: minmax(192px, 1fr);
-  //   grid-template-areas: "item1 item2 item3 item4";
-  // }
-
-  // 新
   // “エリア名”は落ち着いたら変更する　（例：item1→timer）
   .hero__grid {
     display: grid;
@@ -152,18 +133,6 @@ body.hero {
     grid-template-rows: minmax(192px, 1fr);
     grid-template-areas: "item1 item2 item3 item4";
   }
-
-  /* タイルの中身の潰れ対策（共通） */
-  // .item {
-  //   box-sizing: border-box;
-  //   margin: 0;
-  //   padding: 0;
-  //   display: grid;
-  //   place-items: center;
-  //   height: 100%;
-  //   min-width: 21vw;
-  //   min-height: 160px;
-  // }
 
   /* タイルの中身の潰れ対策（共通） 新*/
   .hero__slot {
@@ -177,31 +146,9 @@ body.hero {
     min-height: 160px;
   }
 
-  // タイマー旧
-  // .item1 {
-  //   grid-area: item1;
-  // }
-
-  // 新
   .hero__slot--timer {
     grid-area: item1;
   }
-
-  // gallery
-  // .item2 {
-  //   grid-area: item2;
-  // }
-
-  // universe
-  // .item3 {
-  //   grid-area: item3;
-  // }
-
-  // gallery・universe共通
-  // .item2,
-  // .item3 {
-  //   position: relative;
-  // }
 
   // gallery
   .hero__slot--gallery {
@@ -220,19 +167,9 @@ body.hero {
   }
 
   // メインテキスト
-  // .item4 {
-  //   grid-area: item4;
-  // }
-
-  // メインテキスト
   .hero__slot--cta {
     grid-area: item4;
   }
-
-  // ヘルプ・about
-  // .item5 {
-  //   grid-area: item5;
-  // }
 
   // ヘルプ・about
   .hero__slot--side {
@@ -412,24 +349,6 @@ body.hero {
       height: auto;
     }
 
-    // 旧
-    // .container {
-    //   display: grid;
-    //   grid-template-columns: 1fr;
-
-    //   // 無視される
-    //   grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
-    //   grid-template-areas:
-    //     "item4" /* 見出し */
-    //     "item1" /* タイマー */
-    //     "item2" /* ギャラリー導線 */
-    //     "item3" /* ユニバース導線 */
-    //     "item5"; /* ヘルプ等 */
-
-    //   gap: 1rem;
-    // }
-
-    // 新
     .hero__grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -449,51 +368,24 @@ body.hero {
       min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
     }
 
-    // タイマー旧
-    // .item1 {
-    //   grid-area: item1;
-    //   height: fit-content;
-    //   min-height: clamp(200px, calc(var(--vh) * 40), 360px);
-    // }
-
     .hero__slot--timer {
       grid-area: item1;
       height: fit-content;
       min-height: clamp(200px, calc(var(--vh) * 40), 360px);
     }
 
-    // .item2 {
-    //   grid-area: item2;
-    // }
-
     .hero__slot--gallery {
       grid-area: item2;
     }
-
-    // .item3 {
-    //   grid-area: item3;
-    // }
 
     .hero__slot--universe {
       grid-area: item3;
     }
 
-    // す〜
-    // .item4 {
-    //   grid-area: item4;
-    //   min-height: clamp(120px, calc(var(--vh) * 25), 280px);
-    // }
-
     .hero__slot--cta {
       grid-area: item4;
       min-height: clamp(120px, calc(var(--vh) * 25), 280px);
     }
-
-    // .item5 {
-    //   grid-area: item5;
-    //   width: fit-content;
-    //   margin: 1rem auto;
-    // }
 
     .hero__slot--side {
       grid-area: item5;
@@ -622,18 +514,7 @@ body.hero {
       width: 100%;
       height: auto;
     }
-    // 旧
-    // .container {
-    //   grid-template:
-    //     "item1 item4" 1fr
-    //     "item1 item2" 1fr
-    //     "item1 item3" 1fr
-    //     "item1 item5" 1fr;
-    //   gap: clamp(12px, 2svh, 24px);
-    //   overflow: auto;
-    // }
 
-    // 新　container
     .hero__grid {
       grid-template:
         "item1 item4" 1fr
@@ -653,36 +534,16 @@ body.hero {
       min-height: var(--tile-min-h, 12rem);
     }
 
-    // 旧
-    // .item1 {
-    //   min-height: 375px;
-    //   height: auto;
-    // }
-
     .hero__slot--timer {
       min-height: 375px;
       height: auto;
     }
-
-    // 旧
-    // .item2,
-    // .item3,
-    // .item5 {
-    //   min-height: auto;
-    // }
 
     .hero__slot--gallery,
     .hero__slot--universe,
     .hero__slot--side {
       min-height: auto;
     }
-
-    // 旧
-    // .item4 {
-    //   padding-top: 1rem;
-    //   width: 100%;
-    //   height: 40vh;
-    // }
 
     .hero__slot--cta {
       padding-top: 1rem;
