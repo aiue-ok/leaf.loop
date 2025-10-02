@@ -241,30 +241,14 @@ body.hero {
 
   /* 画像リンク面の高さは「タイルに合わせて100%」に　不要 */
   // .hover-area → .nav-tile（root, anchor）
-  // .hover-area {
-  //   position: relative;
-  //   width: 100%;
-  //   height: 100%;
-  //   padding: 0 16px;
-  // }
-  .hover-area,
   .nav-tile {
     /* 同宣言 */
     position: relative;
     width: 100%;
     height: 100%;
     padding: 0 16px;
-  }
-  // 旧↑新↓ 不要.hover-area → .nav-tile（root, anchor）
-  // .hero__tap-target {
-  //   position: relative;
-  //   width: 100%;
-  //   height: 100%;
-  //   padding: 0 16px;
-  // }
 
-  /* reusable block アンカー・中央寄せ・ヒットエリア */
-  .nav-tile {
+    /* reusable block アンカー・中央寄せ・ヒットエリア */
     display: grid;
     place-items: center;
     text-decoration: none;
@@ -288,16 +272,6 @@ body.hero {
   .nav-tile .nav-tile__text:hover {
     text-decoration: underline;
   }
-  // .bg-gallery,
-  // .bg-universe {
-  //   position: static;
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   background-size: cover;
-  //   filter: brightness(1);
-  //   opacity: 0.5;
-  //   z-index: core.$z-main;
-  // }
 
   .nav-tile--gallery .nav-tile__media,
   .nav-tile--universe .nav-tile__media {
@@ -320,57 +294,12 @@ body.hero {
     background: transparent;
   }
 
-  // .bg-gallery:not(p),
-  // .bg-universe:not(p) {
-  //   opacity: 0.9;
-  // }
   // 旧↑新↓
   .nav-tile--gallery .nav-tile__media:not(span),
   .nav-tile--universe .nav-tile__media:not(span) {
     opacity: 0.9;
   }
 
-  // .bg-gallery p,
-  // .bg-universe p {
-  //   opacity: 1;
-  //   font-size: clamp(18px, 1.97vw, 20px);
-  //   border-radius: 0.2em;
-  // }
-  // 旧↑新↓
-  // .nav-tile--gallery .nav-tile__media p,
-  // .nav-tile--universe .nav-tile__media p {
-  //   opacity: 1;
-  //   font-size: clamp(18px, 1.97vw, 20px);
-  //   border-radius: 0.2em;
-  // }
-
-  // .hero__slot > .bg-gallery:hover {
-  //   background: linear-gradient(
-  //       to top,
-  //       rgb(237 224 212 / 32.6%),
-  //       rgb(191 192 185 / 61.2%),
-  //       rgb(153 147 138 / 89.8%),
-  //       rgb(142 136 128 / 34.2%),
-  //       rgb(125 124 120 / 22.7%)
-  //     ),
-  //     url("../assets/png/hero/frame_02_gallery_mobile.png");
-  //   filter: brightness(1.2);
-  //   opacity: 0.8;
-  // }
-
-  // .hero__slot > .bg-universe:hover {
-  //   // .bg-universe:hover {
-  //   background-image: url("../assets/png/hero/frame_03_space_mobile.png");
-  //   background: linear-gradient(
-  //     to bottom,
-  //     rgb(27 38 59 / 100%) 40%,
-  //     rgb(15 26 43 / 0%) 100%
-  //   );
-  //   filter: brightness(1.1);
-  //   opacity: 1;
-  // }
-
-  a,
   .nav-tile--gallery .nav-tile__media:hover {
     background: linear-gradient(
         to top,
@@ -386,7 +315,6 @@ body.hero {
   }
 
   .nav-tile--universe .nav-tile__media:hover {
-    // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
     background: linear-gradient(
       to bottom,
       rgb(27 38 59 / 100%) 40%,
@@ -395,26 +323,6 @@ body.hero {
     filter: brightness(1.1);
     opacity: 1;
   }
-
-  // アンカーを真ん中に置く
-  // .hover-link {
-  //   position: absolute;
-  //   inset: 0;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   text-align: center;
-  // }
-
-  // 不要　.nav-tileに
-  // .hero__link {
-  //   position: absolute;
-  //   inset: 0;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   text-align: center;
-  // }
 
   /* すぅ〜 */
   .suu {
@@ -617,13 +525,6 @@ body.hero {
       z-index: -1;
     }
 
-    .hero__slot > .bg-gallery:hover,
-    .hero__slot > .bg-universe:hover {
-      background: transparent;
-      filter: unset;
-      opacity: 1;
-    }
-
     .nav-tile--gallery .nav-tile__media:hover,
     .nav-tile--universe .nav-tile__media:hover {
       background: transparent;
@@ -631,30 +532,6 @@ body.hero {
       opacity: 1;
     }
 
-    .bg-gallery p,
-    .bg-universe p {
-      background-color: transparent;
-      font-size: clamp(18px, 2vw, 20px);
-    }
-
-    .hero__slot--gallery p,
-    .hero__slot--universe p {
-      background-color: transparent;
-      font-size: clamp(18px, 2vw, 20px);
-    }
-
-    // .hover-area → .nav-tile（root, anchor）
-    // .hover-area {
-    //   width: 100%;
-    //   height: 100%;
-    //   min-height: clamp(56px, 10svh, 128px);
-    // }
-    // .hover-area → .nav-tile（root, anchor）
-    // .hero__tap-target {
-    //   width: 100%;
-    //   height: 100%;
-    //   min-height: clamp(56px, 10svh, 128px);
-    // }
     // 新
     .nav-tile {
       display: grid;
@@ -663,14 +540,6 @@ body.hero {
       position: relative; /* for ::before layers on label if needed */
       min-height: var(--tile-min-h, 12rem);
     }
-
-    // 背景の帯
-    // .hover-text {
-    //   position: relative;
-    //   padding: 0.6em 1em;
-    //   line-height: 1.2;
-    //   white-space: nowrap;
-    // }
 
     .hero__label {
       position: relative;
@@ -699,34 +568,12 @@ body.hero {
       z-index: -1;
     }
 
-    .bg-gallery .hover-text::before,
-    .bg-universe .hover-text::before {
-      background: transparent;
-      backdrop-filter: blur(8px) saturate(140%);
-      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-        inset 0 0 0 1px rgb(255 255 255 / 35%);
-    }
-
     .hero__slot--gallery .hero__label::before,
     .hero__slot--universe .hero__label::before {
       background: transparent;
       backdrop-filter: blur(8px) saturate(140%);
       box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
         inset 0 0 0 1px rgb(255 255 255 / 35%);
-    }
-
-    .hover-link {
-      width: 100%;
-      width: fit-content;
-      padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-      margin: 0 auto;
-    }
-
-    .hero__link {
-      width: 100%;
-      width: fit-content;
-      padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-      margin: 0 auto;
     }
 
     /* すぅ〜 */
@@ -829,23 +676,8 @@ body.hero {
         "item1 item5" 1fr;
       gap: clamp(12px, 2svh, 24px);
       overflow: auto;
-      // あとで消す🚨
-      border: core.$test3;
     }
-    // .hover-area → .nav-tile（root, anchor）
-    .hover-area {
-      min-height: clamp(56px, 10svh, 128px);
-      overflow: hidden;
-      padding: 0 8px;
-      display: block;
-    }
-    // .hover-area → .nav-tile（root, anchor）
-    .hero__tap-target {
-      min-height: clamp(56px, 10svh, 128px);
-      overflow: hidden;
-      padding: 0 8px;
-      display: block;
-    }
+
     // 新
     .nav-tile {
       display: grid;
@@ -892,90 +724,11 @@ body.hero {
       height: 40vh;
     }
 
-    .bg-gallery,
-    .bg-universe {
-      font-family: inherit;
-      background: none;
-    }
-
-    .hero__bg--gallery,
-    .hero__bg--universe {
-      font-family: inherit;
-      background: none;
-    }
-
-    // 旧
-    // .item > .bg-gallery:hover,
-    // .item > .bg-universe:hover {
-    //   background: transparent;
-    //   filter: unset;
-    //   opacity: 1;
-    // }
-
     .hero__slot > .hero__bg--gallery:hover,
     .hero__slot > .hero__bg--universe:hover {
       background: transparent;
       filter: unset;
       opacity: 1;
-    }
-
-    // 背景の帯
-    .hover-text {
-      position: relative;
-      padding: 0.6em 1em;
-      line-height: 1.2;
-      white-space: nowrap;
-      text-shadow: core.$hover-shadow;
-    }
-
-    .hero__label {
-      position: relative;
-      padding: 0.6em 1em;
-      line-height: 1.2;
-      white-space: nowrap;
-      text-shadow: core.$hover-shadow;
-    }
-
-    .hover-text::before {
-      content: "";
-      position: absolute;
-      inset: -6px -12px;
-      background-color: transparent;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
-      border: 0.8px solid rgb(245 245 245 / 35%);
-      border-radius: 12px;
-
-      /* ほんのりガラス */
-      backdrop-filter: blur(4px);
-      z-index: -1;
-    }
-
-    .hero__label::before {
-      content: "";
-      position: absolute;
-      inset: -6px -12px;
-      background-color: transparent;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
-      border: 0.8px solid rgb(245 245 245 / 35%);
-      border-radius: 12px;
-
-      /* ほんのりガラス */
-      backdrop-filter: blur(4px);
-      z-index: -1;
-    }
-
-    .hover-link {
-      width: 100%;
-      width: fit-content;
-      padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-      margin: 0 auto;
-    }
-
-    .hero__link {
-      width: 100%;
-      width: fit-content;
-      padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-      margin: 0 auto;
     }
 
     // モバイルでも表示する帯
@@ -1027,20 +780,5 @@ body.hero {
     letter-spacing: 0.01em;
     line-height: 1.15;
     max-inline-size: 18ch;
-  }
-}
-
-/* hover可能端末だけ見た目の変化を強める */
-@media (hover: hover) {
-  .hover-link:hover span {
-    color: #fff;
-    border-bottom-color: rgb(255 255 255 / 70%);
-    text-underline-offset: 0.2em;
-  }
-
-  .hero__link:hover span {
-    color: #fff;
-    border-bottom-color: rgb(255 255 255 / 70%);
-    text-underline-offset: 0.2em;
   }
 }
