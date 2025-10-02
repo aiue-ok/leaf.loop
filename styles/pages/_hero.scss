@@ -514,6 +514,7 @@ body.hero {
       position: relative;
       z-index: 1;
       padding: 0.6em 1em;
+      white-space: nowrap;
     }
 
     .nav-tile__label::before {
@@ -539,41 +540,6 @@ body.hero {
       text-decoration: none;
       position: relative; /* for ::before layers on label if needed */
       min-height: var(--tile-min-h, 12rem);
-    }
-
-    .hero__label {
-      position: relative;
-      padding: 0.6em 1em;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-
-    .hover-text::before {
-      content: "";
-      position: absolute;
-      inset: -6px -12px;
-      border-radius: 12px;
-      /* ほんのりガラス */
-      backdrop-filter: blur(140px);
-      z-index: -1;
-    }
-
-    .hero__label::before {
-      content: "";
-      position: absolute;
-      inset: -6px -12px;
-      border-radius: 12px;
-      /* ほんのりガラス */
-      backdrop-filter: blur(140px);
-      z-index: -1;
-    }
-
-    .hero__slot--gallery .hero__label::before,
-    .hero__slot--universe .hero__label::before {
-      background: transparent;
-      backdrop-filter: blur(8px) saturate(140%);
-      box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-        inset 0 0 0 1px rgb(255 255 255 / 35%);
     }
 
     /* すぅ〜 */
