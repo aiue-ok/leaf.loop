@@ -32,6 +32,9 @@
 
   // タイマー表示
 
+  // タイル
+  --tile-min-h: clamp(56px, 10svh, 128px);
+
   /* night-indigo 上で映える柔白（OKLCH） */
   --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
   --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */

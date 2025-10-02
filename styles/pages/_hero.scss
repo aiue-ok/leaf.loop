@@ -105,7 +105,6 @@ body.hero {
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
     text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
-
     // max-inline-size: 22ch;
 
     @supports (backdrop-filter: blur(2px)) {
@@ -136,7 +135,7 @@ body.hero {
   //   display: grid;
   //   align-items: stretch;
 
-    /* デスクトップ */
+  /* デスクトップ */
   //   grid-template-columns: 1fr 1fr 1fr 1fr;
   //   grid-template-rows: minmax(192px, 1fr);
   //   grid-template-areas: "item1 item2 item3 item4";
@@ -240,73 +239,139 @@ body.hero {
     grid-area: item5;
   }
 
-  /* 画像リンク面の高さは「タイルに合わせて100%」に */
-  .hover-area {
+  /* 画像リンク面の高さは「タイルに合わせて100%」に　不要 */
+  // .hover-area → .nav-tile（root, anchor）
+  // .hover-area {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 100%;
+  //   padding: 0 16px;
+  // }
+  .hover-area,
+  .nav-tile {
+    /* 同宣言 */
     position: relative;
     width: 100%;
     height: 100%;
     padding: 0 16px;
   }
-  // 旧↑新↓
-  .hero__tap-target {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0 16px;
+  // 旧↑新↓ 不要.hover-area → .nav-tile（root, anchor）
+  // .hero__tap-target {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 100%;
+  //   padding: 0 16px;
+  // }
+
+  /* reusable block アンカー・中央寄せ・ヒットエリア */
+  .nav-tile {
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    position: relative; /* for ::before layers on label if needed */
+    min-height: var(--tile-min-h, 12rem);
   }
 
-  .bg-gallery,
-  .bg-universe {
-    position: static;
+  // .bg-gallery / .bg-universe → .nav-tile__media
+  // 背景画像・フィルタ（親の --gallery / --universe で差分）
+  .nav-tile__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .nav-tile__text {
+    opacity: 1;
+    font-size: clamp(18px, 1.97vw, 20px);
+  }
+
+  .nav-tile .nav-tile__text:hover {
+    text-decoration: underline;
+  }
+  // .bg-gallery,
+  // .bg-universe {
+  //   position: static;
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  //   background-size: cover;
+  //   filter: brightness(1);
+  //   opacity: 0.5;
+  //   z-index: core.$z-main;
+  // }
+
+  .nav-tile--gallery .nav-tile__media,
+  .nav-tile--universe .nav-tile__media {
+    /* 背景・フィルタ */
+    // position: static;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     filter: brightness(1);
     opacity: 0.5;
     z-index: core.$z-main;
-
-    // background: transparent;
   }
 
+  // 背景画像・フィルタ
+  .nav-tile--gallery {
+    background: transparent;
+  }
+
+  .nav-tile--universe {
+    background: transparent;
+  }
+
+  // .bg-gallery:not(p),
+  // .bg-universe:not(p) {
+  //   opacity: 0.9;
+  // }
   // 旧↑新↓
-  .hero__bg--gallery,
-  .hero__bg--universe {
-    position: static;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    filter: brightness(1);
-    opacity: 0.5;
-    z-index: core.$z-main;
-
-    // background: transparent;
-  }
-
-  .bg-gallery:not(p),
-  .bg-universe:not(p) {
-    opacity: 0.9;
-  }
-  // 旧↑新↓
-  .hero__bg--gallery:not(p),
-  .hero__bg--universe:not(p) {
+  .nav-tile--gallery .nav-tile__media:not(span),
+  .nav-tile--universe .nav-tile__media:not(span) {
     opacity: 0.9;
   }
 
-  .bg-gallery p,
-  .bg-universe p {
-    opacity: 1;
-    font-size: clamp(18px, 1.97vw, 20px);
-    border-radius: 0.2em;
-  }
+  // .bg-gallery p,
+  // .bg-universe p {
+  //   opacity: 1;
+  //   font-size: clamp(18px, 1.97vw, 20px);
+  //   border-radius: 0.2em;
+  // }
   // 旧↑新↓
-  .hero__bg--gallery p,
-  .hero__bg--universe p {
-    opacity: 1;
-    font-size: clamp(18px, 1.97vw, 20px);
-    border-radius: 0.2em;
-  }
+  // .nav-tile--gallery .nav-tile__media p,
+  // .nav-tile--universe .nav-tile__media p {
+  //   opacity: 1;
+  //   font-size: clamp(18px, 1.97vw, 20px);
+  //   border-radius: 0.2em;
+  // }
 
-  .hero__slot > .bg-gallery:hover {
+  // .hero__slot > .bg-gallery:hover {
+  //   background: linear-gradient(
+  //       to top,
+  //       rgb(237 224 212 / 32.6%),
+  //       rgb(191 192 185 / 61.2%),
+  //       rgb(153 147 138 / 89.8%),
+  //       rgb(142 136 128 / 34.2%),
+  //       rgb(125 124 120 / 22.7%)
+  //     ),
+  //     url("../assets/png/hero/frame_02_gallery_mobile.png");
+  //   filter: brightness(1.2);
+  //   opacity: 0.8;
+  // }
+
+  // .hero__slot > .bg-universe:hover {
+  //   // .bg-universe:hover {
+  //   background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+  //   background: linear-gradient(
+  //     to bottom,
+  //     rgb(27 38 59 / 100%) 40%,
+  //     rgb(15 26 43 / 0%) 100%
+  //   );
+  //   filter: brightness(1.1);
+  //   opacity: 1;
+  // }
+
+  a,
+  .nav-tile--gallery .nav-tile__media:hover {
     background: linear-gradient(
         to top,
         rgb(237 224 212 / 32.6%),
@@ -320,34 +385,8 @@ body.hero {
     opacity: 0.8;
   }
 
-  .hero__slot > .bg-universe:hover {
-    // .bg-universe:hover {
-    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
-    background: linear-gradient(
-      to bottom,
-      rgb(27 38 59 / 100%) 40%,
-      rgb(15 26 43 / 0%) 100%
-    );
-    filter: brightness(1.1);
-    opacity: 1;
-  }
-
-  .hero__slot > .hero__bg--gallery:hover {
-    background: linear-gradient(
-        to top,
-        rgb(237 224 212 / 32.6%),
-        rgb(191 192 185 / 61.2%),
-        rgb(153 147 138 / 89.8%),
-        rgb(142 136 128 / 34.2%),
-        rgb(125 124 120 / 22.7%)
-      ),
-      url("../assets/png/hero/frame_02_gallery_mobile.png");
-    filter: brightness(1.2);
-    opacity: 0.8;
-  }
-
-  .hero__slot > .hero__bg--universe:hover {
-    background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+  .nav-tile--universe .nav-tile__media:hover {
+    // background-image: url("../assets/png/hero/frame_03_space_mobile.png");
     background: linear-gradient(
       to bottom,
       rgb(27 38 59 / 100%) 40%,
@@ -358,23 +397,24 @@ body.hero {
   }
 
   // アンカーを真ん中に置く
-  .hover-link {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+  // .hover-link {
+  //   position: absolute;
+  //   inset: 0;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   text-align: center;
+  // }
 
-  .hero__link {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+  // 不要　.nav-tileに
+  // .hero__link {
+  //   position: absolute;
+  //   inset: 0;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   text-align: center;
+  // }
 
   /* すぅ〜 */
   .suu {
@@ -462,9 +502,6 @@ body.hero {
     .hero__inner {
       width: 100%;
       height: auto;
-      // あとで消す🚨
-      border: core.$test3;
-      background: core.$test-bg3; //黄緑
     }
 
     // 旧
@@ -488,7 +525,7 @@ body.hero {
     .hero__grid {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
+      // grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
       grid-template-areas:
         "item4" /* 見出し */
         "item1" /* タイマー */
@@ -496,6 +533,7 @@ body.hero {
         "item3" /* ユニバース導線 */
         "item5"; /* ヘルプ等 */
       gap: 1rem;
+      align-items: start;
     }
 
     /* 共通（高さを中身に任せる等） */
@@ -524,12 +562,12 @@ body.hero {
       grid-area: item2;
     }
 
-// .item3 {
-//   grid-area: item3;
-// }
+    // .item3 {
+    //   grid-area: item3;
+    // }
 
     .hero__slot--universe {
-      grid-area: item2;
+      grid-area: item3;
     }
 
     // す〜
@@ -555,20 +593,28 @@ body.hero {
       margin: 1rem auto;
     }
 
-    .bg-gallery,
-    .bg-universe {
+    .nav-tile--gallery .nav-tile__media,
+    .nav-tile--universe .nav-tile__media {
       min-height: 10dvh;
       min-height: 10svh;
       background: none;
       filter: unset;
     }
 
-    .hero__slot--gallery .hero__bg,
-    .hero__slot--universe .hero__bg {
-      min-height: 10dvh;
-      min-height: 10svh;
-      background: none;
-      filter: unset;
+    // モバイルでも表示する帯
+    .nav-tile__label {
+      position: relative;
+      z-index: 1;
+      padding: 0.6em 1em;
+    }
+
+    .nav-tile__label::before {
+      content: "";
+      position: absolute;
+      inset: -6px -12px;
+      border-radius: 12px;
+      backdrop-filter: blur(140px);
+      z-index: -1;
     }
 
     .hero__slot > .bg-gallery:hover,
@@ -578,8 +624,8 @@ body.hero {
       opacity: 1;
     }
 
-    .hero__slot--gallery .hero__bg:hover,
-    .hero__slot--universe .hero__bg:hover {
+    .nav-tile--gallery .nav-tile__media:hover,
+    .nav-tile--universe .nav-tile__media:hover {
       background: transparent;
       filter: unset;
       opacity: 1;
@@ -597,25 +643,34 @@ body.hero {
       font-size: clamp(18px, 2vw, 20px);
     }
 
-    .hover-area {
-      width: 100%;
-      height: 100%;
-      min-height: clamp(56px, 10svh, 128px);
-    }
-
-    .hero__tap-target {
-      width: 100%;
-      height: 100%;
-      min-height: clamp(56px, 10svh, 128px);
+    // .hover-area → .nav-tile（root, anchor）
+    // .hover-area {
+    //   width: 100%;
+    //   height: 100%;
+    //   min-height: clamp(56px, 10svh, 128px);
+    // }
+    // .hover-area → .nav-tile（root, anchor）
+    // .hero__tap-target {
+    //   width: 100%;
+    //   height: 100%;
+    //   min-height: clamp(56px, 10svh, 128px);
+    // }
+    // 新
+    .nav-tile {
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      position: relative; /* for ::before layers on label if needed */
+      min-height: var(--tile-min-h, 12rem);
     }
 
     // 背景の帯
-    .hover-text {
-      position: relative;
-      padding: 0.6em 1em;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
+    // .hover-text {
+    //   position: relative;
+    //   padding: 0.6em 1em;
+    //   line-height: 1.2;
+    //   white-space: nowrap;
+    // }
 
     .hero__label {
       position: relative;
@@ -712,7 +767,7 @@ body.hero {
     /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
     background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
     overscroll-behavior-y: contain; /* iOS16+ で有効 */
-    overflow: visible !important;
+    // overflow: visible !important;
 
     &::before {
       transform: none !important;
@@ -774,20 +829,30 @@ body.hero {
         "item1 item5" 1fr;
       gap: clamp(12px, 2svh, 24px);
       overflow: auto;
+      // あとで消す🚨
+      border: core.$test3;
     }
-
+    // .hover-area → .nav-tile（root, anchor）
     .hover-area {
       min-height: clamp(56px, 10svh, 128px);
       overflow: hidden;
       padding: 0 8px;
       display: block;
     }
-
+    // .hover-area → .nav-tile（root, anchor）
     .hero__tap-target {
       min-height: clamp(56px, 10svh, 128px);
       overflow: hidden;
       padding: 0 8px;
       display: block;
+    }
+    // 新
+    .nav-tile {
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      position: relative; /* for ::before layers on label if needed */
+      min-height: var(--tile-min-h, 12rem);
     }
 
     // 旧
@@ -911,6 +976,22 @@ body.hero {
       width: fit-content;
       padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
       margin: 0 auto;
+    }
+
+    // モバイルでも表示する帯
+    .nav-tile__label {
+      position: relative;
+      z-index: 1;
+      padding: 0.6em 1em;
+    }
+
+    .nav-tile__label::before {
+      content: "";
+      position: absolute;
+      inset: -6px -12px;
+      border-radius: 12px;
+      backdrop-filter: blur(140px);
+      z-index: -1;
     }
     /* すぅ〜 */
     .suu {
