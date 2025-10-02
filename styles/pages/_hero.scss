@@ -9,6 +9,7 @@ body.hero {
   isolation: isolate;
   font-size: var(--text-hero);
   overflow-x: hidden;
+  color: core.$main-color;
 
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   &::before {
@@ -98,7 +99,6 @@ body.hero {
   // h1　タイトル
   .title {
     // padding: 1rem;
-    color: core.$main-color;
     font-size: clamp(1.1rem, 3.2vw, 3rem);
     line-height: 1.15;
     letter-spacing: 0.02em;
