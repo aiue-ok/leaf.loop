@@ -31,6 +31,37 @@
   } /* 念のため明示 */
 }
 
+/* 画面が広い＋動きOKなら動画を解禁 */
+@media (width >= 768px) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-video {
+      display: block;
+    }
+
+    .hero-poster {
+      display: none;
+    }
+  }
+}
+
+/* 動きを控えたい人の設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+
+  .hero-poster {
+    display: block;
+  }
+}
+
+/* 動画を控えめにしたいとき（設定済みならそのまま） */
+@media (prefers-reduced-motion: reduce) {
+  #background-video {
+    display: none !important;
+  }
+}
+
 /* 視覚的に隠すがスクリーンリーダーには届く */
 .sr-only {
   position: absolute;

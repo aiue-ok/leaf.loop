@@ -28,7 +28,7 @@ body.hero {
     backface-visibility: hidden;
   }
 
-  /* 背景メディアは最背面 */
+  /* 背景メディアは最背面 <div> */
   .hero-media {
     position: absolute;
     inset: 0;
@@ -42,6 +42,36 @@ body.hero {
       object-fit: cover;
       inline-size: 100%;
     }
+  }
+
+  // <video>
+  #background-video {
+    position: fixed; /* もしくは absolute + 親を relative + inset:0 */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ← これが決定打（posterにも効く） */
+    object-position: center;
+    z-index: core.$z-deeper;
+    top: 0;
+    left: 0;
+  }
+
+  // <video>
+  /* 既定は静止画だけを見せる */
+  .hero-video {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // 非フォーカス <img>
+  .hero-poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* コンテンツ/UIは前面へ */
@@ -88,37 +118,9 @@ body.hero {
     }
   }
 
-  #background-video {
-    position: fixed; /* もしくは absolute + 親を relative + inset:0 */
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ← これが決定打（posterにも効く） */
-    object-position: center;
-    z-index: core.$z-deeper;
-    top: 0;
-    left: 0;
-  }
-
-  /* 既定は静止画だけを見せる */
-  .hero-video {
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero-poster {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   main {
     width: 100%;
     height: 100vh;
-
     // background: rgb(161 161 161 / 0.4);
     color: core.$main-color;
   }
@@ -461,30 +463,17 @@ body.hero {
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     .hero-media {
       position: fixed; /* 画面に固定（スクロールしても動かない） */
-      inset: 0; /* 画面いっぱい */
-      z-index: core.$z-deeper; /* コンテンツより背面、でも負数は使わない */
-      pointer-events: none; /* タップを遮らない */
     }
 
     /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
     #background-video {
-      width: 100%; /* 画面幅にフィット */
       height: 100svh; /* まずは小さいvh（アドレスバー配慮） */
-      object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
-      object-position: center;
     }
 
     /* 新しい単位が使える環境では、動的vhでより正確に */
     @supports (height: 100dvh) {
       #background-video {
         height: 100dvh;
-      }
-    }
-
-    /* 動画を控えめにしたいとき（設定済みならそのまま） */
-    @media (prefers-reduced-motion: reduce) {
-      #background-video {
-        display: none !important;
       }
     }
 
