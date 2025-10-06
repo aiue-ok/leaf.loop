@@ -19,10 +19,11 @@ body.hero {
     pointer-events: none;
     z-index: core.$z-back;
     background: linear-gradient(
-      to right,
-      rgb(200 211 192 / 40%),
-      rgb(200 211 192 / 40%)
-    );
+        to right,
+        rgb(200 211 192 / 40%),
+        rgb(200 211 192 / 40%)
+      ),
+      rgba(0, 0, 0, var(--hero-veil, 0.28));
     mix-blend-mode: multiply;
     will-change: transform;
     transform: translateZ(0);
@@ -176,7 +177,8 @@ body.hero {
     grid-area: item5;
   }
 
-  /* 画像リンク面の高さは「タイルに合わせて100%」に　不要 */
+  // <!-- ❷　galleryへのアンカー ❸universeへのアンカー -->
+
   // .hover-area → .nav-tile（root, anchor）
   .nav-tile {
     /* 同宣言 */
@@ -198,16 +200,15 @@ body.hero {
   .nav-tile__media {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: core.$z-main;
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 
   .nav-tile__text {
     opacity: 1;
     font-size: clamp(18px, 1.97vw, 20px);
-  }
-
-  .nav-tile .nav-tile__text:hover {
-    text-decoration: underline;
+    white-space: nowrap;
   }
 
   .nav-tile--gallery .nav-tile__media,
@@ -219,7 +220,7 @@ body.hero {
     background-size: cover;
     filter: brightness(1);
     opacity: 0.5;
-    z-index: core.$z-main;
+    z-index: core.$z-nav;
   }
 
   // 背景画像・フィルタ
@@ -237,7 +238,16 @@ body.hero {
     opacity: 0.9;
   }
 
-  .nav-tile--gallery .nav-tile__media:hover {
+  // hoverまとめ
+
+  .nav-tile:hover .nav-tile__text,
+  .nav-tile:focus-visible .nav-tile__text {
+    text-decoration: underline;
+    filter: brightness(1.1);
+  }
+
+  .nav-tile:hover.nav-tile--gallery,
+  .nav-tile:focus-visible.nav-tile--gallery {
     background: linear-gradient(
         to top,
         rgb(237 224 212 / 32.6%),
@@ -251,7 +261,8 @@ body.hero {
     opacity: 0.8;
   }
 
-  .nav-tile--universe .nav-tile__media:hover {
+  .nav-tile:hover.nav-tile--universe,
+  .nav-tile:focus-visible.nav-tile--universe {
     background: linear-gradient(
       to bottom,
       rgb(27 38 59 / 100%) 40%,
@@ -316,8 +327,6 @@ body.hero {
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
-    // height: auto;
-    background: blueviolet;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
@@ -393,6 +402,10 @@ body.hero {
       margin: 1rem auto;
     }
 
+    a.nav-tile__media {
+      width: fit-content;
+    }
+
     .nav-tile--gallery .nav-tile__media,
     .nav-tile--universe .nav-tile__media {
       min-height: 10dvh;
@@ -404,7 +417,7 @@ body.hero {
     // モバイルでも表示する帯
     .nav-tile__label {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       padding: 0.6em 1em;
       white-space: nowrap;
     }
