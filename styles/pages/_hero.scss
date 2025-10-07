@@ -91,7 +91,6 @@ body.hero {
   }
 
   // h1　タイトル
-  .title,
   .site-header__title {
     // padding: 1rem;
     font-size: clamp(1.1rem, 3.2vw, 3rem);
@@ -103,7 +102,6 @@ body.hero {
     // max-inline-size: 22ch;
 
     @supports (backdrop-filter: blur(2px)) {
-      .title,
       .site-header__title {
         backdrop-filter: blur(2px);
         background: color-mix(in oklab, #000 6%, transparent);
@@ -274,7 +272,7 @@ body.hero {
   }
 
   /* すぅ〜 */
-  .suu {
+  .hero__heading--accent {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     display: inline-block;
     padding-inline: 0.35em 0.45em; /* 左右に少し差をつけて自然に */
@@ -298,11 +296,6 @@ body.hero {
 
     /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ） */
     font-feature-settings: "palt" 1;
-  }
-
-  .tea {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    white-space: nowrap;
   }
 
   .hero__subheading {
@@ -364,7 +357,6 @@ body.hero {
       }
     }
 
-    .title h1,
     .site-header__title h1 {
       white-space: nowrap;
     }
@@ -473,17 +465,12 @@ body.hero {
     }
 
     /* すぅ〜 */
-    .suu {
+    .hero__heading--accent {
       font-size: clamp(24px, 4vw, 28px);
     }
 
     .hero__heading {
       font-size: clamp(24px, 4vw, 28px);
-    }
-
-    .tea {
-      font-size: clamp(1.25rem, 2.7vw, 1.5rem);
-      white-space: nowrap;
     }
 
     .hero__subheading {
@@ -526,7 +513,6 @@ body.hero {
     }
 
     /* ヘッダー */
-    header.title,
     header.site-header {
       position: sticky;
       top: calc(env(safe-area-inset-top, 0) + 0.5rem);
@@ -622,8 +608,9 @@ body.hero {
       backdrop-filter: blur(140px);
       z-index: -1;
     }
+
     /* すぅ〜 */
-    .suu {
+    .hero__heading--accent {
       font-size: clamp(24px, 4vw, 28px);
       padding-inline: 0.3em 0.4em;
       line-height: 1.22;
@@ -637,11 +624,6 @@ body.hero {
       letter-spacing: 0.03em;
     }
 
-    .tea {
-      font-size: clamp(1.25rem, 2.7vw, 1.5rem);
-      white-space: nowrap;
-    }
-
     .hero__subheading {
       font-size: clamp(1.25rem, 2.7vw, 1.5rem);
       white-space: nowrap;
@@ -651,7 +633,6 @@ body.hero {
 
 /* 横向き スマホ */
 @media (orientation: landscape) and (max-height: 600px) {
-  header.title,
   header.site-header {
     font-size: clamp(1rem, 2.6vw, 2rem);
     letter-spacing: 0.01em;

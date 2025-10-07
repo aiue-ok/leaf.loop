@@ -230,7 +230,8 @@ input[type="range"] {
 }
 
 /* 文字の背後に細い帯（行の高さ分だけ） */
-.contrast-underline {
+.contrast-underline,
+.u-contrast-underline {
   display: inline-block;
   padding: 0.45em 0.8em;
   border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
@@ -253,7 +254,8 @@ input[type="range"] {
 
 /* 横向きは半歩フラットにして読みやすさ優先 */
 @media (orientation: landscape) and (max-width: 736px) {
-  .contrast-underline {
+  .contrast-underline,
+  .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), var(--glass-shadow);
