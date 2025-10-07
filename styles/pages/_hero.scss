@@ -83,7 +83,7 @@ body.hero {
     z-index: core.$z-main;
   }
 
-  header {
+  header.site-header {
     position: absolute;
     top: 0;
     left: 0;
@@ -91,7 +91,8 @@ body.hero {
   }
 
   // h1　タイトル
-  .title {
+  .title,
+  .site-header__title {
     // padding: 1rem;
     font-size: clamp(1.1rem, 3.2vw, 3rem);
     line-height: 1.15;
@@ -102,7 +103,8 @@ body.hero {
     // max-inline-size: 22ch;
 
     @supports (backdrop-filter: blur(2px)) {
-      .title {
+      .title,
+      .site-header__title {
         backdrop-filter: blur(2px);
         background: color-mix(in oklab, #000 6%, transparent);
         padding-inline: 0.5rem;
@@ -362,7 +364,8 @@ body.hero {
       }
     }
 
-    .title h1 {
+    .title h1,
+    .site-header__title h1 {
       white-space: nowrap;
     }
 
@@ -523,7 +526,8 @@ body.hero {
     }
 
     /* ヘッダー */
-    header.title {
+    header.title,
+    header.site-header {
       position: sticky;
       top: calc(env(safe-area-inset-top, 0) + 0.5rem);
       z-index: core.$z-closer;
@@ -536,7 +540,7 @@ body.hero {
     }
 
     // overflow-y: scroll;
-    .title h1 {
+    .site-header__title h1 {
       font-size: clamp(1rem, 2.6vw, 2rem);
       letter-spacing: 0.01em;
       line-height: 1.15;
@@ -647,7 +651,8 @@ body.hero {
 
 /* 横向き スマホ */
 @media (orientation: landscape) and (max-height: 600px) {
-  header.title h1 {
+  header.title,
+  header.site-header {
     font-size: clamp(1rem, 2.6vw, 2rem);
     letter-spacing: 0.01em;
     line-height: 1.15;
