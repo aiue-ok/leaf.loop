@@ -161,12 +161,6 @@ body.hero {
     grid-area: item3;
   }
 
-  // gallery・universe共通
-  .hero__slot--gallery,
-  .hero__slot--universe {
-    position: relative;
-  }
-
   // メインテキスト
   .hero__slot--cta {
     grid-area: item4;
@@ -177,6 +171,12 @@ body.hero {
     grid-area: item5;
   }
 
+  // gallery・universe共通 ヘルプカード
+  .hero__slot--gallery,
+  .hero__slot--universe {
+    position: relative;
+  }
+
   // <!-- ❷　galleryへのアンカー ❸universeへのアンカー -->
 
   // .hover-area → .nav-tile（root, anchor）
@@ -185,7 +185,6 @@ body.hero {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 0 16px;
 
     /* reusable block アンカー・中央寄せ・ヒットエリア */
     display: grid;
@@ -208,7 +207,8 @@ body.hero {
   .nav-tile__text {
     opacity: 1;
     font-size: clamp(18px, 1.97vw, 20px);
-    white-space: nowrap;
+    // white-space: nowrap;
+    text-align: center;
   }
 
   .nav-tile--gallery .nav-tile__media,
