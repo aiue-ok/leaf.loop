@@ -84,6 +84,65 @@ input[type="range"] {
   height: 16px;
 }
 
+:root {
+  --focus-ring: #7aa2ff;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+/* ベース：フォーカス可能要素 */
+:where(a, button, [role="button"], input, select, textarea, summary) {
+  outline: none; /* 自前で制御 */
+}
+
+/* まずは :focus-visible */
+:where(
+    a,
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary
+  ):focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  /* 影の補助（任意） */
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
+    color-mix(in lab, var(--focus-ring) 35%, transparent);
+}
+
+/* Safariやマウス操作向けの保険（必要ならON） */
+:where(a, button, [role="button"], input, select, textarea, summary):focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* motion控えめ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Windows ハイコントラスト（強制色）対応 */
+@media (forced-colors: active) {
+  :where(a, button, [role="button"], input, select, textarea, summary):focus,
+  :where(
+      a,
+      button,
+      [role="button"],
+      input,
+      select,
+      textarea,
+      summary
+    ):focus-visible {
+    outline-color: CanvasText !important;
+    box-shadow: none !important;
+  }
+}
+
 :focus-visible {
   outline: 3px solid rgb(255 255 255 / 95%);
   outline-offset: 3px;
@@ -91,11 +150,34 @@ input[type="range"] {
   border-radius: 12px;
 }
 
-/* キーボード操作での見やすいフォーカス */
-.hover-link:focus-visible span {
-  outline: 2px solid rgb(255 255 255 / 90%);
-  outline-offset: 4px;
-  border-radius: 6px;
+/* キーボード操作にも効かせる（アクセシビリティ） */
+.nav-tile:focus-visible .nav-tile__media {
+  opacity: 1;
+}
+
+.nav-tile:focus-visible .nav-tile__text {
+  text-decoration: underline;
+  filter: brightness(1.1);
+}
+
+/* hover可能端末だけ見た目の変化を強める */
+@media (hover: hover) {
+  .nav-tile:hover .nav-tile__media {
+    opacity: 1;
+  }
+  .nav-tile:hover .nav-tile__text {
+    text-decoration: underline;
+    filter: brightness(1.1);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .nav-tile .nav-tile__media {
+    opacity: 0.6;
+  } /* 常時うっすら */
+  .nav-tile:focus-visible .nav-tile__media {
+    opacity: 1;
+  } /* フォーカスで強調 */
 }
 
 @media (prefers-reduced-motion: reduce) {
