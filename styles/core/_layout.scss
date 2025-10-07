@@ -107,11 +107,6 @@
 
 /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
 @supports (height: 100dvh) {
-  // 旧　消す方
-  .hero .container {
-    min-height: 100dvh;
-  }
-
   // 新　残す方
   .hero .hero__grid {
     min-height: 100dvh;
