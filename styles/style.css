@@ -1,128 +1,50 @@
 @charset "UTF-8";
+@supports (height: 1dvh) {
+  :root {
+    --vh: 1dvh;
+  } /* 新しいdvhが使える環境では上書き */
+}
 :root {
   /* まずはビューポート単位のフォールバック変数 */
   --vh: 1svh;
-  --glass-border: rgba(255, 255, 255, 0.18);
+  /* ベース文字 */
+  --fs: clamp(16px, 1.111vw, 32px);
+  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  /* 行間なども同様に */
+  --space-2: 1rem;
+  --gap: clamp(8px, 0.7vw, 16px);
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
+  --tile-min-h: clamp(56px, 10svh, 128px);
+  /* night-indigo 上で映える柔白（OKLCH） */
+  --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
+  --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
+  --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  --chip-bg: rgb(255 255 255 / 8%);
+  --chip-bg-active: rgb(255 255 255 / 18%);
+  --chip-bd: rgb(255 255 255 / 55%);
+  --chip-bd-active: rgb(255 255 255 / 85%);
+  /* Theme: default = charcoal leaf */
+  --help-bg: rgb(12 14 16 / 78%);
+  --help-fg: #eaeaea;
+  --help-h: #fff;
+  --help-border: rgb(255 255 255 / 12%);
+  --help-icon: #b4d2ea;
+  --glass-border: rgb(255 255 255 / 18%);
   --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-@supports (height: 1dvh) {
-  :root {
-    /* 新しいdvhが使える環境では上書き */
-    /* ベース文字 */
-    --fs: clamp(16px, 1.111vw, 32px);
-    --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
-    /* 余白（例：内側パディング 16→32） */
-    --pad: clamp(16px, 1.111vw, 32px);
-    /* 行間なども同様に */
-    --gap: clamp(8px, 0.7vw, 16px);
-    --hero-veil: 0.4;
-    --yanagi-alpha: 0.18;
-    /* night-indigo 上で映える柔白（OKLCH） */
-    --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
-    --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
-    --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
-    --chip-bg: rgb(255 255 255 / 8%);
-    --chip-bg-active: rgb(255 255 255 / 18%);
-    --chip-bd: rgb(255 255 255 / 55%);
-    --chip-bd-active: rgb(255 255 255 / 85%);
-    /* Theme: default = charcoal leaf */
-    --help-bg: rgb(12 14 16 / 78%);
-    --help-fg: #eaeaea;
-    --help-h: #fff;
-    --help-border: rgb(255 255 255 / 12%);
-    --help-icon: #b4d2ea;
-  }
-  :root :root {
-    --vh: 1dvh;
-  }
+  --glass-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  --focus-ring: #f5f5f5;
 }
 
-/* フォントサイズは直径に比例 */
 /* フォントサイズは直径に比例 */
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
 /* 使う場所で OKLCH に変換して指定する */
-.timer,
-.timer-mini-container {
-  --timer-position: fixed;
-  --timer-left: 1.25rem;
-  --timer-bottom: 1.25rem;
-  --timer-mini-height: max(180px, 17.58vh);
-  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
-  --gap-g-button: 8px;
-  --gap-g-button-mobile: 5px;
-  --timer-mini-icon-size: 36px;
-  --timer-mini-icon-size-mobile: 28px;
-  --icon-visual: 28px; /* 見た目 */
-  --icon-hit: 44px; /* タップ面 */
-  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 24px;
-  --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-aspect-ratio-mobile: 1 / 2;
-  --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 8px;
-  --timer-mini-border-width: 2.27px;
-  --timer-mini-border-less: 0;
-  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
-  --timer-mini-inline-size: min(36vw, 12rem);
-  --timer-mini-inline-size-mobile: max-content;
-  --timer-mini-vol-label-font-size: 0.9rem;
-  --timer-transition: background 0.3s ease, filter 0.3s ease;
-}
-
-body.gallery .timer,
-body.gallery .timer-mini-container {
-  --timer-main-color: #eae5da;
-  --timer-color-hover: #fff;
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-  --timer-border-radius: 16px;
-  --timer-border-radius-mobile: 0;
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
-  --timer-background: rgb(14 16 32 / 40%);
-  --timer-background-mobile: transparent;
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(140%);
-  --timer-backdrop-filter-mobile: none;
-  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer--webkit-backdrop-filter-mobile: none;
-  --timer-hover-background: rgb(14 16 32 / 50%);
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 70%);
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-body.universe .timer,
-body.universe .timer-mini-container {
-  --timer-main-color: #f5f5f5;
-  --timer-color-hover: rgb(205 227 213 / 70%);
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-  --timer-border-radius: 16px;
-  --timer-border: 1px solid rgb(255 255 255 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-background: rgb(205 227 213 / 70%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(12px);
-  --timer--webkit-backdrop-filter: blur(12px);
-  --timer-hover-background: rgb(245 245 220 / 58.4%);
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 70%);
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
 *,
 *::before,
 *::after {
@@ -388,13 +310,6 @@ input[type=checkbox] {
   align-items: center;
 }
 
-.container-off {
-  width: 100%;
-  max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
-  margin: 0 auto;
-  padding: 0 16px; /* 横に余白 */
-}
-
 .section {
   padding: 80px 0;
 }
@@ -425,6 +340,13 @@ input[type=checkbox] {
   text-align: center;
 }
 
+/* iOSノッチ配慮（任意） */
+@supports (padding: max(0px)) {
+  body.hero .hero__slot {
+    padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
+    padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
+  }
+}
 @media screen and (width <= 768px) and (orientation: landscape) and (orientation: landscape) and (max-width: 736px) {
   :root {
     --safe-top: env(safe-area-inset-top, 0px);
@@ -471,6 +393,30 @@ input[type=checkbox] {
   .hero-poster {
     display: block !important;
   } /* 念のため明示 */
+}
+/* 画面が広い＋動きOKなら動画を解禁 */
+@media (width >= 768px) and (prefers-reduced-motion: no-preference) {
+  .hero-video {
+    display: block;
+  }
+  .hero-poster {
+    display: none;
+  }
+}
+/* 動きを控えたい人の設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+  .hero-poster {
+    display: block;
+  }
+}
+/* 動画を控えめにしたいとき（設定済みならそのまま） */
+@media (prefers-reduced-motion: reduce) {
+  #background-video {
+    display: none !important;
+  }
 }
 /* 視覚的に隠すがスクリーンリーダーには届く */
 .sr-only {
@@ -632,8 +578,9 @@ summary):focus-visible {
   border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
-  backdrop-filter: blur(var(--glass-blur));
+  /* Safari 古め対策 → 先に -webkit-, 最後に本命 */
   -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
@@ -651,6 +598,7 @@ summary):focus-visible {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
   }
 }
+@layer debug {}
 body {
   color: var(--timer-main-color);
   /* h1 カウントダウン表示 */
@@ -1770,38 +1718,6 @@ body.about span.vol-label {
     border-radius: 8px;
   }
 }
-ul {
-  padding-left: 0;
-}
-
-li::before {
-  content: "› ";
-  color: rgba(255, 255, 255, 0.6);
-  margin-right: 0.3em;
-}
-
-li {
-  list-style: none;
-}
-
-.link-text {
-  display: inline-block;
-  transition: color 0.3s;
-}
-
-.link-text:hover {
-  color: #fff; /* hoverで文字の色変化とか */
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.clock-icon {
-  margin-top: 1rem;
-  /* filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3)); */
-  /* opacity: 0.85; */
-  /* 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
-}
-
 .mini-help {
   position: fixed;
   right: 12px;
@@ -1980,7 +1896,7 @@ nav div.clock-icon {
 .clock-icon {
   filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3));
   opacity: 0.85;
-  /* 背景にうす〜く rgba(255,255,255,0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
+  /* 背景にうす〜く rgb(255 255 255 / 0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
 }
 
 /* タブレット最適化：少しだけ狭める＆文字を大きめに */
@@ -2032,16 +1948,11 @@ body.hero {
   overflow-x: hidden;
   color: #f5f5f5;
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
-  /* 背景メディアは最背面 */
-  /* コンテンツ/UIは前面へ */
+  /* 背景メディアは最背面 <div> */
   /* 既定は静止画だけを見せる */
-  /* 画面が広い＋動きOKなら動画を解禁 */
-  /* 動きを控えたい人の設定を尊重 */
-  /* メインコンテンツ */
-  /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
-  /* タイルの中身の潰れ対策（共通） */
-  /* area割当（既存の .itemX を活用） */
-  /* 画像リンク面の高さは「タイルに合わせて100%」に */
+  /* コンテンツ/UIは前面へ */
+  /* メインコンテンツ 動画より前 新*/
+  /* タイルの中身の潰れ対策（共通） 新*/
   /* すぅ〜 */
 }
 body.hero::before {
@@ -2068,39 +1979,6 @@ body.hero .hero-media > img {
   height: 100%;
   object-fit: cover;
   inline-size: 100%;
-}
-body.hero .hero .container,
-body.hero .notify-controls {
-  position: relative;
-  z-index: 0;
-}
-body.hero header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-body.hero .title {
-  color: #f5f5f5;
-  font-size: clamp(1.1rem, 3.2vw, 3rem);
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  margin: 1rem 1.25rem;
-  text-wrap: balance; /* 対応ブラウザで見栄えUP */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-}
-@supports (backdrop-filter: blur(2px)) {
-  body.hero .title .title {
-    backdrop-filter: blur(2px);
-    background: color-mix(in oklab, #000 6%, transparent);
-    padding-inline: 0.5rem;
-    border-radius: 0.5rem;
-  }
-}
-body.hero main {
-  width: 100%;
-  height: 100vh;
-  color: #f5f5f5;
 }
 body.hero #background-video {
   position: fixed; /* もしくは absolute + 親を relative + inset:0 */
@@ -2278,7 +2156,7 @@ body.hero .hero__heading {
   line-height: 1.28; /* 縦の呼吸 */
   letter-spacing: 0.04em; /* 横の呼吸（カナが気持ちよく） */
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
-  /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ）*/
+  /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ） */
   font-feature-settings: "palt" 1;
 }
 body.hero .hero__subheading {
@@ -2311,52 +2189,27 @@ body.hero .hero__head {
 /* スマホ縦：1列積み */
 @media (width <= 1024px) and (orientation: portrait) {
   body.hero {
-    height: auto;
     /* 自然スクロール + 下部安全域 */
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
     /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
     /* 新しい単位が使える環境では、動的vhでより正確に */
-    /* 動画を控えめにしたいとき（設定済みならそのまま） */
     /* 共通（高さを中身に任せる等） */
-    /* 置き場所は個別に */
     /* すぅ〜 */
-  }
-  body.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0; /* ← padding-box まできっちり覆う */
-    pointer-events: none;
-    z-index: -1;
-    background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4));
-    mix-blend-mode: multiply;
   }
   body.hero .hero-media {
     position: fixed; /* 画面に固定（スクロールしても動かない） */
-    inset: 0; /* 画面いっぱい */
-    z-index: -2; /* コンテンツより背面、でも負数は使わない */
-    pointer-events: none; /* タップを遮らない */
   }
   body.hero #background-video {
-    width: 100%; /* 画面幅にフィット */
     height: 100svh; /* まずは小さいvh（アドレスバー配慮） */
-    object-fit: cover; /* 余白ナシで全面カバー（はみ出しOK） */
-    object-position: center;
   }
   @supports (height: 100dvh) {
     body.hero #background-video {
       height: 100dvh;
     }
   }
-}
-@media (width <= 1024px) and (orientation: portrait) and (prefers-reduced-motion: reduce) {
-  body.hero #background-video {
-    display: none !important;
-  }
-}
-@media (width <= 1024px) and (orientation: portrait) {
-  body.hero .title h1 {
+  body.hero .site-header__title h1 {
     white-space: nowrap;
   }
   body.hero .hero__inner {
@@ -2366,9 +2219,9 @@ body.hero .hero__head {
   body.hero .hero__grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
     grid-template-areas: "item4" "item1" "item2" "item3" "item5"; /* ヘルプ等 */
     gap: 1rem;
+    align-items: start;
   }
   body.hero .hero__slot {
     min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
@@ -2403,23 +2256,20 @@ body.hero .hero__head {
   body.hero .nav-tile--universe .nav-tile__media {
     min-height: 10dvh;
     min-height: 10svh;
-    background-color: transparent;
     background: none;
-    background-image: none;
     filter: unset;
   }
   body.hero .nav-tile__label {
     position: relative;
+    z-index: 2;
     padding: 0.6em 1em;
-    line-height: 1.2;
     white-space: nowrap;
   }
-  body.hero .hover-text::before {
+  body.hero .nav-tile__label::before {
     content: "";
     position: absolute;
     inset: -6px -12px;
     border-radius: 12px;
-    /* ほんのりガラス */
     backdrop-filter: blur(140px);
     z-index: -1;
   }
@@ -2464,11 +2314,7 @@ body.hero .hero__head {
     /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
     background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
     overscroll-behavior-y: contain; /* iOS16+ で有効 */
-    overflow: visible !important;
     /* ヘッダー */
-    /* あなたの意図を引き継ぎつつborderデバッグは任意で */
-    /* 背景動画の下敷き設定はそのままOK */
-    /* 手前に出すレイヤー（content） */
     /* すぅ〜 */
   }
   body.hero::before {
@@ -2499,10 +2345,6 @@ body.hero .hero__head {
   body.hero .hero__inner {
     width: 100%;
     height: auto;
-    min-height: fit-content;
-    overflow: auto;
-    /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
-    padding-top: clamp(0.8rem, 6vh, 2.4rem);
   }
   body.hero .hero__grid {
     grid-template: "item1 item4" 1fr "item1 item2" 1fr "item1 item3" 1fr "item1 item5" 3rem;
@@ -2548,17 +2390,11 @@ body.hero .hero__head {
     position: relative;
     z-index: 1;
     padding: 0.6em 1em;
-    line-height: 1.2;
-    white-space: nowrap;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
   body.hero .nav-tile__label::before {
     content: "";
     position: absolute;
     inset: -6px -12px;
-    background-color: transparent;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    border: 0.8px solid rgba(245, 245, 245, 0.35);
     border-radius: 12px;
     backdrop-filter: blur(140px);
     z-index: -1;
@@ -2580,13 +2416,6 @@ body.hero .hero__head {
     white-space: nowrap;
   }
 }
-/* iOSノッチ配慮（任意） */
-@supports (padding: max(0px)) {
-  body.hero .container {
-    padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
-    padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
-  }
-}
 /* 横向き スマホ */
 @media (orientation: landscape) and (max-height: 600px) {
   header.site-header {
@@ -2595,20 +2424,6 @@ body.hero .hero__head {
     line-height: 1.15;
     max-inline-size: 18ch;
   }
-}
-/* hover可能端末だけ見た目の変化を強める */
-@media (hover: hover) {
-  .hover-link:hover span {
-    color: #fff;
-    border-bottom-color: rgba(255, 255, 255, 0.7);
-    text-underline-offset: 0.2em;
-  }
-}
-@supports (overflow-x: clip) {
-  html,
-  body {
-    overflow-x: clip;
-  } /* clipの方がわずかに安全 */
 }
 body.gallery {
   border: 1px solid red;
