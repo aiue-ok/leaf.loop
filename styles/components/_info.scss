@@ -70,12 +70,12 @@
   .info a {
     display: inline-block; /* 中身サイズにフィット（幅は変えない） */
     text-decoration: none; /* 通常は下線オフ */
-    -webkit-tap-highlight-color: transparent;
-    font-size: 16px;
+    // -webkit-tap-highlight-color: transparent;
   }
 
   /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
-  .info a:focus-visible .info__link--bg {
+  .info a:focus-visible .info__link,
+  .info button.info__link:focus-visible {
     /* 任意：あなたのトークンに置き換え可 */
     background-color: rgb(
       0 0 0 / 10%
@@ -85,8 +85,9 @@
     box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
   }
 
-  /* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
-  .info a:focus-visible {
+  .info__link:focus-visible {
+    outline: 2px solid var(--focus-ring, #7aa2ff);
+    outline-offset: 2px;
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-thickness: 2px; /* 太めで見えやすく */
