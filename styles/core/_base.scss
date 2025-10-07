@@ -22,13 +22,20 @@ html {
 }
 
 /* HTMLとbodyの高さを100%に設定 */
-body,
-html {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  } /* clipの方がわずかに安全 */
 }
 
 a {
