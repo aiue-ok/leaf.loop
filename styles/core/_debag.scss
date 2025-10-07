@@ -1,22 +1,27 @@
 // デフォは無効。style.scss から上書きできるよう !default
-// $enable-debug: false !default;
+$enable-debug: false !default;
 
-// @layer debug {
-//   @if $enable-debug {
-:where(*) {
-  outline: 1px dashed rgba(147, 238, 135, 0.35);
-  outline-offset: -1px;
+@layer debug {
+  @if $enable-debug {
+    :where(*) {
+      outline: 1px dashed rgba(147, 238, 135, 0.35);
+      outline-offset: -1px;
+    }
+
+    /* 必要ならデバッグ用クラスもここに */
+    .debug-safe-area {
+      outline: 2px solid magenta;
+      padding: max(0.5rem, var(--safe-top))
+        max(1rem, var(--safe-right))
+        max(0.75rem, var(--safe-bottom))
+        max(1rem, var(--safe-left));
+    }
+  }
 }
 
-/* 必要ならデバッグ用クラスもここに */
-.debug-safe-area {
-  outline: 2px solid magenta;
-  padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right))
-    max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
+* {
+  // outline: 1px dotted white;
 }
-
-//   }
-// }
 
 // test用ボーダー
 // border:core.$test;
@@ -24,9 +29,11 @@ $test1: 1px solid rgb(255 0 0 / 30%);
 $test2: 1px solid rgb(255 200 0);
 $test3: 1px solid rgb(0 251 255);
 $test4: 1px solid rgb(255 0 238);
+$test5: 1px solid rgb(255, 247, 0);
 
 // background:core.$test-bg1;
 $test-bg1: rgb(200 255 0 / 40%);
 $test-bg2: rgb(69 110 198 / 40%);
-$test-bg3: rgb(44 251 48 / 70%);
+$test-bg3: rgb(44 251 48 / 30%);
 $test-bg4: rgb(255 0 64 / 30%);
+$test-bg5: rgba(195, 0, 255, 0.3);
