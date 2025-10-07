@@ -194,7 +194,6 @@ body.hero {
     min-height: var(--tile-min-h, 12rem);
   }
 
-  // .bg-gallery / .bg-universe → .nav-tile__media
   // 背景画像・フィルタ（親の --gallery / --universe で差分）
   .nav-tile__media {
     position: absolute;

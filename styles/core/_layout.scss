@@ -8,14 +8,6 @@
   align-items: center;
 }
 
-// 💡 1. 横幅：基本は % や max-width
-.container-off {
-  width: 100%;
-  max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
-  margin: 0 auto;
-  padding: 0 16px; /* 横に余白 */
-}
-
 // これだけで モバイル〜デスクトップまで柔軟に拡がる幅が作れます。
 
 // 💡 2. 高さ：できるだけ「中身に任せる」
@@ -55,10 +47,6 @@
 
 /* iOSノッチ配慮（任意） */
 @supports (padding: max(0px)) {
-  body.hero .container {
-    padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
-    padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
-  }
   body.hero .hero__slot {
     padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
     padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
