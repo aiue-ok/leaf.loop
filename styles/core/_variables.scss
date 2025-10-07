@@ -26,6 +26,7 @@
   --safe-right: env(safe-area-inset-right, 0px);
 
   /* 行間なども同様に */
+  --space-2: 1rem;
   --gap: clamp(8px, 0.7vw, 16px);
   --hero-veil: 0.4;
   --yanagi-alpha: 0.18;

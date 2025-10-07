@@ -320,6 +320,21 @@ body.hero {
 @media screen and (width >= 769px) and (orientation: landscape) {
   body.hero {
     overflow-y: scroll;
+
+    // ヘルプ・about
+    .hero__slot--side.hero__slot {
+      width: fit-content;
+      min-height: auto;
+    }
+
+    .hero__slot--side {
+      grid-area: item5;
+      position: absolute;
+      z-index: core.$z-closer;
+      right: clamp(12px, 3vmin, 28px);
+      bottom: clamp(16px, 3vmin, 28px);
+      height: auto;
+    }
   }
 }
 
@@ -398,7 +413,10 @@ body.hero {
 
     .hero__slot--side {
       grid-area: item5;
+      position: unset;
+      z-index: unset;
       width: fit-content;
+      height: auto;
       margin: 1rem auto;
     }
 
@@ -538,7 +556,7 @@ body.hero {
         "item1 item4" 1fr
         "item1 item2" 1fr
         "item1 item3" 1fr
-        "item1 item5" 1fr;
+        "item1 item5" 3rem;
       gap: clamp(12px, 2svh, 24px);
       overflow: auto;
     }
@@ -567,6 +585,16 @@ body.hero {
       padding-top: 1rem;
       width: 100%;
       height: 40vh;
+    }
+
+    .hero__slot--side {
+      position: unset;
+      z-index: unset;
+      width: fit-content;
+      height: auto;
+      align-items: center;
+      margin: 0 auto;
+      background-color: core.$test-bg5;
     }
 
     .hero__slot > .hero__bg--gallery:hover,

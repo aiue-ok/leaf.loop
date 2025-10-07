@@ -1,123 +1,177 @@
 @use "../core/index" as core;
 
-.wrapper {
-  position: relative;
-  font-size: 1rem;
-}
-
-.sideitem {
-  inline-size: max-content;
-  max-inline-size: min(70vw, 420px);
-  padding: 0.6em 1.1em;
-  border-radius: 999px;
-  backdrop-filter: blur(8px) saturate(140%);
-  background: rgb(0 0 0 / 16%);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
-  color: core.$main-color;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  z-index: core.$z-closer;
-}
-
-/* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
-.wrapper.info a {
-  display: inline-block; /* 中身サイズにフィット（幅は変えない） */
-  text-decoration: none; /* 通常は下線オフ */
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
-.wrapper.info a:focus-visible .sideitem {
-  /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgb(0 0 0 / 10%); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
-
-  /* 視認性UPのための微弱な影（レイアウト不変） */
-  box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
-}
-
-/* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
-.wrapper.info a:focus-visible p {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 2px; /* 太めで見えやすく */
-}
-
-/* ホバーと揃えたい場合はお好みで */
-.wrapper.info a:hover .sideitem {
-  background-color: rgb(0 0 0 / 6%);
-}
-
-/* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
-.wrapper.info a:focus {
-  outline: none;
-}
-
-.sideitem:hover {
-  filter: brightness(1.3);
-  cursor: pointer;
-}
-
-body {
-  // デスクトップと横向きの時
-  // position:absoluteで右下位置固定
-  @media screen and (min-width: 769px) and (orientation: landscape) {
-    & .wrapper {
-      position: absolute;
-      z-index: core.$z-closer;
-      right: clamp(12px, 3vmin, 28px);
-      bottom: clamp(16px, 3vmin, 28px);
-    }
+/* ===== _info.scss ===== */
+// infoアイテムの流動化対策 → #myElement
+.hero__slot--side :where(.info) {
+  /* Block本体 */
+  .info {
+    display: grid;
+    gap: var(--space-2); /* 1rem */
   }
 
-  // 📍📍📍 幅768px（スマホ横向き）以下
-  // ヘルプの高さに位置を合わせる　平に並べる
-  @media screen and (width <= 768px) and (orientation: landscape) {
-    & .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    & .item-help,
-    .item-about {
-      position: unset;
-    }
-
-    & .sideitem {
-      flex: auto;
-      z-index: 0;
-    }
+  ul {
+    list-style: none; /* リストの点を削除 */
+    padding-left: 0; /* リストの左側の余白を削除 */
+    text-align: right; /* 右寄せ */
   }
 
-  /* スマホ縦：1列積み */
-  @media screen and (orientation: portrait) {
-    & .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem 0.75rem;
-    }
-
-    & .item-help,
-    .item-about {
-      position: unset;
-    }
-
-    & .sideitem {
-      flex: auto;
-      margin: 0.8rem auto;
-      z-index: 0;
-    }
+  .info > li {
+    // width や height、margin、padding を設定できる
+    display: inline-block;
   }
 
-  /* アイコンサイズを上書きする */
-  span.help-icon-size {
-    font-size: 1rem;
+  // 旧ボタン
+  .sideitem {
+    inline-size: max-content;
+    max-inline-size: min(70vw, 420px);
+    padding: 0.6em 1.1em;
+    border-radius: 999px;
+    backdrop-filter: blur(8px) saturate(140%);
+    background: rgb(0 0 0 / 16%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+      inset 0 0 0 1px rgb(255 255 255 / 35%);
+    color: core.$main-color;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    z-index: core.$z-closer;
+  }
+
+  .info__side--item,
+  .info__link {
+    padding: 0.6em 1.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    z-index: core.$z-closer;
+  }
+
+  .info__link--bg {
+    inline-size: max-content;
+    max-inline-size: min(70vw, 420px);
+    padding: 0.6em 1.1em;
+    // 見た目
+    border-radius: 999px;
+    backdrop-filter: blur(8px) saturate(140%);
+    background: rgb(0 0 0 / 16%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
+      inset 0 0 0 1px rgb(255 255 255 / 35%);
+  }
+
+  // .info p {
+  //   // テキスト
+  //   color: core.$main-color;
+  //   text-decoration: none;
+  //   font-size: 1rem;
+  // }
+
+  /* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
+  .info a {
+    display: inline-block; /* 中身サイズにフィット（幅は変えない） */
+    text-decoration: none; /* 通常は下線オフ */
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+  }
+
+  /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
+  .info a:focus-visible .info__link--bg {
+    /* 任意：あなたのトークンに置き換え可 */
+    background-color: rgb(
+      0 0 0 / 10%
+    ); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
+
+    /* 視認性UPのための微弱な影（レイアウト不変） */
+    box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
+  }
+
+  /* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
+  .info a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px; /* 太めで見えやすく */
+  }
+
+  /* ホバーと揃えたい場合はお好みで */
+  .info a:hover .sideitem {
+    background-color: rgb(0 0 0 / 6%);
+  }
+
+  /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
+  .info a:hover,
+  .info a:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+
+  .sideitem:hover,
+  .info__item:hover .info__link--bg {
+    filter: brightness(1.3);
+    cursor: pointer;
+  }
+
+  .hero__slot--side :where(.info) {
+    // デスクトップと横向きの時
+    // position:absoluteで右下位置固定
+    @media screen and (min-width: 769px) and (orientation: landscape) {
+      // ヘルプ・about
+      // & .info__wrapper {
+      //   display: flex;
+      //   justify-content: right;
+      //   flex-direction: row;
+      //   gap: 1rem;
+      //   background-color: core.$test-bg4; //red
+      // }
+    }
+
+    // 📍📍📍 幅768px（スマホ横向き）以下
+    // ヘルプの高さに位置を合わせる　平に並べる
+    @media screen and (width <= 768px) and (orientation: landscape) {
+      // & .info__wrapper {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   gap: 1rem;
+      //   background-color: rgba(0, 0, 255, 0.44);
+      // }
+
+      // & .item-help,
+      // .item-about {
+      //   position: unset;
+      // }
+
+      & .sideitem {
+        flex: auto;
+        z-index: 0;
+      }
+    }
+
+    /* スマホ縦：1列積み */
+    @media screen and (orientation: portrait) {
+      //   & .info__wrapper {
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     flex-wrap: wrap;
+      //     gap: 1rem 0.75rem;
+      //   }
+
+      //   & .item-help,
+      //   .item-about {
+      //     position: unset;
+      //   }
+
+      & .sideitem {
+        flex: auto;
+        margin: 0.8rem auto;
+        z-index: 0;
+      }
+    }
+
+    /* アイコンサイズを上書きする */
+    span.help-icon-size {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -143,186 +197,187 @@ body {
   }
 }
 
-.info-help-card.is-open {
-  right: 0;
-}
-
-.info-hidden {
-  display: none;
-}
-
-/* ヘルプエリア w h */
-.info-help-container {
-  width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
-  height: auto;
-}
-
-/* 背景 */
-
-/* Moss */
-.theme-moss {
-  --help-bg: rgb(24 36 28 / 72%);
-  --help-fg: #ebf3ef;
-  --help-h: #fff;
-  --help-border: rgb(196 214 205 / 35%);
-  --help-icon: #c8e5d6;
-}
-
-/* Dew */
-.theme-dew {
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
-  --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
-}
-
-.visual-card-help-bg {
-  border-radius: 20px;
-  background: var(--help-bg);
-  border: 1px solid var(--help-border);
-  box-shadow: 0 8px 30px rgb(0 0 0 / 35%);
-}
-
-.visual-card-help-bg:hover {
-  background: rgb(0 0 0 / 55%);
-  transition: background 0.3s ease-in;
-}
-
-// テキスト関係
-.help-content {
-  padding: 1rem;
-  color: var(--help-fg);
-  text-decoration: none;
-  font-size: 1rem;
-  line-height: 1.6;
-  text-align: left;
-
-  & p {
-    padding-left: 0.8rem;
-  }
-}
-
-// ヘルプ＆閉じるボタン　タイトル部分
-.flex-parent-help-h {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.6;
-  padding: 0.5rem;
-  text-align: center;
-
-  & h2 {
-    display: block;
+section.info-help-card :where(.info-help-container) {
+  .info-help-card.is-open {
+    right: 0;
   }
 
-  & span.help-icon {
-    margin-right: 10px;
+  .info-hidden {
+    display: none;
   }
-}
 
-// ボタン内　中央寄せ
-.info-help-card button.close-button {
-  text-align: center;
-  margin: 0;
-}
+  /* ヘルプエリア w h */
+  .info-help-container {
+    width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
+    height: auto;
+  }
 
-// ボタン見た目と配置
-.info-help-card .close-button {
-  color: var(--help-icon);
-  font-size: 1.4rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgb(96 96 96 / 38%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  /* 背景 */
 
-// 閉じるボタン　ホバー
-.info-help-card .close-button:hover {
-  background-color: #606060;
-  scale: 105%;
-  cursor: pointer;
-}
+  /* Moss */
+  .theme-moss {
+    --help-bg: rgb(24 36 28 / 72%);
+    --help-fg: #ebf3ef;
+    --help-h: #fff;
+    --help-border: rgb(196 214 205 / 35%);
+    --help-icon: #c8e5d6;
+  }
 
-.info-help-card .close-button:focus-visible {
-  text-decoration-thickness: 2px; /* 太めで見えやすく */
-  outline: 2px solid currentcolor;
-  outline-offset: 4px;
-}
+  /* Dew */
+  .theme-dew {
+    --help-bg: rgb(240 245 243 / 82%);
+    --help-fg: #1e2b4f;
+    --help-h: #0b1c39;
+    --help-border: rgb(11 28 57 / 15%);
+    --help-icon: #0e1020;
+  }
 
-// 行間
-.info-help-card h3 {
-  line-height: 1.8; /* フォントサイズの1.5倍に設定 */
-  margin-block: 0.25rem 0.5rem;
-  color: #b4d2ea;
-}
+  .visual-card-help-bg {
+    border-radius: 20px;
+    background: var(--help-bg);
+    border: 1px solid var(--help-border);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 35%);
+  }
 
-// 間隔
-.info-line-spacing {
-  margin: 6px 0;
-}
+  .visual-card-help-bg:hover {
+    background: rgb(0 0 0 / 55%);
+    transition: background 0.3s ease-in;
+  }
 
-// pタグ内のアイコンフォントのテキスト関係
-.info-help-card span.p-icon-size {
-  font-size: 1.2rem;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0.2rem;
-  line-height: 1.5;
-  color: var(--help-icon);
-  opacity: 0.9;
-}
+  // テキスト関係
+  .help-content {
+    padding: 1rem;
+    color: var(--help-fg);
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
 
-// pタグ内の行揃え
-.flex-parent-help-p {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  text-align: left;
-  margin-block: 0.1rem;
-}
-
-// 📍📍📍 高さ500px以下（スマホ横向きなど）以下
-@media screen and (max-height: 500px) and (orientation: landscape) {
-  body {
-    /* ヘルプエリア w h */
-    .info-help-container {
-      width: 90vw;
-      height: auto; // ここなおす1️⃣
-    }
-
-    .flex-parent-help-unit {
-      display: flex;
-      justify-content: left;
-      align-items: center;
-      text-align: left;
-    }
-
-    .wrap-help-unit-l {
-      width: 50%;
-    }
-
-    .wrap-help-unit-r {
-      width: 50%;
-      border: 1px solid #f0f0f0;
-      padding: 0.4rem;
-      border-radius: 8px;
+    & p {
+      padding-left: 0.8rem;
     }
   }
-}
 
+  // ヘルプ＆閉じるボタン　タイトル部分
+  .flex-parent-help-h {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6;
+    padding: 0.5rem;
+    text-align: center;
+
+    & h2 {
+      display: block;
+    }
+
+    & span.help-icon {
+      margin-right: 10px;
+    }
+  }
+
+  // ボタン内　中央寄せ
+  .info-help-card button.close-button {
+    text-align: center;
+    margin: 0;
+  }
+
+  // ボタン見た目と配置
+  .info-help-card .close-button {
+    color: var(--help-icon);
+    font-size: 1.4rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgb(96 96 96 / 38%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // 閉じるボタン　ホバー
+  .info-help-card .close-button:hover {
+    background-color: #606060;
+    scale: 105%;
+    cursor: pointer;
+  }
+
+  .info-help-card .close-button:focus-visible {
+    text-decoration-thickness: 2px; /* 太めで見えやすく */
+    outline: 2px solid currentcolor;
+    outline-offset: 4px;
+  }
+
+  // 行間
+  .info-help-card h3 {
+    line-height: 1.8; /* フォントサイズの1.5倍に設定 */
+    margin-block: 0.25rem 0.5rem;
+    color: #b4d2ea;
+  }
+
+  // 間隔
+  .info-line-spacing {
+    margin: 6px 0;
+  }
+
+  // pタグ内のアイコンフォントのテキスト関係
+  .info-help-card span.p-icon-size {
+    font-size: 1.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2rem;
+    line-height: 1.5;
+    color: var(--help-icon);
+    opacity: 0.9;
+  }
+
+  // pタグ内の行揃え
+  .flex-parent-help-p {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+    margin-block: 0.1rem;
+  }
+
+  // 📍📍📍 高さ500px以下（スマホ横向きなど）以下
+  @media screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+      /* ヘルプエリア w h */
+      .info-help-container {
+        width: 90vw;
+        height: auto; // ここなおす1️⃣
+      }
+
+      .flex-parent-help-unit {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        text-align: left;
+      }
+
+      .wrap-help-unit-l {
+        width: 50%;
+      }
+
+      .wrap-help-unit-r {
+        width: 50%;
+        border: 1px solid #f0f0f0;
+        padding: 0.4rem;
+        border-radius: 8px;
+      }
+    }
+  }
+}
 ul {
   padding-left: 0;
 }
 
-li::before {
-  content: "› ";
-  color: rgb(255 255 255 / 60%);
-  margin-right: 0.3em;
-}
+// li::before {
+//   content: "› ";
+//   color: rgb(255 255 255 / 60%);
+//   margin-right: 0.3em;
+// }
 
 li {
   list-style: none;

@@ -36,6 +36,7 @@
     <script src="js/timer-base.js" defer></script>
     <script src="js/hero.js" defer></script>
     <script src="js/help.js" defer></script>
+    <script src="js/wrapper-flow.js" defer></script>
   </head>
   <body class="hero page page--hero">
     <!-- 動画の背景 -->
@@ -224,33 +225,43 @@
               </div>
             </div>
             <!-- ❺about & help 表示（heroのみ） -->
-            <!-- heroのみ表示 -->
+            <!-- wrapperはrelative infoは目印 hero__slotはgridアイテム hero__slot--sideはエリア指定 -->
+            <!-- // infoアイテムの流動化対策 → #myElement -->
             <div
-              class="wrapper info hero__slot hero__slot--side"
               id="myElement"
+              class="hero__slot hero__slot--side zen-kaku-gothic-new-regular"
             >
-              <!-- アイテム：about.html -->
-              <a href="#" class="a-about zen-kaku-gothic-new-regular">
-                <div class="sideitem item-about">
-                  <span class="leaf-text" aria-hidden="true">🌱</span>
-                  <p>このサイトについて</p>
-                </div></a
-              ><!-- ヘルプ -->
-              <a
-                href="#"
-                id="helpBtn"
-                class="a-help zen-kaku-gothic-new-regular"
-                aria-expanded="false"
-                aria-controls="helpCard"
-                ><div id="showCard" class="sideitem item-help">
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >help
-                  </span>
-                  <p>ヘルプ</p>
-                </div>
-              </a>
+              <!-- (´∀｀○)新 -->
+              <nav class="info" aria-label="補助メニュー">
+                <ul class="info__list">
+                  <li class="info__item">
+                    <a
+                      class="info__link info__link--about info__link--bg"
+                      href="#"
+                      ><span class="leaf-text" aria-hidden="true">🌱</span>
+                      このサイトについて</a
+                    >
+                  </li>
+                  <li
+                    class="info__item"
+                    id="helpBtn"
+                    aria-expanded="false"
+                    aria-controls="helpCard"
+                  >
+                    <a
+                      class="info__link info__link--help info__link--bg"
+                      href="#"
+                    >
+                      <span
+                        class="material-symbols-outlined help-icon-size"
+                        aria-hidden="true"
+                        >help
+                      </span>
+                      ヘルプ</a
+                    >
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
