@@ -140,15 +140,22 @@ html {
 }
 
 /* HTMLとbodyの高さを100%に設定 */
-body,
-html {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
 }
 
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  } /* clipの方がわずかに安全 */
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -268,7 +275,7 @@ input[type=checkbox] {
 
 /* デバッグ時だけ出したいなら：html[data-debug="1"]
 .notify-controls { display:flex } */
-：html[data-debug="1"] .notify-controls {
+:html[data-debug="1"] .notify-controls {
   display: flex;
 }
 
@@ -426,11 +433,14 @@ input[type=checkbox] {
     --safe-right: env(safe-area-inset-right, 0px);
   }
   body.hero {
-    padding-left: max(1rem, var(--safe-left));
-    padding-right: max(1rem, var(--safe-right));
-    padding-top: max(0.5rem, var(--safe-top));
-    padding-bottom: max(0.75rem, var(--safe-bottom));
+    padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right)) max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
     min-height: 100dvh; /* ここもdvh */
+  }
+}
+/* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
+@supports (height: 100dvh) {
+  .hero .hero__grid {
+    min-height: 100dvh;
   }
 }
 /* 1) ベース：全体のモーションを弱める（最初に置く） */
@@ -484,6 +494,58 @@ input[type=range] {
   height: 16px;
 }
 
+:root {
+  --focus-ring: #7aa2ff;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+/* ベース：フォーカス可能要素 */
+:where(a, button, [role=button], input, select, textarea, summary) {
+  outline: none; /* 自前で制御 */
+}
+
+/* まずは :focus-visible */
+:where(a,
+button,
+[role=button],
+input,
+select,
+textarea,
+summary):focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  /* 影の補助（任意） */
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px) color-mix(in lab, var(--focus-ring) 35%, transparent);
+}
+
+/* Safariやマウス操作向けの保険（必要ならON） */
+:where(a, button, [role=button], input, select, textarea, summary):focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* motion控えめ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* Windows ハイコントラスト（強制色）対応 */
+@media (forced-colors: active) {
+  :where(a, button, [role=button], input, select, textarea, summary):focus,
+  :where(a,
+  button,
+  [role=button],
+  input,
+  select,
+  textarea,
+  summary):focus-visible {
+    outline-color: CanvasText !important;
+    box-shadow: none !important;
+  }
+}
 :focus-visible {
   outline: 3px solid rgba(255, 255, 255, 0.95);
   outline-offset: 3px;
@@ -491,13 +553,34 @@ input[type=range] {
   border-radius: 12px;
 }
 
-/* キーボード操作での見やすいフォーカス */
-.hover-link:focus-visible span {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 4px;
-  border-radius: 6px;
+/* キーボード操作にも効かせる（アクセシビリティ） */
+.nav-tile:focus-visible .nav-tile__media {
+  opacity: 1;
 }
 
+.nav-tile:focus-visible .nav-tile__text {
+  text-decoration: underline;
+  filter: brightness(1.1);
+}
+
+/* hover可能端末だけ見た目の変化を強める */
+@media (hover: hover) {
+  .nav-tile:hover .nav-tile__media {
+    opacity: 1;
+  }
+  .nav-tile:hover .nav-tile__text {
+    text-decoration: underline;
+    filter: brightness(1.1);
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .nav-tile .nav-tile__media {
+    opacity: 0.6;
+  } /* 常時うっすら */
+  .nav-tile:focus-visible .nav-tile__media {
+    opacity: 1;
+  } /* フォーカスで強調 */
+}
 @media (prefers-reduced-motion: reduce) {
   .bg-fade,
   .parallax,
@@ -542,7 +625,8 @@ input[type=range] {
   }
 }
 /* 文字の背後に細い帯（行の高さ分だけ） */
-.contrast-underline {
+.contrast-underline,
+.u-contrast-underline {
   display: inline-block;
   padding: 0.45em 0.8em;
   border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
@@ -560,7 +644,8 @@ input[type=range] {
 
 /* 横向きは半歩フラットにして読みやすさ優先 */
 @media (orientation: landscape) and (max-width: 736px) {
-  .contrast-underline {
+  .contrast-underline,
+  .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
@@ -1435,12 +1520,31 @@ body.about span.vol-label {
     line-height: 1;
   }
 }
-.wrapper {
-  position: relative;
-  font-size: 1rem;
+/* ===== _info.scss ===== */
+.hero__slot--side :where(.info) {
+  /* Block本体 */
+  /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
+  /* アイコンサイズを上書きする */
 }
-
-.sideitem {
+.hero__slot--side :where(.info) .info {
+  display: grid;
+  gap: var(--space-2); /* 1rem */
+}
+.hero__slot--side :where(.info) ul.info__list {
+  list-style: none; /* リストの点を削除 */
+  text-align: right; /* 右寄せ */
+  display: flex;
+  gap: var(--space-2); /* 1rem */
+  margin: 0;
+  padding: 0;
+}
+.hero__slot--side :where(.info) li.info__item {
+  display: inline-block;
+}
+.hero__slot--side :where(.info) .info__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   inline-size: max-content;
   max-inline-size: min(70vw, 420px);
   padding: 0.6em 1.1em;
@@ -1449,97 +1553,48 @@ body.about span.vol-label {
   background: rgba(0, 0, 0, 0.16);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
   color: #f5f5f5;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
+  font-size: 16px;
   z-index: 2;
 }
-
-/* ベース：レイアウトは既存のまま。アンカーは箱として扱う */
-.wrapper.info a {
+.hero__slot--side :where(.info) .info a.info__link,
+.hero__slot--side :where(.info) .info button.info__link {
   display: inline-block; /* 中身サイズにフィット（幅は変えない） */
   text-decoration: none; /* 通常は下線オフ */
-  -webkit-tap-highlight-color: transparent;
 }
-
-/* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
-.wrapper.info a:focus-visible .sideitem {
+.hero__slot--side :where(.info) .info a:focus-visible .info__link,
+.hero__slot--side :where(.info) .info button.info__link:focus-visible {
   /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgba(0, 0, 0, 0.1); /* or var(--focus-bg, rgba(0,0,0,.10)) */
+  background-color: rgba(0, 0, 0, 0.1); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
   /* 視認性UPのための微弱な影（レイアウト不変） */
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
 }
-
-/* 2) 文字に下線で知らせたい場合（背景の代替/併用OK） */
-.wrapper.info a:focus-visible p {
+.hero__slot--side :where(.info) .info__link:focus-visible {
+  outline: 2px solid var(--focus-ring, #7aa2ff);
+  outline-offset: 2px;
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 2px; /* 太めで見えやすく */
 }
-
-/* ホバーと揃えたい場合はお好みで */
-.wrapper.info a:hover .sideitem {
-  background-color: rgba(0, 0, 0, 0.06);
-}
-
-/* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
-.wrapper.info a:focus {
-  outline: none;
-}
-
-.sideitem:hover {
-  filter: brightness(1.3);
-  cursor: pointer;
-}
-
-body {
-  /* スマホ縦：1列積み */
-  /* アイコンサイズを上書きする */
-}
-@media screen and (min-width: 769px) and (orientation: landscape) {
-  body .wrapper {
-    position: absolute;
-    z-index: 2;
-    right: clamp(12px, 3vmin, 28px);
-    bottom: clamp(16px, 3vmin, 28px);
+@media (hover: hover) {
+  .hero__slot--side :where(.info) {
+    /* ホバーと揃えたい場合はお好みで */
+    /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
+  }
+  .hero__slot--side :where(.info) .info a:hover .info__link {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+  .hero__slot--side :where(.info) .info a:hover,
+  .hero__slot--side :where(.info) .info a:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+  .hero__slot--side :where(.info) .info__link:hover {
+    filter: brightness(1.3);
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
-@media screen and (width <= 768px) and (orientation: landscape) {
-  body .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  body .item-help,
-  body .item-about {
-    position: unset;
-  }
-  body .sideitem {
-    flex: auto;
-    z-index: 0;
-  }
-}
-@media screen and (orientation: portrait) {
-  body .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem 0.75rem;
-  }
-  body .item-help,
-  body .item-about {
-    position: unset;
-  }
-  body .sideitem {
-    flex: auto;
-    margin: 0.8rem auto;
-    z-index: 0;
-  }
-}
-body span.help-icon-size {
+.hero__slot--side :where(.info) span.help-icon-size {
   font-size: 1rem;
 }
 
@@ -1975,6 +2030,7 @@ body.hero {
   isolation: isolate;
   font-size: var(--text-hero);
   overflow-x: hidden;
+  color: #f5f5f5;
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   /* 背景メディアは最背面 */
   /* コンテンツ/UIは前面へ */
@@ -1990,11 +2046,11 @@ body.hero {
 }
 body.hero::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0; /* ← padding-box まできっちり覆う */
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4));
+  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
   mix-blend-mode: multiply;
   will-change: transform;
   transform: translateZ(0);
@@ -2069,28 +2125,43 @@ body.hero .hero-poster {
   height: 100%;
   object-fit: cover;
 }
-@media (width >= 768px) and (prefers-reduced-motion: no-preference) {
-  body.hero .hero-video {
-    display: block;
-  }
-  body.hero .hero-poster {
-    display: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  body.hero .hero-video {
-    display: none;
-  }
-  body.hero .hero-poster {
-    display: block;
-  }
-}
-body.hero.content,
-body.hero .content {
+body.hero .hero .hero__grid,
+body.hero .notify-controls {
   position: relative;
   z-index: 0;
 }
-body.hero .container {
+body.hero header.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+body.hero .site-header__title {
+  font-size: clamp(1.1rem, 3.2vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  margin: 1rem 1.25rem;
+  text-wrap: balance; /* 対応ブラウザで見栄えUP */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+@supports (backdrop-filter: blur(2px)) {
+  body.hero .site-header__title .site-header__title {
+    backdrop-filter: blur(2px);
+    background: color-mix(in oklab, #000 6%, transparent);
+    padding-inline: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}
+body.hero .hero__inner {
+  width: 100%;
+  height: 100vh;
+}
+body.hero.hero__content,
+body.hero .hero__content {
+  position: relative;
+  z-index: 0;
+}
+body.hero .hero__grid {
   display: grid;
   align-items: stretch;
   /* デスクトップ */
@@ -2098,12 +2169,7 @@ body.hero .container {
   grid-template-rows: minmax(192px, 1fr);
   grid-template-areas: "item1 item2 item3 item4";
 }
-@supports (height: 100dvh) {
-  body.hero .hero .container {
-    min-height: 100dvh;
-  }
-}
-body.hero .item {
+body.hero .hero__slot {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -2113,34 +2179,52 @@ body.hero .item {
   min-width: 21vw;
   min-height: 160px;
 }
-body.hero .item1 {
+body.hero .hero__slot--timer {
   grid-area: item1;
 }
-body.hero .item2 {
+body.hero .hero__slot--gallery {
   grid-area: item2;
 }
-body.hero .item3 {
+body.hero .hero__slot--universe {
   grid-area: item3;
 }
-body.hero .item2,
-body.hero .item3 {
-  position: relative;
-}
-body.hero .item4 {
+body.hero .hero__slot--cta {
   grid-area: item4;
 }
-body.hero .item5 {
+body.hero .hero__slot--side {
   grid-area: item5;
 }
-body.hero .hover-area {
+body.hero .hero__slot--gallery,
+body.hero .hero__slot--universe {
+  position: relative;
+}
+body.hero .nav-tile {
+  /* 同宣言 */
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0 16px;
+  /* reusable block アンカー・中央寄せ・ヒットエリア */
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  position: relative; /* for ::before layers on label if needed */
+  min-height: var(--tile-min-h, 12rem);
 }
-body.hero .bg-gallery,
-body.hero .bg-universe {
-  position: static;
+body.hero .nav-tile__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+body.hero .nav-tile__text {
+  opacity: 1;
+  font-size: clamp(18px, 1.97vw, 20px);
+  text-align: center;
+}
+body.hero .nav-tile--gallery .nav-tile__media,
+body.hero .nav-tile--universe .nav-tile__media {
+  /* 背景・フィルタ */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2148,36 +2232,45 @@ body.hero .bg-universe {
   opacity: 0.5;
   z-index: 0;
 }
-body.hero .bg-gallery:not(p),
-body.hero .bg-universe:not(p) {
+body.hero .nav-tile--gallery {
+  background: transparent;
+}
+body.hero .nav-tile--universe {
+  background: transparent;
+}
+body.hero .nav-tile--gallery .nav-tile__media:not(span),
+body.hero .nav-tile--universe .nav-tile__media:not(span) {
   opacity: 0.9;
 }
-body.hero .bg-gallery p,
-body.hero .bg-universe p {
-  opacity: 1;
-  font-size: clamp(18px, 1.97vw, 20px);
-  border-radius: 0.2em;
+body.hero .nav-tile:hover .nav-tile__text,
+body.hero .nav-tile:focus-visible .nav-tile__text {
+  text-decoration: underline;
+  filter: brightness(1.1);
 }
-body.hero .item > .bg-gallery:hover {
+body.hero .nav-tile:hover.nav-tile--gallery,
+body.hero .nav-tile:focus-visible.nav-tile--gallery {
   background: linear-gradient(to top, rgba(237, 224, 212, 0.326), rgba(191, 192, 185, 0.612), rgba(153, 147, 138, 0.898), rgba(142, 136, 128, 0.342), rgba(125, 124, 120, 0.227)), url("../assets/png/hero/frame_02_gallery_mobile.png");
   filter: brightness(1.2);
   opacity: 0.8;
 }
-body.hero .item > .bg-universe:hover {
-  background-image: url("../assets/png/hero/frame_03_space_mobile.png");
+body.hero .nav-tile:hover.nav-tile--universe,
+body.hero .nav-tile:focus-visible.nav-tile--universe {
   background: linear-gradient(to bottom, rgb(27, 38, 59) 40%, rgba(15, 26, 43, 0) 100%);
   filter: brightness(1.1);
   opacity: 1;
 }
-body.hero .hover-link {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+body.hero .hero__heading--accent {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  display: inline-block;
+  padding-inline: 0.35em 0.45em; /* 左右に少し差をつけて自然に */
+  padding-block: 0.1em 0.2em;
+  line-height: 1.28; /* 縦の呼吸 */
+  letter-spacing: 0.04em; /* 横の呼吸（カナが気持ちよく） */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+  /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ） */
+  font-feature-settings: "palt" 1;
 }
-body.hero .suu {
+body.hero .hero__heading {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   display: inline-block;
   padding-inline: 0.35em 0.45em; /* 左右に少し差をつけて自然に */
@@ -2188,17 +2281,31 @@ body.hero .suu {
   /* あるなら：かなのプロポーショナル代替をON（対応フォントのみ）*/
   font-feature-settings: "palt" 1;
 }
-body.hero .tea {
+body.hero .hero__subheading {
   font-size: clamp(1rem, 2vw, 1.25rem);
   white-space: nowrap;
 }
-body.hero .text {
+body.hero .hero__head {
+  display: grid;
   gap: 6vh;
+  text-align: center;
 }
 
 @media screen and (width >= 769px) and (orientation: landscape) {
   body.hero {
     overflow-y: scroll;
+  }
+  body.hero .hero__slot--side.hero__slot {
+    width: fit-content;
+    min-height: auto;
+  }
+  body.hero .hero__slot--side {
+    grid-area: item5;
+    position: absolute;
+    z-index: 2;
+    right: clamp(12px, 3vmin, 28px);
+    bottom: clamp(16px, 3vmin, 28px);
+    height: auto;
   }
 }
 /* スマホ縦：1列積み */
@@ -2252,46 +2359,48 @@ body.hero .text {
   body.hero .title h1 {
     white-space: nowrap;
   }
-  body.hero main {
+  body.hero .hero__inner {
+    width: 100%;
     height: auto;
   }
-  body.hero .container {
+  body.hero .hero__grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 20vh minmax(400px, 4fr) 80px 80px 1fr;
     grid-template-areas: "item4" "item1" "item2" "item3" "item5"; /* ヘルプ等 */
     gap: 1rem;
   }
-  body.hero .item {
+  body.hero .hero__slot {
     min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
   }
-  body.hero .item4 {
-    grid-area: item4;
-    min-height: clamp(120px, var(--vh) * 25, 280px);
-  }
-  body.hero .item1 {
+  body.hero .hero__slot--timer {
     grid-area: item1;
     height: fit-content;
     min-height: clamp(200px, var(--vh) * 40, 360px);
   }
-  body.hero .item2 {
+  body.hero .hero__slot--gallery {
     grid-area: item2;
   }
-  body.hero .item3 {
+  body.hero .hero__slot--universe {
     grid-area: item3;
   }
-  body.hero .item5 {
+  body.hero .hero__slot--cta {
+    grid-area: item4;
+    min-height: clamp(120px, var(--vh) * 25, 280px);
+  }
+  body.hero .hero__slot--side {
     grid-area: item5;
+    position: unset;
+    z-index: unset;
     width: fit-content;
+    height: auto;
     margin: 1rem auto;
   }
-  body.hero .hover-area {
-    width: 100%;
-    height: 100%;
-    min-height: clamp(56px, 10svh, 128px);
+  body.hero a.nav-tile__media {
+    width: fit-content;
   }
-  body.hero .bg-gallery,
-  body.hero .bg-universe {
+  body.hero .nav-tile--gallery .nav-tile__media,
+  body.hero .nav-tile--universe .nav-tile__media {
     min-height: 10dvh;
     min-height: 10svh;
     background-color: transparent;
@@ -2299,13 +2408,7 @@ body.hero .text {
     background-image: none;
     filter: unset;
   }
-  body.hero .item > .bg-gallery:hover,
-  body.hero .item > .bg-universe:hover {
-    background: transparent;
-    filter: unset;
-    opacity: 1;
-  }
-  body.hero .hover-text {
+  body.hero .nav-tile__label {
     position: relative;
     padding: 0.6em 1em;
     line-height: 1.2;
@@ -2320,44 +2423,44 @@ body.hero .text {
     backdrop-filter: blur(140px);
     z-index: -1;
   }
-  body.hero .bg-gallery .hover-text::before {
+  body.hero .nav-tile--gallery .nav-tile__media:hover,
+  body.hero .nav-tile--universe .nav-tile__media:hover {
     background: transparent;
-    backdrop-filter: blur(8px) saturate(140%);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    filter: unset;
+    opacity: 1;
   }
-  body.hero .bg-universe .hover-text::before {
-    background: transparent;
-    backdrop-filter: blur(8px) saturate(140%);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  body.hero .nav-tile {
+    display: inline-grid; /* ブロック→インライン化で横幅が内容起点に */
+    place-self: start center;
+    /* 親グリッドに対して左上寄せ（stretch無効化） */
+    width: max-content; /* 内容幅にフィット（fit-content より狙いが明確） */
+    place-items: center;
+    text-decoration: none;
+    position: relative;
+    /* for ::before layers on label if needed */
+    min-height: var(--tile-min-h, 12rem);
   }
-  body.hero .bg-gallery p,
-  body.hero .bg-universe p {
-    background-color: transparent;
-    font-size: clamp(18px, 2vw, 20px);
-  }
-  body.hero .hover-link {
-    width: 100%;
-    width: fit-content;
-    padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-    margin: 0 auto;
-  }
-  body.hero .suu {
+  body.hero .hero__heading--accent {
     font-size: clamp(24px, 4vw, 28px);
   }
-  body.hero .tea {
+  body.hero .hero__heading {
+    font-size: clamp(24px, 4vw, 28px);
+  }
+  body.hero .hero__subheading {
     font-size: clamp(1.25rem, 2.7vw, 1.5rem);
     white-space: nowrap;
   }
   body.hero .text {
     gap: 3vh;
   }
+  body.hero .hero__head {
+    gap: 3vh;
+  }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
   body.hero {
-    height: 100vh; /* 互換性のため */
-    height: 100dvh; /* アドレスバーを考慮 */
-    min-height: 100dvh;
-    min-width: 100svw;
+    /* アドレスバーを考慮 */
+    min-height: 100svh;
     /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
     background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
     overscroll-behavior-y: contain; /* iOS16+ で有効 */
@@ -2372,7 +2475,13 @@ body.hero .text {
     transform: none !important;
     will-change: auto !important;
   }
-  body.hero header.title {
+  body.hero .hero-poster {
+    position: fixed;
+    will-change: transform; /* スクロールでの再描画を軽減 */
+    contain: paint; /* 塗り分離で影響範囲を限定 */
+    backface-visibility: hidden; /* レイヤ合成の安定化 */
+  }
+  body.hero header.site-header {
     position: sticky;
     top: calc(env(safe-area-inset-top, 0) + 0.5rem);
     z-index: 2;
@@ -2380,16 +2489,14 @@ body.hero .text {
     /* background: color-mix(in oklab, var(--bg) 85%, black 15%); */
     /* backdrop-filter: blur(6px); */
   }
-  body.hero .title h1 {
+  body.hero .site-header__title h1 {
     font-size: clamp(1rem, 2.6vw, 2rem);
     letter-spacing: 0.01em;
     line-height: 1.15;
     max-inline-size: 18ch;
     white-space: nowrap;
   }
-  body.hero .main {
-    position: absolute; /* もともとfixedなら切り替え */
-    inset: 0;
+  body.hero .hero__inner {
     width: 100%;
     height: auto;
     min-height: fit-content;
@@ -2397,58 +2504,55 @@ body.hero .text {
     /* ヘッダー高さの“保険”を main に付与（stickyでも押し出し分が欲しいとき用）*/
     padding-top: clamp(0.8rem, 6vh, 2.4rem);
   }
-  body.hero .container {
-    grid-template: "item1 item4" 1fr "item1 item2" 1fr "item1 item3" 1fr "item1 item5" 1fr;
+  body.hero .hero__grid {
+    grid-template: "item1 item4" 1fr "item1 item2" 1fr "item1 item3" 1fr "item1 item5" 3rem;
     gap: clamp(12px, 2svh, 24px);
     overflow: auto;
   }
-  body.hero .hover-area {
-    min-height: clamp(56px, 10svh, 128px);
-    overflow: hidden;
-    padding: 0 8px;
-    display: block;
+  body.hero .nav-tile {
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    position: relative; /* for ::before layers on label if needed */
+    min-height: var(--tile-min-h, 12rem);
   }
-  body.hero .item1 {
+  body.hero .hero__slot--timer {
     min-height: 375px;
     height: auto;
   }
-  body.hero .item2,
-  body.hero .item3,
-  body.hero .item5 {
+  body.hero .hero__slot--gallery,
+  body.hero .hero__slot--universe,
+  body.hero .hero__slot--side {
     min-height: auto;
   }
-  body.hero .item4 {
+  body.hero .hero__slot--cta {
     padding-top: 1rem;
     width: 100%;
     height: 40vh;
   }
-  body.hero #background-video {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2;
+  body.hero .hero__slot--side {
+    position: unset;
+    z-index: unset;
+    width: fit-content;
+    height: auto;
+    align-items: center;
+    margin: 0 auto;
   }
-  body.hero .bg-gallery,
-  body.hero .bg-universe {
-    font-family: inherit;
-    background: none;
-  }
-  body.hero .item > .bg-gallery:hover,
-  body.hero .item > .bg-universe:hover {
+  body.hero .hero__slot > .hero__bg--gallery:hover,
+  body.hero .hero__slot > .hero__bg--universe:hover {
     background: transparent;
     filter: unset;
     opacity: 1;
   }
-  body.hero .hover-text {
+  body.hero .nav-tile__label {
     position: relative;
+    z-index: 1;
     padding: 0.6em 1em;
     line-height: 1.2;
     white-space: nowrap;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
-  body.hero .hover-text::before {
+  body.hero .nav-tile__label::before {
     content: "";
     position: absolute;
     inset: -6px -12px;
@@ -2456,23 +2560,22 @@ body.hero .text {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     border: 0.8px solid rgba(245, 245, 245, 0.35);
     border-radius: 12px;
-    /* ほんのりガラス */
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(140px);
     z-index: -1;
   }
-  body.hero .hover-link {
-    width: 100%;
-    width: fit-content;
-    padding: clamp(10px, 2svh, 16px) clamp(14px, 4svw, 20px);
-    margin: 0 auto;
-  }
-  body.hero .suu {
+  body.hero .hero__heading--accent {
     font-size: clamp(24px, 4vw, 28px);
     padding-inline: 0.3em 0.4em;
     line-height: 1.22;
     letter-spacing: 0.03em;
   }
-  body.hero .tea {
+  body.hero .hero__heading {
+    font-size: clamp(24px, 4vw, 28px);
+    padding-inline: 0.3em 0.4em;
+    line-height: 1.22;
+    letter-spacing: 0.03em;
+  }
+  body.hero .hero__subheading {
     font-size: clamp(1.25rem, 2.7vw, 1.5rem);
     white-space: nowrap;
   }
@@ -2486,7 +2589,7 @@ body.hero .text {
 }
 /* 横向き スマホ */
 @media (orientation: landscape) and (max-height: 600px) {
-  header.title h1 {
+  header.site-header {
     font-size: clamp(1rem, 2.6vw, 2rem);
     letter-spacing: 0.01em;
     line-height: 1.15;
