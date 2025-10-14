@@ -4,8 +4,10 @@
 body {
   color: var(--timer-main-color);
 
-  span.icon-size {
-    font-size: core.$icon-size;
+  // unsetした高さ　再指定
+  span.icon-size-control {
+    color: inherit;
+    height: 44px;
   }
 
   .timer {
@@ -32,6 +34,7 @@ body {
 
   // gridコンテナ親
   .timer-grid-container {
+    border: 1px solid red; //test
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
@@ -51,6 +54,7 @@ body {
   // timer grid アイテム＝カウント
   .timer1 {
     grid-area: count;
+    border: 1px solid red; //test
   }
 
   .timer-count-display {
@@ -96,44 +100,55 @@ body {
 
   // ３・４・５分ボタン部分
   .timer2 {
+    border: 1px solid red; //test
     grid-area: presets;
   }
 
-  // 操作部分
+  // 操作部分 枠
   .timer3 {
     grid-area: controls;
   }
 
   .timer-toggle {
+    // grid-area: play;
+  }
+
+  .timer-toggle,
+  .reset-button,
+  .volume-toggle {
     position: relative;
     min-width: auto;
     min-height: auto;
-
-    // inline-size: 44px;
-    // block-size: 44px;
+    inline-size: 44px;
+    block-size: 44px;
     display: inline-grid;
     place-items: center;
   }
 
-  .timer-toggle span {
+  .timer-toggle span,
+  span.icon-refresh,
+  .volume-toggle span {
     grid-area: 1/1;
     width: 100%;
     height: 100%;
   }
 
-  .timer-toggle .icon-stop {
+  .timer-toggle .icon-stop,
+  .volume-toggle .icon-alarm-off {
     display: none;
   }
 
-  .timer-toggle[aria-pressed="true"] .icon-play {
+  .timer-toggle[aria-pressed="true"] .icon-play,
+  .volume-toggle[aria-pressed="true"] .icon-alarm-on {
     display: none;
   }
 
-  .timer-toggle[aria-pressed="true"] .icon-stop {
+  .timer-toggle[aria-pressed="true"] .icon-stop,
+  .volume-toggle[aria-pressed="true"] .icon-alarm-off {
     display: block;
   }
 
-  // ボタン・グループ　（ボタン用grid親）
+  // ボタン・グループ　（3/4/5ボタン用grid親）
   .buttons {
     width: 20vw;
     margin: 0 auto;
@@ -219,6 +234,7 @@ body {
 
   // 操作ボタンの背景　アイコン位置調整
   .set-buttons {
+    // 余白
     padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
     background: rgb(245 245 245 / 30%);
     border: 1px solid rgb(245 245 245 / 35%);
@@ -226,11 +242,8 @@ body {
     box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
   }
 
-  span.set-buttons {
+  .set-buttons span {
     white-space: nowrap;
-  }
-
-  span.set-button {
     // 追加視認性UP
     filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
 
@@ -242,7 +255,10 @@ body {
 
   span.set-button:hover {
     cursor: pointer;
-    color: #606060;
+    color: #fff;
+    text-shadow: 0 4px 4px #000;
+    transform: scale(1.02);
+    outline: 2px solid color-mix(in oklab, #fff 35%, transparent);
   }
 
   /* スクリーンリーダー専用 */
@@ -382,7 +398,7 @@ body {
 
     // 操作ボタンの背景　アイコン位置調整 幅1099px以下で画面が横向きの時だけ
     span.set-button {
-      font-size: 2.5rem;
+      // font-size: 2.5rem;
     }
   }
 }
@@ -435,12 +451,7 @@ body {
 
     .buttons {
       width: 100%;
-      max-width: 19rem;
-      padding: 0 8px;
-    }
-
-    .buttons {
-      width: 100%;
+      max-width: 19rem; //この行残すかどうか
       padding: 0 8px;
     }
 
@@ -449,7 +460,7 @@ body {
     }
 
     .setTimeBtn {
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      // font-size: clamp(0.95rem, 1.8vw, 1.15rem);
       margin: 0 auto;
       min-inline-size: clamp(48px, 11vw, 72px);
       min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
