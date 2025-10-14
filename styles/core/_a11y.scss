@@ -234,9 +234,6 @@ input[type="range"] {
 
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
-
-  /* Safari 古め対策 → 先に -webkit-, 最後に本命 */
-  -webkit-backdrop-filter: blur(var(--glass-blur));
   backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
 
