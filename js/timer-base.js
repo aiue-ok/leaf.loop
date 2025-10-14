@@ -5,6 +5,9 @@ const liveDone = document.getElementById("finalLive"); // 最終告知 (aria-liv
 const live = document.getElementById("timerLive"); // tick用 (aria-live)
 const disp = document.getElementById("timer"); // h1を表示先に固定
 
+// いちばん上付近に置く（上書きOKの保険）
+window.ensureAudioUnlocked ??= async () => true;
+
 // ===== デバッグUIの表示（?debug=1 で表示）=====
 if (new URLSearchParams(location.search).get("debug") === "1") {
   document
@@ -151,7 +154,22 @@ function stopTimerUnified() {
 
 // === トグル（ユーザー操作内で解錠も実施） ===
 toggleBtn.addEventListener("click", async () => {
-  await window.ensureAudioUnlocked(); // ← ユーザー操作内で解錠
+  // 新（防御付き）:
+  if (typeof window.ensureAudioUnlocked === "function") {
+    await window.ensureAudioUnlocked();
+  } else {
+    // フォールバック：最短でオーディオを「解錠」試行（失敗しても無視）
+    try {
+      const a = document.getElementById("alarmSound");
+      if (a) {
+        a.currentTime = 0;
+        const p = a.play();
+        if (p && typeof p.then === "function") await p;
+        a.pause();
+      }
+    } catch (_) {}
+  }
+  // ← ユーザー操作内で解錠
 
   const willRun = !isRunning;
   if (willRun) startTimerUnified();
