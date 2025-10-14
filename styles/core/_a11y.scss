@@ -230,7 +230,6 @@ input[type="range"] {
   display: inline-block;
   padding: 0.45em 0.8em;
   border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
-  // color: #fff;
 
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
