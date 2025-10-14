@@ -22,23 +22,24 @@
 
 /* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
 @media (prefers-reduced-motion: reduce) {
-  .hero-video {
+  .hero__media-video {
     display: none !important;
   }
 
-  .hero-poster {
+  .hero__media-poster {
     display: block !important;
   } /* 念のため明示 */
 }
 
 /* 画面が広い＋動きOKなら動画を解禁 */
+/* stylelint-disable-next-line media-feature-range-notation */
 @media (width >= 768px) {
   @media (prefers-reduced-motion: no-preference) {
-    .hero-video {
+    .hero__media-video {
       display: block;
     }
 
-    .hero-poster {
+    .hero__media-poster {
       display: none;
     }
   }
@@ -46,11 +47,11 @@
 
 /* 動きを控えたい人の設定を尊重 */
 @media (prefers-reduced-motion: reduce) {
-  .hero-video {
+  .hero__media-video {
     display: none;
   }
 
-  .hero-poster {
+  .hero__media-poster {
     display: block;
   }
 }
@@ -188,7 +189,7 @@ input[type="range"] {
     transition: none !important;
   }
 
-  .hero-video {
+  .hero__media-video {
     display: none !important;
   } /* どうしても動くなら切る */
 }
