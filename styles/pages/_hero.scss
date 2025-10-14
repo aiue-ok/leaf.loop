@@ -628,6 +628,11 @@ body.hero {
       letter-spacing: 0.03em;
     }
 
+    .hero__heading img {
+      // width: 500px; /* 幅を200pxに設定 */
+      height: auto; /* 高さは幅に合わせて自動調整 */
+    }
+
     .hero__subheading {
       font-size: clamp(1.25rem, 2.7vw, 1.5rem);
       white-space: nowrap;
