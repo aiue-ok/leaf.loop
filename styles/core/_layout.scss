@@ -101,3 +101,10 @@
     min-height: 100dvh;
   }
 }
+
+@supports (font-synthesis-weight: none) {
+  /* ブラウザの自動太字合成で揺れないように */
+  html {
+    font-synthesis-weight: none;
+  }
+}
