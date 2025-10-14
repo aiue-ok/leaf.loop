@@ -210,15 +210,21 @@ presetBtns.forEach((btn) => {
 
 // ===== Mute ボタン =====
 const muteBtn = document.getElementById("muteBtn");
+
 function syncMuteUI() {
   if (!muteBtn || !ding) return;
   const isMuted = !!ding.muted;
+  muteBtn.setAttribute("aria-pressed", String(isMuted));
   muteBtn.classList.toggle("is-muted", isMuted);
   muteBtn.classList.toggle("is-active", isMuted);
-  muteBtn.querySelector(".material-symbols-outlined").textContent = isMuted
-    ? "volume_off"
-    : "volume_up";
+
+  const onIcon = muteBtn.querySelector(".icon-alarm-on");
+  const offIcon = muteBtn.querySelector(".icon-alarm-off");
+
+  if (onIcon) onIcon.style.display = isMuted ? "none" : "";
+  if (offIcon) offIcon.style.display = isMuted ? "" : "none";
 }
+
 muteBtn?.addEventListener("click", () => {
   if (!ding) return;
   ding.muted = !ding.muted;
