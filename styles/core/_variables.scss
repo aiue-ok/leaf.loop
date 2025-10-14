@@ -10,6 +10,20 @@
   --vh: 1svh;
 
   /* ベース文字 */
+  // フォント切り替え時のレイアウト揺れ（CLS）を抑える
+
+  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
+  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* 欧文/数字はInterを第一候補に */
+  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+
+  /* 見出しの柔らかい表情用（必要な所だけに限定） */
+  --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
+
   // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
   // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
   --fs: clamp(16px, 1.111vw, 32px);
