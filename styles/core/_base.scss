@@ -112,15 +112,9 @@ input {
   margin: 0;
 }
 
-/* テキスト共通 */
-.text {
-  display: flex;
-  flex-direction: column;
-
-  /* 全体に高さを与える */
-  justify-content: center;
-  align-items: center;
-}
+// --------------------
+// アイコン
+// --------------------
 
 /* タイマー操作部分のgoogleアイコン */
 // .material-symbols-outlined {
