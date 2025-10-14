@@ -85,12 +85,6 @@ input[type="range"] {
   height: 16px;
 }
 
-:root {
-  --focus-ring: #7aa2ff;
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
-}
-
 /* ベース：フォーカス可能要素 */
 :where(a, button, [role="button"], input, select, textarea, summary) {
   outline: none; /* 自前で制御 */
