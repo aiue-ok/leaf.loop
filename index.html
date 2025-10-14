@@ -39,9 +39,9 @@
   </head>
   <body class="hero page page--hero">
     <!-- 動画の背景 -->
-    <div class="hero-media" aria-hidden="true">
+    <div class="hero__media-body" aria-hidden="true">
       <!-- 非フォーカス（装飾のため） -->
-      <img class="hero-poster" src="assets/jpg/hero-bg.jpg" alt="" />
+      <img class="hero__media-poster" src="assets/jpg/hero-bg.jpg" alt="" />
       <!-- autoplay：ページが読み込まれた時に自動で再生 -->
       <!-- muted：音声をミュートに設定 -->
       <!-- loop：動画を繰り返し再生 -->
@@ -49,7 +49,7 @@
       <!-- 画面揺れ防止に width/height を与えてCLS低減 -->
       <video
         id="background-video"
-        class="hero-video"
+        class="hero__media-video"
         width="960"
         height="540"
         autoplay
