@@ -610,37 +610,14 @@ summary):focus-visible {
   }
 }
 @layer debug {}
-body {
-  color: var(--timer-main-color);
-  /* h1 カウントダウン表示 */
-  /* 数字だけ相棒フォント + 等幅数字をON */
-  /* active：押し込み感を1pxだけ */
-  /* スクリーンリーダー専用 */
-  /* トースト */
-}
-body span.icon-size-control {
-  color: inherit;
-  height: 44px;
-}
-body .timer {
+.timer {
   width: 100%;
   min-height: 340px;
   margin: 0 auto;
-  padding: 0 16px; /* 横に余白 */
+  padding: 0 16px;
+  background: rgba(200, 255, 0, 0.4);
 }
-body .timer-deco {
-  background: rgba(0, 0, 0, 0.16);
-  border-radius: 16px;
-}
-@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-  body .timer-deco {
-    backdrop-filter: blur(8px) saturate(140%);
-    /* うっすら境界 */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  }
-}
-body .timer-grid-container {
-  border: 1px solid red;
+.timer__grid--vertical {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: 1fr;
@@ -651,28 +628,28 @@ body .timer-grid-container {
   width: 100%;
   place-content: center;
 }
-body .timer__grid {
-  border: 1px solid yellow;
+.timer__grid--horizontal {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr;
-  gap: clamp(8px, 1.5vmin, 16px);
-  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
-  grid-template-areas: "count" "presets" "controls";
-  /* 親要素 */
-  width: 100%;
-  place-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: center;
 }
-body .timer1 {
+.timer__grid--space {
+  gap: clamp(8px, 2.2vw, 16px);
+}
+.timer__screen {
   grid-area: count;
-  border: 1px solid red;
+  background: rgba(200, 255, 0, 0.4);
+  /* h1 カウントダウン表示 */
 }
-body .timer-count-display {
+.timer__screen--display {
   min-width: 5ch;
   max-width: 20vw;
   margin: 0 auto;
+  border: 1px solid red;
 }
-body .timer_count {
+.timer__screen--count {
   display: inline-block;
   text-align: center;
   width: 5ch;
@@ -684,34 +661,38 @@ body .timer_count {
   padding-block: 0.2rem;
   backdrop-filter: blur(3px) saturate(95%) contrast(92%);
 }
-body .digits {
-  font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
-  font-variant-numeric: tabular-nums; /* 等幅数字 */
-  font-feature-settings: "tnum" 1; /* 念のため保険として */
-  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
-  font-weight: 500;
-  letter-spacing: 0.0125em;
-  color: var(--milk-white);
-  text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55), 0 0 0.18rem rgba(255, 255, 255, 0.3), 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
-}
-body .timer2 {
-  border: 1px solid red;
+.timer__presets {
   grid-area: presets;
+  width: 20vw;
+  margin: 0 auto;
 }
-body .timer3 {
-  grid-area: controls;
-}
-body .timer__presets,
-body .timer__actions {
+.timer__presets div {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   justify-content: center;
   align-items: center;
+  background: rgba(69, 110, 198, 0.4);
 }
-body .timer-toggle,
-body .reset-button,
-body .volume-toggle {
+.timer__presets span {
+  display: block;
+  white-space: nowrap;
+}
+.timer__presets button:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), inset 0 6px 14px rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+.timer__actions {
+  grid-area: controls;
+}
+.timer__actions--bg {
+  padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
+  background: rgba(245, 245, 245, 0.3);
+  border: 1px solid rgba(245, 245, 245, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.timer__btn {
   position: relative;
   min-width: auto;
   min-height: auto;
@@ -719,41 +700,10 @@ body .volume-toggle {
   block-size: 44px;
   display: inline-grid;
   place-items: center;
-}
-body .timer-toggle span,
-body span.icon-refresh,
-body .volume-toggle span {
-  grid-area: 1/1;
-  width: 100%;
-  height: 100%;
-}
-body .timer-toggle .icon-stop,
-body .volume-toggle .icon-alarm-off {
-  display: none;
-}
-body .timer-toggle[aria-pressed=true] .icon-play,
-body .volume-toggle[aria-pressed=true] .icon-alarm-on {
-  display: none;
-}
-body .timer-toggle[aria-pressed=true] .icon-stop,
-body .volume-toggle[aria-pressed=true] .icon-alarm-off {
-  display: block;
-}
-body .buttons {
-  width: 20vw;
-  margin: 0 auto;
-}
-body .buttonsspan {
-  display: block;
-}
-body button {
-  margin: 0 auto;
-}
-body span,
-body .button.setTimeBtn {
   color: inherit;
 }
-body .setTimeBtn {
+.timer__preset-btn {
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -770,7 +720,7 @@ body .setTimeBtn {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 8px 20px rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.25);
   position: relative;
 }
-body .setTimeBtn::before {
+.timer__preset-btn::before {
   content: "";
   position: absolute;
   inset: 2px; /* 内側に1–2pxだけ入れる */
@@ -780,8 +730,8 @@ body .setTimeBtn::before {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0) 60%);
   mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
 }
-body button.setTimeBtn:hover,
-body button.setTimeBtn:focus-visible {
+.timer__preset-btn:hover,
+.timer__preset-btn :focus-visible {
   cursor: pointer;
   color: #606060;
   border: solid 2.27px #f5f5f5;
@@ -789,18 +739,10 @@ body button.setTimeBtn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
 }
-body button.setTimeBtn:active {
-  transform: translateY(1px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), inset 0 6px 14px rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.22);
+.timer__action-btn {
+  margin: 0 auto;
 }
-body .set-buttons {
-  padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-  background: rgba(245, 245, 245, 0.3);
-  border: 1px solid rgba(245, 245, 245, 0.35);
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-body .set-buttons span {
+.timer__action-btn--rim {
   white-space: nowrap;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   /* ほんのり輪郭 */
@@ -808,7 +750,200 @@ body .set-buttons span {
   outline-offset: -2px;
   border-radius: 0.5rem;
 }
-body span.set-button:hover {
+.timer__action-btn:hover {
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 0 4px 4px #000;
+  transform: scale(1.02);
+  outline: 2px solid color-mix(in oklab, #fff 35%, transparent);
+}
+.timer__icon {
+  grid-area: 1/1;
+  width: 100%;
+  height: 44px;
+}
+.timer__label {
+  font-family: "M PLUS 1p", system-ui;
+}
+.timer__screen--tnum {
+  font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+  font-variant-numeric: tabular-nums; /* 等幅数字 */
+  font-feature-settings: "tnum" 1; /* 念のため保険として */
+  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  color: var(--milk-white);
+  text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55), 0 0 0.18rem rgba(255, 255, 255, 0.3), 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
+}
+body {
+  color: var(--timer-main-color);
+  /* h1 カウントダウン表示✅ */
+  /* 数字だけ相棒フォント + 等幅数字をON✅ */
+  /* active：押し込み感を1pxだけ ✅ */
+  /* スクリーンリーダー専用 */
+  /* トースト */
+}
+body span.icon-size-control- {
+  color: inherit;
+  height: 44px;
+}
+body .timer- {
+  width: 100%;
+  min-height: 340px;
+  margin: 0 auto;
+  padding: 0 16px; /* 横に余白 */
+}
+body .timer-grid-container- {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  gap: clamp(8px, 1.5vmin, 16px);
+  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
+  grid-template-areas: "count" "presets" "controls";
+  /* 親要素 */
+  width: 100%;
+  place-content: center;
+}
+body .timer__grid- {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  gap: clamp(8px, 1.5vmin, 16px);
+  /* カウント → プリセット → 操作 → ボリューム、の縦並び */
+  grid-template-areas: "count" "presets" "controls";
+  /* 親要素 */
+  width: 100%;
+  place-content: center;
+}
+body .timer1- {
+  grid-area: count;
+}
+body .timer-count-display- {
+  min-width: 5ch;
+  max-width: 20vw;
+  margin: 0 auto;
+}
+body .timer_count- {
+  display: inline-block;
+  text-align: center;
+  width: 5ch;
+  font-size: clamp(48px, 36.732px + 3.005vw, 80px);
+  line-height: 1.2;
+  background: color-mix(in oklch, var(--milk-white) 5%, transparent);
+  border-radius: 0.6rem;
+  padding-inline: 0.8rem;
+  padding-block: 0.2rem;
+  backdrop-filter: blur(3px) saturate(95%) contrast(92%);
+}
+body .digits- {
+  font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+  font-variant-numeric: tabular-nums; /* 等幅数字 */
+  font-feature-settings: "tnum" 1; /* 念のため保険として */
+  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  color: var(--milk-white);
+  text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55), 0 0 0.18rem rgba(255, 255, 255, 0.3), 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
+}
+body .timer2- {
+  grid-area: presets;
+}
+body .timer3- {
+  grid-area: controls;
+}
+body .timer__presets-,
+body .timer__actions- {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: center;
+}
+body .timer-toggle-,
+body .reset-button-,
+body .volume-toggle- {
+  position: relative;
+  min-width: auto;
+  min-height: auto;
+  inline-size: 44px;
+  block-size: 44px;
+  display: inline-grid;
+  place-items: center;
+}
+body .timer-toggle .icon-stop,
+body .volume-toggle .icon-alarm-off,
+body .timer__action-btn--paused,
+body .timer__action-btn--muted {
+  display: none;
+}
+body .timer-toggle[aria-pressed=true] .icon-play-,
+body .volume-toggle[aria-pressed=true] .icon-alarm-on-,
+body .timer__action-play[aria-pressed=true] .timer__action-btn--running,
+body .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-on {
+  display: none;
+}
+body .timer-toggle[aria-pressed=true] .icon-stop-,
+body .volume-toggle[aria-pressed=true] .icon-alarm-off-,
+body .timer__action-play[aria-pressed=true] .timer__action-btn--paused,
+body .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-off {
+  display: block;
+}
+body .setTimeBtn- {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.8px solid rgba(245, 245, 245, 0.18);
+  /* 円の大きさ */
+  width: clamp(3rem, 4vw, 6rem);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: inherit;
+  text-align: center;
+  background-color: var(--panel);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 8px 20px rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+body .setTimeBtn-::before {
+  content: "";
+  position: absolute;
+  inset: 2px; /* 内側に1–2pxだけ入れる */
+  border-radius: inherit;
+  pointer-events: none;
+  /* 上半分だけに効く柔らかいグロス */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0) 60%);
+  mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
+}
+body button.setTimeBtn-:hover,
+body button.setTimeBtn-:focus-visible {
+  cursor: pointer;
+  color: #606060;
+  border: solid 2.27px #f5f5f5;
+  background-color: #f5f5f5;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+body button.setTimeBtn-:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), inset 0 6px 14px rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+body .set-buttons- {
+  padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
+  background: rgba(245, 245, 245, 0.3);
+  border: 1px solid rgba(245, 245, 245, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+body .set-buttons- span {
+  white-space: nowrap;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  /* ほんのり輪郭 */
+  outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+  outline-offset: -2px;
+  border-radius: 0.5rem;
+}
+body span.set-button-:hover {
   cursor: pointer;
   color: #fff;
   text-shadow: 0 4px 4px #000;
@@ -852,13 +987,29 @@ body .toast.show {
 
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
-  .setTimeBtn:hover {
+  .setTimeBtn:hover,
+  .timer__preset-btn:hover {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32), inset 0 10px 24px rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
     transform: translateY(-0.5px);
   }
 }
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
 @media screen and (width >= 1100px) and (orientation: landscape) {
+  .timer {
+    max-width: 21vw;
+    min-width: 21vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timer__grid--vertical {
+    border: 1px solid yellowgreen;
+    grid-template-rows: 3fr 1fr 1fr;
+    gap: 20px;
+    margin: 0 auto;
+    align-items: center;
+  }
   body.hero .timer {
     max-width: 21vw;
     min-width: 21vw;
@@ -868,20 +1019,13 @@ body .toast.show {
     justify-content: center;
   }
   body.hero .timer-grid-container {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-rows: 3fr 1fr 1fr;
-    grid-template-columns: 1fr;
     gap: 20px;
     margin: 0 auto;
     align-items: center;
   }
-  body.hero .set-buttons {
-    padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-  }
 }
 @media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
-  body.hero .timer {
+  .timer {
     padding: 0;
     min-width: 21vw;
     height: 100vh; /* PCで全画面 */
@@ -890,34 +1034,93 @@ body .toast.show {
     align-items: center;
     justify-content: center;
   }
-  body.hero .timer-grid-container {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
+  .timer__grid--vertical {
+    border: 1px solid yellowgreen;
+    grid-template-rows: 3fr 1fr 1fr;
+    gap: 20px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .timer__screen--count {
+    font-size: clamp(48px, 6vw, 56px);
+  }
+  .timer__presets {
+    width: 100%;
+    margin: 0;
+  }
+  .timer__actions--bg {
+    padding: 0;
+    border-radius: 8px;
+  }
+  body.hero .timer- {
+    padding: 0;
+    min-width: 21vw;
+    height: 100vh; /* PCで全画面 */
+    height: 100svh; /* モバイルでアドレスバー考慮 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body.hero .timer-grid-container- {
     grid-template-rows: 3fr 1fr 1fr;
     grid-template-columns: 1fr;
     gap: 20px;
     margin: 0 auto;
     align-items: center;
   }
-  body.hero .timer1 {
+  body.hero .timer1- {
     margin-top: 0;
   }
-  body.hero .timer_count {
+  body.hero .timer_count- {
     font-size: clamp(48px, 6vw, 56px);
     line-height: 1.2;
   }
-  body.hero .buttons {
+  body.hero .buttons- {
     width: 100%;
     margin: 0;
   }
-  body.hero .set-buttons {
+  body.hero .set-buttons- {
     padding: 0;
     border-radius: 8px;
   }
 }
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (width <= 1024px) and (orientation: portrait) {
-  body.hero .item {
+  .timer {
+    width: 100vw;
+    min-height: auto;
+    min-width: fit-content;
+    padding: 16px;
+  }
+  .timer__grid--vertical {
+    grid-template-rows: 3fr 1fr 1fr;
+    gap: clamp(16px, 1.5vmin, 20px);
+    margin: 0 auto;
+    align-items: center;
+  }
+  .timer__grid--space {
+    gap: clamp(8px, 2.2vw, 16px);
+  }
+  .timer__screen--display {
+    max-width: fit-content;
+  }
+  .timer__screen--count {
+    width: max-content;
+    display: block;
+  }
+  .timer__presets {
+    width: 100%;
+    max-width: 19rem;
+    padding: 0 8px;
+    background: rgba(44, 251, 48, 0.3);
+  }
+  .timer__preset-btn {
+    min-inline-size: clamp(48px, 11vw, 72px);
+    min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
+    padding-inline: 0.6rem;
+    line-height: 1.2;
+  }
+  body.hero .item- {
     width: 100svw;
     width: 100dvw;
     min-height: auto;
@@ -925,41 +1128,40 @@ body .toast.show {
     padding: 16px;
     overflow: hidden;
   }
-  body.hero .timer {
+  body.hero .timer- {
     width: 100vw;
     min-height: auto;
     min-width: fit-content;
     padding: 16px;
   }
-  body.hero .timer-grid-container {
+  body.hero .timer-grid-container- {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-rows: 3fr 1fr 1fr;
     grid-template-columns: 1fr;
     gap: clamp(16px, 1.5vmin, 20px);
     margin: 0 auto;
     align-items: center;
   }
-  body.hero .timer1 {
+  body.hero .timer1- {
     margin-top: 0;
     height: auto;
   }
-  body.hero .timer-count-display {
+  body.hero .timer-count-display- {
     max-width: fit-content;
   }
-  body.hero .timer_count {
+  body.hero .timer_count- {
     width: max-content;
     display: block;
   }
-  body.hero .buttons {
+  body.hero .buttons- {
     width: 100%;
     max-width: 19rem;
     padding: 0 8px;
   }
-  body.hero .grid-parent-timer {
+  body.hero .grid-parent-timer-,
+  body.hero .timer__grid--space- {
     gap: clamp(8px, 2.2vw, 16px);
   }
-  body.hero .setTimeBtn {
+  body.hero .setTimeBtn- {
     margin: 0 auto;
     min-inline-size: clamp(48px, 11vw, 72px);
     min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
@@ -969,7 +1171,7 @@ body .toast.show {
   }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
-  body.hero .timer {
+  .timer {
     padding: 0;
     min-height: 375px;
     height: 100vh; /* PCで全画面 */
@@ -978,36 +1180,89 @@ body .toast.show {
     align-items: center;
     justify-content: center;
   }
-  body.hero .timer-grid-container {
+  .timer__grid--vertical {
+    grid-template-rows: 2fr 1fr 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  .timer__screen--display {
+    max-width: fit-content;
+  }
+  .timer__screen, .timer__presets, .timer__actions {
+    padding: 0 16px;
+    background: rgba(69, 110, 198, 0.4);
+  }
+  .timer__screen {
+    height: auto;
+  }
+  .timer__screen--count {
+    width: max-content;
+    display: block;
+  }
+  .timer__presets {
+    width: 100%;
+    padding: 0 8px;
+  }
+  .timer__grid--space {
+    gap: clamp(8px, 2.2vw, 16px);
+  }
+  .timer__preset-btn {
+    margin: 0; /* ← これが肝！ */
+    flex: 0 0 auto; /* 勝手に伸びない */
+    min-inline-size: clamp(48px, 11vw, 72px);
+    min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
+    padding-inline: 0.6rem;
+    border-radius: 999px;
+    line-height: 1.2;
+  }
+  body.hero .timer- {
+    padding: 0;
+    min-height: 375px;
+    height: 100vh; /* PCで全画面 */
+    height: 100svh; /* モバイルでアドレスバー考慮 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body.hero .timer-grid-container- {
     grid-template-rows: 2fr 1fr 1fr;
     grid-area: "count" "preset" "control";
     align-items: center;
     gap: 16px;
   }
-  body.hero .timer-count-display {
+  body.hero .timer-count-display-,
+  body.hero .timer__screen--display- {
     max-width: fit-content;
   }
-  body.hero .timer1,
-  body.hero .timer2,
-  body.hero .timer3 {
+  body.hero .timer1-,
+  body.hero .timer2-,
+  body.hero .timer3-,
+  body.hero .timer__screen-,
+  body.hero .timer__presets-,
+  body.hero .timer__actions- {
     padding: 0 16px;
   }
-  body.hero .timer1 {
+  body.hero .timer1- {
     height: auto;
     margin-top: 0;
   }
-  body.hero .timer_count {
+  body.hero .timer_count-,
+  body.hero .timer__screen--tnum-,
+  body.hero .timer__screen--count- {
     width: max-content;
     display: block;
   }
-  body.hero .buttons {
+  body.hero .buttons-,
+  body.hero .timer__presets- {
     width: 100%;
     padding: 0 8px;
   }
-  body.hero .grid-parent-timer {
+  body.hero .grid-parent-timer-,
+  body.hero .timer__grid--space- {
     gap: clamp(8px, 2.2vw, 16px);
   }
-  body.hero .setTimeBtn {
+  body.hero .setTimeBtn-,
+  body.hero .timer__preset-btn- {
     margin: 0; /* ← これが肝！ */
     flex: 0 0 auto; /* 勝手に伸びない */
     min-inline-size: clamp(48px, 11vw, 72px);
@@ -1020,6 +1275,10 @@ body .toast.show {
 /* 論理プロパティ非対応ブラウザへのフォールバック */
 @supports not (min-inline-size: 1px) {
   .preset .btn {
+    min-width: clamp(48px, 11vw, 72px);
+    min-height: clamp(44px, 9vw, 60px);
+  }
+  .timer__preset-btn {
     min-width: clamp(48px, 11vw, 72px);
     min-height: clamp(44px, 9vw, 60px);
   }

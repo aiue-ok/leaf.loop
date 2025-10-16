@@ -93,12 +93,16 @@
             <div class="center hero__slot hero__slot--timer">
               <div class="timer">
                 <!-- タイマーgrid 親 -->
-                <div class="timer-grid-container timer__grid">
+                <div
+                  class="timer-grid-container timer__grid timer__grid--vertical"
+                >
                   <!-- タイマー子①：見えるタイマー表示 -->
-                  <div class="timer1 timer-count-display timer__screen">
+                  <div
+                    class="timer1 timer-count-display timer__screen timer__screen--display"
+                  >
                     <h1
                       id="timer"
-                      class="timer_count digits timer__label timer__screen--tnum"
+                      class="timer_count digits timer__screen--tnum timer__screen--count"
                       role="timer"
                       aria-label="お茶のタイマー 残り時間"
                     >
@@ -116,23 +120,23 @@
                   <!-- タイマー子②：初期設定（プリセット）ボタン -->
                   <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
                   <div class="timer2 buttons timer__presets">
-                    <div class="grid-parent-timer">
+                    <div class="grid-parent-timer timer__grid--space">
                       <button
-                        class="setTimeBtn timer__btntimer__preset-btn timer__preset-btn--active"
+                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
                         data-minutes="3"
                         aria-label="3分に設定"
                       >
                         <span aria-hidden="true" class="timer__label">3分</span>
                       </button>
                       <button
-                        class="setTimeBtn timer__btn timer__preset-btn timer__preset-btn--active"
+                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
                         data-minutes="4"
                         aria-label="4分に設定"
                       >
                         <span aria-hidden="true" class="timer__label">4分</span>
                       </button>
                       <button
-                        class="setTimeBtn timer__btn timer__preset-btn timer__preset-btn--active"
+                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
                         data-minutes="5"
                         aria-label="5分に設定"
                       >
@@ -147,14 +151,16 @@
                     aria-live="polite"
                   >
                     <!-- // 操作ボタンの背景　アイコン位置調整 -->
-                    <div class="set-buttons">
+                    <div class="set-buttons timer__actions--bg">
                       <!-- グリッド -->
-                      <div class="grid-parent-timer">
+                      <div
+                        class="grid-parent-timer timer__grid--horizontal timer__grid--space"
+                      >
                         <!-- 操作（コントロール）ボタン❶ -->
                         <!-- play stop -->
                         <button
                           id="toggleTimer"
-                          class="timer-toggle timer__btn timer__action-btn"
+                          class="timer-toggle timer__btn timer__action-btn timer__action-play"
                           aria-pressed="false"
                           aria-label="Start"
                           aria-controls="timerPanel"
@@ -162,7 +168,7 @@
                           <!-- 6 play -->
                           <span
                             id="startBtn"
-                            class="icon-play set-button timer__icon timer--running"
+                            class="icon-play set-button timer__icon timer__action-btn--running timer__action-btn--rim"
                           >
                             <svg
                               class="i icon-size"
@@ -179,7 +185,7 @@
                           <!-- 7 stop -->
                           <span
                             id="stopBtn"
-                            class="icon-stop set-button timer__icon timer--paused"
+                            class="icon-stop set-button timer__icon timer__action-btn--paused timer__action-btn--rim"
                           >
                             <svg
                               class="i icon-size"
@@ -203,7 +209,7 @@
                         >
                           <!--  5 　リフレッシュ -->
                           <span
-                            class="icon-refresh set-button icon-size-control timer__icon"
+                            class="icon-refresh set-button timer__icon timer__action-btn--rim"
                           >
                             <svg
                               class="i"
@@ -223,13 +229,13 @@
                         <button
                           aria-label="ミュート"
                           id="muteBtn"
-                          class="volume-toggle timer__btn timer__action-btn"
+                          class="volume-toggle timer__btn timer__action-btn timer__action-volume"
                           aria-pressed="false"
                           aria-controls="timerPanel"
                         >
                           <!-- 2 ON=波線あり-->
                           <span
-                            class="icon-alarm-on set-button icon-size timer__icon timer--alarm-on"
+                            class="icon-alarm-on set-button icon-size timer__icon timer__action-btn--rim timer__action-btn--alarm-on"
                           >
                             <svg
                               class="i"
@@ -245,7 +251,7 @@
                           </span>
                           <!-- 4 MUTE=斜線あり-->
                           <span
-                            class="icon-alarm-off set-button icon-size timer__icon timer--muted"
+                            class="icon-alarm-off set-button icon-size timer__icon timer__action-btn--rim timer__action-btn--muted timer__action-btn--alarm-off"
                           >
                             <svg
                               class="i"
@@ -265,7 +271,7 @@
                   </div>
                   <!-- 操作部ここまで -->
                   <!-- デバッグ中だけ -->
-                  <button id="pingAudio" type="button">🔊 テスト</button>
+                  <!-- <button id="pingAudio" type="button">🔊 テスト</button> -->
                 </div>
               </div>
             </div>

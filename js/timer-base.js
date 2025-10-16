@@ -218,8 +218,8 @@ function syncMuteUI() {
   muteBtn.classList.toggle("is-muted", isMuted);
   muteBtn.classList.toggle("is-active", isMuted);
 
-  const onIcon = muteBtn.querySelector(".icon-alarm-on");
-  const offIcon = muteBtn.querySelector(".icon-alarm-off");
+  const onIcon = muteBtn.querySelector(".timer__action-btn--alarm-on");
+  const offIcon = muteBtn.querySelector(".timer__action-btn--alarm-off");
 
   if (onIcon) onIcon.style.display = isMuted ? "none" : "";
   if (offIcon) offIcon.style.display = isMuted ? "" : "none";
