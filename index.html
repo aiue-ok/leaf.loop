@@ -91,11 +91,11 @@
           <div class="hero__grid">
             <!-- ❶　タイマー -->
             <div class="center hero__slot hero__slot--timer">
-              <div class="timer timer--deco">
+              <div class="timer">
                 <!-- タイマーgrid 親 -->
-                <div class="timer-grid-container">
+                <div class="timer-grid-container timer__grid">
                   <!-- タイマー子①：見えるタイマー表示 -->
-                  <div class="timer1 timer-count-display">
+                  <div class="timer1 timer-count-display timer__screen">
                     <h1
                       id="timer"
                       class="timer_count digits"
@@ -112,11 +112,10 @@
                       aria-atomic="true"
                     ></div>
                   </div>
-                  <!-- デバッグ中だけ -->
-                  <button id="pingAudio" type="button">🔊 テスト</button>
+
                   <!-- タイマー子②：初期設定（プリセット）ボタン -->
                   <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-                  <div class="timer2 buttons">
+                  <div class="timer2 buttons timer__presets">
                     <div class="grid-parent-timer">
                       <button
                         class="setTimeBtn"
@@ -143,7 +142,7 @@
                   </div>
                   <!-- タイマー子③：操作（コントロール）ボタン -->
                   <div
-                    class="timer3 buttons set--buttons"
+                    class="timer3 buttons set--buttons timer__actions"
                     id="timerPanel"
                     aria-live="polite"
                   >
@@ -255,6 +254,8 @@
                     </div>
                   </div>
                   <!-- 操作部ここまで -->
+                  <!-- デバッグ中だけ -->
+                  <button id="pingAudio" type="button">🔊 テスト</button>
                 </div>
               </div>
             </div>
