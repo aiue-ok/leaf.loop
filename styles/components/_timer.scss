@@ -1,7 +1,5 @@
 @use "../core/index" as core;
 
-// 🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄
-// 新規 timer ブロック
 .timer {
   width: 100%;
   min-height: 340px;
@@ -58,13 +56,13 @@
 
       // ch は「0 の幅」を基準にした長さ
       width: 5ch;
-      font-size: clamp(48px, 36.732px + 3.005vw, 80px);
-      line-height: 1.2;
-      background: color-mix(in oklch, var(--milk-white) 5%, transparent);
-      border-radius: 0.6rem;
+      font-size: var(--count-size-normal);
+      line-height: var(--t-txt-line-h);
+      background: var(--count-bg);
+      border-radius: var(--count-radius);
       padding-inline: 0.8rem;
       padding-block: 0.2rem;
-      backdrop-filter: blur(3px) saturate(95%) contrast(92%);
+      backdrop-filter: var(--count-filter);
     }
   }
 
@@ -88,26 +86,21 @@
       display: block;
       white-space: nowrap;
     }
-
-    & button:active {
-      transform: translateY(1px);
-      box-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%),
-        inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
-    }
   }
 
   // * ③ 操作群のラッパー → timer__actions
   &__actions {
     grid-area: controls;
+
+    width: 20vw;
     margin: 0 auto;
 
-    // class="set-buttons" 効いてる⭕️
     &--bg {
       padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-      background: rgb(245 245 245 / 30%);
-      border: 1px solid rgb(245 245 245 / 35%);
-      border-radius: 16px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+      background: var(--action-bg);
+      border: var(--action-line);
+      border-radius: var(--action-radius-m);
+      box-shadow: var(--action-bg-shadow);
     }
   }
 
@@ -120,32 +113,28 @@
     block-size: 44px;
     display: inline-grid;
     place-items: center;
-    color: inherit;
   }
 
-  // * ②の各ボタンに timer__preset-btn を追加。
+  // * ②の各ボタン
   &__preset-btn {
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.8px solid rgb(245 245 245 / 18%);
+    border: var(--preset-line);
 
     /* 円の大きさ */
-    width: core.$setTimeBtn-width;
+    width: var(--preset-btn-width);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    color: inherit;
     text-align: center;
-    background-color: var(--panel);
+    background-color: var(--preset-bg);
 
     // 追加視認性UP
-    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+    filter: var(--preset-shadow);
 
     /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 16%),
-      /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-      /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
+    box-shadow: var(--preset-glass);
     position: relative;
 
     &::before {
@@ -154,31 +143,12 @@
       inset: 2px; /* 内側に1–2pxだけ入れる */
       border-radius: inherit;
       pointer-events: none;
-
-      /* 上半分だけに効く柔らかいグロス */
-      background: linear-gradient(
-        to bottom,
-        rgb(255 255 255 / 28%) 0%,
-        rgb(255 255 255 / 12%) 35%,
-        rgb(255 255 255 / 0%) 60%
-      );
-      mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
-    }
-
-    &:hover {
-      cursor: pointer;
-      color: #110b0fa2;
-      border: solid 2.27px core.$main-color;
-      background-color: core.$main-color;
-      outline: none;
-      box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
-        /* 外側に暗い縁 */ 0 0 0 3px rgb(255 255 255 / 45%),
-        /* その外に明るい縁 */ inset 0 0 0 1px rgb(255 255 255 / 30%),
-        0 8px 24px rgb(0 0 0 / 25%);
+      background: var(--preset-gloss);
+      mask: var(--preset-mask);
     }
   }
 
-  // ③の各ボタンに timer__action-btn を追加
+  // ③の各ボタン
   &__action-btn {
     margin: 0 auto;
 
@@ -186,20 +156,12 @@
     &--rim {
       white-space: nowrap;
       // 追加視認性UP
-      filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+      filter: var(--t-drop-shadow);
 
       /* ほんのり輪郭 */
-      outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+      outline: var(--action-outline);
       outline-offset: -2px;
-      border-radius: 0.5rem;
-    }
-
-    &:hover {
-      cursor: pointer;
-      color: #fff;
-      text-shadow: 0 4px 4px #000;
-      transform: scale(1.02);
-      outline: 2px solid color-mix(in oklab, #fff 35%, transparent);
+      border-radius: var(--action-radius-rim);
     }
   }
 
@@ -210,7 +172,7 @@
     height: 44px;
   }
 
-  // h1 span　など数字/文字を持つ要素
+  // span　など数字/文字を持つ要素
   &__label {
     font-family: "M PLUS 1p", system-ui;
   }
@@ -218,7 +180,7 @@
   // 修飾（状態・見た目）
   // 等幅数字
   &__screen--tnum {
-    font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+    font-family: Inter, system-ui;
 
     // 等幅数字（桁ごとに同じ幅）をON
     font-variant-numeric: tabular-nums; /* 等幅数字 */
@@ -230,13 +192,18 @@
     color: var(--milk-white);
 
     // ※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
-    text-shadow: 0 0 0.03rem rgb(255 255 255 / 55%),
-      /* エッジの微光 */ 0 0 0.18rem rgb(255 255 255 / 30%),
-      /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
+    text-shadow: var(--count-shadow);
   }
 
   // 選択中プリセット → timer__preset-btn--active
   &__preset-btn--active {
+    &:active {
+      color: #110b0fa2;
+      border: var(--preset-bg-accent);
+      background-color: var(--t-main-color);
+      transform: translateY(1px);
+      box-shadow: var(--preset-shadow-accent);
+    }
   }
 
   // timer--running 再生
@@ -259,15 +226,6 @@
 //💎💎💎💎💎💎💎💎💎💎💎💎💎
 // タイマー見た目全体共通
 body {
-  // 🚩
-  // color: var(--timer-main-color);
-
-  // 🚩unsetした高さ　再指定
-  span.icon-size-control- {
-    color: inherit;
-    height: 44px;
-  }
-
   .timer-toggle .icon-stop,
   .volume-toggle .icon-alarm-off,
   .timer__action-btn--paused,
@@ -384,7 +342,7 @@ body {
     // ① 数字ディスプレイのラッパー
     &__screen {
       &--count {
-        font-size: clamp(48px, 6vw, 56px);
+        font-size: var(--count-size-smaller);
       }
     }
     // ② プリセット群のラッパー
@@ -397,7 +355,7 @@ body {
     &__actions {
       &--bg {
         padding: 0;
-        border-radius: 8px;
+        border-radius: var(--action-radius-s);
       }
     }
   }
@@ -419,10 +377,6 @@ body {
         grid-template-rows: 3fr 1fr 1fr;
         gap: clamp(16px, 1.5vmin, 20px);
         align-items: center;
-      }
-
-      &--space {
-        gap: clamp(8px, 2.2vw, 16px);
       }
     }
 
@@ -452,7 +406,7 @@ body {
       min-inline-size: clamp(48px, 11vw, 72px);
       min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
       padding-inline: 0.6rem;
-      line-height: 1.2;
+      line-height: var(--t-txt-line-h);
     }
   }
 }
@@ -505,40 +459,52 @@ body {
       padding: 0 8px;
     }
 
-    &__grid {
-      &--space {
-        gap: clamp(8px, 2.2vw, 16px);
-      }
-    }
-
     &__preset-btn {
       margin: 0; /* ← これが肝！ */
       flex: 0 0 auto; /* 勝手に伸びない */
       min-inline-size: clamp(48px, 11vw, 72px);
       min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
       padding-inline: 0.6rem;
-      border-radius: 999px;
-      line-height: 1.2;
+      // border-radius: 999px;
+      line-height: var(--t-txt-line-h);
     }
   }
 }
 
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
-  .setTimeBtn:hover,
-  .timer__preset-btn:hover {
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 32%),
-      inset 0 10px 24px rgb(255 255 255 / 8%), 0 10px 28px rgb(0 0 0 / 28%);
-    transform: translateY(-0.5px);
+  .timer {
+    // 3/4/5 ボタン
+    &__preset-btn {
+      &:hover {
+        cursor: pointer;
+        color: var(--t-complementary-color);
+        border: var(--preset-bg-accent);
+        background: var(--t-main-color);
+        outline: none;
+        box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
+          /* 外側に暗い縁 */ 0 0 0 3px rgb(255 255 255 / 45%),
+          /* その外に明るい縁 */ inset 0 0 0 1px rgb(255 255 255 / 30%),
+          0 8px 24px rgb(0 0 0 / 25%);
+        transform: translateY(-0.5px);
+      }
+    }
+
+    // 操作ボタン
+    &__action-btn {
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+        text-shadow: 0 4px 4px #000;
+        transform: scale(1.02);
+        outline: var(--action-outline-hover);
+      }
+    }
   }
 }
 
 /* 論理プロパティ非対応ブラウザへのフォールバック */
 @supports not (min-inline-size: 1px) {
-  .preset .btn {
-    min-width: clamp(48px, 11vw, 72px);
-    min-height: clamp(44px, 9vw, 60px);
-  }
   .timer {
     &__preset-btn {
       min-width: clamp(48px, 11vw, 72px);

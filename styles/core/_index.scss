@@ -7,6 +7,7 @@
 @forward "layout";
 @forward "a11y";
 @forward "debag";
+@forward "timer.vars";
 
 // 以後は @use "core/index" as core; とするだけで
 // core.$bp-sm や @include core.down(...) が使える。
