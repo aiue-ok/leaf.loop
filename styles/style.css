@@ -31,10 +31,6 @@
   --hero-veil: 0.4;
   --yanagi-alpha: 0.18;
   --tile-min-h: clamp(56px, 10svh, 128px);
-  /* night-indigo 上で映える柔白（OKLCH） */
-  --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
-  --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
-  --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
   --chip-bg: rgb(255 255 255 / 8%);
   --chip-bg-active: rgb(255 255 255 / 18%);
   --chip-bd: rgb(255 255 255 / 55%);
@@ -53,7 +49,6 @@
   --focus-ring-offset: 2px;
 }
 
-/* フォントサイズは直径に比例 */
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
 /* 使う場所で OKLCH に変換して指定する */
 *,
@@ -611,6 +606,128 @@ summary):focus-visible {
 }
 @layer debug {}
 .timer {
+  --t-main-color: #f5f5f5;
+  --t-complementary-color: #0a0a0a;
+  --t-txt-line-h: 1.2;
+  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+  --milk-white: oklch(96% 0.01 110deg);
+  --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
+  --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
+  --count-size-smaller: clamp(48px, 6vw, 56px);
+  --count-radius: 0.6rem;
+  --count-shadow: 0 0 0.03rem rgb(255 255 255 / 55%),
+    /* エッジの微光 */ 0 0 0.18rem rgb(255 255 255 / 30%),
+    /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
+  --count-filter: blur(3px) saturate(95%) contrast(92%);
+  --preset-btn-width: clamp(3rem, 4vw, 6rem);
+  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  /* 上半分だけに効く柔らかいグロス */
+  --preset-gloss: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 28%) 0%,
+    rgb(255 255 255 / 12%) 35%,
+    rgb(255 255 255 / 0%) 60%
+  );
+  /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
+  --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
+    /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
+    /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
+  --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
+  --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+  --preset-bg-accent: solid 2.27px core.$main-color;
+  --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
+    inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
+  --action-bg: rgb(245 245 245 / 30%);
+  --action-line: 1px solid rgb(245 245 245 / 35%);
+  --action-radius-m: 16px;
+  --action-radius-s: 8px;
+  --action-radius-rim: 0.5rem;
+  --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+  --action-outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
+}
+
+.timer-mini-container {
+  --timer-position: fixed;
+  --timer-left: 1.25rem;
+  --timer-bottom: 1.25rem;
+  --timer-mini-height: max(180px, 17.58vh);
+  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
+  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
+  --gap-g-button: 8px;
+  --gap-g-button-mobile: 5px;
+  --timer-mini-icon-size: 36px;
+  --timer-mini-icon-size-mobile: 28px;
+  --icon-visual: 28px; /* 見た目 */
+  --icon-hit: 44px; /* タップ面 */
+  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
+  --timer-mini-width-mobile: 24px;
+  --timer-mini-aspect-ratio: 1 / 1;
+  --timer-mini-aspect-ratio-mobile: 1 / 2;
+  --timer-mini-border-radius: 50%;
+  --timer-mini-border-radius-mobile: 8px;
+  --timer-mini-border-width: 2.27px;
+  --timer-mini-border-less: 0;
+  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
+  --timer-mini-inline-size: min(36vw, 12rem);
+  --timer-mini-inline-size-mobile: max-content;
+  --timer-mini-vol-label-font-size: 0.9rem;
+  --timer-transition: background 0.3s ease, filter 0.3s ease;
+}
+
+body.gallery .timer,
+body.gallery .timer-mini-container {
+  --timer-main-color: #eae5da;
+  --timer-color-hover: #fff;
+  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
+  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
+  --timer-border-radius: 16px;
+  --timer-border-radius-mobile: 0;
+  --timer-border: 1px solid rgb(234 229 218 / 30%);
+  --timer-border-mobile: none;
+  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  --timer-box-shadow-mobile: none;
+  --timer-background: rgb(14 16 32 / 40%);
+  --timer-background-mobile: transparent;
+  --timer-color: inherit;
+  --timer-backdrop-filter: blur(8px) saturate(140%);
+  --timer-backdrop-filter-mobile: none;
+  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
+  --timer--webkit-backdrop-filter-mobile: none;
+  --timer-hover-background: rgb(14 16 32 / 50%);
+  --timer-mini-preset-background-color: transparent;
+  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
+  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  --timer-hover-container: rgb(255 255 255 70%);
+  --timer-h: clamp(64px, 12vh, 112px);
+}
+
+body.universe .timer,
+body.universe .timer-mini-container {
+  --timer-main-color: #f5f5f5;
+  --timer-color-hover: rgb(205 227 213 / 70%);
+  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
+  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
+  --timer-border-radius: 16px;
+  --timer-border: 1px solid rgb(255 255 255 / 20%);
+  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  --timer-background: rgb(205 227 213 / 70%);
+  --timer-color: inherit;
+  --timer-backdrop-filter: blur(12px);
+  --timer--webkit-backdrop-filter: blur(12px);
+  --timer-hover-background: rgb(245 245 220 / 58.4%);
+  --timer-mini-preset-background-color: transparent;
+  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
+  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  --timer-hover-container: rgb(255 255 255 70%);
+  --timer-h: clamp(64px, 12vh, 112px);
+}
+
+.timer {
   width: 100%;
   min-height: 340px;
   margin: 0 auto;
@@ -650,13 +767,13 @@ summary):focus-visible {
   display: inline-block;
   text-align: center;
   width: 5ch;
-  font-size: clamp(48px, 36.732px + 3.005vw, 80px);
-  line-height: 1.2;
-  background: color-mix(in oklch, var(--milk-white) 5%, transparent);
-  border-radius: 0.6rem;
+  font-size: var(--count-size-normal);
+  line-height: var(--t-txt-line-h);
+  background: var(--count-bg);
+  border-radius: var(--count-radius);
   padding-inline: 0.8rem;
   padding-block: 0.2rem;
-  backdrop-filter: blur(3px) saturate(95%) contrast(92%);
+  backdrop-filter: var(--count-filter);
 }
 .timer__presets {
   grid-area: presets;
@@ -674,20 +791,17 @@ summary):focus-visible {
   display: block;
   white-space: nowrap;
 }
-.timer__presets button:active {
-  transform: translateY(1px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), inset 0 6px 14px rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.22);
-}
 .timer__actions {
   grid-area: controls;
+  width: 20vw;
   margin: 0 auto;
 }
 .timer__actions--bg {
   padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-  background: rgba(245, 245, 245, 0.3);
-  border: 1px solid rgba(245, 245, 245, 0.35);
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: var(--action-bg);
+  border: var(--action-line);
+  border-radius: var(--action-radius-m);
+  box-shadow: var(--action-bg-shadow);
 }
 .timer__btn {
   position: relative;
@@ -697,24 +811,22 @@ summary):focus-visible {
   block-size: 44px;
   display: inline-grid;
   place-items: center;
-  color: inherit;
 }
 .timer__preset-btn {
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0.8px solid rgba(245, 245, 245, 0.18);
+  border: var(--preset-line);
   /* 円の大きさ */
-  width: clamp(3rem, 4vw, 6rem);
+  width: var(--preset-btn-width);
   aspect-ratio: 1/1;
   border-radius: 50%;
-  color: inherit;
   text-align: center;
-  background-color: var(--panel);
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  background-color: var(--preset-bg);
+  filter: var(--preset-shadow);
   /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 8px 20px rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--preset-glass);
   position: relative;
 }
 .timer__preset-btn::before {
@@ -723,35 +835,19 @@ summary):focus-visible {
   inset: 2px; /* 内側に1–2pxだけ入れる */
   border-radius: inherit;
   pointer-events: none;
-  /* 上半分だけに効く柔らかいグロス */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0) 60%);
-  mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
-}
-.timer__preset-btn:hover {
-  cursor: pointer;
-  color: rgba(17, 11, 15, 0.6352941176);
-  border: solid 2.27px #f5f5f5;
-  background-color: #f5f5f5;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  background: var(--preset-gloss);
+  mask: var(--preset-mask);
 }
 .timer__action-btn {
   margin: 0 auto;
 }
 .timer__action-btn--rim {
   white-space: nowrap;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  filter: var(--t-drop-shadow);
   /* ほんのり輪郭 */
-  outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+  outline: var(--action-outline);
   outline-offset: -2px;
-  border-radius: 0.5rem;
-}
-.timer__action-btn:hover {
-  cursor: pointer;
-  color: #fff;
-  text-shadow: 0 4px 4px #000;
-  transform: scale(1.02);
-  outline: 2px solid color-mix(in oklab, #fff 35%, transparent);
+  border-radius: var(--action-radius-rim);
 }
 .timer__icon {
   grid-area: 1/1;
@@ -762,22 +858,25 @@ summary):focus-visible {
   font-family: "M PLUS 1p", system-ui;
 }
 .timer__screen--tnum {
-  font-family: Inter, "Zen Kaku Gothic New", "M PLUS 1p", system-ui;
+  font-family: Inter, system-ui;
   font-variant-numeric: tabular-nums; /* 等幅数字 */
   font-feature-settings: "tnum" 1; /* 念のため保険として */
   font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
   font-weight: 500;
   letter-spacing: 0.0125em;
   color: var(--milk-white);
-  text-shadow: 0 0 0.03rem rgba(255, 255, 255, 0.55), 0 0 0.18rem rgba(255, 255, 255, 0.3), 0 0 0.44rem rgba(255, 255, 255, 0.18); /* 遠くのベール */
+  text-shadow: var(--count-shadow);
+}
+.timer__preset-btn--active:active {
+  color: rgba(17, 11, 15, 0.6352941176);
+  border: var(--preset-bg-accent);
+  background-color: var(--t-main-color);
+  transform: translateY(1px);
+  box-shadow: var(--preset-shadow-accent);
 }
 body {
   /* スクリーンリーダー専用 */
   /* トースト */
-}
-body span.icon-size-control- {
-  color: inherit;
-  height: 44px;
 }
 body .timer-toggle .icon-stop,
 body .volume-toggle .icon-alarm-off,
@@ -866,7 +965,7 @@ body .toast.show {
     align-items: center;
   }
   .timer__screen--count {
-    font-size: clamp(48px, 6vw, 56px);
+    font-size: var(--count-size-smaller);
   }
   .timer__presets {
     width: 100%;
@@ -874,7 +973,7 @@ body .toast.show {
   }
   .timer__actions--bg {
     padding: 0;
-    border-radius: 8px;
+    border-radius: var(--action-radius-s);
   }
 }
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
@@ -889,9 +988,6 @@ body .toast.show {
     grid-template-rows: 3fr 1fr 1fr;
     gap: clamp(16px, 1.5vmin, 20px);
     align-items: center;
-  }
-  .timer__grid--space {
-    gap: clamp(8px, 2.2vw, 16px);
   }
   .timer__screen--display {
     max-width: fit-content;
@@ -909,7 +1005,7 @@ body .toast.show {
     min-inline-size: clamp(48px, 11vw, 72px);
     min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
     padding-inline: 0.6rem;
-    line-height: 1.2;
+    line-height: var(--t-txt-line-h);
   }
 }
 @media screen and (width <= 768px) and (orientation: landscape) {
@@ -944,33 +1040,36 @@ body .toast.show {
     width: 100%;
     padding: 0 8px;
   }
-  .timer__grid--space {
-    gap: clamp(8px, 2.2vw, 16px);
-  }
   .timer__preset-btn {
     margin: 0; /* ← これが肝！ */
     flex: 0 0 auto; /* 勝手に伸びない */
     min-inline-size: clamp(48px, 11vw, 72px);
     min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
     padding-inline: 0.6rem;
-    border-radius: 999px;
-    line-height: 1.2;
+    line-height: var(--t-txt-line-h);
   }
 }
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
-  .setTimeBtn:hover,
   .timer__preset-btn:hover {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32), inset 0 10px 24px rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
+    cursor: pointer;
+    color: var(--t-complementary-color);
+    border: var(--preset-bg-accent);
+    background: var(--t-main-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
     transform: translateY(-0.5px);
+  }
+  .timer__action-btn:hover {
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 0 4px 4px #000;
+    transform: scale(1.02);
+    outline: var(--action-outline-hover);
   }
 }
 /* 論理プロパティ非対応ブラウザへのフォールバック */
 @supports not (min-inline-size: 1px) {
-  .preset .btn {
-    min-width: clamp(48px, 11vw, 72px);
-    min-height: clamp(44px, 9vw, 60px);
-  }
   .timer__preset-btn {
     min-width: clamp(48px, 11vw, 72px);
     min-height: clamp(44px, 9vw, 60px);
