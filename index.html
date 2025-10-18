@@ -93,16 +93,12 @@
             <div class="center hero__slot hero__slot--timer">
               <div class="timer">
                 <!-- タイマーgrid 親 -->
-                <div
-                  class="timer-grid-container timer__grid timer__grid--vertical"
-                >
+                <div class="timer__grid timer__grid--vertical">
                   <!-- タイマー子①：見えるタイマー表示 -->
-                  <div
-                    class="timer1 timer-count-display timer__screen timer__screen--display"
-                  >
+                  <div class="timer__screen timer__screen--display">
                     <h1
                       id="timer"
-                      class="timer_count digits timer__screen--tnum timer__screen--count"
+                      class="timer__screen--tnum timer__screen--count"
                       role="timer"
                       aria-label="お茶のタイマー 残り時間"
                     >
@@ -119,24 +115,24 @@
 
                   <!-- タイマー子②：初期設定（プリセット）ボタン -->
                   <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-                  <div class="timer2 buttons timer__presets">
-                    <div class="grid-parent-timer timer__grid--space">
+                  <div class="timer__presets">
+                    <div class="timer__grid--space">
                       <button
-                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
+                        class="timer__preset-btn timer__preset-btn--active"
                         data-minutes="3"
                         aria-label="3分に設定"
                       >
                         <span aria-hidden="true" class="timer__label">3分</span>
                       </button>
                       <button
-                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
+                        class="timer__preset-btn timer__preset-btn--active"
                         data-minutes="4"
                         aria-label="4分に設定"
                       >
                         <span aria-hidden="true" class="timer__label">4分</span>
                       </button>
                       <button
-                        class="setTimeBtn timer__preset-btn timer__preset-btn--active"
+                        class="timer__preset-btn timer__preset-btn--active"
                         data-minutes="5"
                         aria-label="5分に設定"
                       >
@@ -146,21 +142,19 @@
                   </div>
                   <!-- タイマー子③：操作（コントロール）ボタン -->
                   <div
-                    class="timer3 buttons set--buttons timer__actions"
+                    class="timer__actions"
                     id="timerPanel"
                     aria-live="polite"
                   >
                     <!-- // 操作ボタンの背景　アイコン位置調整 -->
-                    <div class="set-buttons timer__actions--bg">
+                    <div class="timer__actions--bg">
                       <!-- グリッド -->
-                      <div
-                        class="grid-parent-timer timer__grid--horizontal timer__grid--space"
-                      >
+                      <div class="timer__grid--horizontal timer__grid--space">
                         <!-- 操作（コントロール）ボタン❶ -->
                         <!-- play stop -->
                         <button
                           id="toggleTimer"
-                          class="timer-toggle timer__btn timer__action-btn timer__action-play"
+                          class="timer__btn timer__action-btn timer__action-play"
                           aria-pressed="false"
                           aria-label="Start"
                           aria-controls="timerPanel"
@@ -168,10 +162,10 @@
                           <!-- 6 play -->
                           <span
                             id="startBtn"
-                            class="icon-play set-button timer__icon timer__action-btn--running timer__action-btn--rim"
+                            class="timer__icon timer__action-btn--running timer__action-btn--rim"
                           >
                             <svg
-                              class="i icon-size"
+                              class="i"
                               viewBox="0 -960 960 960"
                               aria-hidden="true"
                               focusable="false"
@@ -185,10 +179,10 @@
                           <!-- 7 stop -->
                           <span
                             id="stopBtn"
-                            class="icon-stop set-button timer__icon timer__action-btn--paused timer__action-btn--rim"
+                            class="timer__icon timer__action-btn--paused timer__action-btn--rim"
                           >
                             <svg
-                              class="i icon-size"
+                              class="i"
                               viewBox="0 -960 960 960"
                               aria-hidden="true"
                               focusable="false"
@@ -205,12 +199,10 @@
                         <button
                           id="resetBtn"
                           aria-label="リセット"
-                          class="reset-button set--button timer__btn timer__action-btn"
+                          class="timer__btn timer__action-btn"
                         >
                           <!--  5 　リフレッシュ -->
-                          <span
-                            class="icon-refresh set-button timer__icon timer__action-btn--rim"
-                          >
+                          <span class="timer__icon timer__action-btn--rim">
                             <svg
                               class="i"
                               viewBox="0 -960 960 960"
@@ -229,13 +221,13 @@
                         <button
                           aria-label="ミュート"
                           id="muteBtn"
-                          class="volume-toggle timer__btn timer__action-btn timer__action-volume"
+                          class="timer__btn timer__action-btn timer__action-volume"
                           aria-pressed="false"
                           aria-controls="timerPanel"
                         >
                           <!-- 2 ON=波線あり-->
                           <span
-                            class="icon-alarm-on set-button icon-size timer__icon timer__action-btn--rim timer__action-btn--alarm-on"
+                            class="timer__icon timer__action-btn--rim timer__action-btn--alarm-on"
                           >
                             <svg
                               class="i"
@@ -251,7 +243,7 @@
                           </span>
                           <!-- 4 MUTE=斜線あり-->
                           <span
-                            class="icon-alarm-off set-button icon-size timer__icon timer__action-btn--rim timer__action-btn--muted timer__action-btn--alarm-off"
+                            class="timer__icon timer__action-btn--rim timer__action-btn--muted timer__action-btn--alarm-off"
                           >
                             <svg
                               class="i"
@@ -272,6 +264,45 @@
                   <!-- 操作部ここまで -->
                   <!-- デバッグ中だけ -->
                   <!-- <button id="pingAudio" type="button">🔊 テスト</button> -->
+                  <section id="notify-controls" hidden aria-hidden="true">
+                    <!-- 通知オプション -->
+                    <h2 style="font-size: small">通知テスト</h2>
+                    <h3 style="font-size: small">通知の方法</h3>
+                    <div class="notify-controls" style="font-size: medium">
+                      <label
+                        ><input id="optSound" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >♪
+                        </span>
+                        音で知らせる</label
+                      >
+                      <label
+                        ><input id="optVibrate" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >📱
+                        </span>
+                        バイブで知らせる</label
+                      >
+                      <label
+                        ><input id="optToast" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >🍞
+                        </span>
+                        画面に表示する</label
+                      >
+                      <button
+                        id="testNotify"
+                        type="button"
+                        aria-label="通知をテスト"
+                        class="help-button-look"
+                      >
+                        <span class="help-icon-size" aria-hidden="true"
+                          >▶️
+                        </span>
+                        通知テスト
+                      </button>
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
@@ -516,58 +547,10 @@
               </div>
             </div>
           </div>
-          <section id="notify-controls" hidden aria-hidden="true">
-            <div class="info-hidden">
-              <!-- 通知オプション -->
-              <h2>通知テスト</h2>
-              <h3>通知の方法</h3>
-              <div class="notify-controls">
-                <label
-                  ><input id="optSound" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >sound_sampler
-                  </span>
-                  音で知らせる</label
-                >
-                <label
-                  ><input id="optVibrate" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >mobile_vibrate
-                  </span>
-                  バイブで知らせる</label
-                >
-                <label
-                  ><input id="optToast" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >toast
-                  </span>
-                  画面に表示する</label
-                >
-                <button
-                  id="testNotify"
-                  type="button"
-                  aria-label="通知をテスト"
-                  class="help-button-look"
-                >
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >play_circle
-                  </span>
-                  通知テスト
-                </button>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </section>
+
     <audio
       id="alarmSound"
       src="assets/mp3/alarm.mp3"
