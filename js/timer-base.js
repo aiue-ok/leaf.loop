@@ -257,6 +257,7 @@ window.notify = {
   onTimerDone,
   test: testNotify,
 };
+
 /* ================================
    Audio Unlock Unified Unit (iOS/Safari対応)
    ================================ */

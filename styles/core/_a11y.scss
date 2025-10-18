@@ -29,6 +29,9 @@
   .hero__media-poster {
     display: block !important;
   } /* 念のため明示 */
+  .js-toast {
+    transition: none;
+  }
 }
 
 /* 画面が広い＋動きOKなら動画を解禁 */
