@@ -77,8 +77,8 @@ function showToast(msg) {
   if (!isChecked(optToast, true) || !toast) return;
   toast.textContent = msg;
   toast.hidden = false;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 4000);
+  toast.classList.add("js-toast--visible");
+  setTimeout(() => toast.classList.remove("js-toast--visible"), 4000);
   setTimeout(() => (toast.hidden = true), 4500);
 }
 function announceSR(msg) {

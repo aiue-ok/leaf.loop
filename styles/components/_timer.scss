@@ -274,18 +274,26 @@ body {
     border-radius: 0.75rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    z-index: 30;
-  }
+    transition: opacity 5s ease-in, transform 5s ease-in;
 
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+    &--visible {
+      opacity: 1;
+      transform: translateX(230px) translateY(0);
+      pointer-events: auto;
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    .toast {
-      transition: none;
+    &--success {
+      /* 色味 */
+    }
+
+    &--error {
+      /* 色味 */
+    }
+
+    &.js-toast--visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
   }
 }
