@@ -285,17 +285,17 @@ body {
     display: block;
   }
 
-  /* スクリーンリーダー専用 */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
+  // タイマー JS関係
+  /* 旧）
+body {
+  .is-active { … }
+}
+*/
+  /* 新） */
+  :where(.is-active) {
+    color: var(--accent);
+    background-color: var(--t-main-color);
+    border-radius: 50%;
   }
 
   /* トースト */
