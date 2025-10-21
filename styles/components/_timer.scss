@@ -275,118 +275,13 @@ body {
     // ※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
     text-shadow: var(--count-shadow);
   }
-
-  // 選択中プリセット → timer__preset-btn--active
-  &__preset-btn--active {
-    &:active {
-      color: #110b0fa2;
-      border: var(--preset-bg-accent);
-      background-color: var(--t-main-color);
-      transform: translateY(1px);
-      box-shadow: var(--preset-shadow-accent);
-    }
-  }
-
-  // timer--running 再生
-  &timer__action-btn--running {
-  }
-
-  //  timer--paused　停止
-  &timer__action-btn--paused {
-  }
-
-  //  timer--alarm-on　音量ON
-  &timer__action-btn--alarm-on {
-  }
-
-  //  timer--muted　ミュート
-  &timer__action-btn--paused {
-  }
 }
-
-//💎💎💎💎💎💎💎💎💎💎💎💎💎
-// タイマー見た目全体共通
-body {
-  .timer-toggle .icon-stop,
-  .volume-toggle .icon-alarm-off,
-  .timer__action-btn--paused,
-  .timer__action-btn--muted {
-    display: none;
-  }
-
-  .timer-toggle[aria-pressed="true"] .icon-play-,
-  .volume-toggle[aria-pressed="true"] .icon-alarm-on-,
-  .timer__action-play[aria-pressed="true"] .timer__action-btn--running,
-  .timer__action-volume[aria-pressed="true"] .timer__action-btn--alarm-on {
-    display: none;
-  }
-
-  .timer-toggle[aria-pressed="true"] .icon-stop-,
-  .volume-toggle[aria-pressed="true"] .icon-alarm-off-,
-  .timer__action-play[aria-pressed="true"] .timer__action-btn--paused,
-  .timer__action-volume[aria-pressed="true"] .timer__action-btn--alarm-off {
-    display: block;
-  }
-
-  // タイマー JS関係
-  /* 旧）
-body {
-  .is-active { … }
-}
-*/
-  /* 新） */
-  :where(.is-active) {
-    color: var(--accent);
-    background-color: var(--t-main-color);
-    border-radius: 50%;
-  }
-
-  /* トースト */
-  .toast {
-    position: absolute;
-    left: 50%;
-    top: 1rem;
-
-    // bottom: 1rem;
-    transform: translateX(-50%) translateY(8px);
-    background: rgb(0 0 0 / 84%);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 5s ease-in, transform 5s ease-in;
-
-    &--visible {
-      opacity: 1;
-      transform: translateX(230px) translateY(0);
-      pointer-events: auto;
-    }
-
-    &--success {
-      /* 色味 */
-    }
-
-    &--error {
-      /* 色味 */
-    }
-
-    &.js-toast--visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-  }
-}
-
-// ━━━━━━
 
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
 // 🌳 メイン タイマー
 // centerアイテム1番目：heroタイマー
 // 📍 幅1100px以上の横向き時だけ
 @media screen and (width >= 1100px) and (orientation: landscape) {
-  // 🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄
   // 新規 timer ブロック
   .timer {
     max-width: 21vw;
@@ -409,7 +304,6 @@ body {
 // ━━━━━━
 // 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
 @media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
-  // 🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄
   // 新規 timer ブロック
   .timer {
     padding: 0;
@@ -453,7 +347,6 @@ body {
 
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
 @media screen and (width <= 1024px) and (orientation: portrait) {
-  // 🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄
   // 新規 timer ブロック 縦向き
   .timer {
     width: 100vw;
@@ -502,7 +395,6 @@ body {
 // ━━━━━━
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
-  // 🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄
   // 新規 timer ブロック
   .timer {
     padding: 0;
@@ -527,8 +419,6 @@ body {
       }
     }
 
-    &__screen,
-    &__presets,
     &__actions {
       padding: 0 16px;
     }
