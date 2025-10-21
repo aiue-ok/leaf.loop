@@ -388,24 +388,35 @@ input[type=checkbox] {
     animation-iteration-count: 1 !important;
     transition-duration: 0s !important;
   }
-}
-/* 2) 非必須アニメーションは “完全停止” （ベースの後に置く） */
-@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .hero__media-video {
+    display: none;
+  }
+  .hero__media-poster {
+    display: block;
+  }
+  #background-video {
+    display: none !important;
+  }
   .bg-fade,
   .parallax,
   .word-dissolve {
     animation: none !important;
     transition: none !important;
   }
-}
-/* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
-@media (prefers-reduced-motion: reduce) {
-  .hero__media-video {
-    display: none !important;
+  .js-toast {
+    transition: none;
   }
-  .hero__media-poster {
-    display: block !important;
-  } /* 念のため明示 */
+  .offcanvas,
+  .offcanvas-backdrop {
+    transition: none;
+  }
+  .mini-help__card {
+    transition: none;
+  }
 }
 /* 画面が広い＋動きOKなら動画を解禁 */
 /* stylelint-disable-next-line media-feature-range-notation */
@@ -415,21 +426,6 @@ input[type=checkbox] {
   }
   .hero__media-poster {
     display: none;
-  }
-}
-/* 動きを控えたい人の設定を尊重 */
-@media (prefers-reduced-motion: reduce) {
-  .hero__media-video {
-    display: none;
-  }
-  .hero__media-poster {
-    display: block;
-  }
-}
-/* 動画を控えめにしたいとき（設定済みならそのまま） */
-@media (prefers-reduced-motion: reduce) {
-  #background-video {
-    display: none !important;
   }
 }
 /* 視覚的に隠すがスクリーンリーダーには届く */
@@ -444,19 +440,13 @@ input[type=checkbox] {
   overflow: hidden;
 }
 
-button,
-.timer-controls button {
+button {
   min-width: 44px;
   min-height: 44px;
 }
 
 input[type=range] {
   height: 16px;
-}
-
-/* ベース：フォーカス可能要素 */
-:where(a, button, [role=button], input, select, textarea, summary) {
-  outline: none; /* 自前で制御 */
 }
 
 /* まずは :focus-visible */
@@ -473,19 +463,6 @@ summary):focus-visible {
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px) color-mix(in lab, var(--focus-ring) 35%, transparent);
 }
 
-/* Safariやマウス操作向けの保険（必要ならON） */
-:where(a, button, [role=button], input, select, textarea, summary):focus {
-  outline: var(--focus-ring-width) solid var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
-}
-
-/* motion控えめ */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-}
 /* Windows ハイコントラスト（強制色）対応 */
 @media (forced-colors: active) {
   :where(a, button, [role=button], input, select, textarea, summary):focus,
@@ -534,17 +511,6 @@ summary):focus-visible {
   .nav-tile:focus-visible .nav-tile__media {
     opacity: 1;
   } /* フォーカスで強調 */
-}
-@media (prefers-reduced-motion: reduce) {
-  .bg-fade,
-  .parallax,
-  .word-dissolve {
-    animation: none !important;
-    transition: none !important;
-  }
-  .hero__media-video {
-    display: none !important;
-  } /* どうしても動くなら切る */
 }
 /* テキスト専用の薄い台座：レイアウトは変えない */
 .contrast-pad {
@@ -608,6 +574,7 @@ summary):focus-visible {
 .timer {
   --t-main-color: #f5f5f5;
   --t-complementary-color: #0a0a0a;
+  --t-accent: #e3e3e3;
   --t-txt-line-h: 1.2;
   --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
   --milk-white: oklch(96% 0.01 110deg);
@@ -620,6 +587,7 @@ summary):focus-visible {
     /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
   --count-filter: blur(3px) saturate(95%) contrast(92%);
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
+  --preset-fg: core.$main-color;
   --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
@@ -628,15 +596,25 @@ summary):focus-visible {
     rgb(255 255 255 / 12%) 35%,
     rgb(255 255 255 / 0%) 60%
   );
-  /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
+  /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
     /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
     /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
   --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
   --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+  /* ★ベース★ */
+  --preset-bg-current: var(--preset-bg);
+  --preset-fg-current: var(--preset-fg);
+  --preset-bg-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
+  --preset-bg-active: color-mix(
+    in oklch,
+    var(--milk-white) 6%,
+    rgb(0 0 0 / 5%)
+  );
+  --preset-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
   --action-bg: rgb(245 245 245 / 30%);
   --action-line: 1px solid rgb(245 245 245 / 35%);
   --action-radius-m: 16px;
@@ -727,6 +705,44 @@ body.universe .timer-mini-container {
   --timer-h: clamp(64px, 12vh, 112px);
 }
 
+/* トースト */
+.js-toast {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  width: 240px;
+  height: auto;
+  transform: translateX(0) translateY(0);
+  background: #008000;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 5s ease-in, transform 5s ease-in;
+}
+.js-toast--visible {
+  opacity: 1;
+  transform: translateX(230px) translateY(0);
+  pointer-events: auto;
+}
+.js-toast--success {
+  /* 色味 */
+}
+.js-toast--error {
+  /* 色味 */
+}
+
+body :where(.is-active) {
+  color: var(--t-accent);
+}
+body .js-toast--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .timer {
   width: 100%;
   min-height: 340px;
@@ -798,9 +814,10 @@ body.universe .timer-mini-container {
 }
 .timer__actions--bg {
   padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-  background: var(--action-bg);
   border: var(--action-line);
   border-radius: var(--action-radius-m);
+  width: 100%;
+  background: var(--action-bg);
   box-shadow: var(--action-bg-shadow);
 }
 .timer__btn {
@@ -823,11 +840,15 @@ body.universe .timer-mini-container {
   aspect-ratio: 1/1;
   border-radius: 50%;
   text-align: center;
-  background-color: var(--preset-bg);
+  background: var(--preset-bg-current);
+  color: var(--preset-fg-current);
   filter: var(--preset-shadow);
   /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
   box-shadow: var(--preset-glass);
   position: relative;
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.1s ease, color 0.18s ease;
+  /* 共有状態（hover / is-active / aria-pressed） */
+  /* “選択保持”の方を一段強く */
 }
 .timer__preset-btn::before {
   content: "";
@@ -837,6 +858,19 @@ body.universe .timer-mini-container {
   pointer-events: none;
   background: var(--preset-gloss);
   mask: var(--preset-mask);
+}
+.timer__preset-btn:is(:hover, .is-active, [aria-pressed=true]) {
+  --preset-bg-current: color-mix(
+    in oklch,
+    var(--preset-bg) 18%,
+    rgba(255, 255, 255, 0.337) 6%
+  );
+  --preset-fg-current: var(--t-complementary-color);
+  transform: translateY(-0.5px);
+  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.timer__preset-btn.is-active, .timer__preset-btn[aria-pressed=true] {
+  --preset-bg-current: color-mix(in oklch, var(--preset-bg) 80%, white 20%);
 }
 .timer__action-btn {
   margin: 0 auto;
@@ -848,6 +882,15 @@ body.universe .timer-mini-container {
   outline: var(--action-outline);
   outline-offset: -2px;
   border-radius: var(--action-radius-rim);
+}
+.timer__action-btn--paused, .timer__action-btn--muted {
+  display: none;
+}
+.timer__action-play[aria-pressed=true] .timer__action-btn--running, .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-on {
+  display: none;
+}
+.timer__action-play[aria-pressed=true] .timer__action-btn--paused, .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-off {
+  display: block;
 }
 .timer__icon {
   grid-area: 1/1;
@@ -866,69 +909,6 @@ body.universe .timer-mini-container {
   letter-spacing: 0.0125em;
   color: var(--milk-white);
   text-shadow: var(--count-shadow);
-}
-.timer__preset-btn--active:active {
-  color: rgba(17, 11, 15, 0.6352941176);
-  border: var(--preset-bg-accent);
-  background-color: var(--t-main-color);
-  transform: translateY(1px);
-  box-shadow: var(--preset-shadow-accent);
-}
-body {
-  /* スクリーンリーダー専用 */
-  /* トースト */
-}
-body .timer-toggle .icon-stop,
-body .volume-toggle .icon-alarm-off,
-body .timer__action-btn--paused,
-body .timer__action-btn--muted {
-  display: none;
-}
-body .timer-toggle[aria-pressed=true] .icon-play-,
-body .volume-toggle[aria-pressed=true] .icon-alarm-on-,
-body .timer__action-play[aria-pressed=true] .timer__action-btn--running,
-body .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-on {
-  display: none;
-}
-body .timer-toggle[aria-pressed=true] .icon-stop-,
-body .volume-toggle[aria-pressed=true] .icon-alarm-off-,
-body .timer__action-play[aria-pressed=true] .timer__action-btn--paused,
-body .timer__action-volume[aria-pressed=true] .timer__action-btn--alarm-off {
-  display: block;
-}
-body .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-body .toast {
-  position: absolute;
-  left: 50%;
-  top: 1rem;
-  transform: translateX(-50%) translateY(8px);
-  background: rgba(0, 0, 0, 0.84);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 30;
-}
-body .toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  body .toast {
-    transition: none;
-  }
 }
 
 /* タイマー共通の「色・透明度・ホバー/フォーカス強度」をカスタムプロパティで持つ */
@@ -999,7 +979,9 @@ body .toast.show {
   .timer__presets, .timer__actions {
     width: 100%;
     max-width: 19rem;
-    padding: 0 8px;
+  }
+  .timer__presets--bg, .timer__actions--bg {
+    width: 100%;
   }
   .timer__preset-btn {
     min-inline-size: clamp(48px, 11vw, 72px);
@@ -1026,8 +1008,11 @@ body .toast.show {
   .timer__screen--display {
     max-width: fit-content;
   }
-  .timer__screen, .timer__presets, .timer__actions {
-    padding: 0 16px;
+  .timer__actions {
+    width: 100%;
+  }
+  .timer__actions--bg {
+    width: 100%;
   }
   .timer__screen {
     height: auto;
@@ -1174,10 +1159,6 @@ body .toast.show {
 
 .info-help-card.is-open {
   right: 0;
-}
-
-.info-hidden {
-  display: none;
 }
 
 /* ヘルプエリア w h */
@@ -1371,11 +1352,6 @@ body .toast.show {
   border-radius: 8px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mini-help__card {
-    transition: none;
-  }
-}
 body.hero {
   position: relative;
   isolation: isolate;
