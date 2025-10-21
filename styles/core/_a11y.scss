@@ -8,28 +8,42 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0s !important;
   }
-}
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 
-/* 2) 非必須アニメーションは “完全停止” （ベースの後に置く） */
-@media (prefers-reduced-motion: reduce) {
+  .hero__media-video {
+    display: none;
+  }
+
+  .hero__media-poster {
+    display: block;
+  }
+  #background-video {
+    display: none !important;
+  }
+
   .bg-fade,
   .parallax,
   .word-dissolve {
     animation: none !important;
     transition: none !important;
   }
-}
 
-/* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
-@media (prefers-reduced-motion: reduce) {
-  .hero__media-video {
-    display: none !important;
+  // トースト
+  .js-toast {
+    transition: none;
   }
 
-  .hero__media-poster {
-    display: block !important;
-  } /* 念のため明示 */
-  .js-toast {
+  // サイトメニュー
+  .offcanvas,
+  .offcanvas-backdrop {
+    transition: none;
+  }
+
+  // ヘルプカード
+  .mini-help__card {
     transition: none;
   }
 }
@@ -48,24 +62,6 @@
   }
 }
 
-/* 動きを控えたい人の設定を尊重 */
-@media (prefers-reduced-motion: reduce) {
-  .hero__media-video {
-    display: none;
-  }
-
-  .hero__media-poster {
-    display: block;
-  }
-}
-
-/* 動画を控えめにしたいとき（設定済みならそのまま） */
-@media (prefers-reduced-motion: reduce) {
-  #background-video {
-    display: none !important;
-  }
-}
-
 /* 視覚的に隠すがスクリーンリーダーには届く */
 .sr-only {
   position: absolute;
@@ -78,19 +74,13 @@
   overflow: hidden;
 }
 
-button,
-.timer-controls button {
+button {
   min-width: 44px;
   min-height: 44px;
 }
 
 input[type="range"] {
   height: 16px;
-}
-
-/* ベース：フォーカス可能要素 */
-:where(a, button, [role="button"], input, select, textarea, summary) {
-  outline: none; /* 自前で制御 */
 }
 
 /* まずは :focus-visible */
@@ -108,20 +98,6 @@ input[type="range"] {
   /* 影の補助（任意） */
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
     color-mix(in lab, var(--focus-ring) 35%, transparent);
-}
-
-/* Safariやマウス操作向けの保険（必要ならON） */
-:where(a, button, [role="button"], input, select, textarea, summary):focus {
-  outline: var(--focus-ring-width) solid var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
-}
-
-/* motion控えめ */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
 }
 
 /* Windows ハイコントラスト（強制色）対応 */
@@ -176,19 +152,6 @@ input[type="range"] {
   .nav-tile:focus-visible .nav-tile__media {
     opacity: 1;
   } /* フォーカスで強調 */
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bg-fade,
-  .parallax,
-  .word-dissolve {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .hero__media-video {
-    display: none !important;
-  } /* どうしても動くなら切る */
 }
 
 /* テキスト専用の薄い台座：レイアウトは変えない */
