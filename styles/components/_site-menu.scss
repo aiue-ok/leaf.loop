@@ -186,11 +186,3 @@ nav div.clock-icon {
     height: auto; /* アスペクト比を保持 */
   }
 }
-
-/* 低刺激モード */
-@media (prefers-reduced-motion: reduce) {
-  .offcanvas,
-  .offcanvas-backdrop {
-    transition: none;
-  }
-}
