@@ -187,7 +187,7 @@ resetBtn?.addEventListener("click", () => {
 });
 
 // ===== プリセット（分） =====
-const presetBtns = Array.from(document.querySelectorAll(".setTimeBtn"));
+const presetBtns = Array.from(document.querySelectorAll(".timer__preset-btn"));
 presetBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     presetBtns.forEach((b) => b.classList.remove("is-active"));
