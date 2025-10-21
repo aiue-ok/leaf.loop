@@ -142,9 +142,10 @@ body {
 
     &--bg {
       padding: clamp(4px, 2.592px + 0.376vw, 8px) 0;
-      background: var(--action-bg);
       border: var(--action-line);
       border-radius: var(--action-radius-m);
+      width: 100%;
+      background: var(--action-bg);
       box-shadow: var(--action-bg-shadow);
     }
   }
@@ -381,7 +382,9 @@ body {
     &__actions {
       width: 100%;
       max-width: 19rem;
-      padding: 0 8px;
+      &--bg {
+        width: 100%;
+      }
     }
 
     // setTimeBtn 3/4/5
@@ -421,7 +424,10 @@ body {
     }
 
     &__actions {
-      padding: 0 16px;
+      width: 100%;
+      &--bg {
+        width: 100%;
+      }
     }
 
     &__screen {
