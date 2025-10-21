@@ -9,6 +9,7 @@
   // 色　タイマー　メインカラー　（hero）
   --t-main-color: #f5f5f5;
   --t-complementary-color: #0a0a0a;
+  --t-accent: #e3e3e3;
 
   // line-height:
   // h1 & preset-btn
@@ -36,7 +37,8 @@
   // ◆◇　プリセット　　◆◇
   // タイマーボタン正円セット
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
-  // 3/4/5分の円ボタン
+  //★ 3/4/5分の円ボタン★
+  --preset-fg: core.$main-color;
   --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
@@ -46,7 +48,7 @@
     rgb(255 255 255 / 0%) 60%
   );
 
-  /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
+  /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
     /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
     /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
@@ -56,9 +58,19 @@
   // プリセット border 線
   --preset-line: 0.8px solid rgb(245 245 245 / 18%);
   // プリセット　アクティブ・ホバー
+  /* ★ベース★ */
+  --preset-bg-current: var(--preset-bg);
+  --preset-fg-current: var(--preset-fg);
+  --preset-bg-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
+  --preset-bg-active: color-mix(
+    in oklch,
+    var(--milk-white) 6%,
+    rgb(0 0 0 / 5%)
+  );
+  --preset-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
 
   // ◆◇ 操作部　◆◇
   // ③ 操作群のラッパーの背景
