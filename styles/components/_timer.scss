@@ -1,46 +1,47 @@
 @use "../core/index" as core;
-  /* トースト */
-  .js-toast {
-    position: fixed;
-    right: 1rem;
-    top: 1rem;
-    width: 240px;
-    height: auto;
-    transform: translateX(0) translateY(0);
-    background: #008000;
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 5s ease-in, transform 5s ease-in;
 
-    &--visible {
-      opacity: 1;
-      transform: translateX(230px) translateY(0);
-      pointer-events: auto;
-    }
+/* トースト */
+.js-toast {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  width: 240px;
+  height: auto;
+  transform: translateX(0) translateY(0);
+  background: #008000;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 5s ease-in, transform 5s ease-in;
 
-    &--success {
-      /* 色味 */
-    }
-
-    &--error {
-      /* 色味 */
-    }
-
-    &.js-toast--visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
+  &--visible {
+    opacity: 1;
+    transform: translateX(230px) translateY(0);
+    pointer-events: auto;
   }
+
+  &--success {
+    /* 色味 */
+  }
+
+  &--error {
+    /* 色味 */
+  }
+}
 
 // タイマーJS関係
 body {
   :where(.is-active) {
     color: var(--t-accent);
+  }
+
+  .js-toast--visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 }
 
