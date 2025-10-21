@@ -36,6 +36,12 @@
       transform: translateY(0);
     }
   }
+
+// タイマーJS関係
+body {
+  :where(.is-active) {
+    color: var(--t-accent);
+  }
 }
 
 .timer {
@@ -166,7 +172,8 @@
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     text-align: center;
-    background-color: var(--preset-bg);
+    background: var(--preset-bg-current);
+    color: var(--preset-fg-current);
 
     // 追加視認性UP
     filter: var(--preset-shadow);
@@ -174,6 +181,8 @@
     /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
     box-shadow: var(--preset-glass);
     position: relative;
+    transition: background 0.18s ease, box-shadow 0.18s ease,
+      transform 0.1s ease, color 0.18s ease;
 
     &::before {
       content: "";
@@ -183,6 +192,25 @@
       pointer-events: none;
       background: var(--preset-gloss);
       mask: var(--preset-mask);
+    }
+
+    /* 共有状態（hover / is-active / aria-pressed） */
+    &:is(:hover, .is-active, [aria-pressed="true"]) {
+      --preset-bg-current: color-mix(
+        in oklch,
+        var(--preset-bg) 18%,
+        rgba(255, 255, 255, 0.337) 6%
+      );
+      --preset-fg-current: var(--t-complementary-color);
+      transform: translateY(-0.5px);
+      box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
+        0 0 0 3px rgb(255 255 255 / 45%), inset 0 0 0 1px rgb(255 255 255 / 30%),
+        0 8px 24px rgb(0 0 0 / 25%);
+    }
+    /* “選択保持”の方を一段強く */
+    &.is-active,
+    &[aria-pressed="true"] {
+      --preset-bg-current: color-mix(in oklch, var(--preset-bg) 80%, white 20%);
     }
   }
 
@@ -201,6 +229,21 @@
       outline-offset: -2px;
       border-radius: var(--action-radius-rim);
     }
+
+    &--paused,
+    &--muted {
+      display: none;
+    }
+  }
+
+  &__action-play[aria-pressed="true"] .timer__action-btn--running,
+  &__action-volume[aria-pressed="true"] .timer__action-btn--alarm-on {
+    display: none;
+  }
+
+  &__action-play[aria-pressed="true"] .timer__action-btn--paused,
+  &__action-volume[aria-pressed="true"] .timer__action-btn--alarm-off {
+    display: block;
   }
 
   // SVGを包む <span> に timer__icon
