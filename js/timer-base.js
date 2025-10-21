@@ -5,7 +5,6 @@ const liveDone = document.getElementById("finalLive"); // 最終告知 (aria-liv
 const live = document.getElementById("timerLive"); // tick用 (aria-live)
 const disp = document.getElementById("timer"); // h1を表示先に固定
 
-// いちばん上付近に置く（上書きOKの保険）
 window.ensureAudioUnlocked ??= async () => true;
 
 // ===== デバッグUIの表示（?debug=1 で表示）=====
@@ -217,6 +216,8 @@ function syncMuteUI() {
   muteBtn.setAttribute("aria-pressed", String(isMuted));
   muteBtn.classList.toggle("is-muted", isMuted);
   muteBtn.classList.toggle("is-active", isMuted);
+  muteBtn.setAttribute("aria-label", isMuted ? "ミュート解除" : "ミュート");
+  muteBtn.title = isMuted ? "ミュート解除" : "ミュート";
 
   const onIcon = muteBtn.querySelector(".timer__action-btn--alarm-on");
   const offIcon = muteBtn.querySelector(".timer__action-btn--alarm-off");
