@@ -39,9 +39,6 @@ function say(msg, node = live) {
 // === 状態 ===
 let isRunning = false; // 単一の真偽値に寄せる（timerId連動でもOK）
 const toggleBtn = document.getElementById("toggleTimer");
-// === 状態 ===
-let isRunning = false; // 単一の真偽値に寄せる（timerId連動でもOK）
-const toggleBtn = document.getElementById("toggleTimer");
 // ===== ボタン（状態表示）=====
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
@@ -62,7 +59,6 @@ const optToast = document.getElementById("optToast");
 const isChecked = (el, def = true) => (el ? !!el.checked : def);
 
 // ===== 通知系 =====
-// === タイマー完了時・外部停止時にもUIを同期 ===
 // === タイマー完了時・外部停止時にもUIを同期 ===
 function playDing() {
   if (!ding) return;
@@ -114,40 +110,9 @@ function onTimerDone() {
   showToast(msg);
   announceSR(msg);
   stopTimerUnified(); // 状態とUIを確実に止める
-  stopTimerUnified(); // 状態とUIを確実に止める
 }
 
 // ===== ボタン動作 =====
-// startBtn?.addEventListener("click", async () => {
-//   await window.ensureAudioUnlocked();
-//   if (!timerId) {
-//     setTransportState("start");
-//     tickOnce();
-//   }
-// });
-// stopBtn?.addEventListener("click", () => {
-//   if (timerId) {
-//     clearTimeout(timerId);
-//     timerId = null;
-//   }
-//   setTransportState("stop");
-// });
-
-function updateToggleUI(running) {
-  isRunning = !!running;
-  toggleBtn.setAttribute("aria-pressed", String(isRunning));
-  toggleBtn.setAttribute("aria-label", isRunning ? "Stop" : "Start");
-}
-
-// === 開始・停止を一本化 ===
-function startTimerUnified() {
-  if (timerId) return; // 二重開始を防止
-  setTransportState("start");
-  tickOnce();
-  updateToggleUI(true);
-}
-
-function stopTimerUnified() {
 // startBtn?.addEventListener("click", async () => {
 //   await window.ensureAudioUnlocked();
 //   if (!timerId) {
@@ -232,16 +197,12 @@ presetBtns.forEach((btn) => {
     // === 開始・停止を一本化 ===
     function startTimerUnified() {
       if (timerId) return;
-    // === 開始・停止を一本化 ===
-    function startTimerUnified() {
-      if (timerId) return;
       clearTimeout(timerId);
       timerId = null;
     }
     updateDisplay();
     say(`${minutes}分に設定`);
     setTransportState(); // idle
-    updateToggleUI(false);
     updateToggleUI(false);
   });
 });
