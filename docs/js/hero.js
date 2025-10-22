@@ -1,6 +1,6 @@
 // 回線状況で静止画にフォールバック
-const v = document.querySelector(".hero-video");
-const p = document.querySelector(".hero-poster");
+const v = document.querySelector(".hero__media-video");
+const p = document.querySelector(".hero__media-poster");
 const conn =
   navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
@@ -12,7 +12,7 @@ if (slow) {
 
 const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 if (mediaQuery.matches) {
-  const v = document.querySelector(".hero-video");
+  const v = document.querySelector(".hero__media-video");
   if (v) {
     v.pause();
     v.currentTime = 0;

@@ -48,7 +48,6 @@
     }
   });
   close.addEventListener("click", (e) => {
-    console.log("close");
     shutdown();
   });
 })();
