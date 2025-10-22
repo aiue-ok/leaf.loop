@@ -8,27 +8,60 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0s !important;
   }
-}
 
-/* 2) 非必須アニメーションは “完全停止” （ベースの後に置く） */
-@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hero__media-video {
+    display: none;
+  }
+
+  .hero__media-poster {
+    display: block;
+  }
+
+  #background-video {
+    display: none !important;
+  }
+
   .bg-fade,
   .parallax,
   .word-dissolve {
     animation: none !important;
     transition: none !important;
   }
-}
 
-/* 3) ヒーロー動画は切ってポスター優先（同じく後に置く） */
-@media (prefers-reduced-motion: reduce) {
-  .hero-video {
-    display: none !important;
+  // トースト
+  .js-toast {
+    transition: none;
   }
 
-  .hero-poster {
-    display: block !important;
-  } /* 念のため明示 */
+  // サイトメニュー
+  .offcanvas,
+  .offcanvas-backdrop {
+    transition: none;
+  }
+
+  // ヘルプカード
+  .mini-help__card {
+    transition: none;
+  }
+}
+
+/* 画面が広い＋動きOKなら動画を解禁 */
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (width >= 768px) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__media-video {
+      display: block;
+    }
+
+    .hero__media-poster {
+      display: none;
+    }
+  }
 }
 
 /* 視覚的に隠すがスクリーンリーダーには届く */
@@ -43,14 +76,48 @@
   overflow: hidden;
 }
 
-button,
-.timer-controls button {
+button {
   min-width: 44px;
   min-height: 44px;
 }
 
 input[type="range"] {
   height: 16px;
+}
+
+/* まずは :focus-visible */
+:where(
+    a,
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary
+  ):focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+
+  /* 影の補助（任意） */
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
+    color-mix(in lab, var(--focus-ring) 35%, transparent);
+}
+
+/* Windows ハイコントラスト（強制色）対応 */
+@media (forced-colors: active) {
+  :where(a, button, [role="button"], input, select, textarea, summary):focus,
+  :where(
+      a,
+      button,
+      [role="button"],
+      input,
+      select,
+      textarea,
+      summary
+    ):focus-visible {
+    outline-color: CanvasText !important;
+    box-shadow: none !important;
+  }
 }
 
 :focus-visible {
@@ -60,24 +127,35 @@ input[type="range"] {
   border-radius: 12px;
 }
 
-/* キーボード操作での見やすいフォーカス */
-.hover-link:focus-visible span {
-  outline: 2px solid rgb(255 255 255 / 90%);
-  outline-offset: 4px;
-  border-radius: 6px;
+/* キーボード操作にも効かせる（アクセシビリティ） */
+.nav-tile:focus-visible .nav-tile__media {
+  opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .bg-fade,
-  .parallax,
-  .word-dissolve {
-    animation: none !important;
-    transition: none !important;
+.nav-tile:focus-visible .nav-tile__text {
+  text-decoration: underline;
+  filter: brightness(1.1);
+}
+
+/* hover可能端末だけ見た目の変化を強める */
+@media (hover: hover) {
+  .nav-tile:hover .nav-tile__media {
+    opacity: 1;
   }
 
-  .hero-video {
-    display: none !important;
-  } /* どうしても動くなら切る */
+  .nav-tile:hover .nav-tile__text {
+    text-decoration: underline;
+    filter: brightness(1.1);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .nav-tile .nav-tile__media {
+    opacity: 0.6;
+  } /* 常時うっすら */
+  .nav-tile:focus-visible .nav-tile__media {
+    opacity: 1;
+  } /* フォーカスで強調 */
 }
 
 /* テキスト専用の薄い台座：レイアウトは変えない */
@@ -90,7 +168,7 @@ input[type="range"] {
   position: absolute;
   inset: -0.01em;
 
-  // text-shadow: 10px 10px 2px rgba(0, 0, 0, 0.28); /* 初期は28%の黒ベール */
+  // text-shadow: 10px 10px 2px rgb(0 0 0 / 0.28); /* 初期は28%の黒ベール */
   background: rgb(0 0 0 / 28%); /* 初期は28%の黒ベール */
   border-radius: 0.2em;
   filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
@@ -117,28 +195,30 @@ input[type="range"] {
 }
 
 /* 文字の背後に細い帯（行の高さ分だけ） */
-.contrast-underline {
+.contrast-underline,
+.u-contrast-underline {
   display: inline-block;
   padding: 0.45em 0.8em;
   border-radius: clamp(10px, 3.5vw, 14px); /* 横向きでも過度に丸すぎない */
-  // color: #fff;
+
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
   backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
 
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), var(--glass-shadow);
+  text-shadow: 0 1px 1px rgb(0 0 0 / 25%);
   max-inline-size: 28ch; /* 行が伸びすぎないように */
   text-wrap: balance; /* 気持ちよく改行 */
 }
+
 /* 横向きは半歩フラットにして読みやすさ優先 */
 @media (orientation: landscape) and (max-width: 736px) {
-  .contrast-underline {
+  .contrast-underline,
+  .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), var(--glass-shadow);
   }
 }

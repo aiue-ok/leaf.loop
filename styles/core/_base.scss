@@ -15,6 +15,9 @@
 }
 
 html {
+  font-family: var(--ff-jp);
+  font-kerning: normal;
+  text-rendering: optimizelegibility;
   font-size: 16px;
 
   // オートテキスト拡大
@@ -22,13 +25,20 @@ html {
 }
 
 /* HTMLとbodyの高さを100%に設定 */
-body,
-html {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-y: scroll;
+  overflow: hidden scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  } /* clipの方がわずかに安全 */
 }
 
 a {
@@ -47,6 +57,10 @@ input {
   padding: 0;
   box-sizing: border-box;
 }
+
+// --------------------
+// google fonts
+// --------------------
 
 /* Zen Maru Gothic: CSS class */
 .zen-maru-gothic-regular {
@@ -74,13 +88,6 @@ input {
   font-style: normal;
 }
 
-/* IBM Plex Sans JP: CSS class */
-.ibm-plex-sans-jp-regular {
-  font-family: "IBM Plex Sans JP", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 /* Kiwi Maru: CSS class */
 .kiwi-maru-regular {
   font-family: "Kiwi Maru", serif;
@@ -102,39 +109,59 @@ input {
   font-style: normal;
 }
 
-.kosugi-maru-regular {
-  font-family: "Kosugi Maru", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 .font {
   font-family: "游ゴシック体", "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
   font-weight: 300;
   margin: 0;
 }
 
-/* テキスト共通 */
-.text {
-  display: flex;
-  flex-direction: column;
-
-  /* 全体に高さを与える */
-  justify-content: center;
-  align-items: center;
-}
+// --------------------
+// アイコン
+// --------------------
 
 /* タイマー操作部分のgoogleアイコン */
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
+// .material-symbols-outlined {
+//   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+// }
 
 /* アイコンサイズを上書きする */
-span.icon-size {
-  font-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
+
+// svg {
+//   display: block;
+//   inline-size: 100%;
+//   block-size: 100%;
+//   fill: currentColor;
+// }
+
+// 共通ルールは「サイズはCSS」「色はcurrentColor」「装飾は読み上げ除外」。まずは共通CSS：
+
+/* 汎用アイコンの基本 */
+.i {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: -0.125em;
 }
+
+/* サイズ違いが欲しい時 */
+// フッター
+.i.i-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.i.i-32 {
+  width: 32px;
+  height: 32px;
+}
+
+// ノーマル
+.i.i-44 {
+  width: 44px;
+  height: 44px;
+}
+
+// --------------------
+// 通知テスト
+// --------------------
 
 /* base.scss の下の方に追加（all:unset の“あと”に書く） */
 input[type="checkbox"] {
@@ -151,7 +178,7 @@ input[type="checkbox"] {
 
 /* デバッグ時だけ出したいなら：html[data-debug="1"]
 .notify-controls { display:flex } */
-：html[data-debug="1"] {
+:html[data-debug="1"] {
   .notify-controls {
     display: flex;
   }

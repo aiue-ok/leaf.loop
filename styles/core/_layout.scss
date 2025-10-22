@@ -8,12 +8,12 @@
   align-items: center;
 }
 
-// 💡 1. 横幅：基本は % や max-width
-.container-off {
-  width: 100%;
-  max-width: 1200px; /* デスクトップで広がりすぎないように制限 */
-  margin: 0 auto;
-  padding: 0 16px; /* 横に余白 */
+/* テキスト共通中央寄せ */
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 // これだけで モバイル〜デスクトップまで柔軟に拡がる幅が作れます。
@@ -35,6 +35,7 @@
   justify-content: center;
 }
 
+// タイマー3/4/5 ＆　操作ボタン 旧
 .grid-parent-timer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -53,25 +54,11 @@
   text-align: center;
 }
 
-// SCSS（ブレイクポイント＋向きで切替）メモ
-@media screen and (orientation: landscape) {
-}
-
-// 📍 幅1100px以上の横向き時だけ
-@media screen and (width >= 1100px) and (orientation: landscape) {
-  body.hero {
-  }
-}
-
-// 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
-@media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
-  body.hero {
-  }
-}
-
-// 幅1024px（スマホたて向き）以下
-@media (width <= 1024px) and (orientation: portrait) {
-  body.hero {
+/* iOSノッチ配慮（任意） */
+@supports (padding: max(0px)) {
+  body.hero .hero__slot {
+    padding-left: max(clamp(12px, 2vw, 28px), env(safe-area-inset-left));
+    padding-right: max(clamp(12px, 2vw, 28px), env(safe-area-inset-right));
   }
 }
 
@@ -86,11 +73,24 @@
     }
 
     body.hero {
-      padding-left: max(1rem, var(--safe-left));
-      padding-right: max(1rem, var(--safe-right));
-      padding-top: max(0.5rem, var(--safe-top));
-      padding-bottom: max(0.75rem, var(--safe-bottom));
+      padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right))
+        max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
       min-height: 100dvh; /* ここもdvh */
     }
+  }
+}
+
+/* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
+@supports (height: 100dvh) {
+  // 新　残す方
+  .hero .hero__grid {
+    min-height: 100dvh;
+  }
+}
+
+@supports (font-synthesis-weight: none) {
+  /* ブラウザの自動太字合成で揺れないように */
+  html {
+    font-synthesis-weight: none;
   }
 }

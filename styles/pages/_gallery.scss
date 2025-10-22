@@ -9,10 +9,12 @@
 // ─────────────────────────────
 
 body.gallery {
+  border: core.$test1;
+
   --timer-h: clamp(64px, 12vh, 112px); /* 端末に応じて伸び縮み */
   // core.$color-bg-base: #eae5da; // コズミックラテ（ベース）
-  background-color: core.$color-bg-base;
-  color: core.$g-col-blueblack;
+  // background-color: core.$color-bg-base;
+  // color: core.$g-col-blueblack;
   font-family: "Zen Kaku Gothic New", sans-serif;
 
   /* iOSのセーフエリアも考慮 */
@@ -22,10 +24,20 @@ body.gallery {
 
   main {
     // padding-bottom: 10rem;
+    border: core.$test2;
+  }
+
+  // あとで消す
+  h1,
+  h2 {
+    color: blue;
+    background-color: rgb(255 218 185 / 41.6%);
+    display: inline-block;
   }
 
   h2 {
     font-weight: 400;
+    background-color: core.$test-bg1;
   }
 
   .menu-btn .material-icons {
@@ -103,7 +115,7 @@ body.gallery {
   }
 
   // Lightbox画像
-
+  // ─────────────────────────────
   .lightbox {
     display: flex;
     justify-content: center;
@@ -301,17 +313,17 @@ body.gallery {
   }
 
   /* ミニカードの箱（ギャラリー専用背景） */
-  .timer-grid-container {
-    background: rgb(14 16 32 / 40%);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 20%),
-      inset 0 0 0 1px rgb(255 255 255 / 35%);
-    border: 1px solid rgb(234 229 218 / 30%);
-  }
+  // .timer-grid-container {
+  //   background: rgb(14 16 32 / 40%);
+  //   box-shadow: 0 4px 12px rgb(0 0 0 / 20%),
+  //     inset 0 0 0 1px rgb(255 255 255 / 35%);
+  //   border: 1px solid rgb(234 229 218 / 30%);
+  // }
 
   /* カウント */
-  .timer1 h1 {
-    text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
-  }
+  // .timer1 h1 {
+  //   text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+  // }
 } // 🛑
 
 @media (width <= 600px) {
@@ -348,17 +360,63 @@ body.gallery {
     // background-color: #f8f8f8;
     main {
       padding-bottom: 0;
+
+      // グリーン
+      background-color: core.$test-bg3;
     }
 
+    // 横スクロール可能な1行表示 試し中
+    // 写真用箱div 親
+    .photo-container {
+      display: grid;
+
+      // grid-template-rows: 1fr;
+      overflow-x: auto;
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(330px, 1fr)
+      ); /* アイテム幅を200px以上で複数列に */
+
+      grid-auto-flow: column; /* アイテムを列方向に配置する */
+      grid-auto-rows: 350px; /* 各アイテムの行の高さ */
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem 3%;
+
+      // gap: 1rem;
+      // width: 90dvw;
+      // max-height: 90vh;
+      padding: 0;
+      margin-top: 2rem;
+      background-color: orange;
+    }
+
+    // 写真１枚の箱div 子
+    .photo-box {
+      border: white 1px solid;
+      position: relative;
+      width: 8.75rem;
+      height: 8.75rem;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 2px 2px 6px rgb(0 0 0 / 10%);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      overflow: hidden;
+    }
+
+    // 見出し・headerに入れてもいいし
+
     h1 {
-      margin-left: 2rem;
+      // margin-left: 2rem;
       font-size: 1rem;
     }
 
     h2 {
       margin-top: 0.2rem;
       font-size: 0.8rem;
-      margin-left: 2rem;
+
+      // margin-left: 2rem;
     }
   } // 消すな
 } // 🛑
@@ -369,6 +427,7 @@ body.gallery {
   body.gallery {
     main {
       padding-bottom: 6rem;
+      background-color: core.$test-bg4;
     }
 
     h1 {

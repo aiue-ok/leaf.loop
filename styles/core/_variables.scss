@@ -1,52 +1,77 @@
 // 色、フォントサイズ、transitionなど
+@supports (height: 1dvh) {
+  :root {
+    --vh: 1dvh;
+  } /* 新しいdvhが使える環境では上書き */
+}
 
 :root {
   /* まずはビューポート単位のフォールバック変数 */
   --vh: 1svh;
 
-  @supports (height: 1dvh) {
-    :root {
-      --vh: 1dvh;
-    } /* 新しいdvhが使える環境では上書き */
+  /* ベース文字 */
+  // フォント切り替え時のレイアウト揺れ（CLS）を抑える
 
-    /* ベース文字 */
-    // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
-    // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
-    --fs: clamp(16px, 1.111vw, 32px);
-    --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
+  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
+  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
+    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
 
-    /* 余白（例：内側パディング 16→32） */
-    --pad: clamp(16px, 1.111vw, 32px);
+  /* 欧文/数字はInterを第一候補に */
+  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
+    sans-serif;
 
-    /* 行間なども同様に */
-    --gap: clamp(8px, 0.7vw, 16px);
-    --hero-veil: 0.4;
-    --yanagi-alpha: 0.18;
+  /* 見出しの柔らかい表情用（必要な所だけに限定） */
+  --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
 
-    // タイマー表示
+  // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
+  // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
+  --fs: clamp(16px, 1.111vw, 32px);
+  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
 
-    /* night-indigo 上で映える柔白（OKLCH） */
-    --milk-white: oklch(96% 0.01 110deg); /* #fffより柔らかい */
-    --stroke: rgb(255 255 255 / 20%); /* 0.30 → 0.20 に */
-    --panel: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
 
-    // notify-controls “プリセット風チップUI”
-    --chip-bg: rgb(255 255 255 / 8%);
-    --chip-bg-active: rgb(255 255 255 / 18%);
-    --chip-bd: rgb(255 255 255 / 55%);
-    --chip-bd-active: rgb(255 255 255 / 85%);
+  // iPhone横向き専用“安全マクロ”
+  // ツールバー・ノッチ・セーフエリアを全部飲み込むプリセット。
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 
-    /* Theme: default = charcoal leaf */
-    --help-bg: rgb(12 14 16 / 78%);
-    --help-fg: #eaeaea;
-    --help-h: #fff;
-    --help-border: rgb(255 255 255 / 12%);
-    --help-icon: #b4d2ea;
-  }
+  /* 行間なども同様に */
+  --space-2: 1rem;
+  --gap: clamp(8px, 0.7vw, 16px);
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
+
+  // タイマー表示
+
+  // タイル
+  --tile-min-h: clamp(56px, 10svh, 128px);
+
+  // notify-controls “プリセット風チップUI”
+  --chip-bg: rgb(255 255 255 / 8%);
+  --chip-bg-active: rgb(255 255 255 / 18%);
+  --chip-bd: rgb(255 255 255 / 55%);
+  --chip-bd-active: rgb(255 255 255 / 85%);
+
+  /* Theme: default = charcoal leaf */
+  --help-bg: rgb(12 14 16 / 78%);
+  --help-fg: #eaeaea;
+  --help-h: #fff;
+  --help-border: rgb(255 255 255 / 12%);
+  --help-icon: #b4d2ea;
+
   // border/blur/影の係数
-  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border: rgb(255 255 255 / 18%);
   --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --glass-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+
+  // fucus-visible
+  --focus-ring: #f5f5f5;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 }
 
 $main-color: #f5f5f5;
@@ -66,36 +91,11 @@ $icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
 $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
 
 // $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: #eef4f0;
 
-// タイマーボタン正円セット
-// aspect-ratio: 1 / 1;
-// border-radius:50%
-$setTimeBtn-width: clamp(3rem, 4vw, 6rem);
-
-/* フォントサイズは直径に比例 */
-$setTimeBtn-font-size: clamp(1rem, 1.5vw, 2rem);
 $volume-control-slider-background: #f5f5f560;
-
-// test用ボーダー
-// border:core.$test;
-$test1: 1px solid rgb(255 0 0 / 35.6%);
-$test2: 1px solid rgb(255 200 0);
-$test3: 1px solid rgb(0 251 255);
-$test4: 1px solid rgb(255 0 238);
-
-// background:core.$test-bg1;
-$test-bg1: rgb(200 255 0 / 40%);
-$test-bg2: rgb(69 110 198 / 40%);
-$test-bg3: rgb(44 251 48 / 70%);
-$test-bg4: rgb(255 0 64 / 30%);
 
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
-
-// アイコンサイズ 最小44px,最大56px
-$icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
-$icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
 
 // スマホ両脇
 // 16〜20px + safe-area
@@ -117,6 +117,7 @@ $z-back: -1;
 $z-main: 0;
 $z-front: 1;
 $z-closer: 2;
+$z-nav: 0;
 
 // === 各ページ ===
 // ヘルプカード
@@ -141,14 +142,6 @@ $MossShadow: #a3b2a1;
 // $Silence White:#ffffff	基本の白。本文背景・余白などに使用
 $SilenceWhite: #fff;
 
-// タイマーボタン正円セット
-// aspect-ratio: 1 / 1;
-// border-radius:50%
-$setTimeBtn-width: clamp(3rem, 4vw, 6rem);
-
-/* フォントサイズは直径に比例 */
-$setTimeBtn-font-size: clamp(1rem, 1.5vw, 2rem);
-
 // 4) 既存トークンを活かす小ワザ
 // 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
 
@@ -166,160 +159,3 @@ $setTimeBtn-font-size: clamp(1rem, 1.5vw, 2rem);
 // ▽入力画像の彩度　 saturate()
 $saturate-normal: saturate(140%);
 $saturate-hover: saturate(130%);
-
-// ════════════════════════════════
-// ✨サイズセット（ミニタイマー共通サイズ設定）
-// ════════════════════════════════
-// ❓ 使い方：var(--accent-color)で使う
-.timer,
-.timer-mini-container {
-  --timer-position: fixed;
-  --timer-left: 1.25rem;
-  --timer-bottom: 1.25rem;
-
-  //   w360px h180px　ビューポートに依る
-  //   width: 22.5rem;height: 11.25rem;
-  // --timer-mini-width: clamp(360px, 25vw, 380px);
-  --timer-mini-height: max(180px, 17.58vh);
-
-  // z-index: 5;
-  // カウントダウン表示　００：００
-  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
-
-  // ボタンの配置間隔
-  --gap-g-button: 8px;
-  --gap-g-button-mobile: 5px;
-
-  // アイコンfont
-  --timer-mini-icon-size: 36px;
-  --timer-mini-icon-size-mobile: 28px;
-  --icon-visual: 28px; /* 見た目 */
-  --icon-hit: 44px; /* タップ面 */
-  // プリセットボタンの円    /* 円の大きさ */
-  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 24px;
-  --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-aspect-ratio-mobile: 1 / 2;
-  --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 8px;
-  --timer-mini-border-width: 2.27px;
-  --timer-mini-border-less: 0;
-  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
-
-  // 音量（ラベル＋スライダー） */
-  --timer-mini-inline-size: min(36vw, 12rem);
-  --timer-mini-inline-size-mobile: max-content;
-  --timer-mini-vol-label-font-size: 0.9rem;
-
-  // その他
-  --timer-transition: background 0.3s ease, filter 0.3s ease;
-}
-
-// ─────────────────────────────
-// 🌿 カラー変数（各ページごとのタイマーの色合い）
-// ─────────────────────────────
-body.gallery .timer,
-body.gallery .timer-mini-container {
-  // 色 color☕️#eae5da
-  --timer-main-color: #eae5da;
-
-  // ↓変えないとだめ
-  --timer-color-hover: #fff;
-
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🫖
-  // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border-radius-mobile: 0;
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
-  --timer-background: rgb(14 16 32 / 40%);
-  --timer-background-mobile: transparent;
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(140%);
-  --timer-backdrop-filter-mobile: none;
-  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer--webkit-backdrop-filter-mobile: none;
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(14 16 32 / 50%);
-
-  // buttons🫖
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-body.universe .timer,
-body.universe .timer-mini-container {
-  // 色 color
-  --timer-main-color: #f5f5f5;
-
-  // ↓変えないとだめ
-  --timer-color-hover: rgb(205 227 213 / 70%);
-
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🚀
-  // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border: 1px solid rgb(255 255 255 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-background: rgb(205 227 213 / 70%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(12px);
-  --timer--webkit-backdrop-filter: blur(12px);
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(245 245 220 / 58.4%);
-
-  // buttons🪐
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-// test用ボーダー
-// border:core.$test;
-$test1: 1px solid red;
-$test2: 1px solid rgb(255 200 0);
-$test3: 1px solid rgb(0 251 255);
-$test4: 1px solid rgb(255 0 238);
-
-// background:core.$test-bg1;
-$test-bg1: rgb(200 255 0 / 5640%);
-$test-bg2: rgb(69 110 198 / 5490%);
-$test-bg3: rgb(44 251 48 / 6070%);
-$test-bg4: rgb(255 0 64 / 4350%);

@@ -5,6 +5,8 @@ const liveDone = document.getElementById("finalLive"); // 最終告知 (aria-liv
 const live = document.getElementById("timerLive"); // tick用 (aria-live)
 const disp = document.getElementById("timer"); // h1を表示先に固定
 
+window.ensureAudioUnlocked ??= async () => true;
+
 // ===== デバッグUIの表示（?debug=1 で表示）=====
 if (new URLSearchParams(location.search).get("debug") === "1") {
   document
@@ -74,8 +76,8 @@ function showToast(msg) {
   if (!isChecked(optToast, true) || !toast) return;
   toast.textContent = msg;
   toast.hidden = false;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 4000);
+  toast.classList.add("js-toast--visible");
+  setTimeout(() => toast.classList.remove("js-toast--visible"), 4000);
   setTimeout(() => (toast.hidden = true), 4500);
 }
 function announceSR(msg) {
@@ -151,7 +153,22 @@ function stopTimerUnified() {
 
 // === トグル（ユーザー操作内で解錠も実施） ===
 toggleBtn.addEventListener("click", async () => {
-  await window.ensureAudioUnlocked(); // ← ユーザー操作内で解錠
+  // 新（防御付き）:
+  if (typeof window.ensureAudioUnlocked === "function") {
+    await window.ensureAudioUnlocked();
+  } else {
+    // フォールバック：最短でオーディオを「解錠」試行（失敗しても無視）
+    try {
+      const a = document.getElementById("alarmSound");
+      if (a) {
+        a.currentTime = 0;
+        const p = a.play();
+        if (p && typeof p.then === "function") await p;
+        a.pause();
+      }
+    } catch (_) {}
+  }
+  // ← ユーザー操作内で解錠
 
   const willRun = !isRunning;
   if (willRun) startTimerUnified();
@@ -169,7 +186,7 @@ resetBtn?.addEventListener("click", () => {
 });
 
 // ===== プリセット（分） =====
-const presetBtns = Array.from(document.querySelectorAll(".setTimeBtn"));
+const presetBtns = Array.from(document.querySelectorAll(".timer__preset-btn"));
 presetBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     presetBtns.forEach((b) => b.classList.remove("is-active"));
@@ -192,15 +209,23 @@ presetBtns.forEach((btn) => {
 
 // ===== Mute ボタン =====
 const muteBtn = document.getElementById("muteBtn");
+
 function syncMuteUI() {
   if (!muteBtn || !ding) return;
   const isMuted = !!ding.muted;
+  muteBtn.setAttribute("aria-pressed", String(isMuted));
   muteBtn.classList.toggle("is-muted", isMuted);
   muteBtn.classList.toggle("is-active", isMuted);
-  muteBtn.querySelector(".material-symbols-outlined").textContent = isMuted
-    ? "volume_off"
-    : "volume_up";
+  muteBtn.setAttribute("aria-label", isMuted ? "ミュート解除" : "ミュート");
+  muteBtn.title = isMuted ? "ミュート解除" : "ミュート";
+
+  const onIcon = muteBtn.querySelector(".timer__action-btn--alarm-on");
+  const offIcon = muteBtn.querySelector(".timer__action-btn--alarm-off");
+
+  if (onIcon) onIcon.style.display = isMuted ? "none" : "";
+  if (offIcon) offIcon.style.display = isMuted ? "" : "none";
 }
+
 muteBtn?.addEventListener("click", () => {
   if (!ding) return;
   ding.muted = !ding.muted;
@@ -233,6 +258,7 @@ window.notify = {
   onTimerDone,
   test: testNotify,
 };
+
 /* ================================
    Audio Unlock Unified Unit (iOS/Safari対応)
    ================================ */

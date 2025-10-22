@@ -6,28 +6,32 @@
     <title>leaf.loop | 🌱hero</title>
     <link rel="stylesheet" href="styles/style.css" />
     <!-- GoogleFonts↓ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kiwi+Maru:wght@400&family=M+PLUS+1p:wght@400&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kiwi+Maru:wght@400&family=M+PLUS+1p:wght@400&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
     />
-    <!-- Noto Sans -->
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Kiwi+Maru:wght@400&family=M+PLUS+1p:wght@400&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
+      />
+    </noscript>
+    <!-- これは？ -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="image"
+      href="/assets/svg/suu-logo.svg"
+      imagesizes="(max-width: 768px) 70vw, 40vw"
+      focusable="false"
     />
     <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
@@ -37,11 +41,11 @@
     <script src="js/hero.js" defer></script>
     <script src="js/help.js" defer></script>
   </head>
-  <body class="hero">
+  <body class="hero page page--hero">
     <!-- 動画の背景 -->
-    <div class="hero-media" aria-hidden="true">
+    <div class="hero__media-body" aria-hidden="true">
       <!-- 非フォーカス（装飾のため） -->
-      <img class="hero-poster" src="assets/jpg/hero-bg.jpg" alt="" />
+      <img class="hero__media-poster" src="assets/jpg/hero-bg.jpg" alt="" />
       <!-- autoplay：ページが読み込まれた時に自動で再生 -->
       <!-- muted：音声をミュートに設定 -->
       <!-- loop：動画を繰り返し再生 -->
@@ -49,7 +53,7 @@
       <!-- 画面揺れ防止に width/height を与えてCLS低減 -->
       <video
         id="background-video"
-        class="hero-video"
+        class="hero__media-video"
         width="960"
         height="540"
         autoplay
@@ -72,163 +76,329 @@
         お使いのブラウザは動画タグに対応していません。
       </video>
     </div>
-    <header class="title zen-maru-gothic-regular">
-      <h1>leaf.loop - portfolio</h1>
+    <header class="site-header">
+      <h1 class="site-header__title kiwi-maru-regular">
+        leaf.loop - portfolio
+      </h1>
     </header>
-    <!-- 【main】 grid　親 -->
-    <main class="container content">
-      <!-- ❶　タイマー -->
-      <div class="item item1 center">
-        <div class="timer timer--deco m-plus-1p-regular">
-          <!-- タイマーgrid 親 -->
-          <div class="timer-grid-container">
-            <!-- タイマー子①：見えるタイマー表示 -->
-            <div class="timer1 timer-count-display">
-              <h1
-                id="timer"
-                class="timer_count digits"
-                role="timer"
-                aria-label="お茶のタイマー 残り時間"
-              >
-                00:00
-              </h1>
-              <!-- 読み上げ専用（視覚には非表示） -->
-              <div
-                id="timerLive"
-                class="sr-only"
-                aria-live="polite"
-                aria-atomic="true"
-              ></div>
-            </div>
-            <!-- デバッグ中だけ -->
-            <button id="pingAudio" type="button">🔊 テスト</button>
-            <!-- タイマー子②：初期設定（プリセット）ボタン -->
-            <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-            <div class="timer2 buttons">
-              <div class="grid-parent-timer">
-                <button
-                  class="setTimeBtn"
-                  data-minutes="3"
-                  aria-label="3分に設定"
-                >
-                  <span aria-hidden="true">3分</span>
-                </button>
-                <button
-                  class="setTimeBtn"
-                  data-minutes="4"
-                  aria-label="4分に設定"
-                >
-                  <span aria-hidden="true">4分</span>
-                </button>
-                <button
-                  class="setTimeBtn"
-                  data-minutes="5"
-                  aria-label="5分に設定"
-                >
-                  <span aria-hidden="true">5分</span>
-                </button>
-              </div>
-            </div>
-            <!-- タイマー子③：操作（コントロール）ボタン -->
-            <div
-              class="timer3 buttons set-buttons"
-              id="timerPanel"
-              aria-live="polite"
-            >
-              <div class="grid-parent-timer">
-                <button
-                  id="toggleTimer"
-                  class="timer-toggle"
-                  aria-pressed="false"
-                  aria-label="Start"
-                  aria-controls="timerPanel"
-                >
-                  <span
-                    class="icon-play set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >play_circle
-                  </span>
-                  <span
-                    class="icon-stop set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >stop_circle
-                  </span>
-                </button>
 
-                <button id="resetBtn" aria-label="リセット">
-                  <span
-                    class="set-button material-symbols-outlined icon-size"
-                    aria-hidden="true"
-                    >refresh
-                  </span>
-                </button>
-                <button aria-label="ミュート" id="muteBtn">
-                  <span
-                    class="set-button mute material-symbols-outlined icon-size"
-                    >volume_off
-                  </span>
-                </button>
+    <main>
+      <section class="hero__content">
+        <div class="hero__inner">
+          <div class="hero__grid">
+            <!-- ❶　タイマー -->
+            <div class="center hero__slot hero__slot--timer">
+              <div class="timer">
+                <!-- タイマーgrid 親 -->
+                <div class="timer__grid timer__grid--vertical">
+                  <!-- タイマー子①：見えるタイマー表示 -->
+                  <div class="timer__screen timer__screen--display">
+                    <h1
+                      id="timer"
+                      class="timer__screen--tnum timer__screen--count"
+                      role="timer"
+                      aria-label="お茶のタイマー 残り時間"
+                    >
+                      00:00
+                    </h1>
+                    <!-- 読み上げ専用（視覚には非表示） -->
+                    <div
+                      id="timerLive"
+                      class="sr-only"
+                      aria-live="polite"
+                      aria-atomic="true"
+                    ></div>
+                  </div>
+
+                  <!-- タイマー子②：初期設定（プリセット）ボタン -->
+                  <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
+                  <div class="timer__presets">
+                    <div class="timer__grid--space">
+                      <button
+                        class="timer__preset-btn"
+                        data-minutes="3"
+                        aria-label="3分に設定"
+                      >
+                        <span aria-hidden="true" class="timer__label">3分</span>
+                      </button>
+                      <button
+                        class="timer__preset-btn"
+                        data-minutes="4"
+                        aria-label="4分に設定"
+                      >
+                        <span aria-hidden="true" class="timer__label">4分</span>
+                      </button>
+                      <button
+                        class="timer__preset-btn"
+                        data-minutes="5"
+                        aria-label="5分に設定"
+                      >
+                        <span aria-hidden="true" class="timer__label">5分</span>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- タイマー子③：操作（コントロール）ボタン -->
+                  <div
+                    class="timer__actions"
+                    id="timerPanel"
+                    aria-live="polite"
+                  >
+                    <!-- // 操作ボタンの背景　アイコン位置調整 -->
+                    <div class="timer__actions--bg">
+                      <!-- グリッド -->
+                      <div class="timer__grid--horizontal timer__grid--space">
+                        <!-- 操作（コントロール）ボタン❶ -->
+                        <!-- play stop -->
+                        <button
+                          id="toggleTimer"
+                          class="timer__btn timer__action-btn timer__action-play"
+                          aria-pressed="false"
+                          aria-label="再生"
+                          aria-controls="timerPanel"
+                        >
+                          <!-- 6 play -->
+                          <span
+                            id="startBtn"
+                            class="timer__icon timer__action-btn--running timer__action-btn--rim"
+                          >
+                            <svg
+                              class="i"
+                              viewBox="0 -960 960 960"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                              />
+                            </svg>
+                          </span>
+                          <!-- 7 stop -->
+                          <span
+                            id="stopBtn"
+                            class="timer__icon timer__action-btn--paused timer__action-btn--rim"
+                          >
+                            <svg
+                              class="i"
+                              viewBox="0 -960 960 960"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                        <!-- 操作（コントロール）ボタン❷ -->
+                        <!-- refresh -->
+                        <button
+                          id="resetBtn"
+                          aria-label="リセット"
+                          class="timer__btn timer__action-btn"
+                        >
+                          <!--  5 　リフレッシュ -->
+                          <span class="timer__icon timer__action-btn--rim">
+                            <svg
+                              class="i"
+                              viewBox="0 -960 960 960"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                        <!-- 操作（コントロール）ボタン❸ -->
+                        <!-- mute -->
+                        <button
+                          aria-label="ミュート"
+                          id="muteBtn"
+                          class="timer__btn timer__action-btn timer__action-volume"
+                          aria-pressed="false"
+                          aria-controls="timerPanel"
+                        >
+                          <!-- 2 ON=波線あり-->
+                          <span
+                            class="timer__icon timer__action-btn--rim timer__action-btn--alarm-on"
+                          >
+                            <svg
+                              class="i"
+                              viewBox="0 -960 960 960"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481t-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481M280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80M400-606l-86 86H200v80h114l86 86zM300-480"
+                              />
+                            </svg>
+                          </span>
+                          <!-- 4 MUTE=斜線あり-->
+                          <span
+                            class="timer__icon timer__action-btn--rim timer__action-btn--muted timer__action-btn--alarm-off"
+                          >
+                            <svg
+                              class="i"
+                              viewBox="0 -960 960 960"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M671-177q-11 7-22 13t-23 11q-15 7-30.5 0T574-176q-6-15 1.5-29.5T598-227q4-2 7.5-4t7.5-4L480-368v111q0 27-24.5 37.5T412-228L280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h88L84-764q-11-11-11-28t11-28 28-11 28 11l680 680q11 11 11 28t-11 28-28 11-28-11zm89-304q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131t58 197q0 33-6 65.5T817-353q-8 22-24.5 27.5t-30.5.5-22.5-18-.5-30q11-26 16-52.5t5-55.5M591-623q33 21 51 63t18 80v10q0 5-1 10-2 13-14 17t-22-6l-51-51q-6-6-9-13.5t-3-15.5v-77q0-12 10.5-17.5t20.5.5m-201-59q-6-6-6-14t6-14l22-22q19-19 43.5-8.5T480-703v63q0 14-12 19t-22-5zm10 328v-94l-72-72H200v80h114zm-36-130"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 操作部ここまで -->
+                  <!-- デバッグ中だけ -->
+                  <!-- <button id="pingAudio" type="button">🔊 テスト</button> -->
+                  <section id="notify-controls" hidden aria-hidden="true">
+                    <!-- 通知オプション -->
+                    <h2 style="font-size: small">通知テスト</h2>
+                    <h3 style="font-size: small">通知の方法</h3>
+                    <div class="notify-controls" style="font-size: medium">
+                      <label
+                        ><input id="optSound" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >♪
+                        </span>
+                        音で知らせる</label
+                      >
+                      <label
+                        ><input id="optVibrate" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >📱
+                        </span>
+                        バイブで知らせる</label
+                      >
+                      <label
+                        ><input id="optToast" type="checkbox" checked />
+                        <span class="help-icon-size" aria-hidden="true"
+                          >🍞
+                        </span>
+                        画面に表示する</label
+                      >
+                      <button
+                        id="testNotify"
+                        type="button"
+                        aria-label="通知をテスト"
+                        class="help-button-look"
+                      >
+                        <span class="help-icon-size" aria-hidden="true"
+                          >▶️
+                        </span>
+                        通知テスト
+                      </button>
+                    </div>
+                  </section>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- ❷　galleryへのアンカー -->
-      <div class="item item2 link zen-kaku-gothic-new-regular">
-        <div class="hover-area bg-gallery">
-          <a href="#" class="hover-link">
-            <div class="hover-text">
-              <p class="contrast-underline">世界のお茶を少しだけ</p>
+            <!-- ❷　galleryへのアンカー -->
+            <div
+              class="hero__slot hero__slot--gallery zen-kaku-gothic-new-regular"
+            >
+              <a
+                class="nav-tile nav-tile--gallery"
+                href="#/gallery"
+                aria-label="ギャラリー"
+              >
+                <span class="nav-tile__media" aria-hidden="true"></span>
+                <!-- 旧 bg-* -->
+                <span class="nav-tile__label">
+                  <span class="nav-tile__text contrast-underline"
+                    >世界のお茶を少しだけ</span
+                  >
+                </span>
+              </a>
             </div>
-          </a>
-        </div>
-      </div>
-      <!-- ❸universeへのアンカー -->
-      <div class="item item3 link zen-kaku-gothic-new-regular">
-        <div class="hover-area bg-universe">
-          <a href="#" class="hover-link">
-            <div class="hover-text">
-              <p class="contrast-underline">遠くのことを少しだけ</p>
+            <!-- ❸universeへのアンカー -->
+            <div
+              class="hero__slot hero__slot--universe zen-kaku-gothic-new-regular"
+            >
+              <a
+                class="nav-tile nav-tile--universe"
+                href="#/universe"
+                aria-label="ユニバース"
+              >
+                <span class="nav-tile__media" aria-hidden="true"></span>
+                <span class="nav-tile__label"
+                  ><span class="nav-tile__text contrast-underline"
+                    >遠くのことを少しだけ</span
+                  ></span
+                >
+              </a>
             </div>
-          </a>
-        </div>
-      </div>
-      <!-- ❹メインテキスト -->
-      <div class="item item4">
-        <div class="text">
-          <div class="suu zen-maru-gothic-regular">すぅ〜</div>
-          <div class="tea contrast-underline zen-kaku-gothic-new-regular">
-            お茶でも淹れましょうか
+            <!-- ❹メインテキスト -->
+            <div class="hero__slot hero__slot--cta">
+              <div class="hero__head">
+                <div class="hero__heading">
+                  <img
+                    src="assets/svg/suu-logo.svg"
+                    alt="すぅー"
+                    fetchpriority="high"
+                  />
+                </div>
+                <div
+                  class="hero__subheading u-contrast-underline contrast-underline zen-kaku-gothic-new-regular"
+                >
+                  お茶でも淹れましょうか
+                </div>
+              </div>
+            </div>
+            <!-- ❺about & help 表示（heroのみ） -->
+            <!-- wrapperはrelative infoは目印 hero__slotはgridアイテム hero__slot--sideはエリア指定 -->
+            <!-- // infoアイテムの流動化対策 → #myElement -->
+            <div
+              class="hero__slot hero__slot--side zen-kaku-gothic-new-regular"
+            >
+              <!-- (´∀｀○)新 -->
+              <nav class="info" aria-label="補助メニュー">
+                <ul class="info__list">
+                  <li class="info__item">
+                    <a class="info__link info__link--about" href="#"
+                      ><span aria-hidden="true">🌱</span> このサイトについて</a
+                    >
+                  </li>
+                  <li class="info__item">
+                    <button
+                      class="info__link info__link--help"
+                      id="helpBtn"
+                      aria-expanded="false"
+                      aria-controls="helpCard"
+                      type="button"
+                    >
+                      <svg
+                        class="i i-24"
+                        viewBox="0 -960 960 960"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
+                        />
+                      </svg>
+                      ヘルプ
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- ❺about & help 表示（heroのみ） -->
-      <!-- heroのみ表示 -->
-      <div class="wrapper info item5" id="myElement">
-        <!-- アイテム：about.html -->
-        <a href="#" class="a-about zen-kaku-gothic-new-regular">
-          <div class="sideitem item-about">
-            <span class="leaf-text" aria-hidden="true">🌱</span>
-            <p>このサイトについて</p>
-          </div></a
-        ><!-- ヘルプ -->
-        <a
-          href="#"
-          id="helpBtn"
-          class="a-help zen-kaku-gothic-new-regular"
-          aria-expanded="false"
-          aria-controls="helpCard"
-          ><div id="showCard" class="sideitem item-help">
-            <span
-              class="material-symbols-outlined help-icon-size"
-              aria-hidden="true"
-              >help
-            </span>
-            <p>ヘルプ</p>
-          </div>
-        </a>
-      </div>
+      </section>
     </main>
+    <!-- </main> -->
     <!-- ヘルプカード -->
     <section
       id="helpCard"
@@ -245,24 +415,39 @@
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
             <h2>
-              <span
-                class="material-symbols-outlined help-icon-size help-icon"
+              <!-- ヘルプカード1ヘルプ -->
+              <svg
+                class="i i-32"
+                viewBox="0 -960 960 960"
                 aria-hidden="true"
-                >help </span
-              >ヘルプ
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
+                />
+              </svg>
+              ヘルプ
             </h2>
-            <!-- 閉じるボタン -->
+            <!-- ヘルプカード閉じるボタン -->
             <button
               id="helpCloseBtn"
               type="button"
               aria-label="閉じる"
               class="close-button"
             >
-              <span
-                class="material-symbols-outlined help-icon-size"
+              <!-- ヘルプカード 7close -->
+              <svg
+                class="i i-32"
+                viewBox="0 -960 960 960"
                 aria-hidden="true"
-                >close
-              </span>
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+                />
+              </svg>
             </button>
           </div>
           <!-- 本文 -->
@@ -283,99 +468,86 @@
               </div>
               <div class="wrap-help-unit-r">
                 <div class="flex-parent-help-p info-line-spacing">
-                  <span
-                    class="material-symbols-outlined help-icon-size"
+                  <!-- ヘルプカード 6 play -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
                     aria-hidden="true"
-                    >play_circle
-                  </span>
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                    />
+                  </svg>
                   <p>再生：カウントダウン開始</p>
                 </div>
                 <div class="flex-parent-help-p info-line-spacing">
-                  <span
-                    class="material-symbols-outlined help-icon-size"
+                  <!-- ヘルプカード 8 stop -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
                     aria-hidden="true"
-                    >stop_circle
-                  </span>
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                    />
+                  </svg>
                   <p>
                     停止：一時停止
-                    <span
-                      class="material-symbols-outlined p-icon-size"
+                    <!-- ヘルプカード 6 play -->
+                    <svg
+                      class="i i-24"
+                      viewBox="0 -960 960 960"
                       aria-hidden="true"
-                      >play_circle </span
-                    >再生マークでカウントダウン再開
+                      focusable="false"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                      /></svg
+                    >再生で再開
                   </p>
                 </div>
                 <div class="flex-parent-help-p info-line-spacing">
-                  <span
-                    class="material-symbols-outlined help-icon-size"
+                  <!-- ヘルプカード 5 　リフレッシュ -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
                     aria-hidden="true"
-                    >refresh
-                  </span>
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
+                    />
+                  </svg>
                   <p>表示リセット</p>
                 </div>
                 <div class="flex-parent-help-p">
-                  <span
-                    class="material-symbols-outlined help-icon-size"
+                  <!-- ヘルプカード 2 ON=波線あり-->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
                     aria-hidden="true"
-                    >volume_off
-                  </span>
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481t-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481M280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80M400-606l-86 86H200v80h114l86 86zM300-480"
+                    />
+                  </svg>
                   <p>ミュート：消音</p>
                 </div>
               </div>
             </div>
           </div>
-          <section id="notify-controls" hidden aria-hidden="true">
-            <div class="info-hidden">
-              <!-- 通知オプション -->
-              <h2>通知テスト</h2>
-              <h3>通知の方法</h3>
-              <div class="notify-controls">
-                <label
-                  ><input id="optSound" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >sound_sampler
-                  </span>
-                  音で知らせる</label
-                >
-                <label
-                  ><input id="optVibrate" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >mobile_vibrate
-                  </span>
-                  バイブで知らせる</label
-                >
-                <label
-                  ><input id="optToast" type="checkbox" checked />
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >toast
-                  </span>
-                  画面に表示する</label
-                >
-                <button
-                  id="testNotify"
-                  type="button"
-                  aria-label="通知をテスト"
-                  class="help-button-look"
-                >
-                  <span
-                    class="material-symbols-outlined help-icon-size"
-                    aria-hidden="true"
-                    >play_circle
-                  </span>
-                  通知テスト
-                </button>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </section>
+
     <audio
       id="alarmSound"
       src="assets/mp3/alarm.mp3"
@@ -383,7 +555,7 @@
       playsinline
     ></audio>
     <!-- 画面表示（トースト） -->
-    <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+    <div id="toast" class="js-toast" role="status" aria-live="polite" hidden>
       お湯の準備ができました
     </div>
   </body>
