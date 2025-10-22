@@ -23,7 +23,7 @@ body.about {
     box-shadow: var(--timer-box-shadow);
     background: var(--timer-background);
     transition: b 0.3s ease, filter 0.3s ease;
-    backdrop-filter: var(--timer--webkit-backdrop-filter);
+    backdrop-filter: var(--timer-webkit-backdrop-filter);
 
     &:hover {
       background: var(--timer-hover-background);
@@ -248,7 +248,7 @@ body.about {
       box-shadow: var(--timer-box-shadow);
       background: var(--timer-background);
       transition: background 0.3s ease, filter 0.3s ease;
-      backdrop-filter: var(--timer--webkit-backdrop-filter);
+      backdrop-filter: var(--timer-webkit-backdrop-filter);
 
       &:hover {
         background: var(--timer-hover-background);
@@ -359,7 +359,7 @@ body.about {
       box-shadow: var(--timer-box-shadow);
       background: var(--timer-background);
       transition: background 0.3s ease, filter 0.3s ease;
-      backdrop-filter: var(--timer--webkit-backdrop-filter);
+      backdrop-filter: var(--timer-webkit-backdrop-filter);
 
       &:hover {
         background: var(--timer-hover-background);

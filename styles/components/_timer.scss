@@ -114,7 +114,6 @@ body {
   // ② プリセット群のラッパー → timer__presets
   &__presets {
     grid-area: presets;
-
     width: 20vw;
     margin: 0 auto;
 
@@ -136,7 +135,6 @@ body {
   // * ③ 操作群のラッパー → timer__actions
   &__actions {
     grid-area: controls;
-
     width: 20vw;
     margin: 0 auto;
 
@@ -201,14 +199,16 @@ body {
       --preset-bg-current: color-mix(
         in oklch,
         var(--preset-bg) 18%,
-        rgba(255, 255, 255, 0.337) 6%
+        rgb(255 255 255 / 33.7%) 6%
       );
       --preset-fg-current: var(--t-complementary-color);
+
       transform: translateY(-0.5px);
       box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
         0 0 0 3px rgb(255 255 255 / 45%), inset 0 0 0 1px rgb(255 255 255 / 30%),
         0 8px 24px rgb(0 0 0 / 25%);
     }
+
     /* “選択保持”の方を一段強く */
     &.is-active,
     &[aria-pressed="true"] {
@@ -220,9 +220,10 @@ body {
   &__action-btn {
     margin: 0 auto;
 
-    //.set-buttons span
+    // .set-buttons span
     &--rim {
       white-space: nowrap;
+
       // 追加視認性UP
       filter: var(--t-drop-shadow);
 
@@ -303,6 +304,7 @@ body {
     }
   }
 }
+
 // ━━━━━━
 // 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
 @media screen and (width <= 1099px) and (width >= 769px) and (orientation: landscape) {
@@ -324,12 +326,14 @@ body {
         align-items: center;
       }
     }
+
     // ① 数字ディスプレイのラッパー
     &__screen {
       &--count {
         font-size: var(--count-size-smaller);
       }
     }
+
     // ② プリセット群のラッパー
     &__presets {
       width: 100%;
@@ -345,6 +349,7 @@ body {
     }
   }
 }
+
 // ━━━━━━
 
 /* 縦向き：最小値をちょい上げて読みやすさ優先 */
@@ -382,6 +387,7 @@ body {
     &__actions {
       width: 100%;
       max-width: 19rem;
+
       &--bg {
         width: 100%;
       }
@@ -396,6 +402,7 @@ body {
     }
   }
 }
+
 // ━━━━━━
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
@@ -418,6 +425,8 @@ body {
     }
 
     &__screen {
+      height: auto;
+
       &--display {
         max-width: fit-content;
       }
@@ -425,13 +434,10 @@ body {
 
     &__actions {
       width: 100%;
+
       &--bg {
         width: 100%;
       }
-    }
-
-    &__screen {
-      height: auto;
     }
 
     // 幅を文字に合わせる
@@ -451,6 +457,7 @@ body {
       min-inline-size: clamp(48px, 11vw, 72px);
       min-block-size: clamp(44px, 9vw, 60px); /* 44pxルール */
       padding-inline: 0.6rem;
+
       // border-radius: 999px;
       line-height: var(--t-txt-line-h);
     }

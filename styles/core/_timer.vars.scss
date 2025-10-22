@@ -14,32 +14,41 @@
   // line-height:
   // h1 & preset-btn
   --t-txt-line-h: 1.2;
+
   // filter drop-shadow
   --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
 
   // ◆◇ タイマー表示　◆◇
   // タイマーカウント　/* #fffより柔らかい */
   --milk-white: oklch(96% 0.01 110deg);
+
   // カウントダウン文字の背景
   --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
+
   // カウントダウン文字のサイズ① ブラウザ幅・向き共通
   --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
+
   // カウントダウン文字のサイズ② 幅769px以上1099px以下で画面が横向きの時だけ
   --count-size-smaller: clamp(48px, 6vw, 56px);
+
   // h1背景
   --count-radius: 0.6rem;
+
   // 等幅数字を柔らかく※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
   --count-shadow: 0 0 0.03rem rgb(255 255 255 / 55%),
     /* エッジの微光 */ 0 0 0.18rem rgb(255 255 255 / 30%),
     /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
+
   --count-filter: blur(3px) saturate(95%) contrast(92%);
 
   // ◆◇　プリセット　　◆◇
   // タイマーボタン正円セット
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
-  //★ 3/4/5分の円ボタン★
+
+  // ★ 3/4/5分の円ボタン★
   --preset-fg: core.$main-color;
   --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
     to bottom,
@@ -52,16 +61,17 @@
   --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
     /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
     /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
-
   --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
 
   // プリセット border 線
   --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+
   // プリセット　アクティブ・ホバー
+
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
   --preset-fg-current: var(--preset-fg);
-  --preset-bg-current: var(--preset-glass);
+  --preset-gl-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
@@ -75,18 +85,23 @@
   // ◆◇ 操作部　◆◇
   // ③ 操作群のラッパーの背景
   --action-bg: rgb(245 245 245 / 30%);
+
   // action bg
   --action-line: 1px solid rgb(245 245 245 / 35%);
+
   // action bg　ノーマル　小さめ
   --action-radius-m: 16px;
   --action-radius-s: 8px;
+
   // action アイコンの縁
   --action-radius-rim: 0.5rem;
+
   // 背景の影
   --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
 
   // 操作アイコンspan 縁
   --action-outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+
   // ホバー outline 太く
   --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
 }
@@ -166,8 +181,8 @@ body.gallery .timer-mini-container {
   --timer-color: inherit;
   --timer-backdrop-filter: blur(8px) saturate(140%);
   --timer-backdrop-filter-mobile: none;
-  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer--webkit-backdrop-filter-mobile: none;
+  --timer-webkit-backdrop-filter: blur(8px) saturate(140%);
+  --timer-webkit-backdrop-filter-mobile: none;
 
   // 適当に入れてる色　要変更
   --timer-hover-background: rgb(14 16 32 / 50%);
@@ -210,7 +225,7 @@ body.universe .timer-mini-container {
   --timer-background: rgb(205 227 213 / 70%);
   --timer-color: inherit;
   --timer-backdrop-filter: blur(12px);
-  --timer--webkit-backdrop-filter: blur(12px);
+  --timer-webkit-backdrop-filter: blur(12px);
 
   // 適当に入れてる色　要変更
   --timer-hover-background: rgb(245 245 220 / 58.4%);

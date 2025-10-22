@@ -8,6 +8,7 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0s !important;
   }
+
   * {
     transition: none !important;
     animation: none !important;
@@ -20,6 +21,7 @@
   .hero__media-poster {
     display: block;
   }
+
   #background-video {
     display: none !important;
   }
@@ -95,6 +97,7 @@ input[type="range"] {
   ):focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
+
   /* 影の補助（任意） */
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
     color-mix(in lab, var(--focus-ring) 35%, transparent);
@@ -139,6 +142,7 @@ input[type="range"] {
   .nav-tile:hover .nav-tile__media {
     opacity: 1;
   }
+
   .nav-tile:hover .nav-tile__text {
     text-decoration: underline;
     filter: brightness(1.1);

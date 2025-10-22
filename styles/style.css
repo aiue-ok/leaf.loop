@@ -11,9 +11,9 @@
   /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
   --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
     "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
   /* 欧文/数字はInterを第一候補に */
-  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
     sans-serif;
   /* 見出しの柔らかい表情用（必要な所だけに限定） */
   --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
@@ -65,7 +65,7 @@
 html {
   font-family: var(--ff-jp);
   font-kerning: normal;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   font-size: 16px;
   text-size-adjust: 100%;
 }
@@ -76,8 +76,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
 }
 
@@ -605,7 +604,7 @@ summary):focus-visible {
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
   --preset-fg-current: var(--preset-fg);
-  --preset-bg-current: var(--preset-glass);
+  --preset-gl-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
@@ -671,8 +670,8 @@ body.gallery .timer-mini-container {
   --timer-color: inherit;
   --timer-backdrop-filter: blur(8px) saturate(140%);
   --timer-backdrop-filter-mobile: none;
-  --timer--webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer--webkit-backdrop-filter-mobile: none;
+  --timer-webkit-backdrop-filter: blur(8px) saturate(140%);
+  --timer-webkit-backdrop-filter-mobile: none;
   --timer-hover-background: rgb(14 16 32 / 50%);
   --timer-mini-preset-background-color: transparent;
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
@@ -695,7 +694,7 @@ body.universe .timer-mini-container {
   --timer-background: rgb(205 227 213 / 70%);
   --timer-color: inherit;
   --timer-backdrop-filter: blur(12px);
-  --timer--webkit-backdrop-filter: blur(12px);
+  --timer-webkit-backdrop-filter: blur(12px);
   --timer-hover-background: rgb(245 245 220 / 58.4%);
   --timer-mini-preset-background-color: transparent;
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
@@ -863,7 +862,7 @@ body .js-toast--visible {
   --preset-bg-current: color-mix(
     in oklch,
     var(--preset-bg) 18%,
-    rgba(255, 255, 255, 0.337) 6%
+    rgb(255 255 255 / 33.7%) 6%
   );
   --preset-fg-current: var(--t-complementary-color);
   transform: translateY(-0.5px);
@@ -1005,6 +1004,9 @@ body .js-toast--visible {
     align-items: center;
     gap: 16px;
   }
+  .timer__screen {
+    height: auto;
+  }
   .timer__screen--display {
     max-width: fit-content;
   }
@@ -1013,9 +1015,6 @@ body .js-toast--visible {
   }
   .timer__actions--bg {
     width: 100%;
-  }
-  .timer__screen {
-    height: auto;
   }
   .timer__screen--count {
     width: max-content;
@@ -1363,7 +1362,7 @@ body.hero {
   /* 既定は静止画だけを見せる */
   /* コンテンツ/UIは前面へ */
   /* メインコンテンツ 動画より前 新 */
-  /* タイルの中身の潰れ対策（共通） 新*/
+  /* タイルの中身の潰れ対策（共通） 新 */
 }
 body.hero::before {
   content: "";
@@ -1371,7 +1370,7 @@ body.hero::before {
   inset: 0; /* ← padding-box まできっちり覆う */
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgba(0, 0, 0, var(--hero-veil, 0.28));
+  background: linear-gradient(to right, rgba(200, 211, 192, 0.4), rgba(200, 211, 192, 0.4)), rgb(0, 0, 0, var(--hero-veil, 0.28));
   mix-blend-mode: multiply;
   will-change: transform;
   transform: translateZ(0);
@@ -1490,7 +1489,6 @@ body.hero .hero__slot--universe {
 }
 body.hero .nav-tile {
   /* 同宣言 */
-  position: relative;
   width: 100%;
   height: 100%;
   /* reusable block アンカー・中央寄せ・ヒットエリア */

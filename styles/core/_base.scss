@@ -17,7 +17,7 @@
 html {
   font-family: var(--ff-jp);
   font-kerning: normal;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   font-size: 16px;
 
   // オートテキスト拡大
@@ -30,8 +30,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
 }
 
@@ -135,11 +134,13 @@ input {
 // }
 
 // 共通ルールは「サイズはCSS」「色はcurrentColor」「装飾は読み上げ除外」。まずは共通CSS：
+
 /* 汎用アイコンの基本 */
 .i {
   display: inline-block;
   vertical-align: -0.125em;
 }
+
 /* サイズ違いが欲しい時 */
 // フッター
 .i.i-24 {
