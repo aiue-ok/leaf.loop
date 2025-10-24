@@ -4,17 +4,21 @@ const lightboxImg = document.getElementById("lightbox-img");
 const lightboxCaption = document.getElementById("lightbox-caption");
 const closeBtn = document.getElementById("lightbox-close");
 // 今表示している画像が、何番目かを追跡する
-const images = Array.from(document.querySelectorAll(".photo-box img"));
+const images = Array.from(
+  document.querySelectorAll(".photo-box img", ".gallery__item")
+);
 let currentIndex = 0;
 
-document.querySelectorAll(".photo-box img").forEach((img, index) => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightboxCaption.textContent = img.dataset.caption || "";
-    lightbox.classList.remove("hidden");
-    currentIndex = index; // ← 現在の画像番号を保存
+document
+  .querySelectorAll(".photo-box img", ".gallery__item")
+  .forEach((img, index) => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = img.dataset.caption || "";
+      lightbox.classList.remove("hidden");
+      currentIndex = index; // ← 現在の画像番号を保存
+    });
   });
-});
 
 closeBtn.addEventListener("click", () => {
   lightbox.classList.add("hidden");
@@ -53,8 +57,13 @@ function closeLightbox() {
 }
 
 // 矢印クリックで画像を切り替え
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
+// Lightbox ナビ“フォールバック付き”
+const prevBtn =
+  document.querySelector("#prev-btn") ||
+  document.querySelector(".nav-button.left");
+const nextBtn =
+  document.querySelector("#next-btn") ||
+  document.querySelector(".nav-button.right");
 
 prevBtn.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
@@ -65,7 +74,7 @@ nextBtn.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % images.length;
   updateLightboxImage();
 });
-
+console.log("🍔");
 // 拡大率変更ボタン
 const toggleBtn = document.getElementById("toggle-fit");
 const element = document.getElementById("message");
