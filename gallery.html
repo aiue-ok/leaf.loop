@@ -33,7 +33,7 @@
     <script src="js/site-menu.js" defer></script>
     <title>世界のお茶を少しだけ</title>
   </head>
-  <body class="gallery">
+  <body class="gallery page page--gallery">
     <header class="site-header">
       <!-- メニューアイコン -->
       <button
@@ -158,136 +158,165 @@
         </svg>
       </div>
     </nav>
-    <main>
+    <!-- ▼▼ 以下、BEM化　▼▼ -->
+    <header>
       <h1>世界のお茶を少しだけ</h1>
       <h2>世界のお茶をテーマにした視覚的サンプルです。</h2>
-      <div class="photo-container zen-maru-gothic-regular">
-        <div class="photo-box">
-          <img
-            src="images/teas/timothy-newman-_ZH-GRbh0iE-unsplash.jpg"
-            alt="茶の木"
-            data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas//na-visky-3hRRT4qztzs-unsplash.jpg"
-            alt="緑茶"
-            data-caption="１日のはじまりは緑茶から"
-          />
-        </div>
+    </header>
+    <main>
+      <section class="gallery" aria-label="Gallery">
+        <div class="gallery__bg">
+          <div class="gallery__inner">
+            <ul
+              class="gallery__grid gallery__photo--container photo-container zen-maru-gothic-regular"
+            >
+              <li class="gallery__item gallery__photo--box photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/timothy-newman-_ZH-GRbh0iE-unsplash.jpg"
+                  alt="茶の木"
+                  data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas//na-visky-3hRRT4qztzs-unsplash.jpg"
+                  alt="緑茶"
+                  data-caption="１日のはじまりは緑茶から"
+                />
+              </li>
 
-        <div class="photo-box">
-          <img
-            src="images/teas/matcha-co-TIxtjq1qdRs-unsplash.jpg"
-            alt="抹茶"
-            data-caption="抹茶の苦味・甘味・香り・色"
-          />
-        </div>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/matcha-co-TIxtjq1qdRs-unsplash.jpg"
+                  alt="抹茶"
+                  data-caption="抹茶の苦味・甘味・香り・色"
+                />
+              </li>
 
-        <div class="photo-box">
-          <img
-            src="images/teas/alice-pasqual-2yZxFxn1938-unsplash.jpg"
-            alt="ドライハーブ"
-            data-caption="チャノキ以外の薬草・香草が持つ魅力"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/md-mehedi-hassan-sharif-Zqai2COyXBw-unsplash.jpg"
-            alt="ジャスミンの花"
-            data-caption="ジャスミンの花の甘く濃厚な香り"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/merve-sehirli-nasir--feoAbhn8Pc-unsplash.jpg"
-            alt="ハーブティ"
-            data-caption="お湯を注いで飲むまでの抽出時間"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/helen-van-rJWJLdOgLzA-unsplash.jpg"
-            alt="青いハーブティ"
-            data-caption="レモンを加えると色が変化するパタフライピー"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/teacora-rooibos-Mp2HHad-QF0-unsplash.jpg"
-            alt="ルイボスティ"
-            data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/teacreativelife-soo-chung-EE6fFDyEtRc-unsplash.jpg"
-            alt="ルビーのように赤いハイビスカスティ"
-            data-caption="クエン酸の酸味とルビー色が特徴のハイビスカスティ"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/tea-cups-assortment-wooden-board.jpg"
-            alt="多種多様な中国茶"
-            data-caption="中国茶はお茶の種類が多くあり奥が深い"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/sergey-n-szmge3ABe94-unsplash.jpg"
-            alt="茶器"
-            data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/jelleke-vanooteghem-qfRsevOtQXE-unsplash.jpg"
-            alt="忘れてはいけない英国茶"
-            data-caption="午後を優雅に英国発祥アフタヌーンティー"
-          />
-        </div>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/alice-pasqual-2yZxFxn1938-unsplash.jpg"
+                  alt="ドライハーブ"
+                  data-caption="チャノキ以外の薬草・香草が持つ魅力"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/md-mehedi-hassan-sharif-Zqai2COyXBw-unsplash.jpg"
+                  alt="ジャスミンの花"
+                  data-caption="ジャスミンの花の甘く濃厚な香り"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/merve-sehirli-nasir--feoAbhn8Pc-unsplash.jpg"
+                  alt="ハーブティ"
+                  data-caption="お湯を注いで飲むまでの抽出時間"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/helen-van-rJWJLdOgLzA-unsplash.jpg"
+                  alt="青いハーブティ"
+                  data-caption="レモンを加えると色が変化するパタフライピー"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/teacora-rooibos-Mp2HHad-QF0-unsplash.jpg"
+                  alt="ルイボスティ"
+                  data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/teacreativelife-soo-chung-EE6fFDyEtRc-unsplash.jpg"
+                  alt="ルビーのように赤いハイビスカスティ"
+                  data-caption="クエン酸の酸味とルビー色が特徴のハイビスカスティ"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/tea-cups-assortment-wooden-board.jpg"
+                  alt="多種多様な中国茶"
+                  data-caption="中国茶はお茶の種類が多くあり奥が深い"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/sergey-n-szmge3ABe94-unsplash.jpg"
+                  alt="茶器"
+                  data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/jelleke-vanooteghem-qfRsevOtQXE-unsplash.jpg"
+                  alt="忘れてはいけない英国茶"
+                  data-caption="午後を優雅に英国発祥アフタヌーンティー"
+                />
+              </li>
 
-        <div class="photo-box">
-          <img
-            src="images/teas/emily-wade-wCeYehOEJ48-unsplash.jpg"
-            alt="ミルクやスパイスを入れてもお茶"
-            data-caption="ミルクやスパイスを入れるとまた違った味に"
-          />
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/emily-wade-wCeYehOEJ48-unsplash.jpg"
+                  alt="ミルクやスパイスを入れてもお茶"
+                  data-caption="ミルクやスパイスを入れるとまた違った味に"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/messrro-svBi79E4viI-unsplash.jpg"
+                  alt="a cup of tea"
+                  data-caption="早朝の一杯の紅茶"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/anita-austvika-bVELgdlCfIw-unsplash.jpg"
+                  alt="雨の日も晴れの日も"
+                  data-caption="気分を変えてくれるかもしれない一杯のお茶"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/ewien-van-bergeijk-kwant-LIbXABpmzfc-unsplash.jpg"
+                  alt="外でいただく特別な一杯"
+                  data-caption="時間や場所を変えて楽しむお茶は格別"
+                />
+              </li>
+              <li class="gallery__item photo-box">
+                <img
+                  class="gallery__img"
+                  src="images/teas/vivek-kumar-JS_ohjocm00-unsplash.jpg"
+                  alt="茶園"
+                  data-caption="お茶のない日を想像するとすごく寂しい"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/messrro-svBi79E4viI-unsplash.jpg"
-            alt="a cup of tea"
-            data-caption="早朝の一杯の紅茶"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/anita-austvika-bVELgdlCfIw-unsplash.jpg"
-            alt="雨の日も晴れの日も"
-            data-caption="気分を変えてくれるかもしれない一杯のお茶"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/ewien-van-bergeijk-kwant-LIbXABpmzfc-unsplash.jpg"
-            alt="外でいただく特別な一杯"
-            data-caption="時間や場所を変えて楽しむお茶は格別"
-          />
-        </div>
-        <div class="photo-box">
-          <img
-            src="images/teas/vivek-kumar-JS_ohjocm00-unsplash.jpg"
-            alt="茶園"
-            data-caption="お茶のない日を想像するとすごく寂しい"
-          />
-        </div>
-      </div>
+      </section>
     </main>
+
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="timer-mini-container timer">
+    <div class="timer-mini-container timer" hidden>
       <div class="timer-mini-box timer-mini-background">
         <!-- カウントダウン表示 -->
         <div
@@ -353,21 +382,60 @@
     </div>
 
     <!-- /* ≡≡≡ Lightboxここから */ -->
-    <div id="lightbox" class="lightbox hidden">
-      <div class="lightbox-content">
-        <img id="lightbox-img" src="" alt="" />
-        <p id="lightbox-caption"></p>
-        <button id="prev-btn" class="nav-button left">&larr;</button>
-        <button id="next-btn" class="nav-button right">&rarr;</button>
-        <div class="lightbox-header-parent">
-          <button id="toggle-fit" class="fit-toggle-btn">
-            <!-- 🔍 拡大率切り替え -->
-            <span class="material-symbols-outlined" id="message"> zoom_in </span
-            ><br />拡大率
+    <div
+      id="lightbox"
+      class="lightbox hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="lightbox__backdrop">
+        <div class="lightbox-content">
+          <img id="lightbox-img" class="lightbox__img" src="" alt="" />
+          <p id="lightbox-caption" class="lightbox__caption"></p>
+          <button
+            id="prev-btn"
+            aria-label="前の画像"
+            class="lightbox__nav lightbox__nav--prev nav-button left"
+          >
+            &larr;
           </button>
-          <button id="lightbox-close">
-            <span class="material-symbols-outlined"> close </span>
+          <button
+            id="next-btn"
+            aria-label="次の画像"
+            class="lightbox__nav lightbox__nav--next nav-button right"
+          >
+            &rarr;
           </button>
+          <div class="lightbox__header lightbox-header-parent">
+            <button
+              id="toggle-fit"
+              aria-pressed="false"
+              class="lightbox__fit-toggle fit-toggle-btn"
+            >
+              <!-- 🔍 拡大率切り替え -->
+              <span
+                class="lightbox__scale material-symbols-outlined"
+                id="message"
+                role="status"
+                aria-live="polite"
+              >
+                zoom_in </span
+              ><br />拡大率
+            </button>
+            <button
+              id="lightbox-close"
+              aria-label="閉じる"
+              class="lightbox__close"
+            >
+              <span
+                class="lightbox__icon-close material-symbols-outlined"
+                aria-hidden="true"
+              >
+                close
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
