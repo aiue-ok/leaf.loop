@@ -72,10 +72,10 @@ body.gallery,
       border: core.$test2;
       container-type: inline-size;
       display: grid;
-      // grid-template-columns: repeat(1, minmax(0, 1fr));
-      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      // grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
       gap: 1rem 3%;
-      // gap: core.$gap-sm;
+      gap: core.$gap-sm;
 
       @container (min-width: #{core.$bp-sm}) {
         grid-template-columns: repeat(2, 1fr);
@@ -459,7 +459,8 @@ body.gallery,
 // スマホ🟢
 // 幅1024px（スマホたて向き）以下
 @media (width <= 1024px) and (orientation: portrait) {
-  body.gallery {
+  body.gallery,
+  .page--gallery {
     // 例：スマホ時の背景色やパディングなど
     padding: 1rem;
 
@@ -470,10 +471,12 @@ body.gallery,
       // グリーン
       // background-color: core.$test-bg3;
     }
-
+    .gallery {
+    }
     // 横スクロール可能な1行表示 試し中
     // 写真用箱div 親
-    .photo-container {
+    .photo-container,
+    .gallery__grid {
       display: grid;
 
       // grid-template-rows: 1fr;
@@ -499,7 +502,8 @@ body.gallery,
     }
 
     // 写真１枚の箱div 子
-    .photo-box {
+    .photo-box,
+    .gallery__item {
       border: white 1px solid;
       position: relative;
       width: 8.75rem;
@@ -530,7 +534,8 @@ body.gallery,
 // 🟡
 // 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
 @media screen and (width <= 1099px) and (orientation: landscape) {
-  body.gallery {
+  body.gallery,
+  .page--gallery {
     main {
       padding-bottom: 6rem;
       // background-color: core.$test-bg4;
