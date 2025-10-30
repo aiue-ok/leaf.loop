@@ -15,40 +15,52 @@
       href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Noto Sans -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+
     <script src="js/gallery.js" defer></script>
-    <script src="js/timer-base.js" defer></script>
+    <!-- <script src="js/gallery_lightbox.js" defer></script> -->
+    <!-- <script src="js/timer-base.js" defer></script> -->
     <script src="js/site-menu.js" defer></script>
+    <!-- gallery.html と同じ階層に /js がある想定 -->
+    <!-- <script src="./js/timer-base.js" defer></script> -->
+    <script src="js/help.js" defer></script>
     <title>世界のお茶を少しだけ</title>
   </head>
   <body class="gallery page page--gallery">
-    <header class="site-header">
-      <!-- メニューアイコン -->
-      <button
-        class="menu--btn hamburger"
-        aria-label="メニューを開く"
-        aria-controls="site-menu"
-        aria-expanded="false"
-      >
-        <span
-          class="material-icons hamburger-icon material-symbols-outlined icon-size"
-          aria-hidden="true"
+    <header class="site-menu">
+      <div class="site-menu__inner">
+        <!-- メニューアイコン -->
+        <button
+          class="site-menu__btn menu--btn hamburger- center"
+          aria-label="メニューを開く"
+          aria-controls="site-menu"
+          aria-expanded="false"
         >
-          menu
-        </span>
-      </button>
+          <!-- <span
+            class="material-icons hamburger-icon material-symbols-outlined icon-size"
+            aria-hidden="true"
+          > -->
+          <!-- menu -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            aria-hidden="true"
+            focusable="false"
+            class="i i-44"
+          >
+            <path
+              fill="currentColor"
+              d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
+            />
+          </svg>
+          <!-- </span> -->
+        </button>
+        <div class="site-menu__title">
+          <h1 class="site-menu__heading">世界のお茶を少しだけ</h1>
+          <h2 class="site-menu__subheading">
+            世界のお茶をテーマにした視覚的サンプルです。
+          </h2>
+        </div>
+      </div>
     </header>
     <!-- 右端で待機するメニュー-->
     <nav id="site-menu" class="offcanvas hidden">
@@ -58,7 +70,18 @@
           class="zen-kaku-gothic-new-bold offcanvas__close"
           aria-label="メニューを閉じる"
         >
-          ×
+          <!-- メニュー close × -->
+          <svg
+            class="i i-32"
+            viewBox="0 -960 960 960"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              fill="currentColor"
+              d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+            />
+          </svg>
         </button>
       </div>
       <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
@@ -159,164 +182,322 @@
       </div>
     </nav>
     <!-- ▼▼ 以下、BEM化　▼▼ -->
-    <header>
-      <h1>世界のお茶を少しだけ</h1>
-      <h2>世界のお茶をテーマにした視覚的サンプルです。</h2>
-    </header>
+
     <main>
       <section class="gallery" aria-label="Gallery">
         <div class="gallery__bg">
           <div class="gallery__inner">
-            <ul
-              class="gallery__grid gallery__photo--container photo-container zen-maru-gothic-regular"
-            >
-              <li class="gallery__item gallery__photo--box photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/timothy-newman-_ZH-GRbh0iE-unsplash.jpg"
-                  alt="茶の木"
-                  data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas//na-visky-3hRRT4qztzs-unsplash.jpg"
-                  alt="緑茶"
-                  data-caption="１日のはじまりは緑茶から"
-                />
-              </li>
+            <div class="gallery__photo--container">
+              <ul class="gallery__grid zen-maru-gothic-regular">
+                <!-- 【写真１　チャノキ】 -->
+                <li class="gallery__item">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/001.webp"
+                    srcset="
+                      assets/gallery/thumbs/001.webp    1x,
+                      assets/gallery/thumbs/001@2x.webp 2x
+                    "
+                    width="320"
+                    height="320"
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="茶の木"
+                    data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
+                    data-full-avif="assets/gallery/full/001.avif"
+                    data-full-webp="assets/gallery/full/001.webp"
+                  />
+                </li>
+                <!-- 【写真２ 緑茶】 -->
+                <li class="gallery__item">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/002.webp"
+                    srcset="
+                      assets/gallery/thumbs/002.webp    1x,
+                      assets/gallery/thumbs/002@2x.webp 2x
+                    "
+                    width="320"
+                    height="320"
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="緑茶"
+                    data-caption="１日のはじまりは緑茶から"
+                    data-full-avif="assets/gallery/full/002.avif"
+                    data-full-webp="assets/gallery/full/002.webp"
+                  />
+                </li>
+                <!-- 【写真３】 -->
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/003.webp"
+                    srcset="
+                      assets/gallery/thumbs/003.webp    1x,
+                      assets/gallery/thumbs/003@2x.webp 2x
+                    "
+                    width="320"
+                    height="320"
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="抹茶"
+                    data-caption="抹茶の苦味・甘味・香り・色"
+                    data-full-avif="assets/gallery/full/003.avif"
+                    data-full-webp="assets/gallery/full/003.webp"
+                  />
+                </li>
+                <!-- 【写真４】 -->
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/004.webp"
+                    srcset="
+                      assets/gallery/thumbs/004.webp    1x,
+                      assets/gallery/thumbs/004@2x.webp 2x
+                    "
+                    width="320"
+                    height="320"
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="ドライハーブ"
+                    data-caption="チャノキ以外の薬草・香草が持つ魅力"
+                    data-full-avif="assets/gallery/full/004.avif"
+                    data-full-webp="assets/gallery/full/004.webp"
+                  />
+                </li>
 
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/matcha-co-TIxtjq1qdRs-unsplash.jpg"
-                  alt="抹茶"
-                  data-caption="抹茶の苦味・甘味・香り・色"
-                />
-              </li>
-
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/alice-pasqual-2yZxFxn1938-unsplash.jpg"
-                  alt="ドライハーブ"
-                  data-caption="チャノキ以外の薬草・香草が持つ魅力"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/md-mehedi-hassan-sharif-Zqai2COyXBw-unsplash.jpg"
-                  alt="ジャスミンの花"
-                  data-caption="ジャスミンの花の甘く濃厚な香り"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/merve-sehirli-nasir--feoAbhn8Pc-unsplash.jpg"
-                  alt="ハーブティ"
-                  data-caption="お湯を注いで飲むまでの抽出時間"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/helen-van-rJWJLdOgLzA-unsplash.jpg"
-                  alt="青いハーブティ"
-                  data-caption="レモンを加えると色が変化するパタフライピー"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/teacora-rooibos-Mp2HHad-QF0-unsplash.jpg"
-                  alt="ルイボスティ"
-                  data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/teacreativelife-soo-chung-EE6fFDyEtRc-unsplash.jpg"
-                  alt="ルビーのように赤いハイビスカスティ"
-                  data-caption="クエン酸の酸味とルビー色が特徴のハイビスカスティ"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/tea-cups-assortment-wooden-board.jpg"
-                  alt="多種多様な中国茶"
-                  data-caption="中国茶はお茶の種類が多くあり奥が深い"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/sergey-n-szmge3ABe94-unsplash.jpg"
-                  alt="茶器"
-                  data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/jelleke-vanooteghem-qfRsevOtQXE-unsplash.jpg"
-                  alt="忘れてはいけない英国茶"
-                  data-caption="午後を優雅に英国発祥アフタヌーンティー"
-                />
-              </li>
-
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/emily-wade-wCeYehOEJ48-unsplash.jpg"
-                  alt="ミルクやスパイスを入れてもお茶"
-                  data-caption="ミルクやスパイスを入れるとまた違った味に"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/messrro-svBi79E4viI-unsplash.jpg"
-                  alt="a cup of tea"
-                  data-caption="早朝の一杯の紅茶"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/anita-austvika-bVELgdlCfIw-unsplash.jpg"
-                  alt="雨の日も晴れの日も"
-                  data-caption="気分を変えてくれるかもしれない一杯のお茶"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/ewien-van-bergeijk-kwant-LIbXABpmzfc-unsplash.jpg"
-                  alt="外でいただく特別な一杯"
-                  data-caption="時間や場所を変えて楽しむお茶は格別"
-                />
-              </li>
-              <li class="gallery__item photo-box">
-                <img
-                  class="gallery__img"
-                  src="images/teas/vivek-kumar-JS_ohjocm00-unsplash.jpg"
-                  alt="茶園"
-                  data-caption="お茶のない日を想像するとすごく寂しい"
-                />
-              </li>
-            </ul>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/005.webp"
+                    srcset="
+                      assets/gallery/thumbs/005.webp    1x,
+                      assets/gallery/thumbs/005@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="ジャスミンの花"
+                    data-caption="ジャスミンの花の甘く濃厚な香り"
+                    data-full-avif="assets/gallery/full/005.avif"
+                    data-full-webp="assets/gallery/full/005.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/006.webp"
+                    srcset="
+                      assets/gallery/thumbs/006.webp    1x,
+                      assets/gallery/thumbs/006@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="ハーブティ"
+                    data-caption="お湯を注いで飲むまでの抽出時間"
+                    data-full-avif="assets/gallery/full/006.avif"
+                    data-full-webp="assets/gallery/full/006.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/007.webp"
+                    srcset="
+                      assets/gallery/thumbs/007.webp    1x,
+                      assets/gallery/thumbs/007@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="青いハーブティ"
+                    data-caption="レモンを加えると色が変化するパタフライピー"
+                    data-full-avif="assets/gallery/full/007.avif"
+                    data-full-webp="assets/gallery/full/007.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/008.webp"
+                    srcset="
+                      assets/gallery/thumbs/008.webp    1x,
+                      assets/gallery/thumbs/008@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="ルイボスティ"
+                    data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
+                    data-full-avif="assets/gallery/full/008.avif"
+                    data-full-webp="assets/gallery/full/008.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/009.webp"
+                    srcset="
+                      assets/gallery/thumbs/009.webp    1x,
+                      assets/gallery/thumbs/009@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="多種多様な中国茶"
+                    data-caption="中国茶はお茶の種類が多くあり奥が深い"
+                    data-full-avif="assets/gallery/full/009.avif"
+                    data-full-webp="assets/gallery/full/009.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/010.webp"
+                    srcset="
+                      assets/gallery/thumbs/010.webp    1x,
+                      assets/gallery/thumbs/010@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="茶器"
+                    data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
+                    data-full-avif="assets/gallery/full/010.avif"
+                    data-full-webp="assets/gallery/full/010.webp"
+                  />
+                </li>
+                <!-- <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/011.webp"
+                    srcset="
+                      assets/gallery/thumbs/011.webp    1x,
+                      assets/gallery/thumbs/011@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    data-full-avif="assets/gallery/full/011.avif"
+                    data-full-webp="assets/gallery/full/011.webp"
+                  />
+                </li> -->
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/012.webp"
+                    srcset="
+                      assets/gallery/thumbs/012.webp    1x,
+                      assets/gallery/thumbs/012@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="忘れてはいけない英国茶"
+                    data-caption="午後を優雅に英国発祥アフタヌーンティー"
+                    data-full-avif="assets/gallery/full/012.avif"
+                    data-full-webp="assets/gallery/full/012.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/013.webp"
+                    srcset="
+                      assets/gallery/thumbs/013.webp    1x,
+                      assets/gallery/thumbs/013@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="ミルクやスパイスを入れてもお茶"
+                    data-caption="ミルクやスパイスを入れるとまた違った味に"
+                    data-full-avif="assets/gallery/full/013.avif"
+                    data-full-webp="assets/gallery/full/013.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/014.webp"
+                    srcset="
+                      assets/gallery/thumbs/014.webp    1x,
+                      assets/gallery/thumbs/014@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="a cup of tea"
+                    data-caption="早朝の一杯の紅茶"
+                    data-full-avif="assets/gallery/full/014.avif"
+                    data-full-webp="assets/gallery/full/014.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/015.webp"
+                    srcset="
+                      assets/gallery/thumbs/015.webp    1x,
+                      assets/gallery/thumbs/015@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="雨の日も晴れの日も"
+                    data-caption="気分を変えてくれるかもしれない一杯のお茶"
+                    data-full-avif="assets/gallery/full/015.avif"
+                    data-full-webp="assets/gallery/full/015.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/016.webp"
+                    srcset="
+                      assets/gallery/thumbs/016.webp    1x,
+                      assets/gallery/thumbs/016@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="外でいただく特別な一杯"
+                    data-caption="時間や場所を変えて楽しむお茶は格別"
+                    data-full-avif="assets/gallery/full/016.avif"
+                    data-full-webp="assets/gallery/full/016.webp"
+                  />
+                </li>
+                <li class="gallery__item photo-box">
+                  <img
+                    class="gallery__img"
+                    src="assets/gallery/thumbs/017.webp"
+                    srcset="
+                      assets/gallery/thumbs/017.webp    1x,
+                      assets/gallery/thumbs/017@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    alt="茶園"
+                    data-caption="お茶のない日を想像するとすごく寂しい"
+                    data-full-avif="assets/gallery/full/017.avif"
+                    data-full-webp="assets/gallery/full/017.webp"
+                  />
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="timer-mini-container timer" hidden>
+    <div class="timer-mini-container timer hidden">
       <div class="timer-mini-box timer-mini-background">
         <!-- カウントダウン表示 -->
         <div
@@ -354,21 +535,67 @@
             aria-label="リセット"
             id="resetBtn"
           >
-            <span
+            <!-- <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >refresh
+            </span> -->
+            <!--  5 　リフレッシュ -->
+            <span class="timer__icon timer__action-btn--rim">
+              <svg
+                class="i"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
+                />
+              </svg>
             </span>
           </button>
           <button class="unset timer-ctrl__btn" aria-label="再生" id="startBtn">
-            <span
+            <!-- <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >play_circle
+            </span> -->
+            <!-- 6 play -->
+            <span
+              class="timer__icon timer__action-btn--running timer__action-btn--rim"
+            >
+              <svg
+                class="i"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                />
+              </svg>
             </span>
           </button>
           <button class="unset timer-ctrl__btn" id="stopBtn" aria-label="停止">
-            <span
+            <!-- <span
               class="timer-mini-set-button material-symbols-outlined icon-size"
               >stop_circle
+            </span> -->
+            <!-- 7 stop -->
+            <span
+              class="timer__icon timer__action-btn--paused timer__action-btn--rim"
+            >
+              <svg
+                class="i"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                />
+              </svg>
             </span>
           </button>
           <button class="unset" aria-label="ミュート" id="muteBtn">
@@ -389,69 +616,102 @@
       aria-modal="true"
       aria-hidden="true"
     >
-      <div class="lightbox__backdrop">
-        <div class="lightbox-content">
-          <img id="lightbox-img" class="lightbox__img" src="" alt="" />
-          <p id="lightbox-caption" class="lightbox__caption"></p>
+      <div id="lightbox" class="lightbox__backdrop">
+        <div class=“lightbox__content">
+        <img id="lightbox-img" class="lightbox__img" alt="" />
+        <p id="lightbox-caption" class="lightbox__caption"></p>
+        <button
+          id="prev-btn"
+          aria-label="前の画像"
+          class="lightbox__nav lightbox__nav--prev nav-button left"
+        >
+          &larr;
+        </button>
+        <button
+          id="next-btn"
+          aria-label="次の画像"
+          class="lightbox__nav lightbox__nav--next nav-button right"
+        >
+          &rarr;
+        </button>
+        <!-- // ヘッダー（情報行） 閉じるボタン・拡大ボタン -->
+        <div class="lightbox__header lightbox-header-parent">
+          <!-- 🔍 拡大率 表示フィット切替 -->
           <button
-            id="prev-btn"
-            aria-label="前の画像"
-            class="lightbox__nav lightbox__nav--prev nav-button left"
+            id="toggle-fit"
+            aria-pressed="false"
+            aria-label="拡大切替"
+            class="lightbox__fit-toggle fit-toggle-btn"
           >
-            &larr;
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="i i-44"
+              fill="currentColor"
+              viewBox="0 -960 960 960"
+            >
+              <path
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580t75.5-184.5T380-840t184.5 75.5T640-580q0 44-14 83t-38 69l252 252zM380-400q75 0 127.5-52.5T560-580t-52.5-127.5T380-760t-127.5 52.5T200-580t52.5 127.5T380-400m-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80z"
+              />
+            </svg>
           </button>
+          <!-- クローズボタン -->
           <button
-            id="next-btn"
-            aria-label="次の画像"
-            class="lightbox__nav lightbox__nav--next nav-button right"
+            id="lightbox-close"
+            aria-label="閉じる"
+            class="lightbox__close"
           >
-            &rarr;
+            <!-- ヘルプカード 7close -->
+            <svg
+              class="i i-44"
+              viewBox="0 -960 960 960"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill="currentColor"
+                d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+              />
+            </svg>
           </button>
-          <div class="lightbox__header lightbox-header-parent">
-            <button
-              id="toggle-fit"
-              aria-pressed="false"
-              class="lightbox__fit-toggle fit-toggle-btn"
-            >
-              <!-- 🔍 拡大率切り替え -->
-              <span
-                class="lightbox__scale material-symbols-outlined"
-                id="message"
-                role="status"
-                aria-live="polite"
-              >
-                zoom_in </span
-              ><br />拡大率
-            </button>
-            <button
-              id="lightbox-close"
-              aria-label="閉じる"
-              class="lightbox__close"
-            >
-              <span
-                class="lightbox__icon-close material-symbols-outlined"
-                aria-hidden="true"
-              >
-                close
-              </span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
-    <footer>
-      <div class="wrapper">
-        <div class="sideitem">
-          <span class="leaf-text">🌱</span>
-          <p>このサイトについて</p>
-        </div>
-        <div class="sideitem">
-          <span class="material-symbols-outlined help-icon-size"> help </span>
-          <p>ヘルプ</p>
-        </div>
-      </div>
+
+    <!-- footer内、サイトメニューが動いたら削除OK 旧になる .hidden追加中-->
+    <footer class="hidden">
+      <nav class="info" aria-label="補助メニュー">
+        <ul class="info__list">
+          <li class="info__item">
+            <a class="info__link info__link--about" href="#"
+              ><span aria-hidden="true">🌱</span> このサイトについて</a
+            >
+          </li>
+          <li class="info__item">
+            <button
+              class="info__link info__link--help"
+              id="helpBtn"
+              aria-expanded="false"
+              aria-controls="helpCard"
+              type="button"
+            >
+              <svg
+                class="i i-24"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
+                />
+              </svg>
+              ヘルプ
+            </button>
+          </li>
+        </ul>
+      </nav>
     </footer>
-    <details id="mini-help" class="mini-help" data-help>
+    <!-- <details id="mini-help" class="mini-help" data-help>
       <summary aria-label="ヘルプを開く">❔</summary>
       <div class="mini-help__card" role="dialog" aria-label="タイマーの使い方">
         <b>タイマーの使い方</b>
@@ -462,8 +722,155 @@
         </ul>
         <button class="mini-help__close">閉じる</button>
       </div>
-    </details>
-
+    </details> -->
+    <!-- ヘルプカード -->
+    <section
+      id="helpCard"
+      class="info-help-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="helpTitle"
+      hidden
+    >
+      <div class="info-help-container">
+        <div
+          class="visual-card-help-bg theme-moss help-content m-plus-1p-regular"
+        >
+          <!-- ヘッド -->
+          <div class="flex-parent-help-h">
+            <h2>
+              <!-- ヘルプカード1ヘルプ -->
+              <svg
+                class="i i-32"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
+                />
+              </svg>
+              ヘルプ
+            </h2>
+            <!-- ヘルプカード閉じるボタン -->
+            <button
+              id="helpCloseBtn"
+              type="button"
+              aria-label="閉じる"
+              class="close-button"
+            >
+              <!-- ヘルプカード 7close -->
+              <svg
+                class="i i-32"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- 本文 -->
+          <div class="m-plus-1p--regular">
+            <div id="helpTitle">
+              <span class="link-text">タイマーの使い方</span>
+            </div>
+            <div class="flex-parent-help-unit">
+              <div class="wrap-help-unit-l">
+                <div class="info-line-spacing">
+                  <h3>時間設定</h3>
+                  <p>3分・4分・5分から選びます<br />（初期設定は3分です）</p>
+                </div>
+                <div class="info-line-spacing">
+                  <h3>操作方法</h3>
+                  <p>各マークをタップまたはクリックすると操作できます</p>
+                </div>
+              </div>
+              <div class="wrap-help-unit-r">
+                <div class="flex-parent-help-p info-line-spacing">
+                  <!-- ヘルプカード 6 play -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                    />
+                  </svg>
+                  <p>再生：カウントダウン開始</p>
+                </div>
+                <div class="flex-parent-help-p info-line-spacing">
+                  <!-- ヘルプカード 8 stop -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                    />
+                  </svg>
+                  <p>
+                    停止：一時停止
+                    <!-- ヘルプカード 6 play -->
+                    <svg
+                      class="i i-24"
+                      viewBox="0 -960 960 960"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
+                      /></svg
+                    >再生で再開
+                  </p>
+                </div>
+                <div class="flex-parent-help-p info-line-spacing">
+                  <!-- ヘルプカード 5 　リフレッシュ -->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
+                    />
+                  </svg>
+                  <p>表示リセット</p>
+                </div>
+                <div class="flex-parent-help-p">
+                  <!-- ヘルプカード 2 ON=波線あり-->
+                  <svg
+                    class="i i-32"
+                    viewBox="0 -960 960 960"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481t-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481M280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80M400-606l-86 86H200v80h114l86 86zM300-480"
+                    />
+                  </svg>
+                  <p>ミュート：消音</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- 背景クリック用 -->
     <div class="offcanvas-backdrop" hidden></div>
     <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>

@@ -75,6 +75,8 @@
 }
 
 $main-color: #f5f5f5;
+$main-color-70: rgb(245 245 245 / 70%);
+$main-color-80: rgb(245 245 245 / 80%);
 
 // ════════════════════════════════
 // ✨ hero
@@ -92,8 +94,6 @@ $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
 
 // $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
 
-$volume-control-slider-background: #f5f5f560;
-
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
 
@@ -101,14 +101,16 @@ $text-main: clamp(16px, 1.111vw, 24px);
 // 16〜20px + safe-area
 
 // ▼ギャラリー
-$g-col-blueblack: rgb(21 26 37 / 100%); // blue-black#151a25
-$color-text-light-rgba: rgb(245 245 245 / 70%);
+$color-g-blueblack: rgb(21 26 37 / 100%); // blue-black#151a25
 
 // === Backgrounds ===
-$color-bg-base: #eae5da; // コズミックラテ（ベース）
-$color-bg-muted: #f5f5f5; // 明るいミュート背景
-$color-bg-muted-alpha: #f5f5f530; // 明るいミュート背景
-$color-bg-gallery: #fff; // ギャラリー白
+
+$color-g-shiro100: rgb(255 255 255 / 100%); // ギャラリー白
+$color-g-shiro10: rgb(255 255 255 / 10%); // ギャラリー黒
+$color-g-kuro70: rgb(0 0 0 / 70%); // ギャラリー黒
+$color-g-latte-dark: #eae5da; // コズミックラテ（渋）
+$color-g-latte-light: #f4efe8; // コズミックラテ（明るめ）
+$color-g-latte-normal: #fff8e7; // コズミックラテ（まじ）
 
 // ▼z-index
 // === 基本　hero ===
@@ -159,3 +161,18 @@ $SilenceWhite: #fff;
 // ▽入力画像の彩度　 saturate()
 $saturate-normal: saturate(140%);
 $saturate-hover: saturate(130%);
+
+/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
+// 間隔
+$gap-xs: 8px;
+$gap-sm: 12px;
+$gap-md: 16px;
+$gap-lg: 20px;
+$gap-xl: 24px;
+
+// ブレイクポイント
+$bp-xs: 376px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1440px;

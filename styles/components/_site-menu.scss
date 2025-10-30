@@ -9,10 +9,117 @@
 }
 
 body.gallery,
+.page--gallery,
 body.universe,
 body.about {
-  span.icon-size {
-    font-size: 44px;
+  .site-menu {
+    // ヘッダーエリア
+
+    &__inner {
+      // background-color: core.$test-bg1;
+      display: flex;
+      justify-content: left;
+    }
+
+    // ハンバーガーアイコン
+    &__btn {
+      color: inherit;
+    }
+
+    &__title {
+      width: 100%;
+      container-type: inline-size;
+      container-name: heading;
+      text-align: left;
+    }
+
+    // タイトル h1
+    &__heading {
+      display: inline-block;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 24px;
+
+      // $bp-xs: 376px;より広い場合
+      @container heading (max-width: #{core.$bp-sm}) {
+        // font-size: 18px;
+        padding: 0 core.$gap-xs;
+      }
+
+      // $bp-sm: 480px;より広い場合
+      @container heading (min-width: #{core.$bp-sm}) {
+        // font-size: 1rem;
+        padding: 0 core.$gap-sm;
+        // background-color: lavender;
+      }
+
+      // $bp-md: 768px;より広い場合
+      @container heading (min-width: #{core.$bp-md}) {
+        // font-size: 1rem;
+        padding: 0 core.$gap-sm;
+        // background-color: pink;
+      }
+
+      // $bp-lg: 1024px;より広い場合
+      @container heading (min-width: #{core.$bp-lg}) {
+        // font-size: 1.4rem;
+        padding: 0 core.$gap-md;
+        // background-color: yellowgreen;
+      }
+
+      // $bp-xl: 1440px; 最小幅
+      @container heading (min-width: #{core.$bp-xl}) {
+        // font-size: 2rem;
+        padding: 0 core.$gap-xl;
+        // background-color: springgreen;
+      }
+    }
+
+    // サブタイトル h2
+    &__subheading {
+      display: inline-block;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      font-size: clamp(14px, 8vw, 18px);
+      white-space: no-wrap;
+
+      // $bp-xs: 376px;より広い場合
+      @container subheading (max-width: #{core.$bp-sm}) {
+        // font-size: 16px;
+        font-size: 0.8rem;
+        padding: 0 core.$gap-xs;
+      }
+
+      // $bp-sm: 480px;より広い場合
+      @container subheading (min-width: #{core.$bp-sm}) {
+        // font-size: 1rem;
+        padding: 0 core.$gap-sm;
+        // background-color: lavender;
+      }
+
+      // $bp-md: 768px;より広い場合
+      @container subheading (min-width: #{core.$bp-md}) {
+        // font-size: 1rem;
+        padding: 0 core.$gap-sm;
+        // background-color: pink;
+      }
+
+      // $bp-lg: 1024px;より広い場合
+      @container subheading (min-width: #{core.$bp-lg}) {
+        // font-size: 1.4rem;
+        padding: 0 core.$gap-md;
+        // background-color: yellowgreen;
+      }
+
+      // $bp-xl: 1440px; 最小幅
+      @container subheading (min-width: #{core.$bp-xl}) {
+        // font-size: 2rem;
+        padding: 0 core.$gap-xl;
+        // background-color: springgreen;
+      }
+    }
   }
 
   @media (width >= 375px) and (width <= 1080px) and (orientation: portrait) {
@@ -21,6 +128,17 @@ body.about {
       height: 10svh;
 
       // background-color: core.$test-bg4;
+      h1 {
+        // margin-left: 2rem;
+        font-size: 1rem;
+      }
+
+      h2 {
+        margin-top: 0.2rem;
+        font-size: 0.8rem;
+
+        // margin-left: 2rem;
+      }
     }
   }
 }
