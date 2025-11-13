@@ -30,159 +30,34 @@
       <div class="page-header__bar">
         <!-- メニューアイコン -->
         <button
-          class="site-menu__btn menu--btn hamburger- center"
+          class="page-header__toggle hamburger"
           aria-label="メニューを開く"
           aria-controls="site-menu"
           aria-expanded="false"
         >
-          <!-- <span
-            class="material-icons hamburger-icon material-symbols-outlined icon-size"
-            aria-hidden="true"
-          > -->
-          <!-- menu -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            aria-hidden="true"
-            focusable="false"
-            class="i i-44"
-          >
-            <path
-              fill="currentColor"
-              d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
-            />
-          </svg>
-          <!-- </span> -->
+          <!-- menu　ハンバーガーSVG -->
+          <span aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              aria-hidden="true"
+              focusable="false"
+              class="i i-44"
+            >
+              <path
+                fill="currentColor"
+                d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
+              />
+            </svg>
+          </span>
         </button>
-        <div class="site-menu__title">
-          <h1 class="site-menu__heading">世界のお茶を少しだけ</h1>
-          <h2 class="site-menu__subheading">
-            世界のお茶をテーマにした視覚的サンプルです。
-          </h2>
+        <div class="page-header__brand">
+          <h1 class="page-header__title">leaf.loop - portfolio</h1>
+          <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
         </div>
       </div>
     </header>
-    <!-- 右端で待機するメニュー-->
-    <nav id="site-menu" class="offcanvas hidden">
-      <div class="offcanvas__head">
-        <span class="offcanvas__title">Menu</span>
-        <button
-          class="zen-kaku-gothic-new-bold offcanvas__close"
-          aria-label="メニューを閉じる"
-        >
-          <!-- メニュー close × -->
-          <svg
-            class="i i-32"
-            viewBox="0 -960 960 960"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              fill="currentColor"
-              d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
-            />
-          </svg>
-        </button>
-      </div>
-      <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
-        <li>
-          <a href="index.html"><span class="link--text">ホーム</span></a>
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/gallery.html">世界のお茶を少しだけ</a></span
-          >
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/universe.html">遠くのことを少しだけ</a></span
-          >
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/about.html">このサイトについて</a></span
-          >
-        </li>
-        <li>
-          <span class="link--text">
-            <a href="#" class="menu-help" data-help
-              >ヘルプ（タイマーの使い方）</a
-            >
-          </span>
-        </li>
-      </ul>
-      <!-- 時計 -->
-      <div class="clock-icon svg-container">
-        <svg
-          width="227"
-          height="199"
-          viewBox="0 0 227 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g
-            style="mix-blend-mode: soft-light"
-            filter="url(#filter0_d_157_368)"
-          >
-            <path
-              d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
-              fill="#FFF8E7"
-              fill-opacity="0.3"
-            />
-          </g>
-          <path
-            d="M113.001 108.493L167.124 139.741"
-            stroke="white"
-            stroke-linecap="round"
-          />
-          <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
-          <path
-            d="M113 109L187.995 109"
-            stroke="white"
-            stroke-linecap="round"
-          />
-          <defs>
-            <filter
-              id="filter0_d_157_368"
-              x="0"
-              y="0"
-              width="226.594"
-              height="199"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feOffset dy="1" />
-              <feGaussianBlur stdDeviation="1" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
-              />
-              <feBlend
-                mode="normal"
-                in2="BackgroundImageFix"
-                result="effect1_dropShadow_157_368"
-              />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="effect1_dropShadow_157_368"
-                result="shape"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-    </nav>
-    <!-- ▼▼ 以下、BEM化　▼▼ -->
-
+    <!-- ▼▼ main ギャラリー本体▼▼ -->
     <main>
       <section class="gallery" aria-label="Gallery">
         <div class="gallery__bg">
@@ -966,6 +841,46 @@ class="gallery__img"
       </div>
     </section>
     <!-- 背景クリック用 -->
+    <div class="scrim" hidden></div>
+    <!-- 右端で待機するメニュー-->
+    <nav id="site-menu" class="menu-drawer" role="navigation" hidden>
+      <div class="menu-drawer__head">
+        <span class="menu-drawer__title">Menu</span>
+        <!-- 閉じるボタンSVG -->
+        <button class="menu-drawer__close" aria-label="メニューを閉じる">
+          <!-- メニュー close × -->
+          <svg
+            class="i"
+            viewBox="0 -960 960 960"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              fill="currentColor"
+              d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+            />
+          </svg>
+        </button>
+      </div>
+      <!-- メニューリスト -->
+      <ul class="menu-drawer__list">
+        <li class="menu-drawer__item">
+          <a class="menu-drawer__link" href="index.html">ホーム</a>
+        </li>
+        <li class="menu-drawer__item">
+          <a class="menu-drawer__link" href="/gallery.html" aria-current="page"
+            >世界のお茶を少しだけ</a
+          >
+        </li>
+        <li class="menu-drawer__item">
+          <a class="menu-drawer__link" href="/universe.html"
+            >遠くのことを少しだけ</a
+          >
+        </li>
+        <li class="menu-drawer__item">
+          <a class="menu-drawer__link" href="/about.html">このサイトについて</a>
+        </li>
+      </ul>
       <!-- 時計　テスト -->
       <div class="clock-bg decor-clock">
         <svg
@@ -1050,6 +965,7 @@ class="gallery__img"
         <!-- 他のレイヤー -->
       </div>
       <!-- 時計 -->
+    </nav>
     <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>

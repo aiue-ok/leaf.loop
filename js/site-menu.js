@@ -4,9 +4,9 @@
 
   const body = document.body;
   const panel = document.getElementById("site-menu");
-  const btnOpen = document.querySelector(".hamburger");
-  const btnClose = panel?.querySelector(".offcanvas__close");
-  const backdrop = document.querySelector(".offcanvas-backdrop");
+  const btnOpen = document.querySelector(".hamburger, .site-menu__btn");
+  const btnClose = panel?.querySelector(".menu-drawer__close");
+  const backdrop = document.querySelector(".scrim");
   if (!panel || !btnOpen || !backdrop) return;
 
   // フォーカス可能要素の取得
@@ -106,9 +106,9 @@
   });
 
   // 閉じるボタン
-  help.querySelector(".mini-help__close")?.addEventListener("click", () => {
-    help.removeAttribute("open");
-  });
+  // help.querySelector(".mini-help__close")?.addEventListener("click", () => {
+  //   help.removeAttribute("open");
+  // });
 
   // ハンバーガーの「ヘルプ」からも開ける
   d.querySelectorAll("[data-help]").forEach((el) => {
