@@ -162,10 +162,12 @@
 // ─────────────────────────────
 // 🌿 カラー変数（各ページごとのタイマーの色合い）
 // ─────────────────────────────
-body.gallery .timer,
-body.gallery .timer-mini-container {
+
+.page--gallery > .timer-mini {
   // 色 color☕️#eae5da
   --timer-main-color: #eae5da;
+  // ヘルプカードの背景
+  --timer-main-color-rgb: rgb(234 229 218/ 90%);
 
   // ↓変えないとだめ
   --timer-color-hover: #fff;
@@ -179,22 +181,20 @@ body.gallery .timer-mini-container {
 
   // 📍外観セット🫖
   // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border-radius-mobile: 0;
   --timer-border: 1px solid rgb(234 229 218 / 30%);
   --timer-border-mobile: none;
   --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
   --timer-box-shadow-mobile: none;
-  --timer-background: rgb(14 16 32 / 40%);
-  --timer-background-mobile: transparent;
+  --timer-background: oklch(22% 0.03 266 / 40%);
+  --timer-background-mobile: green;
   --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(140%);
+  --timer-backdrop-filter: blur(8px) saturate(110%);
   --timer-backdrop-filter-mobile: none;
-  --timer-webkit-backdrop-filter: blur(8px) saturate(140%);
+  --timer-webkit-backdrop-filter: blur(8px) saturate(110%);
   --timer-webkit-backdrop-filter-mobile: none;
 
   // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(14 16 32 / 50%);
+  --timer-hover-background: oklch(22% 0.03 266 / 50%);
 
   // buttons🫖
   --timer-mini-preset-background-color: transparent;

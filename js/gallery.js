@@ -84,10 +84,10 @@ nextBtn.addEventListener("click", () => {
 });
 
 // 拡大率変更ボタン
-const toggleBtn = document.getElementById("toggle-fit");
+const toggleFitBtn = document.getElementById("toggle-fit");
 const element = document.getElementById("message");
 
-toggleBtn.addEventListener("click", () => {
+toggleFitBtn.addEventListener("click", () => {
   const isCover =
     lightboxImg.style.objectFit === "cover" || !lightboxImg.style.objectFit;
   lightboxImg.style.objectFit = isCover ? "contain" : "cover";
