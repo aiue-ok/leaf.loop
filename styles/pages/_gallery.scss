@@ -196,7 +196,7 @@ body.gallery,
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 10;
+  z-index: core.$z-lightbox-block;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
 
@@ -207,7 +207,7 @@ body.gallery,
   // 背景
   &__backdrop {
     position: fixed;
-    z-index: 100;
+    z-index: core.$z-lightbox-bg;
     inset: 0;
     background: rgb(0 0 0 / 70%);
     display: flex;
@@ -230,7 +230,7 @@ body.gallery,
       max-height: 70vh;
       margin: 0 auto; // 横方向の中央揃え
       border-radius: 12px;
-      z-index: 1000;
+      z-index: core.$z-lightbox-img;
     }
   }
 
@@ -248,7 +248,7 @@ body.gallery,
     max-height: 70vh;
     margin: 0 auto; // 横方向の中央揃え
     border-radius: 12px;
-    z-index: 1000;
+    z-index: core.$z-lightbox-img;
   }
 
   // キャプション
@@ -319,7 +319,7 @@ body.gallery,
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000;
+    z-index: core.$z-lightbox-close;
     background: transparent;
     // color: inherit;
     border: none;
@@ -350,7 +350,7 @@ body.gallery,
     transform: translateY(-50%);
     backdrop-filter: blur(4px);
     cursor: pointer;
-    z-index: 10000;
+    z-index: core.$z-lightbox-nav;
 
     // ナビボタン（前）
     &--prev {
