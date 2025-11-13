@@ -17,17 +17,16 @@
     />
 
     <script src="js/gallery.js" defer></script>
-    <!-- <script src="js/gallery_lightbox.js" defer></script> -->
-    <!-- <script src="js/timer-base.js" defer></script> -->
+    <script src="js/timer-base.js" defer></script>
     <script src="js/site-menu.js" defer></script>
     <!-- gallery.html と同じ階層に /js がある想定 -->
-    <!-- <script src="./js/timer-base.js" defer></script> -->
-    <script src="js/help.js" defer></script>
     <title>世界のお茶を少しだけ</title>
   </head>
-  <body class="gallery page page--gallery">
-    <header class="site-menu">
-      <div class="site-menu__inner">
+
+  <body class="page page--gallery">
+    <!-- ページ共通のヘッダ -->
+    <header class="page-header">
+      <div class="page-header__bar">
         <!-- メニューアイコン -->
         <button
           class="site-menu__btn menu--btn hamburger- center"
@@ -230,7 +229,7 @@
                   />
                 </li>
                 <!-- 【写真３】 -->
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/003.webp"
@@ -250,7 +249,7 @@
                   />
                 </li>
                 <!-- 【写真４】 -->
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/004.webp"
@@ -270,7 +269,7 @@
                   />
                 </li>
 
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/005.webp"
@@ -287,7 +286,7 @@
                     data-full-webp="assets/gallery/full/005.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/006.webp"
@@ -304,7 +303,7 @@
                     data-full-webp="assets/gallery/full/006.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/007.webp"
@@ -321,7 +320,7 @@
                     data-full-webp="assets/gallery/full/007.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/008.webp"
@@ -338,7 +337,7 @@
                     data-full-webp="assets/gallery/full/008.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/009.webp"
@@ -355,7 +354,7 @@
                     data-full-webp="assets/gallery/full/009.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/010.webp"
@@ -372,9 +371,9 @@
                     data-full-webp="assets/gallery/full/010.webp"
                   />
                 </li>
-                <!-- <li class="gallery__item photo-box">
+                <!-- <li class="gallery__item ">
                   <img
-                    class="gallery__img"
+class="gallery__img"
                     src="assets/gallery/thumbs/011.webp"
                     srcset="
                       assets/gallery/thumbs/011.webp    1x,
@@ -387,7 +386,7 @@
                     data-full-webp="assets/gallery/full/011.webp"
                   />
                 </li> -->
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/012.webp"
@@ -404,7 +403,7 @@
                     data-full-webp="assets/gallery/full/012.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/013.webp"
@@ -421,7 +420,7 @@
                     data-full-webp="assets/gallery/full/013.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/014.webp"
@@ -438,7 +437,7 @@
                     data-full-webp="assets/gallery/full/014.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/015.webp"
@@ -455,7 +454,7 @@
                     data-full-webp="assets/gallery/full/015.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/016.webp"
@@ -472,7 +471,7 @@
                     data-full-webp="assets/gallery/full/016.webp"
                   />
                 </li>
-                <li class="gallery__item photo-box">
+                <li class="gallery__item">
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/017.webp"
@@ -701,71 +700,72 @@
         </div>
       </div>
 
-    <!-- /* ≡≡≡ Lightboxここから */ -->
-    <div
-      id="lightbox"
-      class="lightbox hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-    >
-      <div id="lightbox" class="lightbox__backdrop">
-        <div class=“lightbox__content">
-        <img id="lightbox-img" class="lightbox__img" alt="" />
-        <p id="lightbox-caption" class="lightbox__caption"></p>
-        <button
-          id="prev-btn"
-          aria-label="前の画像"
-          class="lightbox__nav lightbox__nav--prev nav-button left"
-        >
-          &larr;
-        </button>
-        <button
-          id="next-btn"
-          aria-label="次の画像"
-          class="lightbox__nav lightbox__nav--next nav-button right"
-        >
-          &rarr;
-        </button>
-        <!-- // ヘッダー（情報行） 閉じるボタン・拡大ボタン -->
-        <div class="lightbox__header lightbox-header-parent">
-          <!-- 🔍 拡大率 表示フィット切替 -->
+      <!-- /* ≡≡≡ Lightboxここから */ -->
+      <div
+        id="lightbox"
+        class="lightbox hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+      >
+        <div class="lightbox__backdrop">
+          <div class=“lightbox__content">
+          <img id="lightbox-img" class="lightbox__img" alt="" />
+          <p id="lightbox-caption" class="lightbox__caption"></p>
           <button
-            id="toggle-fit"
-            aria-pressed="false"
-            aria-label="拡大切替"
-            class="lightbox__fit-toggle fit-toggle-btn"
+            id="prev-btn"
+            aria-label="前の画像"
+            class="lightbox__nav lightbox__nav--prev nav-button left"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="i i-44"
-              fill="currentColor"
-              viewBox="0 -960 960 960"
-            >
-              <path
-                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580t75.5-184.5T380-840t184.5 75.5T640-580q0 44-14 83t-38 69l252 252zM380-400q75 0 127.5-52.5T560-580t-52.5-127.5T380-760t-127.5 52.5T200-580t52.5 127.5T380-400m-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80z"
-              />
-            </svg>
+            &larr;
           </button>
-          <!-- クローズボタン -->
           <button
-            id="lightbox-close"
-            aria-label="閉じる"
-            class="lightbox__close"
+            id="next-btn"
+            aria-label="次の画像"
+            class="lightbox__nav lightbox__nav--next nav-button right"
           >
-            <!-- ヘルプカード 7close -->
-            <svg
-              class="i i-44"
-              viewBox="0 -960 960 960"
-              aria-hidden="true"
-              focusable="false"
+            &rarr;
+          </button>
+          <!-- // ヘッダー（情報行） 閉じるボタン・拡大ボタン -->
+          <div class="lightbox__header lightbox-header-parent">
+            <!-- 🔍 拡大率 表示フィット切替 -->
+            <button
+              id="toggle-fit"
+              aria-pressed="false"
+              aria-label="拡大切替"
+              class="lightbox__fit-toggle fit-toggle-btn"
             >
-              <path
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="i i-44"
                 fill="currentColor"
-                d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
-              />
-            </svg>
-          </button>
+                viewBox="0 -960 960 960"
+              >
+                <path
+                  d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580t75.5-184.5T380-840t184.5 75.5T640-580q0 44-14 83t-38 69l252 252zM380-400q75 0 127.5-52.5T560-580t-52.5-127.5T380-760t-127.5 52.5T200-580t52.5 127.5T380-400m-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80z"
+                />
+              </svg>
+            </button>
+            <!-- クローズボタン -->
+            <button
+              id="lightbox-close"
+              aria-label="閉じる"
+              class="lightbox__close"
+            >
+              <!-- ヘルプカード 7close -->
+              <svg
+                class="i i-44"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

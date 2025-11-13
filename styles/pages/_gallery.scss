@@ -33,30 +33,6 @@ main {
   // background: core.$color-g-latte-normal;
   // background: core.$color-g-latte-dark;
   background: core.$color-g-latte-light;
-  // background-color: black;
-
-  // ⚠️⚠️⚠️dubug用 タイマーなど隠してます⚠️⚠️⚠️
-  .hidden {
-    display: none;
-  }
-
-  // メニューアイコン　→ styles/components/_site-menu.scss
-  .site-header {
-    padding: 0;
-  }
-
-  // ヘッダー
-  header {
-    // あとで消す背景色
-    h1,
-    h2 {
-      // background-color: rgb(255 218 185 / 41.6%);
-      display: inline-block;
-    }
-
-    h2 {
-    }
-  }
 
   // <main>
   .gallery {
@@ -267,6 +243,8 @@ main {
     text-align: center;
     transition: background 0.3s ease;
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    will-change: backdrop-filter;
     animation: fadeInUp 0.5s ease-out;
 
     &:hover {
@@ -351,6 +329,8 @@ main {
     background: core.$color-g-shiro10;
     transform: translateY(-50%);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    will-change: backdrop-filter;
     cursor: pointer;
     z-index: core.$z-lightbox-nav;
 
@@ -456,6 +436,11 @@ main {
     padding-bottom: calc(
       var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
     );
+
+    // ミニタイマー用の余白
+    header {
+      margin-top: 44px;
+    }
 
     .gallery {
       &__item {
