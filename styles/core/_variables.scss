@@ -1,3 +1,45 @@
+// ▼z-index
+// === 基本　hero ===
+$z-deeper: -2;
+$z-back: -1;
+$z-main: 0;
+$z-front: 1;
+$z-closer: 2;
+$z-nav: 0;
+
+// === 各ページ ===
+// main
+// ミニタイマー・ヘルプアイコン
+$z-timer-mini: 5;
+// ─────────────────────────────
+// 【gallery】 Lightbox画像
+// lightbox モーダル全体（ブロック）
+$z-lightbox-block: 2000;
+// 背景
+$z-lightbox-bg: 100;
+// コンテンツ領域 画像（img）
+$z-lightbox-img: 2000;
+// lightbox クローズボタン
+$z-lightbox-close: 2100;
+// ナビボタン
+$z-lightbox-nav: 2100;
+
+// ─────────────────────────────
+// メニュー
+// ハンバーガー
+$z-menu-hbg: 1000;
+/* パネル本体（右から） */
+$z-menu-offcanvas: 1100;
+// 背景の半透明幕
+$z-menu-backdrop: 999;
+
+// ─────────────────────────────
+// サイド
+// ヘルプカード
+$z-help: 3000;
+// z-index: 100; /* ヘルプカード内で最上層に */
+$z-help-close: 3100;
+
 // 色、フォントサイズ、transitionなど
 @supports (height: 1dvh) {
   :root {
