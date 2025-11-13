@@ -1,3 +1,63 @@
+// #f5f5f5
+$main-color: oklch(97.015% 0.00011 271.152);
+$main-color-70: oklch(97.015% 0.00011 271.152 / 0.7);
+$main-color-80: oklch(97.015% 0.00011 271.152 / 0.8);
+
+// ════════════════════════════════
+// ✨ hero
+// ════════════════════════════════
+$hero-shadow: 1px 1px 3px #c2c2c2;
+$hover-shadow: 0 2px 8px rgb(0 0 0 / 35%);
+$hero-background: rgb(161 161 161 / 40%);
+
+// 柳鼠フィルター rgb(200 211 192 / 0.4)
+$filter-yanaginezu: rgb(200 211 192 / 40%);
+
+// アイコンサイズ 最小44px,最大56px
+$icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
+$icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
+
+// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
+
+// ▼フォントサイズ
+$text-main: clamp(16px, 1.111vw, 24px);
+
+// スマホ両脇
+// 16〜20px + safe-area
+
+// === Backgrounds ===
+
+$shiro100: oklch(100% 0.00011 271.152); // ギャラリー白
+$shiro10: oklch(100% 0.00011 271.152 / 0.1); // ギャラリー白10%透明
+$kuro70: oklch(0% 0 0 / 0.7); // ギャラリー黒
+$kuro100: oklch(0% 0 0); // ギャラリー黒
+
+// ▼ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
+
+// 深いブルーブラック：夜空のような基調
+$color-g-blueblack: oklch(22% 0.03 266); // ≒ #151a25
+
+// === Backgrounds ===
+
+// ギャラリー白（純白）
+$color-g-shiro100: oklch(100% 0 0); // ≒ #ffffff
+
+// ギャラリー白10%（透明オーバーレイ用）
+$color-g-shiro10: oklch(100% 0 0 / 0.1);
+$color-g-shiro20: oklch(100% 0 0 / 0.2);
+
+// ギャラリー黒70%（オーバーレイや文字補助）
+$color-g-kuro70: oklch(0% 0 0 / 0.7);
+
+// コズミックラテ（渋）
+$color-g-latte-dark: oklch(90% 0.02 85); // ≒ #eae5da
+
+// コズミックラテ（明るめ）
+$color-g-latte-light: oklch(96% 0.01 85); // ≒ #f4efe8
+
+// コズミックラテ（標準）
+$color-g-latte-normal: oklch(98% 0.01 85); // ≒ #fff8e7
+
 // ▼z-index
 // === 基本　hero ===
 $z-deeper: -2;
@@ -39,6 +99,55 @@ $z-menu-backdrop: 999;
 $z-help: 3000;
 // z-index: 100; /* ヘルプカード内で最上層に */
 $z-help-close: 3100;
+
+// ▼テーマカラー候補
+// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
+$LeafMist: oklch(96.151% 0.00822 157.785);
+
+// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
+$SteamGrey: oklch(88.318% 0.0034 146.922);
+
+// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
+$CelestialSilver: oklch(85.846% 0.00613 240.313);
+
+// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
+$MossShadow: oklch(74.698% 0.02918 142.079);
+
+// $Silence White:#ffffff	基本の白。本文背景・余白などに使用
+$SilenceWhite: oklch(100% 0.00011 271.152deg);
+
+// 4) 既存トークンを活かす小ワザ
+// 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
+
+/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
+// .universe {
+// --accent: rgb(100 150 200);
+// }_
+
+/* 使う場所で OKLCH に変換して指定する */
+// .universe .oklch-accent {
+// color: oklch(from var(--accent) l c h);
+// }
+
+// ▼フィルター
+// ▽入力画像の彩度　 saturate()
+$saturate-normal: saturate(140%);
+$saturate-hover: saturate(130%);
+
+/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
+// 間隔
+$gap-xs: 8px;
+$gap-sm: 12px;
+$gap-md: 16px;
+$gap-lg: 20px;
+$gap-xl: 24px;
+
+// ブレイクポイント
+$bp-xs: 376px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1440px;
 
 // 色、フォントサイズ、transitionなど
 @supports (height: 1dvh) {
@@ -114,107 +223,16 @@ $z-help-close: 3100;
   --focus-ring: #f5f5f5;
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+
+  // メニュー
+  --menu-w: min(360px, 86vw);
+
+  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
+  --panel-bg: #{$color-g-kuro70};
+  --panel-bd: #{$color-g-shiro10};
+
+  // 背景レイヤー
+  --overlay-bg: oklch(0% 0 0 / 0.45);
+  // 開閉メニューのフォントカラー
+  --panel-cl: #{$main-color};
 }
-
-$main-color: #f5f5f5;
-$main-color-70: rgb(245 245 245 / 70%);
-$main-color-80: rgb(245 245 245 / 80%);
-
-// ════════════════════════════════
-// ✨ hero
-// ════════════════════════════════
-$hero-shadow: 1px 1px 3px #c2c2c2;
-$hover-shadow: 0 2px 8px rgb(0 0 0 / 35%);
-$hero-background: rgb(161 161 161 / 40%);
-
-// 柳鼠フィルター rgb(200 211 192 / 0.4)
-$filter-yanaginezu: rgb(200 211 192 / 40%);
-
-// アイコンサイズ 最小44px,最大56px
-$icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
-$icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
-
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-
-// ▼フォントサイズ
-$text-main: clamp(16px, 1.111vw, 24px);
-
-// スマホ両脇
-// 16〜20px + safe-area
-
-// ▼ギャラリー
-$color-g-blueblack: rgb(21 26 37 / 100%); // blue-black#151a25
-
-// === Backgrounds ===
-
-$color-g-shiro100: rgb(255 255 255 / 100%); // ギャラリー白
-$color-g-shiro10: rgb(255 255 255 / 10%); // ギャラリー黒
-$color-g-kuro70: rgb(0 0 0 / 70%); // ギャラリー黒
-$color-g-latte-dark: #eae5da; // コズミックラテ（渋）
-$color-g-latte-light: #f4efe8; // コズミックラテ（明るめ）
-$color-g-latte-normal: #fff8e7; // コズミックラテ（まじ）
-
-// ▼z-index
-// === 基本　hero ===
-$z-deeper: -2;
-$z-back: -1;
-$z-main: 0;
-$z-front: 1;
-$z-closer: 2;
-$z-nav: 0;
-
-// === 各ページ ===
-// ヘルプカード
-$z-help: 10;
-$z-timer-mini: 5;
-$z-menu-offcanvas: 80;
-$z-menu-backdrop: 70;
-
-// ▼テーマカラー候補
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: #eef4f0;
-
-// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
-$SteamGrey: #d7d9d7;
-
-// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
-$CelestialSilver: #cdd1d4;
-
-// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
-$MossShadow: #a3b2a1;
-
-// $Silence White:#ffffff	基本の白。本文背景・余白などに使用
-$SilenceWhite: #fff;
-
-// 4) 既存トークンを活かす小ワザ
-// 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
-
-/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
-// .universe {
-// --accent: rgb(100 150 200);
-// }_
-
-/* 使う場所で OKLCH に変換して指定する */
-// .universe .oklch-accent {
-// color: oklch(from var(--accent) l c h);
-// }
-
-// ▼フィルター
-// ▽入力画像の彩度　 saturate()
-$saturate-normal: saturate(140%);
-$saturate-hover: saturate(130%);
-
-/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
-// 間隔
-$gap-xs: 8px;
-$gap-sm: 12px;
-$gap-md: 16px;
-$gap-lg: 20px;
-$gap-xl: 24px;
-
-// ブレイクポイント
-$bp-xs: 376px;
-$bp-sm: 480px;
-$bp-md: 768px;
-$bp-lg: 1024px;
-$bp-xl: 1440px;
