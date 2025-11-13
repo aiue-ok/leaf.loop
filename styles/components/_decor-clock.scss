@@ -1,0 +1,45 @@
+@use "../core/index" as core;
+
+// 時計
+
+.decor-clock {
+  padding: 0;
+  text-align: center;
+  animation-timing-function: linear;
+  animation: spin 3600s infinite;
+
+  & svg {
+    position: fixed;
+    display: block;
+    width: 17rem;
+    height: 14rem;
+    filter: drop-shadow(0 0 5px rgba(200, 200, 255, 0.3));
+  }
+
+  &__bg {
+    &--back {
+      color: oklch(from #{core.$color-g-latte-light} l c h / 0.8);
+    }
+    &--mid {
+      color: oklch(from #{core.$MossShadow} l c h / 0.8);
+    }
+    &--front {
+      color: oklch(from #{core.$LeafMist} l c h / 0.8);
+    }
+  }
+
+  &__hand {
+    &--h {
+      color: core.$color-g-latte-dark;
+    }
+    &--m {
+      color: core.$color-g-latte-light;
+    }
+    &--s {
+      color: core.$color-g-latte-normal;
+    }
+  }
+
+  &_center {
+  }
+}
