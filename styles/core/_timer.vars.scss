@@ -106,10 +106,16 @@
   --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
 }
 
-.timer-mini-container {
+// タイマーミニ
+.timer-mini {
   --timer-position: fixed;
   --timer-left: 1.25rem;
   --timer-bottom: 1.25rem;
+  // 追加
+  --visual: 28px;
+  --hit: 44px;
+
+  --timer-mini-gallery-color: #eae5da;
 
   //   w360px h180px　ビューポートに依る
   //   width: 22.5rem;height: 11.25rem;
@@ -119,10 +125,10 @@
   // z-index: 5;
   // カウントダウン表示　００：００
   --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
+  --timer-count-font-size-mobile: clamp(16px, 10vw, 28px);
 
   // ボタンの配置間隔
-  --gap-g-button: 8px;
+  --gap-g-button: 2.3vmin;
   --gap-g-button-mobile: 5px;
 
   // アイコンfont
@@ -130,21 +136,24 @@
   --timer-mini-icon-size-mobile: 28px;
   --icon-visual: 28px; /* 見た目 */
   --icon-hit: 44px; /* タップ面 */
+
   // プリセットボタンの円    /* 円の大きさ */
-  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 24px;
+  --timer-mini-width: clamp(2.4rem, 3vw, 5rem);
   --timer-mini-aspect-ratio: 1 / 1;
   --timer-mini-aspect-ratio-mobile: 1 / 2;
   --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 8px;
+  --timer-mini-border-radius-mobile: 16px;
   --timer-mini-border-width: 2.27px;
+  --timer-mini-border-width-mobile: 1px;
   --timer-mini-border-less: 0;
-  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
+  --timer-mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
 
   // 音量（ラベル＋スライダー） */
   --timer-mini-inline-size: min(36vw, 12rem);
   --timer-mini-inline-size-mobile: max-content;
   --timer-mini-vol-label-font-size: 0.9rem;
+
+  --timer-border-radius: 16px;
 
   // その他
   --timer-transition: background 0.3s ease, filter 0.3s ease;
