@@ -10,11 +10,6 @@ body.universe,
     right: auto;
     left: var(--timer-left);
     bottom: var(--timer-bottom);
-
-    //   w360px h180px　ビューポートに依る
-    //   width: 22.5rem;height: 11.25rem;
-    width: clamp(360px, 25vw, 380px);
-    height: max(180px, 17.58vh);
     z-index: core.$z-timer-mini;
     color: var(--timer-main-color);
     text-shadow: var(--timer-shadow);
@@ -205,7 +200,7 @@ body.universe,
       padding-bottom: 6rem;
     }
   }
-}
+} // 🛑
 
 // ７４４px〜1080px タブレット　portrait　サイズ
 @media (max-width: 1080px) and (orientation: portrait) {
