@@ -1,0 +1,39 @@
+@use "../core/index" as core;
+
+.menu-drawer,
+.scrim {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+/* 背景の半透明幕（クリックで閉じる） */
+.scrim {
+  left: 0;
+  right: 0;
+
+  background: oklch(from var(--overlay-bg) l c h / 0.5);
+  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
+  border-left: 1px solid var(--panel-bd);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: core.$z-menu-backdrop; /* タイマーより上オフキャンバスより下 */
+  will-change: backdrop-filter;
+}
+
+body[data-menu-open="true"] .scrim {
+  opacity: 1;
+}
+
+/* アニメさせたいので display 固定 */
+.scrim[hidden] {
+  display: block;
+}
+/* 同上 */
+body:not([data-menu-open="true"]) .scrim {
+  pointer-events: none;
+}
+
+// ページ全体で整えるなら、`--overlay-bg: rgba(0 0 0 / 0.45)` あたりを変数化して、
+//  `@supports not (backdrop-filter: blur(1px))` で代替グラデーションを指定すると美しいフォールバックになる。
