@@ -204,6 +204,8 @@ input[type="range"] {
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
   backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  will-change: backdrop-filter;
   border: 1px solid var(--glass-border);
 
   /* 内外の二層影：フチが立ちすぎないよう弱めに */

@@ -196,6 +196,8 @@ input[type="checkbox"] {
   border-radius: 12px;
   background: rgb(0 0 0 / 15%);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  will-change: backdrop-filter;
 }
 
 .help-button-look {
