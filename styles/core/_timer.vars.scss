@@ -100,10 +100,11 @@
   --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
 
   // 操作アイコンspan 縁
-  --action-outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
 
   // ホバー outline 太く
-  --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline-hover: 2px solid
+    color-mix(in oklab, var(--shiro) 35%, transparent);
 }
 
 // タイマーミニ
@@ -156,6 +157,7 @@
   --timer-border-radius: 16px;
 
   // その他
+  --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
   --timer-transition: background 0.3s ease, filter 0.3s ease;
 }
 

@@ -232,10 +232,10 @@ main {
   // Lightbox キャプション
   &__caption {
     border-radius: 16px;
-    border: 1px solid rgb(255 255 255 / 20%); // 境界線を少し光らせる
+    border: 1px solid #{var(--shiro20)}; // 境界線を少し光らせる
     padding: 0.5rem;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-    background: core.$color-g-shiro10;
+    box-shadow: 0 4px 10px oklch(from #{core.$kuro100} l c h / 0.2);
+    background: var(--shiro10);
     color: core.$color-g-latte-normal;
     font-size: 1.1rem;
     font-family: "Zen Kurenaido", sans-serif;
@@ -248,7 +248,7 @@ main {
     animation: fadeInUp 0.5s ease-out;
 
     &:hover {
-      background: core.$color-g-shiro20;
+      background: var(--shiro20);
       outline: none; // ブラウザのデフォルトの青い枠を消す
     }
   }
@@ -326,7 +326,7 @@ main {
     box-shadow: 0 2px 6px rgb(0 0 0 / 30%);
     font-size: 2rem;
     color: inherit;
-    background: core.$color-g-shiro10;
+    background: var(--shiro10);
     transform: translateY(-50%);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -347,7 +347,7 @@ main {
     &:hover {
       // color: #fff;
       filter: brightness(1.2);
-      background: core.$color-g-shiro20;
+      background: var(--shiro20);
     }
   }
 

@@ -27,20 +27,13 @@ $text-main: clamp(16px, 1.111vw, 24px);
 
 // === Backgrounds ===
 
-$shiro100: oklch(100% 0.00011 271.152); // ギャラリー白
-$shiro10: oklch(100% 0.00011 271.152 / 0.1); // ギャラリー白10%透明
-$kuro70: oklch(0% 0 0 / 0.7); // ギャラリー黒
-$kuro100: oklch(0% 0 0); // ギャラリー黒
-
-// ▼ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
+$shiro100: oklch(100% 0.00011 271.152);
+$shiro10: oklch(100% 0.00011 271.152 / 0.1);
 
 // 深いブルーブラック：夜空のような基調
 $color-g-blueblack: oklch(22% 0.03 266); // ≒ #151a25
 
 // === Backgrounds ===
-
-// ギャラリー白（純白）
-$color-g-shiro100: oklch(100% 0 0); // ≒ #ffffff
 
 // ギャラリー白10%（透明オーバーレイ用）
 $color-g-shiro10: oklch(100% 0 0 / 0.1);
@@ -201,23 +194,30 @@ $bp-xl: 1440px;
   // タイル
   --tile-min-h: clamp(56px, 10svh, 128px);
 
+  // 基本色
+  --shiro: $shiro100;
+  --shiro10: oklch(from #{$shiro100} l c h / 0.1);
+  --shiro20: oklch(from #{$shiro100} l c h / 0.2);
+
+  --kuro: $kuro100;
+
   // notify-controls “プリセット風チップUI”
-  --chip-bg: rgb(255 255 255 / 8%);
-  --chip-bg-active: rgb(255 255 255 / 18%);
-  --chip-bd: rgb(255 255 255 / 55%);
-  --chip-bd-active: rgb(255 255 255 / 85%);
+  --chip-bg: oklch(from #{$shiro100} l c h / 0.8);
+  --chip-bg-active: oklch(from #{$shiro100} l c h / 1.8);
+  --chip-bd: oklch(from #{$shiro100} l c h / 5.5);
+  --chip-bd-active: oklch(from #{$shiro100} l c h / 8.5);
 
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
-  --help-h: #fff;
-  --help-border: rgb(255 255 255 / 12%);
+  --help-h: $shiro100;
+  --help-border: oklch(from #{$shiro100} l c h / 1.2);
   --help-icon: #b4d2ea;
 
   // border/blur/影の係数
-  --glass-border: rgb(255 255 255 / 18%);
+  --glass-border: oklch(from #{$shiro100} l c h / 1.8);
   --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  --glass-shadow: 0 8px 24px oklch(from #{$shiro100} l c h / 1.8);
 
   // fucus-visible
   --focus-ring: #f5f5f5;

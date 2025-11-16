@@ -70,7 +70,7 @@ body.about,
       border-radius: 8px;
 
       &:hover {
-        background: #{core.$color-g-shiro20};
+        background: var(--shiro20);
       }
 
       &[aria-current="page"] {

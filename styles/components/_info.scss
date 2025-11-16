@@ -54,11 +54,11 @@
     ); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
 
     /* 視認性UPのための微弱な影（レイアウト不変） */
-    box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
+    box-shadow: 0 0 0 2px oklch(from #{core.$shiro100} l c h / 0.25) inset;
   }
 
   .info__link:focus-visible {
-    outline: 2px solid var(--focus-ring, #7aa2ff);
+    outline: 2px solid var(--focus-ring, #{core.$shiro100});
     outline-offset: 2px;
     text-decoration: underline;
     text-underline-offset: 2px;

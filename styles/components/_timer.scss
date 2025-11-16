@@ -9,7 +9,7 @@
   height: auto;
   transform: translateX(0) translateY(0);
   background: #008000;
-  color: #fff;
+  color: core.$shiro100;
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
@@ -201,20 +201,25 @@ body {
       --preset-bg-current: color-mix(
         in oklch,
         var(--preset-bg) 18%,
-        rgb(255 255 255 / 33.7%) 6%
+        oklch(from core.$shiro100 l c h / 0.337) 6%
       );
       --preset-fg-current: var(--t-complementary-color);
 
       transform: translateY(-0.5px);
       box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
-        0 0 0 3px rgb(255 255 255 / 45%), inset 0 0 0 1px rgb(255 255 255 / 30%),
+        0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
+        inset 0 0 0 1px oklch(from core.$shiro100 l c h / 0.3),
         0 8px 24px rgb(0 0 0 / 25%);
     }
 
     /* “選択保持”の方を一段強く */
     &.is-active,
     &[aria-pressed="true"] {
-      --preset-bg-current: color-mix(in oklch, var(--preset-bg) 80%, white 20%);
+      --preset-bg-current: color-mix(
+        in oklch,
+        var(--preset-bg) 80%,
+        core.$shiro100 20%
+      );
     }
   }
 
@@ -468,31 +473,13 @@ body {
 
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
-  .timer {
-    // 3/4/5 ボタン
-    &__preset-btn {
-      &:hover {
-        cursor: pointer;
-        color: var(--t-complementary-color);
-        border: var(--preset-bg-accent);
-        background: var(--t-main-color);
-        outline: none;
-        box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
-          /* 外側に暗い縁 */ 0 0 0 3px rgb(255 255 255 / 45%),
-          /* その外に明るい縁 */ inset 0 0 0 1px rgb(255 255 255 / 30%),
-          0 8px 24px rgb(0 0 0 / 25%);
-        transform: translateY(-0.5px);
-      }
-    }
+          box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
+            /* 外側に暗い縁 */ 0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
+            /* その外に明るい縁 */ inset 0 0 0 1px
+              oklch(from core.$shiro100 l c h / 0.3),
+            0 8px 24px rgb(0 0 0 / 25%);
 
-    // 操作ボタン
-    &__action-btn {
-      &:hover {
-        cursor: pointer;
-        color: #fff;
-        text-shadow: 0 4px 4px #000;
-        transform: scale(1.02);
-        outline: var(--action-outline-hover);
+          color: core.$shiro100;
       }
     }
   }
