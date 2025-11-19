@@ -1,3 +1,46 @@
+// 目次 パレット / mixin
+// 1.カラーパレット🎨 絶対値の色
+// 2.固定トークン
+// “CSS 変数”はなし
+
+// ════════════════════════════════
+// 🌿 leaf.loop パレット
+// ════════════════════════════════
+
+// #387f5a テキストA
+$ForestGreen: oklch(54.027% 0.09289 158.303);
+
+// ▼テーマカラー候補
+// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
+$LeafMist: oklch(96.151% 0.00822 157.785);
+
+// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
+$SteamGrey: oklch(88.318% 0.0034 146.922);
+
+// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
+$CelestialSilver: oklch(85.846% 0.00613 240.313);
+
+// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
+$MossShadow: oklch(74.698% 0.02918 142.079);
+
+// 予備
+$morning-base: #fcebb8;
+$honey-accent: #f5d76e;
+$golden-text: #a67c00;
+
+// 🌃 夜：静かな群青
+$nightindigo-base: #1d2b64; //（夜の藍）
+$dawnblue-accent: #283c86; //（薄明の青）
+$softgray: #eaeff7; //（白に近いやわらかグレー）
+//  砂：やわらかベージュ系
+$sandy-base: #f3e5c9; //（浜辺の白砂）
+$windy-accent: #d2ba8a; //（風に舞う砂）
+$hill-shadow: #8c704f; //（砂丘の影の茶）
+
+$Primary: #80c590; //（昼の若葉色）←安心感あるメイン
+$Secondary: #c97c5d; //（夕焼けブラウン）←感情やCTAに
+$BackgroundBase: #f3e5c9; //（砂系ベージュ）←読みやすくナチュラル
+
 // #f5f5f5
 $main-color: oklch(97.015% 0.00011 271.152);
 $main-color-70: oklch(97.015% 0.00011 271.152 / 0.7);
@@ -13,29 +56,26 @@ $hero-background: rgb(161 161 161 / 40%);
 // 柳鼠フィルター rgb(200 211 192 / 0.4)
 $filter-yanaginezu: rgb(200 211 192 / 40%);
 
-// アイコンサイズ 最小44px,最大56px
+// アイコンサイズ 最小44px,最大56px 使ってない
 $icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
 $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
-
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
 
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
 
-// スマホ両脇
-// 16〜20px + safe-area
-
-// === Backgrounds ===
+// === 白と黒 ===
 
 $shiro100: oklch(100% 0.00011 271.152);
 $shiro10: oklch(100% 0.00011 271.152 / 0.1);
 $kuro70: oklch(0% 0 0 / 0.7);
 $kuro100: oklch(0% 0 0);
 
+// ════════════════════════════════
+// 🖼️ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
+// ════════════════════════════════
+
 // 深いブルーブラック：夜空のような基調
 $color-g-blueblack: oklch(22% 0.03 266); // ≒ #151a25
-
-// === Backgrounds ===
 
 // ギャラリー白10%（透明オーバーレイ用）
 $color-g-shiro10: oklch(100% 0 0 / 0.1);
@@ -43,6 +83,7 @@ $color-g-shiro20: oklch(100% 0 0 / 0.2);
 
 // ギャラリー黒70%（オーバーレイや文字補助）
 $color-g-kuro70: oklch(0% 0 0 / 0.7);
+$color-g-lb-overlay: oklch(78.407% 0.06728 63.555);
 
 // コズミックラテ（渋）
 $color-g-latte-dark: oklch(90% 0.02 85); // ≒ #eae5da
@@ -52,6 +93,40 @@ $color-g-latte-light: oklch(96% 0.01 85); // ≒ #f4efe8
 
 // コズミックラテ（標準）
 $color-g-latte-normal: oklch(98% 0.01 85); // ≒ #fff8e7
+
+// アクセント
+$color-g-chai: #d8b08c;
+$color-g-cha: #9dc5af;
+$color-g-jasmin: #f3f3eb;
+
+// ════════════════════════════════
+// 🪐 universe
+// ════════════════════════════════
+
+$color-space-far: #f8faff;
+$color-space-bit: #0e1020;
+$color-space-dust: #e1f3ff;
+$color-space-star: #f0cd90;
+$color-space-bang: #888888;
+
+// ════════════════════════════════
+// 👤 about
+// ════════════════════════════════
+
+$color-u-web: $LeafMist;
+$color-u-ex: #387f5a;
+$color-u-note: #d7d9d7;
+$color-u-tec: #d8b08c;
+$color-u-book: #2e4f3e;
+
+// ════════════════════════════════
+// 🔋　固定トークン
+// ════════════════════════════════
+
+// ▼フィルター
+// ▽入力画像の彩度　 saturate()
+$saturate-normal: saturate(140%);
+$saturate-hover: saturate(130%);
 
 // ▼z-index
 // === 基本　hero ===
@@ -95,146 +170,20 @@ $z-help: 3000;
 // z-index: 100; /* ヘルプカード内で最上層に */
 $z-help-close: 3100;
 
-// ▼テーマカラー候補
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: oklch(96.151% 0.00822 157.785);
-
-// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
-$SteamGrey: oklch(88.318% 0.0034 146.922);
-
-// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
-$CelestialSilver: oklch(85.846% 0.00613 240.313);
-
-// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
-$MossShadow: oklch(74.698% 0.02918 142.079);
-
-// $Silence White:#ffffff	基本の白。本文背景・余白などに使用
-$SilenceWhite: oklch(100% 0.00011 271.152deg);
-
-// 4) 既存トークンを活かす小ワザ
-// 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
-
-/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
-// .universe {
-// --accent: rgb(100 150 200);
-// }_
-
-/* 使う場所で OKLCH に変換して指定する */
-// .universe .oklch-accent {
-// color: oklch(from var(--accent) l c h);
-// }
-
-// ▼フィルター
-// ▽入力画像の彩度　 saturate()
-$saturate-normal: saturate(140%);
-$saturate-hover: saturate(130%);
-
+// ─────────────────────────────
 /* gallery：列数とブレイクポイント（モバイル先行、汎用） */
-// 間隔
+// ▼ 間隔
 $gap-xs: 8px;
 $gap-sm: 12px;
 $gap-md: 16px;
 $gap-lg: 20px;
 $gap-xl: 24px;
 
-// ブレイクポイント
+// ▼ ブレイクポイント
 $bp-xs: 376px;
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1440px;
 
-// 色、フォントサイズ、transitionなど
-@supports (height: 1dvh) {
-  :root {
-    --vh: 1dvh;
-  } /* 新しいdvhが使える環境では上書き */
-}
-
-:root {
-  /* まずはビューポート単位のフォールバック変数 */
-  --vh: 1svh;
-
-  /* ベース文字 */
-  // フォント切り替え時のレイアウト揺れ（CLS）を抑える
-
-  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
-  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
-    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
-
-  /* 欧文/数字はInterを第一候補に */
-  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
-    sans-serif;
-
-  /* 見出しの柔らかい表情用（必要な所だけに限定） */
-  --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
-
-  // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
-  // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
-  --fs: clamp(16px, 1.111vw, 32px);
-  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
-
-  /* 余白（例：内側パディング 16→32） */
-  --pad: clamp(16px, 1.111vw, 32px);
-
-  // iPhone横向き専用“安全マクロ”
-  // ツールバー・ノッチ・セーフエリアを全部飲み込むプリセット。
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-left: env(safe-area-inset-left, 0px);
-  --safe-right: env(safe-area-inset-right, 0px);
-
-  /* 行間なども同様に */
-  --space-2: 1rem;
-  --gap: clamp(8px, 0.7vw, 16px);
-  --hero-veil: 0.4;
-  --yanagi-alpha: 0.18;
-
-  // タイマー表示
-
-  // タイル
-  --tile-min-h: clamp(56px, 10svh, 128px);
-
-  // 基本色
-  --shiro: $shiro100;
-  --shiro10: oklch(from #{$shiro100} l c h / 0.1);
-  --shiro20: oklch(from #{$shiro100} l c h / 0.2);
-
-  --kuro: $kuro100;
-
-  // notify-controls “プリセット風チップUI”
-  --chip-bg: oklch(from #{$shiro100} l c h / 0.8);
-  --chip-bg-active: oklch(from #{$shiro100} l c h / 1.8);
-  --chip-bd: oklch(from #{$shiro100} l c h / 5.5);
-  --chip-bd-active: oklch(from #{$shiro100} l c h / 8.5);
-
-  /* Theme: default = charcoal leaf */
-  --help-bg: rgb(12 14 16 / 78%);
-  --help-fg: #eaeaea;
-  --help-h: $shiro100;
-  --help-border: oklch(from #{$shiro100} l c h / 1.2);
-  --help-icon: #b4d2ea;
-
-  // border/blur/影の係数
-  --glass-border: oklch(from #{$shiro100} l c h / 1.8);
-  --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px oklch(from #{$shiro100} l c h / 1.8);
-
-  // fucus-visible
-  --focus-ring: #f5f5f5;
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
-
-  // メニュー
-  --menu-w: min(360px, 86vw);
-
-  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
-  --panel-bg: #{$color-g-kuro70};
-  --panel-bd: #{$color-g-shiro10};
-
-  // 背景レイヤー
-  --overlay-bg: oklch(0% 0 0 / 0.45);
-  // 開閉メニューのフォントカラー
-  --panel-cl: #{$main-color};
-}
+// ─────────────────────────────

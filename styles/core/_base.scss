@@ -1,9 +1,24 @@
+@use "variables" as *;
 // * {} や body {}、フォント設定
+// 初期設定
+// reset（normalize / modern-css-reset）
+// body { font-family: … }
+// layout の“初期”設定
+// :root { --xxx } のデフォルト値
+// CSSカスタムプロパティ（--xxx）の初期値はここ。
+
 // 全称セレクター
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+// 色、フォントサイズ、transitionなど
+@supports (height: 1dvh) {
+  :root {
+    --vh: 1dvh;
+  } /* 新しいdvhが使える環境では上書き */
 }
 
 * {
@@ -119,26 +134,12 @@ input {
 // アイコン
 // --------------------
 
-/* タイマー操作部分のgoogleアイコン */
-// .material-symbols-outlined {
-//   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-// }
-
-/* アイコンサイズを上書きする */
-
-// svg {
-//   display: block;
-//   inline-size: 100%;
-//   block-size: 100%;
-//   fill: currentColor;
-// }
-
 // 共通ルールは「サイズはCSS」「色はcurrentColor」「装飾は読み上げ除外」。まずは共通CSS：
 
 /* 汎用アイコンの基本 */
 .i {
   display: inline-block;
-  vertical-align: -0.125em;
+  // vertical-align: -0.125em;
 }
 
 /* サイズ違いが欲しい時 */
@@ -159,63 +160,273 @@ input {
   height: 44px;
 }
 
+// グローバルテーマ　デフォルトテーマ / 共通テーマ
+:root {
+  /* まずはビューポート単位のフォールバック変数 */
+  --vh: 1svh;
+
+  /* ベース文字 */
+  // フォント切り替え時のレイアウト揺れ（CLS）を抑える
+
+  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
+  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
+    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+
+  /* 欧文/数字はInterを第一候補に（タイマーカウント用） */
+  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
+    sans-serif;
+
+  // メニューパネル使用中
+  // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
+  // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
+  --fs: clamp(16px, 1.111vw, 32px);
+  // hero html使用中
+  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
+
+  // 使ってない
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
+
+  // iPhone横向き専用“安全マクロ”
+  // ツールバー・ノッチ・セーフエリアを全部飲み込むプリセット。
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  /* 行間なども同様に */
+  --space-2: 1rem;
+  --gap: clamp(8px, 0.7vw, 16px);
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
+
+  // 動きの秒数
+  --motion-snap: 0.16s; /* すっ */
+  --motion-tap: 0.24s; /* タン */
+  --motion-soft: 0.4s; /* ふわ〜 */
+
+  // タイル
+  --tile-min-h: clamp(56px, 10svh, 128px);
+
+  // 基本色
+  --shiro: #{$shiro100};
+  --shiro10: oklch(from var(--shiro) l c h / 0.1);
+  --shiro20: oklch(from var(--shiro) l c h / 0.2);
+
   --kuro: #{$kuro100};
+  --kuro25: oklch(from var(--kuro) l c h / 0.25);
+
+  --bg: #{$hero-background};
+  --main-color: #{$main-color};
+
+  /* コンポーネント用の“スロット” */
+  // notify-controls “プリセット風チップUI”
+  --chip-bg: oklch(from var(--shiro) l c h / 0.8);
+  --chip-bg-active: oklch(from var(--shiro) l c h / 0.18);
+  --chip-bd: oklch(from var(--shiro) l c h / 0.55);
+  --chip-bd-active: oklch(from var(--shiro) l c h / 0.85);
+
+  /* Theme: default = charcoal leaf */
+  --help-bg: rgb(12 14 16 / 78%);
+  --help-fg: #eaeaea;
+  --help-h: #{$shiro100};
+  --help-border: oklch(from var(--shiro) l c h / 0.12);
+  --help-icon: #b4d2ea;
+
+  // border/blur/影の係数
+  --glass-border: oklch(from var(--shiro) l c h / 0.18);
+  --glass-blur: 6px;
+  --glass-shadow: 0 8px 24px oklch(from var(--shiro) l c h / 0.18);
+
+  // fucus-visible
+  --focus-ring: #{$main-color};
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  // メニュー
+  --menu-w: min(360px, 86vw);
+
+  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
+  --panel-bg: oklch(from var(--kuro) l c h / 0.7);
+  --panel-bd: var(--shiro10);
+
+  // メニュー背景レイヤー
+  --overlay-bg: oklch(from var(--shiro) l c h / 0.45);
+  // 開閉メニューのフォントカラー
+  --panel-cl: #{$main-color};
+
+  // 飾り時計
+  --back: red;
+  --mid: red;
+  --front: red;
+  --h: blue;
+  --m: yellow;
+  --s: orange;
+  --center: pink;
+}
+
+// 4) 既存トークンを活かす小ワザ
+// 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
+
+/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
+// .universe {
+// --accent: rgb(100 150 200);
+// }_
+
+/* 使う場所で OKLCH に変換して指定する */
+// .universe .oklch-accent {
+// color: oklch(from var(--accent) l c h);
+// }
+
+// 各ページのベースカラー
+.page--gallery {
+  --bg: #{$color-g-latte-dark};
+  --main-color: #{$color-g-blueblack};
+  --accent: #{$color-g-chai};
+  --gallery-top-space: clamp(1.5rem, 4vw, 3rem);
+  // lightbox
+  --lightbox-bg: color-mix(
+    in oklch,
+    #{$color-g-latte-dark} 80%,
+    var(--kuro) 50%
+  );
+  --lightbox-nav: oklch(from var(--main-color) l c h / 0.45);
+  // ヘルプカード
+}
+
+.page--universe {
+  --timer-bg: #{$color-space-bit};
+  --help-card-bg: #{$color-space-bang};
+}
+
+.page--about {
+  --timer-bg: #{$color-u-note};
+  --help-card-bg: #{$color-u-book};
+}
+
+/* ===== styles/components/_menu-drawer.scss ===== */
+.menu-drawer {
+  background-color: rgba(0, 0, 0, 0.7);
+  --drawer-bg: color-mix(in oklch, #{var(--panel-bg)} 80%, #{$LeafMist} 5%);
   color: var(--shiro);
-  text-decoration: none;
-  line-height: 1.2;
-  font-size: 16px;
 }
 
-/* 入力本体は見せないがフォーカスは可視化 */
-.chip > input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: auto; /* ラベル全体クリック可 */
+.scrim {
+  --scrim: oklch(from #{var(--overlay-bg)} l c h / 0.5);
 }
 
-.chip:focus-within {
-  outline: 2px solid var(--shiro);
-  outline-offset: 3px;
+/* ===== styles/components/_page-header.scss ===== */
+.menu-drawer {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--shiro);
 }
 
-/* チェック状態の見た目（Safari OK） */
-.chip:has(input:checked) {
-  background: var(--chip-bg-active);
-  border-color: var(--chip-bd-active);
+.page--universe {
+  --accent: #{$color-space-dust};
+}
+.page--about {
+  --accent: #{$color-u-ex};
+} // デフォルトと同じでもOK
+
+/* ===== styles/components/_timer-mini.scss ===== */
+// 　→ styles/core/_timer.vars.scss
+
+/* ===== styles/components/_decor-clock.scss ===== */
+
+.page--gallery {
+  --back: oklch(from #{$color-g-latte-light} l c h / 0.8);
+  --mid: oklch(from #{$MossShadow} l c h / 0.8);
+  --front: oklch(from #{$LeafMist} l c h / 0.8);
+  --h: #{$color-g-latte-dark};
+  --m: #{$color-g-latte-light};
+  --s: #{$color-g-latte-normal};
+  --center: var(--accent);
+  --m-width: 8rem;
+  --m-height: 6rem;
 }
 
-/* テストボタンも同じ見た目に */
-.chip--action {
-  cursor: pointer;
-  border: 1px solid var(--chip-bd-active);
-  background: linear-gradient(180deg, #{var(--shiro20)}, #{var(--shiro10)});
+.page--universe {
+  // 飾り時計
+  --back: red;
+  --mid: red;
+  --front: red;
+  --h: blue;
+  --m: yellow;
+  --s: orange;
+  --center: pink;
 }
 
-.chip--action:active {
-  transform: translateY(1px);
+.page--about {
+  --back: red;
+  --mid: red;
+  --front: red;
+  --h: blue;
+  --m: yellow;
+  --s: orange;
+  --center: pink;
 }
 
-/* アイコンはお好みで小さめに */
-.chip__icon {
-  font-size: 20px;
+/* ===== _styles/components/_info.scss ===== */
+/* ヘルプカード　背景 */
+.help-card {
+  background-color: var(--help-card-bg);
+  color: var(--help-card-fg);
 }
 
-.timer4 span.chip__text {
-  display: none;
+/* Moss */
+.theme-moss {
+  --link-padding: 0.6em 1.1em;
+  --link-main-color: core.$main-color;
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --help-bg: rgb(24 36 28 / 72%);
+  --help-fg: #ebf3ef;
+  --help-h: #fff;
+  --help-border: rgb(196 214 205 / 35%);
+  --help-icon: #c8e5d6;
 }
 
-@media screen and (orientation: portrait) {
-  .notify-controls {
-    margin: 24px;
-  }
+/* Dew */
+.theme-dew {
+  --link-padding: 0.6em 1.1em;
+  --link-main-color: core.$main-color;
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --help-bg: rgb(240 245 243 / 82%);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgb(11 28 57 / 15%);
+  --help-icon: #0e1020;
+}
 
-  .timer4 span.chip__text {
-    display: none;
-  }
+/* gallery */
+.theme-gal {
+  --link-padding: 0.6em;
+  --link-main-color: val(--timer-main-color);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%);
+  --help-bg: var(--timer-main-color-rgb);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgb(11 28 57 / 15%);
+  --help-icon: #0e1020;
+  // --help-icon-heading: #b4d2ea;
+  --help-icon-heading: green;
+  --help-filter: opacity(95%) brightness(105%);
+}
 
-  .test-button-box {
-    width: 100%;
-    margin: 0 auto;
-  }
+// aboutページのヘルプカード変数
+.theme-abt {
+  --link-padding: 0.6em;
+  --link-main-color: val(--timer-main-color);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%);
+  --help-bg: var(--timer-main-color-rgb);
+  // 使ってない↓
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgb(11 28 57 / 15%);
+  --help-icon: #0e1020;
+  // --help-icon-heading: #b4d2ea;
+  --help-icon-heading: green;
+  --help-filter: opacity(95%) brightness(105%);
 }

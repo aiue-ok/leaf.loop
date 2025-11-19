@@ -7,7 +7,7 @@
 .timer {
   // --◆◇ 共通　◆◇--
   // 色　タイマー　メインカラー　（hero）
-  --t-main-color: #f5f5f5;
+  --t-main-color: core.$main-color;
   --t-complementary-color: #0a0a0a;
   --t-accent: #e3e3e3;
 
@@ -16,10 +16,10 @@
   --t-txt-line-h: 1.2;
 
   // filter drop-shadow
-  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+  --t-drop-shadow: drop-shadow(0 1px 1px #{var(--kuro25)});
 
   // ◆◇ タイマー表示　◆◇
-  // タイマーカウント　/* #fffより柔らかい */
+  // タイマーカウント　/* #{core.$shiro100}より柔らかい */
   --milk-white: oklch(96% 0.01 110deg);
 
   // カウントダウン文字の背景
@@ -47,7 +47,7 @@
 
   // ★ 3/4/5分の円ボタン★
   --preset-fg: core.$main-color;
-  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, var(--kuro) 45%);
 
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
@@ -60,8 +60,12 @@
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
     /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-    /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
-  --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
+    /* ほんのり天面の白 */ 0 8px 24px oklch(from #{var(--shiro)} l c h / 0.25);
+  --preset-mask: linear-gradient(
+    to bottom,
+    var(--kuro) 0 60%,
+    transparent 60% 100%
+  );
 
   // プリセット border 線
   --preset-line: 0.8px solid rgb(245 245 245 / 18%);
@@ -74,11 +78,12 @@
   --preset-gl-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
-    inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
+    inset 0 6px 14px rgb(255 255 255 / 4%),
+    0 4px 12px oklch(from #{var(--kuro)} l c h / 0.22);
   --preset-bg-active: color-mix(
     in oklch,
     var(--milk-white) 6%,
-    rgb(0 0 0 / 5%)
+    oklch(from #{var(--kuro)} l c h / 0.05)
   );
   --preset-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
 
@@ -107,57 +112,62 @@
     color-mix(in oklab, var(--shiro) 35%, transparent);
 }
 
-// タイマーミニ
+// タイマーミニ　共通サイズ関係
 .timer-mini {
+  // 位置
   --timer-position: fixed;
   --timer-left: 1.25rem;
   --timer-bottom: 1.25rem;
-  // 追加
-  --visual: 28px;
-  --hit: 44px;
+  --timer-top: 1.25rem;
+  --timer-right: 1.25rem;
 
-  --timer-mini-gallery-color: #eae5da;
-
+  // タイマーの幅・高さ
   //   w360px h180px　ビューポートに依る
   //   width: 22.5rem;height: 11.25rem;
-  // --timer-mini-width: clamp(360px, 25vw, 380px);
-  --timer-mini-height: max(180px, 17.58vh);
+  --timer-width: clamp(320px, 25vw, 380px);
+  --timer-height: max(180x, 17.58vh);
 
-  // z-index: 5;
   // カウントダウン表示　００：００
   --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
   --timer-count-font-size-mobile: clamp(16px, 10vw, 28px);
 
   // ボタンの配置間隔
   --gap-g-button: 2.3vmin;
-  --gap-g-button-mobile: 5px;
+  --gap-g-button-mobile: 1.5vmin;
 
-  // アイコンfont
-  --timer-mini-icon-size: 36px;
-  --timer-mini-icon-size-mobile: 28px;
+  // プリセットボタンのヒット面
+  --hit: 44px;
+
+  // スマホ縦　 操作ボタン
   --icon-visual: 28px; /* 見た目 */
+  --icon-visual-m: 36px;
   --icon-hit: 44px; /* タップ面 */
 
   // プリセットボタンの円    /* 円の大きさ */
   --timer-mini-width: clamp(2.4rem, 3vw, 5rem);
+  --timer-mini-width-mobile: 33px;
   --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-aspect-ratio-mobile: 1 / 2;
-  --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 16px;
   --timer-mini-border-width: 2.27px;
-  --timer-mini-border-width-mobile: 1px;
-  --timer-mini-border-less: 0;
+  --timer-mini-border-width-mobile: 1.4px;
   --timer-mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
 
-  // 音量（ラベル＋スライダー） */
-  --timer-mini-inline-size: min(36vw, 12rem);
-  --timer-mini-inline-size-mobile: max-content;
-  --timer-mini-vol-label-font-size: 0.9rem;
-
-  --timer-border-radius: 16px;
+  --timer-border-r1: 16px;
+  --timer-border-r50: 50%;
 
   // その他
+  // action アイコンの縁
+  --action-radius-rim: 0.5rem;
+
+  // 背景の影
+  --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+
+  // 操作アイコンspan 縁
   --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
+
+  // ホバー outline 太く
+  --action-outline-hover: 2px solid
+    color-mix(in oklab, var(--shiro) 35%, transparent);
+  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
   --timer-transition: background 0.3s ease, filter 0.3s ease;
 }
 
@@ -167,12 +177,11 @@
 
 .page--gallery > .timer-mini {
   // 色 color☕️#eae5da
-  --timer-main-color: #eae5da;
+  --timer-main-color: oklch(92.28% 0.01558 86.403);
   // ヘルプカードの背景
   --timer-main-color-rgb: rgb(234 229 218/ 90%);
 
-  // ↓変えないとだめ
-  --timer-color-hover: #fff;
+  --timer-color-hover: core.$color-g-chai;
 
   // シャドウ
   --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
@@ -184,30 +193,28 @@
   // 📍外観セット🫖
   // １）glass効果背景
   --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
+  --timer-border-mobile: 0.8px solid rgb(234 229 218 / 20%);
   --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
+  --timer-box-shadow-mobile: 0 2px 5px rgb(0 0 0 / 15%);
   --timer-background: oklch(22% 0.03 266 / 40%);
-  --timer-background-mobile: green;
+  --timer-background-mobile: oklch(22% 0.03 266 / 30%);
   --timer-color: inherit;
   --timer-backdrop-filter: blur(8px) saturate(110%);
-  --timer-backdrop-filter-mobile: none;
+  --timer-backdrop-filter-mobile: blur(6px) saturate(105%);
   --timer-webkit-backdrop-filter: blur(8px) saturate(110%);
-  --timer-webkit-backdrop-filter-mobile: none;
+  --timer-webkit-backdrop-filter-mobile: blur(6px) saturate(105%);
 
   // 適当に入れてる色　要変更
   --timer-hover-background: oklch(22% 0.03 266 / 50%);
 
   // buttons🫖
   --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-mini-preset-background-hover: var(--accent);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
   --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
 
   // hover
   --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
 
   // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
   --timer-h: clamp(64px, 12vh, 112px);
@@ -216,7 +223,7 @@
 body.universe .timer,
 body.universe .timer-mini-container {
   // 色 color
-  --timer-main-color: #f5f5f5;
+  --timer-main-color: core.$main-color;
 
   // ↓変えないとだめ
   --timer-color-hover: rgb(205 227 213 / 70%);
@@ -242,6 +249,55 @@ body.universe .timer-mini-container {
   --timer-hover-background: rgb(245 245 220 / 58.4%);
 
   // buttons🪐
+  --timer-mini-preset-background-color: transparent;
+  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
+  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
+  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+
+  // hover
+  --timer-hover-container: rgb(255 255 255 70%);
+
+  // スライダーのつまみなど
+
+  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
+  --timer-h: clamp(64px, 12vh, 112px);
+}
+
+.page--about > .timer-mini {
+  // 色 color☕️#eae5da
+  --timer-main-color: #{var(--shiro)};
+  // カードの背景
+  --timer-main-color-rgb: #{var(--color-surface-help)};
+
+  // ↓変えないとだめ
+  --timer-color-hover: core.$color-g-chai;
+
+  // シャドウ
+  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
+  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+
+  // ボーダー
+  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
+
+  // 📍外観セット🫖
+  // １）glass効果背景
+  --timer-border: 1px solid rgb(234 229 218 / 30%);
+  --timer-border-mobile: none;
+  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  --timer-box-shadow-mobile: none;
+  // #d7d9d7
+  --timer-background: oklch(88.318% 0.0034 146.922 /30%);
+  --timer-background-mobile: green;
+  --timer-color: #{var(--color-text-main)};
+  --timer-backdrop-filter: blur(8px) saturate(110%);
+  --timer-backdrop-filter-mobile: none;
+  --timer-webkit-backdrop-filter: blur(8px) saturate(110%);
+  --timer-webkit-backdrop-filter-mobile: none;
+
+  // 適当に入れてる色　要変更
+  --timer-hover-background: oklch(88.318% 0.0034 146.922 / 50%);
+
+  // buttons🫖
   --timer-mini-preset-background-color: transparent;
   --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
   --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
