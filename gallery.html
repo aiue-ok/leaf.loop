@@ -820,90 +820,87 @@ class="gallery__img"
           <a class="menu-drawer__link" href="/about.html">このサイトについて</a>
         </li>
       </ul>
-      <!-- 時計　テスト -->
-      <div class="clock-bg decor-clock">
-        <svg
-          width="276"
-          height="221"
-          viewBox="0 0 276 221"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            class="clock-bg1 decor-clock__bg decor-clock__bg--back"
-            d="M46.25 100.622C46.25 48.2292 57.4792 37 109.872 37H140.128C192.521 37 203.75 48.2292 203.75 100.622V120.378C203.75 172.771 192.521 184 140.128 184H109.872C57.4792 184 46.25 172.771 46.25 120.378V100.622Z"
-            fill="currentColor"
-          />
-          <g style="mix-blend-mode: overlay">
-            <path
-              class="clock-bg2 decor-clock__bg decor-clock__bg--mid"
-              d="M72.5 90.3905C72.5 57.6643 81.7292 50.6501 124.79 50.6501H177.71C220.771 50.6501 230 57.6643 230 90.3905V130.61C230 163.336 220.771 170.35 177.71 170.35H124.79C81.7292 170.35 72.5 163.336 72.5 130.61V90.3905Z"
-              fill="currentColor"
-            />
-          </g>
-          <g style="mix-blend-mode: overlay">
-            <path
-              class="clock-bg3 decor-clock__bg decor-clock__bg--front"
-              d="M60.9502 101.252C60.9502 70.822 68.3951 64.3 103.131 64.3H145.82C180.555 64.3 188 70.822 188 101.252V138.648C188 169.078 180.555 175.6 145.82 175.6H103.131C68.3951 175.6 60.9502 169.078 60.9502 138.648V101.252Z"
-              fill="currentColor"
-            />
-          </g>
-        </svg>
-        <svg width="100" height="100" viewBox="0 0 100 100">
-          <!-- 時間 -->
-          <line
-            id="hour"
-            class="hour-hand decor-clock__hand decor-clock__hand--h"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="30"
-            stroke="currentColor"
-            stroke-opacity="0.58"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <!-- 分 -->
-          <line
-            id="minute"
-            class="minute-hand decor-clock__hand decor-clock__hand--m"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="20"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <!-- 秒 -->
-          <line
-            id="second"
-            class="second-hand decor-clock__hand decor-clock__hand--s"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="15"
-            stroke="currentColor"
-            stroke-width="1"
-            stroke-linecap="round"
-          />
-          <circle
-            class="decor-clock__center"
-            cx="50"
-            cy="50"
-            r="2"
-            fill="#999"
-            fill-opacity="0.9"
-            stroke="##999"
-            stroke-width="1"
-            stroke-opacity="0.58"
-          />
-        </svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="...">
+
+          <!-- 飾り時計🕰️ -->
+          <div class="clock-bg decor-clock">
+            <svg
+              width="276"
+              height="221"
+              viewBox="0 0 276 221"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="clock-bg1 decor-clock__bg decor-clock__bg--back"
+                d="M46.25 100.622C46.25 48.2292 57.4792 37 109.872 37H140.128C192.521 37 203.75 48.2292 203.75 100.622V120.378C203.75 172.771 192.521 184 140.128 184H109.872C57.4792 184 46.25 172.771 46.25 120.378V100.622Z"
+                fill="currentColor"
+              />
+              <g style="mix-blend-mode: overlay">
+                <path
+                  class="clock-bg2 decor-clock__bg decor-clock__bg--mid"
+                  d="M72.5 90.3905C72.5 57.6643 81.7292 50.6501 124.79 50.6501H177.71C220.771 50.6501 230 57.6643 230 90.3905V130.61C230 163.336 220.771 170.35 177.71 170.35H124.79C81.7292 170.35 72.5 163.336 72.5 130.61V90.3905Z"
+                  fill="currentColor"
+                />
+              </g>
+              <g style="mix-blend-mode: overlay">
+                <path
+                  class="clock-bg3 decor-clock__bg decor-clock__bg--front"
+                  d="M60.9502 101.252C60.9502 70.822 68.3951 64.3 103.131 64.3H145.82C180.555 64.3 188 70.822 188 101.252V138.648C188 169.078 180.555 175.6 145.82 175.6H103.131C68.3951 175.6 60.9502 169.078 60.9502 138.648V101.252Z"
+                  fill="currentColor"
+                />
+              </g>
+            </svg>
+            <svg width="100" height="100" viewBox="0 0 100 100">
+              <!-- 時間 -->
+              <line
+                id="hour"
+                class="hour-hand decor-clock__hand decor-clock__hand--h"
+                x1="50"
+                y1="50"
+                x2="50"
+                y2="30"
+                stroke="currentColor"
+                stroke-opacity="0.58"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <!-- 分 -->
+              <line
+                id="minute"
+                class="minute-hand decor-clock__hand decor-clock__hand--m"
+                x1="50"
+                y1="50"
+                x2="50"
+                y2="20"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <!-- 秒 -->
+              <line
+                id="second"
+                class="second-hand decor-clock__hand decor-clock__hand--s"
+                x1="50"
+                y1="50"
+                x2="50"
+                y2="15"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="round"
+              />
+              <circle
+                class="decor-clock__center"
+                cx="50"
+                cy="50"
+                r="2"
+                fill="currentColor"
+              />
+            </svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="...">
         <rect rx="30" fill="rgba(...)" />       </svg>-->
-        <!-- 他のレイヤー -->
-      </div>
-      <!-- 時計 -->
+            <!-- 他のレイヤー -->
+          </div>
+
     </nav>
     <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
     <!-- 画面表示（トースト） -->

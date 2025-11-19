@@ -3,16 +3,27 @@
 // 時計
 
 .decor-clock {
+  width: 17rem;
+  height: 14rem;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   text-align: center;
   animation-timing-function: linear;
   animation: spin 3600s infinite;
+  // outline: 1px dotted blue;
 
   & svg {
     position: fixed;
     display: block;
-    width: 17rem;
-    height: 14rem;
+    // width: 17rem;
+    // height: 14rem;
+    width: 80%;
+    height: auto;
     filter: drop-shadow(0 0 5px rgba(200, 200, 255, 0.3));
   }
 
@@ -44,5 +55,16 @@
     color: var(--center);
   }
 }
+
+@media (max-height: 500px) {
+  .decor-clock {
+    width: var(--m-width);
+    height: var(--m-height);
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    & svg {
+      width: var(--m-width);
+    }
   }
 }
