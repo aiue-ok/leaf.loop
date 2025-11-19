@@ -123,7 +123,7 @@ input[type="range"] {
 :focus-visible {
   outline: 3px solid oklch(from #{var(--shiro)} l c h / 0.95);
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgb(0 0 0 / 35%); /* 反転背景でも見えるよう二重 */
+  box-shadow: 0 0 0 3px oklch(from #{var(--kuro)} l c h / 0.35); /* 反転背景でも見えるよう二重 */
   border-radius: 12px;
 }
 
@@ -169,7 +169,7 @@ input[type="range"] {
   inset: -0.01em;
 
   // text-shadow: 10px 10px 2px rgb(0 0 0 / 0.28); /* 初期は28%の黒ベール */
-  background: rgb(0 0 0 / 28%); /* 初期は28%の黒ベール */
+  background: oklch(from #{var(--kuro)} l c h / 0.28); /* 初期は28%の黒ベール */
   border-radius: 0.2em;
   filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
   z-index: -1;
@@ -178,19 +178,19 @@ input[type="range"] {
 /* もっとコントラストが要る人に寄り添う */
 @media (prefers-contrast: more) {
   .contrast-pad::before {
-    background: rgb(0 0 0 / 45%);
+    background: oklch(from #{var(--kuro)} l c h / 0.45);
   }
 }
 
 .pill {
-  background: rgb(0 0 0 / 30%);
+  background: oklch(from #{var(--kuro)} l c h / 0.3);
   padding: 0.15em 0.5em;
   border-radius: 999px;
 }
 
 @media (prefers-contrast: more) {
   .pill {
-    background: rgb(0 0 0 / 50%);
+    background: oklch(from #{var(--kuro)} l c h / 0.5);
   }
 }
 
@@ -211,7 +211,7 @@ input[type="range"] {
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
   box-shadow: inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 0.06),
     var(--glass-shadow);
-  text-shadow: 0 1px 1px rgb(0 0 0 / 25%);
+  text-shadow: 0 1px 1px #{var(--kuro25)};
   max-inline-size: 28ch; /* 行が伸びすぎないように */
   text-wrap: balance; /* 気持ちよく改行 */
 }

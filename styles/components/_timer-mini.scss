@@ -280,6 +280,7 @@ body.universe,
   body.universe,
   body.about {
     .timer-mini {
+      text-shadow: 0px 1px 3px var(--kuro25);
       &__inner {
         width: max-content;
         height: min-content;

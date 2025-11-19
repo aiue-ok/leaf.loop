@@ -127,7 +127,7 @@ main {
       width: 100%;
       height: auto;
       aspect-ratio: 1 / 1;
-      box-shadow: 2px 2px 6px rgb(0 0 0 / 10%);
+      box-shadow: 2px 2px 6px oklch(from #{var(--kuro)} l c h / 0.1);
       transition: transform 0.3s ease, filter 0.3s ease;
       overflow: hidden;
 
@@ -155,7 +155,7 @@ main {
         left: 1rem;
         color: oklch(from #{core.$color-g-latte-light} l c h / 0.8);
         font-size: 1rem;
-        text-shadow: 1px 1px 2px rgb(0 0 0 / 70%);
+        text-shadow: 1px 1px 2px oklch(from #{var(--kuro)} l c h / 0.7);
         content: "すう〜";
         transition: opacity 1.2s ease;
       }
@@ -176,7 +176,7 @@ main {
   position: fixed;
   z-index: core.$z-lightbox-block;
   inset: 0;
-  background: core.$color-g-kuro70;
+  background: oklch(from #{var(--kuro)} l c h / 0.7);
 
   &.hidden {
     display: none;
@@ -234,14 +234,7 @@ main {
     border-radius: 16px;
     border: 1px solid #{var(--shiro20)}; // 境界線を少し光らせる
     padding: 0.5rem;
-    box-shadow: 0 4px 10px oklch(from #{core.$kuro100} l c h / 0.2);
-    background: var(--shiro10);
-    color: core.$color-g-latte-normal;
-    font-size: 1.1rem;
-    font-family: "Zen Kurenaido", sans-serif;
-    line-height: 1.6;
-    text-align: center;
-    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px oklch(from #{var(--kuro)} l c h / 0.2);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     will-change: backdrop-filter;
@@ -323,7 +316,7 @@ main {
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 30%);
+    box-shadow: 0 2px 6px oklch(from #{var(--kuro25)} l c h / 0.3);
     font-size: 2rem;
     color: inherit;
     background: var(--shiro10);

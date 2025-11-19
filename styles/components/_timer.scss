@@ -209,7 +209,7 @@ body {
       box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
         0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
         inset 0 0 0 1px oklch(from core.$shiro100 l c h / 0.3),
-        0 8px 24px rgb(0 0 0 / 25%);
+        0 8px 24px #{var(--kuro25)};
     }
 
     /* “選択保持”の方を一段強く */
@@ -477,9 +477,10 @@ body {
             /* 外側に暗い縁 */ 0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
             /* その外に明るい縁 */ inset 0 0 0 1px
               oklch(from core.$shiro100 l c h / 0.3),
-            0 8px 24px rgb(0 0 0 / 25%);
+            0 8px 24px #{var(--kuro25)};
 
           color: core.$shiro100;
+          text-shadow: 0 4px 4px #{var(--kuro25)};
       }
     }
   }

@@ -29,6 +29,8 @@ $text-main: clamp(16px, 1.111vw, 24px);
 
 $shiro100: oklch(100% 0.00011 271.152);
 $shiro10: oklch(100% 0.00011 271.152 / 0.1);
+$kuro70: oklch(0% 0 0 / 0.7);
+$kuro100: oklch(0% 0 0);
 
 // 深いブルーブラック：夜空のような基調
 $color-g-blueblack: oklch(22% 0.03 266); // ≒ #151a25

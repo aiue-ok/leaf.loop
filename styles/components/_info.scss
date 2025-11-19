@@ -32,6 +32,7 @@
     padding: 0.6em 1.1em;
     border-radius: 999px;
     backdrop-filter: blur(8px) saturate(140%);
+    background: oklch(from #{var(--kuro)} l c h / 0.16);
     -webkit-backdrop-filter: blur(8px) saturate(140%);
     will-change: backdrop-filter;
     font-size: 16px;
@@ -49,9 +50,8 @@
   .info a:focus-visible .info__link,
   .info button.info__link:focus-visible {
     /* 任意：あなたのトークンに置き換え可 */
-    background-color: rgb(
-      0 0 0 / 10%
-    ); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
+    background-color: oklch(from #{var(--kuro)} l c h / 0.1);
+    /* or var(--focus-bg, rgb(0 0 0 / .10)) */
 
     /* 視認性UPのための微弱な影（レイアウト不変） */
     box-shadow: 0 0 0 2px oklch(from #{core.$shiro100} l c h / 0.25) inset;
@@ -68,7 +68,7 @@
   @media (hover: hover) {
     /* ホバーと揃えたい場合はお好みで */
     .info a:hover .info__link {
-      background-color: rgb(0 0 0 / 6%);
+      background-color: oklch(from #{var(--kuro)} l c h / 0.06);
     }
 
     /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
@@ -152,7 +152,7 @@
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
-  box-shadow: 0 8px 30px rgb(0 0 0 / 35%);
+  box-shadow: 0 8px 30px oklch(from #{var(--kuro)} l c h / 0.35);
 }
 
 .visual-card-help-bg:hover {
@@ -205,7 +205,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgb(96 96 96 / 38%);
+  background: oklch(from #{var(--kuro)} l c h / 0.38);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,7 +213,7 @@
 
 // 閉じるボタン　ホバー
 .info-help-card .close-button:hover {
-  background-color: #606060;
+  background-color: oklch(from #{var(--kuro)} l c h / 0.2);
   scale: 105%;
   cursor: pointer;
 }
