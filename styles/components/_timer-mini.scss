@@ -138,7 +138,7 @@ body.universe,
         /* 円の大きさ */
         width: var(--timer-mini-width);
         aspect-ratio: var(--timer-mini-aspect-ratio);
-        border-radius: var(--timer-mini-border-radius);
+        border-radius: var(--timer-border-r50);
         background-color: transparent;
         border: solid var(--timer-mini-border-width) var(--timer-main-color);
         box-shadow: var(--timer-shadow);
@@ -219,15 +219,16 @@ body.universe,
       // 旧：.timer-mini-container
       // 余白・幅
       &__inner {
-        width: clamp(360px, 75vw, 380px);
+        // width: clamp(360px, 75vw, 380px);
         // height: max(180px, 17.58vh);
+        width: min-content;
         height: fit-content;
 
         /* スマホでもはみ出さないように器の上限だけ決める */
-        inline-size: auto; /* 内容に合わせる */
+        // inline-size: auto; /* 内容に合わせる */
         /* 器をゆるく（広めに） */
-        max-inline-size: clamp(320px, 80vw, 660px);
-        max-block-size: clamp(72px, 1svh, 80px);
+        // max-inline-size: clamp(320px, 80vw, 660px);
+        // max-block-size: clamp(72px, 1svh, 80px);
       }
 
       // グリッド　親
@@ -243,30 +244,31 @@ body.universe,
         &--vertical {
           grid-template-columns: repeat(3, 1fr);
           grid-template-rows: 1fr;
-          gap: clamp(8px, 1.5vmin, 16px);
+          width: fit-content;
+          gap: var(--gap-g-button);
         }
       }
 
       // 表示領域
       &__screen {
+        padding: 2px 10px;
         &--grid {
           grid-template-areas: "help display";
-          gap: 1.5vmin;
+          gap: var(--gap-g-button-mobile);
+          align-items: center;
         }
 
         &--display {
-          width: 120px;
+          width: fit-content;
         }
         // カウントダウン表示
         &--count {
-          // display: block;
-          // width: 5ch;
-          // text-shadow: var(--timer-shadow);
+          display: block;
+          width: 5ch;
+          text-shadow: var(--timer-shadow);
           // inline-size: max-content;
           // inline-size: 100%;
-          // font-size: var(--timer-count-font-size-mobile);
-          font-size: 36px;
-          text-align: left;
+          font-size: var(--timer-count-font-size-mobile);
           line-height: 1.3; /* ←これで上下の余白をカット */
         }
       }
@@ -279,11 +281,28 @@ body.universe,
   .page--gallery,
   body.universe,
   body.about {
+    // 画面の上に貼り付ける
     .timer-mini {
+      position: static;
+      margin-top: 0.5rem;
+      margin-bottom: 1.2rem;
+      margin-inline: auto;
       text-shadow: 0px 1px 3px var(--kuro25);
+
       &__inner {
-        width: max-content;
+        // width: max-content;
+        width: 100%;
         height: min-content;
+      }
+
+      &__bg {
+        border-radius: var(--timer-border-r1);
+        border: var(--timer-border-mobile);
+        box-shadow: var(--timer-box-shadow-mobile);
+        background: var(--timer-background-mobile);
+        backdrop-filter: var(--timer-backdrop-filter-mobile);
+        -webkit-backdrop-filter: var(--timer-webkit-backdrop-filter-mobile);
+        will-change: backdrop-filter;
       }
 
       &__grid {
@@ -291,8 +310,7 @@ body.universe,
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas: "count controls";
-        justify-content: left;
-        gap: 0rem;
+        justify-content: right;
       }
 
       &__screen {
@@ -335,8 +353,7 @@ body.universe,
           block-size: var(--visual);
           line-height: 1;
           border: solid 1px var(--timer-main-color);
-          // border-radius: var(--timer-border-radius-mobile);
-          border-radius: 50%;
+          border-radius: var(--timer-border-r50);
         }
 
         &--btn::after {
@@ -371,11 +388,6 @@ body.universe,
         row-gap: 4px;
       }
     } //.timer-miniのおわり🌙
-
-    .timer-mini__screen--count {
-      // font-size: var(--timer-count-font-size-mobile);
-      // line-height: 1.2;
-    }
   }
 }
 

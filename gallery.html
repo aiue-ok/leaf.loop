@@ -25,361 +25,7 @@
   </head>
 
   <body class="page page--gallery">
-    <!-- ページ共通のヘッダ -->
-    <header class="page-header">
-      <div class="page-header__bar">
-        <!-- メニューアイコン -->
-        <button
-          class="page-header__toggle hamburger"
-          aria-label="メニューを開く"
-          aria-controls="site-menu"
-          aria-expanded="false"
-        >
-          <!-- menu　ハンバーガーSVG -->
-          <span aria-hidden="true">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 -960 960 960"
-              aria-hidden="true"
-              focusable="false"
-              class="i i-44"
-            >
-              <path
-                fill="currentColor"
-                d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
-              />
-            </svg>
-          </span>
-        </button>
-        <div class="page-header__brand">
-          <h1 class="page-header__title">leaf.loop - portfolio</h1>
-          <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
-        </div>
-      </div>
-    </header>
-    <!-- ▼▼ main ギャラリー本体▼▼ -->
-    <main>
-      <section class="gallery" aria-label="Gallery">
-        <div class="gallery__bg">
-          <div class="gallery__inner">
-            <div class="gallery__photo--container">
-              <ul class="gallery__grid zen-maru-gothic-regular">
-                <!-- 【写真１　チャノキ】 -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/001.webp"
-                    srcset="
-                      assets/gallery/thumbs/001.webp    1x,
-                      assets/gallery/thumbs/001@2x.webp 2x
-                    "
-                    width="320"
-                    height="320"
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="茶の木"
-                    data-caption="茶は、チャノキの葉（茶葉）や茎（茎茶・棒茶）から作られる飲み物"
-                    data-full-avif="assets/gallery/full/001.avif"
-                    data-full-webp="assets/gallery/full/001.webp"
-                  />
-                </li>
-                <!-- 【写真２ 緑茶】 -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/002.webp"
-                    srcset="
-                      assets/gallery/thumbs/002.webp    1x,
-                      assets/gallery/thumbs/002@2x.webp 2x
-                    "
-                    width="320"
-                    height="320"
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="緑茶"
-                    data-caption="１日のはじまりは緑茶から"
-                    data-full-avif="assets/gallery/full/002.avif"
-                    data-full-webp="assets/gallery/full/002.webp"
-                  />
-                </li>
-                <!-- 【写真３】 -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/003.webp"
-                    srcset="
-                      assets/gallery/thumbs/003.webp    1x,
-                      assets/gallery/thumbs/003@2x.webp 2x
-                    "
-                    width="320"
-                    height="320"
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="抹茶"
-                    data-caption="抹茶の苦味・甘味・香り・色"
-                    data-full-avif="assets/gallery/full/003.avif"
-                    data-full-webp="assets/gallery/full/003.webp"
-                  />
-                </li>
-                <!-- 【写真４】 -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/004.webp"
-                    srcset="
-                      assets/gallery/thumbs/004.webp    1x,
-                      assets/gallery/thumbs/004@2x.webp 2x
-                    "
-                    width="320"
-                    height="320"
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="ドライハーブ"
-                    data-caption="チャノキ以外の薬草・香草が持つ魅力"
-                    data-full-avif="assets/gallery/full/004.avif"
-                    data-full-webp="assets/gallery/full/004.webp"
-                  />
-                </li>
-
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/005.webp"
-                    srcset="
-                      assets/gallery/thumbs/005.webp    1x,
-                      assets/gallery/thumbs/005@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="ジャスミンの花"
-                    data-caption="ジャスミンの花の甘く濃厚な香り"
-                    data-full-avif="assets/gallery/full/005.avif"
-                    data-full-webp="assets/gallery/full/005.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/006.webp"
-                    srcset="
-                      assets/gallery/thumbs/006.webp    1x,
-                      assets/gallery/thumbs/006@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="ハーブティ"
-                    data-caption="お湯を注いで飲むまでの抽出時間"
-                    data-full-avif="assets/gallery/full/006.avif"
-                    data-full-webp="assets/gallery/full/006.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/007.webp"
-                    srcset="
-                      assets/gallery/thumbs/007.webp    1x,
-                      assets/gallery/thumbs/007@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="青いハーブティ"
-                    data-caption="レモンを加えると色が変化するパタフライピー"
-                    data-full-avif="assets/gallery/full/007.avif"
-                    data-full-webp="assets/gallery/full/007.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/008.webp"
-                    srcset="
-                      assets/gallery/thumbs/008.webp    1x,
-                      assets/gallery/thumbs/008@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="ルイボスティ"
-                    data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
-                    data-full-avif="assets/gallery/full/008.avif"
-                    data-full-webp="assets/gallery/full/008.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/009.webp"
-                    srcset="
-                      assets/gallery/thumbs/009.webp    1x,
-                      assets/gallery/thumbs/009@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="多種多様な中国茶"
-                    data-caption="中国茶はお茶の種類が多くあり奥が深い"
-                    data-full-avif="assets/gallery/full/009.avif"
-                    data-full-webp="assets/gallery/full/009.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/010.webp"
-                    srcset="
-                      assets/gallery/thumbs/010.webp    1x,
-                      assets/gallery/thumbs/010@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="茶器"
-                    data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
-                    data-full-avif="assets/gallery/full/010.avif"
-                    data-full-webp="assets/gallery/full/010.webp"
-                  />
-                </li>
-                <!-- <li class="gallery__item ">
-                  <img
-class="gallery__img"
-                    src="assets/gallery/thumbs/011.webp"
-                    srcset="
-                      assets/gallery/thumbs/011.webp    1x,
-                      assets/gallery/thumbs/011@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    data-full-avif="assets/gallery/full/011.avif"
-                    data-full-webp="assets/gallery/full/011.webp"
-                  />
-                </li> -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/012.webp"
-                    srcset="
-                      assets/gallery/thumbs/012.webp    1x,
-                      assets/gallery/thumbs/012@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="忘れてはいけない英国茶"
-                    data-caption="午後を優雅に英国発祥アフタヌーンティー"
-                    data-full-avif="assets/gallery/full/012.avif"
-                    data-full-webp="assets/gallery/full/012.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/013.webp"
-                    srcset="
-                      assets/gallery/thumbs/013.webp    1x,
-                      assets/gallery/thumbs/013@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="ミルクやスパイスを入れてもお茶"
-                    data-caption="ミルクやスパイスを入れるとまた違った味に"
-                    data-full-avif="assets/gallery/full/013.avif"
-                    data-full-webp="assets/gallery/full/013.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/014.webp"
-                    srcset="
-                      assets/gallery/thumbs/014.webp    1x,
-                      assets/gallery/thumbs/014@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="a cup of tea"
-                    data-caption="早朝の一杯の紅茶"
-                    data-full-avif="assets/gallery/full/014.avif"
-                    data-full-webp="assets/gallery/full/014.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/015.webp"
-                    srcset="
-                      assets/gallery/thumbs/015.webp    1x,
-                      assets/gallery/thumbs/015@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="雨の日も晴れの日も"
-                    data-caption="気分を変えてくれるかもしれない一杯のお茶"
-                    data-full-avif="assets/gallery/full/015.avif"
-                    data-full-webp="assets/gallery/full/015.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/016.webp"
-                    srcset="
-                      assets/gallery/thumbs/016.webp    1x,
-                      assets/gallery/thumbs/016@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="外でいただく特別な一杯"
-                    data-caption="時間や場所を変えて楽しむお茶は格別"
-                    data-full-avif="assets/gallery/full/016.avif"
-                    data-full-webp="assets/gallery/full/016.webp"
-                  />
-                </li>
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/017.webp"
-                    srcset="
-                      assets/gallery/thumbs/017.webp    1x,
-                      assets/gallery/thumbs/017@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="茶園"
-                    data-caption="お茶のない日を想像するとすごく寂しい"
-                    data-full-avif="assets/gallery/full/017.avif"
-                    data-full-webp="assets/gallery/full/017.webp"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <!-- footer内、サイトメニューが動いたら削除OK 旧になる .hidden追加中-->
-
-    <!-- <nav class="info" aria-label="補助メニュー">
-      <ul class="info__list">
-        <li class="info__item"></li>
-      </ul>
-    </nav> -->
-
     <div class="timer-mini">
       <div class="timer-mini__inner">
         <div class="timer-mini__bg">
@@ -576,7 +222,349 @@ class="gallery__img"
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
+
+      <!-- ページ共通のヘッダ -->
+      <header class="page-header">
+        <div class="page-header__bar">
+          <!-- メニューアイコン -->
+          <button
+            class="page-header__toggle hamburger"
+            aria-label="メニューを開く"
+            aria-controls="site-menu"
+            aria-expanded="false"
+          >
+            <!-- menu　ハンバーガーSVG -->
+            <span aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                aria-hidden="true"
+                focusable="false"
+                class="i i-44"
+              >
+                <path
+                  fill="currentColor"
+                  d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
+                />
+              </svg>
+            </span>
+          </button>
+          <div class="page-header__brand">
+            <h1 class="page-header__title">leaf.loop - portfolio</h1>
+            <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
+          </div>
+        </div>
+      </header>
+      <!-- ▼▼ main ギャラリー本体▼▼ -->
+      <main>
+        <section class="gallery" aria-label="Gallery">
+          <div class="gallery__bg">
+            <div class="gallery__inner">
+              <div class="gallery__photo--container">
+                <ul class="gallery__grid zen-maru-gothic-regular">
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/001.webp"
+                      srcset="
+                        assets/gallery/thumbs/001.webp    1x,
+                        assets/gallery/thumbs/001@2x.webp 2x
+                      "
+                      width="320"
+                      height="320"
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="茶の木、葉っぱ"
+                      data-caption="茶は、チャノキの葉や茎から作られる飲み物"
+                      data-full-avif="assets/gallery/full/001.avif"
+                      data-full-webp="assets/gallery/full/001.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/002.webp"
+                      srcset="
+                        assets/gallery/thumbs/002.webp    1x,
+                        assets/gallery/thumbs/002@2x.webp 2x
+                      "
+                      width="320"
+                      height="320"
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="木製のテーブルの上にある陶器の急須と緑茶の入った茶碗"
+                      data-caption="１日のはじまりは緑茶から"
+                      data-full-avif="assets/gallery/full/002.avif"
+                      data-full-webp="assets/gallery/full/002.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/003.webp"
+                      srcset="
+                        assets/gallery/thumbs/003.webp    1x,
+                        assets/gallery/thumbs/003@2x.webp 2x
+                      "
+                      width="320"
+                      height="320"
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="抹茶の粉とスプーン"
+                      data-caption="抹茶の苦味・甘味・香り・色"
+                      data-full-avif="assets/gallery/full/003.avif"
+                      data-full-webp="assets/gallery/full/003.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/004.webp"
+                      srcset="
+                        assets/gallery/thumbs/004.webp    1x,
+                        assets/gallery/thumbs/004@2x.webp 2x
+                      "
+                      width="320"
+                      height="320"
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="カモミールやラベンダーなどの6種類のドライハーブが入ったビン"
+                      data-caption="チャノキ以外の薬草・香草が持つ魅力"
+                      data-full-avif="assets/gallery/full/004.avif"
+                      data-full-webp="assets/gallery/full/004.webp"
+                    />
+                  </li>
+
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/005.webp"
+                      srcset="
+                        assets/gallery/thumbs/005.webp    1x,
+                        assets/gallery/thumbs/005@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="白いジャスミンの花"
+                      data-caption="ジャスミンの花の甘く濃厚な香り"
+                      data-full-avif="assets/gallery/full/005.avif"
+                      data-full-webp="assets/gallery/full/005.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/006.webp"
+                      srcset="
+                        assets/gallery/thumbs/006.webp    1x,
+                        assets/gallery/thumbs/006@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="ドライラベンダーをガラスのカップに浮かべ抽出しているところ"
+                      data-caption="お湯を注いで飲むまでの抽出時間"
+                      data-full-avif="assets/gallery/full/006.avif"
+                      data-full-webp="assets/gallery/full/006.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/007.webp"
+                      srcset="
+                        assets/gallery/thumbs/007.webp    1x,
+                        assets/gallery/thumbs/007@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="氷が入ったグラスに青いハーブティとカットレモン"
+                      data-caption="レモンを加えると色が変化するパタフライピー"
+                      data-full-avif="assets/gallery/full/007.avif"
+                      data-full-webp="assets/gallery/full/007.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/008.webp"
+                      srcset="
+                        assets/gallery/thumbs/008.webp    1x,
+                        assets/gallery/thumbs/008@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="木製のスプーンに乗せたルイボスティの茶葉"
+                      data-caption="南アフリカ原産の甘く優しい味のルイボスティ"
+                      data-full-avif="assets/gallery/full/008.avif"
+                      data-full-webp="assets/gallery/full/008.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/009.webp"
+                      srcset="
+                        assets/gallery/thumbs/009.webp    1x,
+                        assets/gallery/thumbs/009@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="２つの茶器にポットでお茶を注いでいるところ"
+                      data-caption="中国茶はお茶の種類が多くあり奥が深い"
+                      data-full-avif="assets/gallery/full/009.avif"
+                      data-full-webp="assets/gallery/full/009.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/010.webp"
+                      srcset="
+                        assets/gallery/thumbs/010.webp    1x,
+                        assets/gallery/thumbs/010@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="小さな茶器、急須、椀、お湯差しと木のトレー"
+                      data-caption="中国茶は淹れ方や飲み方、茶器もさまざま"
+                      data-full-avif="assets/gallery/full/010.avif"
+                      data-full-webp="assets/gallery/full/010.webp"
+                    />
+                  </li>
+                  <!-- <li class="gallery__item ">
+                  <img
+class="gallery__img"
+                    src="assets/gallery/thumbs/011.webp"
+                    srcset="
+                      assets/gallery/thumbs/011.webp    1x,
+                      assets/gallery/thumbs/011@2x.webp 2x
+                    "
+                    style="aspect-ratio: 1/1; object-fit: cover"
+                    loading="lazy"
+                    decoding="async"
+                    data-full-avif="assets/gallery/full/011.avif"
+                    data-full-webp="assets/gallery/full/011.webp"
+                  />
+                </li> -->
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/012.webp"
+                      srcset="
+                        assets/gallery/thumbs/012.webp    1x,
+                        assets/gallery/thumbs/012@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="スコーンやケーキ、ミルクポッドとサンドイッチ、手前に紅茶のカップ"
+                      data-caption="午後を優雅に英国発祥アフタヌーンティー"
+                      data-full-avif="assets/gallery/full/012.avif"
+                      data-full-webp="assets/gallery/full/012.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/013.webp"
+                      srcset="
+                        assets/gallery/thumbs/013.webp    1x,
+                        assets/gallery/thumbs/013@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="黒いポットとたっぷり注がれたミルクティのカップ。手前にはクローブやはちみつなどのスパイスが数種類"
+                      data-caption="ミルクやスパイスを入れるとまた違った味に"
+                      data-full-avif="assets/gallery/full/013.avif"
+                      data-full-webp="assets/gallery/full/013.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/014.webp"
+                      srcset="
+                        assets/gallery/thumbs/014.webp    1x,
+                        assets/gallery/thumbs/014@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="ガラス製の紅茶カップと奥には日のさしてきた空と森のぼやけた風景"
+                      data-caption="早朝の一杯の紅茶"
+                      data-full-avif="assets/gallery/full/014.avif"
+                      data-full-webp="assets/gallery/full/014.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/015.webp"
+                      srcset="
+                        assets/gallery/thumbs/015.webp    1x,
+                        assets/gallery/thumbs/015@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="雨のあたった窓ガラスの手前に小さな円テーブル。少しのお菓子とティーカップ"
+                      data-caption="気分を変えてくれるかもしれない一杯のお茶"
+                      data-full-avif="assets/gallery/full/015.avif"
+                      data-full-webp="assets/gallery/full/015.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/016.webp"
+                      srcset="
+                        assets/gallery/thumbs/016.webp    1x,
+                        assets/gallery/thumbs/016@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="日差しに照らされたホーローのカップを持つ手。"
+                      data-caption="時間や場所を変えて楽しむお茶は格別"
+                      data-full-avif="assets/gallery/full/016.avif"
+                      data-full-webp="assets/gallery/full/016.webp"
+                    />
+                  </li>
+                  <li class="gallery__item">
+                    <img
+                      class="gallery__img"
+                      src="assets/gallery/thumbs/017.webp"
+                      srcset="
+                        assets/gallery/thumbs/017.webp    1x,
+                        assets/gallery/thumbs/017@2x.webp 2x
+                      "
+                      style="aspect-ratio: 1/1; object-fit: cover"
+                      loading="lazy"
+                      decoding="async"
+                      alt="霧が立ちこめた茶畑がどこまでもなだらかに続く風景"
+                      data-caption="お茶のない日を想像するとすごく寂しい"
+                      data-full-avif="assets/gallery/full/017.avif"
+                      data-full-webp="assets/gallery/full/017.webp"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <!-- /* ≡≡≡ Lightboxここから */ -->
       <div

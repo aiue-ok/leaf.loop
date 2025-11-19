@@ -8,11 +8,15 @@
 // 🌿 世界のお茶を少しだけ（Leaf.Loop Style Guide）
 // ─────────────────────────────
 
-body.page--gallery {
+.page--gallery {
   block-size: 100%;
   min-block-size: 100svh; /* iOSのUIありでもOK */
   display: flex;
   flex-direction: column;
+  // 例：スマホ時の背景色やパディングなど
+  padding: var(--pad);
+  // padding-top: var(--gallery-top-space);
+  padding-top: 0;
 }
 
 @supports (min-height: 100dvh) {
@@ -390,7 +394,7 @@ main {
 }
 
 // スマホ🟢
-@media (width <= 600px) {
+@media (width <= 1080px) and (orientation: portrait) {
   .lightbox {
     &__img {
       max-width: 85vw;
@@ -423,8 +427,6 @@ main {
 // 幅1024px（スマホたて向き）以下
 @media (max-width: 1024px) and (orientation: portrait) {
   .page--gallery {
-    // 例：スマホ時の背景色やパディングなど
-    padding: 1rem;
     /* iOSのセーフエリアも考慮 */
     padding-bottom: calc(
       var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
@@ -432,7 +434,8 @@ main {
 
     // ミニタイマー用の余白
     header {
-      margin-top: 44px;
+      margin-top: 44px + 16px;
+      margin-bottom: 16px;
     }
 
     .gallery {
@@ -462,6 +465,13 @@ main {
   }
 } // 🛑
 
-// 🟦
-@media (min-width: core.$bp-xl) {
+// 🟦 幅376px以下、縦
+@media (max-width: core.$bp-xs) and (orientation: portrait) {
+  .page--gallery {
+    // ミニタイマー用の余白
+    header {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  }
 }
