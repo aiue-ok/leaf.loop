@@ -1,7 +1,5 @@
 @use "../core/index" as core;
 
-/* ===== _info.scss ===== */
-
 .hero__slot--side :where(.info) {
   /* Block本体 */
   .info {
@@ -23,6 +21,7 @@
     display: inline-block;
   }
 
+  // index.html用
   .info__link {
     display: inline-flex;
     align-items: center;
@@ -38,7 +37,6 @@
     box-shadow: var(--link-box-shdw);
     color: var(--link-main-color);
     font-size: 16px;
-    z-index: core.$z-closer;
   }
 
   .info a.info__link,
@@ -85,11 +83,6 @@
       text-decoration: underline;
       cursor: pointer;
     }
-  }
-
-  /* アイコンサイズを上書きする */
-  span.help-icon-size {
-    font-size: 1rem;
   }
 }
 
@@ -178,6 +171,7 @@
 .info-help-card button.close-button {
   text-align: center;
   margin: 0;
+  pointer-events: auto;
 }
 
 // ボタン見た目と配置
@@ -191,6 +185,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
 }
 
 // 閉じるボタン　ホバー
@@ -198,12 +193,14 @@
   background-color: oklch(from #{var(--kuro)} l c h / 0.2);
   scale: 105%;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .info-help-card .close-button:focus-visible {
   text-decoration-thickness: 2px; /* 太めで見えやすく */
   outline: 2px solid currentcolor;
   outline-offset: 4px;
+  pointer-events: auto;
 }
 
 // 行間
@@ -266,53 +263,4 @@
       border-radius: 8px;
     }
   }
-}
-
-// ---
-// ▼ミニヘルプ（各ページ）
-.mini-help {
-  position: fixed;
-  right: 12px;
-  bottom: 88px;
-  z-index: 60;
-}
-
-.mini-help > summary {
-  list-style: none;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgb(14 16 32 / 35%);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgb(255 255 255 / 18%);
-}
-
-.mini-help[open] > summary {
-  visibility: hidden;
-} /* カード表示時は?隠す */
-
-.mini-help__card {
-  min-width: 220px;
-  max-width: 280px;
-  background: var(--timer-surface);
-  color: var(--timer-fg);
-  border: 1px solid var(--timer-border);
-  border-radius: 12px;
-  box-shadow: var(--timer-shadow);
-  padding: 12px 14px;
-  backdrop-filter: blur(10px) saturate(140%);
-}
-
-.mini-help__card ul {
-  margin: 6px 0 10px;
-  padding-left: 1em;
-}
-
-.mini-help__close {
-  width: 100%;
-  border-radius: 8px;
 }
