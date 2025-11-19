@@ -473,14 +473,34 @@ body {
 
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
+  .page--hero {
+    .timer {
+      // 3/4/5 ボタン
+      &__preset-btn {
+        &:hover {
+          cursor: pointer;
+          color: var(--t-complementary-color);
+          border: var(--preset-bg-accent);
+          background: var(--t-main-color);
+          outline: none;
           box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
             /* 外側に暗い縁 */ 0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
             /* その外に明るい縁 */ inset 0 0 0 1px
               oklch(from core.$shiro100 l c h / 0.3),
             0 8px 24px #{var(--kuro25)};
+          transform: translateY(-0.5px);
+        }
+      }
 
+      // 操作ボタン
+      &__action-btn {
+        &:hover {
+          cursor: pointer;
           color: core.$shiro100;
           text-shadow: 0 4px 4px #{var(--kuro25)};
+          transform: scale(1.02);
+          outline: var(--action-outline-hover);
+        }
       }
     }
   }
