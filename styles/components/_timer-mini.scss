@@ -2,6 +2,31 @@
 
 .page--gallery,
 body.universe,
+body.about,
+.page--universe,
+.page--about {
+  // ミニタイマー内のヘルプアイコン
+  .info {
+    &__link {
+      inline-size: max-content;
+      background: transparent;
+      font-size: var(--icon-visual-m);
+      color: val(--timer-main-color);
+    }
+
+    // ヘルプカード内の見出し
+    .info-help-card h3 {
+      line-height: 1.8; /* フォントサイズの1.5倍に設定 */
+      margin-block: 0.25rem 0.5rem;
+    }
+  }
+
+  // ヘルプカードのクローズボタン
+  button.close-button {
+    position: relative;
+    z-index: core.$z-help-close; /* ヘルプカード内で最上層に */
+  }
+
   // 新⭐️　ネストする
   // 旧：.timer-mini-container
   .timer-mini {
