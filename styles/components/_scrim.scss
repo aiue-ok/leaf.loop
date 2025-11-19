@@ -12,7 +12,7 @@
   left: 0;
   right: 0;
 
-  background: oklch(from var(--overlay-bg) l c h / 0.5);
+  background: var(--scrim);
   backdrop-filter: blur(6px) saturate(130%);
   -webkit-backdrop-filter: blur(6px) saturate(130%);
   border-left: 1px solid var(--panel-bd);

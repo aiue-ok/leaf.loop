@@ -16,7 +16,7 @@ body.about,
     right: 0;
     width: var(--menu-w);
     padding: 16px clamp(12px, 3vw, 24px);
-    background: color-mix(in oklch, var(--panel-bg) 75%, white);
+    background: var(--drawer-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     will-change: backdrop-filter;
