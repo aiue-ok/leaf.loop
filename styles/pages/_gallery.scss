@@ -33,11 +33,8 @@ main {
 
 .page--gallery {
   font-family: "Zen Kaku Gothic New", sans-serif;
-  color: core.$color-g-blueblack;
-  // background: core.$color-g-latte-normal;
-  // background: core.$color-g-latte-dark;
-  background: core.$color-g-latte-light;
-
+  color: #{var(--main-color)};
+  background: #{var(--bg)};
   // <main>
   .gallery {
     // 背景色
@@ -144,7 +141,7 @@ main {
         block-size: 100%;
         object-fit: cover;
         transition: transform 0.4s ease-in-out;
-        background-color: core.$color-g-blueblack;
+        background-color: var(--main-color);
 
         &:hover {
           transform: scale(1.03);
@@ -152,12 +149,24 @@ main {
         }
       }
 
+      &::before {
+        // card の一番下の“グラデ部分”をCSSで統一する
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          oklch(0% 0 0 / 0) 60%,
+          oklch(0% 0 0 / 0.15) 100%
+        );
+        pointer-events: none;
+      }
       &::after {
         opacity: 0;
         position: absolute;
         bottom: 0.5rem;
         left: 1rem;
-        color: oklch(from #{core.$color-g-latte-light} l c h / 0.8);
+        color: var(--shiro);
         font-size: 1rem;
         text-shadow: 1px 1px 2px oklch(from #{var(--kuro)} l c h / 0.7);
         content: "すう〜";
