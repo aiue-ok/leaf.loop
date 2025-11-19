@@ -18,28 +18,31 @@
 
   &__bg {
     &--back {
-      color: oklch(from #{core.$color-g-latte-light} l c h / 0.8);
+      color: var(--back);
     }
     &--mid {
-      color: oklch(from #{core.$MossShadow} l c h / 0.8);
+      color: var(--mid);
     }
     &--front {
-      color: oklch(from #{core.$LeafMist} l c h / 0.8);
+      color: var(--front);
     }
   }
 
   &__hand {
     &--h {
-      color: core.$color-g-latte-dark;
+      color: var(--h);
     }
     &--m {
-      color: core.$color-g-latte-light;
+      color: var(--m);
     }
     &--s {
-      color: core.$color-g-latte-normal;
+      color: var(--s);
     }
   }
 
-  &_center {
+  &__center {
+    color: var(--center);
+  }
+}
   }
 }

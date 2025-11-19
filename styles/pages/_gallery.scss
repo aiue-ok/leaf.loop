@@ -201,7 +201,7 @@ main {
     position: fixed;
     z-index: core.$z-lightbox-bg;
     inset: 0;
-    background: oklch(from #{core.$kuro100} l c h / 0.8);
+    background: #{var(--lightbox-bg)};
     display: flex;
     justify-content: center;
     align-items: center;
