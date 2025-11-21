@@ -215,7 +215,23 @@
   // ヘルプカードの背景
   --timer-main-color-rgb: rgb(234 229 218/ 90%);
 
+  // ミニタイマー　gallery文字色候補
+  // color: oklch(0.2 0.05 40);
+  //  oklch(0.55 0.08 60);
   --timer-color-hover: core.$color-g-chai;
+
+  --timer-bg: oklch(0.95 0.03 105 / 0.7);
+  --timer-bg-hover: oklch(0.96 0.04 80 / 0.6);
+  --timer-mb-color: oklch(0.2 0.05 40 / 0.7);
+  --timer-mb-color-hover: oklch(0.95 0.03 105);
+  // oklch(0.95 0.03 105 / 0.6); // ジャスミン薄白
+  // oklch(0.96 0.04 80)　→ チャイをミルクで4倍薄めたやつ
+  // oklch(0.55 0.08 60)　→ チャイミディアム
+  // oklch(0.42 0.06 55)　→ かなり黒より
+  // oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ
+  --timer-border: 1px solid oklch(0 0 0 / 0.15); // 息の線
+  // 影：8px の極薄影（ふわっ）
+  --timer-shadow: 0 0 8px oklch(0 0 0 / 0.04);
 
   // シャドウ
   --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
