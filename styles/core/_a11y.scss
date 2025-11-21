@@ -86,6 +86,10 @@ input[type="range"] {
 }
 
 /* まずは :focus-visible */
+// fucus-visible
+// --focus-ring: #{$main-color};
+// --focus-ring-width: 2px;
+// --focus-ring-offset: 2px;
 :where(
     a,
     button,
@@ -97,7 +101,7 @@ input[type="range"] {
   ):focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
-
+  border-radius: var(--focus-ring-radius, 0.4rem);
   /* 影の補助（任意） */
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
     color-mix(in lab, var(--focus-ring) 35%, transparent);
@@ -121,10 +125,10 @@ input[type="range"] {
 }
 
 :focus-visible {
-  outline: 3px solid oklch(from #{var(--shiro)} l c h / 0.95);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px oklch(from #{var(--kuro)} l c h / 0.35); /* 反転背景でも見えるよう二重 */
-  border-radius: 12px;
+  // outline: 3px solid oklch(from #{var(--shiro)} l c h / 0.95);
+  // outline-offset: 3px;
+  // box-shadow: 0 0 0 3px oklch(from #{var(--kuro)} l c h / 0.35); /* 反転背景でも見えるよう二重 */
+  // border-radius: 12px;
 }
 
 /* キーボード操作にも効かせる（アクセシビリティ） */

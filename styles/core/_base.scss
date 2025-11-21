@@ -240,9 +240,10 @@ input {
   --glass-shadow: 0 8px 24px oklch(from var(--shiro) l c h / 0.18);
 
   // fucus-visible
-  --focus-ring: #{$main-color};
+  --focus-ring: oklch(0.82 0.12 250);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+  --focus-ring-radius: 6px;
 
   // メニュー
   --menu-w: min(360px, 86vw);

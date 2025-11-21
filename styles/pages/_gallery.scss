@@ -35,7 +35,11 @@ main {
   font-family: "Zen Kaku Gothic New", sans-serif;
   color: #{var(--main-color)};
   background: #{var(--bg)};
-  // <main>
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #{var(--accent)}; /* 例：#d8b08c */
+    outline-offset: 4px;
+  }
   .gallery {
     // 背景色
     &__bg {
