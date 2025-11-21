@@ -7,11 +7,14 @@
   .page-header {
     color: var(--page-color);
     width: 100%;
-    height: auto;
+    height: fit-content;
     padding: 0;
-    // 1行のレイアウト帯（グリッドやフレックスの親）
+
+    // 1行のレイアウト帯
     &__bar {
-      padding-top: 16px;
+      // background: core.$test-bg3;
+      // タイトル上下に余白
+      padding: 16px 0;
       display: grid;
       grid-template-rows: max-content;
       grid-template-columns: 50px max-content;
@@ -38,7 +41,7 @@
       height: fit-content;
     }
 
-    // 見出し：ポートフォリオ
+    // 見出し：leaf.loop - portfolio
     &__title {
       text-align: left;
       // padding: 8px 0;
@@ -46,15 +49,14 @@
       font-family: "Zen Kaku Gothic New", sans-serif;
       font-weight: 400;
       font-style: normal;
-      // font-size: 24px;
+
       font-size: clamp(18px, 10vw, 24px);
       white-space: nowrap;
       hyphens: auto; /* 欧文時のハイフネーション */
     }
 
-    // サブタイトル h2
+    // サブタイトル h2 ページタイトル
     &__subtitle {
-      // grid-area: subheading;
       display: block;
       font-family: "Zen Kaku Gothic New", sans-serif;
       font-weight: 400;

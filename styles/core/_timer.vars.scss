@@ -114,29 +114,63 @@
 
 // タイマーミニ　共通サイズ関係
 .timer-mini {
-  // 位置
-  --timer-position: fixed;
-  --timer-left: 1.25rem;
-  --timer-bottom: 1.25rem;
-  --timer-top: 1.25rem;
-  --timer-right: 1.25rem;
+  // 位置(1)(2) 💻Desktop・Tablet(land)　左下
+  --t-mini-1-position: fixed;
+  --t-mini-1-left: 1.25rem;
+  --t-mini-1-bottom: 1.25rem;
+  --t-mini-1-top: 1.25rem;
+  --t-mini-1-right: 1.25rem;
 
   // タイマーの幅・高さ
   //   w360px h180px　ビューポートに依る
   //   width: 22.5rem;height: 11.25rem;
-  --timer-width: clamp(320px, 25vw, 380px);
-  --timer-height: max(180x, 17.58vh);
+  --t-mini-1-width: clamp(320px, 25vw, 380px);
+  --t-mini-1-height: max(180x, 17.58vh);
+
+  // 位置(3) Tablet(port) 右上
+  --t-mini-3-position: fixed;
+  --t-mini-unset: unset;
+  --t-mini-3-top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
+  --t-mini-3-right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
+
+  // タイマーの幅・高さ
+  //   w360px h180px　ビューポートに依る
+  //   width: 22.5rem;height: 11.25rem;
+  --t-mini-3-width: min-content;
+  --t-mini-3-height: fit-content;
+
+  // 位置(4) 📱mobile(land) 浮・3列3行の正方形
+  --t-mini-4-position: fixed;
+  --t-mini-4-left: auto;
+  --t-mini-4-bottom: unset;
+  --t-mini-4-top: calc(env(safe-area-inset-top, 0px) + 8px);
+  --t-mini-4-right: calc(env(safe-area-inset-top, 8px) + 8px);
+
+  // タイマーの幅・高さ
+  //   w360px h180px　ビューポートに依る
+  //   width: 22.5rem;height: 11.25rem;
+  --t-mini-4-width: max-content;
+  --t-mini-4-height: min-content;
+
+  // 位置(5) 📲mobile(port) static 上部固定
+  --t-mini-5-position: static;
+
+  // タイマーの幅・高さ
+  --t-mini-5-width: 380px;
+  --t-mini-5-height: 50px;
 
   // カウントダウン表示　００：００
   --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(16px, 10vw, 28px);
+  --timer-count-font-size-mobile: clamp(16px, 10vw, 32px);
 
   // ボタンの配置間隔
   --gap-g-button: 2.3vmin;
-  --gap-g-button-mobile: 1.5vmin;
+  --gap-g-button-mobile: 1vmin;
+  --gap-g-button-portrait: 0.3vmin;
 
   // プリセットボタンのヒット面
   --hit: 44px;
+  --timer-btn-size: 36px;
 
   // スマホ縦　 操作ボタン
   --icon-visual: 28px; /* 見た目 */

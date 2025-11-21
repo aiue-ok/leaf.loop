@@ -8,65 +8,88 @@
 // 🌿 世界のお茶を少しだけ（Leaf.Loop Style Guide）
 // ─────────────────────────────
 
-.page--gallery {
-  block-size: 100%;
-  min-block-size: 100svh; /* iOSのUIありでもOK */
-  display: flex;
-  flex-direction: column;
-  // 例：スマホ時の背景色やパディングなど
-  padding: var(--pad);
-  // padding-top: var(--gallery-top-space);
-  padding-top: 0;
-}
-
 @supports (min-height: 100dvh) {
   body.page--gallery {
     min-block-size: 100dvh;
   } /* 新しめ環境では動的vh */
 }
 
-main {
-  flex: 1; /* 余った高さぜんぶここに */
-  min-block-size: 0; /* ← iOSのflexバグ対策、超重要 */
-  overflow: auto; /* 必要なら */
-}
-
+// 高さの器
 .page--gallery {
+  block-size: 100%;
+  min-block-size: 100svh; /* iOSのUIありでもOK */
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  padding-top: 0;
+
   font-family: "Zen Kaku Gothic New", sans-serif;
   color: #{var(--main-color)};
   background: #{var(--bg)};
+
   button:focus-visible,
   a:focus-visible {
     outline: 2px solid #{var(--accent)}; /* 例：#d8b08c */
     outline-offset: 4px;
   }
+
+  // ─────────────────────────────
+  // <main>：ギャラリーの器
+  // ─────────────────────────────
+  main {
+    width: 100%;
+    // 「残り高さぜんぶ引き受ける」係
+    flex: 1 1 auto;
+    min-block-size: 0; // iOS flex 対策
+    padding: 16px 0;
+    overflow: auto;
+  }
+
+  // ─────────────────────────────
+  // ギャラリー本体
+  // ─────────────────────────────
   .gallery {
-    // 背景色
+    // 背景 & コンテナクエリの親
     &__bg {
       container-type: inline-size;
       container-name: inner;
+
+      // main の中で高さを受け取る flex コンテナ
+      display: flex;
+      flex-direction: column;
+      block-size: 100%;
+      min-block-size: 0;
     }
 
-    // 基本のギャラリー幅・左右余白
-    // @media　で <main> に、portrait モバイル向け追加
+    // ギャラリーの中身＋スクロール担当
     &__inner {
-      // width: 100dvw;
-      min-height: 90dvh;
-      min-height: 90svh;
-      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+
+      // 「残り高さぜんぶここ」が正式担当
+      flex: 1 1 auto;
+      min-block-size: 0;
+      overflow-y: auto;
+
       padding: 0;
 
       // 最大375px幅;
       @container inner (max-width: 375px) {
         padding: core.$gap-xs;
-        min-height: 75dvh;
-        min-height: 75svh;
+        // min-height: 80dvh;
+        // min-height: 80svh;
+        // max-height: 80dvh;
+        // max-height: 80svh;
       }
 
+      // 高さ制御は inner に任せるので、ここでは min/max-height は持たせない
+      // min-height/max-height 系はすべてコメントアウトのままにしておく
       // 最小376px幅
       @container inner (min-width: 376px) {
-        max-height: 80dvh;
-        min-height: 80svh;
+        // max-height: 85dvh;
+        // max-height: 85svh;
+        // min-height: 85dvh;
+        // min-height: 85svh;
         padding: core.$gap-sm;
       }
 
@@ -90,28 +113,31 @@ main {
     &__photo--container {
       container-type: inline-size;
       container-name: gallery;
+      // 高さは持たない、中身を包むだけ
     }
 
-    // ul
+    // ul　中身
     &__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
       justify-content: center;
       align-items: center;
 
-      // $bp-xs: 376px;より広い場合
-      @container gallery (max-width: #{core.$bp-sm}) {
+      // $bp-xs: 376px;より狭い場合
+      @container gallery (max-width: #{core.$bp-xs}) {
         grid-template-columns: repeat(2, 1fr);
         gap: core.$gap-xs;
       }
 
       // $bp-sm: 480px;より広い場合
       @container gallery (min-width: #{core.$bp-sm}) {
+        grid-template-columns: repeat(4, 1fr);
         gap: core.$gap-sm;
       }
 
       // $bp-md: 768px;より広い場合
       @container gallery (min-width: #{core.$bp-md}) {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
         gap: core.$gap-md;
       }
 
@@ -129,8 +155,8 @@ main {
     &__item {
       position: relative;
       border-radius: 16px;
-      width: 100%;
-      height: auto;
+      // width: 100%;
+      // height: auto;
       aspect-ratio: 1 / 1;
       box-shadow: 2px 2px 6px oklch(from #{var(--kuro)} l c h / 0.1);
       transition: transform 0.3s ease, filter 0.3s ease;
@@ -179,6 +205,7 @@ main {
         );
         pointer-events: none;
       }
+
       &::after {
         opacity: 0;
         position: absolute;
@@ -438,8 +465,49 @@ main {
   object-fit: cover;
 }
 
-// スマホ🟢
-@media (width <= 1080px) and (orientation: portrait) {
+// 位置(2) Tablet(land)
+@media (height < 1024px) and (orientation: landscape) {
+  .page--gallery {
+    // ギャラリーページだけの対応
+    .page-header {
+      margin-top: 2rem;
+    }
+
+    main {
+      margin-bottom: 0rem;
+    }
+  }
+}
+
+// 位置(3) Tablet(port) 右上
+// 位置(4) 📱mobile(land) 浮・3列3行の正方形
+// 位置(5) 📲mobile(port) static 上部固定
+// 480px〜1024px タブレット　portrait　サイズ
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
+  .page--gallery {
+    /* iOSのセーフエリアも考慮 */
+    padding-bottom: calc(
+      var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
+    );
+
+    // ミニタイマー用の余白
+    .page-header {
+      // 1行のレイアウト帯
+      &__bar {
+        // background: core.$test-bg3;
+        // タイトル上下に余白
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding: 8px 0;
+      }
+    }
+
+    .gallery {
+      margin-top: 3rem;
+      // background-color: core.$test-bg3;
+    }
+  }
+
   .lightbox {
     &__content {
       width: 100%;
@@ -487,57 +555,60 @@ main {
       }
     }
   }
-}
-
-// スマホ🟢
-// 幅1024px（スマホたて向き）以下
-@media (max-width: 1024px) and (orientation: portrait) {
-  .page--gallery {
-    /* iOSのセーフエリアも考慮 */
-    padding-bottom: calc(
-      var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
-    );
-
-    // ミニタイマー用の余白
-    header {
-      margin-top: 44px + 16px;
-      margin-bottom: 16px;
-    }
-
-    .gallery {
-      &__item {
-        // position: relative;
-        // width: 8.75rem;
-        // height: 8.75rem;
-        // margin: 0 auto;
-      }
-    }
-  }
 } // 🛑
 
 // 🟡
-// 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
-@media screen and (min-width: #{core.$bp-md}) and (max-width: #{core.$bp-lg}) and (orientation: landscape) {
-  body.gallery,
+// 📍📍 幅769px以下で画面が横向きの時だけ
+@media screen and (max-width: #{core.$bp-md}) and (orientation: landscape) {
   .page--gallery {
-    /* iOSのセーフエリアも考慮 */
-    padding-bottom: calc(
-      var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
-    );
+    // background: core.$test-bg5;
+    .page-header {
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
 
+      // 1行のレイアウト帯
+      &__bar {
+        // background: core.$test-bg3;
+        // タイトル上下に余白
+        padding: 8px 0;
+      }
+
+      &__title {
+        font-size: clamp(18px, 4vw, 20px);
+      }
+    }
     main {
-      padding-bottom: 6rem;
+      padding: 0;
+      margin-bottom: 0;
+      // background-color: core.$test-bg3;
     }
   }
 } // 🛑
 
-// 🟦 幅376px以下、縦
-@media (max-width: core.$bp-xs) and (orientation: portrait) {
+// 🟦 480px以下縦
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery {
     // ミニタイマー用の余白
-    header {
+    .page-header {
       margin-top: 0;
       margin-bottom: 10px;
+
+      // 1行のレイアウト帯
+      &__bar {
+        // タイトル上下に余白
+        padding: 0;
+        // @media (width <= 1080px) and (orientation: portrait) での設定を0にする
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      &__title {
+        font-size: clamp(18px, 5vw, 20px);
+      }
+    }
+    main {
+      padding: 0;
+      margin-bottom: 1rem;
     }
   }
 }
