@@ -136,6 +136,20 @@ main {
         padding: 0;
       }
 
+      & > button {
+        transition: transform 0.2s ease, filter 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+          transform: scale(1.03);
+          filter: brightness(1.1) contrast(1.05) saturate(105%);
+        }
+
+        &:focus-visible {
+          outline: none; // 共通のa11yリングを消すならここ
+        }
+      }
+
       & img {
         inline-size: 100%;
         block-size: 100%;
