@@ -219,6 +219,14 @@
   margin: 6px 0;
 }
 
+.help-card__row > svg {
+  padding-right: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  // vertical-align: -0.28em;
+  vertical-align: text-bottom; // or middle / text-bottom で微調整
+}
+
 // pタグ内のアイコンフォントのテキスト関係
 .info-help-card span.p-icon-size {
   font-size: 1.2rem;
