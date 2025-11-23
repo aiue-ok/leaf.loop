@@ -154,23 +154,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.6;
-  padding: 0.5rem;
-  text-align: center;
+  margin-bottom: 0.5rem;
 
   & h2 {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 
   & span.help-icon {
     margin-right: 10px;
+    font-size: 1.25rem; // Safariの倍率対策
   }
 }
 
 // ボタン内　中央寄せ
 .info-help-card button.close-button {
-  text-align: center;
-  margin: 0;
   pointer-events: auto;
 }
 
@@ -212,6 +211,8 @@
   color: var(--help-h);
 }
 
+.link-text {
+  font-size: 1.25rem;
 }
 
 // 間隔
@@ -250,6 +251,12 @@
 // 📍📍📍 高さ500px以下（スマホ横向きなど）以下
 @media screen and (max-height: 500px) and (orientation: landscape) {
   body {
+    .help-content {
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
     /* ヘルプエリア w h */
     .info-help-container {
       // width: 90vw;
@@ -259,6 +266,40 @@
       padding: 0.75rem 1rem; // ← 縦向きより少なめの余白
       font-size: 0.95rem; // ← 気持ち下げると横向きで美しく読める
     }
+
+    .flex-parent-help-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .flex-parent-help-h h2 {
+      font-size: 24px;
+    }
+
+    // ボタン見た目と配置
+    .info-help-card .close-button {
+      position: relative;
+      top: 0.3rem;
+      right: 0.75rem;
+    }
+
+    .info-help-card h3 {
+      line-height: unset;
+      margin-block: 0.25rem 0;
+    }
+
+    .help-textbox {
+      margin-top: 0.5rem;
+    }
+
+    .link-text {
+      font-size: 1.1rem;
+    }
+
+    .help-content p {
+      padding-left: 0.4rem;
     }
 
     .flex-parent-help-unit {
@@ -286,6 +327,7 @@
       flex: 1 1 0;
       max-width: 250px; // ← アイコン説明欄をコンパクトに
       border: var(--help-unit-bd);
+      margin-top: 0.25rem;
       padding: 0.4rem;
       border-radius: 8px;
     }
