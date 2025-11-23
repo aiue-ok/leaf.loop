@@ -127,7 +127,7 @@
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
-  box-shadow: 0 8px 30px oklch(from #{var(--kuro)} l c h / 0.35);
+  box-shadow: var(--link-box-shdw);
 }
 
 .visual-card-help-bg:hover {
@@ -176,21 +176,22 @@
 
 // ボタン見た目と配置
 .info-help-card .close-button {
-  color: var(--help-icon);
-  font-size: 1.4rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: oklch(from #{var(--kuro)} l c h / 0.38);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--help-icon);
+  font-size: 1.25rem;
+  background: var(--help-icon-bg);
   pointer-events: auto;
 }
 
 // 閉じるボタン　ホバー
 .info-help-card .close-button:hover {
-  background-color: oklch(from #{var(--kuro)} l c h / 0.2);
+  background: oklch(from #{var(--help-icon-bg)} l c h / 0.2);
   scale: 105%;
   cursor: pointer;
   pointer-events: auto;
@@ -208,7 +209,9 @@
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
   margin-block: 0.25rem 0.5rem;
   // color: #b4d2ea;
-  color: var(--help-icon-heading);
+  color: var(--help-h);
+}
+
 }
 
 // 間隔
@@ -257,8 +260,7 @@
     }
 
     .wrap-help-unit-r {
-      width: 50%;
-      border: 1px solid #f0f0f0;
+      border: var(--help-unit-bd);
       padding: 0.4rem;
       border-radius: 8px;
     }
