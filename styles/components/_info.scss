@@ -289,5 +289,10 @@
       padding: 0.4rem;
       border-radius: 8px;
     }
+
+    .help-card__row > svg {
+      padding-right: 0.3em;
+      vertical-align: middle;
+    }
   }
 }
