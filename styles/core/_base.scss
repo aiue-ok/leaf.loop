@@ -378,7 +378,7 @@ input {
 /* Moss */
 .theme-moss {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: core.$main-color;
+  --link-main-color: #{$main-color};
   --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(24 36 28 / 72%);
@@ -386,12 +386,13 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
+  --help-filter: opacity(95%) brightness(105%);
 }
 
 /* Dew */
 .theme-dew {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: core.$main-color;
+  --link-main-color: #{$main-color};
   --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(240 245 243 / 82%);
@@ -403,17 +404,34 @@ input {
 
 /* gallery */
 .theme-gal {
-  --link-padding: 0.6em;
-  --link-main-color: val(--timer-main-color);
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%);
-  --help-bg: var(--timer-main-color-rgb);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
-  --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
-  // --help-icon-heading: #b4d2ea;
-  --help-icon-heading: green;
+  // テキスト関係
+  // .help-content テキストカラー
+  // 本文
+  --help-fg: oklch(0.55 0.08 60);
+  // 見出し
+  --help-h: #b74152;
+
+  // 背景色
+  // .visual-card-help-bg
+  // --help-bg: oklch(0.97 0.02 100 / 0.99);
+  --help-bg: oklch(0.96 0.015 75);
+  // .visual-card-help-bg:hover
   --help-filter: opacity(95%) brightness(105%);
+
+  // カードの枠
+  // .visual-card-help-bg
+  // --help-border: oklch(0 0 0 / 0.08);
+  --help-border: oklch(0.75 0.02 30 / 0.25);
+  // カードの影
+  --link-box-shdw: 0 8px 24px oklch(from var(--shiro) l c h / 0.25);
+
+  // スマホ横向きの時のテキストボックス枠
+  --help-unit-bd: 1px solid oklch(from #b74152 l c h / 0.58);
+
+  // close-button
+  --help-icon: #b74152;
+  // --help-icon-bg: oklch(from #b74152 l c h / 0.38);
+  --help-icon-bg: oklch(from #b74152 l c h / 0.18);
 }
 
 // aboutページのヘルプカード変数
