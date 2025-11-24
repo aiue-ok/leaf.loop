@@ -1,13 +1,10 @@
-// Lightbox 機能しぇ！
+// Lightbox 機能
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxCaption = document.getElementById("lightbox-caption");
 const closeBtn = document.getElementById("lightbox-close");
 
 // 今表示している画像が、何番目かを追跡する
-// 現状
-// const images = Array.from(document.querySelectorAll(".gallery__img"));
-
 const images = Array.from(document.querySelectorAll(".gallery__img")).map(
   (img) => ({
     fullWebp: img.dataset.fullWebp,
@@ -47,9 +44,6 @@ document.addEventListener("keydown", function (e) {
   } else if (e.key === "Escape") {
     closeLightbox();
   }
-  // if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
-  //   closeLightbox();
-  // }
 });
 
 // 3. Lightbox 背景をクリックで閉じる
@@ -83,36 +77,10 @@ nextBtn.addEventListener("click", () => {
   updateLightboxImage();
 });
 
-// 拡大率変更ボタン
-const toggleFitBtn = document.getElementById("toggle-fit");
-const element = document.getElementById("message");
-
-toggleFitBtn.addEventListener("click", () => {
-  const isCover =
-    lightboxImg.style.objectFit === "cover" || !lightboxImg.style.objectFit;
-  lightboxImg.style.objectFit = isCover ? "contain" : "cover";
-  element.innerText = isCover ? "zoom_out" : "zoom_in";
-});
-
 function updateLightboxImage() {
   const { fullWebp, caption } = images[currentIndex];
   lightboxImg.src = fullWebp;
   lightboxCaption.textContent = caption;
 }
 
-// function updateLightboxImage() {
-//   lightboxImg.classList.add("fade-out");
-
-//   setTimeout(() => {
-//     lightboxImg.src = images[currentIndex].src;
-//     lightboxCaption.textContent = images[currentIndex].dataset.caption || "";
-
-//     lightboxImg.classList.remove("fade-out");
-//     lightboxImg.classList.add("fade-in");
-
-//     setTimeout(() => {
-//       lightboxImg.classList.remove("fade-in");
-//     }, 500);
-//   }, 500);
-// }
 console.log("✅ gallery.js loaded");
