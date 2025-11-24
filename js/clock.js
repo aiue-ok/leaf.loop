@@ -1,23 +1,30 @@
 function updateClock() {
   const now = new Date();
-  const seconds = now.getSeconds();
-  const minutes = now.getMinutes();
-  const hours = now.getHours();
+  const milliseconds = now.getMilliseconds();
+  const seconds = now.getSeconds() + milliseconds / 1000;
+  const minutes = now.getMinutes() + seconds / 60;
+  const hours = (now.getHours() % 12) + minutes / 60;
 
-  const secondDeg = seconds * 6;
-  const minuteDeg = minutes * 6 + seconds * 0.1;
-  const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+  const secondDeg = seconds * 6; // 360° / 60秒
+  const minuteDeg = minutes * 6; // 360° / 60分
+  const hourDeg = hours * 30; // 360° / 12時間
+
+  const cx = 50;
+  const cy = 50;
 
   document
     .getElementById("second")
-    .setAttribute("transform", `rotate(${secondDeg}, 50, 50)`);
+    .setAttribute("transform", `rotate(${secondDeg}, ${cx}, ${cy})`);
   document
     .getElementById("minute")
-    .setAttribute("transform", `rotate(${minuteDeg}, 50, 50)`);
+    .setAttribute("transform", `rotate(${minuteDeg}, ${cx}, ${cy})`);
   document
     .getElementById("hour")
-    .setAttribute("transform", `rotate(${hourDeg}, 50, 50)`);
+    .setAttribute("transform", `rotate(${hourDeg}, ${cx}, ${cy})`);
 
   requestAnimationFrame(updateClock);
 }
-requestAnimationFrame(updateClock);
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateClock();
+});
