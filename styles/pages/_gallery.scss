@@ -123,10 +123,10 @@
       justify-content: center;
       align-items: center;
 
-      // $bp-xs: 376px;より狭い場合
-      @container gallery (max-width: #{core.$bp-xs}) {
+      // $bp-xs: 480px;より狭い場合
+      @container gallery (max-width: #{core.$bp-sm}) {
         grid-template-columns: repeat(2, 1fr);
-        gap: core.$gap-xs;
+        gap: #{core.$gap-xs};
       }
 
       // $bp-sm: 480px;より広い場合
