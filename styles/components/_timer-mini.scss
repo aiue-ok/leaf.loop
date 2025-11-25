@@ -149,11 +149,11 @@ body.about,
 
       &--help {
         grid-area: help;
-        width: var(--icon-hit);
-        height: var(--icon-hit);
+        width: 100%;
+        height: auto;
         display: inline-flex;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
         line-height: 1.1;
 
         & button {
@@ -245,11 +245,10 @@ body.about,
         height: var(--t-mini-3-height);
       }
 
-        &--help {
-          & button {
-            min-width: var(--icon-visual);
-            min-height: var(--icon-visual);
-          }
+      &--help {
+        & button {
+          min-width: var(--icon-visual);
+          min-height: var(--icon-visual);
         }
       }
 
@@ -307,6 +306,18 @@ body.about,
         }
       }
 
+      & button {
+        width: var(--timer-btn-size);
+        height: var(--timer-btn-size);
+        min-width: var(--timer-btn-size);
+        min-height: var(--timer-btn-size);
+        color: var(--timer-mb-color);
+
+        :hover {
+          color: var(--timer-mb-color-hover);
+        }
+      }
+
       // グリッド　親 横一列に並べる
       &__grid {
         // outline: 1px solid orange;
@@ -333,7 +344,12 @@ body.about,
       &__screen {
         margin: 0 auto;
         min-height: 0;
-        align-self: center;
+        // align-self: center;
+
+        &--grid {
+          grid-template-areas: "help display";
+          gap: 1.5vmin;
+        }
 
         &--display {
           width: 100%;
@@ -351,15 +367,24 @@ body.about,
           line-height: 1.3; /* ←これで上下の余白をカット */
         }
         &--help {
-          display: none;
-        }
-      }
+          // display: none;
+          // outline: 1px solid orange;
+          position: absolute;
+          top: 4.1rem;
+          right: 16px;
+          width: fit-content;
 
-      & button {
-        width: var(--timer-btn-size);
-        height: var(--timer-btn-size);
-        min-width: var(--timer-btn-size);
-        min-height: var(--timer-btn-size);
+          & button {
+            width: var(--timer-btn-size);
+            height: var(--timer-btn-size);
+            min-width: var(--hit);
+            min-height: var(--hit);
+            inline-size: var(--hit);
+            block-size: var(--hit);
+            color: var(--timer-mb-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
         :hover {
           color: var(--timer-mb-color-hover);
