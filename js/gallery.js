@@ -83,4 +83,34 @@ function updateLightboxImage() {
   lightboxCaption.textContent = caption;
 }
 
+// itemsのbutton を「フォーカスされる要素」にする（変数itemsはbutton の配列）
+const items = Array.from(document.querySelectorAll(".gallery__item button"));
+
+document.addEventListener("keydown", (e) => {
+  // "いま何番目？"
+  const currentIndex = items.indexOf(document.activeElement);
+
+  if (currentIndex === -1) return; // ギャラリーにいない
+
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    const next = (currentIndex + 1) % items.length;
+    items[next].focus();
+  }
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    const prev = (currentIndex - 1 + items.length) % items.length;
+    items[prev].focus();
+  }
+
+  // 今フォーカスされているサムネイルの click を呼ぶ
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    const img = items[currentIndex].querySelector(".gallery__img");
+    img.click();
+  }
+});
+
 console.log("✅ gallery.js loaded");
