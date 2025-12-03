@@ -255,338 +255,244 @@ body.about,
 }
 
 // 480px〜1024px タブレット　portrait　サイズ
-//タイマーの位置を右上に
+// 位置(3) Tablet(port) 右上
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
-  .page--gallery,
-  .universe,
-  .about {
+  .page--gallery {
     .timer-mini {
       position: fixed;
-      top: var(--t-mini-3-top);
-      right: var(--t-mini-3-right);
-      left: var(--t-mini-unset);
+      top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
+      right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
+      left: unset;
+      bottom: unset;
 
       // 余白・幅
-      &__inner {
-        width: var(--t-mini-3-width);
-        height: var(--t-mini-3-height);
-      }
+      width: min-content;
+    }
 
-      &--help {
-        & button {
-          min-width: var(--icon-visual);
-          min-height: var(--icon-visual);
-        }
-      }
-
-      &__preset {
-        &--btn {
-          width: var(--timer-mini-width-mobile);
-          border: solid var(--timer-mini-border-width-mobile)
-            var(--timer-main-color);
-        }
-      }
+    // カウントダウン表示
+    .timer-mini__screen--count {
+      // 文字を小さめに
+      font-size: 3rem;
+      // 影を薄く
+      text-shadow: 0 1px 2px
+        color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
     }
   }
 }
 
-/* 480px以下　スマホ 縦 */
-@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+@container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
   body.universe,
   body.about {
-    // 画面の上に貼り付ける
     .timer-mini {
-      position: var(--t-mini-5-position);
-      top: var(--t-mini-unset);
-      left: var(--t-mini-unset);
-      bottom: var(--t-mini-unset);
-      margin-top: 0.5rem;
-      margin-bottom: 1.2rem;
-      // 自動中央揃え: margin-inline: auto;と指定すると、
-      // 親要素のインライン方向（幅）の余白を左右均等に自動で設定し、
-      // ブロック要素を水平方向に中央揃えにできます。
-      // margin-inline: auto;
-      text-shadow: var(--timer-shadow);
-      color: var(--timer-mb-color);
-
-      // 余白・幅
-      &__inner {
-        // outline: 1px solid orange;
-        width: var(--t-mini-5-width);
-        height: var(--t-mini-5-height);
-        /* スマホでもはみ出さないように器の上限だけ決める */
-        inline-size: auto; /* 内容に合わせる */
-      }
-
-      &__bg {
-        background: var(--timer-bg);
-        border: 1px solid var(--timer-border);
-        box-shadow: var(--timer-shadow);
-
-        &:hover {
-          background: var(--timer-bg-hover);
-          outline: none; // ブラウザのデフォルトの青い枠を消す
-          backdrop-filter: blur(8.5px) saturate(130%);
-          -webkit-backdrop-filter: blur(8.5px) saturate(130%);
-          will-change: backdrop-filter;
-        }
-      }
-
-      & button {
-        width: var(--timer-btn-size);
-        height: var(--timer-btn-size);
-        min-width: var(--timer-btn-size);
-        min-height: var(--timer-btn-size);
-        color: var(--timer-mb-color);
-
-        :hover {
-          color: var(--timer-mb-color-hover);
-        }
-      }
-
-      // グリッド　親 横一列に並べる
-      &__grid {
-        // outline: 1px solid orange;
-        display: grid;
-        grid-template-areas: "count presets controls";
-        justify-content: center;
-        align-items: self-start;
-        gap: 4px;
-        padding: 0;
-
-        // ボタン🔘の縦並べ　Orientation
-        &--vertical {
-          // outline: 1px solid orange;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: 1fr;
-          // gap: clamp(8px, 1.5vmin, 16px);
-          gap: var(--gap-g-button-portrait);
-          justify-content: center;
-          align-items: center;
-        }
-      }
-
-      &__screen {
-        margin: 0 auto;
-        min-height: 0;
-        // align-self: center;
-
-        &--grid {
-          grid-template-areas: "help display";
-          gap: 1.5vmin;
-        }
-
-        &--display {
-          width: 100%;
-        }
-        // カウントダウン表示
-        &--count {
-          // display: block;
-          // width: 5ch;
-          // text-shadow: var(--timer-shadow);
-          // inline-size: max-content;
-          // inline-size: 100%;
-          // font-size: var(--timer-count-font-size-mobile);
-          font-size: 28px;
-          text-align: left;
-          line-height: 1.3; /* ←これで上下の余白をカット */
-        }
-        &--help {
-          // display: none;
-          // outline: 1px solid orange;
-          position: absolute;
-          top: 4.1rem;
-          right: 16px;
-          width: fit-content;
-
-          & button {
-            width: var(--timer-btn-size);
-            height: var(--timer-btn-size);
-            min-width: var(--hit);
-            min-height: var(--hit);
-            inline-size: var(--hit);
-            block-size: var(--hit);
-            color: var(--timer-mb-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        :hover {
-          color: var(--timer-mb-color-hover);
-        }
-      }
-
-      &__preset {
-        height: min-content;
-        align-self: center;
-        // color: var(--timer-mb-color);
-
-        &--btn {
-          --visual: 33px;
-          --hit: 44px;
-
-          position: relative;
-          display: inline-flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          inline-size: var(--visual);
-          block-size: var(--visual);
-          line-height: 1;
-          border: solid 1px var(--timer-mb-color);
-          border-radius: var(--timer-border-r50);
-        }
-      }
+      --btn-hit: var(--btn-hit-small); // 36px
+      --btn-size-pill: var(--btn-size-pill-inline);
     }
-    //     &--btn::after {
-    //       content: "";
-    //       position: absolute;
-    //       left: 50%;
-    //       top: 50%;
-    //       width: var(--icon-hit);
-    //       height: var(--icon-hit);
-    //       // transform: translate(-50%, -50%);
-    //     }
-    //   }
-
-    //   __grid--space {
-    //     // gap: 8px;
-    //   }
-
-    //   &__action-btn {
-    //     inline-size: var(--icon-visual);
-    //     block-size: var(--icon-visual);
-    //     text-align: center;
-
-    //     & svg {
-    //       width: var(--icon-visual);
-    //       height: var(--icon-visual);
-    //     }
-
-    //     &::after {
-    //       width: var(--icon-hit);
-    //       height: var(--icon-hit);
-    //     }
-    //   }
-
-    //   // .setTimeBtn:active,
-    //   &__action-btn:active {
-    //     // transform: translateY(0.5px) scale(0.98);
-    //     filter: saturate(115%);
-    //     // transition: transform 0.08s ease-out;
-    //   }
-
-    //   &__actions {
-    //     min-height: 0;
-    //     align-self: center;
-    //     row-gap: 4px;
-    //   }
-    // } //.timer-miniのおわり🌙
   }
 }
 
-// スマホ　横 高さ
+// 🟦🟦🟦🟦🟦🟦🟦🟦
+// スマホ 横 高さ
 // 位置(4) 📱mobile(land) 浮・3列3行の正方形
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   body.universe,
   body.about {
+    // レイアウト・背景・トークンの初期値など
     .timer-mini {
-      position: var(--t-mini-4-position);
-      top: var(--t-mini-4-top);
-      right: var(--t-mini-4-right);
-      left: var(--t-mini-4-left);
-      bottom: var(--t-mini-4-bottom);
-      color: var(--timer-mb-color);
+      // stacked パレット　トークン差し替え
+      --mini-color-base: #{var(--mini-color-base2)}; // （ブラウン）
+      --mini-color-accent: #{var(--accent2)}; // 差し色（抹茶）
+      --mini-color-ink: #{var(--mini-color-ink2)}; // インク色ジャスミン（文字・アイコン・枠）
 
-      &__inner {
-        width: var(--t-mini-4-width);
-        height: var(--t-mini-4-height);
-      }
+      // 背景
+      --mini-background-shadow: 0 0 8px
+        color-mix(in oklch, var(--mini-color-ink) 50%, var(--shiro) 10%);
+      --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+      // gridアイテムの間隔
+      --gap-g-button: var(--gap-g-button-stacked);
+      // タイマーカウント 3:00のフォントサイズ
+      --mini-count-font-size: var(--mini-count-font-size-stacked);
+      --mini-count-shadow: var(--mini-count-shadow-stacked);
+
+      // ヒット面
+      --btn-hit: var(--btn-hit-small);
+      //アイコン　SVG
+      --btn-size-icon: var(--btn-size-icon-stacked);
+
+      // ボタンのフォントサイズclamp
+      --mini-preset-font-size: var(--mini-preset-font-size-stacked);
+      // 丸ボタンの枠線
+      --btn-border: var(--mini-border-width-stacked);
+      // 丸ボタンの枠色
+      --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+      // 丸ボタン
+      --btn-size-pill: var(--btn-size-pill-stacked);
+      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 0.7);
+
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 8px);
+      right: calc(env(safe-area-inset-top, 8px) + 8px);
+      left: auto;
+      bottom: unset;
+
+      width: max-content;
+      height: min-content;
+      min-width: 184px;
+      min-height: 184px;
 
       &__bg {
-        background: var(--timer-bg);
-        border: 1px solid var(--timer-border);
-        box-shadow: var(--timer-shadow);
-
-        &:hover {
-          background: var(--timer-bg-hover);
-          outline: none; // ブラウザのデフォルトの青い枠を消す
-          backdrop-filter: blur(8.5px) saturate(130%);
-          -webkit-backdrop-filter: blur(8.5px) saturate(130%);
-          will-change: backdrop-filter;
-        }
+        border: 0.8px solid var(--mini-background-border);
       }
 
-      // グリッド　親
+      //グリッド　親
       &__grid {
         display: grid;
         grid-template-rows: 1fr;
-        grid-template-areas: "count" "presets" "controls";
+        grid-template-areas:
+          "count"
+          "presets"
+          "controls";
         justify-content: center;
-
         margin: 8px;
 
-        // ボタン🔘並べ　Orientation
+        //ボタン🔘並べ　Orientation
         &--vertical {
           grid-template-columns: repeat(3, 1fr);
           grid-template-rows: 1fr;
-          // gap: clamp(8px, 1.5vmin, 16px);
         }
       }
-      // }
-      // 表示領域
-      &__screen {
-        // margin: 0 auto;
-        // min-height: 0;
-        // align-self: center;
+    }
 
-        &--grid {
-          grid-template-areas: "help display";
-          gap: 1.5vmin;
-        }
-
-        &--display {
-          // width: 120px;
-          width: 100%;
-        }
-        // カウントダウン表示
-        &--count {
-          // display: block;
-          // width: 5ch;
-          // text-shadow: var(--timer-shadow);
-          // inline-size: max-content;
-          // inline-size: 100%;
-          // font-size: var(--timer-count-font-size-mobile);
-          font-size: 36px;
-          text-align: left;
-          line-height: 1.3; /* ←これで上下の余白をカット */
-        }
-      }
-      &__presets {
-        // display: none;
+    // /* 2. 子要素・部品（BEMの __◯◯） */
+    .timer-mini__screen {
+      &--grid {
+        display: grid;
+        grid-template-areas: "time help";
+        justify-content: center;
+        align-items: center;
       }
 
-      &__preset {
-        &--btn {
-          width: var(--timer-mini-width-mobile);
-          border: solid var(--timer-mini-border-width-mobile)
-            var(--timer-mb-color);
-        }
-      }
-
-      &__action {
+      &--display {
         width: 100%;
-        height: auto;
       }
 
-      & button {
-        :hover {
-          color: var(--timer-mb-color-hover);
+      // カウントダウン表示
+      &--count {
+        text-align: left;
+        line-height: 1.3; /* ←これで上下の余白をカット */
+      }
+
+      &--help {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        & .i-32 {
+          width: var(--btn-size-help);
+          height: var(--btn-size-help);
         }
       }
-    } // スマホ横向き　ここまで
+    }
+    // スマホ横向き　ここまで
+  }
+}
+
+// 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
+/* 480px以下　スマホ 縦 */
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    .timer-mini {
+      // トークン差し替え
+      --mini-color-base: #{var(--mini-color-base2)}; // （ブラウン）
+      --mini-color-accent: #{var(--accent2)}; // 差し色（抹茶）
+      --mini-color-ink: #{var(--mini-color-ink2)}; // インク色ジャスミン（文字・アイコン・枠）
+
+      // 背景
+      --mini-background-shadow: 0 0 8px
+        color-mix(in oklch, var(--mini-color-ink) 20%, var(--shiro) 5%);
+      --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+      // gridアイテムの間隔
+      --gap-g-button: var(--gap-g-button-inline);
+      // タイマーカウント 3:00のフォントサイズ
+      --mini-count-font-size: var(--mini-count-font-size-inline);
+      --mini-count-shadow: var(--mini-count-shadow-stacked);
+
+      // ヒット面
+      --btn-hit: var(--btn-hit-small);
+      //アイコン　SVG
+      --btn-size-icon: var(--btn-size-icon-inline);
+
+      // ボタンのフォントサイズclamp
+      --mini-preset-font-size: var(--mini-preset-font-size-inline);
+      // 丸ボタンの枠線
+      --btn-border: var(--btn-border-width-inline);
+      // 丸ボタンの枠色
+      --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+      // 丸ボタンの背景
+      --btn-pill-bg: var(--btn-pill-bg-stacked);
+      // 丸ボタン
+      --btn-size-pill: var(--btn-size-pill-inline);
+      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 0.7);
+
+      // 位置(5) 📲mobile(port) static 上部固定
+      position: static;
+      margin-top: 0.5rem;
+      margin-bottom: 1.2rem;
+      width: 380px;
+      // 高さを決めた方がいいか
+      height: 50px;
+      /* スマホでもはみ出さないように器の上限だけ決める */
+      inline-size: auto; /* 内容に合わせる */
+
+      // グリッド　親 横一列に並べる
+      &__grid {
+        display: grid;
+        grid-template-areas: "count presets controls";
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        // ボタン🔘の縦並べ　Orientation
+        &--vertical {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: 1fr;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    .timer-mini__screen {
+      margin: 0 auto;
+      min-height: 0;
+
+      // 配置の並び替え
+      &--grid {
+        grid-template-areas: "help time";
+      }
+
+      // カウントダウン表示
+      &--count {
+        text-align: center;
+        line-height: 1.5; /* ←これで上下の余白をカット */
+      }
+
+      &--help {
+        display: unset;
+        // 枠外に出す→ヘッダー内に置く
+        position: absolute;
+        top: 4.1rem;
+        right: 16px;
+
+        & .i-32 {
+          width: var(--btn-size-help-inline);
+          height: var(--btn-size-help-inline);
+        }
+      }
+    }
   }
 }
