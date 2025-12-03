@@ -29,52 +29,38 @@ body.about,
 
   // 位置(1)(2) 💻Desktop・Tablet(land)　左下
   .timer-mini {
-    // display: none;
-    position: var(--t-mini-1-position);
+    /* レイアウト・背景・トークンの初期値など */
+    position: fixed;
     top: auto;
     right: auto;
-    left: var(--t-mini-1-left);
-    bottom: var(--t-mini-1-bottom);
+    left: 1.25rem;
+    bottom: 1.25rem;
     z-index: core.$z-timer-mini;
-    color: var(--timer-main-color);
-    text-shadow: var(--timer-shadow);
+    // background-color: core.$test-bg5;
 
-    // 旧：.timer-mini-container
-    // 余白・幅
-    &__inner {
-      width: var(--t-mini-1-width);
-      height: var(--t-mini-1-height);
-      pointer-events: auto;
-    }
+    width: clamp(320px, 25vw, 380px);
+    height: max(180px, 17.58vh);
+    pointer-events: auto;
 
-    // 旧：.timer-mini-background
     // 背景色
     &__bg {
-      border-radius: var(--timer-border-r1);
-      border: var(--timer-border);
-      box-shadow: var(--timer-box-shadow);
-      background: var(--timer-background);
-      transition: var(--timer-transition);
-      backdrop-filter: var(--timer-webkit-backdrop-filter);
-      -webkit-backdrop-filter: var(--timer-webkit-backdrop-filter);
+      border-radius: var(--mini-border-r-16);
+      background: var(--mini-background);
+      box-shadow: var(--mini-background-shadow);
+      border: 1px solid var(--mini-background-border);
+      backdrop-filter: var(--mini-backdrop-filter);
+      -webkit-backdrop-filter: var(--mini-backdrop-filter);
       will-change: backdrop-filter;
+      transition: background 0.3s ease, filter 0.3s ease;
+
       width: 100%;
       height: 100%;
       // grid を上下左右中央に配置
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &:hover {
-        background: var(--timer-hover-background);
-        outline: none; // ブラウザのデフォルトの青い枠を消す
-        backdrop-filter: blur(8.5px) saturate(130%);
-        -webkit-backdrop-filter: blur(8.5px) saturate(130%);
-        will-change: backdrop-filter;
-      }
     }
 
-    // グリッド　親
     &__grid {
       display: grid;
       grid-template-areas: "count presets controls";
@@ -87,143 +73,184 @@ body.about,
       &--vertical {
         display: grid;
         grid-template-rows: repeat(3, 1fr);
-        // grid-template-columns: 1fr;
-        // gap: clamp(8px, 1.5vmin, 16px);
         gap: var(--gap-g-button);
         justify-content: center;
         align-items: center;
       }
-
-      // プリセットボタンの間隔を調整
-      &--space {
-        // gap: 1.5vmin;
-      }
-    }
-
-    // ① 数字ディスプレイのラッパー
-    &__screen {
-      grid-area: count;
-
-      &--grid {
-        display: grid;
-        grid-template-areas:
-          "display"
-          "help";
-        justify-content: center;
-        align-items: stretch;
-        gap: var(--gap-g-button);
-      }
-
-      // 表示領域
-      &--display {
-        grid-area: display;
-        // width: 200px;
-        width: fit-content;
-        margin: 0 16spx;
-      }
-
-      // カウントダウン表示
-      &--count {
-        display: block;
-        width: 5ch;
-        margin: 0 auto;
-        font-size: var(--timer-count-font-size);
-        text-shadow: var(--timer-shadow2);
-        inline-size: max-content;
-      }
-
-      &--tnum {
-        font-family: var(--ff-en);
-
-        // 等幅数字（桁ごとに同じ幅）をON
-        font-variant-numeric: tabular-nums; /* 等幅数字 */
-        font-feature-settings: "tnum" 1; /* 念のため保険として */
-        // フォントにその太さ/斜体が無いとき、ブラウザが“偽ボールド/偽イタリック”を合成するのを禁止
-        font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
-        font-weight: 400;
-        letter-spacing: 0.0125em;
-
-        // ※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
-        text-shadow: var(--count-shadow);
-      }
-
-      &--help {
-        grid-area: help;
-        width: 100%;
-        height: auto;
-        display: inline-flex;
-        align-items: center;
-        justify-content: left;
-        line-height: 1.1;
-
-        & button {
-          min-width: var(--icon-visual-m);
-          min-height: var(--icon-visual-m);
-        }
-      }
-    }
-
-    // ② プリセット群のラッパー → timer__presets
-    &__presets {
-      grid-area: presets;
-      text-align: center;
-    }
-
-    &__preset {
-      &--btn {
-        /* 円の大きさ */
-        width: var(--timer-mini-width);
-        aspect-ratio: var(--timer-mini-aspect-ratio);
-        border-radius: var(--timer-border-r50);
-        background-color: transparent;
-        border: solid var(--timer-mini-border-width) var(--timer-main-color);
-        box-shadow: var(--timer-shadow);
-        text-align: center;
-
-        /* フォントサイズは直径に比例 */
-        font-size: var(--timer-mini-preset-font-size);
-        color: var(--timer-color);
-        text-shadow: var(--timer-shadow2);
-        box-sizing: border-box;
-
-        &:hover {
-          color: inherit;
-          border: solid var(--timer-mini-border-width) var(--timer-border-color);
-          background-color: var(--timer-mini-preset-background-hover);
-          outline: none; // ブラウザのデフォルトの青い枠を消す
-        }
-      }
-    }
-    // * ③ 操作群のラッパー → timer__actions
-    &__actions {
-      grid-area: controls;
-
-      & .i {
-        display: block;
-      }
-    }
-
-    &__action-btn {
-      color: inherit;
-
-      &:hover {
-        color: var(--accent);
-        text-shadow: var(--timer-shadow-hover);
-        outline: none; // ブラウザのデフォルトの青い枠を消す
-      }
     }
   }
 
-  &__action-btn:focus-visible,
-  &__preset-btn:focus-visible {
-    color: var(--timer-button-focus-visible-border-color);
-    font-weight: bold;
-    border-color: var(--timer-button-focus-visible-border-color); // 少し濃く
-    box-shadow: var(--timer-button-focus-visible-box-shadow);
+  // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+  /* 2. 子要素・部品（BEMの __◯◯） */
+  .timer-mini__screen {
+    grid-area: count;
+
+    &--grid {
+      display: grid;
+      grid-template-areas:
+        "time"
+        "help";
+      justify-content: center;
+      align-items: stretch;
+      gap: var(--gap-g-button);
+    }
+
+    // 表示領域
+    &--display {
+      grid-area: time;
+      width: fit-content;
+    }
+
+    // カウントダウン表示
+    &--count {
+      display: block;
+      width: 5ch;
+      margin: 0 auto;
+      font-size: var(--mini-count-font-size);
+      color: var(--mini-color);
+      text-shadow: var(--mini-count-shadow);
+      inline-size: max-content;
+    }
+
+    &--tnum {
+      font-family: var(--ff-en);
+
+      // 等幅数字（桁ごとに同じ幅）をON
+      font-variant-numeric: tabular-nums; /* 等幅数字 */
+      font-feature-settings: "tnum" 1; /* 念のため保険として */
+      // フォントにその太さ/斜体が無いとき、ブラウザが“偽ボールド/偽イタリック”を合成するのを禁止
+      font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
+      font-weight: 400;
+      letter-spacing: 0.0125em;
+    }
   }
 
-  & button {
+  .timer-mini__presets {
+    grid-area: presets;
+  }
+
+  // ③ 操作群のラッパー → timer__actions
+  .timer-mini__actions {
+    grid-area: controls;
+
+    & .i {
+      display: block;
+    }
+  }
+
+  // 丸ボタン
+  .timer-mini__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+
+    /* size */
+    inline-size: var(--btn-size-pill);
+    block-size: var(--btn-size-pill);
+
+    /* hit */
+    min-inline-size: var(--btn-hit);
+    min-block-size: var(--btn-hit);
+
+    /* look */
+    border-radius: var(--mini-border-r-50);
+    border: var(--btn-border-width) solid var(--btn-pill-border);
+    background-color: var(--btn-pill-bg);
+    box-shadow: none;
+
+    /* text */
+    font-size: var(--mini-preset-font-size);
+    color: var(--mini-color);
+
+    /* smooth */
+    transition: background-color 0.25s ease, box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  // SVGアイコン共通
+  .timer-mini__icon-btn {
+    inline-size: var(--btn-size-icon);
+    block-size: var(--btn-size-icon);
+    min-inline-size: var(--btn-hit);
+    min-block-size: var(--btn-hit);
+    background-color: var(--btn-pill-bg);
+    border-radius: var(--mini-border-r-50);
+    color: var(--mini-color);
+    cursor: pointer;
+    transition: color 0.25s ease text-shadow 0.25s ease;
+  }
+
+  // ヘルプ
+  .timer-mini__screen--help {
+    grid-area: help;
+    width: var(--btn-size-help);
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.1;
+    transition: color 0.25s ease text-shadow 0.25s ease;
+  }
+
+  // 🟩🟩🟩🟩🟩🟩🟩🟩🟩
+  /* 3. 状態（:hover, :active, :focus-visibleなど） */
+  // 丸ボタン
+  .timer-mini__pill:active {
+    background-color: var(
+      --btn-pill-bg-active
+    ); /* クリック中は背景色を薄くする */
+    transform: translateY(1.2px); /* ボタンを少し下に移動させる */
+    box-shadow: var(--btn-bxshadow-hover);
+  }
+
+  .timer-mini__pill:focus-visible {
+    // galleryページで設定済み
+    box-shadow: var(--btn-bxshadow-focus);
+  }
+
+  .timer-mini__icon-btn:active {
+    transform: translateY(1.2px); /* ボタンを少し下に移動させる */
+    border-radius: var(--mini-border-r-50);
+    color: var(--btn-pill-border);
+  }
+
+  .timer-mini__icon-btn:focus-visible {
+    // galleryページで設定済み
+    text-shadow: var(--btn-shadow-focus);
+  }
+
+// .page--〇〇ここまで
+
+/* ホバーに対応している場合 */
+@media (hover: hover) and (pointer: fine) {
+  .page--gallery,
+  .page--universe,
+  .page--about {
+    // 背景
+    .timer-mini__bg:hover {
+      background: var(--mini-background-hover);
+      border: 1px solid var(--mini-background);
+      box-shadow: var(--mini-background-shadow-hover);
+      backdrop-filter: var(--mini-backdrop-filter-hover);
+      -webkit-backdrop-filter: var(--mini-backdrop-filter-hover);
+      will-change: backdrop-filter;
+    }
+
+    // 丸ボタン
+    .timer-mini__pill:hover {
+      border-color: var(--mini-color-accent);
+      background-color: var(--btn-pill-bg-hover);
+      color: var(--btn-fg);
+      box-shadow: var(--btn-shadow-hover);
+    }
+
+    // SVGアイコン共通 ヘルプ
+    .timer-mini__icon-btn:hover,
+    .timer-mini__screen--help:hover {
+      text-shadow: var(--mini-icon-hover);
+      color: var(--mini-color-accent);
+    }
   }
 }
 
