@@ -220,6 +220,27 @@ body.about,
     text-shadow: var(--btn-shadow-focus);
   }
 
+  // 再生・停止のアイコン切り替え
+
+  #toggleTimer[aria-pressed="false"] #startBtn {
+    display: block;
+  }
+  #toggleTimer[aria-pressed="false"] #stopBtn {
+    display: none;
+  }
+
+  #toggleTimer[aria-pressed="true"] #startBtn {
+    display: none;
+  }
+  #toggleTimer[aria-pressed="true"] #stopBtn {
+    display: block;
+  }
+
+  // 音量　サウンド 斜線あり
+  .timer-mini__icon-btn--sound > .timer__action-btn--muted {
+    display: block;
+  }
+}
 // .page--〇〇ここまで
 
 /* ホバーに対応している場合 */

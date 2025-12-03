@@ -26,16 +26,14 @@
 
   <body class="page page--gallery">
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="timer-mini">
-      <div class="timer-mini__inner">
-        <div class="timer-mini__bg">
-          <!-- ミニタイマーgrid 親 -->
-          <div class="timer-mini__grid">
-            <!-- カウントダウン表示 -->
-            <div class="timer-mini__items timer-mini__screen">
+    <aside class="timer-mini" aria-label="ティータイマー">
+      <!-- カードの背景 -->
+      <div class="timer-mini__bg">
+        <div class="timer-mini__grid">
+          <!-- 残り時間数の表示画面：ヘルプ＋残り時間 -->
+            <div class=" timer-mini__screen" aria-live="polite">
               <div class="timer-mini__screen--grid">
                 <div class="timer-mini__screen--display">
-                  <!-- id="countdown OFF timer__screen--tnum スタイル未指定 -->
                   <span
                     id="timer"
                     class="timer-mini__screen--count timer-mini__screen--tnum"
@@ -51,17 +49,17 @@
                     aria-atomic="true"
                   ></div>
                 </div>
-                <div class="timer-mini__screen--help">
                   <!-- ヘルプ -->
                   <button
-                    class="info__link info__link--help"
+                    class="timer-mini__icon-btn timer-mini__screen--help"
                     id="helpBtn"
                     aria-expanded="false"
                     aria-controls="helpCard"
                     type="button"
+                    aria-label="タイマーの使い方を開く"
                   >
                     <svg
-                      class="i i-28"
+                      class="i i-32"
                       viewBox="0 -960 960 960"
                       aria-hidden="true"
                       focusable="false"
@@ -72,54 +70,40 @@
                       />
                     </svg>
                   </button>
-                </div>
               </div>
             </div>
-            <!-- ミニタイマー子②：初期設定（プリセット）ボタン -->
-            <!-- アイコンは装飾なので aria-hidden="true" を付ける -->
-            <div
-              class="timer-mini__items timer-mini__presets m-plus-1p-regular"
+          <!-- プリセット（3・4・5分） -->
+          <div
+            class="timer-mini__presets timer-mini__grid--vertical "
+            role="group"
+            aria-label="時間をセットする"
+          >
+            <button type="button" class="timer-mini__pill timer-mini__preset-btn" data-minutes="3" aria-label="3分に設定">
+              3
+            </button>
+            <button type="button" class="timer-mini__pill timer-mini__preset-btn" data-minutes="4" aria-label="4分に設定">
+              4
+            </button>
+            <button type="button" class="timer-mini__pill timer-mini__preset-btn" data-minutes="5" aria-label="5分に設定">
+              5
+            </button>
+          </div>
+          <!-- コントロール（リフレッシュ／再生停止／サウンド） -->
+          <div
+            class="timer-mini__actions timer-mini__grid--vertical"
+            role="group"
+            id="timerPanel"
+            aria-label="タイマー操作"
+          >
+            <button
+              type="button"
+              id="resetBtn"
+              class="timer-mini__icon-btn timer-mini__icon-btn--refresh"
+              data-action="reset"
+              aria-label="タイマーをリセット"
             >
-              <div class="timer-mini__grid--vertical timer-mini__grid--space">
-                <button
-                  class="timer-mini__preset--btn"
-                  data-minutes="3"
-                  aria-label="3分に設定"
-                >
-                  <span aria-hidden="true" class="timer__label">3</span>
-                </button>
-                <button
-                  class="timer-mini__preset--btn"
-                  data-minutes="4"
-                  aria-label="4分に設定"
-                >
-                  <span aria-hidden="true" class="timer__label">4</span>
-                </button>
-                <button
-                  class="timer-mini__preset--btn"
-                  data-minutes="5"
-                  aria-label="5分に設定"
-                >
-                  <span aria-hidden="true" class="timer__label">5</span>
-                </button>
-              </div>
-            </div>
-            <!-- ミニタイマー子③：操作（コントロール）ボタン -->
-            <div
-              class="timer-mini__items timer-mini__actions"
-              id="timerPanel"
-              aria-live="polite"
-            >
-              <div class="timer-mini__grid--vertical">
-                <button
-                  id="resetBtn"
-                  aria-label="リセット"
-                  class="timer-mini__action-btn"
-                  aria-label="リセット"
-                >
-                  <!-- 5 リフレッシュ-->
-                  <span class="timer__icon timer__action-btn--rim">
-                    <svg
+              <!-- refresh SVG -->
+                                  <svg
                       class="i"
                       viewBox="0 -960 960 960"
                       aria-hidden="true"
@@ -130,21 +114,21 @@
                         d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
                       />
                     </svg>
-                  </span>
-                </button>
-                <!-- 操作（コントロール）ボタン❶ -->
-                <!-- play stop -->
-                <button
-                  id="toggleTimer"
-                  class="timer__action-btn timer__action-play timer-mini__action-btn"
-                  aria-pressed="false"
-                  aria-label="再生"
-                  aria-controls="timerPanel"
-                >
+            </button>
+            <button
+              type="button"
+              id="toggleTimer"
+              aria-pressed="false"
+              class="timer-mini__icon-btn timer__action-play"
+              data-action="toggle-play"
+              aria-label="タイマーを再生"
+            >
+              <!-- play / pause SVG をJSで差し替え -->
+
                   <!-- 6 play▶️ -->
                   <span
                     id="startBtn"
-                    class="timer__icon timer__action-btn--running timer__action-btn--rim"
+                    class="timer-mini__icon-btn--play"
                   >
                     <svg
                       class="i"
@@ -161,7 +145,7 @@
                   <!-- 7 stop🔲 -->
                   <span
                     id="stopBtn"
-                    class="timer__icon timer__action-btn--paused timer__action-btn--rim"
+                    class="timer__action-btn--paused is-active"
                   >
                     <svg
                       class="i"
@@ -175,19 +159,20 @@
                       />
                     </svg>
                   </span>
-                </button>
-                <!-- 操作（コントロール）ボタン❸ -->
-                <!-- mute -->
-                <button
-                  aria-label="ミュート"
-                  id="muteBtn"
-                  class="timer__action-btn timer__action-volume timer-mini__action-btn"
-                  aria-pressed="false"
-                  aria-controls="timerPanel"
-                >
+            </button>
+            <button
+              type="button"
+              id="muteBtn"
+              class="timer-mini__icon-btn timer-mini__icon-btn--sound"
+              data-action="toggle-sound"
+              aria-label="サウンドのオン・オフを切り替え"
+              aria-pressed="false"
+            >
+              <!-- sound on/off SVG -->
+
                   <!-- 2 ON=波線あり-->
                   <span
-                    class="timer__icon timer__action-btn--rim timer__action-btn--alarm-on"
+                    class="  timer__action-btn--alarm-on timer__action-btn"
                   >
                     <svg
                       class="i"
@@ -203,7 +188,7 @@
                   </span>
                   <!-- 4 MUTE=斜線あり-->
                   <span
-                    class="timer__icon timer__action-btn--rim timer__action-btn--muted timer__action-btn--alarm-off"
+                    class="timer__action-btn  timer__action-btn--muted timer__action-btn--alarm-off"
                   >
                     <svg
                       class="i"
@@ -217,12 +202,11 @@
                       />
                     </svg>
                   </span>
-                </button>
-              </div>
-            </div>
+            </button>
           </div>
         </div>
-      </div></div>
+      </div>
+    </aside>
 
       <!-- ページ共通のヘッダ -->
       <header class="page-header">
