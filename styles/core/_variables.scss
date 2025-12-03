@@ -97,7 +97,9 @@ $color-g-latte-normal: oklch(98% 0.01 85); // ≒ #fff8e7
 // アクセント
 $color-g-chai: #d8b08c;
 $color-g-cha: #9dc5af;
-$color-g-jasmin: #f3f3eb;
+$color-g-jasmin: oklch(0.95 0.03 105);
+$color-g-chaisoft: oklch(0.32 0.04 50 / 0.95);
+
 
 // ════════════════════════════════
 // 🪐 universe

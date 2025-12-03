@@ -210,154 +210,17 @@
 // ─────────────────────────────
 
 .page--gallery > .timer-mini {
-  // 色 color☕️#eae5da
-  --timer-main-color: oklch(92.28% 0.01558 86.403);
-  // ヘルプカードの背景
-  --timer-main-color-rgb: rgb(234 229 218/ 90%);
+  // 10 使う色　🎨
+  // palette層は「base / accent / ink」の3つ
+  // デスクトップ（default）
+  --mini-color-base: #{var(--bg)}; // 背景寄り（コズミックラテ系）
+  --mini-color-accent: #{var(--accent)}; // 差し色（チャイ）
+  --mini-color-ink: #{var(--main-color)}; // インク色（文字・アイコン・枠）
 
-  // ミニタイマー　gallery文字色候補
-  // color: oklch(0.2 0.05 40);
-  //  oklch(0.55 0.08 60);
-  --timer-color-hover: core.$color-g-chai;
-
-  --timer-bg: oklch(0.95 0.03 105 / 0.7);
-  --timer-bg-hover: oklch(0.96 0.04 80 / 0.6);
-  --timer-mb-color: oklch(0.2 0.05 40 / 0.7);
-  --timer-mb-color-hover: oklch(0.95 0.03 105);
-  // oklch(0.95 0.03 105 / 0.6); // ジャスミン薄白
-  // oklch(0.96 0.04 80)　→ チャイをミルクで4倍薄めたやつ
-  // oklch(0.55 0.08 60)　→ チャイミディアム
-  // oklch(0.42 0.06 55)　→ かなり黒より
-  // oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ
-  --timer-border: 1px solid oklch(0 0 0 / 0.15); // 息の線
-  // 影：8px の極薄影（ふわっ）
-  --timer-shadow: 0 0 8px oklch(0 0 0 / 0.04);
-
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🫖
-  // １）glass効果背景
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: 0.8px solid rgb(234 229 218 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: 0 2px 5px rgb(0 0 0 / 15%);
-  --timer-background: oklch(22% 0.03 266 / 40%);
-  --timer-background-mobile: oklch(22% 0.03 266 / 30%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(110%);
-  --timer-backdrop-filter-mobile: blur(6px) saturate(105%);
-  --timer-webkit-backdrop-filter: blur(8px) saturate(110%);
-  --timer-webkit-backdrop-filter-mobile: blur(6px) saturate(105%);
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: oklch(22% 0.03 266 / 50%);
-
-  // buttons🫖
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: var(--accent);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-body.universe .timer,
-body.universe .timer-mini-container {
-  // 色 color
-  --timer-main-color: core.$main-color;
-
-  // ↓変えないとだめ
-  --timer-color-hover: rgb(205 227 213 / 70%);
-
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🚀
-  // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border: 1px solid rgb(255 255 255 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-background: rgb(205 227 213 / 70%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(12px);
-  --timer-webkit-backdrop-filter: blur(12px);
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(245 245 220 / 58.4%);
-
-  // buttons🪐
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-.page--about > .timer-mini {
-  // 色 color☕️#eae5da
-  --timer-main-color: #{var(--shiro)};
-  // カードの背景
-  --timer-main-color-rgb: #{var(--color-surface-help)};
-
-  // ↓変えないとだめ
-  --timer-color-hover: core.$color-g-chai;
-
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🫖
-  // １）glass効果背景
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
-  // #d7d9d7
-  --timer-background: oklch(88.318% 0.0034 146.922 /30%);
-  --timer-background-mobile: green;
-  --timer-color: #{var(--color-text-main)};
-  --timer-backdrop-filter: blur(8px) saturate(110%);
-  --timer-backdrop-filter-mobile: none;
-  --timer-webkit-backdrop-filter: blur(8px) saturate(110%);
-  --timer-webkit-backdrop-filter-mobile: none;
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: oklch(88.318% 0.0034 146.922 / 50%);
-
-  // buttons🫖
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
+  // モバイルカラー
+  // パレット
+  --mini-color-base2: #{var(--chaisoft)}; //なまえつけて
+  --mini-color-accent2: #{var(--accent2)}; // cha
+  --mini-color-ink2: #{var(--jasmin)}; // ジャスミン薄白のもと oklch(0.95 0.03 105)
+  // 予備やわらか
+  // oklch(0.42 0.06 80 / 1);

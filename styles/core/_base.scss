@@ -290,6 +290,10 @@ input {
   --bg: #{$color-g-latte-dark};
   --main-color: #{$color-g-blueblack};
   --accent: #{$color-g-chai};
+  --accent2: #{$color-g-cha};
+  --jasmin: #{$color-g-jasmin};
+  --chaisoft: #{$color-g-chaisoft};
+
   --gallery-top-space: clamp(1.5rem, 4vw, 3rem);
   // lightbox
   --lightbox-bg: color-mix(
