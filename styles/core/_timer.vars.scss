@@ -114,95 +114,64 @@
 
 // タイマーミニ　共通サイズ関係
 .timer-mini {
-  // 位置(1)(2) 💻Desktop・Tablet(land)　左下
-  --t-mini-1-position: fixed;
-  --t-mini-1-left: 1.25rem;
-  --t-mini-1-bottom: 1.25rem;
-  --t-mini-1-top: 1.25rem;
-  --t-mini-1-right: 1.25rem;
+  // compact  デフォルト
+  // stacked 3列積み上げ
+  // inline 1列
 
-  // タイマーの幅・高さ
-  //   w360px h180px　ビューポートに依る
-  //   width: 22.5rem;height: 11.25rem;
-  --t-mini-1-width: clamp(320px, 25vw, 380px);
-  --t-mini-1-height: max(180x, 17.58vh);
+  /* 1 丸ボタン */
+  --btn-size-pill: 40px; // inline, stacked で差し替え可能
+  --btn-size-pill-stacked: 44px;
+  --btn-size-pill-inline: 36px;
 
-  // 位置(3) Tablet(port) 右上
-  --t-mini-3-position: fixed;
-  --t-mini-unset: unset;
-  --t-mini-3-top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
-  --t-mini-3-right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
+  // 2 アイコンサイズ 見た目
+  --btn-size-icon: 30px;
+  --btn-size-icon-stacked: 44px;
+  --btn-size-icon-inline: 36px;
+  // 見た目（ヘルプ）
+  --btn-size-help: 28px;
+  --btn-size-help-inline: 24px; /* 見た目 */
 
-  // タイマーの幅・高さ
-  //   w360px h180px　ビューポートに依る
-  //   width: 22.5rem;height: 11.25rem;
-  --t-mini-3-width: min-content;
-  --t-mini-3-height: fit-content;
+  //  3 ボタンのヒットエリア
+  --btn-hit: 44px;
+  --btn-hit-small: 36px;
 
-  // 位置(4) 📱mobile(land) 浮・3列3行の正方形
-  --t-mini-4-position: fixed;
-  --t-mini-4-left: auto;
-  --t-mini-4-bottom: unset;
-  --t-mini-4-top: calc(env(safe-area-inset-top, 0px) + 8px);
-  --t-mini-4-right: calc(env(safe-area-inset-top, 8px) + 8px);
+  // 4 grid  ボタンの配置間隔
+  // 位置(1)(2) 💻Desktop・Tablet(landsacape)　左下
+  // 位置(3) Tablet(portrait) 右上
+  // 位置(4) 📱mobile(landscape) 浮・3列3行の正方形
+  // 位置(5) 📲mobile(portrait) static 上部固定
 
-  // タイマーの幅・高さ
-  //   w360px h180px　ビューポートに依る
-  //   width: 22.5rem;height: 11.25rem;
-  --t-mini-4-width: max-content;
-  --t-mini-4-height: min-content;
-
-  // 位置(5) 📲mobile(port) static 上部固定
-  --t-mini-5-position: static;
-
-  // タイマーの幅・高さ
-  --t-mini-5-width: 380px;
-  --t-mini-5-height: 50px;
-
-  // カウントダウン表示　００：００
-  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(16px, 10vw, 32px);
-
-  // ボタンの配置間隔
   --gap-g-button: 2.3vmin;
-  --gap-g-button-mobile: 1vmin;
-  --gap-g-button-portrait: 0.3vmin;
+  --gap-g-button-stacked: 1.8vmin;
+  --gap-g-button-inline: 1vmin;
 
-  // プリセットボタンのヒット面
-  --hit: 44px;
-  --timer-btn-size: 36px;
+  // 5 カウントダウン フォントサイズ　００：００
+  --mini-count-font-size: clamp(2rem, 12vw, 3.4rem);
+  --mini-count-font-size-stacked: clamp(32px, 7.5vw, 36px);
+  --mini-count-font-size-inline: 28px;
 
-  // スマホ縦　 操作ボタン
-  --icon-visual: 28px; /* 見た目 */
-  --icon-visual-m: 36px;
-  --icon-hit: 44px; /* タップ面 */
+  // 6 プリセットボタンの枠線
+  --btn-border-width: 1.1px;
+  --btn-border-width-stacked: 0.1px;
+  --btn-border-width-inline: 0.27px;
 
-  // プリセットボタンの円    /* 円の大きさ */
-  --timer-mini-width: clamp(2.4rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 33px;
-  --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-border-width: 2.27px;
-  --timer-mini-border-width-mobile: 1.4px;
-  --timer-mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
+  // 7 プリセットボタンのフォントサイズ
+  --mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
+  --mini-preset-font-size-stacked: 22.5px;
+  --mini-preset-font-size-inline: 18px;
 
-  --timer-border-r1: 16px;
-  --timer-border-r50: 50%;
+  // 8 円の半径
+  --mini-border-r-16: 16px;
+  --mini-border-r-50: 50%;
 
   // その他
-  // action アイコンの縁
-  --action-radius-rim: 0.5rem;
+  // 11 バックドロップフィルター　🧊ガラス感✨
+  --mini-backdrop-filter: blur(8px) saturate(110%);
+  --mini-backdrop-filter-hover: blur(8.5px) saturate(130%);
+  --mini-backdrop-filter-mobile: blur(6px) saturate(105%);
 
-  // 背景の影
-  --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
-
-  // 操作アイコンspan 縁
-  --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
-
-  // ホバー outline 太く
-  --action-outline-hover: 2px solid
-    color-mix(in oklab, var(--shiro) 35%, transparent);
-  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
-  --timer-transition: background 0.3s ease, filter 0.3s ease;
+  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
+  --mini-h: clamp(64px, 12vh, 112px);
 }
 
 // ─────────────────────────────
@@ -224,3 +193,77 @@
   --mini-color-ink2: #{var(--jasmin)}; // ジャスミン薄白のもと oklch(0.95 0.03 105)
   // 予備やわらか
   // oklch(0.42 0.06 80 / 1);
+
+  // 用途トークンは「ink / surface / border / fg / fg-hover」くらいに整理
+  // ✏️ フォントカラー　/ アイコン　デフォルト
+  --mini-color: var(--mini-color-base);
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 0.8);
+
+  // 🖼️ カード背景色
+  --mini-background: oklch(from var(--mini-color-ink) l c h / 0.35);
+  --mini-background-hover: oklch(from var(--mini-color-ink) l c h / 0.7);
+
+  // 🖼️ カード　ボーダーカラー
+  --mini-background-border: oklch(from var(--mini-color-ink) l c h / 0.15);
+
+  // 🖼️ カード シャドウ
+  // 影：8px の極薄影（ふわっ）
+  --mini-background-shadow: 0 0 8px
+    color-mix(in oklch, var(--mini-color-ink) 50%, var(--kuro) 10%);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--kuro) 10%);
+
+  // ⏲️タイマーカウント 0:00 影
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 80%, var(--kuro) 5%);
+
+  // ◼︎ 丸数字ボタン用
+  // 丸ボタンの枠色
+  --btn-pill-border: var(--mini-color-soft);
+
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: color-mix(
+    in oklch,
+    var(--mini-color) 70%,
+    var(--shiro) 15%
+  );
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 0.15);
+
+  // アイコンSVG
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+
+  //  ボタン
+  --btn-fg: oklch(from var(--mini-color-ink) l c h / 0.8);
+  --btn-fg-hover: var(--mini-color-ink);
+
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 0.1);
+
+  // focus-visible
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 0.1);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 0.7);
+
+  // 丸ボタンの枠色
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+
+  // カウント用影
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+
+  //JavaScript用 body {:where(.is-active) { color: var(--t-accent);}
+  --t-accent: var(--mini-color-accent);
+}
+
+// color-mix(in oklch, var(--mini-inline-text) 80%, var(--kuro) 10%)
+// color-mix(in oklch, var(--mini-inline-text) 80%, var(--shiro) 5%)
+
+// --mini-bg-hover: oklch(0.96 0.04 80 / 0.6);
+// --mini-mb-color: oklch(0.2 0.05 40 / 0.7);
+
+// oklch(0.95 0.03 105 / 0.6); // ジャスミン薄白
+// oklch(0.96 0.04 80)　→ チャイをミルクで4倍薄めたやつ
+// oklch(0.55 0.08 60)　→ チャイミディアム
+// oklch(0.42 0.06 55)　→ かなり黒より
+// oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ
