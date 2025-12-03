@@ -18,3 +18,6 @@ guide/
 DIFF_*.txt
 *.diff.txt
 *.patch.txt
+legacy/_timer-mini copy20251203/_timer-mini copy20251203.scss
+legacy/_timer-mini copy20251203/gallery copy.html
+styles/core/_debag.scss
