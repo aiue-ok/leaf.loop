@@ -112,22 +112,6 @@ function onTimerDone() {
   stopTimerUnified(); // 状態とUIを確実に止める
 }
 
-// ===== ボタン動作 =====
-// startBtn?.addEventListener("click", async () => {
-//   await window.ensureAudioUnlocked();
-//   if (!timerId) {
-//     setTransportState("start");
-//     tickOnce();
-//   }
-// });
-// stopBtn?.addEventListener("click", () => {
-//   if (timerId) {
-//     clearTimeout(timerId);
-//     timerId = null;
-//   }
-//   setTransportState("stop");
-// });
-
 function updateToggleUI(running) {
   isRunning = !!running;
   toggleBtn.setAttribute("aria-pressed", String(isRunning));
@@ -135,6 +119,9 @@ function updateToggleUI(running) {
 }
 
 // === 開始・停止を一本化 ===
+// NOTE:
+// プリセットをクリックしたときにタイマーの状態がおかしくならないようにするための一時処理。
+// 消すとタイマーが動かなくなるので、ロジック整理までは残しておく。
 function startTimerUnified() {
   if (timerId) return; // 二重開始を防止
   setTransportState("start");
@@ -186,9 +173,7 @@ resetBtn?.addEventListener("click", () => {
 });
 
 // ===== プリセット（分） =====
-const presetBtns = Array.from(
-  document.querySelectorAll(".timer__preset-btn,.timer-mini__preset--btn")
-);
+const presetBtns = Array.from(document.querySelectorAll(".timer__preset-btn"));
 presetBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     presetBtns.forEach((b) => b.classList.remove("is-active"));
@@ -216,8 +201,18 @@ function syncMuteUI() {
   if (!muteBtn || !ding) return;
   const isMuted = !!ding.muted;
   muteBtn.setAttribute("aria-pressed", String(isMuted));
-  muteBtn.classList.toggle("is-muted", isMuted);
-  muteBtn.classList.toggle("is-active", isMuted);
+  // muteBtn.classList.toggle("is-muted", isMuted);
+  // muteBtn.classList.toggle("is-active", isMuted);
+  // この2つのクラスについて、（2025年12月3日）
+  // SCSS側で .is-muted や .is-active を使って見た目変えていないなら → 実質不要
+  // 将来、aria-pressed ベースのCSSに移行するなら
+  // → inline-styleで display 切り替える部分も、いずれ消してOK
+  // なので、
+  // 今はそのままでもいいけど、クラスを使わないなら classList.toggle は削れる
+  // 「CSSだけでやりたい」モードに行く時は
+  // → inline-style 部分を削って、
+  // → #muteBtn[aria-pressed="true"] / "false" で display 切り替えに寄せる
+
   muteBtn.setAttribute("aria-label", isMuted ? "ミュート解除" : "ミュート");
   muteBtn.title = isMuted ? "ミュート解除" : "ミュート";
 
