@@ -109,7 +109,7 @@ body.hero {
     @supports (backdrop-filter: blur(2px)) {
       .site-header__title {
         backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
         will-change: backdrop-filter;
         background: color-mix(in oklab, #{core.$kuro100} 6%, transparent);
         padding-inline: 0.5rem;
@@ -420,7 +420,7 @@ body.hero {
       inset: -6px -12px;
       border-radius: 12px;
       backdrop-filter: blur(140px);
-      -webkit-backdrop-filter: blur(140px);
+      backdrop-filter: blur(140px);
       will-change: backdrop-filter;
       z-index: -1;
     }
@@ -573,7 +573,7 @@ body.hero {
       inset: -6px -12px;
       border-radius: 12px;
       backdrop-filter: blur(140px);
-      -webkit-backdrop-filter: blur(140px);
+      backdrop-filter: blur(140px);
       will-change: backdrop-filter;
       z-index: -1;
     }

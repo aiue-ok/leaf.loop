@@ -1,4 +1,5 @@
 @use "variables" as *;
+
 // * {} や body {}、フォント設定
 // 初期設定
 // reset（normalize / modern-css-reset）
@@ -139,6 +140,7 @@ input {
 /* 汎用アイコンの基本 */
 .i {
   display: inline-block;
+
   // vertical-align: -0.125em;
 }
 
@@ -186,10 +188,12 @@ input {
   // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
   // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
   --fs: clamp(16px, 1.111vw, 32px);
+
   // hero html使用中
   --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
 
   // 使ってない
+
   /* 余白（例：内側パディング 16→32） */
   --pad: clamp(16px, 1.111vw, 32px);
 
@@ -216,36 +220,34 @@ input {
 
   // 基本色
   --shiro: #{$shiro100};
-  --shiro10: oklch(from var(--shiro) l c h / 0.1);
-  --shiro20: oklch(from var(--shiro) l c h / 0.2);
-
+  --shiro10: oklch(from var(--shiro) l c h / 10%);
+  --shiro20: oklch(from var(--shiro) l c h / 20%);
   --kuro: #{$kuro100};
-  --kuro25: oklch(from var(--kuro) l c h / 0.25);
-
+  --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: #{$hero-background};
   --main-color: #{$main-color};
 
   /* コンポーネント用の“スロット” */
   // notify-controls “プリセット風チップUI”
-  --chip-bg: oklch(from var(--shiro) l c h / 0.8);
-  --chip-bg-active: oklch(from var(--shiro) l c h / 0.18);
-  --chip-bd: oklch(from var(--shiro) l c h / 0.55);
-  --chip-bd-active: oklch(from var(--shiro) l c h / 0.85);
+  --chip-bg: oklch(from var(--shiro) l c h / 80%);
+  --chip-bg-active: oklch(from var(--shiro) l c h / 18%);
+  --chip-bd: oklch(from var(--shiro) l c h / 55%);
+  --chip-bd-active: oklch(from var(--shiro) l c h / 85%);
 
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
   --help-h: #{$shiro100};
-  --help-border: oklch(from var(--shiro) l c h / 0.12);
+  --help-border: oklch(from var(--shiro) l c h / 12%);
   --help-icon: #b4d2ea;
 
   // border/blur/影の係数
-  --glass-border: oklch(from var(--shiro) l c h / 0.18);
+  --glass-border: oklch(from var(--shiro) l c h / 18%);
   --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px oklch(from var(--shiro) l c h / 0.18);
+  --glass-shadow: 0 8px 24px oklch(from var(--shiro) l c h / 18%);
 
   // fucus-visible
-  --focus-ring: oklch(0.82 0.12 250);
+  --focus-ring: oklch(82% 0.12 250deg);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --focus-ring-radius: 6px;
@@ -253,10 +255,13 @@ input {
   // ドロワーメニュー　 scrim (背景の半透明幕) */
   // ドロワーの幅
   --menu-w: min(360px, 86vw);
+
   // メニューのバックグラウンドカラー
-  --panel-bg: oklch(from var(--kuro) l c h / 0.7);
+  --panel-bg: oklch(from var(--kuro) l c h / 70%);
+
   // パネル左の枠の色
   --panel-bd: var(--shiro10);
+
   // 開閉メニューのフォントカラー
   --panel-cl: var(--main-color);
 }
@@ -282,15 +287,15 @@ input {
   --accent2: #{$color-g-cha};
   --jasmin: #{$color-g-jasmin};
   --chaisoft: #{$color-g-chaisoft};
-
   --gallery-top-space: clamp(1.5rem, 4vw, 3rem);
+
   // lightbox背景　チャイ壁
   --lightbox-bg: color-mix(
     in oklch,
     #{$color-g-latte-dark} 80%,
     var(--kuro) 50%
   );
-  --lightbox-nav: oklch(from var(--main-color) l c h / 0.45);
+  --lightbox-nav: oklch(from var(--main-color) l c h / 45%);
 }
 
 .page--universe {
@@ -318,25 +323,33 @@ input {
   // ドロワーメニュー
   // メニューのバックグラウンドカラー
   --panel-bg: #{$color-g-latte-light};
+
   // パネル左の枠の色
   --panel-bd: var(--accent2);
+
   // フォントカラー
   --panel-cl: var(--main-color);
+
   // 現在地
   --current-page: var(--chaisoft);
+
   // 差し色
   --panel-pop: #{$carrots};
+
   // 背景の半透明幕
   --scrim: transparent;
+
   // メニュー背景レイヤー（代替グラデーションを指定）
-  --overlay-bg: oklch(from var(--kuro) l c h / 0.45);
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
   // scrim水玉模様の色
-  --dots: oklch(from var(--panel-bd) l c h / 0.45);
+  --dots: oklch(from var(--panel-bd) l c h / 45%);
 }
 
 .page--universe {
   --accent: #{$color-space-dust};
 }
+
 .page--about {
   --accent: #{$color-u-ex};
 } // デフォルトと同じでもOK
@@ -349,29 +362,36 @@ input {
 .page--gallery {
   // pathに　mix-blend-mode　が入ってる
   // 一番大きい
-  --back: oklch(from #{$color-g-latte-light} l c h / 0.65);
+  --back: oklch(from #{$color-g-latte-light} l c h / 65%);
+
   // 半透明グリーン　右にはみ出す
-  --mid: oklch(from #{$color-g-cha} l c h / 0.35);
+  --mid: oklch(from #{$color-g-cha} l c h / 35%);
+
   // 小さい
-  --front: oklch(from #{$LeafMist} l c h / 0.55);
+  --front: oklch(from #{$LeafMist} l c h / 55%);
+
   // 時間 短い
   --h: color-mix(
     in oklch,
     #{$color-g-latte-dark} 60%,
     #{$color-g-blueblack} 10%
   );
+
   // 分針　長い
   --m: color-mix(in oklch, #{$color-g-jasmin} 80%, var(--kuro) 10%);
+
   // 秒針
   --s: color-mix(in oklch, #{$color-g-latte-normal} 80%, var(--shiro) 5%);
+
   // 中心
   --center: var(--accent);
 
   // 分針のサイズ
   --m-width: 8rem;
   --m-height: 6rem;
+
   // .decor-clock svg
-  --clock-filter: drop-shadow(0 0 5px rgba(200, 200, 255, 0.3));
+  --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
 
 .page--universe {
@@ -396,7 +416,9 @@ input {
 }
 
 /* ===== _styles/components/_info.scss ===== */
+
 /* ヘルプカード　背景 */
+
 /* Moss heroヘルプカード使用中 */
 .theme-moss {
   --link-padding: 0.6em 1.1em;
@@ -419,8 +441,8 @@ input {
   --help-h: #{$red-velvet};
   --help-border: #{$moon-lit};
   --help-icon: var(--help-h);
-  --help-icon-bg: oklch(from var(--help-h) l c h / 0.38);
-  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 0.58);
+  --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
   --help-filter: brightness(105%);
 }
 

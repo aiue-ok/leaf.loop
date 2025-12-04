@@ -13,16 +13,25 @@
   justify-content: center;
   padding: 0;
   text-align: center;
-  animation-timing-function: linear;
-  animation: spin 3600s infinite;
+  // アニメーションがそれぞれの周期の中でどのように進行するか
+  // linear
+  // cubic-bezier(0.0, 0.0, 1.0, 1.0) と同じで、等しい速度でアニメーションします
+  // animation-timing-function: linear;
+  // 一括指定プロパティで、スタイルの間のアニメーションを適用します。
+  // これは animation-name, animation-duration, animation-timing-function,
+  // animation-delay, animation-iteration-count, animation-direction,
+  // animation-fill-mode, animation-play-state の一括指定です。
+  animation: linear spin 3600s infinite;
 
   & svg {
     position: fixed;
     display: block;
+
     // width: 17rem;
     // height: 14rem;
     width: 80%;
     height: auto;
+
     // ↓ ドロップシャドウは効果的にぼけ、入力画像のアルファマスクのバージョンからずれ、特定の色で描かれて画像の下に混合されます
     filter: var(--clock-filter);
   }
@@ -31,9 +40,11 @@
     &--back {
       color: var(--back);
     }
+
     &--mid {
       color: var(--mid);
     }
+
     &--front {
       color: var(--front);
     }
@@ -43,9 +54,11 @@
     &--h {
       color: var(--h);
     }
+
     &--m {
       color: var(--m);
     }
+
     &--s {
       color: var(--s);
     }

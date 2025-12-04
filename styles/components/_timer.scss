@@ -109,7 +109,7 @@ body {
       padding-inline: 0.8rem;
       padding-block: 0.2rem;
       backdrop-filter: var(--count-filter);
-      -webkit-backdrop-filter: var(--count-filter);
+      backdrop-filter: var(--count-filter);
       will-change: backdrop-filter;
     }
   }
@@ -202,14 +202,14 @@ body {
       --preset-bg-current: color-mix(
         in oklch,
         var(--preset-bg) 18%,
-        oklch(from core.$shiro100 l c h / 0.337) 6%
+        oklch(from core.$shiro100 l c h / 33.7%) 6%
       );
       --preset-fg-current: var(--t-complementary-color);
 
       transform: translateY(-0.5px);
       box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
-        0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
-        inset 0 0 0 1px oklch(from core.$shiro100 l c h / 0.3),
+        0 0 0 3px oklch(from core.$shiro100 l c h / 45%),
+        inset 0 0 0 1px oklch(from core.$shiro100 l c h / 30%),
         0 8px 24px #{var(--kuro25)};
     }
 
@@ -485,9 +485,9 @@ body {
           background: var(--t-main-color);
           outline: none;
           box-shadow: 0 0 0 2px rgb(14 16 32 / 75%),
-            /* 外側に暗い縁 */ 0 0 0 3px oklch(from core.$shiro100 l c h / 0.45),
+            /* 外側に暗い縁 */ 0 0 0 3px oklch(from core.$shiro100 l c h / 45%),
             /* その外に明るい縁 */ inset 0 0 0 1px
-              oklch(from core.$shiro100 l c h / 0.3),
+              oklch(from core.$shiro100 l c h / 30%),
             0 8px 24px #{var(--kuro25)};
           transform: translateY(-0.5px);
         }

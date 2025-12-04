@@ -8,11 +8,9 @@ body.about,
   .timer-mini {
     /* レイアウト・背景・トークンの初期値など */
     position: fixed;
-    top: auto;
-    right: auto;
-    left: 1.25rem;
-    bottom: 1.25rem;
+    inset: auto auto 1.25rem 1.25rem;
     z-index: core.$z-timer-mini;
+
     // background-color: core.$test-bg5;
 
     width: clamp(320px, 25vw, 380px);
@@ -26,12 +24,12 @@ body.about,
       box-shadow: var(--mini-background-shadow);
       border: 1px solid var(--mini-background-border);
       backdrop-filter: var(--mini-backdrop-filter);
-      -webkit-backdrop-filter: var(--mini-backdrop-filter);
+      backdrop-filter: var(--mini-backdrop-filter);
       will-change: backdrop-filter;
       transition: background 0.3s ease, filter 0.3s ease;
-
       width: 100%;
       height: 100%;
+
       // grid を上下左右中央に配置
       display: flex;
       justify-content: center;
@@ -58,6 +56,7 @@ body.about,
   }
 
   // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+
   /* 2. 子要素・部品（BEMの __◯◯） */
   .timer-mini__screen {
     grid-area: count;
@@ -171,12 +170,14 @@ body.about,
   }
 
   // 🟩🟩🟩🟩🟩🟩🟩🟩🟩
+
   /* 3. 状態（:hover, :active, :focus-visibleなど） */
   // 丸ボタン
   .timer-mini__pill:active {
     background-color: var(
       --btn-pill-bg-active
     ); /* クリック中は背景色を薄くする */
+
     transform: translateY(1.2px); /* ボタンを少し下に移動させる */
     box-shadow: var(--btn-bxshadow-hover);
   }
@@ -202,6 +203,7 @@ body.about,
   #toggleTimer[aria-pressed="false"] #startBtn {
     display: block;
   }
+
   #toggleTimer[aria-pressed="false"] #stopBtn {
     display: none;
   }
@@ -209,6 +211,7 @@ body.about,
   #toggleTimer[aria-pressed="true"] #startBtn {
     display: none;
   }
+
   #toggleTimer[aria-pressed="true"] #stopBtn {
     display: block;
   }
@@ -218,6 +221,7 @@ body.about,
     display: block;
   }
 }
+
 // .page--〇〇ここまで
 
 /* ホバーに対応している場合 */
@@ -231,7 +235,7 @@ body.about,
       border: 1px solid var(--mini-background);
       box-shadow: var(--mini-background-shadow-hover);
       backdrop-filter: var(--mini-backdrop-filter-hover);
-      -webkit-backdrop-filter: var(--mini-backdrop-filter-hover);
+      backdrop-filter: var(--mini-backdrop-filter-hover);
       will-change: backdrop-filter;
     }
 
@@ -253,6 +257,7 @@ body.about,
 }
 
 // 🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧
+
 /* 4. レスポンシブ・モード切り替え（@media / @container） */
 
 // 480px〜1024px タブレット　portrait　サイズ
@@ -274,6 +279,7 @@ body.about,
     .timer-mini__screen--count {
       // 文字を小さめに
       font-size: 3rem;
+
       // 影を薄く
       text-shadow: 0 1px 2px
         color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
@@ -310,33 +316,38 @@ body.about,
       --mini-background-shadow: 0 0 8px
         color-mix(in oklch, var(--mini-color-ink) 50%, var(--shiro) 10%);
       --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+
       // gridアイテムの間隔
       --gap-g-button: var(--gap-g-button-stacked);
+
       // タイマーカウント 3:00のフォントサイズ
       --mini-count-font-size: var(--mini-count-font-size-stacked);
       --mini-count-shadow: var(--mini-count-shadow-stacked);
 
       // ヒット面
       --btn-hit: var(--btn-hit-small);
-      //アイコン　SVG
+
+      // アイコン　SVG
       --btn-size-icon: var(--btn-size-icon-stacked);
 
       // ボタンのフォントサイズclamp
       --mini-preset-font-size: var(--mini-preset-font-size-stacked);
+
       // 丸ボタンの枠線
       --btn-border: var(--mini-border-width-stacked);
+
       // 丸ボタンの枠色
       --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+
       // 丸ボタン
       --btn-size-pill: var(--btn-size-pill-stacked);
-      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 0.7);
+      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 70%);
 
       position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 8px);
       right: calc(env(safe-area-inset-top, 8px) + 8px);
       left: auto;
       bottom: unset;
-
       width: max-content;
       height: min-content;
       min-width: 184px;
@@ -346,7 +357,7 @@ body.about,
         border: 0.8px solid var(--mini-background-border);
       }
 
-      //グリッド　親
+      // グリッド　親
       &__grid {
         display: grid;
         grid-template-rows: 1fr;
@@ -357,7 +368,7 @@ body.about,
         justify-content: center;
         margin: 8px;
 
-        //ボタン🔘並べ　Orientation
+        // ボタン🔘並べ　Orientation
         &--vertical {
           grid-template-columns: repeat(3, 1fr);
           grid-template-rows: 1fr;
@@ -395,11 +406,13 @@ body.about,
         }
       }
     }
+
     // スマホ横向き　ここまで
   }
 }
 
 // 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
+
 /* 480px以下　スマホ 縦 */
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
@@ -415,36 +428,45 @@ body.about,
       --mini-background-shadow: 0 0 8px
         color-mix(in oklch, var(--mini-color-ink) 20%, var(--shiro) 5%);
       --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+
       // gridアイテムの間隔
       --gap-g-button: var(--gap-g-button-inline);
+
       // タイマーカウント 3:00のフォントサイズ
       --mini-count-font-size: var(--mini-count-font-size-inline);
       --mini-count-shadow: var(--mini-count-shadow-stacked);
 
       // ヒット面
       --btn-hit: var(--btn-hit-small);
-      //アイコン　SVG
+
+      // アイコン　SVG
       --btn-size-icon: var(--btn-size-icon-inline);
 
       // ボタンのフォントサイズclamp
       --mini-preset-font-size: var(--mini-preset-font-size-inline);
+
       // 丸ボタンの枠線
       --btn-border: var(--btn-border-width-inline);
+
       // 丸ボタンの枠色
       --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+
       // 丸ボタンの背景
       --btn-pill-bg: var(--btn-pill-bg-stacked);
+
       // 丸ボタン
       --btn-size-pill: var(--btn-size-pill-inline);
-      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 0.7);
+      --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 70%);
 
       // 位置(5) 📲mobile(port) static 上部固定
       position: static;
       margin-top: 0.5rem;
       margin-bottom: 1.2rem;
       width: 380px;
+
       // 高さを決めた方がいいか
       height: 50px;
+
       /* スマホでもはみ出さないように器の上限だけ決める */
       inline-size: auto; /* 内容に合わせる */
 
@@ -484,6 +506,7 @@ body.about,
 
       &--help {
         display: unset;
+
         // 枠外に出す→ヘッダー内に置く
         position: absolute;
         top: 4.1rem;

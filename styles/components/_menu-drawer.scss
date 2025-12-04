@@ -15,11 +15,13 @@ body.about,
     top: 0;
     bottom: 0;
   }
+
   /* パネル本体（右から） */
   .menu-drawer {
     // あとで戻す
     right: 0;
     padding: 16px clamp(12px, 3vw, 24px);
+
     /* iOS安全域 */
     padding-right: calc(
       clamp(12px, 3vw, 24px) + env(safe-area-inset-right, 0px)
@@ -28,15 +30,15 @@ body.about,
     border-left: 1px solid var(--panel-bd);
     background: var(--panel-bg);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     will-change: backdrop-filter;
-
     transform: translateX(100%);
     transition: transform 0.28s ease;
     pointer-events: auto;
 
     // テキスト
     font-family: inherit;
+
     // 開閉メニューのフォントカラー
     color: var(--panel-cl);
     font-size: var(--fs);
@@ -50,13 +52,13 @@ body.about,
       margin-bottom: 12px;
     }
 
-    //（フレックス行） Menuの左マージン微調整
+    // （フレックス行） Menuの左マージン微調整
     &__title {
       margin-left: 5px;
       font-size: 1.2rem;
     }
 
-    //（Xボタン）
+    // （Xボタン）
     &__close {
       // 閉じるボタンの位置調整
       margin-top: 3px;
@@ -84,7 +86,7 @@ body.about,
 
       &:hover {
         text-decoration: underline #{var(--panel-pop)};
-        -webkit-text-decoration: underline #{var(--panel-pop)};
+        text-decoration: underline #{var(--panel-pop)};
       }
 
       &[aria-current="page"] {

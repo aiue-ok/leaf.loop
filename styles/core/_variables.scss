@@ -8,20 +8,20 @@
 // ════════════════════════════════
 
 // #387f5a テキストA
-$ForestGreen: oklch(54.027% 0.09289 158.303);
+$ForestGreen: oklch(54.027% 0.09289 158.303deg);
 
 // ▼テーマカラー候補
 // $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: oklch(96.151% 0.00822 157.785);
+$LeafMist: oklch(96.151% 0.00822 157.785deg);
 
 // $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
-$SteamGrey: oklch(88.318% 0.0034 146.922);
+$SteamGrey: oklch(88.318% 0.0034 146.922deg);
 
 // $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
-$CelestialSilver: oklch(85.846% 0.00613 240.313);
+$CelestialSilver: oklch(85.846% 0.00613 240.313deg);
 
 // $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
-$MossShadow: oklch(74.698% 0.02918 142.079);
+$MossShadow: oklch(74.698% 0.02918 142.079deg);
 
 // 予備
 $morning-base: #fcebb8;
@@ -29,22 +29,22 @@ $honey-accent: #f5d76e;
 $golden-text: #a67c00;
 
 // 🌃 夜：静かな群青
-$nightindigo-base: #1d2b64; //（夜の藍）
-$dawnblue-accent: #283c86; //（薄明の青）
-$softgray: #eaeff7; //（白に近いやわらかグレー）
+$nightindigo-base: #1d2b64; // （夜の藍）
+$dawnblue-accent: #283c86; // （薄明の青）
+$softgray: #eaeff7; // （白に近いやわらかグレー）
 //  砂：やわらかベージュ系
-$sandy-base: #f3e5c9; //（浜辺の白砂）
-$windy-accent: #d2ba8a; //（風に舞う砂）
-$hill-shadow: #8c704f; //（砂丘の影の茶）
+$sandy-base: #f3e5c9; // （浜辺の白砂）
+$windy-accent: #d2ba8a; // （風に舞う砂）
+$hill-shadow: #8c704f; // （砂丘の影の茶）
 
-$Primary: #80c590; //（昼の若葉色）←安心感あるメイン
-$Secondary: #c97c5d; //（夕焼けブラウン）←感情やCTAに
-$BackgroundBase: #f3e5c9; //（砂系ベージュ）←読みやすくナチュラル
+$Primary: #80c590; // （昼の若葉色）←安心感あるメイン
+$Secondary: #c97c5d; // （夕焼けブラウン）←感情やCTAに
+$BackgroundBase: #f3e5c9; // （砂系ベージュ）←読みやすくナチュラル
 
 // #f5f5f5
-$main-color: oklch(97.015% 0.00011 271.152);
-$main-color-70: oklch(97.015% 0.00011 271.152 / 0.7);
-$main-color-80: oklch(97.015% 0.00011 271.152 / 0.8);
+$main-color: oklch(97.015% 0.00011 271.152deg);
+$main-color-70: oklch(97.015% 0.00011 271.152deg / 70%);
+$main-color-80: oklch(97.015% 0.00011 271.152deg / 80%);
 
 // ════════════════════════════════
 // ✨ hero
@@ -65,60 +65,63 @@ $text-main: clamp(16px, 1.111vw, 24px);
 
 // === 白と黒 ===
 
-$shiro100: oklch(100% 0.00011 271.152);
-$shiro10: oklch(100% 0.00011 271.152 / 0.1);
-$kuro70: oklch(0% 0 0 / 0.7);
-$kuro100: oklch(0% 0 0);
+$shiro100: oklch(100% 0.00011 271.152deg);
+$shiro10: oklch(100% 0.00011 271.152deg / 10%);
+$kuro70: oklch(0% 0 0deg / 70%);
+$kuro100: oklch(0% 0 0deg);
 
 // ════════════════════════════════
 // 🖼️ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
 // ════════════════════════════════
 
 // 深いブルーブラック：夜空のような基調
-$color-g-blueblack: oklch(22% 0.03 266); // ≒ #151a25
+$color-g-blueblack: oklch(22% 0.03 266deg); // ≒ #151a25
 
 // ギャラリー白10%（透明オーバーレイ用）
-$color-g-shiro10: oklch(100% 0 0 / 0.1);
-$color-g-shiro20: oklch(100% 0 0 / 0.2);
+$color-g-shiro10: oklch(100% 0 0deg / 10%);
+$color-g-shiro20: oklch(100% 0 0deg / 20%);
 
 // ギャラリー黒70%（オーバーレイや文字補助）
-$color-g-kuro70: oklch(0% 0 0 / 0.7);
-$color-g-lb-overlay: oklch(78.407% 0.06728 63.555);
+$color-g-kuro70: oklch(0% 0 0deg / 70%);
+$color-g-lb-overlay: oklch(78.407% 0.06728 63.555deg);
 
 // コズミックラテ（渋）
-$color-g-latte-dark: oklch(90% 0.02 85); // ≒ #eae5da
+$color-g-latte-dark: oklch(90% 0.02 85deg); // ≒ #eae5da
 
 // コズミックラテ（明るめ）
-$color-g-latte-light: oklch(96% 0.01 85); // ≒ #f4efe8
+$color-g-latte-light: oklch(96% 0.01 85deg); // ≒ #f4efe8
 
 // コズミックラテ（標準）
-$color-g-latte-normal: oklch(98% 0.01 85); // ≒ #fff8e7
+$color-g-latte-normal: oklch(98% 0.01 85deg); // ≒ #fff8e7
 
 // アクセント
 $color-g-chai: #d8b08c;
 $color-g-cha: #9dc5af;
-$color-g-jasmin: oklch(0.95 0.03 105);
-$color-g-chaisoft: oklch(0.32 0.04 50 / 0.95);
+$color-g-jasmin: oklch(95% 0.03 105deg);
+$color-g-chaisoft: oklch(32% 0.04 50deg / 95%);
 
 // ドロワーメニュー
 $carrots: #ff8c00;
 
 // === ヘルプカード ===
-$chai-dark: oklch(0.44 0.05 66.85);
+$chai-dark: oklch(44% 0.05 66.85deg);
 $red-velvet: #b74152;
-$cream-cheese: oklch(0.96 0.015 75);
-$moon-vanilla: rgba(255, 255, 255, 0.25);
-$moon-lit: oklch(0.75 0.02 30 / 0.25);
+$cream-cheese: oklch(96% 0.015 75deg);
+$moon-vanilla: rgb(255 255 255 / 25%);
+$moon-lit: oklch(75% 0.02 30deg / 25%);
 
 // --- 予備 ---
 // ▼ チャイ・ミディアム
-$chai-midium: oklch(0.55 0.08 60);
+$chai-midium: oklch(55% 0.08 60deg);
+
 // ▼ ①「シナモン・オレンジ」系（紅茶のほころび）
 $cinnamon-orange: #cc7a43;
+
 // ▼ ④「カカオ・アンバー」系（チョコの縁どり）
 $cacao-brown: #6b4a2f;
+
 // ▼ ミルクセーキ
-$milkshake: oklch(0.97 0.02 100 / 0.99);
+$milkshake: oklch(97% 0.02 100deg / 99%);
 
 // ════════════════════════════════
 // 🪐 universe
@@ -128,7 +131,7 @@ $color-space-far: #f8faff;
 $color-space-bit: #0e1020;
 $color-space-dust: #e1f3ff;
 $color-space-star: #f0cd90;
-$color-space-bang: #888888;
+$color-space-bang: #888;
 
 // ════════════════════════════════
 // 👤 about
@@ -163,16 +166,21 @@ $z-nav: 0;
 // ミニタイマー・ヘルプアイコン
 $z-timer-mini: 5;
 $z-timer-toast: 4000;
+
 // ─────────────────────────────
 // 【gallery】 Lightbox画像
 // lightbox モーダル全体（ブロック）
 $z-lightbox-block: 2000;
+
 // 背景
 $z-lightbox-bg: 100;
+
 // コンテンツ領域 画像（img）
 $z-lightbox-img: 2000;
+
 // lightbox クローズボタン
 $z-lightbox-close: 2100;
+
 // ナビボタン
 $z-lightbox-nav: 2100;
 
@@ -180,8 +188,10 @@ $z-lightbox-nav: 2100;
 // メニュー
 // ハンバーガー
 $z-menu-hbg: 1000;
+
 /* パネル本体（右から） */
 $z-menu-offcanvas: 1100;
+
 // 背景の半透明幕
 $z-menu-backdrop: 999;
 
@@ -189,10 +199,12 @@ $z-menu-backdrop: 999;
 // サイド
 // ヘルプカード
 $z-help: 3000;
+
 // z-index: 100; /* ヘルプカード内で最上層に */
 $z-help-close: 3100;
 
 // ─────────────────────────────
+
 /* gallery：列数とブレイクポイント（モバイル先行、汎用） */
 // ▼ 間隔
 $gap-xs: 8px;

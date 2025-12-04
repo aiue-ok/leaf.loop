@@ -31,8 +31,8 @@
     padding: var(--link-padding);
     border-radius: 999px;
     backdrop-filter: blur(8px) saturate(140%);
-    background: oklch(from #{var(--kuro)} l c h / 0.16);
-    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    background: oklch(from #{var(--kuro)} l c h / 16%);
+    backdrop-filter: blur(8px) saturate(140%);
     will-change: backdrop-filter;
     box-shadow: var(--link-box-shdw);
     color: var(--link-main-color);
@@ -50,11 +50,12 @@
   .info a:focus-visible .info__link,
   .info button.info__link:focus-visible {
     /* 任意：あなたのトークンに置き換え可 */
-    background-color: oklch(from #{var(--kuro)} l c h / 0.1);
+    background-color: oklch(from #{var(--kuro)} l c h / 10%);
+
     /* or var(--focus-bg, rgb(0 0 0 / .10)) */
 
     /* 視認性UPのための微弱な影（レイアウト不変） */
-    box-shadow: 0 0 0 2px oklch(from #{core.$shiro100} l c h / 0.25) inset;
+    box-shadow: 0 0 0 2px oklch(from #{core.$shiro100} l c h / 25%) inset;
   }
 
   .info__link:focus-visible {
@@ -68,7 +69,7 @@
   @media (hover: hover) {
     /* ホバーと揃えたい場合はお好みで */
     .info a:hover .info__link {
-      background-color: oklch(from #{var(--kuro)} l c h / 0.06);
+      background-color: oklch(from #{var(--kuro)} l c h / 6%);
     }
 
     /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
@@ -176,7 +177,7 @@
 
 // 閉じるボタン　ホバー
 .info-help-card .close-button:hover {
-  background: oklch(from #{var(--help-icon-bg)} l c h / 0.2);
+  background: oklch(from #{var(--help-icon-bg)} l c h / 20%);
   scale: 105%;
 }
 
@@ -290,7 +291,7 @@
       width: auto;
       flex: 1 1 0;
       max-width: 250px; // ← アイコン説明欄をコンパクトに
-      border: var(--help-unit-bd); //枠色を入れてみやすく
+      border: var(--help-unit-bd); // 枠色を入れてみやすく
       margin-top: 0.25rem;
       padding: 0.4rem;
       border-radius: 8px;

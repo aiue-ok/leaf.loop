@@ -71,11 +71,11 @@ input[type="checkbox"] {
   position: relative;
   z-index: 2; /* オーバーレイより前 */
   padding: 12px;
-  border: 1px solid oklch(from #{var(--shiro)} l c h / 0.5);
+  border: 1px solid oklch(from #{var(--shiro)} l c h / 50%);
   border-radius: 12px;
-  background: oklch(from #{var(--kuro)} l c h / 0.15);
+  background: oklch(from #{var(--kuro)} l c h / 15%);
   backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   will-change: backdrop-filter;
 }
 
