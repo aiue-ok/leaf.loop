@@ -252,6 +252,9 @@ body.about,
   }
 }
 
+// 🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧
+/* 4. レスポンシブ・モード切り替え（@media / @container） */
+
 // 480px〜1024px タブレット　portrait　サイズ
 // 位置(3) Tablet(port) 右上
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
