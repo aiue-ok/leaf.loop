@@ -15,7 +15,6 @@
   text-align: center;
   animation-timing-function: linear;
   animation: spin 3600s infinite;
-  // outline: 1px dotted blue;
 
   & svg {
     position: fixed;
@@ -24,7 +23,8 @@
     // height: 14rem;
     width: 80%;
     height: auto;
-    filter: drop-shadow(0 0 5px rgba(200, 200, 255, 0.3));
+    // ↓ ドロップシャドウは効果的にぼけ、入力画像のアルファマスクのバージョンからずれ、特定の色で描かれて画像の下に混合されます
+    filter: var(--clock-filter);
   }
 
   &__bg {
@@ -58,11 +58,14 @@
 
 @media (max-height: 500px) {
   .decor-clock {
+    // サイズを小さく
     width: var(--m-width);
     height: var(--m-height);
     position: absolute;
     bottom: 1rem;
     right: 1rem;
+
+    // 分針　長いのサイズを調整
     & svg {
       width: var(--m-width);
     }

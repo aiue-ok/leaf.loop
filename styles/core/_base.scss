@@ -348,15 +348,31 @@ input {
 /* ===== styles/components/_decor-clock.scss ===== */
 
 .page--gallery {
-  --back: oklch(from #{$color-g-latte-light} l c h / 0.8);
-  --mid: oklch(from #{$MossShadow} l c h / 0.8);
-  --front: oklch(from #{$LeafMist} l c h / 0.8);
-  --h: #{$color-g-latte-dark};
-  --m: #{$color-g-latte-light};
-  --s: #{$color-g-latte-normal};
+  // pathに　mix-blend-mode　が入ってる
+  // 一番大きい
+  --back: oklch(from #{$color-g-latte-light} l c h / 0.65);
+  // 半透明グリーン　右にはみ出す
+  --mid: oklch(from #{$color-g-cha} l c h / 0.35);
+  // 小さい
+  --front: oklch(from #{$LeafMist} l c h / 0.55);
+  // 時間 短い
+  --h: color-mix(
+    in oklch,
+    #{$color-g-latte-dark} 60%,
+    #{$color-g-blueblack} 10%
+  );
+  // 分針　長い
+  --m: color-mix(in oklch, #{$color-g-jasmin} 80%, var(--kuro) 10%);
+  // 秒針
+  --s: color-mix(in oklch, #{$color-g-latte-normal} 80%, var(--shiro) 5%);
+  // 中心
   --center: var(--accent);
+
+  // 分針のサイズ
   --m-width: 8rem;
   --m-height: 6rem;
+  // .decor-clock svg
+  --clock-filter: drop-shadow(0 0 5px rgba(200, 200, 255, 0.3));
 }
 
 .page--universe {
