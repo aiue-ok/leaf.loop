@@ -86,61 +86,55 @@
   }
 }
 
-// ▼ヘルプパネル　位置
+// ════════════════════════════════
+// ✨ヘルプカード（共通設定）
+// js help.js
+// ════════════════════════════════
+
 .info-help-card[hidden] {
   display: none;
 }
 
+// ▼ヘルプパネル　位置
 .info-help-card {
   // position: absolute;
   position: fixed;
   top: 0;
   right: -100%;
-  transition: transform 0.4s ease, right 0.4s ease;
+  transition: transform var(--motion-snap) ease, right var(--motion-snap) ease;
   z-index: core.$z-help;
-
-  /* アイコンサイズを上書きする */
-  & span.help-icon-size {
-    font-size: 2rem;
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--help-icon);
-  }
 }
 
 .info-help-card.is-open {
   right: 0;
 }
 
-// 通知テストセクションを隠しておく
-.info-hidden {
-  // display: none;
-}
-
-/* ヘルプエリア w h */
+/* ヘルプエリア 幅と高さ　デフォルト */
 .info-help-container {
   width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
   height: auto;
 }
 
+// ヘルプカードの背景色
 .visual-card-help-bg {
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
   box-shadow: var(--link-box-shdw);
+  transition: background var(--motion-soft) ease-in,
+    filter var(--motion-soft) ease-in;
 }
 
 .visual-card-help-bg:hover {
+  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
   filter: var(--help-filter);
-  transition: background 0.3s ease-in;
 }
 
-// テキスト関係
+// カード内のテキスト
 .help-content {
   padding: 1rem;
   color: var(--help-fg);
   text-decoration: none;
-  font-size: 1rem;
   line-height: 1.6;
   text-align: left;
 
@@ -161,56 +155,45 @@
     align-items: center;
     gap: 0.3rem;
   }
-
-  & span.help-icon {
-    margin-right: 10px;
-    font-size: 1.25rem; // Safariの倍率対策
-  }
 }
 
-// ボタン内　中央寄せ
-.info-help-card button.close-button {
-  pointer-events: auto;
-}
-
-// ボタン見た目と配置
+// 閉じるボタン
 .info-help-card .close-button {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   padding: 0;
   color: var(--help-icon);
-  font-size: 1.25rem;
   background: var(--help-icon-bg);
   pointer-events: auto;
+  z-index: core.$z-help-close;
+  transition: background var(--motion-tap) ease-in,
+    scale var(--motion-tap) ease-in;
 }
 
 // 閉じるボタン　ホバー
 .info-help-card .close-button:hover {
   background: oklch(from #{var(--help-icon-bg)} l c h / 0.2);
   scale: 105%;
-  cursor: pointer;
-  pointer-events: auto;
 }
 
 .info-help-card .close-button:focus-visible {
   text-decoration-thickness: 2px; /* 太めで見えやすく */
   outline: 2px solid currentcolor;
   outline-offset: 4px;
-  pointer-events: auto;
 }
 
-// 行間
+// 中見出し「時間設定」「操作方法」
 .info-help-card h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
   margin-block: 0.25rem 0.5rem;
-  // color: #b4d2ea;
   color: var(--help-h);
 }
 
+// ＃helpTitle タイマーの使い方
 .link-text {
   font-size: 1.25rem;
 }
@@ -220,26 +203,15 @@
   margin: 6px 0;
 }
 
+// 停止■ボタン説明のアイコンを２行で表示
 .help-card__row > svg {
   padding-right: 0.3em;
   width: 1.5em;
   height: 1.5em;
-  // vertical-align: -0.28em;
   vertical-align: text-bottom; // or middle / text-bottom で微調整
 }
 
-// pタグ内のアイコンフォントのテキスト関係
-.info-help-card span.p-icon-size {
-  font-size: 1.2rem;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0.2rem;
-  line-height: 1.5;
-  color: var(--help-icon);
-  opacity: 0.9;
-}
-
-// pタグ内の行揃え
+// 説明のレイアウト：<p>タグ内の配置・左寄せ・タブ
 .flex-parent-help-p {
   display: flex;
   justify-content: left;
@@ -259,8 +231,6 @@
 
     /* ヘルプエリア w h */
     .info-help-container {
-      // width: 90vw;
-      // height: auto; // ここなおす1️⃣
       width: min(600px, 90vw); // ← 横でも“伸びすぎない”幅
       margin-inline: auto; // ← 中央寄せ
       padding: 0.75rem 1rem; // ← 縦向きより少なめの余白
@@ -303,10 +273,6 @@
     }
 
     .flex-parent-help-unit {
-      // display: flex;
-      // justify-content: left;
-      // align-items: center;
-      // text-align: left;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -315,18 +281,16 @@
     }
 
     .wrap-help-unit-l {
-      // width: 50%;
       width: auto;
       max-width: 250px;
       flex: 1 1 0;
     }
 
     .wrap-help-unit-r {
-      // width: 50%;
       width: auto;
       flex: 1 1 0;
       max-width: 250px; // ← アイコン説明欄をコンパクトに
-      border: var(--help-unit-bd);
+      border: var(--help-unit-bd); //枠色を入れてみやすく
       margin-top: 0.25rem;
       padding: 0.4rem;
       border-radius: 8px;
