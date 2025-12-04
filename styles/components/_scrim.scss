@@ -21,6 +21,13 @@
   transition: opacity 0.2s ease;
 }
 
+.dots {
+  background-color: transparent;
+  background-image: radial-gradient(circle, var(--dots) 10px, transparent 10px);
+  background-position: 0 0;
+  background-size: 35px 35px;
+}
+
 body[data-menu-open="true"] .scrim {
   opacity: 1;
 }

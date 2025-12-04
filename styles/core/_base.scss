@@ -250,26 +250,15 @@ input {
   --focus-ring-offset: 2px;
   --focus-ring-radius: 6px;
 
-  // メニュー
+  // ドロワーメニュー　 scrim (背景の半透明幕) */
+  // ドロワーの幅
   --menu-w: min(360px, 86vw);
-
-  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
+  // メニューのバックグラウンドカラー
   --panel-bg: oklch(from var(--kuro) l c h / 0.7);
+  // パネル左の枠の色
   --panel-bd: var(--shiro10);
-
-  // メニュー背景レイヤー
-  --overlay-bg: oklch(from var(--shiro) l c h / 0.45);
   // 開閉メニューのフォントカラー
-  --panel-cl: #{$main-color};
-
-  // 飾り時計
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --panel-cl: var(--main-color);
 }
 
 // 4) 既存トークンを活かす小ワザ
@@ -316,20 +305,34 @@ input {
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
-.menu-drawer {
-  background-color: rgba(0, 0, 0, 0.7);
-  --drawer-bg: color-mix(in oklch, #{var(--panel-bg)} 80%, #{$LeafMist} 5%);
-  color: var(--shiro);
-}
 
+// ドロワーメニューの背景レイヤー
 .scrim {
-  --scrim: oklch(from #{var(--overlay-bg)} l c h / 0.5);
+  // 背景の半透明幕
+  // --scrim: oklch(from #{var(--bg)} l c h / 0.5);
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  // --overlay-bg: oklch(from var(--kuro) l c h / 0.45);
 }
 
 /* ===== styles/components/_page-header.scss ===== */
-.menu-drawer {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: var(--shiro);
+.page--gallery {
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: #{$color-g-latte-light};
+  // パネル左の枠の色
+  --panel-bd: var(--accent2);
+  // フォントカラー
+  --panel-cl: var(--main-color);
+  // 現在地
+  --current-page: var(--chaisoft);
+  // 差し色
+  --panel-pop: #{$carrots};
+  // 背景の半透明幕
+  --scrim: transparent;
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 0.45);
+  // scrim水玉模様の色
+  --dots: oklch(from var(--panel-bd) l c h / 0.45);
 }
 
 .page--universe {

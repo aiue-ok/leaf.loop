@@ -1,5 +1,9 @@
 @use "../core/index" as core;
 
+// ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+// ↓ ドロワーメニュー
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+
 .page--gallery,
 body.universe,
 .page--universe,
@@ -13,6 +17,7 @@ body.about,
   }
   /* パネル本体（右から） */
   .menu-drawer {
+    // あとで戻す
     right: 0;
     padding: 16px clamp(12px, 3vw, 24px);
     /* iOS安全域 */
@@ -21,7 +26,7 @@ body.about,
     );
     width: var(--menu-w);
     border-left: 1px solid var(--panel-bd);
-    background: var(--drawer-bg);
+    background: var(--panel-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     will-change: backdrop-filter;
@@ -32,6 +37,7 @@ body.about,
 
     // テキスト
     font-family: inherit;
+    // 開閉メニューのフォントカラー
     color: var(--panel-cl);
     font-size: var(--fs);
     z-index: core.$z-menu-offcanvas; /* タイマーとバックドロップより上 */
@@ -54,13 +60,13 @@ body.about,
     &__close {
       // 閉じるボタンの位置調整
       margin-top: 3px;
-      color: inherit;
+      color: #{var(--panel-pop)};
       text-align: center;
       scale: 100%;
       transition: scale #{var(--motion-snap)} ease;
 
       &:hover {
-        color: #{var(--accent2)};
+        color: #{var(--panel-bd)};
         scale: 110%;
       }
     }
@@ -74,25 +80,25 @@ body.about,
       padding: 0.75rem 0.25rem;
       text-decoration: none;
       border-radius: 8px;
-      transition: background #{var(--motion-snap)} ease;
+      transition: text-decoration #{var(--motion-snap)} ease;
 
       &:hover {
-        background: var(--accent2);
+        text-decoration: underline #{var(--panel-pop)};
       }
 
       &[aria-current="page"] {
         position: relative;
         opacity: 0.9;
-        color: var(--accent);
+        color: var(--current-page);
       }
 
       &[aria-current="page"]::before {
-        content: "›"; /* 「＞」の洗練版。装飾はCSSで */
+        content: "▼";
         position: absolute;
         inset-inline-start: -1em;
         opacity: 0.9;
         font-size: 1em; /* マーカーのサイズ */
-        color: #{var(--panel-cl)};
+        color: #{var(--panel-pop)};
       }
     }
   }
@@ -157,7 +163,6 @@ body:not([data-menu-open="true"]) .scrim {
       }
 
       &__title {
-        // color: #f5f5f5;
         font-size: 1.1rem;
       }
 
