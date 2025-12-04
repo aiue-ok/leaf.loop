@@ -284,14 +284,13 @@ input {
   --chaisoft: #{$color-g-chaisoft};
 
   --gallery-top-space: clamp(1.5rem, 4vw, 3rem);
-  // lightbox
+  // lightbox背景　チャイ壁
   --lightbox-bg: color-mix(
     in oklch,
     #{$color-g-latte-dark} 80%,
     var(--kuro) 50%
   );
   --lightbox-nav: oklch(from var(--main-color) l c h / 0.45);
-  // ヘルプカード
 }
 
 .page--universe {
@@ -415,9 +414,9 @@ input {
 /* gallery ヘルプカード使用中 */
 .theme-gal {
   --link-box-shdw: 0 8px 24px #{$moon-vanilla};
-  --help-bg: #{$tea-latte};
+  --help-bg: #{$cream-cheese};
   --help-fg: #{$chai-dark};
-  --help-h: #{$ruby-tea};
+  --help-h: #{$red-velvet};
   --help-border: #{$moon-lit};
   --help-icon: var(--help-h);
   --help-icon-bg: oklch(from var(--help-h) l c h / 0.38);
