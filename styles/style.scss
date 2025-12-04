@@ -4,15 +4,16 @@
 // Components
 @use "components/timer";
 @use "components/info";
-@use "components/timer-mini";
+@use "components/page-header";
 @use "components/menu-drawer";
 @use "components/scrim";
-@use "components/page-header";
 @use "components/decor-clock";
+@use "components/timer-mini";
 
 // Pages
 @use "pages/hero";
 @use "pages/gallery";
+
 // @use "pages/universe";
 // @use "pages/about";
 

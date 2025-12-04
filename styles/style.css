@@ -1,56 +1,5 @@
 @charset "UTF-8";
-@supports (height: 1dvh) {
-  :root {
-    --vh: 1dvh;
-  } /* 新しいdvhが使える環境では上書き */
-}
-:root {
-  /* まずはビューポート単位のフォールバック変数 */
-  --vh: 1svh;
-  /* ベース文字 */
-  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
-  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
-    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
-  /* 欧文/数字はInterを第一候補に */
-  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
-    sans-serif;
-  /* 見出しの柔らかい表情用（必要な所だけに限定） */
-  --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
-  --fs: clamp(16px, 1.111vw, 32px);
-  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
-  /* 余白（例：内側パディング 16→32） */
-  --pad: clamp(16px, 1.111vw, 32px);
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-left: env(safe-area-inset-left, 0px);
-  --safe-right: env(safe-area-inset-right, 0px);
-  /* 行間なども同様に */
-  --space-2: 1rem;
-  --gap: clamp(8px, 0.7vw, 16px);
-  --hero-veil: 0.4;
-  --yanagi-alpha: 0.18;
-  --tile-min-h: clamp(56px, 10svh, 128px);
-  --chip-bg: rgb(255 255 255 / 8%);
-  --chip-bg-active: rgb(255 255 255 / 18%);
-  --chip-bd: rgb(255 255 255 / 55%);
-  --chip-bd-active: rgb(255 255 255 / 85%);
-  /* Theme: default = charcoal leaf */
-  --help-bg: rgb(12 14 16 / 78%);
-  --help-fg: #eaeaea;
-  --help-h: #fff;
-  --help-border: rgb(255 255 255 / 12%);
-  --help-icon: #b4d2ea;
-  --glass-border: rgb(255 255 255 / 18%);
-  --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px rgb(0 0 0 / 25%);
-  --focus-ring: #f5f5f5;
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
-}
-
-/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
-/* 使う場所で OKLCH に変換して指定する */
+/* パネル本体（右から） */
 /* gallery：列数とブレイクポイント（モバイル先行、汎用） */
 *,
 *::before,
@@ -58,6 +7,11 @@
   box-sizing: border-box;
 }
 
+@supports (height: 1dvh) {
+  :root {
+    --vh: 1dvh;
+  } /* 新しいdvhが使える環境では上書き */
+}
 * {
   margin: 0;
   padding: 0;
@@ -157,18 +111,20 @@ input {
   margin: 0;
 }
 
-/* タイマー操作部分のgoogleアイコン */
-/* アイコンサイズを上書きする */
 /* 汎用アイコンの基本 */
 .i {
   display: inline-block;
-  vertical-align: -0.125em;
 }
 
 /* サイズ違いが欲しい時 */
 .i.i-24 {
   width: 24px;
   height: 24px;
+}
+
+.i.i-28 {
+  width: 28px;
+  height: 28px;
 }
 
 .i.i-32 {
@@ -181,128 +137,195 @@ input {
   height: 44px;
 }
 
-/* base.scss の下の方に追加（all:unset の“あと”に書く） */
-input[type=checkbox] {
-  all: revert; /* 既定のUIに戻す */
-  accent-color: var(--accent, #78c37b); /* チェック色だけ合わせる */
-  width: 1.1rem;
-  height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
+:root {
+  /* まずはビューポート単位のフォールバック変数 */
+  --vh: 1svh;
+  /* ベース文字 */
+  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
+  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
+    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  /* 欧文/数字はInterを第一候補に（タイマーカウント用） */
+  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
+    sans-serif;
+  --fs: clamp(16px, 1.111vw, 32px);
+  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
+  /* 余白（例：内側パディング 16→32） */
+  --pad: clamp(16px, 1.111vw, 32px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  /* 行間なども同様に */
+  --space-2: 1rem;
+  --gap: clamp(8px, 0.7vw, 16px);
+  --hero-veil: 0.4;
+  --yanagi-alpha: 0.18;
+  --motion-snap: 0.16s; /* すっ */
+  --motion-tap: 0.24s; /* タン */
+  --motion-soft: 0.4s; /* ふわ〜 */
+  --tile-min-h: clamp(56px, 10svh, 128px);
+  --shiro: oklch(100% 0.00011 271.152deg);
+  --shiro10: oklch(from var(--shiro) l c h / 10%);
+  --shiro20: oklch(from var(--shiro) l c h / 20%);
+  --kuro: oklch(0% 0 0deg);
+  --kuro25: oklch(from var(--kuro) l c h / 25%);
+  --bg: rgba(161, 161, 161, 0.4);
+  --main-color: oklch(97.015% 0.00011 271.152deg);
+  /* コンポーネント用の“スロット” */
+  --chip-bg: oklch(from var(--shiro) l c h / 80%);
+  --chip-bg-active: oklch(from var(--shiro) l c h / 18%);
+  --chip-bd: oklch(from var(--shiro) l c h / 55%);
+  --chip-bd-active: oklch(from var(--shiro) l c h / 85%);
+  /* Theme: default = charcoal leaf */
+  --help-bg: rgb(12 14 16 / 78%);
+  --help-fg: #eaeaea;
+  --help-h: oklch(100% 0.00011 271.152deg);
+  --help-border: oklch(from var(--shiro) l c h / 12%);
+  --help-icon: #b4d2ea;
+  --glass-border: oklch(from var(--shiro) l c h / 18%);
+  --glass-blur: 6px;
+  --glass-shadow: 0 8px 24px oklch(from var(--shiro) l c h / 18%);
+  --focus-ring: oklch(82% 0.12 250deg);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-radius: 6px;
+  --menu-w: min(360px, 86vw);
+  --panel-bg: oklch(from var(--kuro) l c h / 70%);
+  --panel-bd: var(--shiro10);
+  --panel-cl: var(--main-color);
 }
 
-/* 既定は非表示 */
-.notify-controls[hidden] {
-  display: none;
+/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
+/* 使う場所で OKLCH に変換して指定する */
+.page--gallery {
+  --bg: oklch(90% 0.02 85deg);
+  --main-color: oklch(22% 0.03 266deg);
+  --accent: #d8b08c;
+  --accent2: #9dc5af;
+  --jasmin: oklch(95% 0.03 105deg);
+  --chaisoft: oklch(32% 0.04 50deg / 0.95);
+  --gallery-top-space: clamp(1.5rem, 4vw, 3rem);
+  --lightbox-bg: color-mix(
+    in oklch,
+    oklch(90% 0.02 85deg) 80%,
+    var(--kuro) 50%
+  );
+  --lightbox-nav: oklch(from var(--main-color) l c h / 45%);
 }
 
-/* デバッグ時だけ出したいなら：html[data-debug="1"]
-.notify-controls { display:flex } */
-:html[data-debug="1"] .notify-controls {
-  display: flex;
+.page--universe {
+  --timer-bg: #0e1020;
+  --help-card-bg: #888;
 }
 
-.notify-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: left;
-  position: relative;
-  z-index: 2; /* オーバーレイより前 */
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(6px);
+.page--about {
+  --timer-bg: #d7d9d7;
+  --help-card-bg: #2e4f3e;
 }
 
-.help-button-look {
-  background-color: #f5f5f5;
-  color: #0a0a0a;
-  padding: 8px 24px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* ===== styles/components/_menu-drawer.scss ===== */
+/* ===== styles/components/_page-header.scss ===== */
+.page--gallery {
+  --panel-bg: oklch(96% 0.01 85deg);
+  --panel-bd: var(--accent2);
+  --panel-cl: var(--main-color);
+  --current-page: var(--chaisoft);
+  --panel-pop: #ff8c00;
+  --scrim: transparent;
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+  --dots: oklch(from var(--panel-bd) l c h / 45%);
 }
 
-.explanation p {
-  width: 100%;
+.page--universe {
+  --accent: #e1f3ff;
 }
 
-.label-box {
-  display: flex;
-  justify-content: stretch;
-  align-items: center;
-  gap: 1rem;
+.page--about {
+  --accent: #387f5a;
 }
 
-/* 共通チップ */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 10px 16px;
-  border-radius: 9999px;
-  border: 1px solid var(--chip-bd);
-  background: var(--chip-bg);
-  color: #fff;
-  text-decoration: none;
-  line-height: 1.2;
-  font-size: 16px;
+/* ===== styles/components/_timer-mini.scss ===== */
+/* ===== styles/components/_decor-clock.scss ===== */
+.page--gallery {
+  --back: oklch(from oklch(96% 0.01 85deg) l c h / 65%);
+  --mid: oklch(from #9dc5af l c h / 35%);
+  --front: oklch(from oklch(96.151% 0.00822 157.785deg) l c h / 55%);
+  --h: color-mix(
+    in oklch,
+    oklch(90% 0.02 85deg) 60%,
+    oklch(22% 0.03 266deg) 10%
+  );
+  --m: color-mix(in oklch, oklch(95% 0.03 105deg) 80%, var(--kuro) 10%);
+  --s: color-mix(in oklch, oklch(98% 0.01 85deg) 80%, var(--shiro) 5%);
+  --center: var(--accent);
+  --m-width: 8rem;
+  --m-height: 6rem;
+  --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
 
-/* 入力本体は見せないがフォーカスは可視化 */
-.chip > input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: auto; /* ラベル全体クリック可 */
+.page--universe {
+  --back: red;
+  --mid: red;
+  --front: red;
+  --h: blue;
+  --m: yellow;
+  --s: orange;
+  --center: pink;
 }
 
-.chip:focus-within {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
+.page--about {
+  --back: red;
+  --mid: red;
+  --front: red;
+  --h: blue;
+  --m: yellow;
+  --s: orange;
+  --center: pink;
 }
 
-/* チェック状態の見た目（Safari OK） */
-.chip:has(input:checked) {
-  background: var(--chip-bg-active);
-  border-color: var(--chip-bd-active);
+/* ===== _styles/components/_info.scss ===== */
+/* ヘルプカード　背景 */
+/* Moss heroヘルプカード使用中 */
+.theme-moss {
+  --link-padding: 0.6em 1.1em;
+  --link-main-color: oklch(97.015% 0.00011 271.152deg);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --help-bg: rgb(24 36 28 / 72%);
+  --help-fg: #ebf3ef;
+  --help-h: #fff;
+  --help-border: rgb(196 214 205 / 35%);
+  --help-icon: #c8e5d6;
+  --help-filter: opacity(95%) brightness(105%);
 }
 
-/* テストボタンも同じ見た目に */
-.chip--action {
-  cursor: pointer;
-  border: 1px solid var(--chip-bd-active);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+/* gallery ヘルプカード使用中 */
+.theme-gal {
+  --link-box-shdw: 0 8px 24px rgba(255, 255, 255, 0.25);
+  --help-bg: oklch(96% 0.015 75deg);
+  --help-fg: oklch(44% 0.05 66.85deg);
+  --help-h: #b74152;
+  --help-border: oklch(75% 0.02 30deg / 0.25);
+  --help-icon: var(--help-h);
+  --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
+  --help-filter: brightness(105%);
 }
 
-.chip--action:active {
-  transform: translateY(1px);
+/* Dew */
+.theme-dew {
+  --link-padding: 0.6em 1.1em;
+  --link-main-color: oklch(97.015% 0.00011 271.152deg);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --help-bg: rgb(240 245 243 / 82%);
+  --help-fg: #1e2b4f;
+  --help-h: #0b1c39;
+  --help-border: rgb(11 28 57 / 15%);
+  --help-icon: #0e1020;
 }
 
-/* アイコンはお好みで小さめに */
-.chip__icon {
-  font-size: 20px;
-}
-
-.timer4 span.chip__text {
-  display: none;
-}
-
-@media screen and (orientation: portrait) {
-  .notify-controls {
-    margin: 24px;
-  }
-  .timer4 span.chip__text {
-    display: none;
-  }
-  .test-button-box {
-    width: 100%;
-    margin: 0 auto;
-  }
-}
 .center {
   display: flex;
   justify-content: center;
@@ -459,6 +482,7 @@ textarea,
 summary):focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
+  border-radius: var(--focus-ring-radius, 0.4rem);
   /* 影の補助（任意） */
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px) color-mix(in lab, var(--focus-ring) 35%, transparent);
 }
@@ -477,13 +501,6 @@ summary):focus-visible {
     box-shadow: none !important;
   }
 }
-:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.95);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35); /* 反転背景でも見えるよう二重 */
-  border-radius: 12px;
-}
-
 /* キーボード操作にも効かせる（アクセシビリティ） */
 .nav-tile:focus-visible .nav-tile__media {
   opacity: 1;
@@ -521,7 +538,7 @@ summary):focus-visible {
   content: "";
   position: absolute;
   inset: -0.01em;
-  background: rgba(0, 0, 0, 0.28); /* 初期は28%の黒ベール */
+  background: oklch(from var(--kuro) l c h/28%); /* 初期は28%の黒ベール */
   border-radius: 0.2em;
   filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
   z-index: -1;
@@ -530,18 +547,18 @@ summary):focus-visible {
 /* もっとコントラストが要る人に寄り添う */
 @media (prefers-contrast: more) {
   .contrast-pad::before {
-    background: rgba(0, 0, 0, 0.45);
+    background: oklch(from var(--kuro) l c h/45%);
   }
 }
 .pill {
-  background: rgba(0, 0, 0, 0.3);
+  background: oklch(from var(--kuro) l c h/30%);
   padding: 0.15em 0.5em;
   border-radius: 999px;
 }
 
 @media (prefers-contrast: more) {
   .pill {
-    background: rgba(0, 0, 0, 0.5);
+    background: oklch(from var(--kuro) l c h/50%);
   }
 }
 /* 文字の背後に細い帯（行の高さ分だけ） */
@@ -553,10 +570,12 @@ summary):focus-visible {
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
   backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  will-change: backdrop-filter;
   border: 1px solid var(--glass-border);
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 0 oklch(from var(--shiro) l c h/6%), var(--glass-shadow);
+  text-shadow: 0 1px 1px var(--kuro25);
   max-inline-size: 28ch; /* 行が伸びすぎないように */
   text-wrap: balance; /* 気持ちよく改行 */
 }
@@ -567,20 +586,135 @@ summary):focus-visible {
   .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--glass-shadow);
+    box-shadow: inset 0 1px 0 oklch(from var(--shiro) l c h/6%), var(--glass-shadow);
   }
 }
 @layer debug {}
-* {
-  outline: 1px dotted white;
+/* base.scss の下の方に追加（all:unset の“あと”に書く） */
+input[type=checkbox] {
+  all: revert; /* 既定のUIに戻す */
+  accent-color: var(--accent, #78c37b); /* チェック色だけ合わせる */
+  width: 1.1rem;
+  height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
 }
 
+/* 既定は非表示 */
+.notify-controls[hidden] {
+  display: none;
+}
+
+/* デバッグ時だけ出したいなら：html[data-debug="1"]
+.notify-controls { display:flex } */
+:html[data-debug="1"] .notify-controls {
+  display: flex;
+}
+
+.notify-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: left;
+  position: relative;
+  z-index: 2; /* オーバーレイより前 */
+  padding: 12px;
+  border: 1px solid oklch(from var(--shiro) l c h/50%);
+  border-radius: 12px;
+  background: oklch(from var(--kuro) l c h/15%);
+  backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  will-change: backdrop-filter;
+}
+
+.help-button-look {
+  background-color: #f5f5f5;
+  color: #0a0a0a;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explanation p {
+  width: 100%;
+}
+
+.label-box {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 共通チップ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--chip-bd);
+  background: var(--chip-bg);
+  color: var(--shiro);
+  text-decoration: none;
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+/* 入力本体は見せないがフォーカスは可視化 */
+.chip > input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: auto; /* ラベル全体クリック可 */
+}
+
+.chip:focus-within {
+  outline: 2px solid var(--shiro);
+  outline-offset: 3px;
+}
+
+/* チェック状態の見た目（Safari OK） */
+.chip:has(input:checked) {
+  background: var(--chip-bg-active);
+  border-color: var(--chip-bd-active);
+}
+
+/* テストボタンも同じ見た目に */
+.chip--action {
+  cursor: pointer;
+  border: 1px solid var(--chip-bd-active);
+  background: linear-gradient(180deg, var(--shiro20), var(--shiro10));
+}
+
+.chip--action:active {
+  transform: translateY(1px);
+}
+
+.timer4 span.chip__text {
+  display: none;
+}
+
+@media screen and (orientation: portrait) {
+  .notify-controls {
+    margin: 24px;
+  }
+  .timer4 span.chip__text {
+    display: none;
+  }
+  .test-button-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 .timer {
-  --t-main-color: #f5f5f5;
+  --t-main-color: core.$main-color;
   --t-complementary-color: #0a0a0a;
   --t-accent: #e3e3e3;
   --t-txt-line-h: 1.2;
-  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+  --t-drop-shadow: drop-shadow(0 1px 1px var(--kuro25));
   --milk-white: oklch(96% 0.01 110deg);
   --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
   --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
@@ -592,7 +726,7 @@ summary):focus-visible {
   --count-filter: blur(3px) saturate(95%) contrast(92%);
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
   --preset-fg: core.$main-color;
-  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, var(--kuro) 45%);
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
     to bottom,
@@ -603,8 +737,12 @@ summary):focus-visible {
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
     /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-    /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
-  --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
+    /* ほんのり天面の白 */ 0 8px 24px oklch(from var(--shiro) l c h / 25%);
+  --preset-mask: linear-gradient(
+    to bottom,
+    var(--kuro) 0 60%,
+    transparent 60% 100%
+  );
   --preset-line: 0.8px solid rgb(245 245 245 / 18%);
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
@@ -612,11 +750,12 @@ summary):focus-visible {
   --preset-gl-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px core.$main-color;
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
-    inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
+    inset 0 6px 14px rgb(255 255 255 / 4%),
+    0 4px 12px oklch(from var(--kuro) l c h / 22%);
   --preset-bg-active: color-mix(
     in oklch,
     var(--milk-white) 6%,
-    rgb(0 0 0 / 5%)
+    oklch(from var(--kuro) l c h / 5%)
   );
   --preset-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
   --action-bg: rgb(245 245 245 / 30%);
@@ -625,88 +764,82 @@ summary):focus-visible {
   --action-radius-s: 8px;
   --action-radius-rim: 0.5rem;
   --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
-  --action-outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
-  --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
+  --action-outline-hover: 2px solid
+    color-mix(in oklab, var(--shiro) 35%, transparent);
 }
 
-.timer-mini-container {
-  --timer-position: fixed;
-  --timer-left: 1.25rem;
-  --timer-bottom: 1.25rem;
-  --timer-mini-height: max(180px, 17.58vh);
-  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
-  --gap-g-button: 8px;
-  --gap-g-button-mobile: 5px;
-  --timer-mini-icon-size: 36px;
-  --timer-mini-icon-size-mobile: 28px;
-  --icon-visual: 28px; /* 見た目 */
-  --icon-hit: 44px; /* タップ面 */
-  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 24px;
-  --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-aspect-ratio-mobile: 1 / 2;
-  --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 8px;
-  --timer-mini-border-width: 2.27px;
-  --timer-mini-border-less: 0;
-  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
-  --timer-mini-inline-size: min(36vw, 12rem);
-  --timer-mini-inline-size-mobile: max-content;
-  --timer-mini-vol-label-font-size: 0.9rem;
-  --timer-transition: background 0.3s ease, filter 0.3s ease;
+.timer-mini {
+  /* 1 丸ボタン */
+  --btn-size-pill: 40px;
+  --btn-size-pill-stacked: 44px;
+  --btn-size-pill-inline: 36px;
+  --btn-size-icon: 30px;
+  --btn-size-icon-stacked: 44px;
+  --btn-size-icon-inline: 36px;
+  --btn-size-help: 28px;
+  --btn-size-help-inline: 24px; /* 見た目 */
+  --btn-hit: 44px;
+  --btn-hit-small: 36px;
+  --gap-g-button: 2.3vmin;
+  --gap-g-button-stacked: 1.8vmin;
+  --gap-g-button-inline: 1vmin;
+  --mini-count-font-size: clamp(2rem, 12vw, 3.4rem);
+  --mini-count-font-size-stacked: clamp(32px, 7.5vw, 36px);
+  --mini-count-font-size-inline: 28px;
+  --btn-border-width: 1.1px;
+  --btn-border-width-stacked: 0.1px;
+  --btn-border-width-inline: 0.27px;
+  --mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
+  --mini-preset-font-size-stacked: 22.5px;
+  --mini-preset-font-size-inline: 18px;
+  --mini-border-r-16: 16px;
+  --mini-border-r-50: 50%;
+  --mini-backdrop-filter: blur(8px) saturate(110%);
+  --mini-backdrop-filter-hover: blur(8.5px) saturate(130%);
+  --mini-backdrop-filter-mobile: blur(6px) saturate(105%);
+  --mini-h: clamp(64px, 12vh, 112px);
 }
 
-body.gallery .timer,
-body.gallery .timer-mini-container {
-  --timer-main-color: #eae5da;
-  --timer-color-hover: #fff;
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-  --timer-border-radius: 16px;
-  --timer-border-radius-mobile: 0;
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
-  --timer-background: rgb(14 16 32 / 40%);
-  --timer-background-mobile: transparent;
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(140%);
-  --timer-backdrop-filter-mobile: none;
-  --timer-webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer-webkit-backdrop-filter-mobile: none;
-  --timer-hover-background: rgb(14 16 32 / 50%);
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 70%);
-  --timer-h: clamp(64px, 12vh, 112px);
-}
-
-body.universe .timer,
-body.universe .timer-mini-container {
-  --timer-main-color: #f5f5f5;
-  --timer-color-hover: rgb(205 227 213 / 70%);
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-  --timer-border-radius: 16px;
-  --timer-border: 1px solid rgb(255 255 255 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-background: rgb(205 227 213 / 70%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(12px);
-  --timer-webkit-backdrop-filter: blur(12px);
-  --timer-hover-background: rgb(245 245 220 / 58.4%);
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%);
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-  --timer-hover-container: rgb(255 255 255 70%);
-  --timer-h: clamp(64px, 12vh, 112px);
+.page--gallery > .timer-mini {
+  --mini-color-base: var(--bg);
+  --mini-color-accent: var(--accent);
+  --mini-color-ink: var(--main-color);
+  --mini-color-base2: var(--chaisoft);
+  --mini-color-accent2: var(--accent2);
+  --mini-color-ink2: var(--jasmin);
+  --mini-color: var(--mini-color-base);
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
+  --mini-background: oklch(from var(--mini-color-ink) l c h / 35%);
+  --mini-background-hover: oklch(from var(--mini-color-ink) l c h / 70%);
+  --mini-background-border: oklch(from var(--mini-color-ink) l c h / 15%);
+  --mini-background-shadow: 0 0 8px
+    color-mix(in oklch, var(--mini-color-ink) 50%, var(--kuro) 10%);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--kuro) 10%);
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 80%, var(--kuro) 5%);
+  --btn-pill-border: var(--mini-color-soft);
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: color-mix(
+    in oklch,
+    var(--mini-color) 70%,
+    var(--shiro) 15%
+  );
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+  --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
+  --btn-fg-hover: var(--mini-color-ink);
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+  --t-accent: var(--mini-color-accent);
 }
 
 /* トースト */
@@ -718,13 +851,14 @@ body.universe .timer-mini-container {
   height: auto;
   transform: translateX(0) translateY(0);
   background: #008000;
-  color: #fff;
+  color: oklch(100% 0.00011 271.152deg);
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 5s ease-in, transform 5s ease-in;
+  z-index: 4000;
 }
 .js-toast--visible {
   opacity: 1;
@@ -794,6 +928,8 @@ body .js-toast--visible {
   padding-inline: 0.8rem;
   padding-block: 0.2rem;
   backdrop-filter: var(--count-filter);
+  backdrop-filter: var(--count-filter);
+  will-change: backdrop-filter;
 }
 .timer__presets {
   grid-area: presets;
@@ -867,14 +1003,18 @@ body .js-toast--visible {
   --preset-bg-current: color-mix(
     in oklch,
     var(--preset-bg) 18%,
-    rgb(255 255 255 / 33.7%) 6%
+    oklch(from core.$shiro100 l c h / 33.7%) 6%
   );
   --preset-fg-current: var(--t-complementary-color);
   transform: translateY(-0.5px);
-  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.00011 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.00011 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
 }
 .timer__preset-btn.is-active, .timer__preset-btn[aria-pressed=true] {
-  --preset-bg-current: color-mix(in oklch, var(--preset-bg) 80%, white 20%);
+  --preset-bg-current: color-mix(
+    in oklch,
+    var(--preset-bg) 80%,
+    core.$shiro100 20%
+  );
 }
 .timer__action-btn {
   margin: 0 auto;
@@ -1040,19 +1180,19 @@ body .js-toast--visible {
 }
 /* hover（マウス環境だけ少しだけ持ち上げる） */
 @media (hover: hover) and (pointer: fine) {
-  .timer__preset-btn:hover {
+  .page--hero .timer__preset-btn:hover {
     cursor: pointer;
     color: var(--t-complementary-color);
     border: var(--preset-bg-accent);
     background: var(--t-main-color);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.00011 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.00011 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
     transform: translateY(-0.5px);
   }
-  .timer__action-btn:hover {
+  .page--hero .timer__action-btn:hover {
     cursor: pointer;
-    color: #fff;
-    text-shadow: 0 4px 4px #000;
+    color: oklch(100% 0.00011 271.152deg);
+    text-shadow: 0 4px 4px var(--kuro25);
     transform: scale(1.02);
     outline: var(--action-outline-hover);
   }
@@ -1064,20 +1204,15 @@ body .js-toast--visible {
     min-height: clamp(44px, 9vw, 60px);
   }
 }
-/* ===== _info.scss ===== */
-.hero__slot--side :where(.info),
-.page--gallery {
+.hero__slot--side :where(.info) {
   /* Block本体 */
   /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
-  /* アイコンサイズを上書きする */
 }
-.hero__slot--side :where(.info) .info,
-.page--gallery .info {
+.hero__slot--side :where(.info) .info {
   display: grid;
   gap: var(--space-2); /* 1rem */
 }
-.hero__slot--side :where(.info) ul.info__list,
-.page--gallery ul.info__list {
+.hero__slot--side :where(.info) ul.info__list {
   list-style: none; /* リストの点を削除 */
   text-align: right; /* 右寄せ */
   display: flex;
@@ -1085,77 +1220,63 @@ body .js-toast--visible {
   margin: 0;
   padding: 0;
 }
-.hero__slot--side :where(.info) li.info__item,
-.page--gallery li.info__item {
+.hero__slot--side :where(.info) li.info__item {
   display: inline-block;
 }
-.hero__slot--side :where(.info) .info__link,
-.page--gallery .info__link {
+.hero__slot--side :where(.info) .info__link {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   inline-size: max-content;
   max-inline-size: min(70vw, 420px);
-  padding: 0.6em 1.1em;
+  padding: var(--link-padding);
   border-radius: 999px;
   backdrop-filter: blur(8px) saturate(140%);
-  background: rgba(0, 0, 0, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  color: #f5f5f5;
+  background: oklch(from var(--kuro) l c h/16%);
+  backdrop-filter: blur(8px) saturate(140%);
+  will-change: backdrop-filter;
+  box-shadow: var(--link-box-shdw);
+  color: var(--link-main-color);
   font-size: 16px;
-  z-index: 2;
 }
 .hero__slot--side :where(.info) .info a.info__link,
-.hero__slot--side :where(.info) .info button.info__link,
-.page--gallery .info a.info__link,
-.page--gallery .info button.info__link {
+.hero__slot--side :where(.info) .info button.info__link {
   display: inline-block; /* 中身サイズにフィット（幅は変えない） */
   text-decoration: none; /* 通常は下線オフ */
 }
 .hero__slot--side :where(.info) .info a:focus-visible .info__link,
-.hero__slot--side :where(.info) .info button.info__link:focus-visible,
-.page--gallery .info a:focus-visible .info__link,
-.page--gallery .info button.info__link:focus-visible {
+.hero__slot--side :where(.info) .info button.info__link:focus-visible {
   /* 任意：あなたのトークンに置き換え可 */
-  background-color: rgba(0, 0, 0, 0.1); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
+  background-color: oklch(from var(--kuro) l c h/10%);
+  /* or var(--focus-bg, rgb(0 0 0 / .10)) */
   /* 視認性UPのための微弱な影（レイアウト不変） */
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
+  box-shadow: 0 0 0 2px oklch(from oklch(100% 0.00011 271.152deg) l c h/25%) inset;
 }
-.hero__slot--side :where(.info) .info__link:focus-visible,
-.page--gallery .info__link:focus-visible {
-  outline: 2px solid var(--focus-ring, #7aa2ff);
+.hero__slot--side :where(.info) .info__link:focus-visible {
+  outline: 2px solid var(--focus-ring, oklch(100% 0.00011 271.152deg));
   outline-offset: 2px;
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 2px; /* 太めで見えやすく */
 }
 @media (hover: hover) {
-  .hero__slot--side :where(.info),
-  .page--gallery {
+  .hero__slot--side :where(.info) {
     /* ホバーと揃えたい場合はお好みで */
     /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
   }
-  .hero__slot--side :where(.info) .info a:hover .info__link,
-  .page--gallery .info a:hover .info__link {
-    background-color: rgba(0, 0, 0, 0.06);
+  .hero__slot--side :where(.info) .info a:hover .info__link {
+    background-color: oklch(from var(--kuro) l c h/6%);
   }
   .hero__slot--side :where(.info) .info a:hover,
-  .hero__slot--side :where(.info) .info a:focus,
-  .page--gallery .info a:hover,
-  .page--gallery .info a:focus {
+  .hero__slot--side :where(.info) .info a:focus {
     outline: none;
     text-decoration: underline;
   }
-  .hero__slot--side :where(.info) .info__link:hover,
-  .page--gallery .info__link:hover {
+  .hero__slot--side :where(.info) .info__link:hover {
     filter: brightness(1.3);
     text-decoration: underline;
     cursor: pointer;
   }
-}
-.hero__slot--side :where(.info) span.help-icon-size,
-.page--gallery span.help-icon-size {
-  font-size: 1rem;
 }
 
 .info-help-card[hidden] {
@@ -1166,63 +1287,37 @@ body .js-toast--visible {
   position: fixed;
   top: 0;
   right: -100%;
-  transition: transform 0.4s ease, right 0.4s ease;
-  z-index: 10;
-  /* アイコンサイズを上書きする */
-}
-.info-help-card span.help-icon-size {
-  font-size: 2rem;
-  display: inline-block;
-  vertical-align: middle;
-  color: var(--help-icon);
+  transition: transform var(--motion-snap) ease, right var(--motion-snap) ease;
+  z-index: 3000;
 }
 
 .info-help-card.is-open {
   right: 0;
 }
 
-/* ヘルプエリア w h */
+/* ヘルプエリア 幅と高さ　デフォルト */
 .info-help-container {
   width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
   height: auto;
-}
-
-/* 背景 */
-/* Moss */
-.theme-moss {
-  --help-bg: rgb(24 36 28 / 72%);
-  --help-fg: #ebf3ef;
-  --help-h: #fff;
-  --help-border: rgb(196 214 205 / 35%);
-  --help-icon: #c8e5d6;
-}
-
-/* Dew */
-.theme-dew {
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
-  --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
 }
 
 .visual-card-help-bg {
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--link-box-shdw);
+  transition: background var(--motion-soft) ease-in, filter var(--motion-soft) ease-in;
 }
 
 .visual-card-help-bg:hover {
-  background: rgba(0, 0, 0, 0.55);
-  transition: background 0.3s ease-in;
+  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
+  filter: var(--help-filter);
 }
 
 .help-content {
   padding: 1rem;
   color: var(--help-fg);
   text-decoration: none;
-  font-size: 1rem;
   line-height: 1.6;
   text-align: left;
 }
@@ -1234,38 +1329,32 @@ body .js-toast--visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.6;
-  padding: 0.5rem;
-  text-align: center;
+  margin-bottom: 0.5rem;
 }
 .flex-parent-help-h h2 {
-  display: block;
-}
-.flex-parent-help-h span.help-icon {
-  margin-right: 10px;
-}
-
-.info-help-card button.close-button {
-  text-align: center;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .info-help-card .close-button {
-  color: var(--help-icon);
-  font-size: 1.4rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(96, 96, 96, 0.38);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  color: var(--help-icon);
+  background: var(--help-icon-bg);
+  pointer-events: auto;
+  z-index: 3100;
+  transition: background var(--motion-tap) ease-in, scale var(--motion-tap) ease-in;
 }
 
 .info-help-card .close-button:hover {
-  background-color: #606060;
+  background: oklch(from var(--help-icon-bg) l c h/20%);
   scale: 105%;
-  cursor: pointer;
 }
 
 .info-help-card .close-button:focus-visible {
@@ -1277,21 +1366,22 @@ body .js-toast--visible {
 .info-help-card h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
   margin-block: 0.25rem 0.5rem;
-  color: #b4d2ea;
+  color: var(--help-h);
+}
+
+.link-text {
+  font-size: 1.25rem;
 }
 
 .info-line-spacing {
   margin: 6px 0;
 }
 
-.info-help-card span.p-icon-size {
-  font-size: 1.2rem;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0.2rem;
-  line-height: 1.5;
-  color: var(--help-icon);
-  opacity: 0.9;
+.help-card__row > svg {
+  padding-right: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: text-bottom;
 }
 
 .flex-parent-help-p {
@@ -1306,78 +1396,891 @@ body .js-toast--visible {
   body {
     /* ヘルプエリア w h */
   }
+  body .help-content {
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
   body .info-help-container {
-    width: 90vw;
-    height: auto;
+    width: min(600px, 90vw);
+    margin-inline: auto;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  body .flex-parent-help-h {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  body .flex-parent-help-h h2 {
+    font-size: 24px;
+  }
+  body .info-help-card .close-button {
+    position: relative;
+    top: 0.3rem;
+    right: 0.75rem;
+  }
+  body .info-help-card h3 {
+    line-height: unset;
+    margin-block: 0.25rem 0;
+  }
+  body .help-textbox {
+    margin-top: 0.5rem;
+  }
+  body .link-text {
+    font-size: 1.1rem;
+  }
+  body .help-content p {
+    padding-left: 0.4rem;
   }
   body .flex-parent-help-unit {
     display: flex;
-    justify-content: left;
-    align-items: center;
-    text-align: left;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
   body .wrap-help-unit-l {
-    width: 50%;
+    width: auto;
+    max-width: 250px;
+    flex: 1 1 0;
   }
   body .wrap-help-unit-r {
-    width: 50%;
-    border: 1px solid #f0f0f0;
+    width: auto;
+    flex: 1 1 0;
+    max-width: 250px;
+    border: var(--help-unit-bd);
+    margin-top: 0.25rem;
     padding: 0.4rem;
     border-radius: 8px;
   }
+  body .help-card__row > svg {
+    padding-right: 0.3em;
+    vertical-align: middle;
+  }
 }
-.mini-help {
-  position: fixed;
-  right: 12px;
-  bottom: 88px;
-  z-index: 60;
-}
-
-.mini-help > summary {
-  list-style: none;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgba(14, 16, 32, 0.35);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.mini-help[open] > summary {
-  visibility: hidden;
-} /* カード表示時は?隠す */
-.mini-help__card {
-  min-width: 220px;
-  max-width: 280px;
-  background: var(--timer-surface);
-  color: var(--timer-fg);
-  border: 1px solid var(--timer-border);
-  border-radius: 12px;
-  box-shadow: var(--timer-shadow);
-  padding: 12px 14px;
-  backdrop-filter: blur(10px) saturate(140%);
-}
-
-.mini-help__card ul {
-  margin: 6px 0 10px;
-  padding-left: 1em;
-}
-
-.mini-help__close {
+.page--gallery .page-header,
+.page--universe .page-header,
+.page--about .page-header {
+  color: var(--page-color);
   width: 100%;
-  border-radius: 8px;
+  height: fit-content;
+  padding: 0;
+}
+.page--gallery .page-header__bar,
+.page--universe .page-header__bar,
+.page--about .page-header__bar {
+  padding: 16px 0;
+  display: grid;
+  grid-template: "site-menu brand" max-content/50px max-content;
+  gap: clamp(8px, 1.5vmin, 16px);
+  /* サイトメニュ ・ページタイトル ・　サブタイトル　並び */
+  justify-content: left;
+  align-items: center;
+}
+.page--gallery .page-header__toggle,
+.page--universe .page-header__toggle,
+.page--about .page-header__toggle {
+  display: block;
+  color: inherit;
+  grid-area: site-menu;
+  text-align: center;
+}
+.page--gallery .page-header__brand,
+.page--universe .page-header__brand,
+.page--about .page-header__brand {
+  grid-area: brand;
+  width: max-content;
+  height: fit-content;
+}
+.page--gallery .page-header__title,
+.page--universe .page-header__title,
+.page--about .page-header__title {
+  text-align: left;
+  display: inline-block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(18px, 10vw, 24px);
+  white-space: nowrap;
+  hyphens: auto; /* 欧文時のハイフネーション */
+}
+.page--gallery .page-header__subtitle,
+.page--universe .page-header__subtitle,
+.page--about .page-header__subtitle {
+  display: block;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(14px, 8vw, 18px);
+  white-space: nowrap;
 }
 
+.page--gallery,
+body.universe,
+.page--universe,
+body.about,
+.page--about {
+  /* パネル本体（右から） */
+}
+.page--gallery .menu-drawer,
+.page--gallery .scrim,
+body.universe .menu-drawer,
+body.universe .scrim,
+.page--universe .menu-drawer,
+.page--universe .scrim,
+body.about .menu-drawer,
+body.about .scrim,
+.page--about .menu-drawer,
+.page--about .scrim {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+.page--gallery .menu-drawer,
+body.universe .menu-drawer,
+.page--universe .menu-drawer,
+body.about .menu-drawer,
+.page--about .menu-drawer {
+  right: 0;
+  padding: 16px clamp(12px, 3vw, 24px);
+  /* iOS安全域 */
+  padding-right: calc(clamp(12px, 3vw, 24px) + env(safe-area-inset-right, 0px));
+  width: var(--menu-w);
+  border-left: 1px solid var(--panel-bd);
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  will-change: backdrop-filter;
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+  pointer-events: auto;
+  font-family: inherit;
+  color: var(--panel-cl);
+  font-size: var(--fs);
+  z-index: 1100; /* タイマーとバックドロップより上 */
+  /* 中身のレイアウト */
+}
+.page--gallery .menu-drawer__head,
+body.universe .menu-drawer__head,
+.page--universe .menu-drawer__head,
+body.about .menu-drawer__head,
+.page--about .menu-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.page--gallery .menu-drawer__title,
+body.universe .menu-drawer__title,
+.page--universe .menu-drawer__title,
+body.about .menu-drawer__title,
+.page--about .menu-drawer__title {
+  margin-left: 5px;
+  font-size: 1.2rem;
+}
+.page--gallery .menu-drawer__close,
+body.universe .menu-drawer__close,
+.page--universe .menu-drawer__close,
+body.about .menu-drawer__close,
+.page--about .menu-drawer__close {
+  margin-top: 3px;
+  color: var(--panel-pop);
+  text-align: center;
+  scale: 100%;
+  transition: scale var(--motion-snap) ease;
+}
+.page--gallery .menu-drawer__close:hover,
+body.universe .menu-drawer__close:hover,
+.page--universe .menu-drawer__close:hover,
+body.about .menu-drawer__close:hover,
+.page--about .menu-drawer__close:hover {
+  color: var(--panel-bd);
+  scale: 110%;
+}
+.page--gallery .menu-drawer__list,
+body.universe .menu-drawer__list,
+.page--universe .menu-drawer__list,
+body.about .menu-drawer__list,
+.page--about .menu-drawer__list {
+  list-style: none;
+}
+.page--gallery .menu-drawer__link,
+body.universe .menu-drawer__link,
+.page--universe .menu-drawer__link,
+body.about .menu-drawer__link,
+.page--about .menu-drawer__link {
+  display: block;
+  padding: 0.75rem 0.25rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: text-decoration var(--motion-snap) ease;
+}
+.page--gallery .menu-drawer__link:hover,
+body.universe .menu-drawer__link:hover,
+.page--universe .menu-drawer__link:hover,
+body.about .menu-drawer__link:hover,
+.page--about .menu-drawer__link:hover {
+  text-decoration: underline var(--panel-pop);
+  text-decoration: underline var(--panel-pop);
+}
+.page--gallery .menu-drawer__link[aria-current=page],
+body.universe .menu-drawer__link[aria-current=page],
+.page--universe .menu-drawer__link[aria-current=page],
+body.about .menu-drawer__link[aria-current=page],
+.page--about .menu-drawer__link[aria-current=page] {
+  position: relative;
+  opacity: 0.9;
+  color: var(--current-page);
+}
+.page--gallery .menu-drawer__link[aria-current=page]::before,
+body.universe .menu-drawer__link[aria-current=page]::before,
+.page--universe .menu-drawer__link[aria-current=page]::before,
+body.about .menu-drawer__link[aria-current=page]::before,
+.page--about .menu-drawer__link[aria-current=page]::before {
+  content: "▼";
+  position: absolute;
+  inset-inline-start: -1em;
+  opacity: 0.9;
+  font-size: 1em; /* マーカーのサイズ */
+  color: var(--panel-pop);
+}
+
+/* 開状態（[data-menu-open] を <body> に付与） */
+body[data-menu-open=true] .menu-drawer {
+  transform: translateX(0);
+}
+
+body[data-menu-open=true] .scrim {
+  opacity: 1;
+}
+
+/* hidden 属性の扱い */
+.menu-drawer[hidden] {
+  display: block;
+}
+
+/* アニメさせたいので display 固定 */
+.scrim[hidden] {
+  display: block;
+}
+
+/* 同上 */
+body:not([data-menu-open=true]) .menu-drawer,
+body:not([data-menu-open=true]) .scrim {
+  pointer-events: none;
+}
+
+/* タブレット最適化：少しだけ狭める＆文字を大きめに */
+@media (width >= 800px) and (width <= 1280px) and (orientation: portrait) {
+  :root {
+    --menu-w: min(400px, 60vw);
+  }
+  .page--gallery .menu-drawer__list a,
+  body.universe .menu-drawer__list a,
+  body.about .menu-drawer__list a {
+    padding: 0.85rem 0.25rem;
+    font-size: 1.05rem;
+  }
+}
+@media screen and (width >= 375px) and (width <= 999px) and (orientation: landscape) and (hover: none) {
+  :root {
+    --menu-w: min(300px, 50vw);
+  }
+  .page--gallery .menu-drawer__head,
+  body.universe .menu-drawer__head,
+  body.about .menu-drawer__head {
+    margin-bottom: 8px;
+  }
+  .page--gallery .menu-drawer__title,
+  body.universe .menu-drawer__title,
+  body.about .menu-drawer__title {
+    font-size: 1.1rem;
+  }
+  .page--gallery .menu-drawer__list a,
+  body.universe .menu-drawer__list a,
+  body.about .menu-drawer__list a {
+    padding: 0.55rem 0.25rem;
+    font-size: 1rem;
+  }
+}
+.menu-drawer,
+.scrim {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+/* 背景の半透明幕（クリックで閉じる） */
+.scrim {
+  left: 0;
+  right: 0;
+  border-left: 1px solid var(--panel-bd);
+  background: var(--scrim);
+  backdrop-filter: blur(6px) saturate(130%);
+  backdrop-filter: blur(6px) saturate(130%);
+  will-change: backdrop-filter;
+  z-index: 999; /* タイマーより上オフキャンバスより下 */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.dots {
+  background-color: transparent;
+  background-image: radial-gradient(circle, var(--dots) 10px, transparent 10px);
+  background-position: 0 0;
+  background-size: 35px 35px;
+}
+
+body[data-menu-open=true] .scrim {
+  opacity: 1;
+}
+
+/* アニメさせたいので display 固定 */
+.scrim[hidden] {
+  display: block;
+}
+
+/* 同上 */
+body:not([data-menu-open=true]) .scrim {
+  pointer-events: none;
+}
+
+.decor-clock {
+  width: 17rem;
+  height: 14rem;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  text-align: center;
+  animation: linear spin 3600s infinite;
+}
+.decor-clock svg {
+  position: fixed;
+  display: block;
+  width: 80%;
+  height: auto;
+  filter: var(--clock-filter);
+}
+.decor-clock__bg--back {
+  color: var(--back);
+}
+.decor-clock__bg--mid {
+  color: var(--mid);
+}
+.decor-clock__bg--front {
+  color: var(--front);
+}
+.decor-clock__hand--h {
+  color: var(--h);
+}
+.decor-clock__hand--m {
+  color: var(--m);
+}
+.decor-clock__hand--s {
+  color: var(--s);
+}
+.decor-clock__center {
+  color: var(--center);
+}
+
+@media (max-height: 500px) {
+  .decor-clock {
+    width: var(--m-width);
+    height: var(--m-height);
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .decor-clock svg {
+    width: var(--m-width);
+  }
+}
+.page--gallery,
+body.universe,
+body.about,
+.page--universe,
+.page--about {
+  /* 2. 子要素・部品（BEMの __◯◯） */
+  /* 3. 状態（:hover, :active, :focus-visibleなど） */
+}
+.page--gallery .timer-mini,
+body.universe .timer-mini,
+body.about .timer-mini,
+.page--universe .timer-mini,
+.page--about .timer-mini {
+  /* レイアウト・背景・トークンの初期値など */
+  position: fixed;
+  inset: auto auto 1.25rem 1.25rem;
+  z-index: 5;
+  width: clamp(320px, 25vw, 380px);
+  height: max(180px, 17.58vh);
+  pointer-events: auto;
+}
+.page--gallery .timer-mini__bg,
+body.universe .timer-mini__bg,
+body.about .timer-mini__bg,
+.page--universe .timer-mini__bg,
+.page--about .timer-mini__bg {
+  border-radius: var(--mini-border-r-16);
+  background: var(--mini-background);
+  box-shadow: var(--mini-background-shadow);
+  border: 1px solid var(--mini-background-border);
+  backdrop-filter: var(--mini-backdrop-filter);
+  backdrop-filter: var(--mini-backdrop-filter);
+  will-change: backdrop-filter;
+  transition: background 0.3s ease, filter 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page--gallery .timer-mini__grid,
+body.universe .timer-mini__grid,
+body.about .timer-mini__grid,
+.page--universe .timer-mini__grid,
+.page--about .timer-mini__grid {
+  display: grid;
+  grid-template-areas: "count presets controls";
+  gap: var(--gap-g-button);
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+.page--gallery .timer-mini__grid--vertical,
+body.universe .timer-mini__grid--vertical,
+body.about .timer-mini__grid--vertical,
+.page--universe .timer-mini__grid--vertical,
+.page--about .timer-mini__grid--vertical {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--gap-g-button);
+  justify-content: center;
+  align-items: center;
+}
+.page--gallery .timer-mini__screen,
+body.universe .timer-mini__screen,
+body.about .timer-mini__screen,
+.page--universe .timer-mini__screen,
+.page--about .timer-mini__screen {
+  grid-area: count;
+}
+.page--gallery .timer-mini__screen--grid,
+body.universe .timer-mini__screen--grid,
+body.about .timer-mini__screen--grid,
+.page--universe .timer-mini__screen--grid,
+.page--about .timer-mini__screen--grid {
+  display: grid;
+  grid-template-areas: "time" "help";
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--gap-g-button);
+}
+.page--gallery .timer-mini__screen--display,
+body.universe .timer-mini__screen--display,
+body.about .timer-mini__screen--display,
+.page--universe .timer-mini__screen--display,
+.page--about .timer-mini__screen--display {
+  grid-area: time;
+  width: fit-content;
+}
+.page--gallery .timer-mini__screen--count,
+body.universe .timer-mini__screen--count,
+body.about .timer-mini__screen--count,
+.page--universe .timer-mini__screen--count,
+.page--about .timer-mini__screen--count {
+  display: block;
+  width: 5ch;
+  margin: 0 auto;
+  font-size: var(--mini-count-font-size);
+  color: var(--mini-color);
+  text-shadow: var(--mini-count-shadow);
+  inline-size: max-content;
+}
+.page--gallery .timer-mini__screen--tnum,
+body.universe .timer-mini__screen--tnum,
+body.about .timer-mini__screen--tnum,
+.page--universe .timer-mini__screen--tnum,
+.page--about .timer-mini__screen--tnum {
+  font-family: var(--ff-en);
+  font-variant-numeric: tabular-nums; /* 等幅数字 */
+  font-feature-settings: "tnum" 1; /* 念のため保険として */
+  font-synthesis: none; /* 擬似ボールド/イタリックを抑止して質感維持 */ /* “leaf.loop”の空気感に合わせて極小トラッキング */
+  font-weight: 400;
+  letter-spacing: 0.0125em;
+}
+.page--gallery .timer-mini__presets,
+body.universe .timer-mini__presets,
+body.about .timer-mini__presets,
+.page--universe .timer-mini__presets,
+.page--about .timer-mini__presets {
+  grid-area: presets;
+}
+.page--gallery .timer-mini__actions,
+body.universe .timer-mini__actions,
+body.about .timer-mini__actions,
+.page--universe .timer-mini__actions,
+.page--about .timer-mini__actions {
+  grid-area: controls;
+}
+.page--gallery .timer-mini__actions .i,
+body.universe .timer-mini__actions .i,
+body.about .timer-mini__actions .i,
+.page--universe .timer-mini__actions .i,
+.page--about .timer-mini__actions .i {
+  display: block;
+}
+.page--gallery .timer-mini__pill,
+body.universe .timer-mini__pill,
+body.about .timer-mini__pill,
+.page--universe .timer-mini__pill,
+.page--about .timer-mini__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* size */
+  inline-size: var(--btn-size-pill);
+  block-size: var(--btn-size-pill);
+  /* hit */
+  min-inline-size: var(--btn-hit);
+  min-block-size: var(--btn-hit);
+  /* look */
+  border-radius: var(--mini-border-r-50);
+  border: var(--btn-border-width) solid var(--btn-pill-border);
+  background-color: var(--btn-pill-bg);
+  box-shadow: none;
+  /* text */
+  font-size: var(--mini-preset-font-size);
+  color: var(--mini-color);
+  /* smooth */
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.page--gallery .timer-mini__icon-btn,
+body.universe .timer-mini__icon-btn,
+body.about .timer-mini__icon-btn,
+.page--universe .timer-mini__icon-btn,
+.page--about .timer-mini__icon-btn {
+  inline-size: var(--btn-size-icon);
+  block-size: var(--btn-size-icon);
+  min-inline-size: var(--btn-hit);
+  min-block-size: var(--btn-hit);
+  background-color: var(--btn-pill-bg);
+  border-radius: var(--mini-border-r-50);
+  color: var(--mini-color);
+  cursor: pointer;
+  transition: color 0.25s ease text-shadow 0.25s ease;
+}
+.page--gallery .timer-mini__screen--help,
+body.universe .timer-mini__screen--help,
+body.about .timer-mini__screen--help,
+.page--universe .timer-mini__screen--help,
+.page--about .timer-mini__screen--help {
+  grid-area: help;
+  width: var(--btn-size-help);
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+  transition: color 0.25s ease text-shadow 0.25s ease;
+}
+.page--gallery .timer-mini__pill:active,
+body.universe .timer-mini__pill:active,
+body.about .timer-mini__pill:active,
+.page--universe .timer-mini__pill:active,
+.page--about .timer-mini__pill:active {
+  background-color: var(--btn-pill-bg-active); /* クリック中は背景色を薄くする */
+  transform: translateY(1.2px); /* ボタンを少し下に移動させる */
+  box-shadow: var(--btn-bxshadow-hover);
+}
+.page--gallery .timer-mini__pill:focus-visible,
+body.universe .timer-mini__pill:focus-visible,
+body.about .timer-mini__pill:focus-visible,
+.page--universe .timer-mini__pill:focus-visible,
+.page--about .timer-mini__pill:focus-visible {
+  box-shadow: var(--btn-bxshadow-focus);
+}
+.page--gallery .timer-mini__icon-btn:active,
+body.universe .timer-mini__icon-btn:active,
+body.about .timer-mini__icon-btn:active,
+.page--universe .timer-mini__icon-btn:active,
+.page--about .timer-mini__icon-btn:active {
+  transform: translateY(1.2px); /* ボタンを少し下に移動させる */
+  border-radius: var(--mini-border-r-50);
+  color: var(--btn-pill-border);
+}
+.page--gallery .timer-mini__icon-btn:focus-visible,
+body.universe .timer-mini__icon-btn:focus-visible,
+body.about .timer-mini__icon-btn:focus-visible,
+.page--universe .timer-mini__icon-btn:focus-visible,
+.page--about .timer-mini__icon-btn:focus-visible {
+  text-shadow: var(--btn-shadow-focus);
+}
+.page--gallery #toggleTimer[aria-pressed=false] #startBtn,
+body.universe #toggleTimer[aria-pressed=false] #startBtn,
+body.about #toggleTimer[aria-pressed=false] #startBtn,
+.page--universe #toggleTimer[aria-pressed=false] #startBtn,
+.page--about #toggleTimer[aria-pressed=false] #startBtn {
+  display: block;
+}
+.page--gallery #toggleTimer[aria-pressed=false] #stopBtn,
+body.universe #toggleTimer[aria-pressed=false] #stopBtn,
+body.about #toggleTimer[aria-pressed=false] #stopBtn,
+.page--universe #toggleTimer[aria-pressed=false] #stopBtn,
+.page--about #toggleTimer[aria-pressed=false] #stopBtn {
+  display: none;
+}
+.page--gallery #toggleTimer[aria-pressed=true] #startBtn,
+body.universe #toggleTimer[aria-pressed=true] #startBtn,
+body.about #toggleTimer[aria-pressed=true] #startBtn,
+.page--universe #toggleTimer[aria-pressed=true] #startBtn,
+.page--about #toggleTimer[aria-pressed=true] #startBtn {
+  display: none;
+}
+.page--gallery #toggleTimer[aria-pressed=true] #stopBtn,
+body.universe #toggleTimer[aria-pressed=true] #stopBtn,
+body.about #toggleTimer[aria-pressed=true] #stopBtn,
+.page--universe #toggleTimer[aria-pressed=true] #stopBtn,
+.page--about #toggleTimer[aria-pressed=true] #stopBtn {
+  display: block;
+}
+.page--gallery .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+body.universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+.page--universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+.page--about .timer-mini__icon-btn--sound > .timer__action-btn--muted {
+  display: block;
+}
+
+/* ホバーに対応している場合 */
+@media (hover: hover) and (pointer: fine) {
+  .page--gallery .timer-mini__bg:hover,
+  .page--universe .timer-mini__bg:hover,
+  .page--about .timer-mini__bg:hover {
+    background: var(--mini-background-hover);
+    border: 1px solid var(--mini-background);
+    box-shadow: var(--mini-background-shadow-hover);
+    backdrop-filter: var(--mini-backdrop-filter-hover);
+    backdrop-filter: var(--mini-backdrop-filter-hover);
+    will-change: backdrop-filter;
+  }
+  .page--gallery .timer-mini__pill:hover,
+  .page--universe .timer-mini__pill:hover,
+  .page--about .timer-mini__pill:hover {
+    border-color: var(--mini-color-accent);
+    background-color: var(--btn-pill-bg-hover);
+    color: var(--btn-fg);
+    box-shadow: var(--btn-shadow-hover);
+  }
+  .page--gallery .timer-mini__icon-btn:hover,
+  .page--gallery .timer-mini__screen--help:hover,
+  .page--universe .timer-mini__icon-btn:hover,
+  .page--universe .timer-mini__screen--help:hover,
+  .page--about .timer-mini__icon-btn:hover,
+  .page--about .timer-mini__screen--help:hover {
+    text-shadow: var(--mini-icon-hover);
+    color: var(--mini-color-accent);
+  }
+}
+/* 4. レスポンシブ・モード切り替え（@media / @container） */
+@media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
+  .page--gallery .timer-mini {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
+    right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
+    left: unset;
+    bottom: unset;
+    width: min-content;
+  }
+  .page--gallery .timer-mini__screen--count {
+    font-size: 3rem;
+    text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
+  }
+}
+@container (inline-size < 480px) {
+  .page--gallery .timer-mini,
+  body.universe .timer-mini,
+  body.about .timer-mini {
+    --btn-hit: var(--btn-hit-small);
+    --btn-size-pill: var(--btn-size-pill-inline);
+  }
+}
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .page--gallery .timer-mini,
+  body.universe .timer-mini,
+  body.about .timer-mini {
+    --mini-color-base: var(--mini-color-base2);
+    --mini-color-accent: var(--accent2);
+    --mini-color-ink: var(--mini-color-ink2);
+    --mini-background-shadow: 0 0 8px
+      color-mix(in oklch, var(--mini-color-ink) 50%, var(--shiro) 10%);
+    --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+    --gap-g-button: var(--gap-g-button-stacked);
+    --mini-count-font-size: var(--mini-count-font-size-stacked);
+    --mini-count-shadow: var(--mini-count-shadow-stacked);
+    --btn-hit: var(--btn-hit-small);
+    --btn-size-icon: var(--btn-size-icon-stacked);
+    --mini-preset-font-size: var(--mini-preset-font-size-stacked);
+    --btn-border: var(--mini-border-width-stacked);
+    --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+    --btn-size-pill: var(--btn-size-pill-stacked);
+    --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 70%);
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    right: calc(env(safe-area-inset-top, 8px) + 8px);
+    left: auto;
+    bottom: unset;
+    width: max-content;
+    height: min-content;
+    min-width: 184px;
+    min-height: 184px;
+  }
+  .page--gallery .timer-mini__bg,
+  body.universe .timer-mini__bg,
+  body.about .timer-mini__bg {
+    border: 0.8px solid var(--mini-background-border);
+  }
+  .page--gallery .timer-mini__grid,
+  body.universe .timer-mini__grid,
+  body.about .timer-mini__grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-areas: "count" "presets" "controls";
+    justify-content: center;
+    margin: 8px;
+  }
+  .page--gallery .timer-mini__grid--vertical,
+  body.universe .timer-mini__grid--vertical,
+  body.about .timer-mini__grid--vertical {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .page--gallery .timer-mini__screen--grid,
+  body.universe .timer-mini__screen--grid,
+  body.about .timer-mini__screen--grid {
+    display: grid;
+    grid-template-areas: "time help";
+    justify-content: center;
+    align-items: center;
+  }
+  .page--gallery .timer-mini__screen--display,
+  body.universe .timer-mini__screen--display,
+  body.about .timer-mini__screen--display {
+    width: 100%;
+  }
+  .page--gallery .timer-mini__screen--count,
+  body.universe .timer-mini__screen--count,
+  body.about .timer-mini__screen--count {
+    text-align: left;
+    line-height: 1.3; /* ←これで上下の余白をカット */
+  }
+  .page--gallery .timer-mini__screen--help,
+  body.universe .timer-mini__screen--help,
+  body.about .timer-mini__screen--help {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page--gallery .timer-mini__screen--help .i-32,
+  body.universe .timer-mini__screen--help .i-32,
+  body.about .timer-mini__screen--help .i-32 {
+    width: var(--btn-size-help);
+    height: var(--btn-size-help);
+  }
+}
+/* 480px以下　スマホ 縦 */
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--gallery .timer-mini,
+  body.universe .timer-mini,
+  body.about .timer-mini {
+    --mini-color-base: var(--mini-color-base2);
+    --mini-color-accent: var(--accent2);
+    --mini-color-ink: var(--mini-color-ink2);
+    --mini-background-shadow: 0 0 8px
+      color-mix(in oklch, var(--mini-color-ink) 20%, var(--shiro) 5%);
+    --mini-backdrop-filter: var(mini-backdrop-filter-mobile);
+    --gap-g-button: var(--gap-g-button-inline);
+    --mini-count-font-size: var(--mini-count-font-size-inline);
+    --mini-count-shadow: var(--mini-count-shadow-stacked);
+    --btn-hit: var(--btn-hit-small);
+    --btn-size-icon: var(--btn-size-icon-inline);
+    --mini-preset-font-size: var(--mini-preset-font-size-inline);
+    --btn-border: var(--btn-border-width-inline);
+    --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+    --btn-pill-bg: var(--btn-pill-bg-stacked);
+    --btn-size-pill: var(--btn-size-pill-inline);
+    --btn-pill-bg-hover: oklch(from var(--mini-color-accent) l c h / 70%);
+    position: static;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    width: 380px;
+    height: 50px;
+    /* スマホでもはみ出さないように器の上限だけ決める */
+    inline-size: auto; /* 内容に合わせる */
+  }
+  .page--gallery .timer-mini__grid,
+  body.universe .timer-mini__grid,
+  body.about .timer-mini__grid {
+    display: grid;
+    grid-template-areas: "count presets controls";
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .page--gallery .timer-mini__grid--vertical,
+  body.universe .timer-mini__grid--vertical,
+  body.about .timer-mini__grid--vertical {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+  .page--gallery .timer-mini__screen,
+  body.universe .timer-mini__screen,
+  body.about .timer-mini__screen {
+    margin: 0 auto;
+    min-height: 0;
+  }
+  .page--gallery .timer-mini__screen--grid,
+  body.universe .timer-mini__screen--grid,
+  body.about .timer-mini__screen--grid {
+    grid-template-areas: "help time";
+  }
+  .page--gallery .timer-mini__screen--count,
+  body.universe .timer-mini__screen--count,
+  body.about .timer-mini__screen--count {
+    text-align: center;
+    line-height: 1.5; /* ←これで上下の余白をカット */
+  }
+  .page--gallery .timer-mini__screen--help,
+  body.universe .timer-mini__screen--help,
+  body.about .timer-mini__screen--help {
+    display: unset;
+    position: absolute;
+    top: 4.1rem;
+    right: 16px;
+  }
+  .page--gallery .timer-mini__screen--help .i-32,
+  body.universe .timer-mini__screen--help .i-32,
+  body.about .timer-mini__screen--help .i-32 {
+    width: var(--btn-size-help-inline);
+    height: var(--btn-size-help-inline);
+  }
+}
 body.hero {
   position: relative;
   isolation: isolate;
   font-size: var(--text-hero);
   overflow-x: hidden;
-  color: #f5f5f5;
+  color: oklch(97.015% 0.00011 271.152deg);
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   /* 背景メディアは最背面 <div> */
   /* 既定は静止画だけを見せる */
@@ -1450,14 +2353,16 @@ body.hero .site-header__title {
   letter-spacing: 0.02em;
   margin: 1rem 1.25rem;
   text-wrap: balance; /* 対応ブラウザで見栄えUP */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 2px var(--kuro25);
   /* stylelint-disable-next-line scss/double-slash-comment-empty-line-before */
   white-space: nowrap;
 }
 @supports (backdrop-filter: blur(2px)) {
   body.hero .site-header__title .site-header__title {
     backdrop-filter: blur(2px);
-    background: color-mix(in oklab, #000 6%, transparent);
+    backdrop-filter: blur(2px);
+    will-change: backdrop-filter;
+    background: color-mix(in oklab, oklch(0% 0 0deg) 6%, transparent);
     padding-inline: 0.5rem;
     border-radius: 0.5rem;
   }
@@ -1679,6 +2584,8 @@ body.hero .hero__head {
     inset: -6px -12px;
     border-radius: 12px;
     backdrop-filter: blur(140px);
+    backdrop-filter: blur(140px);
+    will-change: backdrop-filter;
     z-index: -1;
   }
   body.hero .nav-tile--gallery .nav-tile__media:hover,
@@ -1796,6 +2703,8 @@ body.hero .hero__head {
     inset: -6px -12px;
     border-radius: 12px;
     backdrop-filter: blur(140px);
+    backdrop-filter: blur(140px);
+    will-change: backdrop-filter;
     z-index: -1;
   }
   body.hero .hero__heading img {
@@ -1815,858 +2724,82 @@ body.hero .hero__head {
     max-inline-size: 18ch;
   }
 }
-body.gallery,
-body.universe,
-body.about {
-  /* アイコンサイズを上書きする */
-  /*  === grid ===  */
-  /*  === アイテム１ーカウントダウン表示  === */
-  /*  === アイテム２ー3/4/5 === */
-  /*  === プリセット・タイマー 親  === */
-  /* タイマー操作部分 div 親 */
-  /* タイマー操作部分 div 子 */
-  /* 音量（ラベル＋スライダー） */
+@supports (min-height: 100dvh) {
+  body.page--gallery {
+    min-block-size: 100dvh;
+  } /* 新しめ環境では動的vh */
 }
-body.gallery .timer-mini-container,
-body.universe .timer-mini-container,
-body.about .timer-mini-container {
-  position: var(--timer-position);
-  left: var(--timer-left);
-  bottom: var(--timer-bottom);
-  width: clamp(360px, 25vw, 380px);
-  height: max(180px, 17.58vh);
-  z-index: 5;
-}
-body.gallery .timer-mini-background,
-body.universe .timer-mini-background,
-body.about .timer-mini-background {
-  border-radius: var(--timer-border-radius);
-  border: var(--timer-border);
-  box-shadow: var(--timer-box-shadow);
-  background: var(--timer-background);
-  transition: b 0.3s ease, filter 0.3s ease;
-  backdrop-filter: var(--timer-webkit-backdrop-filter);
-}
-body.gallery .timer-mini-background:hover,
-body.universe .timer-mini-background:hover,
-body.about .timer-mini-background:hover {
-  background: var(--timer-hover-background);
-  outline: none;
-  backdrop-filter: blur(8.5px) saturate(130%);
-}
-body.gallery .timer-mini-container,
-body.gallery .timer-count,
-body.universe .timer-mini-container,
-body.universe .timer-count,
-body.about .timer-mini-container,
-body.about .timer-count {
-  color: var(--timer-main-color);
-  text-shadow: var(--timer-shadow);
-}
-body.gallery span.icon-size,
-body.universe span.icon-size,
-body.about span.icon-size {
-  font-size: var(--timer-mini-icon-size);
-}
-body.gallery button,
-body.universe button,
-body.about button {
-  cursor: pointer;
-}
-body.gallery .timer-mini-box,
-body.universe .timer-mini-box,
-body.about .timer-mini-box {
-  display: grid;
-  grid-template: "count  presets controls" auto "volume presets controls" auto/1fr 3.2rem 3.2rem; /* ← 2行にする */
-  gap: var(--gap-g-button);
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 0 1.4rem;
-}
-body.gallery .timer-mini-countdown-text,
-body.universe .timer-mini-countdown-text,
-body.about .timer-mini-countdown-text {
-  grid-area: count;
-  display: block;
-  font-size: var(--timer-count-font-size);
-  text-shadow: var(--timer-shadow2);
-  text-align: center;
-  inline-size: max-content;
-  margin: 0 auto;
-}
-body.gallery .timer-mini-preset-parent,
-body.universe .timer-mini-preset-parent,
-body.about .timer-mini-preset-parent {
-  grid-area: presets;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  gap: var(--gap-g-button);
-  text-align: center;
-}
-body.gallery .timer-mini-preset-button,
-body.universe .timer-mini-preset-button,
-body.about .timer-mini-preset-button {
-  /* 円の大きさ */
-  width: var(--timer-mini-width);
-  aspect-ratio: var(--timer-mini-aspect-ratio);
-  border-radius: var(--timer-mini-border-radius);
-  background-color: transparent;
-  border: solid var(--timer-mini-border-width) var(--timer-main-color);
-  box-shadow: var(--timer-shadow);
-  text-align: center;
-  /* フォントサイズは直径に比例 */
-  font-size: var(--timer-mini-preset-font-size);
-  color: var(--timer-color);
-  text-shadow: var(--timer-shadow2);
-  box-sizing: border-box;
-}
-body.gallery .timer-mini-preset-button:hover,
-body.universe .timer-mini-preset-button:hover,
-body.about .timer-mini-preset-button:hover {
-  color: inherit;
-  border: solid var(--timer-mini-border-width) var(--timer-border-color);
-  background-color: var(--timer-mini-preset-background-hover);
-  outline: none;
-}
-body.gallery .timer-mini-preset-button:focus-visible,
-body.gallery .timer-mini-set-parent button:focus-visible,
-body.universe .timer-mini-preset-button:focus-visible,
-body.universe .timer-mini-set-parent button:focus-visible,
-body.about .timer-mini-preset-button:focus-visible,
-body.about .timer-mini-set-parent button:focus-visible {
-  color: var(--timer-button-focus-visible-border-color);
-  font-weight: bold;
-  border-color: var(--timer-button-focus-visible-border-color);
-  box-shadow: var(--timer-button-focus-visible-box-shadow);
-}
-body.gallery .timer-mini-set-parent,
-body.universe .timer-mini-set-parent,
-body.about .timer-mini-set-parent {
-  grid-area: controls;
+.page--gallery {
+  block-size: 100%;
+  min-block-size: 100svh; /* iOSのUIありでもOK */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: var(--gap-g-button);
+  padding: var(--pad);
+  padding-top: 0;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  color: var(--main-color);
+  background: var(--bg);
 }
-body.gallery .timer-mini-set-button,
-body.universe .timer-mini-set-button,
-body.about .timer-mini-set-button {
-  flex: auto;
-  transition: all 0.18s ease;
-  /* 円の大きさ */
-  aspect-ratio: var(--timer-mini-aspect-ratio);
-  border-radius: var(--timer-mini-border-radius);
-  background-color: var(--timer-color);
-  box-shadow: var(--timer-shadow);
-  text-align: center;
+.page--gallery button:focus-visible,
+.page--gallery a:focus-visible {
+  outline: 2px solid var(--accent); /* 例：#d8b08c */
+  outline-offset: 4px;
 }
-body.gallery .timer-mini-set-button:hover,
-body.universe .timer-mini-set-button:hover,
-body.about .timer-mini-set-button:hover {
-  color: var(--timer-color-hover);
-  outline: none;
-}
-body.gallery .timer-mini-volume,
-body.universe .timer-mini-volume,
-body.about .timer-mini-volume {
-  grid-area: volume;
-  inline-size: var(--timer-mini-inline-size);
-  display: grid;
-  grid-template-columns: min(6rem, 36vw) auto;
-  align-items: center;
-  justify-content: end;
-  gap: var(--gap-g-button);
-}
-body.gallery span.vol-label,
-body.universe span.vol-label,
-body.about span.vol-label {
-  font-size: var(--timer-mini-vol-label-font-size);
-}
-
-@media (width >= 744px) and (width <= 1080px) and (orientation: portrait) {
-  body.gallery,
-  body.universe,
-  body.about {
-    /* 1) ハンバーガー：左上に固定（安全域対応） */
-    /* 2) タイマー帯（上部固定／左右16pxの余白を確保） */
-    /* 位置と器の大きさ：ここが“効く”幅 */
-    /* 3) 中身を右寄せ・狭い所は1段、広がったら2段へ */
-  }
-  body.gallery .hamburger,
-  body.universe .hamburger,
-  body.about .hamburger {
-    position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 8px);
-    left: 8px;
-    z-index: 120; /* タイマーより上、メニューより下で調整 */
-    inline-size: 44px;
-    block-size: 44px; /* ヒット面 */
-    display: grid;
-    place-items: center;
-    background: rgba(200, 255, 0, 0.4);
-  }
-  body.gallery .timer-mini-container,
-  body.universe .timer-mini-container,
-  body.about .timer-mini-container {
-    position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 8px);
-    right: calc(env(safe-area-inset-top, 8px) + 8px);
-    left: auto;
-    bottom: unset;
-    z-index: 100;
-    /* スマホでもはみ出さないように器の上限だけ決める */
-    inline-size: auto; /* 内容に合わせる */
-    /* 器をゆるく（広めに） */
-    max-inline-size: clamp(320px, 70vw, 560px);
-    max-block-size: clamp(72px, 1svh, 80px);
-    pointer-events: none; /* 下を触れるように。中身で戻す */
-  }
-  body.gallery .timer-mini-box,
-  body.universe .timer-mini-box,
-  body.about .timer-mini-box {
-    pointer-events: auto;
-    display: flex;
-    flex-wrap: nowrap; /* ← 1段に固定 */
-    justify-content: flex-end; /* 右寄せ */
-    gap: 0 0.5rem;
-    align-items: center;
-  }
-  body.gallery .timer-mini-countdown-text,
-  body.universe .timer-mini-countdown-text,
-  body.about .timer-mini-countdown-text {
-    order: 1;
-  }
-  body.gallery .timer-mini-preset-parent,
-  body.universe .timer-mini-preset-parent,
-  body.about .timer-mini-preset-parent {
-    order: 2;
-    flex: 0 0 auto;
-    display: inline-flex;
-    gap: 0.4rem;
-  }
-  body.gallery .timer-mini-set-parent,
-  body.universe .timer-mini-set-parent,
-  body.about .timer-mini-set-parent {
-    order: 3;
-    flex-basis: 100%;
-    flex: 0 0 auto;
-    display: inline-flex;
-    gap: 0.25rem;
-  }
-  body.gallery .timer-mini-volume,
-  body.universe .timer-mini-volume,
-  body.about .timer-mini-volume {
-    order: 4;
-    flex-basis: 100%;
-    display: inline-flex;
-    gap: 0.25rem;
-  }
-  body.gallery .timer-mini-background,
-  body.universe .timer-mini-background,
-  body.about .timer-mini-background {
-    border-radius: var(--timer-border-radius-mobile);
-    border: var(--timer-border);
-    box-shadow: var(--timer-box-shadow);
-    background: var(--timer-background);
-    transition: background 0.3s ease, filter 0.3s ease;
-    backdrop-filter: var(--timer-webkit-backdrop-filter);
-    /* ヒット面44px＋視覚28px（ズレない版） */
-  }
-  body.gallery .timer-mini-background:hover,
-  body.universe .timer-mini-background:hover,
-  body.about .timer-mini-background:hover {
-    background: var(--timer-hover-background);
-    outline: none;
-    backdrop-filter: blur(8.5px) saturate(130%);
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-button,
-  body.universe .timer-mini-background .timer-mini-preset-button,
-  body.about .timer-mini-background .timer-mini-preset-button {
-    --visual: 28px;
-    --hit: 44px;
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    inline-size: var(--visual);
-    block-size: var(--visual);
-    line-height: 1;
-    border-radius: var(--timer-border-radius-mobile);
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-button::after,
-  body.universe .timer-mini-background .timer-mini-preset-button::after,
-  body.about .timer-mini-background .timer-mini-preset-button::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: var(--icon-hit);
-    height: var(--icon-hit);
-    transform: translate(-50%, -50%);
-  }
-  body.gallery .timer-mini-background .timer-mini-countdown-text,
-  body.universe .timer-mini-background .timer-mini-countdown-text,
-  body.about .timer-mini-background .timer-mini-countdown-text {
-    font-size: var(--timer-count-font-size-mobile);
-    line-height: 1; /* ←これで上下の余白をカット */
-    margin: 0 auto;
-  }
-  body.gallery .timer-mini-background .timer-mini-container span.icon-size,
-  body.gallery .timer-mini-background span.timer-mini-set-button,
-  body.gallery .timer-mini-background span.mute,
-  body.universe .timer-mini-background .timer-mini-container span.icon-size,
-  body.universe .timer-mini-background span.timer-mini-set-button,
-  body.universe .timer-mini-background span.mute,
-  body.about .timer-mini-background .timer-mini-container span.icon-size,
-  body.about .timer-mini-background span.timer-mini-set-button,
-  body.about .timer-mini-background span.mute {
-    font-size: var(--timer-mini-icon-size-mobile);
-  }
-  body.gallery .timer-mini-background .timer-mini-set-parent,
-  body.universe .timer-mini-background .timer-mini-set-parent,
-  body.about .timer-mini-background .timer-mini-set-parent {
-    grid-area: controls;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: var(--gap-g-button);
-  }
-}
-/* スマホ */
-@media (width <= 743px) and (orientation: portrait) {
-  body.gallery,
-  body.universe,
-  body.about {
-    /* 1) ハンバーガー：左上に固定（安全域対応） */
-    /* 2) タイマー帯（上部固定／左右16pxの余白を確保） */
-    /* 位置と器の大きさ：ここが“効く”幅 */
-    /* 3) 中身を右寄せ・狭い所は1段、広がったら2段へ */
-  }
-  body.gallery .hamburger,
-  body.universe .hamburger,
-  body.about .hamburger {
-    position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 8px);
-    left: 8px;
-    z-index: 120; /* タイマーより上、メニューより下で調整 */
-    inline-size: 44px;
-    block-size: 44px; /* ヒット面 */
-    display: grid;
-    place-items: center;
-    background: rgba(200, 255, 0, 0.4);
-  }
-  body.gallery .timer-mini-container,
-  body.universe .timer-mini-container,
-  body.about .timer-mini-container {
-    position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 8px);
-    right: calc(env(safe-area-inset-top, 8px) + 8px);
-    left: auto;
-    bottom: unset;
-    z-index: 100;
-    height: auto;
-    /* スマホでもはみ出さないように器の上限だけ決める */
-    inline-size: auto; /* 内容に合わせる */
-    max-inline-size: clamp(220px, 60vw, 270px);
-    max-block-size: clamp(96px, 17svh, 120px);
-    pointer-events: none; /* 下を触れるように。中身で戻す */
-  }
-  body.gallery .timer-mini-box,
-  body.universe .timer-mini-box,
-  body.about .timer-mini-box {
-    pointer-events: auto;
-    display: grid;
-    grid-template: "count  presets controls" auto "volume presets controls" auto/1fr auto; /* 左=時間／右=操作 */ /* 上=時間+操作／下=プリセット */
-    gap: 0.05rem 0.5rem;
-    align-items: center;
-  }
-  body.gallery .timer-mini-background,
-  body.universe .timer-mini-background,
-  body.about .timer-mini-background {
-    border-radius: var(--timer-border-radius-mobile);
-    border: var(--timer-border);
-    box-shadow: var(--timer-box-shadow);
-    background: var(--timer-background);
-    transition: background 0.3s ease, filter 0.3s ease;
-    backdrop-filter: var(--timer-webkit-backdrop-filter);
-    /* ヒット面44px＋視覚28px（ズレない版） */
-  }
-  body.gallery .timer-mini-background:hover,
-  body.universe .timer-mini-background:hover,
-  body.about .timer-mini-background:hover {
-    background: var(--timer-hover-background);
-    outline: none;
-    backdrop-filter: blur(8.5px) saturate(130%);
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-parent,
-  body.universe .timer-mini-background .timer-mini-preset-parent,
-  body.about .timer-mini-background .timer-mini-preset-parent {
-    min-height: 0;
-    align-self: center;
-    row-gap: 4px;
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-button,
-  body.universe .timer-mini-background .timer-mini-preset-button,
-  body.about .timer-mini-background .timer-mini-preset-button {
-    --visual: 28px;
-    --hit: 44px;
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    inline-size: var(--visual);
-    block-size: var(--visual);
-    line-height: 1;
-    border: solid 1px var(--timer-main-color);
-    border-radius: var(--timer-border-radius-mobile);
-  }
-  body.gallery .timer-mini-background .timer-mini-preset-button::after,
-  body.universe .timer-mini-background .timer-mini-preset-button::after,
-  body.about .timer-mini-background .timer-mini-preset-button::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: var(--icon-hit);
-    height: var(--icon-hit);
-    transform: translate(-50%, -50%);
-  }
-  body.gallery .timer-mini-background .timer-mini-countdown-text,
-  body.universe .timer-mini-background .timer-mini-countdown-text,
-  body.about .timer-mini-background .timer-mini-countdown-text {
-    font-size: var(--timer-count-font-size-mobile);
-    margin: 0 auto;
-    min-height: 0;
-    align-self: center;
-  }
-  body.gallery .timer-mini-background .timer-count,
-  body.universe .timer-mini-background .timer-count,
-  body.about .timer-mini-background .timer-count {
-    line-height: 1.2;
-  }
-  body.gallery .timer-mini-background .timer-mini-container span.icon-size,
-  body.gallery .timer-mini-background span.timer-mini-set-button,
-  body.gallery .timer-mini-background span.mute,
-  body.universe .timer-mini-background .timer-mini-container span.icon-size,
-  body.universe .timer-mini-background span.timer-mini-set-button,
-  body.universe .timer-mini-background span.mute,
-  body.about .timer-mini-background .timer-mini-container span.icon-size,
-  body.about .timer-mini-background span.timer-mini-set-button,
-  body.about .timer-mini-background span.mute {
-    font-size: var(--timer-mini-icon-size-mobile);
-  }
-  body.gallery .timer-mini-background .setTimeBtn:active,
-  body.gallery .timer-mini-background .timer-ctrl__btn:active,
-  body.universe .timer-mini-background .setTimeBtn:active,
-  body.universe .timer-mini-background .timer-ctrl__btn:active,
-  body.about .timer-mini-background .setTimeBtn:active,
-  body.about .timer-mini-background .timer-ctrl__btn:active {
-    transform: translateY(0.5px) scale(0.98);
-    filter: saturate(115%);
-    transition: transform 0.08s ease-out;
-  }
-  body.gallery .timer-mini-background .timer-mini-set-parent,
-  body.universe .timer-mini-background .timer-mini-set-parent,
-  body.about .timer-mini-background .timer-mini-set-parent {
-    min-height: 0;
-    align-self: center;
-    row-gap: 4px;
-  }
-  body.gallery .timer-mini-background .timer-mini-volume,
-  body.universe .timer-mini-background .timer-mini-volume,
-  body.about .timer-mini-background .timer-mini-volume {
-    inline-size: var(--timer-mini-inline-size);
-    align-items: center;
-    justify-content: end;
-    min-height: 0;
-    align-self: center;
-  }
-  body.gallery .timer-mini-background span.vol-label,
-  body.universe .timer-mini-background span.vol-label,
-  body.about .timer-mini-background span.vol-label {
-    font-size: var(--timer-mini-vol-label-font-size);
-    line-height: 1;
-  }
-}
-:root {
-  --menu-w: min(360px, 86vw);
-  /* ギャラリーと調和する濃紺ガラス 初期値0.78 */
-  --panel-bg: rgb(14 16 32 / 60%);
-  --panel-bd: rgb(255 255 255 / 18%);
-}
-
-body.gallery .site-menu__inner,
-.page--gallery .site-menu__inner,
-body.universe .site-menu__inner,
-body.about .site-menu__inner {
-  display: flex;
-  justify-content: left;
-}
-body.gallery .site-menu__btn,
-.page--gallery .site-menu__btn,
-body.universe .site-menu__btn,
-body.about .site-menu__btn {
-  color: inherit;
-}
-body.gallery .site-menu__title,
-.page--gallery .site-menu__title,
-body.universe .site-menu__title,
-body.about .site-menu__title {
+.page--gallery main {
   width: 100%;
-  container-type: inline-size;
-  container-name: heading;
-  text-align: left;
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: 16px 0;
+  overflow: auto;
 }
-body.gallery .site-menu__heading,
-.page--gallery .site-menu__heading,
-body.universe .site-menu__heading,
-body.about .site-menu__heading {
-  display: inline-block;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 24px;
-}
-@container heading (max-width: 480px) {
-  body.gallery .site-menu__heading,
-  .page--gallery .site-menu__heading,
-  body.universe .site-menu__heading,
-  body.about .site-menu__heading {
-    padding: 0 8px;
-  }
-}
-@container heading (min-width: 480px) {
-  body.gallery .site-menu__heading,
-  .page--gallery .site-menu__heading,
-  body.universe .site-menu__heading,
-  body.about .site-menu__heading {
-    padding: 0 12px;
-  }
-}
-@container heading (min-width: 768px) {
-  body.gallery .site-menu__heading,
-  .page--gallery .site-menu__heading,
-  body.universe .site-menu__heading,
-  body.about .site-menu__heading {
-    padding: 0 12px;
-  }
-}
-@container heading (min-width: 1024px) {
-  body.gallery .site-menu__heading,
-  .page--gallery .site-menu__heading,
-  body.universe .site-menu__heading,
-  body.about .site-menu__heading {
-    padding: 0 16px;
-  }
-}
-@container heading (min-width: 1440px) {
-  body.gallery .site-menu__heading,
-  .page--gallery .site-menu__heading,
-  body.universe .site-menu__heading,
-  body.about .site-menu__heading {
-    padding: 0 24px;
-  }
-}
-body.gallery .site-menu__subheading,
-.page--gallery .site-menu__subheading,
-body.universe .site-menu__subheading,
-body.about .site-menu__subheading {
-  display: inline-block;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  font-size: clamp(14px, 8vw, 18px);
-  white-space: no-wrap;
-}
-@container subheading (max-width: 480px) {
-  body.gallery .site-menu__subheading,
-  .page--gallery .site-menu__subheading,
-  body.universe .site-menu__subheading,
-  body.about .site-menu__subheading {
-    font-size: 0.8rem;
-    padding: 0 8px;
-  }
-}
-@container subheading (min-width: 480px) {
-  body.gallery .site-menu__subheading,
-  .page--gallery .site-menu__subheading,
-  body.universe .site-menu__subheading,
-  body.about .site-menu__subheading {
-    padding: 0 12px;
-  }
-}
-@container subheading (min-width: 768px) {
-  body.gallery .site-menu__subheading,
-  .page--gallery .site-menu__subheading,
-  body.universe .site-menu__subheading,
-  body.about .site-menu__subheading {
-    padding: 0 12px;
-  }
-}
-@container subheading (min-width: 1024px) {
-  body.gallery .site-menu__subheading,
-  .page--gallery .site-menu__subheading,
-  body.universe .site-menu__subheading,
-  body.about .site-menu__subheading {
-    padding: 0 16px;
-  }
-}
-@container subheading (min-width: 1440px) {
-  body.gallery .site-menu__subheading,
-  .page--gallery .site-menu__subheading,
-  body.universe .site-menu__subheading,
-  body.about .site-menu__subheading {
-    padding: 0 24px;
-  }
-}
-@media (width >= 375px) and (width <= 1080px) and (orientation: portrait) {
-  body.gallery header.site-header,
-  .page--gallery header.site-header,
-  body.universe header.site-header,
-  body.about header.site-header {
-    width: 100svw;
-    height: 10svh;
-  }
-  body.gallery header.site-header h1,
-  .page--gallery header.site-header h1,
-  body.universe header.site-header h1,
-  body.about header.site-header h1 {
-    font-size: 1rem;
-  }
-  body.gallery header.site-header h2,
-  .page--gallery header.site-header h2,
-  body.universe header.site-header h2,
-  body.about header.site-header h2 {
-    margin-top: 0.2rem;
-    font-size: 0.8rem;
-  }
-}
-
-.offcanvas,
-.offcanvas-backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-}
-
-/* パネル本体（右から） */
-.offcanvas {
-  right: 0;
-  width: var(--menu-w);
-  padding: 16px clamp(12px, 3vw, 24px);
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  border-left: 1px solid var(--panel-bd);
-  transform: translateX(100%);
-  transition: transform 0.28s ease;
-  pointer-events: auto;
-  /* iOS安全域 */
-  padding-right: calc(clamp(12px, 3vw, 24px) + env(safe-area-inset-right, 0px));
-  font-size: var(--fs);
-  z-index: 80; /* タイマーとバックドロップより上 */
-}
-
-/* 背景の半透明幕（クリックで閉じる） */
-.offcanvas-backdrop {
-  left: 0;
-  right: 0;
-  background: rgba(234, 229, 218, 0.6078431373);
-  backdrop-filter: blur(10px) saturate(130%);
-  border-left: 1px solid var(--panel-bd);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 70; /* タイマーより上オフキャンバスより下 */
-}
-
-/* 開状態（[data-menu-open] を <body> に付与） */
-body[data-menu-open=true] .offcanvas {
-  transform: translateX(0);
-}
-
-body[data-menu-open=true] .offcanvas-backdrop {
-  opacity: 1;
-}
-
-/* hidden 属性の扱い */
-.offcanvas[hidden] {
-  display: block;
-} /* アニメさせたいので display 固定 */
-.offcanvas-backdrop[hidden] {
-  display: block;
-} /* 同上 */
-body:not([data-menu-open=true]) .offcanvas,
-body:not([data-menu-open=true]) .offcanvas-backdrop {
-  pointer-events: none;
-}
-
-/* 中身のレイアウト */
-.offcanvas__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.offcanvas__title {
-  color: #f5f5f5;
-  font-size: 1.1rem;
-}
-
-.offcanvas__close {
-  background: transparent;
-  color: #f5f5f5;
-  font-size: 1.2rem;
-  border: 1px solid var(--panel-bd);
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-}
-
-.offcanvas__list a {
-  display: block;
-  padding: 0.75rem 0.25rem;
-  color: #f5f5f5;
-  text-decoration: none;
-  border-radius: 8px;
-}
-
-.offcanvas__list a:hover,
-.offcanvas__list a:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.offcanvas__list li {
-  list-style: none;
-}
-
-nav div.clock-icon {
-  /* 中央揃え */
-  padding-top: var(--pad);
-  text-align: center;
-}
-
-.clock-icon {
-  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3));
-  opacity: 0.85;
-  /* 背景にうす〜く rgb(255 255 255 / 0.05) のサークルを敷いて、より「置いてある」感を出してもOK◎ */
-}
-
-/* タブレット最適化：少しだけ狭める＆文字を大きめに */
-@media (width >= 800px) and (width <= 1280px) and (orientation: portrait) {
-  :root {
-    --menu-w: min(400px, 60vw);
-  }
-  .offcanvas__list a {
-    padding: 0.85rem 0.25rem;
-    font-size: 1.05rem;
-  }
-}
-@media screen and (width >= 375px) and (width <= 999px) and (orientation: landscape) and (hover: none) {
-  :root {
-    --menu-w: min(300px, 50vw);
-  }
-  .offcanvas__head {
-    margin-bottom: 8px;
-  }
-  .offcanvas__title {
-    color: #f5f5f5;
-    font-size: 1.1rem;
-  }
-  .offcanvas__list a {
-    padding: 0.55rem 0.25rem;
-    font-size: 1rem;
-  }
-  .svg-container {
-    width: 50%; /* 親要素の幅を指定 */
-    height: 50%;
-    margin: 0 auto;
-  }
-  svg {
-    width: 100%; /* 親要素に合わせて拡大縮小 */
-    height: auto; /* アスペクト比を保持 */
-  }
-}
-body.gallery,
-.page--gallery {
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  color: rgb(21, 26, 37);
-  background: #f4efe8;
-}
-body.gallery .hidden,
-.page--gallery .hidden {
-  display: none;
-}
-body.gallery .site-header,
-.page--gallery .site-header {
-  padding: 0;
-}
-body.gallery header h1,
-body.gallery header h2,
-.page--gallery header h1,
-.page--gallery header h2 {
-  display: inline-block;
-}
-body.gallery .gallery,
 .page--gallery .gallery {
-  /* コンテナ化（親にcontainer-typeを付与）*/
+  /* コンテナ化（親にcontainer-typeを付与） */
 }
-body.gallery .gallery__bg,
 .page--gallery .gallery__bg {
   container-type: inline-size;
   container-name: inner;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 0;
 }
-body.gallery .gallery__inner,
 .page--gallery .gallery__inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-block-size: 0;
   overflow-y: auto;
-  max-height: 90vh;
   padding: 0;
 }
 @container inner (max-width: 375px) {
-  body.gallery .gallery__inner,
   .page--gallery .gallery__inner {
     padding: 8px;
-    max-height: 65vh;
   }
 }
 @container inner (min-width: 376px) {
-  body.gallery .gallery__inner,
   .page--gallery .gallery__inner {
-    max-height: 80vh;
     padding: 12px;
   }
 }
 @container inner (min-width: 768px) {
-  body.gallery .gallery__inner,
   .page--gallery .gallery__inner {
     padding: 16px;
   }
 }
 @container inner (min-width: 1024px) {
-  body.gallery .gallery__inner,
   .page--gallery .gallery__inner {
     padding: 20px;
   }
 }
 @container inner (min-width: 1024px) {
-  body.gallery .gallery__inner,
   .page--gallery .gallery__inner {
     padding: 24px;
   }
 }
-body.gallery .gallery__photo--container,
 .page--gallery .gallery__photo--container {
   container-type: inline-size;
   container-name: gallery;
 }
-body.gallery .gallery__grid,
 .page--gallery .gallery__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
@@ -2674,85 +2807,85 @@ body.gallery .gallery__grid,
   align-items: center;
 }
 @container gallery (max-width: 480px) {
-  body.gallery .gallery__grid,
   .page--gallery .gallery__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
 }
 @container gallery (min-width: 480px) {
-  body.gallery .gallery__grid,
   .page--gallery .gallery__grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
 }
 @container gallery (min-width: 768px) {
-  body.gallery .gallery__grid,
   .page--gallery .gallery__grid {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: 16px;
   }
 }
 @container gallery (min-width: 1024px) {
-  body.gallery .gallery__grid,
   .page--gallery .gallery__grid {
     row-gap: 20px;
   }
 }
 @container gallery (min-width: 1440px) {
-  body.gallery .gallery__grid,
   .page--gallery .gallery__grid {
     gap: 24px;
   }
 }
-body.gallery .gallery__item,
 .page--gallery .gallery__item {
   position: relative;
-  aspect-ratio: 1/1;
   border-radius: 16px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1/1;
+  box-shadow: 2px 2px 6px oklch(from var(--kuro) l c h/10%);
   transition: transform 0.3s ease, filter 0.3s ease;
   overflow: hidden;
 }
-body.gallery .gallery__item img,
-.page--gallery .gallery__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
+.page--gallery .gallery__item li {
+  padding: 0;
 }
-body.gallery .gallery__item::after,
+.page--gallery .gallery__item > button {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.page--gallery .gallery__item > button:hover, .page--gallery .gallery__item > button:focus-visible {
+  transform: scale(1.03);
+  filter: brightness(1.1) contrast(1.05) saturate(105%);
+}
+.page--gallery .gallery__item > button:focus-visible {
+  outline: none;
+}
+.page--gallery .gallery__item img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+  background-color: var(--main-color);
+}
+.page--gallery .gallery__item img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1) contrast(1.05) saturate(105%);
+}
+.page--gallery .gallery__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, oklch(0% 0 0deg / 0) 60%, oklch(0% 0 0deg / 0.15) 100%);
+  pointer-events: none;
+}
 .page--gallery .gallery__item::after {
   opacity: 0;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: 1rem;
-  color: rgba(245, 247, 244, 0.7);
+  color: var(--shiro);
   font-size: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 2px oklch(from var(--kuro) l c h/70%);
   content: "すう〜";
   transition: opacity 1.2s ease;
 }
-body.gallery .gallery__item:hover::after,
 .page--gallery .gallery__item:hover::after {
   opacity: 0.9;
-}
-body.gallery .gallery__img,
-.page--gallery .gallery__img {
-  object-position: center center; /* 値の順番は左右 上下 */
-  aspect-ratio: 1/1;
-  object-fit: cover; /* ↑縦横比を維持して幅いっぱいに広げる */
-  width: 100%;
-  height: 100%;
-  inline-size: 100%;
-  block-size: 100%;
-  border-radius: inherit;
-  transition: transform 0.4s ease-in-out;
-  background-color: #151a25;
-}
-body.gallery .gallery__img:hover,
-.page--gallery .gallery__img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.1) contrast(1.05) saturate(105%);
 }
 
 .lightbox {
@@ -2760,9 +2893,10 @@ body.gallery .gallery__img:hover,
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 10;
+  z-index: 2000;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: oklch(from var(--kuro) l c h/70%);
+  color: var(--shiro);
 }
 .lightbox.hidden {
   display: none;
@@ -2771,49 +2905,60 @@ body.gallery .gallery__img:hover,
   position: fixed;
   z-index: 100;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--lightbox-bg);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: clamp(16px, 4vw, 32px);
   pointer-events: auto;
+  overflow: auto;
 }
 .lightbox__content {
-  max-height: 80%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(100vw - 32px, 960px);
+  max-height: calc(100vh - 96px);
   transition: all 4s ease-out;
 }
 .lightbox__content img {
-  display: block;
-  max-width: 100%;
-  max-height: 70vh;
-  margin: 0 auto;
-  border-radius: 12px;
-  z-index: 1000;
+  border-radius: 16px;
+  object-fit: contain;
+  outline: 1px solid;
+  background: aliceblue;
 }
 .lightbox__img {
   display: block;
-  max-height: 70vh;
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  max-height: 70dvh;
   margin: 0 auto;
   border-radius: 12px;
-  z-index: 1000;
+  z-index: 2000;
+  object-fit: contain;
 }
 .lightbox__caption {
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--shiro20);
+  margin: 0.75rem auto;
   padding: 0.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1.1rem;
+  max-width: 455px;
+  background: transparent;
+  box-shadow: 0 4px 10px oklch(from var(--kuro) l c h/20%);
+  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
+  animation: fadeInUp 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
   font-family: "Zen Kurenaido", sans-serif;
   line-height: 1.6;
-  text-align: center;
   transition: background 0.3s ease;
-  backdrop-filter: blur(4px);
-  animation: fadeInUp 0.5s ease-out;
 }
 .lightbox__caption:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--shiro20);
   outline: none;
 }
 .lightbox__header {
@@ -2826,58 +2971,46 @@ body.gallery .gallery__img:hover,
   align-items: center;
   gap: 1rem;
   margin: 0;
-  color: #f5f7f4;
-}
-.lightbox__fit-toggle {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  border: none;
-  background: transparent;
   color: inherit;
-  font-size: small;
-  transition: all 0.15s ease;
-}
-.lightbox__fit-toggle:hover, .lightbox__fit-toggle:focus, .lightbox__fit-toggle:active {
-  color: #fff;
-  filter: brightness(1.2);
-  transform: scale(1.02);
 }
 .lightbox__close {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 2100;
   background: transparent;
   border: none;
   transition: all 0.15s ease;
 }
-.lightbox__close:hover {
-  color: #fff;
+.lightbox__close path {
+  stroke-width: 3px; /* ← 線の太さ変える */
+  stroke-linecap: round;
+}
+.lightbox__close:hover, .lightbox__close:focus, .lightbox__close:active {
+  color: var(--accent);
   filter: brightness(1.2);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .lightbox__nav {
   position: absolute;
-  top: 50%;
+  top: 48%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid var(--shiro20);
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--shiro20);
+  box-shadow: 0 2px 6px oklch(from var(--kuro25) l c h/30%);
   font-size: 2rem;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-50%);
+  color: var(--shiro);
   backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 2100;
 }
 .lightbox__nav--prev {
   left: 1rem;
@@ -2886,8 +3019,9 @@ body.gallery .gallery__img:hover,
   right: 1rem;
 }
 .lightbox__nav:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  filter: brightness(1.2);
+  background: var(--shiro20);
+  border-color: var(--accent);
 }
 @keyframes fadeOut {
   from {
@@ -2926,48 +3060,84 @@ body.gallery .gallery__img:hover,
   object-fit: cover;
 }
 
-@media (width <= 600px) {
+@media (height < 1024px) and (orientation: landscape) {
+  .page--gallery .page-header {
+    margin-top: 2rem;
+  }
+  .page--gallery main {
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
+  .page--gallery {
+    /* iOSのセーフエリアも考慮 */
+    padding-bottom: calc(var(-mini-h) + env(safe-area-inset-bottom, 0px) + 16px);
+  }
+  .page--gallery .page-header__bar {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding: 8px 0;
+  }
+  .page--gallery .gallery {
+    margin-top: 3rem;
+  }
+  .lightbox__content {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 2.5rem;
+    gap: 1rem;
+    max-height: calc(100dvh - 4rem);
+    overflow: auto;
+  }
   .lightbox__img {
-    max-width: 85vw;
-    max-height: 65vh;
+    max-width: min(100%, 900px);
+    max-height: calc(100dvh - 12rem);
+    object-fit: contain;
   }
   .lightbox__caption, .lightbox p {
     max-width: 37.5rem;
     padding: 0.5rem 1rem;
-    font-size: 0.8rem;
     line-height: 1.6;
     text-align: left;
   }
   .lightbox__nav {
     position: absolute;
   }
-  .lightbox__nav--next, .lightbox__nav--prev {
-    top: unset;
-    bottom: 6rem;
-    transform: none;
-  }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
-  body.gallery,
-  .page--gallery {
-    padding: 1rem;
-    /* iOSのセーフエリアも考慮 */
-    padding-bottom: calc(var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px);
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .page--gallery .page-header {
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
   }
-  body.gallery .gallery__item,
-  .page--gallery .gallery__item {
-    position: relative;
-    margin: 0 auto;
+  .page--gallery .page-header__bar {
+    padding: 8px 0;
   }
-}
-@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  body.gallery,
-  .page--gallery {
-    /* iOSのセーフエリアも考慮 */
-    padding-bottom: calc(var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px);
+  .page--gallery .page-header__title {
+    font-size: clamp(18px, 4vw, 20px);
   }
-  body.gallery main,
   .page--gallery main {
-    padding-bottom: 6rem;
+    padding: 0;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--gallery .page-header {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .page--gallery .page-header__bar {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .page--gallery .page-header__title {
+    font-size: clamp(18px, 5vw, 20px);
+  }
+  .page--gallery main {
+    padding: 0;
+    margin-bottom: 1rem;
   }
 }/*# sourceMappingURL=style.css.map */
