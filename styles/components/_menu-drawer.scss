@@ -84,6 +84,7 @@ body.about,
 
       &:hover {
         text-decoration: underline #{var(--panel-pop)};
+        -webkit-text-decoration: underline #{var(--panel-pop)};
       }
 
       &[aria-current="page"] {
