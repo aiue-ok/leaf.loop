@@ -447,8 +447,10 @@
   }
 }
 
-.is-fit {
+/* coverモード中*/
+.lightbox__img.is-fit {
   object-fit: cover;
+  cursor: zoom-out;
 }
 
 // 位置(2) Tablet(land)

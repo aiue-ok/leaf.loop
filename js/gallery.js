@@ -1,6 +1,8 @@
 // Lightbox 機能
 const lightbox = document.getElementById("lightbox");
+// imgタグ
 const lightboxImg = document.getElementById("lightbox-img");
+// pタグ
 const lightboxCaption = document.getElementById("lightbox-caption");
 const closeBtn = document.getElementById("lightbox-close");
 
@@ -19,9 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".gallery__img").forEach((img, index) => {
     img.addEventListener("click", () => {
       lightboxImg.src = img.dataset.fullWebp;
+
+      // 一時的に
+      // console.log("[LB] caption from data:", img.dataset.caption);
+      // console.log("[LB] caption element:", lightboxCaption);
+
       lightboxCaption.textContent = img.dataset.caption || "";
+
+      // 一時的に
+      // console.log("[LB] after set textContent:", lightboxCaption.textContent);
+
       currentIndex = index; // ← 現在の画像番号を保存
       updateLightboxImage();
+      // クリックすると隠す
       lightbox.classList.remove("hidden");
     });
   });
@@ -29,6 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 closeBtn.addEventListener("click", () => {
   lightbox.classList.add("hidden");
+});
+
+lightboxImg.addEventListener("click", () => {
+  lightboxImg.classList.toggle("is-fit");
 });
 
 // 2. Esc キーで閉じる処理
