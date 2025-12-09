@@ -378,12 +378,6 @@ input {
   }
 }
 @media screen and (width <= 768px) and (orientation: landscape) and (orientation: landscape) and (max-width: 736px) {
-  :root {
-    --safe-top: env(safe-area-inset-top, 0px);
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --safe-left: env(safe-area-inset-left, 0px);
-    --safe-right: env(safe-area-inset-right, 0px);
-  }
   body.hero {
     padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right)) max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));
     min-height: 100dvh; /* ここもdvh */
@@ -2098,6 +2092,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     left: unset;
     bottom: unset;
     width: min-content;
+    height: min-content;
   }
   .page--gallery .timer-mini__screen--count {
     font-size: 3rem;
@@ -2839,18 +2834,17 @@ body.hero .hero__head {
   border-radius: 16px;
   aspect-ratio: 1/1;
   box-shadow: 2px 2px 6px oklch(from var(--kuro) l c h/10%);
-  transition: transform 0.3s ease, filter 0.3s ease;
   overflow: hidden;
 }
 .page--gallery .gallery__item li {
   padding: 0;
 }
 .page--gallery .gallery__item > button {
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease-in-out;
 }
 .page--gallery .gallery__item > button:hover, .page--gallery .gallery__item > button:focus-visible {
   transform: scale(1.03);
-  filter: brightness(1.1) contrast(1.05) saturate(105%);
+  filter: brightness(1.05) contrast(0.8) saturate(101%);
 }
 .page--gallery .gallery__item > button:focus-visible {
   outline: none;
@@ -2860,11 +2854,9 @@ body.hero .hero__head {
   block-size: 100%;
   object-fit: cover;
   transition: transform 0.4s ease-in-out;
-  background-color: var(--main-color);
 }
 .page--gallery .gallery__item img:hover {
   transform: scale(1.03);
-  filter: brightness(1.1) contrast(1.05) saturate(105%);
 }
 .page--gallery .gallery__item::before {
   content: "";
@@ -2895,8 +2887,6 @@ body.hero .hero__head {
   position: fixed;
   z-index: 2000;
   inset: 0;
-  background: oklch(from var(--kuro) l c h/70%);
-  color: var(--shiro);
 }
 .lightbox.hidden {
   display: none;
@@ -2905,11 +2895,11 @@ body.hero .hero__head {
   position: fixed;
   z-index: 100;
   inset: 0;
-  background: var(--lightbox-bg);
+  padding: clamp(16px, 4vw, 32px);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(16px, 4vw, 32px);
+  background: var(--lightbox-bg);
   pointer-events: auto;
   overflow: auto;
 }
@@ -2917,44 +2907,49 @@ body.hero .hero__head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: min(100vw - 32px, 960px);
-  max-height: calc(100vh - 96px);
-  transition: all 4s ease-out;
+  z-index: 2000;
+  transition: transform 0.4s ease-out;
 }
 .lightbox__content img {
+  width: 65dvw;
+  width: 65svw;
+  max-width: 100%;
+  height: auto;
+  max-height: 75dvh;
+  max-height: 75svh;
   border-radius: 16px;
-  object-fit: contain;
-  outline: 1px solid;
-  background: aliceblue;
 }
 .lightbox__img {
   display: block;
-  aspect-ratio: 1/1;
-  max-width: 100%;
-  max-height: 70dvh;
+  aspect-ratio: auto;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
-  border-radius: 12px;
-  z-index: 2000;
   object-fit: contain;
+  transition: transform 0.2s ease-out;
 }
 .lightbox__caption {
-  border-radius: 16px;
-  border: 1px solid var(--shiro20);
-  margin: 0.75rem auto;
-  padding: 0.5rem;
-  max-width: 455px;
-  background: transparent;
-  box-shadow: 0 4px 10px oklch(from var(--kuro) l c h/20%);
-  backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  will-change: backdrop-filter;
-  animation: fadeInUp 0.5s ease-out;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0.75rem auto;
+  margin-bottom: clamp(16px, 4vh, 40px);
+  padding: 0.5rem;
+  max-width: 540px;
+  border-radius: 16px;
+  border: 1px solid var(--shiro20);
+  background: transparent;
+  box-shadow: 0 4px 10px oklch(from var(--kuro) l c h/20%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
+  animation: fadeInUp 0.5s ease-out;
+  cursor: zoom-in;
+  line-break: strict;
   font-size: 1rem;
   font-family: "Zen Kurenaido", sans-serif;
   line-height: 1.6;
+  color: var(--shiro);
   transition: background 0.3s ease;
 }
 .lightbox__caption:hover {
@@ -2969,17 +2964,16 @@ body.hero .hero__head {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   margin: 0;
-  color: inherit;
+  color: var(--shiro);
 }
 .lightbox__close {
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2100;
-  background: transparent;
-  border: none;
+  border-radius: 50%;
+  text-shadow: 0 0 6px oklch(from var(--kuro) l c h/45%);
   transition: all 0.15s ease;
 }
 .lightbox__close path {
@@ -3007,16 +3001,16 @@ body.hero .hero__head {
   font-size: 2rem;
   color: var(--shiro);
   backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   will-change: backdrop-filter;
   cursor: pointer;
   z-index: 2100;
 }
 .lightbox__nav--prev {
-  left: 1rem;
+  left: max(2vw, 0.75rem);
 }
 .lightbox__nav--next {
-  right: 1rem;
+  right: max(2vw, 0.75rem);
 }
 .lightbox__nav:hover {
   filter: brightness(1.2);
@@ -3056,16 +3050,35 @@ body.hero .hero__head {
   }
 }
 
-.is-fit {
+/* coverモード中*/
+.lightbox__img.is-fit {
   object-fit: cover;
+  cursor: zoom-out;
 }
 
-@media (height < 1024px) and (orientation: landscape) {
+@media (height > 480px) and (height < 1024px) and (orientation: landscape) {
   .page--gallery .page-header {
     margin-top: 2rem;
   }
   .page--gallery main {
     margin-bottom: 0;
+  }
+  .page--gallery .gallery__photo--container {
+    padding-bottom: 10rem;
+  }
+  .page--gallery .lightbox {
+    align-items: stretch;
+  }
+  .page--gallery .lightbox__content {
+    min-height: 100dvh;
+    justify-content: center;
+  }
+  .page--gallery .lightbox__caption {
+    margin-top: 1rem;
+    margin-bottom: clamp(12px, 3vh, 24px);
+    margin-left: 0;
+    margin-right: 0;
+    max-width: fit-content;
   }
 }
 @media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
@@ -3081,33 +3094,35 @@ body.hero .hero__head {
   .page--gallery .gallery {
     margin-top: 3rem;
   }
-  .lightbox__content {
+  .page--gallery .lightbox__content {
+    padding-block: 2.5rem;
     width: 100%;
     max-width: 960px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-block: 2.5rem;
-    gap: 1rem;
+    height: min-content;
     max-height: calc(100dvh - 4rem);
     overflow: auto;
   }
-  .lightbox__img {
+  .page--gallery .lightbox__img {
     max-width: min(100%, 900px);
     max-height: calc(100dvh - 12rem);
-    object-fit: contain;
   }
-  .lightbox__caption, .lightbox p {
-    max-width: 37.5rem;
-    padding: 0.5rem 1rem;
-    line-height: 1.6;
+  .page--gallery .lightbox__caption {
     text-align: left;
   }
-  .lightbox__nav {
-    position: absolute;
+  .page--gallery .lightbox__content img {
+    width: 75dvw;
+    width: 75svw;
+    max-height: 55dvh;
+    max-height: 55svh;
+  }
+  .page--gallery .lightbox__nav--prev {
+    left: calc(max(2vw, 0.75rem) + var(--safe-left));
+  }
+  .page--gallery .lightbox__nav--next {
+    right: calc(max(2vw, 0.75rem) + var(--safe-right));
   }
 }
-@media screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .page-header {
     margin-top: 1rem;
     margin-bottom: 0.4rem;
@@ -3121,6 +3136,27 @@ body.hero .hero__head {
   .page--gallery main {
     padding: 0;
     margin-bottom: 0;
+  }
+  .page--gallery .lightbox {
+    align-items: stretch;
+  }
+  .page--gallery .lightbox__content {
+    min-height: 100dvh;
+    justify-content: center;
+  }
+  .page--gallery .lightbox__content img {
+    width: 75dvw;
+    width: 75svw;
+    max-width: fit-content;
+    border-radius: 8px;
+  }
+  .page--gallery .lightbox__caption {
+    margin-top: 1rem;
+    margin-bottom: clamp(12px, 3vh, 24px);
+    max-width: 450px;
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    line-height: 1.6;
   }
 }
 @media (max-width: 480px) and (orientation: portrait) {
@@ -3139,5 +3175,20 @@ body.hero .hero__head {
   .page--gallery main {
     padding: 0;
     margin-bottom: 1rem;
+  }
+  .page--gallery .lightbox__content img {
+    width: 65dvw;
+    width: 90svw;
+    max-width: fit-content;
+    height: fit-content;
+    max-height: 75dvh;
+    max-height: 65svh;
+    border-radius: 16px;
+  }
+  .page--gallery .lightbox__caption {
+    margin: 0.5rem auto;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    max-width: 324px;
   }
 }/*# sourceMappingURL=style.css.map */
