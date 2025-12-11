@@ -18,19 +18,25 @@ body.about,
 
   /* パネル本体（右から） */
   .menu-drawer {
-    // あとで戻す
     right: 0;
-    padding: 16px clamp(12px, 3vw, 24px);
+    z-index: core.$z-menu-offcanvas; /* タイマーとバックドロップより上 */
+    // 余白
+    // padding: 16px clamp(12px, 3vw, 24px);
 
-    /* iOS安全域 */
-    padding-right: calc(
-      clamp(12px, 3vw, 24px) + env(safe-area-inset-right, 0px)
-    );
+    // サイズ
     width: var(--menu-w);
+    padding: 32px 40px 40px;
+
+    // 上：タイトル＋リンク、下：時計
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // 見た目
     border-left: 1px solid var(--panel-bd);
     background: var(--panel-bg);
     backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     will-change: backdrop-filter;
     transform: translateX(100%);
     transition: transform 0.28s ease;
@@ -42,41 +48,51 @@ body.about,
     // 開閉メニューのフォントカラー
     color: var(--panel-cl);
     font-size: var(--fs);
-    z-index: core.$z-menu-offcanvas; /* タイマーとバックドロップより上 */
 
-    /* 中身のレイアウト */
+    /* 中身のレイアウト　Menu+ Xbutton */
     &__head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
+      // リストとの間隔
+      margin-bottom: 1.5rem;
     }
 
     // （フレックス行） Menuの左マージン微調整
     &__title {
       margin-left: 5px;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
 
     // （Xボタン）
     &__close {
       // 閉じるボタンの位置調整
-      margin-top: 3px;
-      color: #{var(--panel-pop)};
+      // margin-top: 3px;
+      width: 44px;
+      height: 44px;
       text-align: center;
+      color: #{var(--panel-pop)};
+      filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
       scale: 100%;
-      transition: scale #{var(--motion-snap)} ease;
+      transition: scale #{var(--motion-tap)} ease;
 
       &:hover {
         color: #{var(--panel-bd)};
         scale: 110%;
       }
+
+      & i {
+        display: block;
+      }
     }
 
+    // <ul>
     &__list {
+      margin-left: 0.5em;
       list-style: none;
     }
 
+    // <a>
     &__link {
       display: block;
       padding: 0.75rem 0.25rem;
@@ -86,13 +102,14 @@ body.about,
 
       &:hover {
         text-decoration: underline #{var(--panel-pop)};
-        text-decoration: underline #{var(--panel-pop)};
+        -webkit-text-decoration: underline #{var(--panel-pop)};
       }
 
       &[aria-current="page"] {
         position: relative;
         opacity: 0.9;
         color: var(--current-page);
+        mix-blend-mode: multiply;
       }
 
       &[aria-current="page"]::before {

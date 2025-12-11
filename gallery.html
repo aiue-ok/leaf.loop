@@ -820,121 +820,131 @@
     <div class="scrim dots" hidden></div>
     <!-- 右端で待機するメニュー-->
     <nav id="site-menu" class="menu-drawer" role="navigation" hidden>
-      <div class="menu-drawer__head">
-        <span class="menu-drawer__title">Menu</span>
-        <!-- 閉じるボタンSVG -->
-        <button class="menu-drawer__close" aria-label="メニューを閉じる">
-          <!-- メニュー close × -->
-          <svg
-            class="i"
-            viewBox="0 -960 960 960"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              fill="currentColor"
-              d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
-            />
-          </svg>
-        </button>
+      <div class="menu-drawer__wrapper">
+        <div class="menu-drawer__head">
+          <span class="menu-drawer__title">Menu</span>
+          <!-- 閉じるボタンSVG -->
+          <button class="menu-drawer__close" aria-label="メニューを閉じる">
+            <!-- メニュー close × -->
+            <svg
+              class="i"
+              viewBox="0 -960 960 960"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill="currentColor"
+                d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- メニューリスト -->
+        <ul class="menu-drawer__list">
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="index.html">ホーム</a>
+          </li>
+          <li class="menu-drawer__item">
+            <a
+              class="menu-drawer__link"
+              href="/gallery.html"
+              aria-current="page"
+              >世界のお茶を少しだけ</a
+            >
+          </li>
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="/universe.html"
+              >遠くのことを少しだけ</a
+            >
+          </li>
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="/about.html"
+              >このサイトについて</a
+            >
+          </li>
+        </ul>
       </div>
-      <!-- メニューリスト -->
-      <ul class="menu-drawer__list">
-        <li class="menu-drawer__item">
-          <a class="menu-drawer__link" href="index.html">ホーム</a>
-        </li>
-        <li class="menu-drawer__item">
-          <a class="menu-drawer__link" href="/gallery.html" aria-current="page"
-            >世界のお茶を少しだけ</a
-          >
-        </li>
-        <li class="menu-drawer__item">
-          <a class="menu-drawer__link" href="/universe.html"
-            >遠くのことを少しだけ</a
-          >
-        </li>
-        <li class="menu-drawer__item">
-          <a class="menu-drawer__link" href="/about.html">このサイトについて</a>
-        </li>
-      </ul>
       <!-- 飾り時計🕰️ -->
-      <div class="clock-bg decor-clock">
+      <div class="decor-clock">
         <svg
-          width="276"
-          height="221"
-          viewBox="0 0 276 221"
+          class="decor-clock__svg"
+          width="200"
+          height="160"
+          viewBox="0 0 200 160"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <!-- 背景 -->
           <path
-            class="clock-bg1 decor-clock__bg decor-clock__bg--back"
-            d="M46.25 100.622C46.25 48.2292 57.4792 37 109.872 37H140.128C192.521 37 203.75 48.2292 203.75 100.622V120.378C203.75 172.771 192.521 184 140.128 184H109.872C57.4792 184 46.25 172.771 46.25 120.378V100.622Z"
+            class="decor-clock__bg decor-clock__bg--back"
+            d="M0 69.248C0 12.2223 12.2223 0 69.248 0H102.181C159.206 0 171.428 12.2223 171.428 69.248V90.752C171.428 147.778 159.206 160 102.181 160H69.248C12.2223 160 0 147.778 0 90.752V69.248Z"
             fill="currentColor"
           />
-          <g style="mix-blend-mode: overlay">
+          <!-- <g style="mix-blend-mode: multiply"> -->
+          <path
+            class="decor-clock__bg decor-clock__bg--mid"
+            d="M28.5715 58.112C28.5715 22.4917 38.6169 14.8572 85.4858 14.8572H143.086C189.955 14.8572 200 22.4917 200 58.112V101.888C200 137.508 189.955 145.143 143.086 145.143H85.4858C38.6169 145.143 28.5715 137.508 28.5715 101.888V58.112Z"
+            fill="currentColor"
+          />
+          <!-- </g> -->
+          <!-- <g style="mix-blend-mode: multiply"> -->
+          <path
+            class="decor-clock__bg decor-clock__bg--front"
+            d="M16 69.9338C16 36.8131 24.1033 29.7144 61.9108 29.7144H108.375C146.182 29.7144 154.286 36.8131 154.286 69.9338V110.638C154.286 143.758 146.182 150.857 108.375 150.857H61.9108C24.1033 150.857 16 143.758 16 110.638V69.9338Z"
+            fill="currentColor"
+          />
+          <!-- </g> -->
+
+          <!-- 針：中心(91.0348, 91.7905)にグループで移動 -->
+          <g class="decor-clock__hands" transform="translate(91.0348 91.7905)">
+            <!-- 時針 -->
+            <!-- 元: M91.0348 91.7905 L124.658 111.203 -->
+            <!-- 差分: (124.658 - 91.0348, 111.203 - 91.7905) = (33.6232, 19.4125) -->
             <path
-              class="clock-bg2 decor-clock__bg decor-clock__bg--mid"
-              d="M72.5 90.3905C72.5 57.6643 81.7292 50.6501 124.79 50.6501H177.71C220.771 50.6501 230 57.6643 230 90.3905V130.61C230 163.336 220.771 170.35 177.71 170.35H124.79C81.7292 170.35 72.5 163.336 72.5 130.61V90.3905Z"
-              fill="currentColor"
+              id="hour"
+              class="hour-hand decor-clock__hand decor-clock__hand--h"
+              d="M0 0 L0 -38.8"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
             />
-          </g>
-          <g style="mix-blend-mode: overlay">
+
+            <!-- 分針 -->
+            <!-- 元: M91.0344 91.7905 V34.3295 (= L91.0344 34.3295) -->
+            <!-- 始点: (91.0344 - 91.0348, 91.7905 - 91.7905) = (-0.0004, 0) -->
+            <!-- 終点: (91.0344 - 91.0348, 34.3295 - 91.7905) = (-0.0004, -57.461) -->
             <path
-              class="clock-bg3 decor-clock__bg decor-clock__bg--front"
-              d="M60.9502 101.252C60.9502 70.822 68.3951 64.3 103.131 64.3H145.82C180.555 64.3 188 70.822 188 101.252V138.648C188 169.078 180.555 175.6 145.82 175.6H103.131C68.3951 175.6 60.9502 169.078 60.9502 138.648V101.252Z"
+              id="minute"
+              class="minute-hand decor-clock__hand decor-clock__hand--m"
+              d="M-0.0004 0 L-0.0004 -57.461"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <!-- 秒針 -->
+            <!-- 元: M91.0343 91.7905 L137.624 91.7905 -->
+            <!-- 始点: (91.0343 - 91.0348, 91.7905 - 91.7905) = (-0.0005, 0) -->
+            <!-- 終点: (137.624 - 91.0348, 91.7905 - 91.7905) = (46.5892, 0) -->
+            <path
+              id="second"
+              class="second-hand decor-clock__hand decor-clock__hand--s"
+              d="M-0.0005 0 L46.5892 0"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <!-- 中心の丸（お好みで） -->
+            <circle
+              class="decor-clock__center"
+              cx="0"
+              cy="0"
+              r="2.5"
               fill="currentColor"
             />
           </g>
         </svg>
-        <svg width="100" height="100" viewBox="0 0 100 100">
-          <!-- 時間 -->
-          <line
-            id="hour"
-            class="hour-hand decor-clock__hand decor-clock__hand--h"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="30"
-            stroke="currentColor"
-            stroke-opacity="0.58"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <!-- 分 -->
-          <line
-            id="minute"
-            class="minute-hand decor-clock__hand decor-clock__hand--m"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="20"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <!-- 秒 -->
-          <line
-            id="second"
-            class="second-hand decor-clock__hand decor-clock__hand--s"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="15"
-            stroke="currentColor"
-            stroke-width="1"
-            stroke-linecap="round"
-          />
-          <circle
-            class="decor-clock__center"
-            cx="50"
-            cy="50"
-            r="2"
-            fill="currentColor"
-          />
-        </svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="...">
-        <rect rx="30" fill="rgba(...)" />       </svg>-->
-        <!-- 他のレイヤー -->
       </div>
     </nav>
 

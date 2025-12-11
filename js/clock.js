@@ -9,8 +9,8 @@ function updateClock() {
   const minuteDeg = minutes * 6; // 360° / 60分
   const hourDeg = hours * 30; // 360° / 12時間
 
-  const cx = 50;
-  const cy = 50;
+  const cx = 0;
+  const cy = 0;
 
   document
     .getElementById("second")

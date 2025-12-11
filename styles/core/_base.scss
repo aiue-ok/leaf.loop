@@ -252,7 +252,9 @@ input {
 
   // ドロワーメニュー　 scrim (背景の半透明幕) */
   // ドロワーの幅
-  --menu-w: min(360px, 86vw);
+  // --menu-w: min(360px, 86vw);
+  /* ドロワーの箱　2025/12/10 */
+  --menu-w: clamp(320px, 30vw, 420px); // 画面に応じて
 
   // メニューのバックグラウンドカラー
   --panel-bg: oklch(from var(--kuro) l c h / 70%);
@@ -341,7 +343,7 @@ input {
   --overlay-bg: oklch(from var(--kuro) l c h / 45%);
 
   // scrim水玉模様の色
-  --dots: oklch(from var(--panel-bd) l c h / 45%);
+  --dots: color-mix(in oklch, var(--panel-bd) 45%, var(--shiro) 15%);
 }
 
 .page--universe {
@@ -360,29 +362,26 @@ input {
 .page--gallery {
   // pathに　mix-blend-mode　が入ってる
   // 一番大きい
-  --back: oklch(from #{$color-g-latte-light} l c h / 65%);
+  --back: oklch(from #{$color-g-cha} l c h / 45%);
 
   // 半透明グリーン　右にはみ出す
-  --mid: oklch(from #{$color-g-cha} l c h / 35%);
+  --mid: oklch(from #{$color-g-jasmin} l c h / 75%);
 
   // 小さい
-  --front: oklch(from #{$LeafMist} l c h / 55%);
+  // --front: oklch(from #{$LeafMist} l c h / 55%);
+  --front: oklch(from #{$color-g-latte-normal} l c h / 85%);
 
   // 時間 短い
-  --h: color-mix(
-    in oklch,
-    #{$color-g-latte-dark} 60%,
-    #{$color-g-blueblack} 10%
-  );
+  --h: oklch(from #{$color-g-blueblack} l c h / 65%);
 
   // 分針　長い
-  --m: color-mix(in oklch, #{$color-g-jasmin} 80%, var(--kuro) 10%);
+  --m: oklch(from #{$color-g-blueblack} l c h / 45%);
 
   // 秒針
-  --s: color-mix(in oklch, #{$color-g-latte-normal} 80%, var(--shiro) 5%);
+  --s: oklch(from #{$color-g-chai} l c h / 85%);
 
   // 中心
-  --center: var(--accent);
+  --center: #{$color-g-chai};
 
   // 分針のサイズ
   --m-width: 8rem;
