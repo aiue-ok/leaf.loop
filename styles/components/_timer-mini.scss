@@ -24,7 +24,7 @@ body.about,
       box-shadow: var(--mini-background-shadow);
       border: 1px solid var(--mini-background-border);
       backdrop-filter: var(--mini-backdrop-filter);
-      backdrop-filter: var(--mini-backdrop-filter);
+      -webkit-backdrop-filter: var(--mini-backdrop-filter);
       will-change: backdrop-filter;
       transition: background 0.3s ease, filter 0.3s ease;
       width: 100%;
@@ -235,7 +235,7 @@ body.about,
       border: 1px solid var(--mini-background);
       box-shadow: var(--mini-background-shadow-hover);
       backdrop-filter: var(--mini-backdrop-filter-hover);
-      backdrop-filter: var(--mini-backdrop-filter-hover);
+      -webkit-backdrop-filter: var(--mini-backdrop-filter-hover);
       will-change: backdrop-filter;
     }
 

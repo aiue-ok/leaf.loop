@@ -109,7 +109,7 @@ body {
       padding-inline: 0.8rem;
       padding-block: 0.2rem;
       backdrop-filter: var(--count-filter);
-      backdrop-filter: var(--count-filter);
+      -webkit-backdrop-filter: var(--count-filter);
       will-change: backdrop-filter;
     }
   }

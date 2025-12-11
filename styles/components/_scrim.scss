@@ -14,7 +14,7 @@
   border-left: 1px solid var(--panel-bd);
   background: #{var(--scrim)};
   backdrop-filter: blur(6px) saturate(130%);
-  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
   will-change: backdrop-filter;
   z-index: core.$z-menu-backdrop; /* タイマーより上オフキャンバスより下 */
   opacity: 0;

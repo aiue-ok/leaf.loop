@@ -30,9 +30,9 @@
     max-inline-size: min(70vw, 420px);
     padding: var(--link-padding);
     border-radius: 999px;
-    backdrop-filter: blur(8px) saturate(140%);
     background: oklch(from #{var(--kuro)} l c h / 16%);
     backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
     will-change: backdrop-filter;
     box-shadow: var(--link-box-shdw);
     color: var(--link-main-color);
