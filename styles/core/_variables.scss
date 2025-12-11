@@ -7,40 +7,6 @@
 // 🌿 leaf.loop パレット
 // ════════════════════════════════
 
-// #387f5a テキストA
-$ForestGreen: oklch(54.027% 0.09289 158.303deg);
-
-// ▼テーマカラー候補
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: oklch(96.151% 0.00822 157.785deg);
-
-// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
-$SteamGrey: oklch(88.318% 0.0034 146.922deg);
-
-// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
-$CelestialSilver: oklch(85.846% 0.00613 240.313deg);
-
-// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
-$MossShadow: oklch(74.698% 0.02918 142.079deg);
-
-// 予備
-$morning-base: #fcebb8;
-$honey-accent: #f5d76e;
-$golden-text: #a67c00;
-
-// 🌃 夜：静かな群青
-$nightindigo-base: #1d2b64; // （夜の藍）
-$dawnblue-accent: #283c86; // （薄明の青）
-$softgray: #eaeff7; // （白に近いやわらかグレー）
-//  砂：やわらかベージュ系
-$sandy-base: #f3e5c9; // （浜辺の白砂）
-$windy-accent: #d2ba8a; // （風に舞う砂）
-$hill-shadow: #8c704f; // （砂丘の影の茶）
-
-$Primary: #80c590; // （昼の若葉色）←安心感あるメイン
-$Secondary: #c97c5d; // （夕焼けブラウン）←感情やCTAに
-$BackgroundBase: #f3e5c9; // （砂系ベージュ）←読みやすくナチュラル
-
 // #f5f5f5
 $main-color: oklch(97.015% 0.00011 271.152deg);
 $main-color-70: oklch(97.015% 0.00011 271.152deg / 70%);
@@ -110,19 +76,6 @@ $cream-cheese: oklch(96% 0.015 75deg);
 $moon-vanilla: rgb(255 255 255 / 25%);
 $moon-lit: oklch(75% 0.02 30deg / 25%);
 
-// --- 予備 ---
-// ▼ チャイ・ミディアム
-$chai-midium: oklch(55% 0.08 60deg);
-
-// ▼ ①「シナモン・オレンジ」系（紅茶のほころび）
-$cinnamon-orange: #cc7a43;
-
-// ▼ ④「カカオ・アンバー」系（チョコの縁どり）
-$cacao-brown: #6b4a2f;
-
-// ▼ ミルクセーキ
-$milkshake: oklch(97% 0.02 100deg / 99%);
-
 // ════════════════════════════════
 // 🪐 universe
 // ════════════════════════════════
@@ -137,7 +90,6 @@ $color-space-bang: #888;
 // 👤 about
 // ════════════════════════════════
 
-$color-u-web: $LeafMist;
 $color-u-ex: #387f5a;
 $color-u-note: #d7d9d7;
 $color-u-tec: #d8b08c;
@@ -146,11 +98,6 @@ $color-u-book: #2e4f3e;
 // ════════════════════════════════
 // 🔋　固定トークン
 // ════════════════════════════════
-
-// ▼フィルター
-// ▽入力画像の彩度　 saturate()
-$saturate-normal: saturate(140%);
-$saturate-hover: saturate(130%);
 
 // ▼z-index
 // === 基本　hero ===

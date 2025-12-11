@@ -140,8 +140,6 @@ input {
 /* 汎用アイコンの基本 */
 .i {
   display: inline-block;
-
-  // vertical-align: -0.125em;
 }
 
 /* サイズ違いが欲しい時 */
@@ -225,13 +223,6 @@ input {
   --bg: #{$hero-background};
   --main-color: #{$main-color};
 
-  /* コンポーネント用の“スロット” */
-  // notify-controls “プリセット風チップUI”
-  --chip-bg: oklch(from var(--shiro) l c h / 80%);
-  --chip-bg-active: oklch(from var(--shiro) l c h / 18%);
-  --chip-bd: oklch(from var(--shiro) l c h / 55%);
-  --chip-bd-active: oklch(from var(--shiro) l c h / 85%);
-
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
@@ -310,15 +301,6 @@ input {
 
 /* ===== styles/components/_menu-drawer.scss ===== */
 
-// ドロワーメニューの背景レイヤー
-.scrim {
-  // 背景の半透明幕
-  // --scrim: oklch(from #{var(--bg)} l c h / 0.5);
-  // メニュー背景レイヤー（代替グラデーションを指定）
-  // --overlay-bg: oklch(from var(--kuro) l c h / 0.45);
-}
-
-/* ===== styles/components/_page-header.scss ===== */
 .page--gallery {
   // ドロワーメニュー
   // メニューのバックグラウンドカラー
@@ -368,7 +350,6 @@ input {
   --mid: oklch(from #{$color-g-jasmin} l c h / 75%);
 
   // 小さい
-  // --front: oklch(from #{$LeafMist} l c h / 55%);
   --front: oklch(from #{$color-g-latte-normal} l c h / 85%);
 
   // 時間 短い
