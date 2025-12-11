@@ -4,14 +4,14 @@
   *::before,
   *::after {
     /* 0.001ms ハックでもOK。JSの transitionend を必要としないなら 0s でも可 */
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0s !important;
+    animation-duration: 0s;
+    animation-iteration-count: 1;
+    transition-duration: 0s;
   }
 
   * {
-    transition: none !important;
-    animation: none !important;
+    transition: none;
+    animation: none;
   }
 
   .hero__media-video {
@@ -23,14 +23,14 @@
   }
 
   #background-video {
-    display: none !important;
+    display: none;
   }
 
   .bg-fade,
   .parallax,
   .word-dissolve {
-    animation: none !important;
-    transition: none !important;
+    animation: none;
+    transition: none;
   }
 
   // トースト
@@ -47,6 +47,10 @@
   // ヘルプカード
   .mini-help__card {
     transition: none;
+  }
+
+  .decor-clock {
+    animation: none;
   }
 }
 
@@ -120,8 +124,8 @@ input[type="range"] {
       textarea,
       summary
     ):focus-visible {
-    outline-color: CanvasText !important;
-    box-shadow: none !important;
+    outline-color: CanvasText;
+    box-shadow: none;
   }
 }
 
