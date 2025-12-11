@@ -150,16 +150,24 @@ body:not([data-menu-open="true"]) .scrim {
 }
 
 /* タブレット最適化：少しだけ狭める＆文字を大きめに */
-
-@media (width >= 800px) and (width <= 1280px) and (orientation: portrait) {
-  :root {
-    --menu-w: min(400px, 60vw);
-  }
-
+// 480px以上の縦向き
+@media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   body.universe,
   body.about {
     .menu-drawer {
+      justify-content: flex-start;
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
       &__list a {
         padding: 0.85rem 0.25rem;
         font-size: 1.05rem;
@@ -168,27 +176,56 @@ body:not([data-menu-open="true"]) .scrim {
   }
 }
 
-// 横向き・hoverなし・375px〜999px
-@media screen and (width >= 375px) and (width <= 999px) and (orientation: landscape) and (hover: none) {
-  :root {
-    --menu-w: min(300px, 50vw);
-  }
-
+// 横向き・hoverなし・1440px以下
+@media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
   .page--gallery,
   body.universe,
   body.about {
+    // メニューパネル
     .menu-drawer {
-      &__head {
-        margin-bottom: 8px;
-      }
-
-      &__title {
-        font-size: 1.1rem;
-      }
+      --menu-w: min(360px, 40vw);
 
       &__list a {
-        padding: 0.55rem 0.25rem;
         font-size: 1rem;
+      }
+    }
+  }
+}
+
+// スマホ 横 高さ480px以下
+// 位置(4) 📱mobile(land)
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    // メニューパネル
+    .menu-drawer {
+      padding: 24px 25px 25px;
+      // --safe-right: env(safe-area-inset-right, 0px);
+      padding-block: 1rem;
+      //  上下を少しだけ詰める（左右は今のままでOK）
+
+      /* 中身のレイアウト　Menu+ Xbutton */
+      &__head {
+        // リストとの間隔
+        margin-bottom: 0.5rem;
+      }
+
+      // （フレックス行） Menuの左マージン微調整
+      &__title {
+        margin-left: 3px;
+        font-size: 1.3rem;
+      }
+      // （Xボタン）
+      &__close {
+        // 閉じるボタンの位置調整
+        // margin-top: 3px;
+        width: 38px;
+        height: 38px;
+      }
+
+      &__link {
+        padding: 0.5rem 0.25rem;
       }
     }
   }
