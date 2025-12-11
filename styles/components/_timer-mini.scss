@@ -415,6 +415,13 @@ body.about,
   }
 }
 
+// 幅 600px 以下の縦向きタブレットだけ（Surface Duo みたいな細長系）
+@media (max-width: 600px) and (orientation: portrait) {
+  .timer-mini {
+    max-height: 180px; // 200px からちょい下げる
+  }
+}
+
 // 🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪
 
 /* 480px以下　スマホ 縦 */
