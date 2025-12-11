@@ -172,11 +172,6 @@ input {
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: rgba(161, 161, 161, 0.4);
   --main-color: oklch(97.015% 0.00011 271.152deg);
-  /* コンポーネント用の“スロット” */
-  --chip-bg: oklch(from var(--shiro) l c h / 80%);
-  --chip-bg-active: oklch(from var(--shiro) l c h / 18%);
-  --chip-bd: oklch(from var(--shiro) l c h / 55%);
-  --chip-bd-active: oklch(from var(--shiro) l c h / 85%);
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
@@ -190,7 +185,8 @@ input {
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --focus-ring-radius: 6px;
-  --menu-w: min(360px, 86vw);
+  /* ドロワーの箱　2025/12/10 */
+  --menu-w: clamp(320px, 30vw, 420px);
   --panel-bg: oklch(from var(--kuro) l c h / 70%);
   --panel-bd: var(--shiro10);
   --panel-cl: var(--main-color);
@@ -225,7 +221,6 @@ input {
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
-/* ===== styles/components/_page-header.scss ===== */
 .page--gallery {
   --panel-bg: oklch(96% 0.01 85deg);
   --panel-bd: var(--accent2);
@@ -234,7 +229,7 @@ input {
   --panel-pop: #ff8c00;
   --scrim: transparent;
   --overlay-bg: oklch(from var(--kuro) l c h / 45%);
-  --dots: oklch(from var(--panel-bd) l c h / 45%);
+  --dots: color-mix(in oklch, var(--panel-bd) 45%, var(--shiro) 15%);
 }
 
 .page--universe {
@@ -248,17 +243,13 @@ input {
 /* ===== styles/components/_timer-mini.scss ===== */
 /* ===== styles/components/_decor-clock.scss ===== */
 .page--gallery {
-  --back: oklch(from oklch(96% 0.01 85deg) l c h / 65%);
-  --mid: oklch(from #9dc5af l c h / 35%);
-  --front: oklch(from oklch(96.151% 0.00822 157.785deg) l c h / 55%);
-  --h: color-mix(
-    in oklch,
-    oklch(90% 0.02 85deg) 60%,
-    oklch(22% 0.03 266deg) 10%
-  );
-  --m: color-mix(in oklch, oklch(95% 0.03 105deg) 80%, var(--kuro) 10%);
-  --s: color-mix(in oklch, oklch(98% 0.01 85deg) 80%, var(--shiro) 5%);
-  --center: var(--accent);
+  --back: oklch(from #9dc5af l c h / 45%);
+  --mid: oklch(from oklch(95% 0.03 105deg) l c h / 75%);
+  --front: oklch(from oklch(98% 0.01 85deg) l c h / 85%);
+  --h: oklch(from oklch(22% 0.03 266deg) l c h / 65%);
+  --m: oklch(from oklch(22% 0.03 266deg) l c h / 45%);
+  --s: oklch(from #d8b08c l c h / 85%);
+  --center: #d8b08c;
   --m-width: 8rem;
   --m-height: 6rem;
   --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
@@ -401,13 +392,13 @@ input {
   *::before,
   *::after {
     /* 0.001ms ハックでもOK。JSの transitionend を必要としないなら 0s でも可 */
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0s !important;
+    animation-duration: 0s;
+    animation-iteration-count: 1;
+    transition-duration: 0s;
   }
   * {
-    transition: none !important;
-    animation: none !important;
+    transition: none;
+    animation: none;
   }
   .hero__media-video {
     display: none;
@@ -416,13 +407,13 @@ input {
     display: block;
   }
   #background-video {
-    display: none !important;
+    display: none;
   }
   .bg-fade,
   .parallax,
   .word-dissolve {
-    animation: none !important;
-    transition: none !important;
+    animation: none;
+    transition: none;
   }
   .js-toast {
     transition: none;
@@ -433,6 +424,9 @@ input {
   }
   .mini-help__card {
     transition: none;
+  }
+  .decor-clock {
+    animation: none;
   }
 }
 /* 画面が広い＋動きOKなら動画を解禁 */
@@ -491,8 +485,8 @@ summary):focus-visible {
   select,
   textarea,
   summary):focus-visible {
-    outline-color: CanvasText !important;
-    box-shadow: none !important;
+    outline-color: CanvasText;
+    box-shadow: none;
   }
 }
 /* キーボード操作にも効かせる（アクセシビリティ） */
@@ -564,7 +558,7 @@ summary):focus-visible {
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
   backdrop-filter: blur(var(--glass-blur));
-  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
   will-change: backdrop-filter;
   border: 1px solid var(--glass-border);
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
@@ -922,7 +916,7 @@ body .js-toast--visible {
   padding-inline: 0.8rem;
   padding-block: 0.2rem;
   backdrop-filter: var(--count-filter);
-  backdrop-filter: var(--count-filter);
+  -webkit-backdrop-filter: var(--count-filter);
   will-change: backdrop-filter;
 }
 .timer__presets {
@@ -1225,9 +1219,9 @@ body .js-toast--visible {
   max-inline-size: min(70vw, 420px);
   padding: var(--link-padding);
   border-radius: 999px;
-  backdrop-filter: blur(8px) saturate(140%);
   background: oklch(from var(--kuro) l c h/16%);
   backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   will-change: backdrop-filter;
   box-shadow: var(--link-box-shdw);
   color: var(--link-main-color);
@@ -1538,23 +1532,23 @@ body.universe .menu-drawer,
 body.about .menu-drawer,
 .page--about .menu-drawer {
   right: 0;
-  padding: 16px clamp(12px, 3vw, 24px);
-  /* iOS安全域 */
-  padding-right: calc(clamp(12px, 3vw, 24px) + env(safe-area-inset-right, 0px));
+  z-index: 1100; /* タイマーとバックドロップより上 */
   width: var(--menu-w);
+  padding: 32px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-left: 1px solid var(--panel-bd);
   background: var(--panel-bg);
   backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   will-change: backdrop-filter;
   transform: translateX(100%);
   transition: transform 0.28s ease;
   pointer-events: auto;
   font-family: inherit;
   color: var(--panel-cl);
-  font-size: var(--fs);
-  z-index: 1100; /* タイマーとバックドロップより上 */
-  /* 中身のレイアウト */
+  /* 中身のレイアウト　Menu+ Xbutton */
 }
 .page--gallery .menu-drawer__head,
 body.universe .menu-drawer__head,
@@ -1564,7 +1558,7 @@ body.about .menu-drawer__head,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 1.5rem;
 }
 .page--gallery .menu-drawer__title,
 body.universe .menu-drawer__title,
@@ -1572,18 +1566,20 @@ body.universe .menu-drawer__title,
 body.about .menu-drawer__title,
 .page--about .menu-drawer__title {
   margin-left: 5px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .page--gallery .menu-drawer__close,
 body.universe .menu-drawer__close,
 .page--universe .menu-drawer__close,
 body.about .menu-drawer__close,
 .page--about .menu-drawer__close {
-  margin-top: 3px;
-  color: var(--panel-pop);
+  width: 44px;
+  height: 44px;
   text-align: center;
+  color: var(--panel-pop);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
   scale: 100%;
-  transition: scale var(--motion-snap) ease;
+  transition: scale var(--motion-tap) ease;
 }
 .page--gallery .menu-drawer__close:hover,
 body.universe .menu-drawer__close:hover,
@@ -1593,11 +1589,19 @@ body.about .menu-drawer__close:hover,
   color: var(--panel-bd);
   scale: 110%;
 }
+.page--gallery .menu-drawer__close i,
+body.universe .menu-drawer__close i,
+.page--universe .menu-drawer__close i,
+body.about .menu-drawer__close i,
+.page--about .menu-drawer__close i {
+  display: block;
+}
 .page--gallery .menu-drawer__list,
 body.universe .menu-drawer__list,
 .page--universe .menu-drawer__list,
 body.about .menu-drawer__list,
 .page--about .menu-drawer__list {
+  margin-left: 0.5em;
   list-style: none;
 }
 .page--gallery .menu-drawer__link,
@@ -1617,7 +1621,7 @@ body.universe .menu-drawer__link:hover,
 body.about .menu-drawer__link:hover,
 .page--about .menu-drawer__link:hover {
   text-decoration: underline var(--panel-pop);
-  text-decoration: underline var(--panel-pop);
+  -webkit-text-decoration: underline var(--panel-pop);
 }
 .page--gallery .menu-drawer__link[aria-current=page],
 body.universe .menu-drawer__link[aria-current=page],
@@ -1627,6 +1631,7 @@ body.about .menu-drawer__link[aria-current=page],
   position: relative;
   opacity: 0.9;
   color: var(--current-page);
+  mix-blend-mode: multiply;
 }
 .page--gallery .menu-drawer__link[aria-current=page]::before,
 body.universe .menu-drawer__link[aria-current=page]::before,
@@ -1667,9 +1672,22 @@ body:not([data-menu-open=true]) .scrim {
 }
 
 /* タブレット最適化：少しだけ狭める＆文字を大きめに */
-@media (width >= 800px) and (width <= 1280px) and (orientation: portrait) {
-  :root {
-    --menu-w: min(400px, 60vw);
+@media (width > 480px) and (orientation: portrait) {
+  .page--gallery .menu-drawer,
+  body.universe .menu-drawer,
+  body.about .menu-drawer {
+    justify-content: flex-start;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  .page--gallery .menu-drawer__list,
+  body.universe .menu-drawer__list,
+  body.about .menu-drawer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
   }
   .page--gallery .menu-drawer__list a,
   body.universe .menu-drawer__list a,
@@ -1678,25 +1696,47 @@ body:not([data-menu-open=true]) .scrim {
     font-size: 1.05rem;
   }
 }
-@media screen and (width >= 375px) and (width <= 999px) and (orientation: landscape) and (hover: none) {
-  :root {
-    --menu-w: min(300px, 50vw);
-  }
-  .page--gallery .menu-drawer__head,
-  body.universe .menu-drawer__head,
-  body.about .menu-drawer__head {
-    margin-bottom: 8px;
-  }
-  .page--gallery .menu-drawer__title,
-  body.universe .menu-drawer__title,
-  body.about .menu-drawer__title {
-    font-size: 1.1rem;
+@media (width >= 768px) and (width <= 1440px) and (orientation: landscape) and (hover: none) {
+  .page--gallery .menu-drawer,
+  body.universe .menu-drawer,
+  body.about .menu-drawer {
+    --menu-w: min(360px, 40vw);
   }
   .page--gallery .menu-drawer__list a,
   body.universe .menu-drawer__list a,
   body.about .menu-drawer__list a {
-    padding: 0.55rem 0.25rem;
     font-size: 1rem;
+  }
+}
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .page--gallery .menu-drawer,
+  body.universe .menu-drawer,
+  body.about .menu-drawer {
+    padding: 24px 25px 25px;
+    padding-block: 1rem;
+    /* 中身のレイアウト　Menu+ Xbutton */
+  }
+  .page--gallery .menu-drawer__head,
+  body.universe .menu-drawer__head,
+  body.about .menu-drawer__head {
+    margin-bottom: 0.5rem;
+  }
+  .page--gallery .menu-drawer__title,
+  body.universe .menu-drawer__title,
+  body.about .menu-drawer__title {
+    margin-left: 3px;
+    font-size: 1.3rem;
+  }
+  .page--gallery .menu-drawer__close,
+  body.universe .menu-drawer__close,
+  body.about .menu-drawer__close {
+    width: 38px;
+    height: 38px;
+  }
+  .page--gallery .menu-drawer__link,
+  body.universe .menu-drawer__link,
+  body.about .menu-drawer__link {
+    padding: 0.5rem 0.25rem;
   }
 }
 .menu-drawer,
@@ -1713,7 +1753,7 @@ body:not([data-menu-open=true]) .scrim {
   border-left: 1px solid var(--panel-bd);
   background: var(--scrim);
   backdrop-filter: blur(6px) saturate(130%);
-  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
   will-change: backdrop-filter;
   z-index: 999; /* タイマーより上オフキャンバスより下 */
   opacity: 0;
@@ -1742,22 +1782,17 @@ body:not([data-menu-open=true]) .scrim {
 }
 
 .decor-clock {
-  width: 17rem;
-  height: 14rem;
-  position: absolute;
-  bottom: 2rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  text-align: center;
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 220px;
+  margin-inline: auto;
+  margin-bottom: 40px;
+  padding-right: 1rem;
   animation: linear spin 3600s infinite;
 }
 .decor-clock svg {
-  position: fixed;
   display: block;
-  width: 80%;
+  inline-size: 100%;
   height: auto;
   filter: var(--clock-filter);
 }
@@ -1783,16 +1818,31 @@ body:not([data-menu-open=true]) .scrim {
   color: var(--center);
 }
 
-@media (max-height: 500px) {
+@media (width >= 480px) and (orientation: portrait) {
   .decor-clock {
-    width: var(--m-width);
-    height: var(--m-height);
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    margin-top: auto;
+    margin-bottom: 2rem;
+    align-self: flex-end;
   }
-  .decor-clock svg {
-    width: var(--m-width);
+}
+@media (width <= 480px) and (orientation: portrait) {
+  .page--gallery .decor-clock,
+  body.universe .decor-clock,
+  body.about .decor-clock {
+    max-inline-size: 180px;
+    margin-bottom: 0px;
+  }
+}
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .page--gallery .decor-clock,
+  body.universe .decor-clock,
+  body.about .decor-clock {
+    max-inline-size: 120px;
+    margin-inline: unset;
+    margin-left: auto;
+    margin-bottom: 4px;
+    right: 16px;
+    bottom: 12px;
   }
 }
 .page--gallery,
@@ -1826,7 +1876,7 @@ body.about .timer-mini__bg,
   box-shadow: var(--mini-background-shadow);
   border: 1px solid var(--mini-background-border);
   backdrop-filter: var(--mini-backdrop-filter);
-  backdrop-filter: var(--mini-backdrop-filter);
+  -webkit-backdrop-filter: var(--mini-backdrop-filter);
   will-change: backdrop-filter;
   transition: background 0.3s ease, filter 0.3s ease;
   width: 100%;
@@ -2062,7 +2112,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     border: 1px solid var(--mini-background);
     box-shadow: var(--mini-background-shadow-hover);
     backdrop-filter: var(--mini-backdrop-filter-hover);
-    backdrop-filter: var(--mini-backdrop-filter-hover);
+    -webkit-backdrop-filter: var(--mini-backdrop-filter-hover);
     will-change: backdrop-filter;
   }
   .page--gallery .timer-mini__pill:hover,
@@ -2092,7 +2142,9 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     left: unset;
     bottom: unset;
     width: min-content;
-    height: min-content;
+    height: 16vh;
+    min-height: 150px;
+    max-height: 200px;
   }
   .page--gallery .timer-mini__screen--count {
     font-size: 3rem;
@@ -2188,6 +2240,11 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   body.about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help);
     height: var(--btn-size-help);
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .timer-mini {
+    max-height: 180px;
   }
 }
 /* 480px以下　スマホ 縦 */
@@ -2355,7 +2412,7 @@ body.hero .site-header__title {
 @supports (backdrop-filter: blur(2px)) {
   body.hero .site-header__title .site-header__title {
     backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     will-change: backdrop-filter;
     background: color-mix(in oklab, oklch(0% 0 0deg) 6%, transparent);
     padding-inline: 0.5rem;
@@ -2579,7 +2636,7 @@ body.hero .hero__head {
     inset: -6px -12px;
     border-radius: 12px;
     backdrop-filter: blur(140px);
-    backdrop-filter: blur(140px);
+    -webkit-backdrop-filter: blur(140px);
     will-change: backdrop-filter;
     z-index: -1;
   }
@@ -2698,7 +2755,7 @@ body.hero .hero__head {
     inset: -6px -12px;
     border-radius: 12px;
     backdrop-filter: blur(140px);
-    backdrop-filter: blur(140px);
+    -webkit-backdrop-filter: blur(140px);
     will-change: backdrop-filter;
     z-index: -1;
   }
