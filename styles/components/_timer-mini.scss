@@ -271,9 +271,12 @@ body.about,
       left: unset;
       bottom: unset;
 
-      // 余白・幅
+      // 幅・高さ
       width: min-content;
-      height: min-content;
+      // タブレット縦の癖（vh変動）にも耐える
+      height: 16vh;
+      min-height: 150px;
+      max-height: 200px;
     }
 
     // カウントダウン表示
