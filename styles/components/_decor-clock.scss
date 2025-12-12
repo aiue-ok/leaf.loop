@@ -1,0 +1,107 @@
+@use "../core/index" as core;
+
+// 時計
+
+.decor-clock {
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 220px;
+  margin-inline: auto;
+  margin-bottom: 40px;
+  padding-right: 1rem;
+  // text-align: center;
+  animation: linear spin 3600s infinite;
+  // linear アニメーションがそれぞれの周期の中でどのように進行するか
+  // cubic-bezier(0.0, 0.0, 1.0, 1.0) と同じで、等しい速度でアニメーションします
+  // animation-timing-function: linear;
+  // 一括指定プロパティで、スタイルの間のアニメーションを適用します。
+  // これは animation-name, animation-duration, animation-timing-function,
+  // animation-delay, animation-iteration-count, animation-direction,
+  // animation-fill-mode, animation-play-state の一括指定です。
+
+  & svg {
+    display: block;
+    inline-size: 100%;
+    height: auto;
+
+    // ↓ドロップシャドウは効果的にぼけ、入力画像のアルファマスクのバージョンからずれ、特定の色で描かれて画像の下に混合されます
+    filter: var(--clock-filter);
+  }
+
+  // path
+  &__bg {
+    &--back {
+      color: var(--back);
+    }
+
+    &--mid {
+      color: var(--mid);
+    }
+
+    &--front {
+      color: var(--front);
+    }
+  }
+
+  &__hand {
+    &--h {
+      color: var(--h);
+    }
+
+    &--m {
+      color: var(--m);
+    }
+
+    &--s {
+      color: var(--s);
+    }
+  }
+
+  &__center {
+    color: var(--center);
+  }
+}
+
+// 480px以上の縦向き
+@media (width >= #{core.$bp-sm}) and (orientation: portrait) {
+  .decor-clock {
+    // 縦長でも横長でも揺れずに一貫して下に置ける
+    margin-top: auto;
+    margin-bottom: 2rem;
+    // 右寄せ
+    align-self: flex-end;
+  }
+}
+
+// 幅の小さいスマホ縦向き　480px以下{
+@media (width <= #{core.$bp-sm}) and (orientation: portrait) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    .decor-clock {
+      // 小さめ
+      max-inline-size: 180px;
+      // 下の余白をカット
+      margin-bottom: 0;
+    }
+  }
+}
+
+// スマホ 横 高さ480px以下
+// 位置(4) 📱mobile(land)
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    .decor-clock {
+      max-inline-size: 120px;
+      margin-inline: unset;
+      // 右に寄せる
+      margin-left: auto;
+      // 下の余白
+      margin-bottom: 4px;
+      right: 16px;
+      bottom: 12px;
+    }
+  }
+}

@@ -65,13 +65,6 @@
 // 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
   @media (orientation: landscape) and (max-width: 736px) {
-    :root {
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-left: env(safe-area-inset-left, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
-    }
-
     body.hero {
       padding: max(0.5rem, var(--safe-top)) max(1rem, var(--safe-right))
         max(0.75rem, var(--safe-bottom)) max(1rem, var(--safe-left));

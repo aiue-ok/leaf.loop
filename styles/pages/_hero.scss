@@ -101,7 +101,7 @@ body.hero {
     letter-spacing: 0.02em;
     margin: 1rem 1.25rem;
     text-wrap: balance; /* 対応ブラウザで見栄えUP */
-    text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+    text-shadow: 0 1px 2px #{var(--kuro25)};
     /* stylelint-disable-next-line scss/double-slash-comment-empty-line-before */
     // max-inline-size: 22ch;
     white-space: nowrap;
@@ -109,7 +109,9 @@ body.hero {
     @supports (backdrop-filter: blur(2px)) {
       .site-header__title {
         backdrop-filter: blur(2px);
-        background: color-mix(in oklab, #000 6%, transparent);
+        -webkit-backdrop-filter: blur(2px);
+        will-change: backdrop-filter;
+        background: color-mix(in oklab, #{core.$kuro100} 6%, transparent);
         padding-inline: 0.5rem;
         border-radius: 0.5rem;
       }
@@ -418,6 +420,8 @@ body.hero {
       inset: -6px -12px;
       border-radius: 12px;
       backdrop-filter: blur(140px);
+      -webkit-backdrop-filter: blur(140px);
+      will-change: backdrop-filter;
       z-index: -1;
     }
 
@@ -491,9 +495,6 @@ body.hero {
 
     // overflow-y: scroll;
     .site-header__title h1 {
-      // font-family: var(--ff-en);
-
-      // font-family: var(--ff-marui);
       font-size: clamp(1rem, 2.6vw, 2rem);
       letter-spacing: 0.01em;
       line-height: 1.15;
@@ -572,6 +573,8 @@ body.hero {
       inset: -6px -12px;
       border-radius: 12px;
       backdrop-filter: blur(140px);
+      -webkit-backdrop-filter: blur(140px);
+      will-change: backdrop-filter;
       z-index: -1;
     }
 

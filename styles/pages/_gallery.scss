@@ -2,447 +2,658 @@
 @use "../components/timer" as time;
 @use "../components/timer-mini" as mini;
 @use "../components/info" as info;
-@use "../components/site-menu" as menu;
+
+// @use "../components/site-menu" as menu;
 
 // ─────────────────────────────
 // 🌿 世界のお茶を少しだけ（Leaf.Loop Style Guide）
 // ─────────────────────────────
 
-body.gallery {
-  border: core.$test1;
+@supports (min-height: 100dvh) {
+  body.page--gallery {
+    min-block-size: 100dvh;
+  } /* 新しめ環境では動的vh */
+}
 
-  --timer-h: clamp(64px, 12vh, 112px); /* 端末に応じて伸び縮み */
-  // core.$color-bg-base: #eae5da; // コズミックラテ（ベース）
-  // background-color: core.$color-bg-base;
-  // color: core.$g-col-blueblack;
+// 高さの器
+.page--gallery {
+  block-size: 100%;
+  min-block-size: 100svh; /* iOSのUIありでもOK */
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  padding-top: 0;
   font-family: "Zen Kaku Gothic New", sans-serif;
+  color: #{var(--main-color)};
+  background: #{var(--bg)};
 
-  /* iOSのセーフエリアも考慮 */
-  padding-bottom: calc(
-    var(--timer-h) + env(safe-area-inset-bottom, 0px) + 16px
-  );
-
-  main {
-    // padding-bottom: 10rem;
-    border: core.$test2;
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #{var(--accent)}; /* 例：#d8b08c */
+    outline-offset: 4px;
   }
 
-  // あとで消す
-  h1,
-  h2 {
-    color: blue;
-    background-color: rgb(255 218 185 / 41.6%);
-    display: inline-block;
-  }
-
-  h2 {
-    font-weight: 400;
-    background-color: core.$test-bg1;
-  }
-
-  .menu-btn .material-icons {
-    color: inherit;
-  }
-
-  // 写真用箱div 親
-  .photo-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: 1rem 3%;
-    overflow-y: auto;
-    width: 100dvw;
-    max-height: 90vh;
-    padding: 2rem 3rem;
-  }
-
-  // max-width:600px
-  @media (width <= 37.5rem) {
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-      padding-bottom: 6rem; // 下余白を十分確保
-    }
-  }
-
-  // 写真１枚の箱div 子
-  .photo-box {
-    position: relative;
-    width: 10rem;
-    height: 10rem;
-    margin: 0 0.5rem;
-    border-radius: 16px;
-    box-shadow: 2px 2px 6px rgb(0 0 0 / 10%);
-    transition: transform 0.3s ease, filter 0.3s ease;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: inherit;
-    }
-
-    &:hover {
-      transform: scale(1.03);
-      filter: brightness(1.1) contrast(1.05) saturate(105%);
-    }
-  }
-
-  .photo-box::after {
-    opacity: 0;
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    color: rgb(245 247 244 / 70%);
-    font-size: 1rem;
-    text-shadow: 1px 1px 2px rgb(0 0 0 / 70%);
-    content: "すう〜";
-    transition: opacity 1.2s ease;
-  }
-
-  .photo-box:hover::after {
-    opacity: 0.9;
-  }
-
-  // 写真自体の設定
-  img {
-    display: block;
-    object-position: center center; /* 値の順番は左右 上下 */
-    object-fit: cover; /* ↑縦横比を維持して幅いっぱいに広げる */
-    width: 100%;
-    height: 100%;
-    transition: transform 0.4s ease-in-out;
-    background-color: #151a25;
-  }
-
-  // Lightbox画像
   // ─────────────────────────────
-  .lightbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-    background: rgb(0 0 0 / 70%);
+  // <main>：ギャラリーの器
+  // ─────────────────────────────
+  main {
+    width: 100%;
 
-    &.hidden {
-      display: none;
+    // 「残り高さぜんぶ引き受ける」係
+    flex: 1 1 auto;
+    min-block-size: 0; // iOS flex 対策
+    padding: 16px 0;
+    overflow: auto;
+  }
+
+  // ─────────────────────────────
+  // ギャラリー本体
+  // ─────────────────────────────
+  .gallery {
+    // 背景 & コンテナクエリの親
+    &__bg {
+      container-type: inline-size;
+      container-name: inner;
+
+      // main の中で高さを受け取る flex コンテナ
+      display: flex;
+      flex-direction: column;
+      block-size: 100%;
+      min-block-size: 0;
     }
 
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 80%;
-      text-align: center;
-      transition: all 4s ease-out;
+    // ギャラリーの中身＋スクロール担当
+    &__inner {
+      display: flex;
+      flex-direction: column;
 
-      img {
-        display: block;
-        max-width: 100%;
-        max-height: 70vh;
-        margin: 0 auto; // 横方向の中央揃え
-        border-radius: 12px;
+      // 「残り高さぜんぶここ」が正式担当
+      flex: 1 1 auto;
+      min-block-size: 0;
+      overflow-y: auto;
+      padding: 0;
+
+      // 最大375px幅;
+      @container inner (max-width: 375px) {
+        padding: core.$gap-xs;
+
+        // min-height: 80dvh;
+        // min-height: 80svh;
+        // max-height: 80dvh;
+        // max-height: 80svh;
       }
 
-      p {
-        justify-content: center;
-        max-width: 37.5rem;
-
-        // max-width: 90%;
-        margin: 1rem auto 0;
-        padding: 1rem 1.5rem;
-        border-radius: 16px;
-
-        // border: 1px solid rgb(255 255 255 / 20%); // 境界線を少し光らせる
-        box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-        background: rgb(255 255 255 / 10%);
-        color: #fff;
-        font-size: 1.1rem;
-        font-family: "Zen Kurenaido", sans-serif;
-        line-height: 1.6;
-        text-align: center; // 左揃えに変更
-        // transition: background 0.3s ease;
-        backdrop-filter: blur(4px);
-        animation: fadeInUp 0.5s ease-out;
-
-        &:hover {
-          background: rgb(255 255 255 / 15%);
-
-          // background: rgba(120, 237, 4, 0.3);
-          outline: none; // ブラウザのデフォルトの青い枠を消す
-        }
+      // 高さ制御は inner に任せるので、ここでは min/max-height は持たせない
+      // min-height/max-height 系はすべてコメントアウトのままにしておく
+      // 最小376px幅
+      @container inner (min-width: 376px) {
+        // max-height: 85dvh;
+        // max-height: 85svh;
+        // min-height: 85dvh;
+        // min-height: 85svh;
+        padding: core.$gap-sm;
       }
 
-      .lightbox-header-parent {
-        position: absolute;
-        top: 1rem;
-        right: 2rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        margin: 0;
-        color: #f5f7f4;
-        font-size: 2rem;
+      // $bp-md: 768px;より広い場合
+      @container inner (min-width: 768px) {
+        padding: core.$gap-md;
       }
 
-      .fit-toggle-btn {
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        color: inherit;
-        padding: 8px;
-        border-radius: 16px;
-        border: none;
-        transition: all 0.3s ease;
+      // $bp-lg: 1024px;
+      @container inner (min-width: 1024px) {
+        padding: core.$gap-lg;
+      }
+
+      // $bp-xl: 1440px; 最小幅
+      @container inner (min-width: 1024px) {
+        padding: core.$gap-xl;
+      }
+    }
+
+    /* コンテナ化（親にcontainer-typeを付与） */
+    &__photo--container {
+      container-type: inline-size;
+      container-name: gallery;
+
+      // 高さは持たない、中身を包むだけ
+    }
+
+    // ul　中身
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      justify-content: center;
+      align-items: center;
+
+      // $bp-xs: 480px;より狭い場合
+      @container gallery (max-width: #{core.$bp-sm}) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: #{core.$gap-xs};
+      }
+
+      // $bp-sm: 480px;より広い場合
+      @container gallery (min-width: #{core.$bp-sm}) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: core.$gap-sm;
+      }
+
+      // $bp-md: 768px;より広い場合
+      @container gallery (min-width: #{core.$bp-md}) {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: core.$gap-md;
+      }
+
+      // $bp-lg: 1024px;より広い場合
+      @container gallery (min-width: #{core.$bp-lg}) {
+        row-gap: core.$gap-lg;
+      }
+
+      // $bp-xl: 1440px; 最小幅
+      @container gallery (min-width: #{core.$bp-xl}) {
+        gap: core.$gap-xl;
+      }
+    }
+
+    &__item {
+      position: relative;
+      border-radius: 16px;
+
+      // width: 100%;
+      // height: auto;
+      aspect-ratio: 1 / 1;
+      box-shadow: 2px 2px 6px oklch(from #{var(--kuro)} l c h / 10%);
+      // transition: transform 0.3s ease, filter 0.3s ease;
+      overflow: hidden;
+
+      & li {
+        padding: 0;
+      }
+
+      & > button {
+        transition: transform 0.2s ease, filter 0.2s ease-in-out;
 
         &:hover,
-        &:focus,
-        &:active {
-          background: #f5f7f43b;
-          filter: brightness(1.2);
-          transform: scale(1.05);
+        &:focus-visible {
+          transform: scale(1.03);
+          filter: brightness(1.05) contrast(0.8) saturate(101%);
+        }
+
+        &:focus-visible {
+          outline: none; // 共通のa11yリングを消すならここ
         }
       }
 
-      button#lightbox-close {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        background: transparent;
-        color: inherit;
-        border: none;
-        transition: all 0.6s ease;
+      & img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease-in-out;
 
         &:hover {
-          color: #fff;
-          filter: brightness(1.2);
-          transform: scale(1.05);
+          transform: scale(1.03);
         }
       }
 
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
-      }
-
-      @media (width <= 600px) {
-        .nav-button.left,
-        .nav-button.right {
-          top: auto;
-          bottom: 6rem; // キャプションの上あたり
-          transform: none;
-        }
-      }
-
-      .nav-button {
+      &::before {
+        // card の一番下の“グラデ部分”をCSSで統一する
+        content: "";
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 2rem;
-        color: #fff;
-        background: rgb(255 255 255 / 10%); // うっすら
-        backdrop-filter: blur(4px); // ガラス風にも応用可
-        border: none;
-        border-radius: 50%; // 丸く
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10000;
-        box-shadow: 0 2px 6px rgb(0 0 0 / 30%);
-
-        &.left {
-          left: 1rem;
-        }
-
-        &.right {
-          right: 1rem;
-        }
-
-        &:hover {
-          background: rgb(255 255 255 / 20%);
-        }
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          oklch(0% 0 0deg / 0%) 60%,
+          oklch(0% 0 0deg / 15%) 100%
+        );
+        pointer-events: none;
       }
 
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-        }
-
-        to {
-          opacity: 0;
-        }
+      &::after {
+        opacity: 0;
+        position: absolute;
+        bottom: 0.5rem;
+        left: 1rem;
+        color: var(--shiro);
+        font-size: 1rem;
+        text-shadow: 1px 1px 2px oklch(from #{var(--kuro)} l c h / 70%);
+        content: "すう〜";
+        transition: opacity 1.2s ease;
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
+      &:hover::after {
+        opacity: 0.9;
       }
-
-      .fade-out {
-        animation: fadeOut 0.5s ease forwards;
-      }
-
-      .fade-in {
-        animation: fadeIn 0.5s ease forwards;
-      }
-
-      @keyframes fadeInUp {
-        0% {
-          opacity: 0;
-          transform: translateY(1rem);
-        }
-
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    }
-  }
-
-  /* ミニカードの箱（ギャラリー専用背景） */
-  // .timer-grid-container {
-  //   background: rgb(14 16 32 / 40%);
-  //   box-shadow: 0 4px 12px rgb(0 0 0 / 20%),
-  //     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  //   border: 1px solid rgb(234 229 218 / 30%);
-  // }
-
-  /* カウント */
-  // .timer1 h1 {
-  //   text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
-  // }
-} // 🛑
-
-@media (width <= 600px) {
-  .lightbox-image {
-    max-width: 90vw;
-    max-height: 80vh;
-
-    & p {
-      justify-content: center;
-      max-width: 37.5rem;
-      margin: 1rem auto 0;
-      padding: 0.5rem 1rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-      background: rgb(255 255 255 / 10%);
-      color: #fff;
-      font-size: 0.8rem;
-      font-family: "Zen Kurenaido", sans-serif;
-      line-height: 1.6;
-      text-align: left;
-      backdrop-filter: blur(4px);
-      animation: fadeInUp 0.5s ease-out;
     }
   }
 }
 
-// スマホ🟢
-// 幅1024px（スマホたて向き）以下
-@media (width <= 1024px) and (orientation: portrait) {
-  body.gallery {
-    // 例：スマホ時の背景色やパディングなど
-    padding: 1rem;
+// Lightbox画像
+// ─────────────────────────────
+// モーダル全体（ブロック）
+.lightbox {
+  // 「画像＋キャプションの塊」ごと縦中央
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: core.$z-lightbox-block;
+  inset: 0;
 
-    // background-color: #f8f8f8;
-    main {
-      padding-bottom: 0;
+  &.hidden {
+    display: none;
+  }
 
-      // グリーン
-      background-color: core.$test-bg3;
-    }
+  // // Lightbox画像 背景
+  &__backdrop {
+    position: fixed;
+    z-index: core.$z-lightbox-bg;
+    inset: 0;
+    padding: clamp(16px, 4vw, 32px);
 
-    // 横スクロール可能な1行表示 試し中
-    // 写真用箱div 親
-    .photo-container {
-      display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      // grid-template-rows: 1fr;
-      overflow-x: auto;
-      grid-template-columns: repeat(
-        auto-fill,
-        minmax(330px, 1fr)
-      ); /* アイテム幅を200px以上で複数列に */
+    background: #{var(--lightbox-bg)};
+    pointer-events: auto;
+    overflow: auto;
+  }
 
-      grid-auto-flow: column; /* アイテムを列方向に配置する */
-      grid-auto-rows: 350px; /* 各アイテムの行の高さ */
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem 3%;
+  // Lightbox画像 コンテンツ領域
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: core.$z-lightbox-img;
+    transition: transform 0.4s ease-out;
 
-      // gap: 1rem;
-      // width: 90dvw;
-      // max-height: 90vh;
-      padding: 0;
-      margin-top: 2rem;
-      background-color: orange;
-    }
-
-    // 写真１枚の箱div 子
-    .photo-box {
-      border: white 1px solid;
-      position: relative;
-      width: 8.75rem;
-      height: 8.75rem;
-      margin: 0 auto;
+    & img {
+      width: 65dvw;
+      width: 65svw;
+      max-width: 100%;
+      height: auto;
+      max-height: 75dvh;
+      max-height: 75svh;
       border-radius: 16px;
-      box-shadow: 2px 2px 6px rgb(0 0 0 / 10%);
-      transition: transform 0.3s ease, filter 0.3s ease;
-      overflow: hidden;
+    }
+  }
+
+  // Lightbox 画像
+  &__img {
+    display: block;
+    aspect-ratio: auto;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    transition: transform 0.2s ease-out;
+  }
+
+  // Lightbox キャプション
+  &__caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.75rem auto;
+    // キャプションの「下寄せ」のため　2025/12/09
+    margin-bottom: clamp(16px, 4vh, 40px);
+    padding: 0.5rem;
+    max-width: calc(18px * 30);
+
+    // 見た目
+    border-radius: 16px;
+    border: 1px solid #{var(--shiro20)}; // 境界線を少し光らせる
+    background: transparent;
+    box-shadow: 0 4px 10px oklch(from #{var(--kuro)} l c h / 20%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    will-change: backdrop-filter;
+    animation: fadeInUp 0.5s ease-out;
+
+    cursor: zoom-in;
+
+    // テキスト
+    line-break: strict;
+    font-size: 1rem;
+    font-family: "Zen Kurenaido", sans-serif;
+    line-height: 1.6;
+    color: var(--shiro);
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: var(--shiro20);
+      outline: none; // ブラウザのデフォルトの青い枠を消す
+    }
+  }
+
+  // Lightbox ヘッダー（情報行） 閉じるボタン・拡大ボタン
+  &__header {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: var(--shiro);
+  }
+
+  // Lightbox クローズボタン
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: core.$z-lightbox-close;
+
+    // 仮でつけてる色
+    // background: core.$test-bg1;
+    // border: core.$test1;
+    border-radius: 50%;
+    text-shadow: 0 0 6px oklch(from #{var(--kuro)} l c h / 45%);
+    transition: all 0.15s ease;
+
+    & path {
+      stroke-width: 3px; /* ← 線の太さ変える */
+      stroke-linecap: round;
     }
 
-    // 見出し・headerに入れてもいいし
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--accent);
+      filter: brightness(1.2);
+      transform: scale(1.02);
+    }
+  }
 
-    h1 {
-      // margin-left: 2rem;
-      font-size: 1rem;
+  // Lightbox ナビボタン
+  &__nav {
+    position: absolute;
+    top: 48%; // ← 写真のど真ん中に近づく
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // 見た目
+    border: 1px solid var(--shiro20);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--shiro20);
+    box-shadow: 0 2px 6px oklch(from #{var(--kuro25)} l c h / 30%);
+    font-size: 2rem;
+    color: var(--shiro);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    will-change: backdrop-filter;
+    cursor: pointer;
+    z-index: core.$z-lightbox-nav;
+
+    // Lightbox ナビボタン（前）
+    &--prev {
+      left: max(2vw, 0.75rem); // ← 画面幅に応じて少し内側に　2025/12/09
     }
 
-    h2 {
-      margin-top: 0.2rem;
-      font-size: 0.8rem;
-
-      // margin-left: 2rem;
+    // Lightbox ナビボタン（次）
+    &--next {
+      right: max(2vw, 0.75rem);
     }
-  } // 消すな
-} // 🛑
 
-// 🟡
-// 📍📍 幅769px以上1099px以下で画面が横向きの時だけ
-@media screen and (width <= 1099px) and (orientation: landscape) {
-  body.gallery {
+    &:hover {
+      filter: brightness(1.2);
+      background: var(--shiro20);
+      border-color: var(--accent);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s ease forwards;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* coverモード中 */
+.lightbox__img.is-fit {
+  object-fit: cover;
+  cursor: zoom-out;
+}
+
+// 位置(2) Tablet(land)
+// 横向きで、高さ480px〜1024pxの間
+@media (height > #{core.$bp-sm}) and (height < #{core.$bp-lg}) and (orientation: landscape) {
+  .page--gallery {
+    // ギャラリーページだけの対応
+    .page-header {
+      margin-top: 2rem;
+    }
+
     main {
-      padding-bottom: 6rem;
-      background-color: core.$test-bg4;
+      margin-bottom: 0;
     }
 
-    h1 {
-      margin-left: 2rem;
-      font-size: 1.4rem;
+    .gallery__photo--container {
+      // ミニタイマーと写真がかぶらないように下に余白を作った　2025/12/08
+      padding-bottom: 10rem;
     }
 
-    h2 {
-      margin-top: 0.4rem;
-      margin-left: 2rem;
-      font-size: 1rem;
+    .lightbox {
+      align-items: stretch; // コンテンツに高さを持たせる
+
+      &__content {
+        min-height: 100dvh; // 画面の高さと同じだけ確保
+        justify-content: center; // 画像＋キャプションの塊を中央寄りに
+      }
+
+      &__caption {
+        // キャプションを1行にして左右の余白をカット　2025/12/09
+        margin: 1rem 0 clamp(12px, 3vh, 24px);
+        max-width: fit-content;
+      }
+    }
+  }
+}
+
+// 位置(3) Tablet(port) 右上
+// 縦向き　幅480px〜1024px タブレット　portrait　サイズ
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
+  .page--gallery {
+    /* iOSのセーフエリアも考慮 */
+    padding-bottom: calc(
+      var(-mini-h) + env(safe-area-inset-bottom, 0px) + 16px
+    );
+
+    // ミニタイマー用の余白
+    .page-header {
+      // 1行のレイアウト帯
+      &__bar {
+        // タイトル上下に余白
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding: 8px 0;
+      }
+    }
+
+    .gallery {
+      margin-top: 3rem;
+    }
+
+    .lightbox__content {
+      padding-block: 2.5rem;
+      width: 100%;
+      max-width: 960px;
+      // 範囲を決める
+      height: min-content;
+      max-height: calc(100dvh - 4rem);
+      overflow: auto;
+    }
+
+    .lightbox__img {
+      max-width: min(100%, 900px);
+      max-height: calc(100dvh - 12rem);
+    }
+
+    .lightbox__caption {
+      text-align: left;
+    }
+
+    .lightbox__content img {
+      width: 75dvw;
+      width: 75svw;
+      max-height: 55dvh;
+      max-height: 55svh;
+    }
+
+    .lightbox__nav {
+      // Lightbox ナビボタン（前）
+      &--prev {
+        left: calc(max(2vw, 0.75rem) + var(--safe-left));
+      }
+
+      // Lightbox ナビボタン（次）
+      &--next {
+        right: calc(max(2vw, 0.75rem) + var(--safe-right));
+      }
     }
   }
 } // 🛑
 
-// 🟦
-@media (width >= 1025px) {
+// 位置(4) 📱mobile(land) 浮・3列3行の正方形
+// 🟡
+// 📍📍 高さ480px以下で画面が横向きの時だけ
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--gallery {
+    // background: core.$test-bg5;
+    .page-header {
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+
+      // 1行のレイアウト帯
+      &__bar {
+        // background: core.$test-bg3;
+        // タイトル上下に余白
+        padding: 8px 0;
+      }
+
+      &__title {
+        font-size: clamp(18px, 4vw, 20px);
+      }
+    }
+
+    main {
+      padding: 0;
+      margin-bottom: 0;
+
+      // background-color: core.$test-bg3;
+    }
+
+    .lightbox {
+      align-items: stretch; // コンテンツに高さを持たせる
+
+      &__content {
+        min-height: 100dvh; // 画面の高さと同じだけ確保
+        justify-content: center; // 画像＋キャプションの塊を中央寄りに
+
+        & img {
+          width: 75dvw;
+          width: 75svw;
+          max-width: fit-content;
+          border-radius: 8px;
+        }
+      }
+
+      &__caption {
+        margin-top: 1rem;
+        // margin-bottom: 0;
+        margin-bottom: clamp(12px, 3vh, 24px); // 下に少し余白
+        max-width: calc(18px * 25);
+        padding: 0.3rem 0.5rem;
+        border-radius: 8px;
+        line-height: 1.6;
+      }
+    }
+  }
+} // 🛑
+
+// 位置(5) 📲mobile(port) static 上部固定
+// 🟦 幅480px以下縦
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  .page--gallery {
+    // ミニタイマー用の余白
+    .page-header {
+      margin-top: 0;
+      margin-bottom: 10px;
+
+      // 1行のレイアウト帯
+      &__bar {
+        // タイトル上下に余白
+        padding: 0;
+
+        // @media (width <= 1080px) and (orientation: portrait) での設定を0にする
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      &__title {
+        font-size: clamp(18px, 5vw, 20px);
+      }
+    }
+
+    main {
+      padding: 0;
+      margin-bottom: 1rem;
+    }
+
+    // .lightbox
+    .lightbox__content img {
+      width: 65dvw;
+      width: 90svw;
+      max-width: fit-content;
+      height: fit-content;
+      max-height: 75dvh;
+      max-height: 65svh;
+      border-radius: 16px;
+    }
+
+    .lightbox__caption {
+      margin: 0.5rem auto;
+      margin-bottom: 0;
+      padding: 0.5rem;
+      max-width: calc(18px * 18);
+    }
+  }
 }

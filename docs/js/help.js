@@ -1,6 +1,9 @@
 (() => {
+  // ミニタイマーのヘルプボタン（タイマーの使い方を開く）
   const trigger = document.getElementById("helpBtn");
+  // ヘルプカード本体 class="info-help-card"
   const card = document.getElementById("helpCard");
+  // カード内のヘルプカード閉じるボタン
   const close = document.getElementById("helpCloseBtn");
   if (!trigger || !card || !close) return;
 
@@ -12,6 +15,7 @@
     card.hidden = false;
     card.classList.add("is-open");
     trigger.setAttribute("aria-expanded", "true");
+    // ID=helpTitle カードのタイトル
     (card.querySelector("#helpTitle") || card).focus({ preventScroll: true });
     document.addEventListener("keydown", onKey);
   };
@@ -39,7 +43,7 @@
       shutdown();
     }
   };
-  console.log("🍪");
+
   trigger.addEventListener("click", toggle);
   trigger.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -51,3 +55,4 @@
     shutdown();
   });
 })();
+console.log("🍪最後まで読みました");
