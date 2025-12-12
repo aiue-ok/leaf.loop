@@ -1,6 +1,10 @@
 @use "../core/index" as core;
 
 .hero__slot--side :where(.info) {
+  --link-main-color: #{core.$main-color};
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+
   /* Block本体 */
   .info {
     display: grid;
@@ -28,7 +32,8 @@
     gap: 0.5em;
     inline-size: max-content;
     max-inline-size: min(70vw, 420px);
-    padding: var(--link-padding);
+    height: 44px;
+    padding: 8px;
     border-radius: 999px;
     background: oklch(from #{var(--kuro)} l c h / 16%);
     backdrop-filter: blur(8px) saturate(140%);
