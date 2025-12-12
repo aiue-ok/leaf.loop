@@ -271,6 +271,11 @@ input {
 // }
 
 // 各ページのベースカラー
+.page--hero {
+  --kuro: oklch(8% 0 0deg); /* 真っ黒禁止 */
+  --shiro: oklch(98% 0.005 110deg); /* 真っ白も少し抑える */
+}
+
 .page--gallery {
   --bg: #{$color-g-latte-dark};
   --main-color: #{$color-g-blueblack};

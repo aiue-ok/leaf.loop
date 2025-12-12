@@ -7,9 +7,11 @@
 .timer {
   // --◆◇ 共通　◆◇--
   // 色　タイマー　メインカラー　（hero）
-  --t-main-color: core.$main-color;
+  --t-main-color: #{var(--main-color)};
   --t-complementary-color: #0a0a0a;
   --t-accent: #e3e3e3;
+  --kuro: oklch(8% 0 0deg); /* 真っ黒禁止 */
+  --shiro: oklch(98% 0.005 110deg); /* 真っ白も少し抑える */
 
   // line-height:
   // h1 & preset-btn
@@ -23,7 +25,7 @@
   --milk-white: oklch(96% 0.01 110deg);
 
   // カウントダウン文字の背景
-  --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
+  --count-bg: color-mix(in srgb, var(--milk-white) 5%, transparent);
 
   // カウントダウン文字のサイズ① ブラウザ幅・向き共通
   --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
@@ -46,8 +48,8 @@
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
 
   // ★ 3/4/5分の円ボタン★
-  --preset-fg: core.$main-color;
-  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, var(--kuro) 45%);
+  --preset-fg: #{var(--t-main-color)};
+  --preset-bg: color-mix(in srgb, var(--milk-white) 14%, var(--kuro) 28%);
 
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
@@ -58,9 +60,9 @@
   );
 
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
-    /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-    /* ほんのり天面の白 */ 0 8px 24px oklch(from #{var(--shiro)} l c h / 25%);
+  --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
+    inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
+
   --preset-mask: linear-gradient(
     to bottom,
     var(--kuro) 0 60%,
@@ -68,18 +70,17 @@
   );
 
   // プリセット border 線
-  --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+  --preset-line: 0.8px solid rgb(245 245 245 / 45%);
 
   // プリセット　アクティブ・ホバー
 
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
-  --preset-fg-current: var(--preset-fg);
+  --preset-fg-current: var(--t-main-color);
   --preset-gl-current: var(--preset-glass);
-  --preset-bg-accent: solid 2.27px core.$main-color;
+  --preset-bg-accent: solid 2.27px #{var(--t-main-color)};
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
-    inset 0 6px 14px rgb(255 255 255 / 4%),
-    0 4px 12px oklch(from #{var(--kuro)} l c h / 22%);
+    inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
   --preset-bg-active: color-mix(
     in oklch,
     var(--milk-white) 6%,

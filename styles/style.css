@@ -194,6 +194,11 @@ input {
 
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
 /* 使う場所で OKLCH に変換して指定する */
+.page--hero {
+  --kuro: oklch(8% 0 0deg); /* 真っ黒禁止 */
+  --shiro: oklch(98% 0.005 110deg); /* 真っ白も少し抑える */
+}
+
 .page--gallery {
   --bg: oklch(90% 0.02 85deg);
   --main-color: oklch(22% 0.03 266deg);
@@ -698,13 +703,15 @@ input[type=checkbox] {
   }
 }
 .timer {
-  --t-main-color: core.$main-color;
+  --t-main-color: var(--main-color);
   --t-complementary-color: #0a0a0a;
   --t-accent: #e3e3e3;
+  --kuro: oklch(8% 0 0deg); /* 真っ黒禁止 */
+  --shiro: oklch(98% 0.005 110deg); /* 真っ白も少し抑える */
   --t-txt-line-h: 1.2;
   --t-drop-shadow: drop-shadow(0 1px 1px var(--kuro25));
   --milk-white: oklch(96% 0.01 110deg);
-  --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
+  --count-bg: color-mix(in srgb, var(--milk-white) 5%, transparent);
   --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
   --count-size-smaller: clamp(48px, 6vw, 56px);
   --count-radius: 0.6rem;
@@ -713,8 +720,8 @@ input[type=checkbox] {
     /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
   --count-filter: blur(3px) saturate(95%) contrast(92%);
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
-  --preset-fg: core.$main-color;
-  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, var(--kuro) 45%);
+  --preset-fg: var(--t-main-color);
+  --preset-bg: color-mix(in srgb, var(--milk-white) 14%, var(--kuro) 28%);
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
     to bottom,
@@ -723,23 +730,21 @@ input[type=checkbox] {
     rgb(255 255 255 / 0%) 60%
   );
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
-    /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-    /* ほんのり天面の白 */ 0 8px 24px oklch(from var(--shiro) l c h / 25%);
+  --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
+    inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
   --preset-mask: linear-gradient(
     to bottom,
     var(--kuro) 0 60%,
     transparent 60% 100%
   );
-  --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+  --preset-line: 0.8px solid rgb(245 245 245 / 45%);
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
-  --preset-fg-current: var(--preset-fg);
+  --preset-fg-current: var(--t-main-color);
   --preset-gl-current: var(--preset-glass);
-  --preset-bg-accent: solid 2.27px core.$main-color;
+  --preset-bg-accent: solid 2.27px var(--t-main-color);
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
-    inset 0 6px 14px rgb(255 255 255 / 4%),
-    0 4px 12px oklch(from var(--kuro) l c h / 22%);
+    inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
   --preset-bg-active: color-mix(
     in oklch,
     var(--milk-white) 6%,
@@ -968,11 +973,10 @@ body .js-toast--visible {
   aspect-ratio: 1/1;
   border-radius: 50%;
   text-align: center;
-  background: var(--preset-bg-current);
-  color: var(--preset-fg-current);
-  filter: var(--preset-shadow);
+  background: var(--preset-bg);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18));
   /* 内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  box-shadow: var(--preset-glass);
+  box-shadow: var(--preset-inner), var(--preset-glass);
   position: relative;
   transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.1s ease, color 0.18s ease;
   /* 共有状態（hover / is-active / aria-pressed） */
