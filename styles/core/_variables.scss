@@ -8,9 +8,9 @@
 // ════════════════════════════════
 
 // #f5f5f5
-$main-color: oklch(97.015% 0.00011 271.152deg);
-$main-color-70: oklch(97.015% 0.00011 271.152deg / 70%);
-$main-color-80: oklch(97.015% 0.00011 271.152deg / 80%);
+$main-color: oklch(97.015% 0.0001 271.152deg);
+$main-color-70: oklch(97.015% 0.0001 271.152deg / 70%);
+$main-color-80: oklch(97.015% 0.0001 271.152deg / 80%);
 
 // ════════════════════════════════
 // ✨ hero
@@ -31,8 +31,8 @@ $text-main: clamp(16px, 1.111vw, 24px);
 
 // === 白と黒 ===
 
-$shiro100: oklch(100% 0.00011 271.152deg);
-$shiro10: oklch(100% 0.00011 271.152deg / 10%);
+$shiro100: oklch(100% 0.0001 271.152deg);
+$shiro10: oklch(100% 0.0001 271.152deg / 10%);
 $kuro70: oklch(0% 0 0deg / 70%);
 $kuro100: oklch(0% 0 0deg);
 
@@ -49,7 +49,7 @@ $color-g-shiro20: oklch(100% 0 0deg / 20%);
 
 // ギャラリー黒70%（オーバーレイや文字補助）
 $color-g-kuro70: oklch(0% 0 0deg / 70%);
-$color-g-lb-overlay: oklch(78.407% 0.06728 63.555deg);
+$color-g-lb-overlay: oklch(78.407% 0.0673 63.555deg);
 
 // コズミックラテ（渋）
 $color-g-latte-dark: oklch(90% 0.02 85deg); // ≒ #eae5da

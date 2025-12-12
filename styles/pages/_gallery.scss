@@ -447,7 +447,7 @@
   }
 }
 
-/* coverモード中*/
+/* coverモード中 */
 .lightbox__img.is-fit {
   object-fit: cover;
   cursor: zoom-out;
@@ -480,11 +480,8 @@
       }
 
       &__caption {
-        margin-top: 1rem;
-        margin-bottom: clamp(12px, 3vh, 24px); // 下に少し余白
         // キャプションを1行にして左右の余白をカット　2025/12/09
-        margin-left: 0;
-        margin-right: 0;
+        margin: 1rem 0 clamp(12px, 3vh, 24px);
         max-width: fit-content;
       }
     }
@@ -504,7 +501,6 @@
     .page-header {
       // 1行のレイアウト帯
       &__bar {
-        // background: core.$test-bg3;
         // タイトル上下に余白
         margin-top: 2.5rem;
         margin-bottom: 1rem;
@@ -514,8 +510,6 @@
 
     .gallery {
       margin-top: 3rem;
-
-      // background-color: core.$test-bg3;
     }
 
     .lightbox__content {
@@ -526,37 +520,15 @@
       height: min-content;
       max-height: calc(100dvh - 4rem);
       overflow: auto;
-
-      // display: grid;
-      // grid-template-rows: min-content min-content;
-      // justify-content: center;
-      // align-items: end;
     }
 
-    .lightbox {
-      &__content {
-        // padding-block: 2.5rem; // ← 上下の余白を固定する方が安定
-        // width: 100%;
-        // max-width: 960px;
-        // max-height: calc(100dvh - 4rem);
-        // overflow: auto;
-        // background-color: antiquewhite;
-      }
+    .lightbox__img {
+      max-width: min(100%, 900px);
+      max-height: calc(100dvh - 12rem);
+    }
 
-      // ↓12rem の部分は：
-      // 上部の閉じるボタン
-      // 画像上の余白
-      // 画像下の余白
-      // キャプション＋ナビボタン分
-      // これらをすべて吸収させる目的。
-      &__img {
-        max-width: min(100%, 900px);
-        max-height: calc(100dvh - 12rem);
-      }
-
-      &__caption {
-        text-align: left;
-      }
+    .lightbox__caption {
+      text-align: left;
     }
 
     .lightbox__content img {

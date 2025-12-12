@@ -75,7 +75,7 @@ input[type="checkbox"] {
   border-radius: 12px;
   background: oklch(from #{var(--kuro)} l c h / 15%);
   backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   will-change: backdrop-filter;
 }
 

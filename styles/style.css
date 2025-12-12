@@ -165,17 +165,17 @@ input {
   --motion-tap: 0.24s; /* タン */
   --motion-soft: 0.4s; /* ふわ〜 */
   --tile-min-h: clamp(56px, 10svh, 128px);
-  --shiro: oklch(100% 0.00011 271.152deg);
+  --shiro: oklch(100% 0.0001 271.152deg);
   --shiro10: oklch(from var(--shiro) l c h / 10%);
   --shiro20: oklch(from var(--shiro) l c h / 20%);
   --kuro: oklch(0% 0 0deg);
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: rgba(161, 161, 161, 0.4);
-  --main-color: oklch(97.015% 0.00011 271.152deg);
+  --main-color: oklch(97.015% 0.0001 271.152deg);
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
-  --help-h: oklch(100% 0.00011 271.152deg);
+  --help-h: oklch(100% 0.0001 271.152deg);
   --help-border: oklch(from var(--shiro) l c h / 12%);
   --help-icon: #b4d2ea;
   --glass-border: oklch(from var(--shiro) l c h / 18%);
@@ -280,7 +280,7 @@ input {
 /* Moss heroヘルプカード使用中 */
 .theme-moss {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: oklch(97.015% 0.00011 271.152deg);
+  --link-main-color: oklch(97.015% 0.0001 271.152deg);
   --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(24 36 28 / 72%);
@@ -307,7 +307,7 @@ input {
 /* Dew */
 .theme-dew {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: oklch(97.015% 0.00011 271.152deg);
+  --link-main-color: oklch(97.015% 0.0001 271.152deg);
   --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(240 245 243 / 82%);
@@ -609,7 +609,7 @@ input[type=checkbox] {
   border-radius: 12px;
   background: oklch(from var(--kuro) l c h/15%);
   backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   will-change: backdrop-filter;
 }
 
@@ -839,7 +839,7 @@ input[type=checkbox] {
   height: auto;
   transform: translateX(0) translateY(0);
   background: #008000;
-  color: oklch(100% 0.00011 271.152deg);
+  color: oklch(100% 0.0001 271.152deg);
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
@@ -995,7 +995,7 @@ body .js-toast--visible {
   );
   --preset-fg-current: var(--t-complementary-color);
   transform: translateY(-0.5px);
-  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.00011 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.00011 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
+  box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.0001 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.0001 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
 }
 .timer__preset-btn.is-active, .timer__preset-btn[aria-pressed=true] {
   --preset-bg-current: color-mix(
@@ -1174,12 +1174,12 @@ body .js-toast--visible {
     border: var(--preset-bg-accent);
     background: var(--t-main-color);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.00011 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.00011 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
+    box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.0001 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.0001 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
     transform: translateY(-0.5px);
   }
   .page--hero .timer__action-btn:hover {
     cursor: pointer;
-    color: oklch(100% 0.00011 271.152deg);
+    color: oklch(100% 0.0001 271.152deg);
     text-shadow: 0 4px 4px var(--kuro25);
     transform: scale(1.02);
     outline: var(--action-outline-hover);
@@ -1238,10 +1238,10 @@ body .js-toast--visible {
   background-color: oklch(from var(--kuro) l c h/10%);
   /* or var(--focus-bg, rgb(0 0 0 / .10)) */
   /* 視認性UPのための微弱な影（レイアウト不変） */
-  box-shadow: 0 0 0 2px oklch(from oklch(100% 0.00011 271.152deg) l c h/25%) inset;
+  box-shadow: 0 0 0 2px oklch(from oklch(100% 0.0001 271.152deg) l c h/25%) inset;
 }
 .hero__slot--side :where(.info) .info__link:focus-visible {
-  outline: 2px solid var(--focus-ring, oklch(100% 0.00011 271.152deg));
+  outline: 2px solid var(--focus-ring, oklch(100% 0.0001 271.152deg));
   outline-offset: 2px;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1830,7 +1830,7 @@ body:not([data-menu-open=true]) .scrim {
   body.universe .decor-clock,
   body.about .decor-clock {
     max-inline-size: 180px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
@@ -2332,7 +2332,7 @@ body.hero {
   isolation: isolate;
   font-size: var(--text-hero);
   overflow-x: hidden;
-  color: oklch(97.015% 0.00011 271.152deg);
+  color: oklch(97.015% 0.0001 271.152deg);
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
   /* 背景メディアは最背面 <div> */
   /* 既定は静止画だけを見せる */
@@ -3107,7 +3107,7 @@ body.hero .hero__head {
   }
 }
 
-/* coverモード中*/
+/* coverモード中 */
 .lightbox__img.is-fit {
   object-fit: cover;
   cursor: zoom-out;
@@ -3131,10 +3131,7 @@ body.hero .hero__head {
     justify-content: center;
   }
   .page--gallery .lightbox__caption {
-    margin-top: 1rem;
-    margin-bottom: clamp(12px, 3vh, 24px);
-    margin-left: 0;
-    margin-right: 0;
+    margin: 1rem 0 clamp(12px, 3vh, 24px);
     max-width: fit-content;
   }
 }
