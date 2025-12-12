@@ -2143,7 +2143,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     bottom: unset;
     width: min-content;
     height: 16vh;
-    min-height: 150px;
+    min-height: 175px;
     max-height: 200px;
   }
   .page--gallery .timer-mini__screen--count {
