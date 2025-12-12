@@ -1,80 +1,16 @@
-// 色、フォントサイズ、transitionなど
-@supports (height: 1dvh) {
-  :root {
-    --vh: 1dvh;
-  } /* 新しいdvhが使える環境では上書き */
-}
+// 目次 パレット / mixin
+// 1.カラーパレット🎨 絶対値の色
+// 2.固定トークン
+// “CSS 変数”はなし
 
-:root {
-  /* まずはビューポート単位のフォールバック変数 */
-  --vh: 1svh;
+// ════════════════════════════════
+// 🌿 leaf.loop パレット
+// ════════════════════════════════
 
-  /* ベース文字 */
-  // フォント切り替え時のレイアウト揺れ（CLS）を抑える
-
-  /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
-  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
-    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
-
-  /* 欧文/数字はInterを第一候補に */
-  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
-    sans-serif;
-
-  /* 見出しの柔らかい表情用（必要な所だけに限定） */
-  --ff-marui: "Kiwi Maru", "M PLUS 1p", var(--ff-jp);
-
-  // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
-  // * 2880px で 1vw = 28.8px。1.111vw ≒ 32px（ぴったり倍）
-  --fs: clamp(16px, 1.111vw, 32px);
-  --text-hero: clamp(1.125rem, 1.0585rem + 0.2128vw, 1.25rem);
-
-  /* 余白（例：内側パディング 16→32） */
-  --pad: clamp(16px, 1.111vw, 32px);
-
-  // iPhone横向き専用“安全マクロ”
-  // ツールバー・ノッチ・セーフエリアを全部飲み込むプリセット。
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-left: env(safe-area-inset-left, 0px);
-  --safe-right: env(safe-area-inset-right, 0px);
-
-  /* 行間なども同様に */
-  --space-2: 1rem;
-  --gap: clamp(8px, 0.7vw, 16px);
-  --hero-veil: 0.4;
-  --yanagi-alpha: 0.18;
-
-  // タイマー表示
-
-  // タイル
-  --tile-min-h: clamp(56px, 10svh, 128px);
-
-  // notify-controls “プリセット風チップUI”
-  --chip-bg: rgb(255 255 255 / 8%);
-  --chip-bg-active: rgb(255 255 255 / 18%);
-  --chip-bd: rgb(255 255 255 / 55%);
-  --chip-bd-active: rgb(255 255 255 / 85%);
-
-  /* Theme: default = charcoal leaf */
-  --help-bg: rgb(12 14 16 / 78%);
-  --help-fg: #eaeaea;
-  --help-h: #fff;
-  --help-border: rgb(255 255 255 / 12%);
-  --help-icon: #b4d2ea;
-
-  // border/blur/影の係数
-  --glass-border: rgb(255 255 255 / 18%);
-  --glass-blur: 6px;
-  --glass-shadow: 0 8px 24px rgb(0 0 0 / 25%);
-
-  // fucus-visible
-  --focus-ring: #f5f5f5;
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
-}
-
-$main-color: #f5f5f5;
+// #f5f5f5
+$main-color: oklch(97.015% 0.0001 271.152deg);
+$main-color-70: oklch(97.015% 0.0001 271.152deg / 70%);
+$main-color-80: oklch(97.015% 0.0001 271.152deg / 80%);
 
 // ════════════════════════════════
 // ✨ hero
@@ -86,29 +22,82 @@ $hero-background: rgb(161 161 161 / 40%);
 // 柳鼠フィルター rgb(200 211 192 / 0.4)
 $filter-yanaginezu: rgb(200 211 192 / 40%);
 
-// アイコンサイズ 最小44px,最大56px
+// アイコンサイズ 最小44px,最大56px 使ってない
 $icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
 $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
-
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-
-$volume-control-slider-background: #f5f5f560;
 
 // ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
 
-// スマホ両脇
-// 16〜20px + safe-area
+// === 白と黒 ===
 
-// ▼ギャラリー
-$g-col-blueblack: rgb(21 26 37 / 100%); // blue-black#151a25
-$color-text-light-rgba: rgb(245 245 245 / 70%);
+$shiro100: oklch(100% 0.0001 271.152deg);
+$shiro10: oklch(100% 0.0001 271.152deg / 10%);
+$kuro70: oklch(0% 0 0deg / 70%);
+$kuro100: oklch(0% 0 0deg);
 
-// === Backgrounds ===
-$color-bg-base: #eae5da; // コズミックラテ（ベース）
-$color-bg-muted: #f5f5f5; // 明るいミュート背景
-$color-bg-muted-alpha: #f5f5f530; // 明るいミュート背景
-$color-bg-gallery: #fff; // ギャラリー白
+// ════════════════════════════════
+// 🖼️ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
+// ════════════════════════════════
+
+// 深いブルーブラック：夜空のような基調
+$color-g-blueblack: oklch(22% 0.03 266deg); // ≒ #151a25
+
+// ギャラリー白10%（透明オーバーレイ用）
+$color-g-shiro10: oklch(100% 0 0deg / 10%);
+$color-g-shiro20: oklch(100% 0 0deg / 20%);
+
+// ギャラリー黒70%（オーバーレイや文字補助）
+$color-g-kuro70: oklch(0% 0 0deg / 70%);
+$color-g-lb-overlay: oklch(78.407% 0.0673 63.555deg);
+
+// コズミックラテ（渋）
+$color-g-latte-dark: oklch(90% 0.02 85deg); // ≒ #eae5da
+
+// コズミックラテ（明るめ）
+$color-g-latte-light: oklch(96% 0.01 85deg); // ≒ #f4efe8
+
+// コズミックラテ（標準）
+$color-g-latte-normal: oklch(98% 0.01 85deg); // ≒ #fff8e7
+
+// アクセント
+$color-g-chai: #d8b08c;
+$color-g-cha: #9dc5af;
+$color-g-jasmin: oklch(95% 0.03 105deg);
+$color-g-chaisoft: oklch(32% 0.04 50deg / 95%);
+
+// ドロワーメニュー
+$carrots: #ff8c00;
+
+// === ヘルプカード ===
+$chai-dark: oklch(44% 0.05 66.85deg);
+$red-velvet: #b74152;
+$cream-cheese: oklch(96% 0.015 75deg);
+$moon-vanilla: rgb(255 255 255 / 25%);
+$moon-lit: oklch(75% 0.02 30deg / 25%);
+
+// ════════════════════════════════
+// 🪐 universe
+// ════════════════════════════════
+
+$color-space-far: #f8faff;
+$color-space-bit: #0e1020;
+$color-space-dust: #e1f3ff;
+$color-space-star: #f0cd90;
+$color-space-bang: #888;
+
+// ════════════════════════════════
+// 👤 about
+// ════════════════════════════════
+
+$color-u-ex: #387f5a;
+$color-u-note: #d7d9d7;
+$color-u-tec: #d8b08c;
+$color-u-book: #2e4f3e;
+
+// ════════════════════════════════
+// 🔋　固定トークン
+// ════════════════════════════════
 
 // ▼z-index
 // === 基本　hero ===
@@ -120,42 +109,62 @@ $z-closer: 2;
 $z-nav: 0;
 
 // === 各ページ ===
-// ヘルプカード
-$z-help: 10;
+// main
+// ミニタイマー・ヘルプアイコン
 $z-timer-mini: 5;
-$z-menu-offcanvas: 80;
-$z-menu-backdrop: 70;
+$z-timer-toast: 4000;
 
-// ▼テーマカラー候補
-// $Leaf Mist	#eef4f0	hero背景ベース。朝霧のような白緑
-$LeafMist: #eef4f0;
+// ─────────────────────────────
+// 【gallery】 Lightbox画像
+// lightbox モーダル全体（ブロック）
+$z-lightbox-block: 2000;
 
-// $Steam Grey	#d7d9d7	タイマー背景。やかんの湯気イメージ
-$SteamGrey: #d7d9d7;
+// 背景
+$z-lightbox-bg: 100;
 
-// $Celestial Silver	#cdd1d4	universe用のパネル系。星の光反射
-$CelestialSilver: #cdd1d4;
+// コンテンツ領域 画像（img）　キャプション
+$z-lightbox-img: 2000;
 
-// $Moss Sha/dow	#a3b2a1	gallery hover用。苔と影の混ざり合い
-$MossShadow: #a3b2a1;
+// lightbox クローズボタン
+$z-lightbox-close: 2100;
 
-// $Silence White:#ffffff	基本の白。本文背景・余白などに使用
-$SilenceWhite: #fff;
+// ナビボタン
+$z-lightbox-nav: 2100;
 
-// 4) 既存トークンを活かす小ワザ
-// 「トークンは rgb/hex」のままでも 使う瞬間に変換すればOK。
+// ─────────────────────────────
+// メニュー
+// ハンバーガー
+$z-menu-hbg: 1000;
 
-/* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
-// .universe {
-// --accent: rgb(100 150 200);
-// }_
+/* パネル本体（右から） */
+$z-menu-offcanvas: 1100;
 
-/* 使う場所で OKLCH に変換して指定する */
-// .universe .oklch-accent {
-// color: oklch(from var(--accent) l c h);
-// }
+// 背景の半透明幕
+$z-menu-backdrop: 999;
 
-// ▼フィルター
-// ▽入力画像の彩度　 saturate()
-$saturate-normal: saturate(140%);
-$saturate-hover: saturate(130%);
+// ─────────────────────────────
+// サイド
+// ヘルプカード
+$z-help: 3000;
+
+// z-index: 100; /* ヘルプカード内で最上層に */
+$z-help-close: 3100;
+
+// ─────────────────────────────
+
+/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
+// ▼ 間隔
+$gap-xs: 8px;
+$gap-sm: 12px;
+$gap-md: 16px;
+$gap-lg: 20px;
+$gap-xl: 24px;
+
+// ▼ ブレイクポイント
+$bp-xs: 376px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1440px;
+
+// ─────────────────────────────

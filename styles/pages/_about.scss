@@ -168,7 +168,7 @@ body.about {
     transform: translateY(0.35rem);
     white-space: nowrap;
     background: oklch(22% 0.03 260deg);
-    color: white;
+    color: core.$shiro100;
     padding: 0.35rem 0.6rem;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -184,7 +184,7 @@ body.about {
     visibility: hidden;
     width: 80px;
     background-color: #333;
-    color: #fff;
+    color: core.$shiro100;
     text-align: center;
     padding: 0.3rem 0.5rem;
     border-radius: 6px;

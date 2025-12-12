@@ -7,23 +7,25 @@
 .timer {
   // --◆◇ 共通　◆◇--
   // 色　タイマー　メインカラー　（hero）
-  --t-main-color: #f5f5f5;
+  --t-main-color: #{var(--main-color)};
   --t-complementary-color: #0a0a0a;
   --t-accent: #e3e3e3;
+  --kuro: oklch(8% 0 0deg); /* 真っ黒禁止 */
+  --shiro: oklch(98% 0.005 110deg); /* 真っ白も少し抑える */
 
   // line-height:
   // h1 & preset-btn
   --t-txt-line-h: 1.2;
 
   // filter drop-shadow
-  --t-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+  --t-drop-shadow: drop-shadow(0 1px 1px #{var(--kuro25)});
 
   // ◆◇ タイマー表示　◆◇
-  // タイマーカウント　/* #fffより柔らかい */
+  // タイマーカウント　/* #{core.$shiro100}より柔らかい */
   --milk-white: oklch(96% 0.01 110deg);
 
   // カウントダウン文字の背景
-  --count-bg: color-mix(in oklch, var(--milk-white) 5%, transparent);
+  --count-bg: color-mix(in srgb, var(--milk-white) 5%, transparent);
 
   // カウントダウン文字のサイズ① ブラウザ幅・向き共通
   --count-size-normal: clamp(48px, 36.732px + 3.005vw, 80px);
@@ -46,8 +48,8 @@
   --preset-btn-width: clamp(3rem, 4vw, 6rem);
 
   // ★ 3/4/5分の円ボタン★
-  --preset-fg: core.$main-color;
-  --preset-bg: color-mix(in oklch, var(--milk-white) 6%, rgb(0 0 0 / 15%));
+  --preset-fg: #{var(--t-main-color)};
+  --preset-bg: color-mix(in srgb, var(--milk-white) 14%, var(--kuro) 28%);
 
   /* 上半分だけに効く柔らかいグロス */
   --preset-gloss: linear-gradient(
@@ -58,27 +60,31 @@
   );
 
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  --preset-glass: inset 0 0 0 1px rgb(255 255 255 / 16%),
-    /* ← これが“内側の光沢” */ inset 0 8px 20px rgb(255 255 255 / 6%),
-    /* ほんのり天面の白 */ 0 8px 24px rgb(0 0 0 / 25%);
-  --preset-mask: linear-gradient(to bottom, #000 0 60%, transparent 60% 100%);
+  --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
+    inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
+
+  --preset-mask: linear-gradient(
+    to bottom,
+    var(--kuro) 0 60%,
+    transparent 60% 100%
+  );
 
   // プリセット border 線
-  --preset-line: 0.8px solid rgb(245 245 245 / 18%);
+  --preset-line: 0.8px solid rgb(245 245 245 / 45%);
 
   // プリセット　アクティブ・ホバー
 
   /* ★ベース★ */
   --preset-bg-current: var(--preset-bg);
-  --preset-fg-current: var(--preset-fg);
+  --preset-fg-current: var(--t-main-color);
   --preset-gl-current: var(--preset-glass);
-  --preset-bg-accent: solid 2.27px core.$main-color;
+  --preset-bg-accent: solid 2.27px #{var(--t-main-color)};
   --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
   --preset-bg-active: color-mix(
     in oklch,
     var(--milk-white) 6%,
-    rgb(0 0 0 / 5%)
+    oklch(from #{var(--kuro)} l c h / 5%)
   );
   --preset-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
 
@@ -100,147 +106,166 @@
   --action-bg-shadow: 0 2px 6px rgb(0 0 0 / 15%);
 
   // 操作アイコンspan 縁
-  --action-outline: 1px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline: 1px solid color-mix(in oklab, var(--shiro) 35%, transparent);
 
   // ホバー outline 太く
-  --action-outline-hover: 2px solid color-mix(in oklab, #fff 35%, transparent);
+  --action-outline-hover: 2px solid
+    color-mix(in oklab, var(--shiro) 35%, transparent);
 }
 
-.timer-mini-container {
-  --timer-position: fixed;
-  --timer-left: 1.25rem;
-  --timer-bottom: 1.25rem;
+// タイマーミニ　共通サイズ関係
+.timer-mini {
+  // compact  デフォルト
+  // stacked 3列積み上げ
+  // inline 1列
 
-  //   w360px h180px　ビューポートに依る
-  //   width: 22.5rem;height: 11.25rem;
-  // --timer-mini-width: clamp(360px, 25vw, 380px);
-  --timer-mini-height: max(180px, 17.58vh);
+  /* 1 丸ボタン */
+  --btn-size-pill: 40px; // inline, stacked で差し替え可能
+  --btn-size-pill-stacked: 44px;
+  --btn-size-pill-inline: 36px;
 
-  // z-index: 5;
-  // カウントダウン表示　００：００
-  --timer-count-font-size: clamp(3rem, 12vw, 3.4rem);
-  --timer-count-font-size-mobile: clamp(24px, 1.8rem, 32px);
+  // 2 アイコンサイズ 見た目
+  --btn-size-icon: 30px;
+  --btn-size-icon-stacked: 44px;
+  --btn-size-icon-inline: 36px;
 
-  // ボタンの配置間隔
-  --gap-g-button: 8px;
-  --gap-g-button-mobile: 5px;
+  // 見た目（ヘルプ）
+  --btn-size-help: 28px;
+  --btn-size-help-inline: 24px; /* 見た目 */
 
-  // アイコンfont
-  --timer-mini-icon-size: 36px;
-  --timer-mini-icon-size-mobile: 28px;
-  --icon-visual: 28px; /* 見た目 */
-  --icon-hit: 44px; /* タップ面 */
-  // プリセットボタンの円    /* 円の大きさ */
-  --timer-mini-width: clamp(2.6rem, 3vw, 5rem);
-  --timer-mini-width-mobile: 24px;
-  --timer-mini-aspect-ratio: 1 / 1;
-  --timer-mini-aspect-ratio-mobile: 1 / 2;
-  --timer-mini-border-radius: 50%;
-  --timer-mini-border-radius-mobile: 8px;
-  --timer-mini-border-width: 2.27px;
-  --timer-mini-border-less: 0;
-  --timer-mini-preset-font-size: clamp(1rem, 1.5vw, 2rem);
+  //  3 ボタンのヒットエリア
+  --btn-hit: 44px;
+  --btn-hit-small: 36px;
 
-  // 音量（ラベル＋スライダー） */
-  --timer-mini-inline-size: min(36vw, 12rem);
-  --timer-mini-inline-size-mobile: max-content;
-  --timer-mini-vol-label-font-size: 0.9rem;
+  // 4 grid  ボタンの配置間隔
+  // 位置(1)(2) 💻Desktop・Tablet(landsacape)　左下
+  // 位置(3) Tablet(portrait) 右上
+  // 位置(4) 📱mobile(landscape) 浮・3列3行の正方形
+  // 位置(5) 📲mobile(portrait) static 上部固定
+
+  --gap-g-button: 2.3vmin;
+  --gap-g-button-stacked: 1.8vmin;
+  --gap-g-button-inline: 1vmin;
+
+  // 5 カウントダウン フォントサイズ　００：００
+  --mini-count-font-size: clamp(2rem, 12vw, 3.4rem);
+  --mini-count-font-size-stacked: clamp(32px, 7.5vw, 36px);
+  --mini-count-font-size-inline: 28px;
+
+  // 6 プリセットボタンの枠線
+  --btn-border-width: 1.1px;
+  --btn-border-width-stacked: 0.1px;
+  --btn-border-width-inline: 0.27px;
+
+  // 7 プリセットボタンのフォントサイズ
+  --mini-preset-font-size: clamp(1.25rem, 1.5vw, 2rem);
+  --mini-preset-font-size-stacked: 22.5px;
+  --mini-preset-font-size-inline: 18px;
+
+  // 8 円の半径
+  --mini-border-r-16: 16px;
+  --mini-border-r-50: 50%;
 
   // その他
-  --timer-transition: background 0.3s ease, filter 0.3s ease;
+  // 11 バックドロップフィルター　🧊ガラス感✨
+  --mini-backdrop-filter: blur(8px) saturate(110%);
+  --mini-backdrop-filter-hover: blur(8.5px) saturate(130%);
+  --mini-backdrop-filter-mobile: blur(6px) saturate(105%);
+
+  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
+  --mini-h: clamp(64px, 12vh, 112px);
 }
 
 // ─────────────────────────────
 // 🌿 カラー変数（各ページごとのタイマーの色合い）
 // ─────────────────────────────
-body.gallery .timer,
-body.gallery .timer-mini-container {
-  // 色 color☕️#eae5da
-  --timer-main-color: #eae5da;
 
-  // ↓変えないとだめ
-  --timer-color-hover: #fff;
+.page--gallery > .timer-mini {
+  // 10 使う色　🎨
+  // palette層は「base / accent / ink」の3つ
+  // デスクトップ（default）
+  --mini-color-base: #{var(--bg)}; // 背景寄り（コズミックラテ系）
+  --mini-color-accent: #{var(--accent)}; // 差し色（チャイ）
+  --mini-color-ink: #{var(--main-color)}; // インク色（文字・アイコン・枠）
 
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
+  // モバイルカラー
+  // パレット
+  --mini-color-base2: #{var(--chaisoft)}; // なまえつけて
+  --mini-color-accent2: #{var(--accent2)}; // cha
+  --mini-color-ink2: #{var(--jasmin)}; // ジャスミン薄白のもと oklch(0.95 0.03 105)
+  // 予備やわらか
+  // oklch(0.42 0.06 80 / 1);
 
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
+  // 用途トークンは「ink / surface / border / fg / fg-hover」くらいに整理
+  // ✏️ フォントカラー　/ アイコン　デフォルト
+  --mini-color: var(--mini-color-base);
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
 
-  // 📍外観セット🫖
-  // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border-radius-mobile: 0;
-  --timer-border: 1px solid rgb(234 229 218 / 30%);
-  --timer-border-mobile: none;
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-box-shadow-mobile: none;
-  --timer-background: rgb(14 16 32 / 40%);
-  --timer-background-mobile: transparent;
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(8px) saturate(140%);
-  --timer-backdrop-filter-mobile: none;
-  --timer-webkit-backdrop-filter: blur(8px) saturate(140%);
-  --timer-webkit-backdrop-filter-mobile: none;
+  // 🖼️ カード背景色
+  --mini-background: oklch(from var(--mini-color-ink) l c h / 35%);
+  --mini-background-hover: oklch(from var(--mini-color-ink) l c h / 70%);
 
-  // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(14 16 32 / 50%);
+  // 🖼️ カード　ボーダーカラー
+  --mini-background-border: oklch(from var(--mini-color-ink) l c h / 15%);
 
-  // buttons🫖
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
+  // 🖼️ カード シャドウ
+  // 影：8px の極薄影（ふわっ）
+  --mini-background-shadow: 0 0 8px
+    color-mix(in oklch, var(--mini-color-ink) 50%, var(--kuro) 10%);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--kuro) 10%);
 
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
+  // ⏲️タイマーカウント 0:00 影
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 80%, var(--kuro) 5%);
 
-  // スライダーのつまみなど
+  // ◼︎ 丸数字ボタン用
+  // 丸ボタンの枠色
+  --btn-pill-border: var(--mini-color-soft);
 
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: color-mix(
+    in oklch,
+    var(--mini-color) 70%,
+    var(--shiro) 15%
+  );
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+
+  // アイコンSVG
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+
+  //  ボタン
+  --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
+  --btn-fg-hover: var(--mini-color-ink);
+
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+
+  // focus-visible
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+
+  // 丸ボタンの枠色
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+
+  // カウント用影
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+
+  // JavaScript用 body {:where(.is-active) { color: var(--t-accent);}
+  --t-accent: var(--mini-color-accent);
 }
 
-body.universe .timer,
-body.universe .timer-mini-container {
-  // 色 color
-  --timer-main-color: #f5f5f5;
+// color-mix(in oklch, var(--mini-inline-text) 80%, var(--kuro) 10%)
+// color-mix(in oklch, var(--mini-inline-text) 80%, var(--shiro) 5%)
 
-  // ↓変えないとだめ
-  --timer-color-hover: rgb(205 227 213 / 70%);
+// --mini-bg-hover: oklch(0.96 0.04 80 / 0.6);
+// --mini-mb-color: oklch(0.2 0.05 40 / 0.7);
 
-  // シャドウ
-  --timer-shadow: 1px, 1px, 3px, rgb(0 0 0 / 25%);
-  --timer-shadow2: 0 1px 2px rgb(0 0 0 / 25%);
-
-  // ボーダー
-  --timer-shadow-hover: 1px 1px 3px rgb(0 0 0 / 50%);
-
-  // 📍外観セット🚀
-  // １）glass効果背景
-  --timer-border-radius: 16px;
-  --timer-border: 1px solid rgb(255 255 255 / 20%);
-  --timer-box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
-  --timer-background: rgb(205 227 213 / 70%);
-  --timer-color: inherit;
-  --timer-backdrop-filter: blur(12px);
-  --timer-webkit-backdrop-filter: blur(12px);
-
-  // 適当に入れてる色　要変更
-  --timer-hover-background: rgb(245 245 220 / 58.4%);
-
-  // buttons🪐
-  --timer-mini-preset-background-color: transparent;
-  --timer-mini-preset-background-hover: rgb(255 255 255 / 55%);
-  --timer-button-focus-visible-border-color: rgb(90 74 70 / 80%); // 少し濃く
-  --timer-button-focus-visible-box-shadow: 0 0 0 2px rgb(90 74 70 / 40%);
-
-  // hover
-  --timer-hover-container: rgb(255 255 255 70%);
-
-  // スライダーのつまみなど
-
-  // タイマーの高さぶんだけ、ギャラリーに余白を足す padding-bottom用
-  --timer-h: clamp(64px, 12vh, 112px);
-}
+// oklch(0.95 0.03 105 / 0.6); // ジャスミン薄白
+// oklch(0.96 0.04 80)　→ チャイをミルクで4倍薄めたやつ
+// oklch(0.55 0.08 60)　→ チャイミディアム
+// oklch(0.42 0.06 55)　→ かなり黒より
+// oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ

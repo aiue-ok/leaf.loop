@@ -1,0 +1,66 @@
+@use "../core/index" as core;
+
+.page--gallery,
+.page--universe,
+.page--about {
+  // ヘッダーエリア
+  .page-header {
+    color: var(--page-color);
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+
+    // 1行のレイアウト帯
+    &__bar {
+      // background: core.$test-bg3;
+      // タイトル上下に余白
+      padding: 16px 0;
+      display: grid;
+      grid-template: "site-menu brand" max-content / 50px max-content;
+      gap: clamp(8px, 1.5vmin, 16px);
+
+      /* サイトメニュ ・ページタイトル ・　サブタイトル　並び */
+      justify-content: left;
+      align-items: center;
+    }
+
+    // ハンバーガーアイコン
+    &__toggle {
+      display: block;
+      color: inherit;
+      grid-area: site-menu;
+      text-align: center;
+    }
+
+    // タイトル容器（コンテナクエリ親）
+    &__brand {
+      grid-area: brand;
+      width: max-content;
+      height: fit-content;
+    }
+
+    // 見出し：leaf.loop - portfolio
+    &__title {
+      text-align: left;
+
+      // padding: 8px 0;
+      display: inline-block;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: clamp(18px, 10vw, 24px);
+      white-space: nowrap;
+      hyphens: auto; /* 欧文時のハイフネーション */
+    }
+
+    // サブタイトル h2 ページタイトル
+    &__subtitle {
+      display: block;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: clamp(14px, 8vw, 18px);
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,0 +1,231 @@
+@use "../core/index" as core;
+
+// ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+// ↓ ドロワーメニュー
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+
+.page--gallery,
+body.universe,
+.page--universe,
+body.about,
+.page--about {
+  .menu-drawer,
+  .scrim {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  /* パネル本体（右から） */
+  .menu-drawer {
+    right: 0;
+    z-index: core.$z-menu-offcanvas; /* タイマーとバックドロップより上 */
+    // 余白
+    // padding: 16px clamp(12px, 3vw, 24px);
+
+    // サイズ
+    width: var(--menu-w);
+    padding: 32px 40px 40px;
+
+    // 上：タイトル＋リンク、下：時計
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // 見た目
+    border-left: 1px solid var(--panel-bd);
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    will-change: backdrop-filter;
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+    pointer-events: auto;
+
+    // テキスト
+    font-family: inherit;
+
+    // 開閉メニューのフォントカラー
+    color: var(--panel-cl);
+
+    /* 中身のレイアウト　Menu+ Xbutton */
+    &__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // リストとの間隔
+      margin-bottom: 1.5rem;
+    }
+
+    // （フレックス行） Menuの左マージン微調整
+    &__title {
+      margin-left: 5px;
+      font-size: 1.4rem;
+    }
+
+    // （Xボタン）
+    &__close {
+      // 閉じるボタンの位置調整
+      // margin-top: 3px;
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      color: #{var(--panel-pop)};
+      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.15));
+      scale: 100%;
+      transition: scale #{var(--motion-tap)} ease;
+
+      &:hover {
+        color: #{var(--panel-bd)};
+        scale: 110%;
+      }
+
+      & i {
+        display: block;
+      }
+    }
+
+    // <ul>
+    &__list {
+      margin-left: 0.5em;
+      list-style: none;
+    }
+
+    // <a>
+    &__link {
+      display: block;
+      padding: 0.75rem 0.25rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: text-decoration #{var(--motion-snap)} ease;
+
+      &:hover {
+        text-decoration: underline #{var(--panel-pop)};
+        -webkit-text-decoration: underline #{var(--panel-pop)};
+      }
+
+      &[aria-current="page"] {
+        position: relative;
+        opacity: 0.9;
+        color: var(--current-page);
+        mix-blend-mode: multiply;
+      }
+
+      &[aria-current="page"]::before {
+        content: "▼";
+        position: absolute;
+        inset-inline-start: -1em;
+        opacity: 0.9;
+        font-size: 1em; /* マーカーのサイズ */
+        color: #{var(--panel-pop)};
+      }
+    }
+  }
+}
+
+/* 開状態（[data-menu-open] を <body> に付与） */
+body[data-menu-open="true"] .menu-drawer {
+  transform: translateX(0);
+}
+
+body[data-menu-open="true"] .scrim {
+  opacity: 1;
+}
+
+/* hidden 属性の扱い */
+.menu-drawer[hidden] {
+  display: block;
+}
+
+/* アニメさせたいので display 固定 */
+.scrim[hidden] {
+  display: block;
+}
+
+/* 同上 */
+body:not([data-menu-open="true"]) .menu-drawer,
+body:not([data-menu-open="true"]) .scrim {
+  pointer-events: none;
+}
+
+/* タブレット最適化：少しだけ狭める＆文字を大きめに */
+// 480px以上の縦向き
+@media (width > #{core.$bp-sm}) and (orientation: portrait) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    .menu-drawer {
+      justify-content: flex-start;
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      &__list a {
+        padding: 0.85rem 0.25rem;
+        font-size: 1.05rem;
+      }
+    }
+  }
+}
+
+// 横向き・hoverなし・1440px以下
+@media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    // メニューパネル
+    .menu-drawer {
+      --menu-w: min(360px, 40vw);
+
+      &__list a {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// スマホ 横 高さ480px以下
+// 位置(4) 📱mobile(land)
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--gallery,
+  body.universe,
+  body.about {
+    // メニューパネル
+    .menu-drawer {
+      padding: 24px 25px 25px;
+      // --safe-right: env(safe-area-inset-right, 0px);
+      padding-block: 1rem;
+      //  上下を少しだけ詰める（左右は今のままでOK）
+
+      /* 中身のレイアウト　Menu+ Xbutton */
+      &__head {
+        // リストとの間隔
+        margin-bottom: 0.5rem;
+      }
+
+      // （フレックス行） Menuの左マージン微調整
+      &__title {
+        margin-left: 3px;
+        font-size: 1.3rem;
+      }
+      // （Xボタン）
+      &__close {
+        // 閉じるボタンの位置調整
+        // margin-top: 3px;
+        width: 38px;
+        height: 38px;
+      }
+
+      &__link {
+        padding: 0.5rem 0.25rem;
+      }
+    }
+  }
+}
