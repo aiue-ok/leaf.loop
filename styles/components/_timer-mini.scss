@@ -1,8 +1,6 @@
 @use "../core/index" as core;
 
 .page--gallery,
-body.universe,
-body.about,
 .page--universe,
 .page--about {
   .timer-mini {
@@ -263,7 +261,8 @@ body.about,
 // 480px〜1024px タブレット　portrait　サイズ
 // 位置(3) Tablet(port) 右上
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
-  .page--gallery {
+  .page--gallery,
+  .page--about {
     .timer-mini {
       position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
@@ -294,7 +293,7 @@ body.about,
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
       --btn-size-pill: var(--btn-size-pill-inline);
@@ -308,7 +307,7 @@ body.about,
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
       // stacked パレット　トークン差し替え
@@ -428,7 +427,7 @@ body.about,
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     .timer-mini {
       // トークン差し替え
       --mini-color-base: #{var(--mini-color-base2)}; // （ブラウン）

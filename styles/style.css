@@ -583,6 +583,10 @@ summary):focus-visible {
   }
 }
 @layer debug {}
+* {
+  outline: 1px dotted blue;
+}
+
 /* base.scss の下の方に追加（all:unset の“あと”に書く） */
 input[type=checkbox] {
   all: revert; /* 既定のUIに戻す */
@@ -1854,16 +1858,12 @@ body:not([data-menu-open=true]) .scrim {
   }
 }
 .page--gallery,
-body.universe,
-body.about,
 .page--universe,
 .page--about {
   /* 2. 子要素・部品（BEMの __◯◯） */
   /* 3. 状態（:hover, :active, :focus-visibleなど） */
 }
 .page--gallery .timer-mini,
-body.universe .timer-mini,
-body.about .timer-mini,
 .page--universe .timer-mini,
 .page--about .timer-mini {
   /* レイアウト・背景・トークンの初期値など */
@@ -1875,8 +1875,6 @@ body.about .timer-mini,
   pointer-events: auto;
 }
 .page--gallery .timer-mini__bg,
-body.universe .timer-mini__bg,
-body.about .timer-mini__bg,
 .page--universe .timer-mini__bg,
 .page--about .timer-mini__bg {
   border-radius: var(--mini-border-r-16);
@@ -1894,8 +1892,6 @@ body.about .timer-mini__bg,
   align-items: center;
 }
 .page--gallery .timer-mini__grid,
-body.universe .timer-mini__grid,
-body.about .timer-mini__grid,
 .page--universe .timer-mini__grid,
 .page--about .timer-mini__grid {
   display: grid;
@@ -1906,8 +1902,6 @@ body.about .timer-mini__grid,
   padding: 8px;
 }
 .page--gallery .timer-mini__grid--vertical,
-body.universe .timer-mini__grid--vertical,
-body.about .timer-mini__grid--vertical,
 .page--universe .timer-mini__grid--vertical,
 .page--about .timer-mini__grid--vertical {
   display: grid;
@@ -1917,15 +1911,11 @@ body.about .timer-mini__grid--vertical,
   align-items: center;
 }
 .page--gallery .timer-mini__screen,
-body.universe .timer-mini__screen,
-body.about .timer-mini__screen,
 .page--universe .timer-mini__screen,
 .page--about .timer-mini__screen {
   grid-area: count;
 }
 .page--gallery .timer-mini__screen--grid,
-body.universe .timer-mini__screen--grid,
-body.about .timer-mini__screen--grid,
 .page--universe .timer-mini__screen--grid,
 .page--about .timer-mini__screen--grid {
   display: grid;
@@ -1935,16 +1925,12 @@ body.about .timer-mini__screen--grid,
   gap: var(--gap-g-button);
 }
 .page--gallery .timer-mini__screen--display,
-body.universe .timer-mini__screen--display,
-body.about .timer-mini__screen--display,
 .page--universe .timer-mini__screen--display,
 .page--about .timer-mini__screen--display {
   grid-area: time;
   width: fit-content;
 }
 .page--gallery .timer-mini__screen--count,
-body.universe .timer-mini__screen--count,
-body.about .timer-mini__screen--count,
 .page--universe .timer-mini__screen--count,
 .page--about .timer-mini__screen--count {
   display: block;
@@ -1956,8 +1942,6 @@ body.about .timer-mini__screen--count,
   inline-size: max-content;
 }
 .page--gallery .timer-mini__screen--tnum,
-body.universe .timer-mini__screen--tnum,
-body.about .timer-mini__screen--tnum,
 .page--universe .timer-mini__screen--tnum,
 .page--about .timer-mini__screen--tnum {
   font-family: var(--ff-en);
@@ -1968,29 +1952,21 @@ body.about .timer-mini__screen--tnum,
   letter-spacing: 0.0125em;
 }
 .page--gallery .timer-mini__presets,
-body.universe .timer-mini__presets,
-body.about .timer-mini__presets,
 .page--universe .timer-mini__presets,
 .page--about .timer-mini__presets {
   grid-area: presets;
 }
 .page--gallery .timer-mini__actions,
-body.universe .timer-mini__actions,
-body.about .timer-mini__actions,
 .page--universe .timer-mini__actions,
 .page--about .timer-mini__actions {
   grid-area: controls;
 }
 .page--gallery .timer-mini__actions .i,
-body.universe .timer-mini__actions .i,
-body.about .timer-mini__actions .i,
 .page--universe .timer-mini__actions .i,
 .page--about .timer-mini__actions .i {
   display: block;
 }
 .page--gallery .timer-mini__pill,
-body.universe .timer-mini__pill,
-body.about .timer-mini__pill,
 .page--universe .timer-mini__pill,
 .page--about .timer-mini__pill {
   display: inline-flex;
@@ -2015,8 +1991,6 @@ body.about .timer-mini__pill,
   transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .page--gallery .timer-mini__icon-btn,
-body.universe .timer-mini__icon-btn,
-body.about .timer-mini__icon-btn,
 .page--universe .timer-mini__icon-btn,
 .page--about .timer-mini__icon-btn {
   inline-size: var(--btn-size-icon);
@@ -2030,8 +2004,6 @@ body.about .timer-mini__icon-btn,
   transition: color 0.25s ease text-shadow 0.25s ease;
 }
 .page--gallery .timer-mini__screen--help,
-body.universe .timer-mini__screen--help,
-body.about .timer-mini__screen--help,
 .page--universe .timer-mini__screen--help,
 .page--about .timer-mini__screen--help {
   grid-area: help;
@@ -2044,8 +2016,6 @@ body.about .timer-mini__screen--help,
   transition: color 0.25s ease text-shadow 0.25s ease;
 }
 .page--gallery .timer-mini__pill:active,
-body.universe .timer-mini__pill:active,
-body.about .timer-mini__pill:active,
 .page--universe .timer-mini__pill:active,
 .page--about .timer-mini__pill:active {
   background-color: var(--btn-pill-bg-active); /* クリック中は背景色を薄くする */
@@ -2053,15 +2023,11 @@ body.about .timer-mini__pill:active,
   box-shadow: var(--btn-bxshadow-hover);
 }
 .page--gallery .timer-mini__pill:focus-visible,
-body.universe .timer-mini__pill:focus-visible,
-body.about .timer-mini__pill:focus-visible,
 .page--universe .timer-mini__pill:focus-visible,
 .page--about .timer-mini__pill:focus-visible {
   box-shadow: var(--btn-bxshadow-focus);
 }
 .page--gallery .timer-mini__icon-btn:active,
-body.universe .timer-mini__icon-btn:active,
-body.about .timer-mini__icon-btn:active,
 .page--universe .timer-mini__icon-btn:active,
 .page--about .timer-mini__icon-btn:active {
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
@@ -2069,43 +2035,31 @@ body.about .timer-mini__icon-btn:active,
   color: var(--btn-pill-border);
 }
 .page--gallery .timer-mini__icon-btn:focus-visible,
-body.universe .timer-mini__icon-btn:focus-visible,
-body.about .timer-mini__icon-btn:focus-visible,
 .page--universe .timer-mini__icon-btn:focus-visible,
 .page--about .timer-mini__icon-btn:focus-visible {
   text-shadow: var(--btn-shadow-focus);
 }
 .page--gallery #toggleTimer[aria-pressed=false] #startBtn,
-body.universe #toggleTimer[aria-pressed=false] #startBtn,
-body.about #toggleTimer[aria-pressed=false] #startBtn,
 .page--universe #toggleTimer[aria-pressed=false] #startBtn,
 .page--about #toggleTimer[aria-pressed=false] #startBtn {
   display: block;
 }
 .page--gallery #toggleTimer[aria-pressed=false] #stopBtn,
-body.universe #toggleTimer[aria-pressed=false] #stopBtn,
-body.about #toggleTimer[aria-pressed=false] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=false] #stopBtn,
 .page--about #toggleTimer[aria-pressed=false] #stopBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #startBtn,
-body.universe #toggleTimer[aria-pressed=true] #startBtn,
-body.about #toggleTimer[aria-pressed=true] #startBtn,
 .page--universe #toggleTimer[aria-pressed=true] #startBtn,
 .page--about #toggleTimer[aria-pressed=true] #startBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #stopBtn,
-body.universe #toggleTimer[aria-pressed=true] #stopBtn,
-body.about #toggleTimer[aria-pressed=true] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=true] #stopBtn,
 .page--about #toggleTimer[aria-pressed=true] #stopBtn {
   display: block;
 }
 .page--gallery .timer-mini__icon-btn--sound > .timer__action-btn--muted,
-body.universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
-body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--about .timer-mini__icon-btn--sound > .timer__action-btn--muted {
   display: block;
@@ -2143,7 +2097,8 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 }
 /* 4. レスポンシブ・モード切り替え（@media / @container） */
 @media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
-  .page--gallery .timer-mini {
+  .page--gallery .timer-mini,
+  .page--about .timer-mini {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
     right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
@@ -2154,7 +2109,8 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     min-height: 175px;
     max-height: 200px;
   }
-  .page--gallery .timer-mini__screen--count {
+  .page--gallery .timer-mini__screen--count,
+  .page--about .timer-mini__screen--count {
     font-size: 3rem;
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
   }
@@ -2162,7 +2118,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 @container (inline-size < 480px) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --btn-hit: var(--btn-hit-small);
     --btn-size-pill: var(--btn-size-pill-inline);
   }
@@ -2170,7 +2126,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2199,12 +2155,12 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__bg,
   body.universe .timer-mini__bg,
-  body.about .timer-mini__bg {
+  .page--about .timer-mini__bg {
     border: 0.8px solid var(--mini-background-border);
   }
   .page--gallery .timer-mini__grid,
   body.universe .timer-mini__grid,
-  body.about .timer-mini__grid {
+  .page--about .timer-mini__grid {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-areas: "count" "presets" "controls";
@@ -2213,13 +2169,13 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid--vertical,
   body.universe .timer-mini__grid--vertical,
-  body.about .timer-mini__grid--vertical {
+  .page--about .timer-mini__grid--vertical {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
   .page--gallery .timer-mini__screen--grid,
   body.universe .timer-mini__screen--grid,
-  body.about .timer-mini__screen--grid {
+  .page--about .timer-mini__screen--grid {
     display: grid;
     grid-template-areas: "time help";
     justify-content: center;
@@ -2227,25 +2183,25 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen--display,
   body.universe .timer-mini__screen--display,
-  body.about .timer-mini__screen--display {
+  .page--about .timer-mini__screen--display {
     width: 100%;
   }
   .page--gallery .timer-mini__screen--count,
   body.universe .timer-mini__screen--count,
-  body.about .timer-mini__screen--count {
+  .page--about .timer-mini__screen--count {
     text-align: left;
     line-height: 1.3; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   body.universe .timer-mini__screen--help,
-  body.about .timer-mini__screen--help {
+  .page--about .timer-mini__screen--help {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
   .page--gallery .timer-mini__screen--help .i-32,
   body.universe .timer-mini__screen--help .i-32,
-  body.about .timer-mini__screen--help .i-32 {
+  .page--about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help);
     height: var(--btn-size-help);
   }
@@ -2259,7 +2215,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 @media (max-width: 480px) and (orientation: portrait) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2287,7 +2243,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid,
   body.universe .timer-mini__grid,
-  body.about .timer-mini__grid {
+  .page--about .timer-mini__grid {
     display: grid;
     grid-template-areas: "count presets controls";
     justify-content: center;
@@ -2296,7 +2252,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid--vertical,
   body.universe .timer-mini__grid--vertical,
-  body.about .timer-mini__grid--vertical {
+  .page--about .timer-mini__grid--vertical {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
@@ -2305,24 +2261,24 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen,
   body.universe .timer-mini__screen,
-  body.about .timer-mini__screen {
+  .page--about .timer-mini__screen {
     margin: 0 auto;
     min-height: 0;
   }
   .page--gallery .timer-mini__screen--grid,
   body.universe .timer-mini__screen--grid,
-  body.about .timer-mini__screen--grid {
+  .page--about .timer-mini__screen--grid {
     grid-template-areas: "help time";
   }
   .page--gallery .timer-mini__screen--count,
   body.universe .timer-mini__screen--count,
-  body.about .timer-mini__screen--count {
+  .page--about .timer-mini__screen--count {
     text-align: center;
     line-height: 1.5; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   body.universe .timer-mini__screen--help,
-  body.about .timer-mini__screen--help {
+  .page--about .timer-mini__screen--help {
     display: unset;
     position: absolute;
     top: 4.1rem;
@@ -2330,7 +2286,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen--help .i-32,
   body.universe .timer-mini__screen--help .i-32,
-  body.about .timer-mini__screen--help .i-32 {
+  .page--about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help-inline);
     height: var(--btn-size-help-inline);
   }
@@ -3252,5 +3208,94 @@ body.hero .hero__head {
     margin-bottom: 0;
     padding: 0.5rem;
     max-width: 324px;
+  }
+}
+.page--about {
+  /* ベース色（やさしい生成り＋深い文字色） */
+  background-color: oklch(97% 0.01 95deg);
+  color: oklch(28% 0.03 260deg);
+}
+.page--about .about {
+  /* 幅と中央寄せ */
+  max-width: clamp(42ch, 60vw, 72ch);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem);
+  /* 読み心地 */
+  line-height: 1.85;
+  text-wrap: pretty; /* 自然な改行 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* 1章の最初の p にだけドロップキャップ */
+  /* 段落間 */
+}
+.page--about .about .prologue:first-of-type::first-letter {
+  float: left;
+  font-family: "Kiwi Maru", serif;
+  font-size: 2.6em;
+  line-height: 0.9;
+  padding-right: 0.08em;
+  color: oklch(35% 0.05 260deg);
+}
+.page--about .about p + p {
+  margin-top: 1.05em;
+}
+.page--about .about h2 {
+  margin: 2.5rem 0 1rem;
+  /* h2 の上に ＊ を1つ セクションの区切り */
+}
+.page--about .about h2::before {
+  content: "＊";
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: oklch(55% 0.02 260deg / 0.35);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.page--about .about h3 {
+  margin: 2rem 0 0.75rem;
+}
+.page--about .about .about-page h2,
+.page--about .about .about-page h3 {
+  text-wrap: balance;
+}
+.page--about .about__long {
+  display: none;
+}
+.page--about .about__short {
+  display: block;
+}
+.page--about .about .one-line {
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: oklch(45% 0.02 260deg / 0.85);
+  margin: 1.8rem 0;
+}
+.page--about .about .credits {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0.5rem 1rem;
+  margin: 2rem 0;
+}
+.page--about .about .credits .label {
+  color: oklch(45% 0.03 260deg);
+  opacity: 0.9;
+}
+.page--about .about .credits .value {
+  color: oklch(28% 0.03 260deg);
+}
+@media (max-width: 480px) {
+  .page--about .credits {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 768px) {
+  .page--about .about__long {
+    display: block;
+  }
+  .page--about .about__short {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */
