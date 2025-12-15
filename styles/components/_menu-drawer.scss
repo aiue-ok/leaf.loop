@@ -153,6 +153,7 @@ body:not([data-menu-open="true"]) .scrim {
 @media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   body.universe,
+  .page--universe,
   body.about {
     .menu-drawer {
       justify-content: flex-start;
@@ -179,6 +180,7 @@ body:not([data-menu-open="true"]) .scrim {
 @media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
   .page--gallery,
   body.universe,
+  .page--universe,
   body.about {
     // メニューパネル
     .menu-drawer {
@@ -196,6 +198,7 @@ body:not([data-menu-open="true"]) .scrim {
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   body.universe,
+  .page--universe,
   body.about {
     // メニューパネル
     .menu-drawer {

@@ -77,6 +77,7 @@
 @media (width <= #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   body.universe,
+  .page--universe,
   body.about {
     .decor-clock {
       // 小さめ
@@ -92,6 +93,7 @@
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   body.universe,
+  .page--universe,
   body.about {
     .decor-clock {
       max-inline-size: 120px;

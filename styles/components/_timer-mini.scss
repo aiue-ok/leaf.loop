@@ -1,8 +1,6 @@
 @use "../core/index" as core;
 
 .page--gallery,
-body.universe,
-body.about,
 .page--universe,
 .page--about {
   .timer-mini {
@@ -293,7 +291,7 @@ body.about,
 
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   body.about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
@@ -307,8 +305,8 @@ body.about,
 // 位置(4) 📱mobile(land) 浮・3列3行の正方形
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
-  body.universe,
-  body.about {
+  .page--universe,
+  .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
       // stacked パレット　トークン差し替え
@@ -417,8 +415,10 @@ body.about,
 
 // 幅 600px 以下の縦向きタブレットだけ（Surface Duo みたいな細長系）
 @media (max-width: 600px) and (orientation: portrait) {
-  .timer-mini {
-    max-height: 180px; // 200px からちょい下げる
+  .page--gallery {
+    .timer-mini {
+      max-height: 180px; // 200px からちょい下げる
+    }
   }
 }
 
@@ -427,7 +427,7 @@ body.about,
 /* 480px以下　スマホ 縦 */
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   body.about {
     .timer-mini {
       // トークン差し替え

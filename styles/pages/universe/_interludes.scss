@@ -1,0 +1,239 @@
+// ▼ イントロ
+// 遠くのことを少しだけ
+body.bg-intro {
+  color: #c0c0c0;
+  background: linear-gradient(to bottom, #f8faff, rgb(248 250 255 / 100%));
+
+  .word {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 300;
+
+    /* intro中の文字色（必要なら） */
+    color: inherit;
+  }
+
+  /* h1 意図的に残している */
+  h1 {
+    color: #f5f5f5;
+  }
+
+  // ミニタイマー font色
+  .timer-mini-container {
+    color: #c0c0c0;
+    opacity: 0.7;
+  }
+
+  // ▼ ミニタイマープリセット枠色
+  .timer-mini-preset-button {
+    color: #c0c0c0;
+    border-color: #f5f5f5-rgba;
+  }
+}
+
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// 第1章：はじまりの音
+body.universe.bg-interlude-0 {
+  background: radial-gradient(
+    100% 100% at 0% 0%,
+    #fff8e7 0%,
+    #435372 10.76%,
+    #1e2b42 100%
+  );
+  color: #f8faff;
+
+  .word {
+    color: inherit; // 通常はこれでOK
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  h1 {
+    color: #f5f5f5; // ← 明示的に固定
+  }
+
+  // ミニタイマー font色
+  .timer-mini-container {
+    color: #f5f5f5-rgba;
+    opacity: 0.7;
+  }
+
+  // ▼ ミニタイマープリセット枠色
+  .timer-mini-preset-button {
+    border-color: #f5f5f5-rgba;
+  }
+}
+
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// ▼ 間奏 Chapter2 第2章-ゆらぎと法則（物理と観測）
+body.universe.bg-interlude-1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  // グリッド
+  background-image: url("../../images/cp2-quantum-grid-fff.svg");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center center;
+  pointer-events: none;
+
+  // UIの邪魔しない
+  z-index: 1; // 一番下に置く
+}
+
+body.universe.bg-interlude-1 {
+  background: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+  color: #e1f3ff;
+
+  .word {
+    color: inherit; // 通常はこれでOK
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  h1 {
+    color: #f5f5f5; // ← 明示的に固定
+  }
+
+  .menu-btn .material-icons {
+    color: #e1f3ff;
+  }
+
+  // ミニタイマー font色
+  .timer-mini-container {
+    color: #e1f3ff;
+    opacity: 0.7;
+  }
+
+  // ▼ ミニタイマープリセット枠色
+  .timer-mini-preset-button {
+    border-color: #e1f3ff;
+  }
+}
+
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// ▼ Chapter3 第3章-星と時間（宇宙スケール）
+body.universe.bg-interlude-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  // 星空
+  background-image: url("../../images/Cchapter3-title-stars.svg");
+  background-repeat: repeat;
+  background-size: auto;
+  pointer-events: none; // UIの邪魔しない
+  z-index: 0; // 一番下に置く
+}
+
+// 第3章-星と時間　背景ベース
+body.universe.bg-interlude-2 {
+  color: #d9e8f7;
+  background: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
+
+  .word {
+    color: inherit;
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  h1 {
+    color: #f5f5f5; // ← 明示的に固定
+  }
+
+  .menu-btn .material-icons {
+    color: #d9e8f7;
+  }
+
+  // ミニタイマー font色
+  .timer-mini-container {
+    color: #d9e8f7;
+    opacity: 0.7;
+  }
+
+  // ▼ ミニタイマープリセット枠色
+  .timer-mini-preset-button {
+    color: #d9e8f7;
+    border-color: #d9e8f7;
+  }
+}
+
+// ▼ 間奏- Ch3〜Ch4 第3章〜第4章
+body.universe.bg-interlude-3 {
+  color: #c7cbd0; /* 青寄りの静寂グレー */
+  // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
+  background: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 40%) 0%,
+      rgb(255 255 255 / 18%) 18%,
+      rgb(0 0 0 / 0%) 88%
+    ),
+    #000;
+
+  h1 {
+    color: #f5f5f5; // ← 明示的に固定
+  }
+}
+
+// 文字の入りは softFade 2.6s。JS側の表示間隔（delay）が 4000ms なら、
+//     間奏：delayInterlude ≈ 5200ms（余韻あり）
+//     第4章の単語：delayWord ≈ 4000ms
+//     にしておくと、アニメ完了後に少しだけ静止→次、の“呼吸”感が出ます
+
+/* 間奏テキストは少しだけ淡く・細く（任意） */
+body.universe.bg-interlude-3 .word {
+  color: inherit;
+  opacity: 0.9;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* ハンバーガーメニューとタイマーの色をwordsと統一 */
+body.universe.bg-interlude-3,
+body.universe.bg-ch4 {
+  .menu-btn .material-icons,
+  .timer-mini-container,
+  .timer-mini-container * {
+    color: currentcolor;
+  }
+}
+
+// 間奏の背景＆文字色（bg-interlude-*）
+// ▼ 間奏- Ch4〜Ch5
+body.universe.bg-interlude-4 {
+  background: radial-gradient(50% 71.11% at 50% 50%, #fff8e7 0%, #f8f6f0 100%);
+  color: rgb(0 0 0 / 55%); // グレー寄りにしてやわらかく
+  text-shadow: 0 1px 3px rgb(255 255 255 / 40%); // 光を感じる白影
+
+  .word {
+    color: inherit;
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  h1 {
+    color: #f5f5f5;
+  } // 明示的に固定
+
+  .menu-btn .material-icons {
+    color: #c2c2c2;
+  }
+
+  // ミニタイマー font色
+  .timer-mini-container {
+    color: #c2c2c2;
+    opacity: 0.7;
+  }
+
+  // ▼ ミニタイマープリセット枠色
+  .timer-mini-preset-button {
+    color: #c2c2c2;
+    border-color: #c2c2c2;
+  }
+}
