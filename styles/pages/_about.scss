@@ -5,11 +5,23 @@
   background-color: oklch(97% 0.01 95deg);
   color: oklch(28% 0.03 260deg);
 
+  // main
+  main {
+    width: 100%;
+    flex: 1 1 auto;
+    min-block-size: 0;
+    padding: 16px 0;
+    overflow: auto;
+    // background-color: core.$test-bg1;
+  }
+
   .about {
+    // background-color: core.$test-bg2;
     /* 幅と中央寄せ */
     max-width: clamp(42ch, 60vw, 72ch);
     margin-inline: auto;
     padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: 140px; /* タイマーの高さぶん保険 */
 
     /* 読み心地 */
     line-height: 1.85;
@@ -100,5 +112,31 @@
     .about__short {
       display: none;
     }
+  }
+}
+
+/* モバイル縦だけ：本文をスクロールコンテナに */
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  .page--about {
+    height: 100svh;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* timer / header / main */
+  }
+
+  .page--about > .timer-mini {
+    position: static;
+    margin: 0.5rem auto 1.2rem;
+    width: min(380px, calc(100% - 2rem));
+    height: 50px;
+  }
+
+  .page--about .page-header__bar {
+    /* 高さが93pxならここに触らなくてもOK */
+  }
+
+  .page--about main {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
