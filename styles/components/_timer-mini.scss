@@ -276,6 +276,8 @@
       height: 16vh;
       min-height: 175px;
       max-height: 200px;
+      transform: scale(0.86);
+      transform-origin: right top;
     }
 
     // カウントダウン表示
@@ -286,6 +288,17 @@
       // 影を薄く
       text-shadow: 0 1px 2px
         color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
+    }
+  }
+}
+
+@media (min-width: #{core.$bp-sm}) and (max-width: 1300px) and (orientation: landscape) {
+  .page--about {
+    .timer-mini {
+      left: auto;
+      right: 16px;
+      transform: scale(0.86);
+      transform-origin: right bottom;
     }
   }
 }
