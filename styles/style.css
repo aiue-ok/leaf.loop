@@ -583,10 +583,6 @@ summary):focus-visible {
   }
 }
 @layer debug {}
-* {
-  outline: 1px dotted blue;
-}
-
 /* base.scss の下の方に追加（all:unset の“あと”に書く） */
 input[type=checkbox] {
   all: revert; /* 既定のUIに戻す */
@@ -2108,11 +2104,21 @@ body:not([data-menu-open=true]) .scrim {
     height: 16vh;
     min-height: 175px;
     max-height: 200px;
+    transform: scale(0.86);
+    transform-origin: right top;
   }
   .page--gallery .timer-mini__screen--count,
   .page--about .timer-mini__screen--count {
     font-size: 3rem;
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
+  }
+}
+@media (min-width: 480px) and (max-width: 1300px) and (orientation: landscape) {
+  .page--about .timer-mini {
+    left: auto;
+    right: 16px;
+    transform: scale(0.86);
+    transform-origin: right bottom;
   }
 }
 @container (inline-size < 480px) {
@@ -3215,11 +3221,19 @@ body.hero .hero__head {
   background-color: oklch(97% 0.01 95deg);
   color: oklch(28% 0.03 260deg);
 }
+.page--about main {
+  width: 100%;
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: 16px 0;
+  overflow: auto;
+}
 .page--about .about {
   /* 幅と中央寄せ */
   max-width: clamp(42ch, 60vw, 72ch);
   margin-inline: auto;
   padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem);
+  padding-bottom: 140px; /* タイマーの高さぶん保険 */
   /* 読み心地 */
   line-height: 1.85;
   text-wrap: pretty; /* 自然な改行 */
@@ -3297,5 +3311,28 @@ body.hero .hero__head {
   }
   .page--about .about__short {
     display: none;
+  }
+}
+
+/* モバイル縦だけ：本文をスクロールコンテナに */
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--about {
+    height: 100svh;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* timer / header / main */
+  }
+  .page--about > .timer-mini {
+    position: static;
+    margin: 0.5rem auto 1.2rem;
+    width: min(380px, 100% - 2rem);
+    height: 50px;
+  }
+  .page--about .page-header__bar {
+    /* 高さが93pxならここに触らなくてもOK */
+  }
+  .page--about main {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }/*# sourceMappingURL=style.css.map */
