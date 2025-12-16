@@ -2,10 +2,11 @@
 
 .page--gallery,
 .page--universe,
+body.universe,
 .page--about {
   // ヘッダーエリア
   .page-header {
-    color: var(--page-color);
+    color: var(--main-color);
     width: 100%;
     height: fit-content;
     padding: 0;
@@ -61,6 +62,21 @@
       font-style: normal;
       font-size: clamp(14px, 8vw, 18px);
       white-space: nowrap;
+    }
+  }
+}
+
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  // 🪐 universeのみ
+  body.universe,
+  .page--universe {
+    // ヘッダーエリア
+    .page-header {
+      // 1行のレイアウト帯
+      &__bar {
+        // タイトル上下の余白をカットする
+        padding: 0;
+      }
     }
   }
 }

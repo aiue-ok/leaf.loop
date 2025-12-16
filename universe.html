@@ -25,8 +25,8 @@
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <!-- <script src="js/word.js" defer></script> -->
-    <!-- <script src="js/whiteout-once.js" defer></script> -->
+    <script src="js/word.js" defer></script>
+    <script src="js/whiteout-once.js" defer></script>
     <title>遠くのことを少しだけ</title>
   </head>
   <body class="universe booting page--universe">
@@ -248,7 +248,7 @@
             </svg>
           </span>
         </button>
-        <div class="page-header__brand">
+        <div class="page-header__brand" id="page-title">
           <h1 class="page-header__title">leaf.loop - portfolio</h1>
           <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
         </div>
@@ -260,11 +260,9 @@
       </div>
       <!-- // 一語ずつ詩的に出現させる場所 -->
       <section class="universe-words">
-        <div class="universe__stage">
-          <p class="universe__word">はじまり</p>
-        </div>
+        <!-- <p class="universe__word">はじまり</p> -->
         <!-- JSで順次表示 -->
-        <p class="word" id="word">*</p>
+        <p class="word" id="word"></p>
       </section>
     </main>
     <!-- /* ≡≡≡ ヘルプカードここから */ -->

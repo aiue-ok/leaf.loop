@@ -218,6 +218,7 @@ input {
 .page--universe {
   --timer-bg: #0e1020;
   --help-card-bg: #888;
+  --main-color: #f5f5f5;
 }
 
 .page--about {
@@ -1462,14 +1463,16 @@ body .js-toast--visible {
 }
 .page--gallery .page-header,
 .page--universe .page-header,
+body.universe .page-header,
 .page--about .page-header {
-  color: var(--page-color);
+  color: var(--main-color);
   width: 100%;
   height: fit-content;
   padding: 0;
 }
 .page--gallery .page-header__bar,
 .page--universe .page-header__bar,
+body.universe .page-header__bar,
 .page--about .page-header__bar {
   padding: 16px 0;
   display: grid;
@@ -1481,6 +1484,7 @@ body .js-toast--visible {
 }
 .page--gallery .page-header__toggle,
 .page--universe .page-header__toggle,
+body.universe .page-header__toggle,
 .page--about .page-header__toggle {
   display: block;
   color: inherit;
@@ -1489,6 +1493,7 @@ body .js-toast--visible {
 }
 .page--gallery .page-header__brand,
 .page--universe .page-header__brand,
+body.universe .page-header__brand,
 .page--about .page-header__brand {
   grid-area: brand;
   width: max-content;
@@ -1496,6 +1501,7 @@ body .js-toast--visible {
 }
 .page--gallery .page-header__title,
 .page--universe .page-header__title,
+body.universe .page-header__title,
 .page--about .page-header__title {
   text-align: left;
   display: inline-block;
@@ -1508,6 +1514,7 @@ body .js-toast--visible {
 }
 .page--gallery .page-header__subtitle,
 .page--universe .page-header__subtitle,
+body.universe .page-header__subtitle,
 .page--about .page-header__subtitle {
   display: block;
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -1517,6 +1524,12 @@ body .js-toast--visible {
   white-space: nowrap;
 }
 
+@media (max-width: 480px) and (orientation: portrait) {
+  body.universe .page-header__bar,
+  .page--universe .page-header__bar {
+    padding: 0;
+  }
+}
 .page--gallery,
 body.universe,
 .page--universe,
@@ -1871,12 +1884,14 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery,
 .page--universe,
+body.universe,
 .page--about {
   /* 2. 子要素・部品（BEMの __◯◯） */
   /* 3. 状態（:hover, :active, :focus-visibleなど） */
 }
 .page--gallery .timer-mini,
 .page--universe .timer-mini,
+body.universe .timer-mini,
 .page--about .timer-mini {
   /* レイアウト・背景・トークンの初期値など */
   position: fixed;
@@ -1888,6 +1903,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__bg,
 .page--universe .timer-mini__bg,
+body.universe .timer-mini__bg,
 .page--about .timer-mini__bg {
   border-radius: var(--mini-border-r-16);
   background: var(--mini-background);
@@ -1905,6 +1921,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__grid,
 .page--universe .timer-mini__grid,
+body.universe .timer-mini__grid,
 .page--about .timer-mini__grid {
   display: grid;
   grid-template-areas: "count presets controls";
@@ -1915,6 +1932,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__grid--vertical,
 .page--universe .timer-mini__grid--vertical,
+body.universe .timer-mini__grid--vertical,
 .page--about .timer-mini__grid--vertical {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -1924,11 +1942,13 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__screen,
 .page--universe .timer-mini__screen,
+body.universe .timer-mini__screen,
 .page--about .timer-mini__screen {
   grid-area: count;
 }
 .page--gallery .timer-mini__screen--grid,
 .page--universe .timer-mini__screen--grid,
+body.universe .timer-mini__screen--grid,
 .page--about .timer-mini__screen--grid {
   display: grid;
   grid-template-areas: "time" "help";
@@ -1938,12 +1958,14 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__screen--display,
 .page--universe .timer-mini__screen--display,
+body.universe .timer-mini__screen--display,
 .page--about .timer-mini__screen--display {
   grid-area: time;
   width: fit-content;
 }
 .page--gallery .timer-mini__screen--count,
 .page--universe .timer-mini__screen--count,
+body.universe .timer-mini__screen--count,
 .page--about .timer-mini__screen--count {
   display: block;
   width: 5ch;
@@ -1955,6 +1977,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__screen--tnum,
 .page--universe .timer-mini__screen--tnum,
+body.universe .timer-mini__screen--tnum,
 .page--about .timer-mini__screen--tnum {
   font-family: var(--ff-en);
   font-variant-numeric: tabular-nums; /* 等幅数字 */
@@ -1965,21 +1988,25 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__presets,
 .page--universe .timer-mini__presets,
+body.universe .timer-mini__presets,
 .page--about .timer-mini__presets {
   grid-area: presets;
 }
 .page--gallery .timer-mini__actions,
 .page--universe .timer-mini__actions,
+body.universe .timer-mini__actions,
 .page--about .timer-mini__actions {
   grid-area: controls;
 }
 .page--gallery .timer-mini__actions .i,
 .page--universe .timer-mini__actions .i,
+body.universe .timer-mini__actions .i,
 .page--about .timer-mini__actions .i {
   display: block;
 }
 .page--gallery .timer-mini__pill,
 .page--universe .timer-mini__pill,
+body.universe .timer-mini__pill,
 .page--about .timer-mini__pill {
   display: inline-flex;
   align-items: center;
@@ -2004,6 +2031,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__icon-btn,
 .page--universe .timer-mini__icon-btn,
+body.universe .timer-mini__icon-btn,
 .page--about .timer-mini__icon-btn {
   inline-size: var(--btn-size-icon);
   block-size: var(--btn-size-icon);
@@ -2017,6 +2045,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__screen--help,
 .page--universe .timer-mini__screen--help,
+body.universe .timer-mini__screen--help,
 .page--about .timer-mini__screen--help {
   grid-area: help;
   width: var(--btn-size-help);
@@ -2029,6 +2058,7 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__pill:active,
 .page--universe .timer-mini__pill:active,
+body.universe .timer-mini__pill:active,
 .page--about .timer-mini__pill:active {
   background-color: var(--btn-pill-bg-active); /* クリック中は背景色を薄くする */
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
@@ -2036,11 +2066,13 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__pill:focus-visible,
 .page--universe .timer-mini__pill:focus-visible,
+body.universe .timer-mini__pill:focus-visible,
 .page--about .timer-mini__pill:focus-visible {
   box-shadow: var(--btn-bxshadow-focus);
 }
 .page--gallery .timer-mini__icon-btn:active,
 .page--universe .timer-mini__icon-btn:active,
+body.universe .timer-mini__icon-btn:active,
 .page--about .timer-mini__icon-btn:active {
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
   border-radius: var(--mini-border-r-50);
@@ -2048,31 +2080,37 @@ body:not([data-menu-open=true]) .scrim {
 }
 .page--gallery .timer-mini__icon-btn:focus-visible,
 .page--universe .timer-mini__icon-btn:focus-visible,
+body.universe .timer-mini__icon-btn:focus-visible,
 .page--about .timer-mini__icon-btn:focus-visible {
   text-shadow: var(--btn-shadow-focus);
 }
 .page--gallery #toggleTimer[aria-pressed=false] #startBtn,
 .page--universe #toggleTimer[aria-pressed=false] #startBtn,
+body.universe #toggleTimer[aria-pressed=false] #startBtn,
 .page--about #toggleTimer[aria-pressed=false] #startBtn {
   display: block;
 }
 .page--gallery #toggleTimer[aria-pressed=false] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=false] #stopBtn,
+body.universe #toggleTimer[aria-pressed=false] #stopBtn,
 .page--about #toggleTimer[aria-pressed=false] #stopBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #startBtn,
 .page--universe #toggleTimer[aria-pressed=true] #startBtn,
+body.universe #toggleTimer[aria-pressed=true] #startBtn,
 .page--about #toggleTimer[aria-pressed=true] #startBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=true] #stopBtn,
+body.universe #toggleTimer[aria-pressed=true] #stopBtn,
 .page--about #toggleTimer[aria-pressed=true] #stopBtn {
   display: block;
 }
 .page--gallery .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+body.universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--about .timer-mini__icon-btn--sound > .timer__action-btn--muted {
   display: block;
 }
@@ -2081,6 +2119,7 @@ body:not([data-menu-open=true]) .scrim {
 @media (hover: hover) and (pointer: fine) {
   .page--gallery .timer-mini__bg:hover,
   .page--universe .timer-mini__bg:hover,
+  body.universe .timer-mini__bg:hover,
   .page--about .timer-mini__bg:hover {
     background: var(--mini-background-hover);
     border: 1px solid var(--mini-background);
@@ -2091,6 +2130,7 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__pill:hover,
   .page--universe .timer-mini__pill:hover,
+  body.universe .timer-mini__pill:hover,
   .page--about .timer-mini__pill:hover {
     border-color: var(--mini-color-accent);
     background-color: var(--btn-pill-bg-hover);
@@ -2101,6 +2141,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen--help:hover,
   .page--universe .timer-mini__icon-btn:hover,
   .page--universe .timer-mini__screen--help:hover,
+  body.universe .timer-mini__icon-btn:hover,
+  body.universe .timer-mini__screen--help:hover,
   .page--about .timer-mini__icon-btn:hover,
   .page--about .timer-mini__screen--help:hover {
     text-shadow: var(--mini-icon-hover);
@@ -2109,7 +2151,9 @@ body:not([data-menu-open=true]) .scrim {
 }
 /* 4. レスポンシブ・モード切り替え（@media / @container） */
 @media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
-  .page--gallery .timer-mini {
+  .page--gallery .timer-mini,
+  .page--universe .timer-mini,
+  body.universe .timer-mini {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
     right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
@@ -2120,7 +2164,9 @@ body:not([data-menu-open=true]) .scrim {
     min-height: 175px;
     max-height: 200px;
   }
-  .page--gallery .timer-mini__screen--count {
+  .page--gallery .timer-mini__screen--count,
+  .page--universe .timer-mini__screen--count,
+  body.universe .timer-mini__screen--count {
     font-size: 3rem;
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
   }
@@ -2128,6 +2174,7 @@ body:not([data-menu-open=true]) .scrim {
 @container (inline-size < 480px) {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
+  body.universe .timer-mini,
   body.about .timer-mini {
     --btn-hit: var(--btn-hit-small);
     --btn-size-pill: var(--btn-size-pill-inline);
@@ -2136,6 +2183,7 @@ body:not([data-menu-open=true]) .scrim {
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
+  body.universe .timer-mini,
   .page--about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
@@ -2165,11 +2213,13 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__bg,
   .page--universe .timer-mini__bg,
+  body.universe .timer-mini__bg,
   .page--about .timer-mini__bg {
     border: 0.8px solid var(--mini-background-border);
   }
   .page--gallery .timer-mini__grid,
   .page--universe .timer-mini__grid,
+  body.universe .timer-mini__grid,
   .page--about .timer-mini__grid {
     display: grid;
     grid-template-rows: 1fr;
@@ -2179,12 +2229,14 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__grid--vertical,
   .page--universe .timer-mini__grid--vertical,
+  body.universe .timer-mini__grid--vertical,
   .page--about .timer-mini__grid--vertical {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
   .page--gallery .timer-mini__screen--grid,
   .page--universe .timer-mini__screen--grid,
+  body.universe .timer-mini__screen--grid,
   .page--about .timer-mini__screen--grid {
     display: grid;
     grid-template-areas: "time help";
@@ -2193,17 +2245,20 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__screen--display,
   .page--universe .timer-mini__screen--display,
+  body.universe .timer-mini__screen--display,
   .page--about .timer-mini__screen--display {
     width: 100%;
   }
   .page--gallery .timer-mini__screen--count,
   .page--universe .timer-mini__screen--count,
+  body.universe .timer-mini__screen--count,
   .page--about .timer-mini__screen--count {
     text-align: left;
     line-height: 1.3; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   .page--universe .timer-mini__screen--help,
+  body.universe .timer-mini__screen--help,
   .page--about .timer-mini__screen--help {
     display: inline-flex;
     align-items: center;
@@ -2211,13 +2266,16 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__screen--help .i-32,
   .page--universe .timer-mini__screen--help .i-32,
+  body.universe .timer-mini__screen--help .i-32,
   .page--about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help);
     height: var(--btn-size-help);
   }
 }
 @media (max-width: 600px) and (orientation: portrait) {
-  .page--gallery .timer-mini {
+  .page--gallery .timer-mini,
+  .page--universe .timer-mini,
+  body.universe .timer-mini {
     max-height: 180px;
   }
 }
@@ -2225,6 +2283,7 @@ body:not([data-menu-open=true]) .scrim {
 @media (max-width: 480px) and (orientation: portrait) {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
+  body.universe .timer-mini,
   body.about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
@@ -2253,6 +2312,7 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__grid,
   .page--universe .timer-mini__grid,
+  body.universe .timer-mini__grid,
   body.about .timer-mini__grid {
     display: grid;
     grid-template-areas: "count presets controls";
@@ -2262,6 +2322,7 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__grid--vertical,
   .page--universe .timer-mini__grid--vertical,
+  body.universe .timer-mini__grid--vertical,
   body.about .timer-mini__grid--vertical {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2271,23 +2332,27 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__screen,
   .page--universe .timer-mini__screen,
+  body.universe .timer-mini__screen,
   body.about .timer-mini__screen {
     margin: 0 auto;
     min-height: 0;
   }
   .page--gallery .timer-mini__screen--grid,
   .page--universe .timer-mini__screen--grid,
+  body.universe .timer-mini__screen--grid,
   body.about .timer-mini__screen--grid {
     grid-template-areas: "help time";
   }
   .page--gallery .timer-mini__screen--count,
   .page--universe .timer-mini__screen--count,
+  body.universe .timer-mini__screen--count,
   body.about .timer-mini__screen--count {
     text-align: center;
     line-height: 1.5; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   .page--universe .timer-mini__screen--help,
+  body.universe .timer-mini__screen--help,
   body.about .timer-mini__screen--help {
     display: unset;
     position: absolute;
@@ -2296,9 +2361,17 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .timer-mini__screen--help .i-32,
   .page--universe .timer-mini__screen--help .i-32,
+  body.universe .timer-mini__screen--help .i-32,
   body.about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help-inline);
     height: var(--btn-size-help-inline);
+  }
+}
+@media (max-width: 480px) and (orientation: portrait) {
+  body.universe .timer-mini,
+  .page--universe .timer-mini {
+    margin-bottom: 0.2rem;
+    height: 50px;
   }
 }
 body.hero {
@@ -3221,7 +3294,8 @@ body.hero .hero__head {
   }
 }
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
-body.universe {
+body.universe,
+.page--universe {
   --u-bg: #0e1020;
   --u-fg: #e5eafb;
   --u-ch1: #12174f;
@@ -3231,6 +3305,7 @@ body.universe {
   --sub-font: "Kiwi Maru", serif;
   --accent-font: "Zen Kurenaido", sans-serif;
   --UI-font: "M PLUS 1p", sans-serif;
+  --main-color: var(--u-fg);
   --color-FFF: white;
   --color-h1: #f8faff;
   --color-text-light: #f8faff;
@@ -3456,7 +3531,7 @@ body.bg-intro .timer-mini-container {
 }
 body.bg-intro .timer-mini-preset-button {
   color: #c0c0c0;
-  border-color: #f5f5f5-rgba;
+  border-color: #f5f5f5;
 }
 
 body.universe.bg-interlude-0 {
@@ -3472,11 +3547,11 @@ body.universe.bg-interlude-0 h1 {
   color: #f5f5f5;
 }
 body.universe.bg-interlude-0 .timer-mini-container {
-  color: #f5f5f5-rgba;
+  color: #f5f5f5;
   opacity: 0.7;
 }
 body.universe.bg-interlude-0 .timer-mini-preset-button {
-  border-color: #f5f5f5-rgba;
+  border-color: #f5f5f5;
 }
 
 body.universe.bg-interlude-1::before {
@@ -3486,7 +3561,7 @@ body.universe.bg-interlude-1::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-quantum-grid-fff.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
   background-repeat: repeat;
   background-size: auto;
   background-position: center center;
@@ -3524,7 +3599,7 @@ body.universe.bg-interlude-2::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/Cchapter3-title-stars.svg");
+  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3611,19 +3686,21 @@ body.universe.bg-ch1 {
   color: #b1e6ff;
   background: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
   background-size: 400% 400%;
-  animation: --dur-gradientFlow ease infinite;
+  animation: var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-ch1 .word {
   color: inherit;
 }
-body.universe.bg-ch1 h1 {
-  color: #f5f5f5;
+body.universe.bg-ch1 h1,
+body.universe.bg-ch1 .page-header {
+  color: inherit;
 }
 body.universe.bg-ch1 .timer-mini-container {
   color: #b1e6ff;
   opacity: 0.7;
 }
-body.universe.bg-ch1 .timer-mini-preset-button {
+body.universe.bg-ch1 .timer-mini-preset-button,
+body.universe.bg-ch1 .timer-mini__pill {
   border-color: #b1e6ff;
 }
 
@@ -3634,7 +3711,7 @@ body.universe.bg-wave::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-wave-ellipse.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_wave-ellipse.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
@@ -3644,14 +3721,15 @@ body.universe.bg-wave::before {
 
 body.universe.bg-wave {
   color: #e1f3ff;
-  background: linear-gradient(135deg, --Ch2-top-rgba-0e1020, --Ch2-bottom-hex, --Ch2-bottom-rgba-3b4386);
+  background: linear-gradient(135deg, var(--Ch2-top-rgba-0e1020), var(--Ch2-bottom-hex), var(--Ch2-bottom-rgba-3b4386));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-wave .word {
   color: inherit;
 }
-body.universe.bg-wave h1 {
+body.universe.bg-wave h1,
+body.universe.bg-wave .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-wave .menu-btn .material-icons {
@@ -3661,7 +3739,8 @@ body.universe.bg-wave .timer-mini-container {
   color: #e1f3ff;
   opacity: 0.7;
 }
-body.universe.bg-wave .timer-mini-preset-button {
+body.universe.bg-wave .timer-mini-preset-button,
+body.universe.bg-wave .timer-mini__pill {
   border-color: #e1f3ff;
 }
 
@@ -3672,7 +3751,7 @@ body.universe.bg-quantum::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-dot.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_dot.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3681,25 +3760,27 @@ body.universe.bg-quantum::before {
 
 body.universe.bg-quantum {
   color: #e1f3ff;
-  background: linear-gradient(135deg, --Ch2-top-rgba-0e1020, --Ch2-bottom-hex, --Ch2-bottom-rgba-3b4386);
+  background: linear-gradient(135deg, var(--Ch2-top-rgba-0e1020), var(--Ch2-bottom-hex), var(--Ch2-bottom-rgba-3b4386));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-quantum .word {
   color: inherit;
 }
-body.universe.bg-quantum h1 {
+body.universe.bg-quantum h1,
+body.universe.bg-quantum .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-quantum .menu-btn .material-icons {
   color: #e1f3ff;
 }
 body.universe.bg-quantum .timer-mini-container {
-  color: --Ch2-top-rgba-0e1020;
+  color: var(--Ch2-top-rgba-0e1020);
   opacity: 0.7;
 }
-body.universe.bg-quantum .timer-mini-preset-button {
-  border-color: --Ch2-top-rgba-0e1020;
+body.universe.bg-quantum .timer-mini-preset-button,
+body.universe.bg-quantum .timer-mini__pill {
+  border-color: var(--Ch2-top-rgba-0e1020);
 }
 
 body.universe.bg-distortion::before {
@@ -3709,7 +3790,7 @@ body.universe.bg-distortion::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-distortion-grid.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_distortion-grid.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3732,18 +3813,19 @@ body.universe.bg-distortion::before {
   background-blend-mode: color-burn, plus-darker;
   background: linear-gradient(
     135deg,
-    --Ch2-top-rgba-0e1020,
-    --Ch2-bottom-hex,
-    --Ch2-bottom-rgba-3b4386
+    var(--Ch2-top-rgba-0e1020),
+    var(--Ch2-bottom-hex),
+    var(--Ch2-bottom-rgba-3b4386)
   );
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite; // 🌻🌸🌺
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
 
   .word {
     color: inherit; // 通常はこれでOK
   }
 
-  h1 {
+  h1,
+  .page-header {
     color: #f5f5f5; // ← 明示的に固定
   }
 
@@ -3758,7 +3840,8 @@ body.universe.bg-distortion::before {
   }
 
   // ▼ ミニタイマープリセット枠色
-  .timer-mini-preset-button {
+  .timer-mini-preset-button,
+  .timer-mini__pill {
     border-color: #e1f3ff;
   }
 }
@@ -3863,7 +3946,7 @@ body.universe.bg-orbit::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-orbit-grid.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_orbit-grid.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3872,14 +3955,15 @@ body.universe.bg-orbit::before {
 
 body.universe.bg-orbit {
   color: #e1f3ff;
-  background: linear-gradient(135deg, --Ch2-top-rgba-0e1020, --Ch2-bottom-hex, --Ch2-bottom-rgba-3b4386);
+  background: linear-gradient(135deg, var(--Ch2-top-rgba-0e1020), var(--Ch2-bottom-hex), var(--Ch2-bottom-rgba-3b4386));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-orbit .word {
   color: inherit;
 }
-body.universe.bg-orbit h1 {
+body.universe.bg-orbit h1,
+body.universe.bg-orbit .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-orbit .menu-btn .material-icons {
@@ -3889,7 +3973,8 @@ body.universe.bg-orbit .timer-mini-container {
   color: #e1f3ff;
   opacity: 0.7;
 }
-body.universe.bg-orbit .timer-mini-preset-button {
+body.universe.bg-orbit .timer-mini-preset-button,
+body.universe.bg-orbit .timer-mini__pill {
   border-color: #e1f3ff;
 }
 
@@ -3900,7 +3985,7 @@ body.universe.bg-orbit::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp2-orbit.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_orbit.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
@@ -3918,7 +4003,7 @@ body.universe.bg-horizon {
   /* ほんのり“観測”の気配：極薄グリッド（好みでON） */
   /* ハンバーガー＆タイマーを currentColor に追従 */
   /* トランジション（全体の秒数トークンがあればそれに揃えてOK） */
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-horizon::before {
   content: "";
@@ -3943,7 +4028,7 @@ body.universe.bg-ch3::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/Cchapter3-title-stars.svg");
+  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3959,7 +4044,8 @@ body.universe.bg-ch3 .word {
   font-style: italic;
   opacity: 0.5;
 }
-body.universe.bg-ch3 h1 {
+body.universe.bg-ch3 h1,
+body.universe.bg-ch3 .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-ch3 .menu-btn .material-icons {
@@ -3969,7 +4055,8 @@ body.universe.bg-ch3 .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-ch3 .timer-mini-preset-button {
+body.universe.bg-ch3 .timer-mini-preset-button,
+body.universe.bg-ch3 .timer-mini__pill {
   color: #d9e8f7;
   border-color: #d9e8f7;
 }
@@ -3981,7 +4068,7 @@ body.universe.bg-star::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp3-stars-stardust.svg");
+  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -3997,7 +4084,8 @@ body.universe.bg-star .word {
   font-style: italic;
   opacity: 0.5;
 }
-body.universe.bg-star h1 {
+body.universe.bg-star h1,
+body.universe.bg-star .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-star .menu-btn .material-icons {
@@ -4007,7 +4095,8 @@ body.universe.bg-star .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-star .timer-mini-preset-button {
+body.universe.bg-star .timer-mini-preset-button,
+body.universe.bg-star .timer-mini__pill {
   color: #d9e8f7;
   border-color: #d9e8f7;
 }
@@ -4019,7 +4108,7 @@ body.universe.bg-nebula::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp3-stars-stardust.svg");
+  background-image: url("../../../assets/universe/svg/grid.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -4030,14 +4119,15 @@ body.universe.bg-nebula {
   color: #d9e8f7;
   background: linear-gradient(135deg, #0b1c39 0%, #1e2b4f 25%, #94c0de 48%, color-mix(in oklch, #ca7b3d 70%, #1e2b4f 30%) 62%, hsla(350, 75%, 75%, 0.3) 70%, transparent 78%);
   background-size: 250% 250%; /* 400% → 250%（帯をやや細く） */
-  animation: gradient-flow --dur-gradientFlow ease-in-out infinite; /* ゆっくり */
+  animation: gradient-flow var(--dur-gradientFlow) ease-in-out infinite; /* ゆっくり */
 }
 body.universe.bg-nebula .word {
   color: inherit;
   font-style: italic;
   opacity: 0.5;
 }
-body.universe.bg-nebula h1 {
+body.universe.bg-nebula h1,
+body.universe.bg-nebula .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-nebula .menu-btn .material-icons {
@@ -4047,7 +4137,8 @@ body.universe.bg-nebula .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-nebula .timer-mini-preset-button {
+body.universe.bg-nebula .timer-mini-preset-button,
+body.universe.bg-nebula .timer-mini__pill {
   color: #d9e8f7;
   border-color: #d9e8f7;
 }
@@ -4059,7 +4150,7 @@ body.universe.bg-galaxy::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/cp3-stars-stardust.svg");
+  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -4077,7 +4168,8 @@ body.universe.bg-galaxy .word {
   font-style: italic;
   opacity: 0.5;
 }
-body.universe.bg-galaxy h1 {
+body.universe.bg-galaxy h1,
+body.universe.bg-galaxy .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-galaxy .menu-btn .material-icons {
@@ -4087,7 +4179,8 @@ body.universe.bg-galaxy .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-galaxy .timer-mini-preset-button {
+body.universe.bg-galaxy .timer-mini-preset-button,
+body.universe.bg-galaxy .timer-mini__pill {
   color: #d9e8f7;
   border-color: #d9e8f7;
 }
@@ -4111,7 +4204,7 @@ body.universe.bg-gravity::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/chapter3_bg-gravity_Vector_Field_Generator.svg");
+  background-image: url("../../../assets/universe/svg/chapter3_bg-gravity_Vector_Field_Generator.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -4122,12 +4215,13 @@ body.universe.bg-gravity {
   color: #d9e8f7;
   background: linear-gradient(135deg, rgb(11, 28, 57), rgb(30, 43, 79), rgb(217, 232, 247));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-gravity .word {
   color: inherit;
 }
-body.universe.bg-gravity h1 {
+body.universe.bg-gravity h1,
+body.universe.bg-gravity .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-gravity .menu-btn .material-icons {
@@ -4137,7 +4231,8 @@ body.universe.bg-gravity .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-gravity .timer-mini-preset-button {
+body.universe.bg-gravity .timer-mini-preset-button,
+body.universe.bg-gravity .timer-mini__pill {
   color: #d9e8f7;
   border-color: #f5f5f5;
 }
@@ -4149,7 +4244,7 @@ body.universe.bg-wind::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../images/Cp3-wind-Vector Field Generator.svg");
+  background-image: url("../../../assets/universe/svg/chapter3_wind-Vector_Field_Generator.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none;
@@ -4160,12 +4255,13 @@ body.universe.bg-wind {
   color: #d9e8f7;
   background: linear-gradient(135deg, rgb(11, 28, 57), rgb(30, 43, 79), rgb(217, 232, 247));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-wind .word {
   color: inherit;
 }
-body.universe.bg-wind h1 {
+body.universe.bg-wind h1,
+body.universe.bg-wind .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-wind .menu-btn .material-icons {
@@ -4175,7 +4271,8 @@ body.universe.bg-wind .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-wind .timer-mini-preset-button {
+body.universe.bg-wind .timer-mini-preset-button,
+body.universe.bg-wind .timer-mini__pill {
   color: #d9e8f7;
   border-color: #f5f5f5;
 }
@@ -4201,12 +4298,13 @@ body.universe.bg-ly {
   color: #d9e8f7;
   background: linear-gradient(135deg, rgb(11, 28, 57), rgb(30, 43, 79), rgb(217, 232, 247));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-ly .word {
   color: inherit;
 }
-body.universe.bg-ly h1 {
+body.universe.bg-ly h1,
+body.universe.bg-ly .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-ly .menu-btn .material-icons {
@@ -4216,7 +4314,8 @@ body.universe.bg-ly .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-ly .timer-mini-preset-button {
+body.universe.bg-ly .timer-mini-preset-button,
+body.universe.bg-ly .timer-mini__pill {
   color: #d9e8f7;
   border-color: #f5f5f5;
 }
@@ -4243,12 +4342,13 @@ body.universe.bg-past {
   color: #d9e8f7;
   background: linear-gradient(135deg, rgb(11, 28, 57), rgb(30, 43, 79), rgba(217, 232, 247, 0.7));
   background-size: 400% 400%;
-  animation: gradient-flow --dur-gradientFlow ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 body.universe.bg-past .word {
   color: inherit;
 }
-body.universe.bg-past h1 {
+body.universe.bg-past h1,
+body.universe.bg-past .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-past .menu-btn .material-icons {
@@ -4258,7 +4358,8 @@ body.universe.bg-past .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-past .timer-mini-preset-button {
+body.universe.bg-past .timer-mini-preset-button,
+body.universe.bg-past .timer-mini__pill {
   color: #d9e8f7;
   border-color: #f5f5f5;
 }
@@ -4271,7 +4372,8 @@ body.universe.bg-past2 {
 body.universe.bg-past2 .word {
   color: inherit;
 }
-body.universe.bg-past2 h1 {
+body.universe.bg-past2 h1,
+body.universe.bg-past2 .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-past2 .menu-btn .material-icons {
@@ -4281,7 +4383,8 @@ body.universe.bg-past2 .timer-mini-container {
   color: #d9e8f7;
   opacity: 0.7;
 }
-body.universe.bg-past2 .timer-mini-preset-button {
+body.universe.bg-past2 .timer-mini-preset-button,
+body.universe.bg-past2 .timer-mini__pill {
   color: #d9e8f7;
   border-color: #f5f5f5;
 }
@@ -4315,21 +4418,23 @@ body.universe.bg-darkness {
 body.universe.bg-darkness .word {
   color: inherit;
 }
-body.universe.bg-darkness h1 {
+body.universe.bg-darkness h1,
+body.universe.bg-darkness .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-darkness .menu-btn .material-icons {
   filter: none;
-  color: --Ch3-bottom-hex;
+  color: var(--Ch3-bottom-hex);
 }
 body.universe.bg-darkness .timer-mini-container {
-  color: --Ch3-bottom-hex;
+  color: var(--Ch3-bottom-hex);
   opacity: 0.7;
   filter: none;
 }
-body.universe.bg-darkness .timer-mini-preset-button {
-  color: --Ch3-bottom-hex;
-  border-color: --Ch3-bottom-hex;
+body.universe.bg-darkness .timer-mini-preset-button,
+body.universe.bg-darkness .timer-mini__pill {
+  color: var(--Ch3-bottom-hex);
+  border-color: var(--Ch3-bottom-hex);
   filter: none;
 }
 
@@ -4342,13 +4447,15 @@ body.universe.bg-ch4 .word {
   font-style: italic;
   opacity: 0.5;
 }
-body.universe.bg-ch4 h1 {
+body.universe.bg-ch4 h1,
+body.universe.bg-ch4 .page-header {
   color: #f5f5f5;
 }
 body.universe.bg-ch4 .timer-mini-container .timer-display {
   opacity: 0.85;
 }
-body.universe.bg-ch4 .timer-mini-preset-button {
+body.universe.bg-ch4 .timer-mini-preset-button,
+body.universe.bg-ch4 .timer-mini__pill {
   border-color: currentcolor;
 }
 
@@ -4369,7 +4476,8 @@ body.universe.bg-ch4 .timer-mini-preset-button {
     color: inherit;
   }
 
-  h1 {
+  h1,
+  .page-header {
     color: #f5f5f5;
   } // 明示的に固定
 
@@ -4379,7 +4487,8 @@ body.universe.bg-ch4 .timer-mini-preset-button {
   }
 
   // ▼ ミニタイマープリセット枠色
-  .timer-mini-preset-button {
+  .timer-mini-preset-button,
+  .timer-mini__pill {
     border-color: currentcolor;
   }
 } */
@@ -4446,37 +4555,16 @@ body.universe.bg-ch5 .timer-mini-container {
   z-index: 1;
 }
 
-/* 宇宙ページのテーマ（ページ作用域で上書き）*/
-body.universe {
-  background: var(--u-bg);
-  color: var(--u-fg);
-}
-body.universe .timer {
-  --timer-fg: #444; /* そのままでもOK。必要に応じ変更 */
-  --timer-opacity: 0.7;
-  --timer-hover-bg: rgb(68 68 68 / 60%);
-  --timer-hover-border: rgb(68 68 68 / 60%);
-  --timer-hover-fg: #fff;
-  --timer-focus-border: rgb(68 68 68 / 85%);
-  --timer-focus-shadow: rgb(90 74 70 / 30%);
-  --timer-focus-icon: rgb(90 74 70 / 100%);
-}
-
-/* 初期はトランジション切ってチラつき防止 */
-body.booting {
-  transition: none !important;
-}
-
-/* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
-body.booting #page-title,
-body.booting .word {
-  opacity: 0;
+/* 宇宙ページのテーマ（ページ作用域で上書き */
+.page--universe {
+  height: 100%;
+  overflow: hidden;
 }
 
 body.universe {
   color: #f5f5f5;
   background: linear-gradient(to bottom, #0e1020, #b4d2ea);
-  transition: background --dur-bg --ease-standard, color --dur-bg --ease-standard;
+  transition: background var(--dur-bg) var(--ease-standard), color var(--dur-bg) var(--ease-standard);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -4484,7 +4572,11 @@ body.universe {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  /* 初期はトランジション切ってチラつき防止 */
+  /* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
   /* 既存：h1のフェード/高さトランジションと共存OK */
+  /* タイトルラッパは相対配置 */
+  /* ホワイトアウトの白板 "overlay" */
   /* 表示状態 */
   /*   a.back {
     display: block;
@@ -4494,110 +4586,64 @@ body.universe {
     outline: none;
   } */
 }
-body.universe .menu-btn .material-icons {
-  color: -white;
+body.universe body.booting {
+  transition: none !important;
+}
+body.universe body.booting #page-title,
+body.universe body.booting .word {
+  opacity: 0;
 }
 body.universe header h1 {
-  transition: opacity --dur-header-fade --ease-standard, height --dur-header-height --ease-standard;
+  transition: opacity var(--dur-header-fade) var(--ease-standard), height var(--dur-header-height) var(--ease-standard);
 }
-body.universe #page-header {
-  transition: all --dur-header-height --ease-standard;
-  /* タイトルラッパは相対配置 */
-  /* ホワイトアウトの白板 "overlay" */
-}
-body.universe #page-header.hidden {
-  height: 0;
-  overflow: hidden;
-}
-body.universe #page-header header {
-  height: auto;
-  transition: opacity --dur-header-fade --ease-standard, height --dur-header-height --ease-standard;
-}
-body.universe #page-header header.hidden {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  margin-top: 0;
-}
-body.universe #page-header .title-wrapper {
+body.universe .title-wrapper {
   position: relative;
   display: inline-block; /* タイトル幅にフィット */
 }
-body.universe #page-header h1 {
-  transition: opacity --dur-header-fade --ease-standard, height --dur-header-height ease;
-  color: #f5f5f5;
-}
-body.universe #page-header h1.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-body.universe #page-header #whiteout {
+body.universe #whiteout {
   position: fixed;
   inset: 0; /* 画面全体 */
-  background: --bigin-white;
+  background: var(--bigin-white);
   opacity: 0; /* 初期は透明 */
-  transition: opacity --dur-whiteout --ease-standard; /* フェード時間 */
-  z-index: z(overlay); /* なんでも上に */
+  transition: opacity var(--dur-whiteout) var(--ease-standard); /* フェード時間 */
+  z-index: 3500; /* なんでも上に */
   pointer-events: none;
   will-change: opacity;
 }
 body.universe #whiteout.active {
   opacity: 1;
 }
-body.universe #page-title {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  z-index: 10;
-  opacity: 1;
-  transition: opacity --dur-header-fade --ease-standard;
-}
-body.universe #page-title.active {
-  color: #f5f5f5;
-  opacity: 0.9;
-}
-body.universe #page-title.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
 body.universe main {
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding-top: 5vh;
+  padding-bottom: 12vh;
 }
-body.universe .universe-words {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  padding: 1rem;
+body.universe .universe-words,
+body.universe .universe__word {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  padding-bottom: 6vh;
   text-align: center;
-  font-size: 1.5rem;
-  animation: fade-in --dur-bg --dur-whiteout;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
 }
 body.universe .word {
   margin: 0;
   max-width: 90vw;
-  font-family: --sub-font;
-  font-size: --font-size-universe; /* ← 2rem直書きは削除して集約 */
-  color: --color-text-dark-444;
+  font-family: var(--sub-font);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: var(--color-text-dark-444);
   opacity: 0;
-  animation: fade-in-word --dur-word-in ease-out forwards;
+  animation: fade-in-word var(--dur-word-in) ease-out forwards;
 }
 body.universe .word.fade-in {
-  animation: fade-in --dur-word-in --dur-whiteout forwards;
+  animation: fade-in var(--dur-word-in) var(--dur-whiteout) forwards;
 }
 body.universe .word.fade-out {
-  animation: fade-out --dur-word-out --ease-standard forwards;
-}
-@media (width <= 768px) {
-  body.universe .word {
-    font-size: 1.5rem;
-    line-height: 2.2rem;
-  }
+  animation: fade-out var(--dur-word-out) var(--ease-standard) forwards;
 }
 body.universe .word.interlude {
   font-style: italic;
@@ -4606,4 +4652,10 @@ body.universe .word.interlude {
   letter-spacing: 0.1em;
 }
 
+@media (width <= 768px) {
+  .page--universe .word {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+  }
+}
 /* 今回の .timer 上書きはここに入れた *//*# sourceMappingURL=style.css.map */

@@ -2,9 +2,9 @@
 // ↓ 以下、universeスタイルのセット
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
-// こうしたほうがいい
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
-body.universe {
+body.universe,
+.page--universe {
   --u-bg: #0e1020;
   --u-fg: #e5eafb;
   --u-ch1: #12174f;
@@ -21,6 +21,7 @@ body.universe {
   // ▼ Color フォント色
   // body.universe 初期値
   // color・menu-btn・title
+  --main-color: var(--u-fg);
   --color-FFF: white;
   --color-h1: #f8faff; // 動かさない値
 

@@ -13,6 +13,7 @@ body.bg-intro {
   }
 
   /* h1 意図的に残している */
+  // たぶんh1じゃなくて、header__brandのcolorにすればいいと思う　2025/12/16
   h1 {
     color: #f5f5f5;
   }
@@ -26,7 +27,7 @@ body.bg-intro {
   // ▼ ミニタイマープリセット枠色
   .timer-mini-preset-button {
     color: #c0c0c0;
-    border-color: #f5f5f5-rgba;
+    border-color: #f5f5f5;
   }
 }
 
@@ -53,13 +54,13 @@ body.universe.bg-interlude-0 {
 
   // ミニタイマー font色
   .timer-mini-container {
-    color: #f5f5f5-rgba;
+    color: #f5f5f5;
     opacity: 0.7;
   }
 
   // ▼ ミニタイマープリセット枠色
   .timer-mini-preset-button {
-    border-color: #f5f5f5-rgba;
+    border-color: #f5f5f5;
   }
 }
 
@@ -74,7 +75,7 @@ body.universe.bg-interlude-1::before {
   height: 100%;
 
   // グリッド
-  background-image: url("../../images/cp2-quantum-grid-fff.svg");
+  background-image: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
   background-repeat: repeat;
   background-size: auto;
   background-position: center center;
@@ -125,7 +126,7 @@ body.universe.bg-interlude-2::before {
   height: 100%;
 
   // 星空
-  background-image: url("../../images/Cchapter3-title-stars.svg");
+  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
   pointer-events: none; // UIの邪魔しない

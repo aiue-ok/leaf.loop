@@ -7,8 +7,8 @@ const chapters = [
     title: "はじまりの音",
     background: "bg-ch1",
     words: [
-      /*       "ビッグバン",
-      "始まり",
+      "ビッグバン",
+      /* "始まり",
       "光のひとしずく",
       "宇宙の夜明け",
       "透明",
@@ -37,9 +37,9 @@ const chapters = [
       // { text: "膨張", bgClass: "bg-distortion" },
       // 秩序やパターン系
       // { text: "軌道", bgClass: "bg-orbit" },
-      { text: "対称性", bgClass: "bg-symmetry" },
+      // { text: "対称性", bgClass: "bg-symmetry" },
       // 境界系で終わり
-      { text: "事象の地平線", bgClass: "bg-horizon" },
+      // { text: "事象の地平線", bgClass: "bg-horizon" },
     ],
   },
   // 第3章：星と時間
@@ -48,18 +48,18 @@ const chapters = [
     title: "星と時間",
     background: "bg-ch3",
     words: [
-      // Chapter 3: 星と時間（cinematic）
-      { text: "星屑", bgClass: "bg-star" }, // 小粒から始めて目を馴らす
-      { text: "恒星", bgClass: "bg-star" }, // 明るさの核
-      { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
-      { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
-      { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
-      { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
-      { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
-      { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
-      { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
-      { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
-      { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
+      //     // Chapter 3: 星と時間（cinematic）
+      //     { text: "星屑", bgClass: "bg-star" }, // 小粒から始めて目を馴らす
+      //     { text: "恒星", bgClass: "bg-star" }, // 明るさの核
+      //     { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
+      //     { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
+      //     { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
+      //     { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
+      //     { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
+      //     { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
+      //     { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
+      //     { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
+      //     { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
     ],
   },
 
@@ -69,16 +69,16 @@ const chapters = [
     title: "ゆるやかな問い",
     background: "bg-ch4",
     words: [
-      "無",
-      "兆し",
-      "残響",
-      "思念",
-      "まなざし",
-      "ゆらぎ",
-      "不確定",
-      "予感",
-      "間（ま）",
-      "静寂",
+      //     "無",
+      //     "兆し",
+      //     "残響",
+      //     "思念",
+      //     "まなざし",
+      //     "ゆらぎ",
+      //     "不確定",
+      //     "予感",
+      //     "間（ま）",
+      //     "静寂",
     ],
   },
 
@@ -88,17 +88,17 @@ const chapters = [
     title: "還りゆく光",
     background: "bg-ch5",
     words: [
-      "遠さ",
-      "すべて",
-      "宙",
-      "輪郭",
-      "幻",
-      "ふるえ",
-      "未来",
-      "光速",
-      "帰還",
-      "余白",
-      "白",
+      //     "遠さ",
+      //     "すべて",
+      //     "宙",
+      //     "輪郭",
+      //     "幻",
+      //     "ふるえ",
+      //     "未来",
+      //     "光速",
+      //     "帰還",
+      //     "余白",
+      //     "白",
     ],
   },
 ];
@@ -252,9 +252,9 @@ function showNextWord() {
   // 例: http:
   if (
     location.search.includes("dev") &&
-    document.body.classList.contains("bg-symmetry")
+    document.body.classList.contains("bg-ch1")
   ) {
-    console.log("🚦 bg-symmetry なので停止（devモード）");
+    console.log("🚦 .bg-ch1 なので停止（devモード）");
     return; //条件を満たしたら return; でその場で関数終了 → 次の単語に進まなくなる。
   }
 

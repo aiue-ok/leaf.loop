@@ -1,40 +1,36 @@
-/* 宇宙ページのテーマ（ページ作用域で上書き）*/
+@use "../../core/index" as core;
+
+/* 宇宙ページのテーマ（ページ作用域で上書き */
 body.universe {
+  // コメントアウト2025/12/16見た目影響なし
   // /* タイマーの色味や強さだけ宇宙仕様にする */
-  .timer {
-    --timer-fg: #444; /* そのままでもOK。必要に応じ変更 */
-    --timer-opacity: 0.7;
-    --timer-hover-bg: rgb(68 68 68 / 60%);
-    --timer-hover-border: rgb(68 68 68 / 60%);
-    --timer-hover-fg: #fff;
-    --timer-focus-border: rgb(68 68 68 / 85%);
-    --timer-focus-shadow: rgb(90 74 70 / 30%);
-    --timer-focus-icon: rgb(90 74 70 / 100%);
-  }
+  // .timer {
+  //   --timer-fg: #444; /* そのままでもOK。必要に応じ変更 */
+  //   --timer-opacity: 0.7;
+  //   --timer-hover-bg: rgb(68 68 68 / 60%);
+  //   --timer-hover-border: rgb(68 68 68 / 60%);
+  //   --timer-hover-fg: #fff;
+  //   --timer-focus-border: rgb(68 68 68 / 85%);
+  //   --timer-focus-shadow: rgb(90 74 70 / 30%);
+  //   --timer-focus-icon: rgb(90 74 70 / 100%);
+  // }
 
-  background: var(--u-bg);
-  color: var(--u-fg);
+  // background: var(--u-bg);
+  // color: var(--u-fg);
 }
 
-// アニメ使う宣言
-
-/* 初期はトランジション切ってチラつき防止 */
-body.booting {
-  transition: none !important;
-}
-
-/* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
-body.booting #page-title,
-body.booting .word {
-  opacity: 0;
+// body タグ
+.page--universe {
+  height: 100%;
+  overflow: hidden;
 }
 
 body.universe {
   //  「基準値」
   color: #f5f5f5;
   background: linear-gradient(to bottom, #0e1020, #b4d2ea);
-  transition: background --dur-bg --ease-standard,
-    color --dur-bg --ease-standard;
+  transition: background var(--dur-bg) var(--ease-standard),
+    color var(--dur-bg) var(--ease-standard);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -44,69 +40,53 @@ body.universe {
   flex-direction: column;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // ヘッダー ことばが表示されたら消える
+  // アニメ使う宣言
 
+  /* 初期はトランジション切ってチラつき防止 */
+  body.booting {
+    transition: none !important;
+  }
+
+  /* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
+  body.booting #page-title,
+  body.booting .word {
+    opacity: 0;
+  }
+
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ヘッダー ことばが表示されたら消える
+  // コメントアウト2025/12/16見た目影響なし　消して良いやつだけど、jsと連動している
   .menu-btn .material-icons {
     // 🍎src/scss/tokens/_colors.scss変数化アイコン
-    color: -white;
+    // color: white;
   }
 
   /* 既存：h1のフェード/高さトランジションと共存OK */
   // Expected selector "header h1" to come before selector no-descending-specificity
+  // tokensに値ある h1だけじゃなくハンバーガーアイコンとh2にも適用が必要2025/12/16 未着手
   header h1 {
-    transition: opacity --dur-header-fade --ease-standard,
-      height --dur-header-height --ease-standard;
+    transition: opacity var(--dur-header-fade) var(--ease-standard),
+      height var(--dur-header-height) var(--ease-standard);
   }
 
-  #page-header {
-    transition: all --dur-header-height --ease-standard;
+  /* タイトルラッパは相対配置 */
+  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
+  .title-wrapper {
+    position: relative;
+    display: inline-block; /* タイトル幅にフィット */
+  }
 
-    &.hidden {
-      height: 0;
-      overflow: hidden;
-    }
-
-    header {
-      height: auto;
-      transition: opacity --dur-header-fade --ease-standard,
-        height --dur-header-height --ease-standard;
-
-      &.hidden {
-        opacity: 0;
-        height: 0;
-        overflow: hidden;
-        margin-top: 0; // ←これでぴたっと消える
-      }
-    }
-
-    /* タイトルラッパは相対配置 */
-    .title-wrapper {
-      position: relative;
-      display: inline-block; /* タイトル幅にフィット */
-    }
-
-    h1 {
-      transition: opacity --dur-header-fade --ease-standard,
-        height --dur-header-height ease;
-      color: #f5f5f5;
-
-      &.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-
-    /* ホワイトアウトの白板 "overlay" */
-    #whiteout {
-      position: fixed;
-      inset: 0; /* 画面全体 */
-      background: --bigin-white;
-      opacity: 0; /* 初期は透明 */
-      transition: opacity --dur-whiteout --ease-standard; /* フェード時間 */
-      z-index: z(overlay); /* なんでも上に */
-      pointer-events: none;
-      will-change: opacity;
-    }
+  /* ホワイトアウトの白板 "overlay" */
+  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
+  #whiteout {
+    position: fixed;
+    inset: 0; /* 画面全体 */
+    background: var(--bigin-white);
+    opacity: 0; /* 初期は透明 */
+    transition: opacity var(--dur-whiteout) var(--ease-standard); /* フェード時間 */
+    z-index: core.$z-whiteout; /* なんでも上に */
+    pointer-events: none;
+    will-change: opacity;
   }
 
   /* 表示状態 */
@@ -114,27 +94,57 @@ body.universe {
     opacity: 1;
   }
 
+  // IDなし　コメントアウト　2025/12/16
+  // #page-header {
+  //   transition: all --dur-header-height --ease-standard;
+  //   &.hidden {
+  //     height: 0;
+  //     overflow: hidden;
+  //   }
+  //   header {
+  //     height: auto;
+  //     transition: opacity --dur-header-fade --ease-standard,
+  //       height --dur-header-height --ease-standard;
+  //     &.hidden {
+  //       opacity: 0;
+  //       height: 0;
+  //       overflow: hidden;
+  //       margin-top: 0; // ←これでぴたっと消える
+  //     }
+  //   }
+  //   h1 {
+  //     transition: opacity --dur-header-fade --ease-standard,
+  //       height --dur-header-height ease;
+  //     color: #f5f5f5;
+  //     &.hidden {
+  //       opacity: 0;
+  //       pointer-events: none;
+  //     }
+  //   }
+  // }
+
   // h1を重ねて浮かせる
-  #page-title {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    z-index: 10;
-    opacity: 1;
-    transition: opacity --dur-header-fade --ease-standard;
-  }
+  // 2025/12/16 html内にID設定無し
+  // #page-title {
+  //   position: absolute;
+  //   top: 1.5rem;
+  //   left: 1.5rem;
+  //   z-index: 10;
+  //   opacity: 1;
+  //   transition: opacity --dur-header-fade --ease-standard;
+  // }
 
-  // いっしょにホワイトアウト
-  #page-title.active {
-    color: #f5f5f5;
-    opacity: 0.9;
-  }
+  // // いっしょにホワイトアウト
+  // #page-title.active {
+  //   color: #f5f5f5;
+  //   opacity: 0.9;
+  // }
 
-  // 消えたらクリック無効
-  #page-title.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
+  // // 消えたらクリック無効
+  // #page-title.hidden {
+  //   opacity: 0;
+  //   pointer-events: none;
+  // }
 
   // 仮　戻るリンク
 
@@ -153,47 +163,42 @@ body.universe {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding-top: 5vh;
+    padding-bottom: 12vh;
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 一語ずつ詩的に出現させる場所
   // JavaScriptで動的に表示切り替え
-  .universe-words {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    padding: 1rem;
+  .universe-words,
+  .universe__word {
+    // background: core.$test-bg2;
+    min-height: 50vh;
+    display: grid;
+    place-items: center;
+    padding-bottom: 6vh;
     text-align: center;
-    font-size: 1.5rem;
-    animation: fade-in --dur-bg --dur-whiteout;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
   }
 
   .word {
     margin: 0;
     max-width: 90vw;
-    font-family: --sub-font;
-    font-size: --font-size-universe; /* ← 2rem直書きは削除して集約 */
-    color: --color-text-dark-444;
+    font-family: var(--sub-font);
+
+    // font-size: var(--font-size-universe); /* ← 2rem直書きは削除して集約 */
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: var(--color-text-dark-444);
     opacity: 0;
-    animation: fade-in-word --dur-word-in ease-out forwards;
+    animation: fade-in-word var(--dur-word-in) ease-out forwards;
   }
 
   .word.fade-in {
-    animation: fade-in --dur-word-in --dur-whiteout forwards;
+    animation: fade-in var(--dur-word-in) var(--dur-whiteout) forwards;
   }
 
   .word.fade-out {
-    animation: fade-out --dur-word-out --ease-standard forwards;
-  }
-
-  @media (width <= 768px) {
-    .word {
-      font-size: 1.5rem;
-      line-height: 2.2rem;
-    }
+    animation: fade-out var(--dur-word-out) var(--ease-standard) forwards;
   }
 
   // 間奏　言葉のフォント設定（ほぼ無言のため消す）　⚠️各章にて設定上書き
@@ -202,5 +207,14 @@ body.universe {
     font-size: 1.2em;
     opacity: 0.6;
     letter-spacing: 0.1em;
+  }
+}
+
+@media (width <= 768px) {
+  .page--universe {
+    .word {
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+    }
   }
 }
