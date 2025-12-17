@@ -25,8 +25,9 @@
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <script src="js/word.js" defer></script>
-    <script src="js/whiteout-once.js" defer></script>
+    <script type="module" src="./js/word_test.js" defer></script>
+    <!-- <script src="js/word.js" defer></script> -->
+    <!-- <script src="js/whiteout-once.js" defer></script> -->
     <title>遠くのことを少しだけ</title>
   </head>
   <body class="universe booting page--universe">
@@ -259,7 +260,7 @@
         <div id="whiteout" aria-hidden="true"></div>
       </div>
       <!-- // 一語ずつ詩的に出現させる場所 -->
-      <section class="universe-words">
+      <section class="universe-words universe__word">
         <!-- <p class="universe__word">はじまり</p> -->
         <!-- JSで順次表示 -->
         <p class="word" id="word"></p>
@@ -549,7 +550,7 @@
         </svg>
       </div>
     </nav>
-    <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+    <audio id="alarmSound" src="./assets/mp3/alarm.mp3" preload="auto"></audio>
     <div class="offcanvas-backdrop" hidden></div>
     <!-- 画面表示（トースト） -->
     <div id="toast" class="js-toast" role="status" aria-live="polite" hidden>
