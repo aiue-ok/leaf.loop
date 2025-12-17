@@ -326,26 +326,170 @@ function showNextWord() {
   }, fadeDuration);
 }
 
-showNextWord(); // 最初の1語
+// showNextWord(); // 最初の1語
 
 //  ⚠️つかってない
 // 1語目の表示と同時にh1を消す
-const title = document.getElementById("page-title");
+// const title = document.getElementById("page-title");
 
-// 一度だけ非表示にするフラグ
-let hasHiddenTitle = false;
+// // 一度だけ非表示にするフラグ
+// let hasHiddenTitle = false;
 
-function changeWord() {
-  currentIndex++;
-  if (currentIndex >= words.length) {
-    currentIndex = 0;
-    console.log("🌀 currentIndex:", currentIndex);
-  }
+// function changeWord() {
+//   currentIndex++;
+//   if (currentIndex >= words.length) {
+//     currentIndex = 0;
+//     console.log("🌀 currentIndex:", currentIndex);
+//   }
 
-  // 1回目だけ h1 を非表示にする
-  if (currentIndex === 0 && !hasHiddenTitle) {
-    console.log("🚨 h1非表示処理 実行！");
-    setTimeout(() => {}, 500); // 3秒くらいで消すと美しいかも
-    hasHiddenTitle = true;
+//   // 1回目だけ h1 を非表示にする
+//   if (currentIndex === 0 && !hasHiddenTitle) {
+//     console.log("🚨 h1非表示処理 実行！");
+//     setTimeout(() => {}, 500); // 3秒くらいで消すと美しいかも
+//     hasHiddenTitle = true;
+//   }
+// }
+
+/* =========================================================
+   universe: minimal sequence (behind a flag)
+   - intro -> (optional whiteout) -> chapter title -> words -> intro
+   - querySelector is only ".word"
+   ========================================================= */
+
+const USE_NEW_UNIVERSE_SEQUENCE = true; // ← 統合テスト中は true
+
+const INTRO_TEXT = "遠くのことを少しだけ";
+
+// まずは1章だけ（増やすのは後）
+const CHAPTERS = [
+  {
+    id: "chapter-1",
+    theme: "theme-ch1", // ← CSS側が無ければ無視される（安全）
+    whiteoutIn: true, // 章手前のwhiteout
+    whiteoutOut: false, // 最終でintroに戻る時にwhiteoutしたければtrue
+    title: "第一章　はじまりの音",
+    words: ["ビッグバン", "生成", "ゆらぎ", "観測"],
+    interval: 1200,
+    jitter: 0, // まずは0で淡々（後で80-120くらい）
+    durationMs: 6500,
+  },
+];
+
+// --- util ---
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function setWord(el, text) {
+  el.textContent = text;
+}
+
+function setTheme(themeClass) {
+  if (!themeClass) return;
+  // 既存テーマが無くてもOK。intro/ch1だけでも運用できる。
+  document.body.classList.remove(
+    "theme-intro",
+    "theme-ch1",
+    "theme-ch2",
+    "theme-ch3",
+    "theme-ch4",
+    "theme-ch5"
+  );
+  document.body.classList.add(themeClass);
+}
+
+/**
+ * NOTE:
+ * whiteoutOnce が既にあるならここで呼べます。
+ * 無ければ何もしないので、まずは動作確認優先でもOK。
+ */
+function tryWhiteoutOnce(ms = 420) {
+  // whiteoutOnce がグローバル or import済みなら呼べる
+  try {
+    if (typeof whiteoutOnce === "function") {
+      whiteoutOnce({ ms });
+    }
+  } catch (_) {
+    // 何もしない（テスト優先）
   }
 }
+
+function playWords({ el, words, interval = 1100, jitter = 0 }) {
+  let i = 0;
+  let timerId = null;
+  let stopped = false;
+
+  const tick = () => {
+    if (stopped) return;
+
+    el.textContent = words[i % words.length];
+    i += 1;
+
+    const wobble = (Math.random() * 2 - 1) * jitter;
+    timerId = window.setTimeout(tick, Math.max(80, interval + wobble));
+  };
+
+  tick();
+
+  return () => {
+    stopped = true;
+    if (timerId) window.clearTimeout(timerId);
+  };
+}
+
+async function runUniverseSequence() {
+  const wordEl = document.querySelector(".word");
+  if (!wordEl) return;
+
+  // 0) 着地：intro（見たい状態）
+  setTheme("theme-intro");
+  setWord(wordEl, INTRO_TEXT);
+  await sleep(1800);
+
+  // 1) 章ループ（今は1章だけ）
+  for (const ch of CHAPTERS) {
+    setTheme(ch.theme);
+
+    if (ch.whiteoutIn) {
+      tryWhiteoutOnce(420);
+      await sleep(420);
+    }
+
+    setWord(wordEl, ch.title);
+    await sleep(1600);
+
+    const stop = playWords({
+      el: wordEl,
+      words: ch.words,
+      interval: ch.interval,
+      jitter: ch.jitter,
+    });
+
+    await sleep(ch.durationMs);
+    stop();
+
+    if (ch.whiteoutOut) {
+      tryWhiteoutOnce(420);
+      await sleep(420);
+    }
+  }
+
+  // 2) 帰還：introに戻して停止
+  setTheme("theme-intro");
+  setWord(wordEl, INTRO_TEXT);
+}
+
+/* =========================================================
+   bootstrap (keep existing logic, but ensure only one runs)
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (USE_NEW_UNIVERSE_SEQUENCE) {
+    runUniverseSequence();
+    return;
+  }
+
+  // ▼ ここに「既存の初期化」を残す（呼び出す）▼
+  if (!USE_NEW_UNIVERSE_SEQUENCE) {
+    showNextWord(); // 既存の初期化（旧ルート）
+  }
+  // initWord(); などあなたの既存エントリポイント
+});
