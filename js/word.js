@@ -366,7 +366,7 @@ const CHAPTERS = [
     id: "chapter-1",
     theme: "theme-ch1", // ← CSS側が無ければ無視される（安全）
     whiteoutIn: true, // 章手前のwhiteout
-    whiteoutOut: false, // 最終でintroに戻る時にwhiteoutしたければtrue
+    whiteoutOut: true, // 最終でintroに戻る時にwhiteoutしたければtrue
     title: "第一章　はじまりの音",
     words: ["ビッグバン", "生成", "ゆらぎ", "観測"],
     interval: 1200,
@@ -401,15 +401,27 @@ function setTheme(themeClass) {
  * whiteoutOnce が既にあるならここで呼べます。
  * 無ければ何もしないので、まずは動作確認優先でもOK。
  */
-function tryWhiteoutOnce(ms = 420) {
-  // whiteoutOnce がグローバル or import済みなら呼べる
-  try {
-    if (typeof whiteoutOnce === "function") {
-      whiteoutOnce({ ms });
-    }
-  } catch (_) {
-    // 何もしない（テスト優先）
-  }
+function whiteoutOnce({ fadeMs = 1000, holdMs = 0 } = {}) {
+  const overlay = document.getElementById("whiteout");
+  if (!overlay) return;
+
+  // 連打ガード
+  if (overlay.dataset.running === "1") return;
+  overlay.dataset.running = "1";
+
+  overlay.classList.add("active");
+
+  // フェードINが終わってから hold → フェードOUT
+  window.setTimeout(() => {
+    window.setTimeout(() => {
+      overlay.classList.remove("active");
+
+      // フェードOUTが終わったら解除
+      window.setTimeout(() => {
+        delete overlay.dataset.running;
+      }, fadeMs);
+    }, holdMs);
+  }, fadeMs);
 }
 
 function playWords({ el, words, interval = 1100, jitter = 0 }) {
@@ -448,9 +460,14 @@ async function runUniverseSequence() {
   for (const ch of CHAPTERS) {
     setTheme(ch.theme);
 
+    // if (ch.whiteoutIn) {
+    //   tryWhiteoutOnce(420);
+    //   await sleep(420);
+    // }
+    // holdMs を 200 くらいにすると「白の間」が少し出ます
     if (ch.whiteoutIn) {
-      tryWhiteoutOnce(420);
-      await sleep(420);
+      whiteoutOnce({ fadeMs: 1000, holdMs: 200 });
+      await sleep(1000 + 0 + 1000); // IN + hold + OUT
     }
 
     setWord(wordEl, ch.title);
@@ -466,9 +483,14 @@ async function runUniverseSequence() {
     await sleep(ch.durationMs);
     stop();
 
+    // if (ch.whiteoutOut) {
+    //   tryWhiteoutOnce(420);
+    //   await sleep(420);
+    // }
+
     if (ch.whiteoutOut) {
-      tryWhiteoutOnce(420);
-      await sleep(420);
+      whiteoutOnce({ fadeMs: 1000, holdMs: 200 });
+      await sleep(1000 + 0 + 1000);
     }
   }
 
