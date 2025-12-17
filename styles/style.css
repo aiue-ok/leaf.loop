@@ -3282,7 +3282,6 @@ body.hero .hero__head {
 .page--about .about .one-line {
   display: block;
   text-align: center;
-  font-size: 0.95rem;
   letter-spacing: 0.06em;
   color: oklch(45% 0.02 260deg / 0.85);
   margin: 1.8rem 0;
