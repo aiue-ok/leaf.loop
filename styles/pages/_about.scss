@@ -2,8 +2,9 @@
 
 .page--about {
   /* ベース色（やさしい生成り＋深い文字色） */
-  background-color: oklch(97% 0.01 95deg);
-  color: oklch(28% 0.03 260deg);
+  background: var(--bg);
+  color: var(--main-color);
+
 
   // main
   main {
@@ -52,22 +53,22 @@
         display: block;
         font-size: 0.9rem;
         letter-spacing: 0.2em;
-        color: oklch(55% 0.02 260 / 0.35);
+        color: var(--note);
         text-align: center;
         margin-bottom: 0.75rem;
       }
     }
-    h3 {
-      margin: 2rem 0 0.75rem;
-      // font-size: 1.05rem;
+      color: var(--drop-cap);
     }
 
-    .about-page h2,
-    .about-page h3 {
-      text-wrap: balance;
-    }
-
-    // 2025/12/15
+      background: repeating-linear-gradient(
+        to right,
+        var(--divider) 0 6px,
+        transparent 6px 12px
+      );
+      border-left: 2px solid var(--mono-bd);
+      background: var(--mono-bg);
+      color: var(--mono-fc);
     &__long {
       display: none;
     }
@@ -80,23 +81,16 @@
       text-align: center;
       // font-size: 0.95rem;
       letter-spacing: 0.06em;
-      color: oklch(45% 0.02 260 / 0.85);
+      color: oklch(from var(--one-line) l c h / 85%);
       margin: 1.8rem 0;
     }
 
-    .credits {
-      display: grid;
-      grid-template-columns: 9rem 1fr;
-      gap: 0.5rem 1rem;
-      margin: 2rem 0;
+      background-color: oklch(from var(--accent) l c h / 0%);
+      border-bottom: 1px dotted oklch(from var(--one-line) l c h / 45%);
     }
-    .credits .label {
-      color: oklch(45% 0.03 260);
-      opacity: 0.9;
-    }
-    .credits .value {
-      color: oklch(28% 0.03 260);
-    }
+      background-color: oklch(from var(--accent) l c h / 60%);
+      border-color: oklch(from var(--one-line) l c h / 70%);
+      color: var(--note);
   }
 
   @media (max-width: 480px) {
@@ -122,21 +116,8 @@
     overflow: hidden;
     display: grid;
     grid-template-rows: auto auto 1fr; /* timer / header / main */
-  }
-
-  .page--about > .timer-mini {
-    position: static;
-    margin: 0.5rem auto 1.2rem;
-    width: min(380px, calc(100% - 2rem));
-    height: 50px;
-  }
-
-  .page--about .page-header__bar {
-    /* 高さが93pxならここに触らなくてもOK */
-  }
-
-  .page--about main {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+      color: var(--one-line);
+      color: var(--one-line);
+        color: oklch(from var(--one-line) l c h / 85%);
   }
 }

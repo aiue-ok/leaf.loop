@@ -90,10 +90,12 @@ $color-space-bang: #888;
 // 👤 about
 // ════════════════════════════════
 
-$color-u-ex: #387f5a;
-$color-u-note: #d7d9d7;
-$color-u-tec: #d8b08c;
-$color-u-book: #2e4f3e;
+$color-a-ex: #387f5a;
+$color-a-note: #d7d9d7;
+$color-a-tec: #d8b08c;
+$color-a-book: #2e4f3e;
+$color-a-paper: oklch(97% 0.01 95deg);
+$color-a-ink: oklch(28% 0.03 260deg);
 
 // ════════════════════════════════
 // 🔋　固定トークン
