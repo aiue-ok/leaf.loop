@@ -29,20 +29,10 @@
     text-wrap: pretty; /* 自然な改行 */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-
-    /* 1章の最初の p にだけドロップキャップ */
-    .prologue:first-of-type::first-letter {
-      float: left;
-      font-family: "Kiwi Maru", serif;
-      font-size: 2.6em;
-      line-height: 0.9;
-      padding-right: 0.08em;
-      color: oklch(35% 0.05 260);
-    }
-
-    p + p {
-      margin-top: 1.05em;
-    } /* 段落間 */
+    font-size: clamp(17px, 3.6vw, 18px);
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     h2 {
       margin: 2.5rem 0 1rem;
       // font-size: 1.15rem;
@@ -58,6 +48,14 @@
         margin-bottom: 0.75rem;
       }
     }
+    /* 1章の最初の p にだけドロップキャップ */
+    .prologue:first-of-type::first-letter {
+      float: left;
+      font-family: "Kiwi Maru", serif;
+      // 3emでもいい
+      font-size: 2.6em;
+      line-height: 0.9;
+      padding-right: 0.08em;
       color: var(--drop-cap);
     }
 
