@@ -221,20 +221,19 @@ input {
 }
 
 .page--about {
-  --bg: oklch(97% 0.01 95deg);
-  --main-color: oklch(28% 0.03 260deg);
-  --accent: #d8b08c;
-  --accent2: #387f5a;
-  --bookmark: #2e4f3e;
-  --divider: oklch(55% 0.02 260 / 0.15);
-  --note: oklch(55% 0.02 260 / 0.35);
-  --mono-bg: oklch(98% 0.01 95deg / 0.65);
-  --mono-bd: oklch(55% 0.04 260deg / 0.35);
-  --mono-fc: oklch(30% 0.03 260deg);
-  --one-line: oklch(45% 0.02 260);
-  --drop-cap: oklch(35% 0.05 260deg);
-  --timer-bg: #d7d9d7;
-  --help-card-bg: #2e4f3e;
+  --bg: #f6f5f2;
+  --main-color: #2f2f2c;
+  --text-sub: #4a4a46;
+  --accent: #e7ece8;
+  --divider: #cfcac2;
+  --note: #b8b3aa;
+  --mono-bg: #efede8;
+  --mono-bd: #cfcac2;
+  --mono-fc: var(--text-sub);
+  --one-line: var(--text-sub);
+  --drop-cap: var(--text-sub);
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
@@ -3332,20 +3331,19 @@ body.hero .hero__head {
   display: inline;
   background-color: oklch(from var(--accent) l c h/0%);
   border-radius: 0.16em;
-  border-bottom: 1px dotted oklch(from var(--one-line) l c h/45%);
   padding-bottom: 0.18em;
   text-decoration: none;
-  filter: brightness(0.97);
-  opacity: 0.85;
-  transition: background 180ms ease, opacity 180ms ease, filter 180ms ease, border-color 180ms ease;
+  color: inherit;
+  transition: background-color 180ms ease, color 180ms ease;
 }
-.page--about .about a.about__credit:hover,
-.page--about .about a.about__credit:focus-visible {
-  filter: brightness(1.1);
-  background-color: oklch(from var(--accent) l c h/60%);
-  border-color: oklch(from var(--one-line) l c h/70%);
+.page--about .about a.about__credit:hover {
+  color: var(--accent-hover);
+  background-color: oklch(from var(--accent) l c h/0.85);
   outline: none;
-  opacity: 1;
+}
+.page--about .about a.about__credit:focus-visible {
+  background-color: oklch(from var(--accent) l c h/1);
+  box-shadow: 0 0 0 0.12em oklch(from var(--accent) l c h/0.35);
 }
 .page--about .about .end {
   content: "＊";

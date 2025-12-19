@@ -140,22 +140,21 @@
       display: inline;
       background-color: oklch(from var(--accent) l c h / 0%);
       border-radius: 0.16em;
-      border-bottom: 1px dotted oklch(from var(--one-line) l c h / 45%);
       padding-bottom: 0.18em;
       text-decoration: none;
-      filter: brightness(0.97);
-      opacity: 0.85;
-      transition: background 180ms ease, opacity 180ms ease, filter 180ms ease,
-        border-color 180ms ease;
+      color: inherit;
+      transition: background-color 180ms ease, color 180ms ease;
     }
 
-    a.about__credit:hover,
-    a.about__credit:focus-visible {
-      filter: brightness(1.1);
-      background-color: oklch(from var(--accent) l c h / 60%);
-      border-color: oklch(from var(--one-line) l c h / 70%);
+    a.about__credit:hover {
+      color: var(--accent-hover);
+      background-color: oklch(from var(--accent) l c h / 0.85);
       outline: none;
-      opacity: 1;
+    }
+
+    a.about__credit:focus-visible {
+      background-color: oklch(from var(--accent) l c h / 1);
+      box-shadow: 0 0 0 0.12em oklch(from var(--accent) l c h / 0.35);
     }
 
     // 文末のマーク

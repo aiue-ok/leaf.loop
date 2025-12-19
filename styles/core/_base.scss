@@ -304,23 +304,35 @@ input {
   --bg: #{$color-a-paper};
   // 文字インク
   --main-color: #{$color-a-ink};
-  // レンガ色
+  --text-sub: #{$color-a-sub};
+  // 薄い緑色
   --accent: #{$color-a-tec};
-  // 深緑
-  --accent2: #{$color-a-ex};
-  // より濃い緑
-  --bookmark: #{$color-a-book};
-  // -- 装飾 --
-  --divider: oklch(55% 0.02 260 / 0.15);
-  --note: oklch(55% 0.02 260 / 0.35);
-  --mono-bg: oklch(98% 0.01 95deg / 0.65);
-  --mono-bd: oklch(55% 0.04 260deg / 0.35);
-  --mono-fc: oklch(30% 0.03 260deg);
-  --one-line: oklch(45% 0.02 260);
-  --drop-cap: oklch(35% 0.05 260deg);
 
-  --timer-bg: #{$color-a-note};
-  --help-card-bg: #{$color-a-book};
+  // -- 装飾 --
+  // --divider: oklch(55% 0.02 260 / 0.15);
+  // --note: oklch(55% 0.02 260 / 0.35);
+  // --mono-bg: oklch(98% 0.01 95deg / 0.65);
+  // --mono-bd: oklch(55% 0.04 260deg / 0.35);
+  // --mono-fc: oklch(30% 0.03 260deg);
+  // --one-line: oklch(45% 0.02 260);
+  // --drop-cap: oklch(35% 0.05 260deg);
+
+  // -- 装飾線
+  --divider: #{$color-a-deco};
+  // h2 の上に ＊ を1つ 文末にも１つ
+  --note: #b8b3aa;
+
+  // モノローグ
+  --mono-bg: #efede8;
+  --mono-bd: #{$color-a-deco};
+  --mono-fc: var(--text-sub);
+  // ひとこと
+  --one-line: var(--text-sub);
+  // ドロップキャップ
+  --drop-cap: var(--text-sub);
+  // リンク
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
