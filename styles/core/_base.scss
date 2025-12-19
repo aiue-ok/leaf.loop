@@ -255,6 +255,10 @@ input {
 
   // 開閉メニューのフォントカラー
   --panel-cl: var(--main-color);
+
+  // 分針のサイズ
+  --m-width: 8rem;
+  --m-height: 6rem;
 }
 
 // 4) 既存トークンを活かす小ワザ
@@ -307,15 +311,7 @@ input {
   --text-sub: #{$color-a-sub};
   // 薄い緑色
   --accent: #{$color-a-tec};
-
-  // -- 装飾 --
-  // --divider: oklch(55% 0.02 260 / 0.15);
-  // --note: oklch(55% 0.02 260 / 0.35);
-  // --mono-bg: oklch(98% 0.01 95deg / 0.65);
-  // --mono-bd: oklch(55% 0.04 260deg / 0.35);
-  // --mono-fc: oklch(30% 0.03 260deg);
-  // --one-line: oklch(45% 0.02 260);
-  // --drop-cap: oklch(35% 0.05 260deg);
+  --accent2: #{$color-a-tec};
 
   // -- 装飾線
   --divider: #{$color-a-deco};
@@ -368,6 +364,33 @@ input {
   --accent: #{$color-space-dust};
 }
 
+.page--about {
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: #{$sub-bg};
+
+  // パネル左の枠の色
+  --panel-bd: var(--mono-bd);
+
+  // フォントカラー
+  --panel-cl: var(--text-sub);
+
+  // 現在地
+  --current-page: #{$adobe};
+
+  // 差し色
+  --panel-pop: #{$baked-apple};
+
+  // 背景の半透明幕
+  --scrim: transparent;
+
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
+  // scrim水玉模様の色
+  --dots: oklch(from var(--panel-bg) l c h / 60%);
+}
+
 /* ===== styles/components/_timer-mini.scss ===== */
 // 　→ styles/core/_timer.vars.scss
 
@@ -396,10 +419,6 @@ input {
   // 中心
   --center: #{$color-g-chai};
 
-  // 分針のサイズ
-  --m-width: 8rem;
-  --m-height: 6rem;
-
   // .decor-clock svg
   --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
@@ -416,13 +435,13 @@ input {
 }
 
 .page--about {
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --back: oklch(from #{$color-a-paper} l c h / 95%);
+  --mid: oklch(from #{$color-a-tec} l c h / 85%);
+  --front: oklch(from #{$color-a-deco} l c h / 65%);
+  --h: #{$gray-1};
+  --m: #{$gray-2};
+  --s: #{$gray-3};
+  --center: oklch(from #{$text-main} l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -456,15 +475,18 @@ input {
   --help-filter: brightness(105%);
 }
 
-/* Dew */
+/* Dew about */
 .theme-dew {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: #{$main-color};
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+  --link-main-color: #{$color-a-ink};
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 12%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
+  --help-bg: #{$sub-bg};
+  --help-fg: #474747;
+  --help-h: #{$color-a-ink};
   --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
+  --help-icon: #{$gray-2};
+  --help-icon-bg: oklch(from #{$gray-3} l c h / 8%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
+  --help-filter: brightness(105%);
 }
