@@ -5,37 +5,44 @@
   background: var(--bg);
   color: var(--main-color);
 
-
-  // main
   main {
     width: 100%;
+    // アイテムは拡大が許可
     flex: 1 1 auto;
+    // 要素の最小幅に対応
     min-block-size: 0;
-    padding: 16px 0;
+    // 溢れたコンテンツは要素のパディングボックスで切り取られ、溢れたコンテンツはスクロールバーを使ってスクロールして表示することができます
     overflow: auto;
     // background-color: core.$test-bg1;
   }
 
+  // 文章本体
   .about {
     // background-color: core.$test-bg2;
     /* 幅と中央寄せ */
-    max-width: clamp(42ch, 60vw, 72ch);
+    max-width: clamp(36rem, 60vw, 44rem);
     margin-inline: auto;
-    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 1.5rem);
-    padding-bottom: 140px; /* タイマーの高さぶん保険 */
+    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: 7.7rem; /* タイマーの高さぶん保険 */
 
     /* 読み心地 */
     line-height: 1.85;
     text-wrap: pretty; /* 自然な改行 */
+    // ↓読みやすさを強調
     text-rendering: optimizeLegibility;
+    // アンチエイリアス（文字の輪郭を滑らかに）
     -webkit-font-smoothing: antialiased;
     font-size: clamp(17px, 3.6vw, 18px);
     font-family: "M PLUS 1p", sans-serif;
     font-weight: 400;
     font-style: normal;
+
+    /*  段落とリストのリズム */
+
     h2 {
-      margin: 2.5rem 0 1rem;
-      // font-size: 1.15rem;
+      margin: 2.2rem 0 0.85rem;
+      font-size: 1.15rem;
+      text-wrap: balance;
 
       /* h2 の上に ＊ を1つ セクションの区切り */
       &::before {
@@ -48,6 +55,30 @@
         margin-bottom: 0.75rem;
       }
     }
+
+    p {
+      margin: 0 0 1.15em;
+      font-size: 0.95rem;
+    }
+
+    p + p {
+      margin-top: 0;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.15em;
+      padding-left: 1.2em;
+    }
+
+    li {
+      margin: 0.45em 0;
+    }
+
+    li > p {
+      margin: 0.35em 0;
+    } /* もしli内にpが出ても破綻しない保険 */
+
     /* 1章の最初の p にだけドロップキャップ */
     .prologue:first-of-type::first-letter {
       float: left;
@@ -59,14 +90,34 @@
       color: var(--drop-cap);
     }
 
+    // プロローグのフォントサイズ 「忙しい日の…」
+    p.prologue {
+      margin: 2.2rem 0;
+      font-size: 1.05rem;
+    }
+
+    /* ふわっとした点線の区切り */
+    .divider {
+      height: 1px;
       background: repeating-linear-gradient(
         to right,
         var(--divider) 0 6px,
         transparent 6px 12px
       );
+      margin: 2rem 0;
+    }
+
+    // 左にボーダー　（長文のみ）
+    .monologue {
+      margin: 2rem 0;
+      padding: 1.25rem 1rem;
       border-left: 2px solid var(--mono-bd);
       background: var(--mono-bg);
+      font-size: 0.98rem;
+      font-style: italic;
       color: var(--mono-fc);
+    }
+
     &__long {
       display: none;
     }
@@ -74,27 +125,71 @@
       display: block;
     }
 
+    // ひとこと
     .one-line {
       display: block;
       text-align: center;
-      // font-size: 0.95rem;
+      font-size: 0.95rem;
       letter-spacing: 0.06em;
       color: oklch(from var(--one-line) l c h / 85%);
       margin: 1.8rem 0;
     }
 
+    //  Assets credit
+    a.about__credit {
+      display: inline;
       background-color: oklch(from var(--accent) l c h / 0%);
+      border-radius: 0.16em;
       border-bottom: 1px dotted oklch(from var(--one-line) l c h / 45%);
+      padding-bottom: 0.18em;
+      text-decoration: none;
+      filter: brightness(0.97);
+      opacity: 0.85;
+      transition: background 180ms ease, opacity 180ms ease, filter 180ms ease,
+        border-color 180ms ease;
     }
+
+    a.about__credit:hover,
+    a.about__credit:focus-visible {
+      filter: brightness(1.1);
       background-color: oklch(from var(--accent) l c h / 60%);
       border-color: oklch(from var(--one-line) l c h / 70%);
+      outline: none;
+      opacity: 1;
+    }
+
+    // 文末のマーク
+    .end {
+      content: "＊";
+      display: block;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
       color: var(--note);
+      text-align: center;
+      margin: 2rem auto auto;
+      width: 100%;
+      height: 30px;
+    }
+  }
+
+  .page--about .about__short,
+  .page--about .about__long {
+    // font-size: clamp(16px, 3.8vw, 18px);
+    // line-height: 1.9;
+  }
+
+  .page--about .about__short ul,
+  .page--about .about__long ul {
+    margin: 0 0 1.15em;
+    padding-left: 1.2em;
+  }
+
+  .page--about .about__short li,
+  .page--about .about__long li {
+    margin: 0.45em 0;
   }
 
   @media (max-width: 480px) {
-    .credits {
-      grid-template-columns: 1fr;
-    }
   }
 
   @media (min-width: 768px) {
@@ -107,6 +202,23 @@
   }
 }
 
+// レスポンシブ・モード切り替え（@media)
+
+// 480px〜1024px タブレット　portrait　サイズ
+// 位置(タイマーミニ)  右上
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
+  .page--about {
+    .about {
+      // background-color: core.$test-bg2;
+      padding-bottom: 0; /* タイマーの高さぶん保険 */
+
+      .end {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+}
+
 /* モバイル縦だけ：本文をスクロールコンテナに */
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--about {
@@ -114,8 +226,105 @@
     overflow: hidden;
     display: grid;
     grid-template-rows: auto auto 1fr; /* timer / header / main */
+    padding: 0.2rem 1.25rem;
+
+    main {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .about {
+      // margin: 2rem 0;
+      max-width: clamp(32rem, 60vw, 38rem);
+      padding-bottom: 0; /* タイマーの高さぶん保険 */
+      // background-color: core.$test-bg3;
+      .prologue:first-of-type::first-letter {
+        font-size: 2.4em;
+      }
+
+      .end {
+        margin-bottom: 6rem;
+      }
+    }
+
+    // 冒頭：このサイトは、学び直しを目的として制作したポートフォリオ兼プロジェクトです
+    .prologue-line {
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
       color: var(--one-line);
+    }
+
+    // 日常の余白をひらく実験室。など
+    .one-line {
+      display: block;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
       color: var(--one-line);
+      margin: 1.8rem 0;
+    }
+
+    // 余白を狭める
+    .timer-mini {
+      position: static;
+      margin-top: 0.5rem;
+      margin-bottom: 0.2rem;
+      width: 380px;
+      height: 50px;
+      inline-size: auto;
+    }
+
+    .page-header__bar {
+      padding: 0.2rem 0;
+    }
+  }
+}
+
+// モバイル横向き 幅 ↕︎ 1024px
+@media (max-width: #{core.$bp-lg}) and (orientation: landscape) {
+  .page--about {
+    .about {
+      // background-color: powderblue;
+      // max-width: clamp(21rem, 88vw, 28rem);
+
+      .about p,
+      .about li {
+        max-inline-size: 52ch; /* 48〜56chくらいで好み */
+      }
+    }
+  }
+}
+
+// モバイル横向き SE 幅 ⇔ 768px以下で、高さ480px以下
+@media (max-width: #{core.$bp-md}) and  (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--about {
+    .about {
+      // background-color: pink;
+      max-width: clamp(21rem, 88vw, 28rem);
+      padding-top: 2.5rem;
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
+      padding-right: clamp(6rem, 18vw, 8rem);
+      line-height: 1.7;
+
+      // このサイトは、学び直しを目的と…
+      .prologue-line {
+        display: inline-block;
+        max-width: 58svw;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
         color: oklch(from var(--one-line) l c h / 85%);
+        margin-bottom: 0.5rem;
+      }
+
+      h2 {
+        margin: 1.75rem 0 0.5rem;
+      }
+
+      p,
+      li {
+        max-inline-size: 40ch;
+      }
+    }
   }
 }
