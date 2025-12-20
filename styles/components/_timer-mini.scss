@@ -292,7 +292,9 @@
   }
 }
 
-@media (min-width: #{core.$bp-sm}) and (max-width: 1300px) and (orientation: landscape) {
+// aboutでは、見出しに干渉しないようサイズを小さく、右寄せに
+// デスクトップ幅 480px〜1440px landscape
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-xl}) and (orientation: landscape) {
   .page--about {
     .timer-mini {
       left: auto;
