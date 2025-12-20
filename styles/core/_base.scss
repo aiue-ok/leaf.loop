@@ -319,7 +319,7 @@ input {
   --note: #b8b3aa;
 
   // モノローグ
-  --mono-bg: #efede8;
+  --mono-bg: oklch(from #efede8 l c h / 62%);
   --mono-bd: #{$color-a-deco};
   --mono-fc: var(--text-sub);
   // ひとこと
@@ -379,7 +379,7 @@ input {
   --current-page: #{$adobe};
 
   // 差し色
-  --panel-pop: #{$baked-apple};
+  --panel-pop: oklch(from #{$baked-apple} l c h / 65%);
 
   // 背景の半透明幕
   --scrim: transparent;
@@ -435,9 +435,9 @@ input {
 }
 
 .page--about {
-  --back: oklch(from #{$color-a-paper} l c h / 95%);
-  --mid: oklch(from #{$color-a-tec} l c h / 85%);
-  --front: oklch(from #{$color-a-deco} l c h / 65%);
+  --back: oklch(from #{$color-a-deco} l c h / 35%);
+  --mid: #{$color-a-tec};
+  --front: oklch(from #{$color-a-paper} l c h / 78%);
   --h: #{$gray-1};
   --m: #{$gray-2};
   --s: #{$gray-3};

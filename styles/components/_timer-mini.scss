@@ -545,3 +545,22 @@
     }
   }
 }
+
+// aboutページのみの変更
+// ヘルプアイコンの色
+// 丸ボタンの枠の色
+.page--about {
+  @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+    .timer-mini__screen--help {
+      color: var(--text-sub);
+
+      &:hover {
+        color: var(--accent-hover);
+      }
+    }
+  }
+  // 丸ボタン
+  .timer-mini__pill {
+    border: var(--btn-border-width) solid var(--bg);
+  }
+}

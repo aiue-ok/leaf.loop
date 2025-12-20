@@ -18,6 +18,15 @@
     <script src="js/clock.js" defer></script>
   </head>
   <body class="page page--about">
+    <div class="page--about__bg-top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#F4EFE8"
+          fill-opacity="1"
+          d="M0,96L48,96C96,96,192,96,288,122.7C384,149,480,203,576,197.3C672,192,768,128,864,133.3C960,139,1056,213,1152,250.7C1248,288,1344,288,1392,288L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+        ></path>
+      </svg>
+    </div>
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
     <aside class="timer-mini" aria-label="ティータイマー">
       <!-- カードの背景 -->
@@ -707,6 +716,16 @@
     <!-- 画面表示（トースト） -->
     <div id="toast" class="js-toast" role="status" aria-live="polite" hidden>
       お湯の準備ができました
+    </div>
+
+    <div class="page--about__bg-bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#F4EFE8"
+          fill-opacity="1"
+          d="M0,160L48,181.3C96,203,192,245,288,245.3C384,245,480,203,576,176C672,149,768,139,864,165.3C960,192,1056,256,1152,266.7C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
     </div>
     <audio id="alarmSound" src="./assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
