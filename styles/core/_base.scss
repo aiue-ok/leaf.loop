@@ -459,7 +459,8 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
-  --help-filter: opacity(95%) brightness(105%);
+  --link-box-shdw-hover: 0 8px 24px rgb(0 0 0 / 15%),
+    inset 0 0 0 1px rgb(255 255 255 / 25%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -472,7 +473,7 @@ input {
   --help-icon: var(--help-h);
   --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --help-filter: brightness(105%);
+  --link-box-shdw-hover: 0 6px 18px #{$moon-vanilla};
 }
 
 /* Dew about */
@@ -488,5 +489,6 @@ input {
   --help-icon: #{$gray-2};
   --help-icon-bg: oklch(from #{$gray-3} l c h / 8%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --help-filter: brightness(105%);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 16%),
+    inset 0 0 0 1px rgb(255 255 255 / 40%);
 }
