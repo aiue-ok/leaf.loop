@@ -190,6 +190,8 @@ input {
   --panel-bg: oklch(from var(--kuro) l c h / 70%);
   --panel-bd: var(--shiro10);
   --panel-cl: var(--main-color);
+  --m-width: 8rem;
+  --m-height: 6rem;
 }
 
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
@@ -225,9 +227,10 @@ input {
   --main-color: #2f2f2c;
   --text-sub: #4a4a46;
   --accent: #e7ece8;
+  --accent2: #e7ece8;
   --divider: #cfcac2;
   --note: #b8b3aa;
-  --mono-bg: #efede8;
+  --mono-bg: oklch(from #efede8 l c h / 62%);
   --mono-bd: #cfcac2;
   --mono-fc: var(--text-sub);
   --one-line: var(--text-sub);
@@ -252,6 +255,17 @@ input {
   --accent: #e1f3ff;
 }
 
+.page--about {
+  --panel-bg: #efede8;
+  --panel-bd: var(--mono-bd);
+  --panel-cl: var(--text-sub);
+  --current-page: #8c4b3a;
+  --panel-pop: oklch(from #c8743c l c h / 65%);
+  --scrim: transparent;
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+  --dots: oklch(from var(--panel-bg) l c h / 60%);
+}
+
 /* ===== styles/components/_timer-mini.scss ===== */
 /* ===== styles/components/_decor-clock.scss ===== */
 .page--gallery {
@@ -262,8 +276,6 @@ input {
   --m: oklch(from oklch(22% 0.03 266deg) l c h / 45%);
   --s: oklch(from #d8b08c l c h / 85%);
   --center: #d8b08c;
-  --m-width: 8rem;
-  --m-height: 6rem;
   --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
 
@@ -278,13 +290,13 @@ input {
 }
 
 .page--about {
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --back: oklch(from #cfcac2 l c h / 35%);
+  --mid: #e7ece8;
+  --front: oklch(from #f6f5f2 l c h / 78%);
+  --h: #5e5e5e;
+  --m: #cfcac2;
+  --s: #b8b3aa;
+  --center: oklch(from #2f2f2c l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -300,7 +312,8 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
-  --help-filter: opacity(95%) brightness(105%);
+  --link-box-shdw-hover: 0 8px 24px rgb(0 0 0 / 15%),
+    inset 0 0 0 1px rgb(255 255 255 / 25%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -313,20 +326,24 @@ input {
   --help-icon: var(--help-h);
   --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --help-filter: brightness(105%);
+  --link-box-shdw-hover: 0 6px 18px rgba(255, 255, 255, 0.25);
 }
 
-/* Dew */
+/* Dew about */
 .theme-dew {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: oklch(97.015% 0.0001 271.152deg);
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+  --link-main-color: #2f2f2c;
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 12%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
+  --help-bg: #efede8;
+  --help-fg: #474747;
+  --help-h: #2f2f2c;
   --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
+  --help-icon: #cfcac2;
+  --help-icon-bg: oklch(from #b8b3aa l c h / 8%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 16%),
+    inset 0 0 0 1px rgb(255 255 255 / 40%);
 }
 
 .center {
@@ -842,6 +859,51 @@ input[type=checkbox] {
   --t-accent: var(--mini-color-accent);
 }
 
+.page--about > .timer-mini {
+  --mini-color-base: var(--bg);
+  --mini-color-accent: var(--accent);
+  --mini-color-ink: var(--main-color);
+  --mini-color-base2: var(--bg);
+  --mini-color-accent2: var(--accent2);
+  --mini-color-ink2: var(--text-sub);
+  --mini-color: var(--mini-color-base);
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
+  --mini-background: oklch(from var(--mini-color-ink) l c h / 35%);
+  --mini-background-hover: oklch(from var(--mini-color-ink) l c h / 30%);
+  --mini-background-border: color-mix(
+    in oklch,
+    var(--mini-color-ink) 20%,
+    var(--bg) 15%
+  );
+  --mini-background-shadow: 0 0 8px
+    color-mix(in oklch, var(--mini-color-ink) 50%, var(--kuro) 10%);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--kuro) 5%);
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 80%, var(--kuro) 5%);
+  --btn-pill-border: var(--mini-color-soft);
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: color-mix(
+    in oklch,
+    var(--mini-color) 70%,
+    var(--shiro) 15%
+  );
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+  --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
+  --btn-fg-hover: var(--mini-color-ink);
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+  --t-accent: var(--mini-color-accent);
+}
+
 /* トースト */
 .js-toast {
   position: fixed;
@@ -1305,16 +1367,33 @@ body .js-toast--visible {
 }
 
 .visual-card-help-bg {
+  position: relative;
+  overflow: hidden;
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
   box-shadow: var(--link-box-shdw);
-  transition: background var(--motion-soft) ease-in, filter var(--motion-soft) ease-in;
+  transition: box-shadow 240ms ease, transform 240ms ease;
+}
+
+.visual-card-help-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: oklch(100% 0 0deg / 0.04); /* 超うす */
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.visual-card-help-bg:hover::after {
+  opacity: 1;
 }
 
 .visual-card-help-bg:hover {
-  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
-  filter: var(--help-filter);
+  transform: translateY(-1px);
+  box-shadow: var(--link-box-shdw-hover);
 }
 
 .help-content {
@@ -1523,7 +1602,6 @@ body .js-toast--visible {
 .page--gallery,
 body.universe,
 .page--universe,
-body.about,
 .page--about {
   /* パネル本体（右から） */
 }
@@ -1533,8 +1611,6 @@ body.universe .menu-drawer,
 body.universe .scrim,
 .page--universe .menu-drawer,
 .page--universe .scrim,
-body.about .menu-drawer,
-body.about .scrim,
 .page--about .menu-drawer,
 .page--about .scrim {
   position: fixed;
@@ -1544,7 +1620,6 @@ body.about .scrim,
 .page--gallery .menu-drawer,
 body.universe .menu-drawer,
 .page--universe .menu-drawer,
-body.about .menu-drawer,
 .page--about .menu-drawer {
   right: 0;
   z-index: 1100; /* タイマーとバックドロップより上 */
@@ -1568,7 +1643,6 @@ body.about .menu-drawer,
 .page--gallery .menu-drawer__head,
 body.universe .menu-drawer__head,
 .page--universe .menu-drawer__head,
-body.about .menu-drawer__head,
 .page--about .menu-drawer__head {
   display: flex;
   align-items: center;
@@ -1578,7 +1652,6 @@ body.about .menu-drawer__head,
 .page--gallery .menu-drawer__title,
 body.universe .menu-drawer__title,
 .page--universe .menu-drawer__title,
-body.about .menu-drawer__title,
 .page--about .menu-drawer__title {
   margin-left: 5px;
   font-size: 1.4rem;
@@ -1586,7 +1659,6 @@ body.about .menu-drawer__title,
 .page--gallery .menu-drawer__close,
 body.universe .menu-drawer__close,
 .page--universe .menu-drawer__close,
-body.about .menu-drawer__close,
 .page--about .menu-drawer__close {
   width: 44px;
   height: 44px;
@@ -1599,7 +1671,6 @@ body.about .menu-drawer__close,
 .page--gallery .menu-drawer__close:hover,
 body.universe .menu-drawer__close:hover,
 .page--universe .menu-drawer__close:hover,
-body.about .menu-drawer__close:hover,
 .page--about .menu-drawer__close:hover {
   color: var(--panel-bd);
   scale: 110%;
@@ -1607,14 +1678,12 @@ body.about .menu-drawer__close:hover,
 .page--gallery .menu-drawer__close i,
 body.universe .menu-drawer__close i,
 .page--universe .menu-drawer__close i,
-body.about .menu-drawer__close i,
 .page--about .menu-drawer__close i {
   display: block;
 }
 .page--gallery .menu-drawer__list,
 body.universe .menu-drawer__list,
 .page--universe .menu-drawer__list,
-body.about .menu-drawer__list,
 .page--about .menu-drawer__list {
   margin-left: 0.5em;
   list-style: none;
@@ -1622,7 +1691,6 @@ body.about .menu-drawer__list,
 .page--gallery .menu-drawer__link,
 body.universe .menu-drawer__link,
 .page--universe .menu-drawer__link,
-body.about .menu-drawer__link,
 .page--about .menu-drawer__link {
   display: block;
   padding: 0.75rem 0.25rem;
@@ -1633,7 +1701,6 @@ body.about .menu-drawer__link,
 .page--gallery .menu-drawer__link:hover,
 body.universe .menu-drawer__link:hover,
 .page--universe .menu-drawer__link:hover,
-body.about .menu-drawer__link:hover,
 .page--about .menu-drawer__link:hover {
   text-decoration: underline var(--panel-pop);
   -webkit-text-decoration: underline var(--panel-pop);
@@ -1641,7 +1708,6 @@ body.about .menu-drawer__link:hover,
 .page--gallery .menu-drawer__link[aria-current=page],
 body.universe .menu-drawer__link[aria-current=page],
 .page--universe .menu-drawer__link[aria-current=page],
-body.about .menu-drawer__link[aria-current=page],
 .page--about .menu-drawer__link[aria-current=page] {
   position: relative;
   opacity: 0.9;
@@ -1651,7 +1717,6 @@ body.about .menu-drawer__link[aria-current=page],
 .page--gallery .menu-drawer__link[aria-current=page]::before,
 body.universe .menu-drawer__link[aria-current=page]::before,
 .page--universe .menu-drawer__link[aria-current=page]::before,
-body.about .menu-drawer__link[aria-current=page]::before,
 .page--about .menu-drawer__link[aria-current=page]::before {
   content: "▼";
   position: absolute;
@@ -1690,7 +1755,7 @@ body:not([data-menu-open=true]) .scrim {
 @media (width > 480px) and (orientation: portrait) {
   .page--gallery .menu-drawer,
   body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--about .menu-drawer {
     justify-content: flex-start;
     padding: 2rem 2.5rem;
     display: flex;
@@ -1699,14 +1764,14 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .menu-drawer__list,
   body.universe .menu-drawer__list,
-  body.about .menu-drawer__list {
+  .page--about .menu-drawer__list {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
   }
   .page--gallery .menu-drawer__list a,
   body.universe .menu-drawer__list a,
-  body.about .menu-drawer__list a {
+  .page--about .menu-drawer__list a {
     padding: 0.85rem 0.25rem;
     font-size: 1.05rem;
   }
@@ -1714,43 +1779,43 @@ body:not([data-menu-open=true]) .scrim {
 @media (width >= 768px) and (width <= 1440px) and (orientation: landscape) and (hover: none) {
   .page--gallery .menu-drawer,
   body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--about .menu-drawer {
     --menu-w: min(360px, 40vw);
   }
   .page--gallery .menu-drawer__list a,
   body.universe .menu-drawer__list a,
-  body.about .menu-drawer__list a {
+  .page--about .menu-drawer__list a {
     font-size: 1rem;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .menu-drawer,
   body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--about .menu-drawer {
     padding: 24px 25px 25px;
     padding-block: 1rem;
     /* 中身のレイアウト　Menu+ Xbutton */
   }
   .page--gallery .menu-drawer__head,
   body.universe .menu-drawer__head,
-  body.about .menu-drawer__head {
+  .page--about .menu-drawer__head {
     margin-bottom: 0.5rem;
   }
   .page--gallery .menu-drawer__title,
   body.universe .menu-drawer__title,
-  body.about .menu-drawer__title {
+  .page--about .menu-drawer__title {
     margin-left: 3px;
     font-size: 1.3rem;
   }
   .page--gallery .menu-drawer__close,
   body.universe .menu-drawer__close,
-  body.about .menu-drawer__close {
+  .page--about .menu-drawer__close {
     width: 38px;
     height: 38px;
   }
   .page--gallery .menu-drawer__link,
   body.universe .menu-drawer__link,
-  body.about .menu-drawer__link {
+  .page--about .menu-drawer__link {
     padding: 0.5rem 0.25rem;
   }
 }
@@ -1841,17 +1906,13 @@ body:not([data-menu-open=true]) .scrim {
   }
 }
 @media (width <= 480px) and (orientation: portrait) {
-  .page--gallery .decor-clock,
-  body.universe .decor-clock,
-  body.about .decor-clock {
+  .decor-clock {
     max-inline-size: 180px;
     margin-bottom: 0;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
-  .page--gallery .decor-clock,
-  body.universe .decor-clock,
-  body.about .decor-clock {
+  .decor-clock {
     max-inline-size: 120px;
     margin-inline: unset;
     margin-left: auto;
@@ -1888,6 +1949,7 @@ body:not([data-menu-open=true]) .scrim {
   -webkit-backdrop-filter: var(--mini-backdrop-filter);
   will-change: backdrop-filter;
   transition: background 0.3s ease, filter 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
   height: 100%;
   display: flex;
@@ -2120,7 +2182,7 @@ body:not([data-menu-open=true]) .scrim {
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
   }
 }
-@media (min-width: 480px) and (max-width: 1300px) and (orientation: landscape) {
+@media (min-width: 480px) and (max-width: 1440px) and (orientation: landscape) {
   .page--about .timer-mini {
     left: auto;
     right: 16px;
@@ -2304,6 +2366,18 @@ body:not([data-menu-open=true]) .scrim {
     height: var(--btn-size-help-inline);
   }
 }
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--about .timer-mini__screen--help {
+    color: var(--text-sub);
+  }
+  .page--about .timer-mini__screen--help:hover {
+    color: var(--accent-hover);
+  }
+}
+.page--about .timer-mini__pill {
+  border: var(--btn-border-width) solid var(--bg);
+}
+
 body.hero {
   position: relative;
   isolation: isolate;
@@ -3228,6 +3302,17 @@ body.hero .hero__head {
   background: var(--bg);
   color: var(--main-color);
 }
+.page--about__bg-top {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.page--about__bg-bottom {
+  position: absolute;
+  inset: -6px;
+  align-content: end;
+  z-index: -2;
+}
 .page--about main {
   width: 100%;
   flex: 1 1 auto;
@@ -3432,12 +3517,24 @@ body.hero .hero__head {
   }
 }
 @media (max-width: 1024px) and (orientation: landscape) {
-  .page--about .about .about p,
-  .page--about .about .about li {
+  .page--about__bg-top {
+    display: none;
+  }
+  .page--about__bg-bottom {
+    display: none;
+  }
+  .page--about .about p,
+  .page--about .about li {
     max-inline-size: 52ch; /* 48〜56chくらいで好み */
   }
 }
 @media (max-width: 768px) and (max-height: 480px) and (orientation: landscape) {
+  .page--about__bg-top {
+    display: unset;
+  }
+  .page--about__bg-bottom {
+    display: unset;
+  }
   .page--about .about {
     max-width: clamp(21rem, 88vw, 28rem);
     padding-top: 2.5rem;
