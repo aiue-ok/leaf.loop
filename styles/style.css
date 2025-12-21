@@ -172,7 +172,6 @@ input {
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: rgba(161, 161, 161, 0.4);
   --main-color: oklch(97.015% 0.0001 271.152deg);
-  --page-color: var(--main-color);
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
@@ -205,6 +204,7 @@ input {
 .page--gallery {
   --bg: oklch(90% 0.02 85deg);
   --main-color: oklch(22% 0.03 266deg);
+  --page-color: var(--main-color);
   --accent: #d8b08c;
   --accent2: #9dc5af;
   --jasmin: oklch(95% 0.03 105deg);
@@ -227,6 +227,7 @@ input {
   --bg: #f6f5f2;
   --main-color: #2f2f2c;
   --text-sub: #4a4a46;
+  --page-color: var(--main-color);
   --accent: #e7ece8;
   --accent2: #e7ece8;
   --divider: #cfcac2;
@@ -3504,25 +3505,13 @@ body.hero .hero__head {
     padding: 0.2rem 0;
   }
 }
-@media (max-width: 1024px) and (orientation: landscape) {
-  .page--about__bg-top {
-    display: none;
-  }
-  .page--about__bg-bottom {
-    display: none;
-  }
+@media (max-width: 1024px) and (hover: none) and (orientation: landscape) {
   .page--about .about p,
   .page--about .about li {
     max-inline-size: 52ch; /* 48〜56chくらいで好み */
   }
 }
 @media (max-width: 768px) and (max-height: 480px) and (orientation: landscape) {
-  .page--about__bg-top {
-    display: unset;
-  }
-  .page--about__bg-bottom {
-    display: unset;
-  }
   .page--about .about {
     max-width: clamp(21rem, 88vw, 28rem);
     padding-top: 2.5rem;

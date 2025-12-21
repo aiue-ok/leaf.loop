@@ -222,7 +222,6 @@ input {
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: #{$hero-background};
   --main-color: #{$main-color};
-  --page-color: var(--main-color);
 
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
@@ -284,6 +283,7 @@ input {
 .page--gallery {
   --bg: #{$color-g-latte-dark};
   --main-color: #{$color-g-blueblack};
+  --page-color: var(--main-color);
   --accent: #{$color-g-chai};
   --accent2: #{$color-g-cha};
   --jasmin: #{$color-g-jasmin};
@@ -310,6 +310,7 @@ input {
   // 文字インク
   --main-color: #{$color-a-ink};
   --text-sub: #{$color-a-sub};
+  --page-color: var(--main-color);
   // 薄い緑色
   --accent: #{$color-a-tec};
   --accent2: #{$color-a-tec};

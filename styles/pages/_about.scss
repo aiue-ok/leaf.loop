@@ -295,17 +295,8 @@
 }
 
 // モバイル横向き 幅 ↕︎ 1024px
-@media (max-width: #{core.$bp-lg}) and (orientation: landscape) {
+@media (max-width: #{core.$bp-lg}) and (hover: none) and (orientation: landscape) {
   .page--about {
-    // waves
-    &__bg-top {
-      display: none;
-    }
-
-    &__bg-bottom {
-      display: none;
-    }
-
     .about {
       // background-color: powderblue;
       // max-width: clamp(21rem, 88vw, 28rem);
@@ -320,14 +311,6 @@
 // モバイル横向き SE 幅 ⇔ 768px以下で、高さ480px以下
 @media (max-width: #{core.$bp-md}) and  (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--about {
-    &__bg-top {
-      display: unset;
-    }
-
-    &__bg-bottom {
-      display: unset;
-    }
-
     .about {
       // background-color: pink;
       max-width: clamp(21rem, 88vw, 28rem);
