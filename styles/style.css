@@ -172,6 +172,7 @@ input {
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: rgba(161, 161, 161, 0.4);
   --main-color: oklch(97.015% 0.0001 271.152deg);
+  --page-color: var(--main-color);
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
   --help-fg: #eaeaea;
@@ -1600,15 +1601,12 @@ body .js-toast--visible {
 }
 
 .page--gallery,
-body.universe,
 .page--universe,
 .page--about {
   /* パネル本体（右から） */
 }
 .page--gallery .menu-drawer,
 .page--gallery .scrim,
-body.universe .menu-drawer,
-body.universe .scrim,
 .page--universe .menu-drawer,
 .page--universe .scrim,
 .page--about .menu-drawer,
@@ -1618,7 +1616,6 @@ body.universe .scrim,
   bottom: 0;
 }
 .page--gallery .menu-drawer,
-body.universe .menu-drawer,
 .page--universe .menu-drawer,
 .page--about .menu-drawer {
   right: 0;
@@ -1641,7 +1638,6 @@ body.universe .menu-drawer,
   /* 中身のレイアウト　Menu+ Xbutton */
 }
 .page--gallery .menu-drawer__head,
-body.universe .menu-drawer__head,
 .page--universe .menu-drawer__head,
 .page--about .menu-drawer__head {
   display: flex;
@@ -1650,14 +1646,12 @@ body.universe .menu-drawer__head,
   margin-bottom: 1.5rem;
 }
 .page--gallery .menu-drawer__title,
-body.universe .menu-drawer__title,
 .page--universe .menu-drawer__title,
 .page--about .menu-drawer__title {
   margin-left: 5px;
   font-size: 1.4rem;
 }
 .page--gallery .menu-drawer__close,
-body.universe .menu-drawer__close,
 .page--universe .menu-drawer__close,
 .page--about .menu-drawer__close {
   width: 44px;
@@ -1669,27 +1663,23 @@ body.universe .menu-drawer__close,
   transition: scale var(--motion-tap) ease;
 }
 .page--gallery .menu-drawer__close:hover,
-body.universe .menu-drawer__close:hover,
 .page--universe .menu-drawer__close:hover,
 .page--about .menu-drawer__close:hover {
   color: var(--panel-bd);
   scale: 110%;
 }
 .page--gallery .menu-drawer__close i,
-body.universe .menu-drawer__close i,
 .page--universe .menu-drawer__close i,
 .page--about .menu-drawer__close i {
   display: block;
 }
 .page--gallery .menu-drawer__list,
-body.universe .menu-drawer__list,
 .page--universe .menu-drawer__list,
 .page--about .menu-drawer__list {
   margin-left: 0.5em;
   list-style: none;
 }
 .page--gallery .menu-drawer__link,
-body.universe .menu-drawer__link,
 .page--universe .menu-drawer__link,
 .page--about .menu-drawer__link {
   display: block;
@@ -1699,23 +1689,21 @@ body.universe .menu-drawer__link,
   transition: text-decoration var(--motion-snap) ease;
 }
 .page--gallery .menu-drawer__link:hover,
-body.universe .menu-drawer__link:hover,
 .page--universe .menu-drawer__link:hover,
 .page--about .menu-drawer__link:hover {
   text-decoration: underline var(--panel-pop);
   -webkit-text-decoration: underline var(--panel-pop);
 }
 .page--gallery .menu-drawer__link[aria-current=page],
-body.universe .menu-drawer__link[aria-current=page],
 .page--universe .menu-drawer__link[aria-current=page],
 .page--about .menu-drawer__link[aria-current=page] {
   position: relative;
   opacity: 0.9;
   color: var(--current-page);
   mix-blend-mode: multiply;
+  cursor: default;
 }
 .page--gallery .menu-drawer__link[aria-current=page]::before,
-body.universe .menu-drawer__link[aria-current=page]::before,
 .page--universe .menu-drawer__link[aria-current=page]::before,
 .page--about .menu-drawer__link[aria-current=page]::before {
   content: "▼";
@@ -1778,43 +1766,43 @@ body:not([data-menu-open=true]) .scrim {
 }
 @media (width >= 768px) and (width <= 1440px) and (orientation: landscape) and (hover: none) {
   .page--gallery .menu-drawer,
-  body.universe .menu-drawer,
+  .page--universe .menu-drawer,
   .page--about .menu-drawer {
     --menu-w: min(360px, 40vw);
   }
   .page--gallery .menu-drawer__list a,
-  body.universe .menu-drawer__list a,
+  .page--universe .menu-drawer__list a,
   .page--about .menu-drawer__list a {
     font-size: 1rem;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .menu-drawer,
-  body.universe .menu-drawer,
+  .page--universe .menu-drawer,
   .page--about .menu-drawer {
     padding: 24px 25px 25px;
     padding-block: 1rem;
     /* 中身のレイアウト　Menu+ Xbutton */
   }
   .page--gallery .menu-drawer__head,
-  body.universe .menu-drawer__head,
+  .page--universe .menu-drawer__head,
   .page--about .menu-drawer__head {
     margin-bottom: 0.5rem;
   }
   .page--gallery .menu-drawer__title,
-  body.universe .menu-drawer__title,
+  .page--universe .menu-drawer__title,
   .page--about .menu-drawer__title {
     margin-left: 3px;
     font-size: 1.3rem;
   }
   .page--gallery .menu-drawer__close,
-  body.universe .menu-drawer__close,
+  .page--universe .menu-drawer__close,
   .page--about .menu-drawer__close {
     width: 38px;
     height: 38px;
   }
   .page--gallery .menu-drawer__link,
-  body.universe .menu-drawer__link,
+  .page--universe .menu-drawer__link,
   .page--about .menu-drawer__link {
     padding: 0.5rem 0.25rem;
   }

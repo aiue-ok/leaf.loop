@@ -8,225 +8,319 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Noto Sans -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script src="word.js" defer></script>
-    <script src="whiteout-once.js" defer></script>
-    <script src="js/timer-base.js" defer></script>
-    <!-- <script src="js/timer-shell.js" defer></script> -->
+    <style>
+      * {
+        /* outline: 1px dotted yellow; */
+      }
+      /* TEMP: universe placeholder styles (move to scss later) */
+
+      body.universe {
+        display: flex;
+        flex-direction: column; /* 子要素を縦方向に並べる */
+        height: 100%; /* 親要素の高さを100%にする */
+
+        background: linear-gradient(
+          to bottom,
+          rgba(27, 38, 59, 1) 40%,
+          rgba(15, 26, 43, 0) 100%
+        );
+        font-size: 24px;
+        color: #f2f2f2;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      .header,
+      .footer {
+        /* ヘッダーとフッターはコンテンツのサイズに合わせて自動調整される */
+        flex: 0 1 auto;
+        /* padding: 10px; */
+      }
+
+      .page-main {
+        flex: 1; /* 残りのスペースすべてを埋めるように伸縮する */
+        overflow: auto; /* コンテンツが多すぎる場合にスクロール可能にする */
+      }
+
+      .page-main h3 {
+        margin: 0 0 0.85rem;
+      }
+
+      .page-main p {
+        margin: 0 0 1.15em;
+        padding: 0 1.25rem;
+        max-width: 52ch;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        text-wrap: pretty; /* 自然な改行 */
+        text-shadow: 0 2px 2px rgb(27 38 59 / 1);
+      }
+
+      .page-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+      }
+
+      .page-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.7rem 1rem;
+        gap: 0.5rem;
+        min-width: 10rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: transparent;
+        box-shadow: none;
+        color: inherit;
+        box-shadow: 0 2px 10px rgb(27 38 59 / 0.3);
+        text-decoration: none;
+        /* 対象要素とその子孫要素の文章は範囲選択できません */
+        user-select: none;
+        transition: background-color 0.15s;
+        cursor: pointer;
+      }
+
+      .page-links a:hover {
+        background: color-mix(in oklch, transparent 90%, rgb(27 38 59 / 1) 10%);
+      }
+
+      .menu-drawer a {
+        font-size: var(--fs);
+      }
+
+      .site-footer {
+        margin: 0 auto;
+        color: rgb(27 38 59 / 1);
+      }
+
+      .page--universe .page-header {
+        color: color-mix(in oklch, transparent 10%, #f2f2f2 90%);
+      }
+
+      @media (width <= 480px) {
+        body.universe {
+          h3 {
+            font-size: 1.25rem;
+          }
+          .page-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+          }
+
+          .page-links a {
+            padding: 0.5rem 1rem;
+          }
+        }
+      }
+
+      @media (height <= 480px) {
+        body.universe {
+          h3 {
+            font-size: 1.25rem;
+          }
+          .page-links a {
+            padding: 0.5rem 1rem;
+          }
+        }
+      }
+    </style>
+
     <script src="js/site-menu.js" defer></script>
-    <title>遠くのことを少しだけ</title>
+    <title>遠くのことを少しだけ leaf.loop - portfolio</title>
   </head>
-  <body class="universe booting">
-    <header class="site-header">
-      <!-- メニューアイコン -->
-      <button
-        class="menu--btn hamburger"
-        aria-label="メニューを開く"
-        aria-controls="site-menu"
-        aria-expanded="false"
-      >
-        <span
-          class="material-icons hamburger-icon material-symbols-outlined icon-size"
-          aria-hidden="true"
-        >
-          menu
-        </span>
-      </button>
-    </header>
-    <!-- 右端で待機するメニュー-->
-    <nav id="site-menu" class="offcanvas hidden">
-      <div class="offcanvas__head">
-        <span class="offcanvas__title">Menu</span>
+  <body class="universe booting page page--universe">
+    <!-- /* ≡≡≡ メニューここから */ -->
+    <!-- ページ共通のヘッダ -->
+    <header class="page-header">
+      <div class="page-header__bar">
+        <!-- メニューアイコン -->
         <button
-          class="zen-kaku-gothic-new-bold offcanvas__close"
-          aria-label="メニューを閉じる"
+          class="page-header__toggle hamburger"
+          aria-label="メニューを開く"
+          aria-controls="site-menu"
+          aria-expanded="false"
         >
-          ×
+          <!-- menu　ハンバーガーSVG -->
+          <span aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              aria-hidden="true"
+              focusable="false"
+              class="i i-44"
+            >
+              <path
+                fill="currentColor"
+                d="M120-240v-80h720v80zm0-200v-80h720v80zm0-200v-80h720v80z"
+              />
+            </svg>
+          </span>
         </button>
+        <div class="page-header__brand">
+          <h1 class="page-header__title">leaf.loop - portfolio</h1>
+          <h2 class="page-header__subtitle">遠くのことを少しだけ</h2>
+        </div>
       </div>
-      <ul class="offcanvas__list menu--list zen-kaku-gothic-new-light">
-        <li>
-          <a href="index.html"><span class="link--text">ホーム</span></a>
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/gallery.html">世界のお茶を少しだけ</a></span
-          >
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/universe.html">遠くのことを少しだけ</a></span
-          >
-        </li>
-        <li>
-          <span class="link--text"
-            ><a href="/about.html">このサイトについて</a></span
-          >
-        </li>
-      </ul>
-      <!-- 時計 -->
-      <div class="clock-icon svg-container">
+    </header>
+
+    <main class="page-main text" id="main">
+      <h3 class="page-title">遠くのことを少しだけ</h3>
+
+      <p class="page-lead">このページは、ただいま準備中です。</p>
+
+      <p class="page-note">
+        “宇宙のことば” を、静かに並べる場所になる予定です。
+        もう少しだけ、お待ちください。
+      </p>
+
+      <nav class="page-links" aria-label="サイト内リンク">
+        <a href="./gallery.html">世界のお茶を少しだけ</a>
+        <a href="./about.html">このサイトについて</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <small>© leaf.loop</small>
+    </footer>
+    <!-- 背景クリック用 -->
+    <div class="scrim dots" hidden></div>
+    <!-- 右端で待機するメニュー-->
+    <nav id="site-menu" class="menu-drawer" role="navigation" hidden>
+      <div class="menu-drawer__wrapper">
+        <div class="menu-drawer__head">
+          <span class="menu-drawer__title">Menu</span>
+          <!-- 閉じるボタンSVG -->
+          <button class="menu-drawer__close" aria-label="メニューを閉じる">
+            <!-- メニュー close × -->
+            <svg
+              class="i"
+              viewBox="0 -960 960 960"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill="currentColor"
+                d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- メニューリスト -->
+        <ul class="menu-drawer__list">
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="./index.html">ホーム</a>
+          </li>
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="./gallery.html"
+              >世界のお茶を少しだけ</a
+            >
+          </li>
+          <li class="menu-drawer__item">
+            <a
+              class="menu-drawer__link"
+              href="./universe.html"
+              aria-current="page"
+              >遠くのことを少しだけ（準備中）</a
+            >
+          </li>
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="./about.html"
+              >このサイトについて</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- 飾り時計🕰️ -->
+      <div class="decor-clock">
         <svg
-          width="227"
-          height="199"
-          viewBox="0 0 227 200"
+          class="decor-clock__svg"
+          width="200"
+          height="160"
+          viewBox="0 0 200 160"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g
-            style="mix-blend-mode: soft-light"
-            filter="url(#filter0_d_157_368)"
-          >
+          <!-- 背景 -->
+          <path
+            class="decor-clock__bg decor-clock__bg--back"
+            d="M0 69.248C0 12.2223 12.2223 0 69.248 0H102.181C159.206 0 171.428 12.2223 171.428 69.248V90.752C171.428 147.778 159.206 160 102.181 160H69.248C12.2223 160 0 147.778 0 90.752V69.248Z"
+            fill="currentColor"
+          />
+          <!-- <g style="mix-blend-mode: multiply"> -->
+          <path
+            class="decor-clock__bg decor-clock__bg--mid"
+            d="M28.5715 58.112C28.5715 22.4917 38.6169 14.8572 85.4858 14.8572H143.086C189.955 14.8572 200 22.4917 200 58.112V101.888C200 137.508 189.955 145.143 143.086 145.143H85.4858C38.6169 145.143 28.5715 137.508 28.5715 101.888V58.112Z"
+            fill="currentColor"
+          />
+          <!-- </g> -->
+          <!-- <g style="mix-blend-mode: multiply"> -->
+          <path
+            class="decor-clock__bg decor-clock__bg--front"
+            d="M16 69.9338C16 36.8131 24.1033 29.7144 61.9108 29.7144H108.375C146.182 29.7144 154.286 36.8131 154.286 69.9338V110.638C154.286 143.758 146.182 150.857 108.375 150.857H61.9108C24.1033 150.857 16 143.758 16 110.638V69.9338Z"
+            fill="currentColor"
+          />
+          <!-- </g> -->
+
+          <!-- 針：中心(91.0348, 91.7905)にグループで移動 -->
+          <g class="decor-clock__hands" transform="translate(91.0348 91.7905)">
+            <!-- 時針 -->
+            <!-- 元: M91.0348 91.7905 L124.658 111.203 -->
+            <!-- 差分: (124.658 - 91.0348, 111.203 - 91.7905) = (33.6232, 19.4125) -->
             <path
-              d="M2 65.74C2 12.4266 15.0436 1 75.9013 1H150.693C211.551 1 224.594 12.4266 224.594 65.74V131.26C224.594 184.573 211.551 196 150.693 196H75.9013C15.0436 196 2 184.573 2 131.26V65.74Z"
-              fill="#FFF8E7"
-              fill-opacity="0.3"
+              id="hour"
+              class="hour-hand decor-clock__hand decor-clock__hand--h"
+              d="M0 0 L0 -38.8"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
+            />
+
+            <!-- 分針 -->
+            <!-- 元: M91.0344 91.7905 V34.3295 (= L91.0344 34.3295) -->
+            <!-- 始点: (91.0344 - 91.0348, 91.7905 - 91.7905) = (-0.0004, 0) -->
+            <!-- 終点: (91.0344 - 91.0348, 34.3295 - 91.7905) = (-0.0004, -57.461) -->
+            <path
+              id="minute"
+              class="minute-hand decor-clock__hand decor-clock__hand--m"
+              d="M-0.0004 0 L-0.0004 -57.461"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <!-- 秒針 -->
+            <!-- 元: M91.0343 91.7905 L137.624 91.7905 -->
+            <!-- 始点: (91.0343 - 91.0348, 91.7905 - 91.7905) = (-0.0005, 0) -->
+            <!-- 終点: (137.624 - 91.0348, 91.7905 - 91.7905) = (46.5892, 0) -->
+            <path
+              id="second"
+              class="second-hand decor-clock__hand decor-clock__hand--s"
+              d="M-0.0005 0 L46.5892 0"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <!-- 中心の丸（お好みで） -->
+            <circle
+              class="decor-clock__center"
+              cx="0"
+              cy="0"
+              r="2.5"
+              fill="currentColor"
             />
           </g>
-          <path
-            d="M113.001 108.493L167.124 139.741"
-            stroke="white"
-            stroke-linecap="round"
-          />
-          <path d="M113 108.493V16" stroke="white" stroke-linecap="round" />
-          <path
-            d="M113 109L187.995 109"
-            stroke="white"
-            stroke-linecap="round"
-          />
-          <defs>
-            <filter
-              id="filter0_d_157_368"
-              x="0"
-              y="0"
-              width="226.594"
-              height="199"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feOffset dy="1" />
-              <feGaussianBlur stdDeviation="1" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
-              />
-              <feBlend
-                mode="normal"
-                in2="BackgroundImageFix"
-                result="effect1_dropShadow_157_368"
-              />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="effect1_dropShadow_157_368"
-                result="shape"
-              />
-            </filter>
-          </defs>
         </svg>
       </div>
     </nav>
-    <main>
-      <div class="title-wrapper">
-        <div id="whiteout" aria-hidden="true"></div>
-        <h1 id="page-title" class="text title-vertical">
-          遠くのことを 少しだけ
-        </h1>
-      </div>
-      <!-- // 一語ずつ詩的に出現させる場所 -->
-      <section class="universe-words">
-        <!-- JSで順次表示 -->
-        <p class="word" id="word"></p>
-      </section>
-    </main>
-    <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <div class="timer-mini-container timer-shell">
-      <div class="timer-mini-box timer-mini-background">
-        <!-- カウントダウン表示 -->
-        <div class="timer-mini-countdown-text kiwi-maru-regular">
-          <div class="timer-count" id="timer">3:00</div>
-        </div>
-        <!-- プリセット・タイマー -->
-        <div class="timer-mini-preset-parent m-plus-1p-regular">
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="3">
-            3
-          </button>
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="4">
-            4
-          </button>
-          <button class="timer-mini-preset-button setTimeBtn" data-minutes="5">
-            5
-          </button>
-        </div>
-        <!-- タイマー操作 -->
-        <div class="timer-mini-set-parent">
-          <button class="unset" aria-label="リセット" id="resetBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >refresh
-            </span>
-          </button>
-          <button class="unset" aria-label="再生" id="startBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >play_circle
-            </span>
-          </button>
-          <button class="unset" id="stopBtn" aria-label="停止">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >stop_circle
-            </span>
-          </button>
-          <button class="unset" aria-label="音量" id="muteBtn">
-            <span
-              class="timer-mini-set-button material-symbols-outlined icon-size"
-              >volume_off
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="wrapper">
-        <div class="sideitem">
-          <span class="leaf-text">🌱</span>
-          <p>このサイトについて</p>
-        </div>
-        <div class="sideitem">
-          <span class="material-symbols-outlined help-icon-size"> help </span>
-          <p>ヘルプ</p>
-        </div>
-      </div>
-    </footer>
-    <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
-    <div class="offcanvas-backdrop" hidden></div>
   </body>
 </html>

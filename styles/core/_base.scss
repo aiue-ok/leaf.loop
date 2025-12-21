@@ -222,6 +222,7 @@ input {
   --kuro25: oklch(from var(--kuro) l c h / 25%);
   --bg: #{$hero-background};
   --main-color: #{$main-color};
+  --page-color: var(--main-color);
 
   /* Theme: default = charcoal leaf */
   --help-bg: rgb(12 14 16 / 78%);
