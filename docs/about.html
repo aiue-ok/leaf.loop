@@ -3,28 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>このサイトについて leaf.loop - portfolio</title>
     <link rel="stylesheet" href="styles/style.css" />
     <!-- GoogleFonts↓ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kiwi+Maru&family=M+PLUS+1p:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <script src="js/gallery.js" defer></script>
     <script src="js/timer-base.js" defer></script>
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <title>世界のお茶を少しだけ leaf.loop - portfolio</title>
   </head>
-
-  <body class="page page--gallery">
+  <body class="page page--about">
+    <div class="page--about__bg-top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#F4EFE8"
+          fill-opacity="1"
+          d="M0,0L48,21.3C96,43,192,85,288,106.7C384,128,480,128,576,112C672,96,768,64,864,90.7C960,117,1056,203,1152,213.3C1248,224,1344,160,1392,128L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+        ></path>
+      </svg>
+    </div>
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
     <aside class="timer-mini" aria-label="ティータイマー">
       <!-- カードの背景 -->
@@ -245,424 +247,191 @@
         </button>
         <div class="page-header__brand">
           <h1 class="page-header__title">leaf.loop - portfolio</h1>
-          <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
+          <h2 class="page-header__subtitle">このサイトについて</h2>
         </div>
       </div>
     </header>
-    <!-- ▼▼ main ギャラリー本体▼▼ -->
-    <main>
-      <section class="gallery" aria-label="Gallery">
-        <div class="gallery__bg">
-          <div class="gallery__inner">
-            <div class="gallery__photo--container">
-              <ul class="gallery__grid zen-maru-gothic-regular">
-                <!-- 1 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/001.webp"
-                      srcset="
-                        assets/gallery/thumbs/001.webp    1x,
-                        assets/gallery/thumbs/001@2x.webp 2x
-                      "
-                      width="320"
-                      height="320"
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="eager"
-                      fetchpriority="high"
-                      decoding="async"
-                      alt="茶の木、葉っぱの近距離撮影"
-                      data-caption="やわらかい新芽が光をあつめる。ここからすべてのお茶がはじまる。"
-                      data-full-avif="assets/gallery/full/001.avif"
-                      data-full-webp="assets/gallery/full/001.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 2 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/002.webp"
-                      srcset="
-                        assets/gallery/thumbs/002.webp    1x,
-                        assets/gallery/thumbs/002@2x.webp 2x
-                      "
-                      width="320"
-                      height="320"
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="木製のテーブルの上にある陶器の急須と緑茶の入った茶碗"
-                      data-caption="急須から注ぐひとしずくが、朝の気持ちを整えてくれる。"
-                      data-full-avif="assets/gallery/full/002.avif"
-                      data-full-webp="assets/gallery/full/002.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 3 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/003.webp"
-                      srcset="
-                        assets/gallery/thumbs/003.webp    1x,
-                        assets/gallery/thumbs/003@2x.webp 2x
-                      "
-                      width="320"
-                      height="320"
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="抹茶の粉とスプーン"
-                      data-caption="抹茶のきれいな緑に、ふっと心が止まる。香りと苦味がゆるやかにひろがる。"
-                      data-full-avif="assets/gallery/full/003.avif"
-                      data-full-webp="assets/gallery/full/003.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 4 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/004.webp"
-                      srcset="
-                        assets/gallery/thumbs/004.webp    1x,
-                        assets/gallery/thumbs/004@2x.webp 2x
-                      "
-                      width="320"
-                      height="320"
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="カモミールやラベンダーなどの6種類のドライハーブが入ったビン"
-                      data-caption="六つの瓶にひろがる、異なる香りの景色。選ぶたび、心の向きがそっと変わる。"
-                      data-full-avif="assets/gallery/full/004.avif"
-                      data-full-webp="assets/gallery/full/004.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 5 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/005.webp"
-                      srcset="
-                        assets/gallery/thumbs/005.webp    1x,
-                        assets/gallery/thumbs/005@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="白いジャスミンの花"
-                      data-caption="甘い香りがふわりと立つ、咲きはじめのジャスミン。
-深呼吸したくなるやさしい時間。"
-                      data-full-avif="assets/gallery/full/005.avif"
-                      data-full-webp="assets/gallery/full/005.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 6 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/006.webp"
-                      srcset="
-                        assets/gallery/thumbs/006.webp    1x,
-                        assets/gallery/thumbs/006@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="ドライラベンダーをガラスのカップに浮かべ抽出しているところ"
-                      data-caption="お湯をそそいで、香りがひらくのを少しだけ待つ。ラベンダーと過ごす静かな時間。"
-                      data-full-avif="assets/gallery/full/006.avif"
-                      data-full-webp="assets/gallery/full/006.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 7 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/007.webp"
-                      srcset="
-                        assets/gallery/thumbs/007.webp    1x,
-                        assets/gallery/thumbs/007@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="氷が入ったグラスに青いハーブティとカットレモン"
-                      data-caption="バタフライピーにレモンを添えて、色も香りも軽やかに。夏の光が似合う一杯。"
-                      data-full-avif="assets/gallery/full/007.avif"
-                      data-full-webp="assets/gallery/full/007.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 8 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/008.webp"
-                      srcset="
-                        assets/gallery/thumbs/008.webp    1x,
-                        assets/gallery/thumbs/008@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="木製のスプーンに乗せたルイボスティの茶葉"
-                      data-caption="南アフリカの大地が育てた、やさしい甘みのルイボスティー。"
-                      data-full-avif="assets/gallery/full/008.avif"
-                      data-full-webp="assets/gallery/full/008.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 9 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/009.webp"
-                      srcset="
-                        assets/gallery/thumbs/009.webp    1x,
-                        assets/gallery/thumbs/009@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="黒いポットとたっぷり注がれたミルクティのカップ。手前にはクローブやはちみつなどのスパイスが数種類"
-                      data-caption="どのスパイスを選ぶかで風味が変わるチャイ。香りと甘味が寄り添う、ほっとする一杯。"
-                      data-full-avif="assets/gallery/full/009.avif"
-                      data-full-webp="assets/gallery/full/009.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 10 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/010.webp"
-                      srcset="
-                        assets/gallery/thumbs/010.webp    1x,
-                        assets/gallery/thumbs/010@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="小さな茶器、急須、椀、お湯差しと木のトレー"
-                      data-caption="香り・味・手順・素材・茶器の外観。お茶を五感であじわう時間。"
-                      data-full-avif="assets/gallery/full/010.avif"
-                      data-full-webp="assets/gallery/full/010.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 11 -->
-                <li class="gallery__item">
-                  <img
-                    class="gallery__img"
-                    src="assets/gallery/thumbs/011.webp"
-                    srcset="
-                      assets/gallery/thumbs/011.webp    1x,
-                      assets/gallery/thumbs/011@2x.webp 2x
-                    "
-                    style="aspect-ratio: 1/1; object-fit: cover"
-                    loading="lazy"
-                    decoding="async"
-                    alt="白いカップの中のお湯の中で花がひらく。工芸茶・花茶"
-                    data-caption="透きとおる香りが、そっと広がる花茶。一杯の中に、小さな季節がひらく。"
-                    data-full-avif="assets/gallery/full/011.avif"
-                    data-full-webp="assets/gallery/full/011.webp"
-                  />
-                </li>
-                <!-- 12 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/012.webp"
-                      srcset="
-                        assets/gallery/thumbs/012.webp    1x,
-                        assets/gallery/thumbs/012@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="スコーンやケーキ、ミルクポッドとサンドイッチ、手前に紅茶のカップ"
-                      data-caption="焼きたてのスコーンと紅茶の香り。日常がそっとご褒美に変わる。英国の午後。"
-                      data-full-avif="assets/gallery/full/012.avif"
-                      data-full-webp="assets/gallery/full/012.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 13 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/013.webp"
-                      srcset="
-                        assets/gallery/thumbs/013.webp    1x,
-                        assets/gallery/thumbs/013@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="月餅と茶器に注がれるお茶"
-                      data-caption="丸い月を思わせる月餅と、あたたかいお茶。誰かと分け合いたくなる、静かな団らん。"
-                      data-full-avif="assets/gallery/full/013.avif"
-                      data-full-webp="assets/gallery/full/013.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 14 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/014.webp"
-                      srcset="
-                        assets/gallery/thumbs/014.webp    1x,
-                        assets/gallery/thumbs/014@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="ガラス製の紅茶カップと奥には日のさしてきた空と森のぼやけた風景"
-                      data-caption="早く目が覚めた朝。庭にあたたかい香りがひろがる。一日の始まりを整える紅茶。"
-                      data-full-avif="assets/gallery/full/014.avif"
-                      data-full-webp="assets/gallery/full/014.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 15 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/015.webp"
-                      srcset="
-                        assets/gallery/thumbs/015.webp    1x,
-                        assets/gallery/thumbs/015@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="雨のあたった窓ガラスの手前に小さな円テーブル。少しのお菓子とティーカップ"
-                      data-caption="窓を流れる雨を眺めながら飲む一杯。重い空気が少しだけ軽くなる。"
-                      data-full-avif="assets/gallery/full/015.avif"
-                      data-full-webp="assets/gallery/full/015.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 16 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/016.webp"
-                      srcset="
-                        assets/gallery/thumbs/016.webp    1x,
-                        assets/gallery/thumbs/016@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="日差しに照らされたホーローのカップを持つ手。"
-                      data-caption="旅先で飲むお茶は、どうしてこんなに特別なんだろう。"
-                      data-full-avif="assets/gallery/full/016.avif"
-                      data-full-webp="assets/gallery/full/016.webp"
-                    />
-                  </button>
-                </li>
-                <!-- 17 -->
-                <li class="gallery__item">
-                  <button>
-                    <img
-                      class="gallery__img"
-                      src="assets/gallery/thumbs/017.webp"
-                      srcset="
-                        assets/gallery/thumbs/017.webp    1x,
-                        assets/gallery/thumbs/017@2x.webp 2x
-                      "
-                      style="aspect-ratio: 1/1; object-fit: cover"
-                      loading="lazy"
-                      decoding="async"
-                      alt="霧が立ちこめた茶畑がどこまでもなだらかに続く風景"
-                      data-caption="霧の中でゆっくり育つ茶の葉。この緑の丘が、毎日の一杯をそっと支えている。"
-                      data-full-avif="assets/gallery/full/017.avif"
-                      data-full-webp="assets/gallery/full/017.webp"
-                    />
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
+
+    <!-- このサイトについて -->
+    <main class="about font">
+      <section class="about__short" aria-label="Short version">
+        <!-- 短文版ここ -->
+        <span class="prologue-line"
+          >このサイトは、学び直しを目的として制作した
+          ポートフォリオ兼プロジェクトです。</span
+        >
+        <!-- <h2>はじめに</h2> -->
+        <h2>プロローグ</h2>
+        <p class="prologue">
+          忙しい日のあいまに、深呼吸のための小さな間。ことばと色と時間を、静かに並べています。
+        </p>
+        <div class="divider"></div>
+        <h2>leaf.loop とは</h2>
+        <span class="one-line"
+          >leaf.loopは、<br />日常の余白をひらく実験室。</span
+        >
+
+        <p>
+          名前の由来は、leaf は葉、loop はめぐり。葉 + ループ。<br />自然と技術が循環しているようなイメージ。
+        </p>
+        <p>
+          お茶の温度、宇宙の暗さ、ことばの間合いを、画面の上で確かめています。
+        </p>
+
+        <h2>体験のしかた</h2>
+
+        <ul>
+          <li>タイマーをセットして、眺めるだけでもOK</li>
+          <li>音は控えめ。必要ならミュートしやすく</li>
+          <li>モバイルでも読みやすい文字幅にしています</li>
+        </ul>
+        <h2>デザインノート</h2>
+        <p>
+          色・余白・フォントは「目にやさしいコントラスト」を基準に調整しています。
+        </p>
+        <h2>設計メモ</h2>
+        <ul class="about-notes">
+          <li>mobile first と progressive enhancement を前提に設計</li>
+          <li>固定UIと可読性の両立（スクロール設計の工夫）</li>
+          <li>実機検証を重ね、挙動と余白を微調整</li>
+        </ul>
+        <h2>制作・技術</h2>
+        <p>HTML/CSS/JavaScript と Figma を中心に、少しずつ育てています。</p>
+        <ul>
+          <li>HTML / SCSS / JavaScript</li>
+
+          <li>Figma（設計・検証）</li>
+          <li>Git / GitHub（履歴管理・公開）</li>
+        </ul>
+        <h2>担当範囲</h2>
+        <p>すべてのデザイン/実装/検証を一人で行いました。</p>
+        <h2>クレジット</h2>
+        <p>
+          画像・動画等の素材は
+          <small
+            ><a class="about__credit" href="./assets-credit.html"
+              >Assets credit</a
+            ></small
+          >
+          を参照。
+        </p>
+        <div class="divider"></div>
+        <h2>おわりに</h2>
+        <p>ここでの3分が、あなたの一日のどこかをやわらげますように。</p>
+        <div class="end">＊</div>
+      </section>
+      <section class="about__long" aria-label="Long version">
+        <!-- 長文版ここ -->
+        <h2>プロローグ</h2>
+        <p class="prologue">
+          忙しい日のあいまに、深呼吸のための小さな間。ことばと色と時間を、静かに並べています。
+        </p>
+        <div class="monologue">
+          なぜか早起きした朝、ふと ぽかんと空いた時。<br />
+          ただ眺めて、「あ、私お茶でもいれようかな」と思える。<br />
+          そんな<b>“途中”</b>を許す空間を目指しました。
         </div>
+        <span class="one-line">“leaf.loop” は、日常の余白をひらく実験室。</span>
+        <div class="divider"></div>
+        <h2>サイト名について</h2>
+        <p>
+          このサイトは、学び直しを目的として制作した
+          ポートフォリオ兼プロジェクトです。
+        </p>
+        <p>
+          leaf.loopは、葉（leaf）と、ループ（loop）。自然と技術が循環しているようなイメージを持っています。
+        </p>
+        <p>目指しているのは、五感にやさしい、一枚の静かな体験です。</p>
+        <h2>制作背景・技術</h2>
+        <p>
+          <span class="one-line">mobile first + progressive enhancement.</span>
+          モバイルを起点に設計し、後方互換を意識することで、どんな端末でも同じ“骨格”の体験ができるよう心がけました。
+        </p>
+        <p>
+          途中からは AI を“仕事仲間”として迎え、<br />
+          チェックや提案を受けながら制作を進めています。<br />
+          ひとりでは難しい部分も、無理なく、スマートに実現できました。
+        </p>
+        <ul>
+          <li>HTML / SCSS / JavaScript</li>
+
+          <li>Figma（設計・検証）</li>
+          <li>Git / GitHub（履歴管理・公開）</li>
+        </ul>
+        <h2>担当範囲</h2>
+        <p>すべてのデザイン/実装/検証を一人で行いました。</p>
+        <h2>テーマやモチーフ</h2>
+        <span class="one-line">お茶でも淹れましょうか。</span>
+        <ul>
+          <li>
+            <p>
+              このサイトは、「時間」をひとつの軸に構成しています。
+              ティータイマーや現在時刻を表示する時計を設置し、
+              ただ流れる時間を、少し意識できるようにしました。
+            </p>
+          </li>
+          <li>
+            <p>2ページ目は「世界のお茶」をテーマにしたフォトギャラリー。</p>
+          </li>
+          <li>
+            <p>
+              3ページ目は「宇宙のことば」。
+              日常からふっと離れる、心のスイッチとしての言葉を並べています。
+              操作はほとんど求めません。
+            </p>
+          </li>
+          <li>
+            <p>
+              「すう〜」ということばを眺めれば、
+              深呼吸を思い出すかもしれません。<br />
+              そんな小さな遊び心も、そっと忍ばせています。
+            </p>
+          </li>
+        </ul>
+        <p>
+          タイマーが止まるまでの間、
+          世界のお茶や、遠い宇宙のことばに触れてみてください。
+          その一瞬だけでも、日常の喧騒をふっとカットできたら嬉しいです。
+        </p>
+        <h2>デザインノート</h2>
+        <p>
+          色・余白・フォントは、<br />
+          「目にやさしいコントラスト」を基準に調整しています。
+        </p>
+        <ul class="about-notes">
+          <li>固定UIと可読性の両立（スクロール設計の工夫）</li>
+          <li>実機検証を重ね、挙動と余白を微調整</li>
+        </ul>
+        <h2>クレジット</h2>
+        <p>
+          画像・動画等の素材は
+          <small
+            ><a class="about__credit" href="./assets-credit.html"
+              >Assets credit</a
+            ></small
+          >
+          を参照。
+        </p>
+        <h2>さいごに</h2>
+        <p>訪れてくださり、ありがとうございます。</p>
+
+        <p>
+          このサイトは、学び直しを目的とした個人制作のポートフォリオとして、
+          試行錯誤を重ねながら制作しています。
+        </p>
+
+        <p>今後も内容を見直しながら、少しずつ更新していく予定です。</p>
+        <p>また、気が向いたときに遊びに来ていただけたら嬉しいです。</p>
+
+        <div class="end">＊</div>
       </section>
     </main>
+    <!-- ツールチップ -->
+    <!-- <div class="tooltip">
+      <button class="preset-button">③ぼぼぼぼぼぼb</button>
+      <span class="tooltip-text">3分タイマー</span>
+    </div> -->
 
-    <!-- /* ≡≡≡ Lightboxここから */ -->
-    <div
-      id="lightbox"
-      class="lightbox hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-    >
-      <!-- 背景 -->
-      <div class="lightbox__backdrop"></div>
-      <!-- // Lightbox画像 コンテンツ領域 -->
-      <div class="lightbox__content">
-        <!-- // ヘッダー（情報行） 閉じるボタン -->
-        <div class="lightbox__header">
-          <!-- クローズボタン -->
-          <button
-            id="lightbox-close"
-            aria-label="閉じる"
-            class="lightbox__close"
-          >
-            <!-- ヘルプカード 7close -->
-            <svg
-              class="i i-44"
-              viewBox="0 -960 960 960"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                fill="currentColor"
-                d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
-              />
-            </svg>
-          </button>
-        </div>
-        <img id="lightbox-img" class="lightbox__img" alt="" />
-        <p id="lightbox-caption" class="lightbox__caption"></p>
-        <button
-          id="prev-btn"
-          aria-label="前の画像"
-          class="lightbox__nav lightbox__nav--prev nav-button left"
-        >
-          &larr;
-        </button>
-        <button
-          id="next-btn"
-          aria-label="次の画像"
-          class="lightbox__nav lightbox__nav--next nav-button right"
-        >
-          &rarr;
-        </button>
-      </div>
-    </div>
     <!-- /* ≡≡≡ ヘルプカードここから */ -->
     <!-- aria-labelledbyは、要素にラベルを付けるためのARIA属性。 -->
     <!-- 他の要素のidを指定することで、視覚的に表示されているテキストと要素を関連付けます。 -->
@@ -676,7 +445,7 @@
     >
       <div class="info-help-container">
         <div
-          class="visual-card-help-bg theme-gal help-content m-plus-1p-regular"
+          class="visual-card-help-bg theme-dew help-content m-plus-1p-regular"
         >
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
@@ -840,15 +609,14 @@
           </button>
         </div>
         <!-- メニューリスト -->
-        <!-- メニューリスト -->
         <ul class="menu-drawer__list">
           <li class="menu-drawer__item">
             <a class="menu-drawer__link" href="./index.html">ホーム</a>
           </li>
 
           <li class="menu-drawer__item">
-            <span class="menu-drawer__link" aria-current="page"
-              >世界のお茶を少しだけ</span
+            <a class="menu-drawer__link" href="./gallery.html"
+              >世界のお茶を少しだけ</a
             >
           </li>
 
@@ -859,8 +627,8 @@
           </li>
 
           <li class="menu-drawer__item">
-            <a class="menu-drawer__link" href="./about.html"
-              >このサイトについて</a
+            <span class="menu-drawer__link" aria-current="page"
+              >このサイトについて</span
             >
           </li>
         </ul>
@@ -948,11 +716,20 @@
         </svg>
       </div>
     </nav>
-
-    <audio id="alarmSound" src="assets/mp3/alarm.mp3" preload="auto"></audio>
     <!-- 画面表示（トースト） -->
     <div id="toast" class="js-toast" role="status" aria-live="polite" hidden>
       お湯の準備ができました
     </div>
+
+    <div class="page--about__bg-bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#F4EFE8"
+          fill-opacity="1"
+          d="M0,160L48,181.3C96,203,192,245,288,245.3C384,245,480,203,576,176C672,149,768,139,864,165.3C960,192,1056,256,1152,266.7C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+    <audio id="alarmSound" src="./assets/mp3/alarm.mp3" preload="auto"></audio>
   </body>
 </html>
