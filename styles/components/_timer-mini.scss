@@ -1,8 +1,6 @@
 @use "../core/index" as core;
 
 .page--gallery,
-body.universe,
-body.about,
 .page--universe,
 .page--about {
   .timer-mini {
@@ -27,6 +25,7 @@ body.about,
       -webkit-backdrop-filter: var(--mini-backdrop-filter);
       will-change: backdrop-filter;
       transition: background 0.3s ease, filter 0.3s ease;
+      transition: all 0.3s ease;
       width: 100%;
       height: 100%;
 
@@ -263,7 +262,8 @@ body.about,
 // 480px〜1024px タブレット　portrait　サイズ
 // 位置(3) Tablet(port) 右上
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
-  .page--gallery {
+  .page--gallery,
+  .page--about {
     .timer-mini {
       position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
@@ -277,6 +277,8 @@ body.about,
       height: 16vh;
       min-height: 175px;
       max-height: 200px;
+      transform: scale(0.86);
+      transform-origin: right top;
     }
 
     // カウントダウン表示
@@ -291,10 +293,23 @@ body.about,
   }
 }
 
+// aboutでは、見出しに干渉しないようサイズを小さく、右寄せに
+// デスクトップ幅 480px〜1440px landscape
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-xl}) and (orientation: landscape) {
+  .page--about {
+    .timer-mini {
+      left: auto;
+      right: 16px;
+      transform: scale(0.86);
+      transform-origin: right bottom;
+    }
+  }
+}
+
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
       --btn-size-pill: var(--btn-size-pill-inline);
@@ -308,7 +323,7 @@ body.about,
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
       // stacked パレット　トークン差し替え
@@ -428,7 +443,7 @@ body.about,
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   body.universe,
-  body.about {
+  .page--about {
     .timer-mini {
       // トークン差し替え
       --mini-color-base: #{var(--mini-color-base2)}; // （ブラウン）
@@ -529,5 +544,24 @@ body.about,
         }
       }
     }
+  }
+}
+
+// aboutページのみの変更
+// ヘルプアイコンの色
+// 丸ボタンの枠の色
+.page--about {
+  @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+    .timer-mini__screen--help {
+      color: var(--text-sub);
+
+      &:hover {
+        color: var(--accent-hover);
+      }
+    }
+  }
+  // 丸ボタン
+  .timer-mini__pill {
+    border: var(--btn-border-width) solid var(--bg);
   }
 }
