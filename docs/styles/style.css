@@ -190,6 +190,8 @@ input {
   --panel-bg: oklch(from var(--kuro) l c h / 70%);
   --panel-bd: var(--shiro10);
   --panel-cl: var(--main-color);
+  --m-width: 8rem;
+  --m-height: 6rem;
 }
 
 /* 例：tok.$accent-rgb を CSS変数へ落としたと仮定 */
@@ -202,6 +204,7 @@ input {
 .page--gallery {
   --bg: oklch(90% 0.02 85deg);
   --main-color: oklch(22% 0.03 266deg);
+  --page-color: var(--main-color);
   --accent: #d8b08c;
   --accent2: #9dc5af;
   --jasmin: oklch(95% 0.03 105deg);
@@ -221,8 +224,21 @@ input {
 }
 
 .page--about {
-  --timer-bg: #d7d9d7;
-  --help-card-bg: #2e4f3e;
+  --bg: #f6f5f2;
+  --main-color: #2f2f2c;
+  --text-sub: #4a4a46;
+  --page-color: var(--main-color);
+  --accent: #e7ece8;
+  --accent2: #e7ece8;
+  --divider: #cfcac2;
+  --note: #b8b3aa;
+  --mono-bg: oklch(from #efede8 l c h / 62%);
+  --mono-bd: #cfcac2;
+  --mono-fc: var(--text-sub);
+  --one-line: var(--text-sub);
+  --drop-cap: var(--text-sub);
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
@@ -242,7 +258,14 @@ input {
 }
 
 .page--about {
-  --accent: #387f5a;
+  --panel-bg: #efede8;
+  --panel-bd: var(--mono-bd);
+  --panel-cl: var(--text-sub);
+  --current-page: #8c4b3a;
+  --panel-pop: oklch(from #c8743c l c h / 65%);
+  --scrim: transparent;
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+  --dots: oklch(from var(--panel-bg) l c h / 60%);
 }
 
 /* ===== styles/components/_timer-mini.scss ===== */
@@ -255,8 +278,6 @@ input {
   --m: oklch(from oklch(22% 0.03 266deg) l c h / 45%);
   --s: oklch(from #d8b08c l c h / 85%);
   --center: #d8b08c;
-  --m-width: 8rem;
-  --m-height: 6rem;
   --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
 
@@ -271,13 +292,13 @@ input {
 }
 
 .page--about {
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --back: oklch(from #cfcac2 l c h / 35%);
+  --mid: #e7ece8;
+  --front: oklch(from #f6f5f2 l c h / 78%);
+  --h: #5e5e5e;
+  --m: #cfcac2;
+  --s: #b8b3aa;
+  --center: oklch(from #2f2f2c l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -293,7 +314,8 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
-  --help-filter: opacity(95%) brightness(105%);
+  --link-box-shdw-hover: 0 8px 24px rgb(0 0 0 / 15%),
+    inset 0 0 0 1px rgb(255 255 255 / 25%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -306,20 +328,24 @@ input {
   --help-icon: var(--help-h);
   --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --help-filter: brightness(105%);
+  --link-box-shdw-hover: 0 6px 18px rgba(255, 255, 255, 0.25);
 }
 
-/* Dew */
+/* Dew about */
 .theme-dew {
   --link-padding: 0.6em 1.1em;
-  --link-main-color: oklch(97.015% 0.0001 271.152deg);
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+  --link-main-color: #2f2f2c;
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 12%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
+  --help-bg: #efede8;
+  --help-fg: #474747;
+  --help-h: #2f2f2c;
   --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
+  --help-icon: #cfcac2;
+  --help-icon-bg: oklch(from #b8b3aa l c h / 8%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 16%),
+    inset 0 0 0 1px rgb(255 255 255 / 40%);
 }
 
 .center {
@@ -835,6 +861,51 @@ input[type=checkbox] {
   --t-accent: var(--mini-color-accent);
 }
 
+.page--about > .timer-mini {
+  --mini-color-base: var(--bg);
+  --mini-color-accent: var(--accent);
+  --mini-color-ink: var(--main-color);
+  --mini-color-base2: var(--bg);
+  --mini-color-accent2: var(--accent2);
+  --mini-color-ink2: var(--text-sub);
+  --mini-color: var(--mini-color-base);
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
+  --mini-background: oklch(from var(--mini-color-ink) l c h / 35%);
+  --mini-background-hover: oklch(from var(--mini-color-ink) l c h / 30%);
+  --mini-background-border: color-mix(
+    in oklch,
+    var(--mini-color-ink) 20%,
+    var(--bg) 15%
+  );
+  --mini-background-shadow: 0 0 8px
+    color-mix(in oklch, var(--mini-color-ink) 50%, var(--kuro) 10%);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--kuro) 5%);
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 80%, var(--kuro) 5%);
+  --btn-pill-border: var(--mini-color-soft);
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: color-mix(
+    in oklch,
+    var(--mini-color) 70%,
+    var(--shiro) 15%
+  );
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+  --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
+  --btn-fg-hover: var(--mini-color-ink);
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+  --t-accent: var(--mini-color-accent);
+}
+
 /* トースト */
 .js-toast {
   position: fixed;
@@ -1298,16 +1369,33 @@ body .js-toast--visible {
 }
 
 .visual-card-help-bg {
+  position: relative;
+  overflow: hidden;
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
   box-shadow: var(--link-box-shdw);
-  transition: background var(--motion-soft) ease-in, filter var(--motion-soft) ease-in;
+  transition: box-shadow 240ms ease, transform 240ms ease;
+}
+
+.visual-card-help-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: oklch(100% 0 0deg / 0.04); /* 超うす */
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.visual-card-help-bg:hover::after {
+  opacity: 1;
 }
 
 .visual-card-help-bg:hover {
-  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
-  filter: var(--help-filter);
+  transform: translateY(-1px);
+  box-shadow: var(--link-box-shdw-hover);
 }
 
 .help-content {
@@ -1514,20 +1602,14 @@ body .js-toast--visible {
 }
 
 .page--gallery,
-body.universe,
 .page--universe,
-body.about,
 .page--about {
   /* パネル本体（右から） */
 }
 .page--gallery .menu-drawer,
 .page--gallery .scrim,
-body.universe .menu-drawer,
-body.universe .scrim,
 .page--universe .menu-drawer,
 .page--universe .scrim,
-body.about .menu-drawer,
-body.about .scrim,
 .page--about .menu-drawer,
 .page--about .scrim {
   position: fixed;
@@ -1535,9 +1617,7 @@ body.about .scrim,
   bottom: 0;
 }
 .page--gallery .menu-drawer,
-body.universe .menu-drawer,
 .page--universe .menu-drawer,
-body.about .menu-drawer,
 .page--about .menu-drawer {
   right: 0;
   z-index: 1100; /* タイマーとバックドロップより上 */
@@ -1559,9 +1639,7 @@ body.about .menu-drawer,
   /* 中身のレイアウト　Menu+ Xbutton */
 }
 .page--gallery .menu-drawer__head,
-body.universe .menu-drawer__head,
 .page--universe .menu-drawer__head,
-body.about .menu-drawer__head,
 .page--about .menu-drawer__head {
   display: flex;
   align-items: center;
@@ -1569,17 +1647,13 @@ body.about .menu-drawer__head,
   margin-bottom: 1.5rem;
 }
 .page--gallery .menu-drawer__title,
-body.universe .menu-drawer__title,
 .page--universe .menu-drawer__title,
-body.about .menu-drawer__title,
 .page--about .menu-drawer__title {
   margin-left: 5px;
   font-size: 1.4rem;
 }
 .page--gallery .menu-drawer__close,
-body.universe .menu-drawer__close,
 .page--universe .menu-drawer__close,
-body.about .menu-drawer__close,
 .page--about .menu-drawer__close {
   width: 44px;
   height: 44px;
@@ -1590,32 +1664,24 @@ body.about .menu-drawer__close,
   transition: scale var(--motion-tap) ease;
 }
 .page--gallery .menu-drawer__close:hover,
-body.universe .menu-drawer__close:hover,
 .page--universe .menu-drawer__close:hover,
-body.about .menu-drawer__close:hover,
 .page--about .menu-drawer__close:hover {
   color: var(--panel-bd);
   scale: 110%;
 }
 .page--gallery .menu-drawer__close i,
-body.universe .menu-drawer__close i,
 .page--universe .menu-drawer__close i,
-body.about .menu-drawer__close i,
 .page--about .menu-drawer__close i {
   display: block;
 }
 .page--gallery .menu-drawer__list,
-body.universe .menu-drawer__list,
 .page--universe .menu-drawer__list,
-body.about .menu-drawer__list,
 .page--about .menu-drawer__list {
   margin-left: 0.5em;
   list-style: none;
 }
 .page--gallery .menu-drawer__link,
-body.universe .menu-drawer__link,
 .page--universe .menu-drawer__link,
-body.about .menu-drawer__link,
 .page--about .menu-drawer__link {
   display: block;
   padding: 0.75rem 0.25rem;
@@ -1624,27 +1690,22 @@ body.about .menu-drawer__link,
   transition: text-decoration var(--motion-snap) ease;
 }
 .page--gallery .menu-drawer__link:hover,
-body.universe .menu-drawer__link:hover,
 .page--universe .menu-drawer__link:hover,
-body.about .menu-drawer__link:hover,
 .page--about .menu-drawer__link:hover {
   text-decoration: underline var(--panel-pop);
   -webkit-text-decoration: underline var(--panel-pop);
 }
 .page--gallery .menu-drawer__link[aria-current=page],
-body.universe .menu-drawer__link[aria-current=page],
 .page--universe .menu-drawer__link[aria-current=page],
-body.about .menu-drawer__link[aria-current=page],
 .page--about .menu-drawer__link[aria-current=page] {
   position: relative;
   opacity: 0.9;
   color: var(--current-page);
   mix-blend-mode: multiply;
+  cursor: default;
 }
 .page--gallery .menu-drawer__link[aria-current=page]::before,
-body.universe .menu-drawer__link[aria-current=page]::before,
 .page--universe .menu-drawer__link[aria-current=page]::before,
-body.about .menu-drawer__link[aria-current=page]::before,
 .page--about .menu-drawer__link[aria-current=page]::before {
   content: "▼";
   position: absolute;
@@ -1683,7 +1744,7 @@ body:not([data-menu-open=true]) .scrim {
 @media (width > 480px) and (orientation: portrait) {
   .page--gallery .menu-drawer,
   body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--about .menu-drawer {
     justify-content: flex-start;
     padding: 2rem 2.5rem;
     display: flex;
@@ -1692,58 +1753,58 @@ body:not([data-menu-open=true]) .scrim {
   }
   .page--gallery .menu-drawer__list,
   body.universe .menu-drawer__list,
-  body.about .menu-drawer__list {
+  .page--about .menu-drawer__list {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
   }
   .page--gallery .menu-drawer__list a,
   body.universe .menu-drawer__list a,
-  body.about .menu-drawer__list a {
+  .page--about .menu-drawer__list a {
     padding: 0.85rem 0.25rem;
     font-size: 1.05rem;
   }
 }
 @media (width >= 768px) and (width <= 1440px) and (orientation: landscape) and (hover: none) {
   .page--gallery .menu-drawer,
-  body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--universe .menu-drawer,
+  .page--about .menu-drawer {
     --menu-w: min(360px, 40vw);
   }
   .page--gallery .menu-drawer__list a,
-  body.universe .menu-drawer__list a,
-  body.about .menu-drawer__list a {
+  .page--universe .menu-drawer__list a,
+  .page--about .menu-drawer__list a {
     font-size: 1rem;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .menu-drawer,
-  body.universe .menu-drawer,
-  body.about .menu-drawer {
+  .page--universe .menu-drawer,
+  .page--about .menu-drawer {
     padding: 24px 25px 25px;
     padding-block: 1rem;
     /* 中身のレイアウト　Menu+ Xbutton */
   }
   .page--gallery .menu-drawer__head,
-  body.universe .menu-drawer__head,
-  body.about .menu-drawer__head {
+  .page--universe .menu-drawer__head,
+  .page--about .menu-drawer__head {
     margin-bottom: 0.5rem;
   }
   .page--gallery .menu-drawer__title,
-  body.universe .menu-drawer__title,
-  body.about .menu-drawer__title {
+  .page--universe .menu-drawer__title,
+  .page--about .menu-drawer__title {
     margin-left: 3px;
     font-size: 1.3rem;
   }
   .page--gallery .menu-drawer__close,
-  body.universe .menu-drawer__close,
-  body.about .menu-drawer__close {
+  .page--universe .menu-drawer__close,
+  .page--about .menu-drawer__close {
     width: 38px;
     height: 38px;
   }
   .page--gallery .menu-drawer__link,
-  body.universe .menu-drawer__link,
-  body.about .menu-drawer__link {
+  .page--universe .menu-drawer__link,
+  .page--about .menu-drawer__link {
     padding: 0.5rem 0.25rem;
   }
 }
@@ -1834,17 +1895,13 @@ body:not([data-menu-open=true]) .scrim {
   }
 }
 @media (width <= 480px) and (orientation: portrait) {
-  .page--gallery .decor-clock,
-  body.universe .decor-clock,
-  body.about .decor-clock {
+  .decor-clock {
     max-inline-size: 180px;
     margin-bottom: 0;
   }
 }
 @media screen and (max-height: 480px) and (orientation: landscape) {
-  .page--gallery .decor-clock,
-  body.universe .decor-clock,
-  body.about .decor-clock {
+  .decor-clock {
     max-inline-size: 120px;
     margin-inline: unset;
     margin-left: auto;
@@ -1854,16 +1911,12 @@ body:not([data-menu-open=true]) .scrim {
   }
 }
 .page--gallery,
-body.universe,
-body.about,
 .page--universe,
 .page--about {
   /* 2. 子要素・部品（BEMの __◯◯） */
   /* 3. 状態（:hover, :active, :focus-visibleなど） */
 }
 .page--gallery .timer-mini,
-body.universe .timer-mini,
-body.about .timer-mini,
 .page--universe .timer-mini,
 .page--about .timer-mini {
   /* レイアウト・背景・トークンの初期値など */
@@ -1875,8 +1928,6 @@ body.about .timer-mini,
   pointer-events: auto;
 }
 .page--gallery .timer-mini__bg,
-body.universe .timer-mini__bg,
-body.about .timer-mini__bg,
 .page--universe .timer-mini__bg,
 .page--about .timer-mini__bg {
   border-radius: var(--mini-border-r-16);
@@ -1887,6 +1938,7 @@ body.about .timer-mini__bg,
   -webkit-backdrop-filter: var(--mini-backdrop-filter);
   will-change: backdrop-filter;
   transition: background 0.3s ease, filter 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1894,8 +1946,6 @@ body.about .timer-mini__bg,
   align-items: center;
 }
 .page--gallery .timer-mini__grid,
-body.universe .timer-mini__grid,
-body.about .timer-mini__grid,
 .page--universe .timer-mini__grid,
 .page--about .timer-mini__grid {
   display: grid;
@@ -1906,8 +1956,6 @@ body.about .timer-mini__grid,
   padding: 8px;
 }
 .page--gallery .timer-mini__grid--vertical,
-body.universe .timer-mini__grid--vertical,
-body.about .timer-mini__grid--vertical,
 .page--universe .timer-mini__grid--vertical,
 .page--about .timer-mini__grid--vertical {
   display: grid;
@@ -1917,15 +1965,11 @@ body.about .timer-mini__grid--vertical,
   align-items: center;
 }
 .page--gallery .timer-mini__screen,
-body.universe .timer-mini__screen,
-body.about .timer-mini__screen,
 .page--universe .timer-mini__screen,
 .page--about .timer-mini__screen {
   grid-area: count;
 }
 .page--gallery .timer-mini__screen--grid,
-body.universe .timer-mini__screen--grid,
-body.about .timer-mini__screen--grid,
 .page--universe .timer-mini__screen--grid,
 .page--about .timer-mini__screen--grid {
   display: grid;
@@ -1935,16 +1979,12 @@ body.about .timer-mini__screen--grid,
   gap: var(--gap-g-button);
 }
 .page--gallery .timer-mini__screen--display,
-body.universe .timer-mini__screen--display,
-body.about .timer-mini__screen--display,
 .page--universe .timer-mini__screen--display,
 .page--about .timer-mini__screen--display {
   grid-area: time;
   width: fit-content;
 }
 .page--gallery .timer-mini__screen--count,
-body.universe .timer-mini__screen--count,
-body.about .timer-mini__screen--count,
 .page--universe .timer-mini__screen--count,
 .page--about .timer-mini__screen--count {
   display: block;
@@ -1956,8 +1996,6 @@ body.about .timer-mini__screen--count,
   inline-size: max-content;
 }
 .page--gallery .timer-mini__screen--tnum,
-body.universe .timer-mini__screen--tnum,
-body.about .timer-mini__screen--tnum,
 .page--universe .timer-mini__screen--tnum,
 .page--about .timer-mini__screen--tnum {
   font-family: var(--ff-en);
@@ -1968,29 +2006,21 @@ body.about .timer-mini__screen--tnum,
   letter-spacing: 0.0125em;
 }
 .page--gallery .timer-mini__presets,
-body.universe .timer-mini__presets,
-body.about .timer-mini__presets,
 .page--universe .timer-mini__presets,
 .page--about .timer-mini__presets {
   grid-area: presets;
 }
 .page--gallery .timer-mini__actions,
-body.universe .timer-mini__actions,
-body.about .timer-mini__actions,
 .page--universe .timer-mini__actions,
 .page--about .timer-mini__actions {
   grid-area: controls;
 }
 .page--gallery .timer-mini__actions .i,
-body.universe .timer-mini__actions .i,
-body.about .timer-mini__actions .i,
 .page--universe .timer-mini__actions .i,
 .page--about .timer-mini__actions .i {
   display: block;
 }
 .page--gallery .timer-mini__pill,
-body.universe .timer-mini__pill,
-body.about .timer-mini__pill,
 .page--universe .timer-mini__pill,
 .page--about .timer-mini__pill {
   display: inline-flex;
@@ -2015,8 +2045,6 @@ body.about .timer-mini__pill,
   transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .page--gallery .timer-mini__icon-btn,
-body.universe .timer-mini__icon-btn,
-body.about .timer-mini__icon-btn,
 .page--universe .timer-mini__icon-btn,
 .page--about .timer-mini__icon-btn {
   inline-size: var(--btn-size-icon);
@@ -2030,8 +2058,6 @@ body.about .timer-mini__icon-btn,
   transition: color 0.25s ease text-shadow 0.25s ease;
 }
 .page--gallery .timer-mini__screen--help,
-body.universe .timer-mini__screen--help,
-body.about .timer-mini__screen--help,
 .page--universe .timer-mini__screen--help,
 .page--about .timer-mini__screen--help {
   grid-area: help;
@@ -2044,8 +2070,6 @@ body.about .timer-mini__screen--help,
   transition: color 0.25s ease text-shadow 0.25s ease;
 }
 .page--gallery .timer-mini__pill:active,
-body.universe .timer-mini__pill:active,
-body.about .timer-mini__pill:active,
 .page--universe .timer-mini__pill:active,
 .page--about .timer-mini__pill:active {
   background-color: var(--btn-pill-bg-active); /* クリック中は背景色を薄くする */
@@ -2053,15 +2077,11 @@ body.about .timer-mini__pill:active,
   box-shadow: var(--btn-bxshadow-hover);
 }
 .page--gallery .timer-mini__pill:focus-visible,
-body.universe .timer-mini__pill:focus-visible,
-body.about .timer-mini__pill:focus-visible,
 .page--universe .timer-mini__pill:focus-visible,
 .page--about .timer-mini__pill:focus-visible {
   box-shadow: var(--btn-bxshadow-focus);
 }
 .page--gallery .timer-mini__icon-btn:active,
-body.universe .timer-mini__icon-btn:active,
-body.about .timer-mini__icon-btn:active,
 .page--universe .timer-mini__icon-btn:active,
 .page--about .timer-mini__icon-btn:active {
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
@@ -2069,43 +2089,31 @@ body.about .timer-mini__icon-btn:active,
   color: var(--btn-pill-border);
 }
 .page--gallery .timer-mini__icon-btn:focus-visible,
-body.universe .timer-mini__icon-btn:focus-visible,
-body.about .timer-mini__icon-btn:focus-visible,
 .page--universe .timer-mini__icon-btn:focus-visible,
 .page--about .timer-mini__icon-btn:focus-visible {
   text-shadow: var(--btn-shadow-focus);
 }
 .page--gallery #toggleTimer[aria-pressed=false] #startBtn,
-body.universe #toggleTimer[aria-pressed=false] #startBtn,
-body.about #toggleTimer[aria-pressed=false] #startBtn,
 .page--universe #toggleTimer[aria-pressed=false] #startBtn,
 .page--about #toggleTimer[aria-pressed=false] #startBtn {
   display: block;
 }
 .page--gallery #toggleTimer[aria-pressed=false] #stopBtn,
-body.universe #toggleTimer[aria-pressed=false] #stopBtn,
-body.about #toggleTimer[aria-pressed=false] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=false] #stopBtn,
 .page--about #toggleTimer[aria-pressed=false] #stopBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #startBtn,
-body.universe #toggleTimer[aria-pressed=true] #startBtn,
-body.about #toggleTimer[aria-pressed=true] #startBtn,
 .page--universe #toggleTimer[aria-pressed=true] #startBtn,
 .page--about #toggleTimer[aria-pressed=true] #startBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #stopBtn,
-body.universe #toggleTimer[aria-pressed=true] #stopBtn,
-body.about #toggleTimer[aria-pressed=true] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=true] #stopBtn,
 .page--about #toggleTimer[aria-pressed=true] #stopBtn {
   display: block;
 }
 .page--gallery .timer-mini__icon-btn--sound > .timer__action-btn--muted,
-body.universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
-body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--about .timer-mini__icon-btn--sound > .timer__action-btn--muted {
   display: block;
@@ -2143,7 +2151,8 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 }
 /* 4. レスポンシブ・モード切り替え（@media / @container） */
 @media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
-  .page--gallery .timer-mini {
+  .page--gallery .timer-mini,
+  .page--about .timer-mini {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
     right: calc(env(safe-area-inset-top, 8px) + 8px + 1rem);
@@ -2153,16 +2162,27 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
     height: 16vh;
     min-height: 175px;
     max-height: 200px;
+    transform: scale(0.86);
+    transform-origin: right top;
   }
-  .page--gallery .timer-mini__screen--count {
+  .page--gallery .timer-mini__screen--count,
+  .page--about .timer-mini__screen--count {
     font-size: 3rem;
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
+  }
+}
+@media (min-width: 480px) and (max-width: 1440px) and (orientation: landscape) {
+  .page--about .timer-mini {
+    left: auto;
+    right: 16px;
+    transform: scale(0.86);
+    transform-origin: right bottom;
   }
 }
 @container (inline-size < 480px) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --btn-hit: var(--btn-hit-small);
     --btn-size-pill: var(--btn-size-pill-inline);
   }
@@ -2170,7 +2190,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 @media screen and (max-height: 480px) and (orientation: landscape) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2199,12 +2219,12 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__bg,
   body.universe .timer-mini__bg,
-  body.about .timer-mini__bg {
+  .page--about .timer-mini__bg {
     border: 0.8px solid var(--mini-background-border);
   }
   .page--gallery .timer-mini__grid,
   body.universe .timer-mini__grid,
-  body.about .timer-mini__grid {
+  .page--about .timer-mini__grid {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-areas: "count" "presets" "controls";
@@ -2213,13 +2233,13 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid--vertical,
   body.universe .timer-mini__grid--vertical,
-  body.about .timer-mini__grid--vertical {
+  .page--about .timer-mini__grid--vertical {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
   .page--gallery .timer-mini__screen--grid,
   body.universe .timer-mini__screen--grid,
-  body.about .timer-mini__screen--grid {
+  .page--about .timer-mini__screen--grid {
     display: grid;
     grid-template-areas: "time help";
     justify-content: center;
@@ -2227,25 +2247,25 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen--display,
   body.universe .timer-mini__screen--display,
-  body.about .timer-mini__screen--display {
+  .page--about .timer-mini__screen--display {
     width: 100%;
   }
   .page--gallery .timer-mini__screen--count,
   body.universe .timer-mini__screen--count,
-  body.about .timer-mini__screen--count {
+  .page--about .timer-mini__screen--count {
     text-align: left;
     line-height: 1.3; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   body.universe .timer-mini__screen--help,
-  body.about .timer-mini__screen--help {
+  .page--about .timer-mini__screen--help {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
   .page--gallery .timer-mini__screen--help .i-32,
   body.universe .timer-mini__screen--help .i-32,
-  body.about .timer-mini__screen--help .i-32 {
+  .page--about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help);
     height: var(--btn-size-help);
   }
@@ -2259,7 +2279,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 @media (max-width: 480px) and (orientation: portrait) {
   .page--gallery .timer-mini,
   body.universe .timer-mini,
-  body.about .timer-mini {
+  .page--about .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2287,7 +2307,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid,
   body.universe .timer-mini__grid,
-  body.about .timer-mini__grid {
+  .page--about .timer-mini__grid {
     display: grid;
     grid-template-areas: "count presets controls";
     justify-content: center;
@@ -2296,7 +2316,7 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__grid--vertical,
   body.universe .timer-mini__grid--vertical,
-  body.about .timer-mini__grid--vertical {
+  .page--about .timer-mini__grid--vertical {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
@@ -2305,24 +2325,24 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen,
   body.universe .timer-mini__screen,
-  body.about .timer-mini__screen {
+  .page--about .timer-mini__screen {
     margin: 0 auto;
     min-height: 0;
   }
   .page--gallery .timer-mini__screen--grid,
   body.universe .timer-mini__screen--grid,
-  body.about .timer-mini__screen--grid {
+  .page--about .timer-mini__screen--grid {
     grid-template-areas: "help time";
   }
   .page--gallery .timer-mini__screen--count,
   body.universe .timer-mini__screen--count,
-  body.about .timer-mini__screen--count {
+  .page--about .timer-mini__screen--count {
     text-align: center;
     line-height: 1.5; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   body.universe .timer-mini__screen--help,
-  body.about .timer-mini__screen--help {
+  .page--about .timer-mini__screen--help {
     display: unset;
     position: absolute;
     top: 4.1rem;
@@ -2330,11 +2350,23 @@ body.about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
   }
   .page--gallery .timer-mini__screen--help .i-32,
   body.universe .timer-mini__screen--help .i-32,
-  body.about .timer-mini__screen--help .i-32 {
+  .page--about .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help-inline);
     height: var(--btn-size-help-inline);
   }
 }
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--about .timer-mini__screen--help {
+    color: var(--text-sub);
+  }
+  .page--about .timer-mini__screen--help:hover {
+    color: var(--accent-hover);
+  }
+}
+.page--about .timer-mini__pill {
+  border: var(--btn-border-width) solid var(--bg);
+}
+
 body.hero {
   position: relative;
   isolation: isolate;
@@ -3252,5 +3284,254 @@ body.hero .hero__head {
     margin-bottom: 0;
     padding: 0.5rem;
     max-width: 324px;
+  }
+}
+.page--about {
+  /* ベース色（やさしい生成り＋深い文字色） */
+  background: var(--bg);
+  color: var(--main-color);
+}
+.page--about__bg-top {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.page--about__bg-bottom {
+  position: absolute;
+  inset: -6px;
+  align-content: end;
+  z-index: -2;
+}
+.page--about main {
+  width: 100%;
+  flex: 1 1 auto;
+  min-block-size: 0;
+  overflow: auto;
+}
+.page--about .about {
+  /* 幅と中央寄せ */
+  max-width: clamp(36rem, 60vw, 44rem);
+  margin-inline: auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 1.5rem);
+  padding-bottom: 7.7rem; /* タイマーの高さぶん保険 */
+  /* 読み心地 */
+  line-height: 1.85;
+  text-wrap: pretty; /* 自然な改行 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: clamp(17px, 3.6vw, 18px);
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /*  段落とリストのリズム */
+  /* もしli内にpが出ても破綻しない保険 */
+  /* 1章の最初の p にだけドロップキャップ */
+  /* ふわっとした点線の区切り */
+}
+.page--about .about h2 {
+  margin: 2.2rem 0 0.85rem;
+  font-size: 1.15rem;
+  text-wrap: balance;
+  /* h2 の上に ＊ を1つ セクションの区切り */
+}
+.page--about .about h2::before {
+  content: "＊";
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--note);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.page--about .about p {
+  margin: 0 0 1.15em;
+  font-size: 0.95rem;
+}
+.page--about .about p + p {
+  margin-top: 0;
+}
+.page--about .about ul,
+.page--about .about ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.2em;
+}
+.page--about .about li {
+  margin: 0.45em 0;
+}
+.page--about .about li > p {
+  margin: 0.35em 0;
+}
+.page--about .about .prologue:first-of-type::first-letter {
+  float: left;
+  font-family: "Kiwi Maru", serif;
+  font-size: 2.6em;
+  line-height: 0.9;
+  padding-right: 0.08em;
+  color: var(--drop-cap);
+}
+.page--about .about p.prologue {
+  margin: 2.2rem 0;
+  font-size: 1.05rem;
+}
+.page--about .about .divider {
+  height: 1px;
+  background: repeating-linear-gradient(to right, var(--divider) 0 6px, transparent 6px 12px);
+  margin: 2rem 0;
+}
+.page--about .about .monologue {
+  margin: 2rem 0;
+  padding: 1.25rem 1rem;
+  border-left: 2px solid var(--mono-bd);
+  background: var(--mono-bg);
+  font-size: 0.98rem;
+  font-style: italic;
+  color: var(--mono-fc);
+}
+.page--about .about__long {
+  display: none;
+}
+.page--about .about__short {
+  display: block;
+}
+.page--about .about .one-line {
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: oklch(from var(--one-line) l c h/85%);
+  margin: 1.8rem 0;
+}
+.page--about .about a.about__credit {
+  display: inline;
+  background-color: oklch(from var(--accent) l c h/0%);
+  border-radius: 0.16em;
+  padding-bottom: 0.18em;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.page--about .about a.about__credit:hover {
+  color: var(--accent-hover);
+  background-color: oklch(from var(--accent) l c h/0.85);
+  outline: none;
+}
+.page--about .about a.about__credit:focus-visible {
+  background-color: oklch(from var(--accent) l c h/1);
+  box-shadow: 0 0 0 0.12em oklch(from var(--accent) l c h/0.35);
+}
+.page--about .about .end {
+  content: "＊";
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--note);
+  text-align: center;
+  margin: 2rem auto auto;
+  width: 100%;
+  height: 30px;
+}
+.page--about .page--about .about__short ul,
+.page--about .page--about .about__long ul {
+  margin: 0 0 1.15em;
+  padding-left: 1.2em;
+}
+.page--about .page--about .about__short li,
+.page--about .page--about .about__long li {
+  margin: 0.45em 0;
+}
+@media (min-width: 768px) {
+  .page--about .about__long {
+    display: block;
+  }
+  .page--about .about__short {
+    display: none;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1024px) and (orientation: portrait) {
+  .page--about .about {
+    padding-bottom: 0; /* タイマーの高さぶん保険 */
+  }
+  .page--about .about .end {
+    margin-bottom: 4rem;
+  }
+}
+/* モバイル縦だけ：本文をスクロールコンテナに */
+@media (max-width: 480px) and (orientation: portrait) {
+  .page--about {
+    height: 100svh;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* timer / header / main */
+    padding: 0.2rem 1.25rem;
+  }
+  .page--about main {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page--about .about {
+    max-width: clamp(32rem, 60vw, 38rem);
+    padding-bottom: 0; /* タイマーの高さぶん保険 */
+  }
+  .page--about .about .prologue:first-of-type::first-letter {
+    font-size: 2.4em;
+  }
+  .page--about .about .end {
+    margin-bottom: 6rem;
+  }
+  .page--about .prologue-line {
+    display: block;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--one-line);
+  }
+  .page--about .one-line {
+    display: block;
+    text-align: center;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--one-line);
+    margin: 1.8rem 0;
+  }
+  .page--about .timer-mini {
+    position: static;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+    width: 380px;
+    height: 50px;
+    inline-size: auto;
+  }
+  .page--about .page-header__bar {
+    padding: 0.2rem 0;
+  }
+}
+@media (max-width: 1024px) and (hover: none) and (orientation: landscape) {
+  .page--about .about p,
+  .page--about .about li {
+    max-inline-size: 52ch; /* 48〜56chくらいで好み */
+  }
+}
+@media (max-width: 768px) and (max-height: 480px) and (orientation: landscape) {
+  .page--about .about {
+    max-width: clamp(21rem, 88vw, 28rem);
+    padding-top: 2.5rem;
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    padding-right: clamp(6rem, 18vw, 8rem);
+    line-height: 1.7;
+  }
+  .page--about .about .prologue-line {
+    display: inline-block;
+    max-width: 58svw;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    color: oklch(from var(--one-line) l c h/85%);
+    margin-bottom: 0.5rem;
+  }
+  .page--about .about h2 {
+    margin: 1.75rem 0 0.5rem;
+  }
+  .page--about .about p,
+  .page--about .about li {
+    max-inline-size: 40ch;
   }
 }/*# sourceMappingURL=style.css.map */

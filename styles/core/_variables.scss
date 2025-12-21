@@ -90,10 +90,47 @@ $color-space-bang: #888;
 // 👤 about
 // ════════════════════════════════
 
-$color-u-ex: #387f5a;
-$color-u-note: #d7d9d7;
-$color-u-tec: #d8b08c;
-$color-u-book: #2e4f3e;
+// -- 装飾 --
+// --divider: oklch(55% 0.02 260 / 0.15);
+// --note: oklch(55% 0.02 260 / 0.35);
+// --mono-bg: oklch(98% 0.01 95deg / 0.65);
+// --mono-bd: oklch(55% 0.04 260deg / 0.35);
+// --mono-fc: oklch(30% 0.03 260deg);
+// --one-line: oklch(45% 0.02 260);
+// --drop-cap: oklch(35% 0.05 260deg);
+$color-a-paper: #f6f5f2;
+$color-a-ink: #2f2f2c;
+$color-a-sub: #4a4a46;
+$color-a-tec: #e7ece8;
+$color-a-deco: #cfcac2;
+$color-a-ex: #387f5a;
+$color-a-book: #2e4f3e;
+
+// 2025/12/19追加
+$base-bg: #f6f5f2;
+// ほぼ白の温度あり（ミルク寄り）
+$sub-bg: #efede8;
+// （区切り用・薄）真っ白を避けるだけで、文字の角が丸く見える。
+
+// 2) グレー系（UI・区切り・注釈）
+// （本文補助）
+$gray-1: #5e5e5e;
+// （罫線・区切り）:
+$gray-2: #cfcac2;
+// （弱UI）:
+$gray-3: #b8b3aa;
+
+// 3) 文字色（やわらか主役）
+$text-main: #2f2f2c;
+
+$text-sub: #4a4a46;
+// （見出し補助・注釈）「アクセシブルだけど柔らかい」の正解は、黒を薄めるじゃなく色相をずらす。
+
+// アクセント（1色だけ）
+// 用途はリンク・強調・ほんの印。
+$baked-apple: #c8743c; //（焼きリンゴ）
+$adobe: #8c4b3a;
+$deep-green: #3e5f4b;
 
 // ════════════════════════════════
 // 🔋　固定トークン
