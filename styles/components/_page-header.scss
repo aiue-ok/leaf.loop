@@ -31,6 +31,11 @@ body.universe,
       color: inherit;
       grid-area: site-menu;
       text-align: center;
+
+      &:hover {
+        cursor: pointer;
+        color: oklch(from #{var(--main-color)} l c h / 93%);
+      }
     }
 
     // タイトル容器（コンテナクエリ親）

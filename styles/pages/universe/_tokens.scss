@@ -5,25 +5,17 @@
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
 body.universe,
 .page--universe {
-  --u-bg: #0e1020;
-  --u-fg: #e5eafb;
-  --u-ch1: #12174f;
-  --u-ch2: #b4d2ea;
   --dur-gradientFlow: 15000ms; // グラデーション
 
   // --- フォント ---
-  --base-font: "Zen Kaku Gothic New", sans-serif;
   --sub-font: "Kiwi Maru", serif;
+  // 4章
   --accent-font: "Zen Kurenaido", sans-serif;
-  --UI-font: "M PLUS 1p", sans-serif;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ Color フォント色
   // body.universe 初期値
-  // color・menu-btn・title
-  --main-color: var(--u-fg);
-  --color-FFF: white;
-  --color-h1: #f8faff; // 動かさない値
+  // #e5eafb // → core _base.scss
 
   // 共通で使う基本色（お好みで）
   --color-text-light: #f8faff; // 星霧ホワイト	#F8FAFF	始まりの白、霧のような曖昧さ
@@ -37,8 +29,8 @@ body.universe,
   --color-ch1: #b1e6ff;
   --color-ch2: #e1f3ff;
   --color-ch3: #d9e8f7;
-  --color-ch4: #2e2e2e;
-  --color-ch5-888: #888;
+  --color-ch4: #ccc8c6;
+  --color-ch5: #888;
   --color-ch5-f0c: #f0cd90;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -53,6 +45,7 @@ body.universe,
   --Ch0-rgba: rgb(248 250 255 / 100%);
 
   // ▼ Chapter1 第1章-はじまりの音
+  --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
   // 宇宙藍グラデ上部	#12174F	Heroセクション連動、深藍の夜明け
   --Ch1-uchu-indigo-top-hex: #12174f;
   --Ch1-top-rgba: rgb(18 23 79 / 100%);
@@ -62,6 +55,8 @@ body.universe,
   --Ch1-bottom-rgba: rgb(229 234 251 / 100%);
 
   // === 間奏（interlude） ===
+
+  --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
   // Chapter1〜２linearGradient
   --Interlude1-2-0-hex: #0c0e2d;
   --Interlude1-2-0-rgba: rgb(12 14 45 / 100%);
@@ -86,6 +81,7 @@ body.universe,
   --Interlude2-3-bottom-rgba: rgb(180 210 234 / 50%);
 
   // ▼ Chapter3 第3章-星と時間
+  --bg-ch3: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
   // 星雲ネイビー	#0B1C39	銀河の深部色
   --Ch3-top-hex: #0b1c39;
   --Ch3-top-rgba: rgb(11 28 57 / 100%);
@@ -106,6 +102,14 @@ body.universe,
   --Interlude3-4-100-rgba: rgb(255 255 255 / 100%);
 
   // ▼ Chapter4 第4章-ゆるやかな問い
+  --bg-ch4: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 32%) 0%,
+      rgb(255 255 255 / 10%) 24%,
+      rgb(0 0 0 / 0%) 82%
+    ),
+    #000;
+
   // Figma決定？カラーradialグラデ
   // radial 0 #fafafa
   --Ch4-radial000-rgba: rgb(250 250 250 / 0%);
@@ -142,6 +146,8 @@ body.universe,
   --Interlude4-5-0-rgba: rgb(255 248 231 / 100%);
 
   // ▼ Chapter5 第5章-還りゆく光
+  --bg-ch5: linear-gradient(to bottom, #fff8e7 0%, rgb(255 248 231 / 90%) 100%);
+
   // コズミックラテ	#FFF8E7	宇宙平均色、帰還の優しさ
   --Ch5-0-hex: #fff8e7;
   --Ch5-top-rgba: rgb(255 248 231 / 100%);
@@ -172,7 +178,7 @@ body.universe,
   --dur-word-out: 1800ms; // 単語 出
   --dur-header-fade: 1500ms; // header/h1 opacity
   --dur-header-height: 1000ms; // header/h1 height
-  --dur-whiteout: 1000ms; // ホワイトアウト
+  --dur-whiteout: 1400ms; // ホワイトアウト
   // 各章
 
   --dur-nabula: 22000ms; // グラデーション 星雲

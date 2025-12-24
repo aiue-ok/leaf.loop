@@ -1,5 +1,5 @@
 @forward "tokens"; /* 宇宙専用のCSS変数があれば */
 @forward "animations"; /* 宇宙の背景や単語の演出 */
+@forward "base"; /* 今回の .timer 上書きはここに入れた */
 @forward "interludes";
 @forward "chapters";
-@forward "base"; /* 今回の .timer 上書きはここに入れた */

@@ -228,7 +228,7 @@ input {
   --help-fg: #eaeaea;
   --help-h: #{$shiro100};
   --help-border: oklch(from var(--shiro) l c h / 12%);
-  --help-icon: #b4d2ea;
+  --help-icon: transparent;
 
   // border/blur/影の係数
   --glass-border: oklch(from var(--shiro) l c h / 18%);
@@ -295,9 +295,11 @@ input {
 }
 
 .page--universe {
-  --timer-bg: #{$color-space-bit};
-  --help-card-bg: #{$color-space-bang};
-  --main-color: #f5f5f5;
+  // グラデ
+  --bg: #{$color-space-base};
+  --main-color: #{$color-space-fg};
+  --accent: #{$color-space-sun};
+  --accent2: #{$color-space-moon};
 }
 
 .page--about {
@@ -335,7 +337,30 @@ input {
 }
 
 .page--universe {
-  --accent: #{$color-space-dust};
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: oklch(from var(--bg) l c h / 15%);
+
+  // パネル左の枠の色
+  --panel-bd: var(--accent2);
+
+  // フォントカラー
+  --panel-cl: var(--main-color);
+
+  // 現在地
+  --current-page: color-mix(in oklch, var(--main-color) 85%, var(--accent) 50%);
+
+  // 差し色
+  --panel-pop: color-mix(in oklch, var(--panel-cl) 45%, var(--accent2) 45%);
+
+  // 背景の半透明幕
+  --scrim: transparent;
+
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
+  // scrim水玉模様の色
+  --dots: color-mix(in oklch, var(--panel-bd) 45%, var(--shiro) 15%);
 }
 
 .page--about {
@@ -380,13 +405,13 @@ input {
 
 .page--universe {
   // 飾り時計
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --back: oklch(from var(--bg) l c h / 25%);
+  --mid: oklch(from var(--accent) l c h / 45%);
+  --front: oklch(from var(--accent2) l c h / 45%);
+  --h: #{$color-space-far};
+  --m: #{$color-space-star};
+  --s: #{$color-space-dust};
+  --center: #{$color-space-earth};
 }
 
 .page--about {
@@ -414,7 +439,8 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
-  --help-filter: opacity(95%) brightness(105%);
+  --help-filter: opacity(100%) brightness(100%);
+  --help-filter-hover: opacity(95%) brightness(101%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -427,13 +453,30 @@ input {
   --help-icon: var(--help-h);
   --help-icon-bg: oklch(from var(--help-h) l c h / 38%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --help-filter: brightness(105%);
+}
+
+/* Moss heroヘルプカード使用中 */
+.theme-far {
+  // ヘルプカードの背景色　影　光ってる
+  --link-box-shdw: 0 8px 24px var(--main-color), inset 0 0 0 1px var(--shiro20);
+  // ヘルプカードの背景色
+  --help-bg: oklch(from var(--main-color) l c h / 3%);
+  // カード内のテキスト
+  --help-fg: var(--bg);
+  // 中見出し「時間設定」「操作方法」
+  --help-h: color-mix(in oklch, var(--bg) 85%, var(--shiro) 55%);
+  // ヘルプカードのボーダー色
+  --help-border: oklch(from var(--bg) l c h / 38%);
+  // 閉じるボタン
+  --help-icon: #{$color-space-far};
+  --help-icon-bg: oklch(from #{$color-space-moon} l c h / 75%);
+  // カードホバー時
+  --help-filter: opacity(100%) brightness(100%);
+  --help-filter-hover: opacity(96%) brightness(103%);
 }
 
 /* Dew */
 .theme-dew {
-  --link-padding: 0.6em 1.1em;
-  --link-main-color: #{$main-color};
   --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(240 245 243 / 82%);

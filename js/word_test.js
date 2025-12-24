@@ -56,9 +56,20 @@ async function runUniverseTest() {
 
   // ワード再生時間
   await sleep(6000);
+
+  // 章終わり：まず止める（最後の言葉を固定）
   stop();
 
-  // 2) ラスト：intro に戻す
+  // 一拍
+  await sleep(320);
+
+  // whiteoutOut（必要な章だけ）
+  if (chapter.whiteoutOut) {
+    whiteoutOnce({ fadeMs: 1000, holdMs: 0 });
+    await sleep(2000); // 1000 + 0 + 1000
+  }
+
+  // ラスト：intro に戻す
   setWord(wordEl, INTRO_TEXT);
 }
 
