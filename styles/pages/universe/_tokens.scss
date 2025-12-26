@@ -3,7 +3,6 @@
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
-body.universe,
 .page--universe {
   --dur-gradientFlow: 15000ms; // グラデーション
 
@@ -18,9 +17,11 @@ body.universe,
   // #e5eafb // → core _base.scss
 
   // 共通で使う基本色（お好みで）
-  --color-text-light: #f8faff; // 星霧ホワイト	#F8FAFF	始まりの白、霧のような曖昧さ
-  --color-text-dark: #1e1e1e; // 黒曜 #1E1E1E 禅的思索の闇
-  --color-text-mid: #c2c2c2; // 静思グレー #C2C2C2 思索の中間調
+  --bigin-white: #f8faff; // はじまりの白・白幕
+  --dark: #1e1e1e; // 黒曜 #1E1E1E 禅的思索の闇
+  --mid: #c2c2c2; // 静思グレー #C2C2C2 思索の中間調
+  --universe-indigo: #0e1020;
+  --universe-bluestar: #b4d2ea;
 
   // は「他から設定が来たらそっちを優先していいよ」の印。
   // まずはここに仮置き→後で正式値に置換。

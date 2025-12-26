@@ -4,24 +4,62 @@
 
 // body タグ
 .page--universe {
+  display: flex;
+  flex-direction: column;
+  width: 100dvw;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
-}
 
-body.universe {
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // 0 intro
+  // ページの文字・アイコンの基本色
+  --main-color: var(--bigin-white);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  // --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
   //  「基準値」 core/_base.scssの色
   color: var(--main-color);
   background: var(--bg);
-  // transition: background var(--dur-bg) var(--ease-standard),
-  //  color var(--dur-bg) var(--ease-standard);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 100dvw;
+  transition: background-color 250ms ease;
 
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
+  .universe-words,
+  .word {
+    color: var(--main-color);
+    text-shadow: var(--text-shadow, none);
+  }
+
+  // ピル系・ボタン枠
+  // 丸ボタン
+  .timer-mini__pill {
+    border-color: var(--btn-pill-border);
+    color: var(--main-color);
+  }
+
+  // タイマー、アイコンSVG、ページタイトル
+  .timer-mini .timer-mini__icon-btn button,
+  .page-header {
+    color: var(--main-color);
+    text-shadow: var(--text-shadow);
+  }
+
+  // ヘルプカードの背景blur 強め
+  .visual-card-help-bg {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    will-change: backdrop-filter;
+  }
+  // transition: background var(--dur-bg) var(--ease-standard),
+  //  color var(--dur-bg) var(--ease-standard);
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // アニメ使う宣言
@@ -38,13 +76,6 @@ body.universe {
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // ヘッダー ことばが表示されたら消える
-  // コメントアウト2025/12/16見た目影響なし　消して良いやつだけど、jsと連動している
-  .menu-btn .material-icons {
-    // 🍎src/scss/tokens/_colors.scss変数化アイコン
-    // color: white;
-  }
-
   /* タイトルラッパは相対配置 */
   // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
   .title-wrapper {
