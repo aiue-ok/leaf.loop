@@ -44,6 +44,8 @@
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
+  --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
+  --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ 背景色 interlude
   --bg-interlude-0: radial-gradient(
@@ -75,7 +77,7 @@
   --Ch0-rgba: rgb(248 250 255 / 100%);
 
   // ▼ Chapter1 第1章-はじまりの音
-  --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
+
   // 宇宙藍グラデ上部	#12174F	Heroセクション連動、深藍の夜明け
   --Ch1-uchu-indigo-top-hex: #12174f;
   --Ch1-top-rgba: rgb(18 23 79 / 100%);
@@ -86,17 +88,17 @@
 
   // === 間奏（interlude） ===
 
-  --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
   // Chapter1〜２linearGradient
   --Interlude1-2-0-hex: #0c0e2d;
   --Interlude1-2-0-rgba: rgb(12 14 45 / 100%);
   --Interlude1-2-100-hex: #1a1c3f;
   --Interlude1-2-100-rgba: rgb(26 28 63 / 100%);
 
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Ch2 第2章-ゆらぎと法則
   // ゆらぎと法則	ネビュラグレイ	#0E1020	微細な構造の背景に
   --Ch2-top-hex: #0e1020;
-  --Ch2-top-rgba-0e1020: rgb(14 16 32 / 50%);
+  // --Ch2-top-rgba-0e1020: rgb(14 16 32 / 50%);
 
   // 微光ブルー	#B4D2EA	理性ある光感
   --Ch2-bottom-hex: #b4d2ea;
@@ -110,6 +112,14 @@
   --Interlude2-3-top-rgba: rgb(12 16 32 / 50%);
   --Interlude2-3-bottom-rgba: rgb(180 210 234 / 50%);
 
+  --bg-wave: linear-gradient(
+    135deg,
+    rgb(14 16 32 / 50%),
+    #b4d2ea,
+    rgb(59 67 134 / 50%)
+  );
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter3 第3章-星と時間
   --bg-ch3: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
   // 星雲ネイビー	#0B1C39	銀河の深部色

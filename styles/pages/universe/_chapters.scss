@@ -21,11 +21,81 @@
   animation: var(--dur-gradientFlow) ease infinite;
 }
 
+// ┏ ───────────────────────────────────── ┓
+//   ▼ Chapter2 第2章-ゆらぎと法則（物理と観測）
+
+/* ===== 共通トークン（無ければ仮置き） ===== */
+// $u-fg: rgb(255 255 255 / 85%) !default;
+$u-grid: rgb(255 255 255 / 10%) !default;
+$u-grid-strong: rgb(255 255 255 / 16%) !default;
+$u-deep-0: #0f1a2b !default;
+$u-deep-1: #2a3d56 !default;
+
+/* 背景ベース（2章〜3章に自然に繋がる中間トーン） */
+// これを２章ベースにすることにした！2025/12/26
+@mixin deep-sky-base {
+  background: linear-gradient(
+    to bottom,
+    $u-deep-0 0%,
+    $u-deep-1 60%,
+    rgba($u-deep-1, 0.95) 100%
+  );
+  --main-color: var(--color-ch2);
+  --text-shadow: 0 2px 8px #888;
 }
 
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼ Chapter2 第2章-ゆらぎと法則（物理と観測）
-body.universe.theme-ch2::before {
+/* 薄いグリッド（before）と演出レイヤ（after）のベース */
+@mixin grid-layer {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      /* 点を薄く足す（任意） */ radial-gradient(
+          circle at 50% 15%,
+          rgb(255 255 255 / 4%) 0 40%,
+          transparent 42%
+        )
+        no-repeat,
+      /* グリッド（細線＋強調線） */
+        repeating-linear-gradient(
+          to right,
+          transparent 0 23px,
+          $u-grid 23px 24px
+        ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0 23px,
+        $u-grid 23px 24px
+      ),
+      repeating-linear-gradient(
+        to right,
+        transparent 0 120px,
+        $u-grid-strong 120px 121px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0 120px,
+        $u-grid-strong 120px 121px
+      );
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: var(--z-index-0);
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.page--universe.theme-ch2::before,
+.page--universe.bg-ch2::before {
   content: "";
   position: absolute;
   top: 0;
@@ -41,7 +111,7 @@ body.universe.theme-ch2::before {
   pointer-events: none;
 
   // UIの邪魔しない
-  z-index: 1; // 一番下に置く
+  z-index: var(--z-index-1); // 一番下に置く
 }
 
 .page--universe.theme-ch2,
@@ -68,7 +138,8 @@ body.universe.theme-ch2::before {
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // --- 重力波・電磁波 bg-wave---
-body.universe.bg-wave::before {
+body.universe.bg-wave::before,
+.page--universe.bg-wave::before {
   content: "";
   position: absolute;
   top: 0;
@@ -82,51 +153,20 @@ body.universe.bg-wave::before {
   background-position: center center;
   background-size: auto;
   pointer-events: none; // UIの邪魔しない
-  z-index: 0; // 一番下に置く
+  z-index: var(--z-index-0); // 一番下に置く
 }
 
-body.universe.bg-wave {
-  color: #e1f3ff;
+body.universe.bg-wave,
+.page--universe.bg-wave {
+  @include deep-sky-base;
+  // @include grid-layer;
 
-  // background: linear-gradient(
-  //   0deg,
-  //   rgba(14, 16, 32, 0.5) 0%,
-  //   rgba(180, 210, 234, 0.5) 100%
-  // );
+  --main-color: var(--color-ch2);
+  --text-shadow: 0 2px 8px var(--mid);
 
-  background: linear-gradient(
-    135deg,
-    var(--Ch2-top-rgba-0e1020),
-    var(--Ch2-bottom-hex),
-    var(--Ch2-bottom-rgba-3b4386)
-  );
+  // background: var(--bg-wave);
   background-size: 400% 400%;
   animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
-
-  .word {
-    color: inherit;
-  }
-
-  h1,
-  .page-header {
-    color: #f5f5f5; // ← 明示的に固定
-  }
-
-  .menu-btn .material-icons {
-    color: #f5f5f5;
-  }
-
-  // ミニタイマー font色
-  .timer-mini-container {
-    color: #e1f3ff;
-    opacity: 0.7;
-  }
-
-  // ▼ ミニタイマープリセット枠色
-  .timer-mini-preset-button,
-  .timer-mini__pill {
-    border-color: #e1f3ff;
-  }
 }
 
 // --- 素粒子・量子 bg-quantum---
