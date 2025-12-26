@@ -116,8 +116,7 @@
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 一語ずつ詩的に出現させる場所
   // JavaScriptで動的に表示切り替え
-  .universe-words,
-  .universe__word {
+  .universe-words {
     min-height: 50vh;
     display: grid;
     place-items: center;
@@ -134,8 +133,11 @@
     color: inherit;
     transition: opacity 2000ms ease;
     opacity: 1;
+    will-change: opacity, transform;
   }
 
+  // --dur-word-in: 1800ms; // 単語 入り
+  // --dur-word-out: 1800ms; // 単語 出
   .word.fade-in {
     animation: fade-in var(--dur-word-in) var(--ease-soft) forwards;
   }
@@ -164,4 +166,8 @@
       line-height: 2.2rem;
     }
   }
+}
+
+.theme-intro {
+  // background: var(--bigin-white);
 }

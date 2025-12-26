@@ -34,13 +34,42 @@
   --color-ch5: #888;
   --color-ch5-f0c: #f0cd90;
 
+  --color-interlude-0: var(--bigin-white);
+  --color-interlude-1: #e1f3ff;
+  --color-interlude-2: #d9e8f7;
+  --color-interlude-3: #c7cbd0;
+  --color-interlude-4: rgb(
+    0 0 0 / 55%
+  ); // グレー寄りにしてやわらかく 45%くらいでもいい気がする
+
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
-  --background-universe-base: linear-gradient(to bottom, #0e1020, #b4d2ea);
-  --background-universe-indigo: #0e1020;
-  --background-universe-bluestar: #b4d2ea;
-  --bigin-white: #f8faff; // はじまりの白
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ 背景色 interlude
+  --bg-interlude-0: radial-gradient(
+    100% 100% at 0% 0%,
+    #fff8e7 0%,
+    #435372 10.76%,
+    #1e2b42 100%
+  );
+  --bg-interlude-1: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+  --bg-interlude-2: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
 
+  // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
+  --bg-interlude-3: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 40%) 0%,
+      rgb(255 255 255 / 18%) 18%,
+      rgb(0 0 0 / 0%) 88%
+    ),
+    #000;
+  --bg-interlude-4: radial-gradient(
+    50% 71.11% at 50% 50%,
+    #fff8e7 0%,
+    #f8f6f0 100%
+  );
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ 始まり　星霧ホワイト	#F8FAFF	始まりの白、霧のような曖昧さ
   --Ch0-hex: #f8faff;
   --Ch0-rgba: rgb(248 250 255 / 100%);
