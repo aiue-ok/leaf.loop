@@ -2,7 +2,6 @@
 
 .page--gallery,
 .page--universe,
-body.universe,
 .page--about {
   .timer-mini {
     /* レイアウト・背景・トークンの初期値など */
@@ -227,7 +226,6 @@ body.universe,
 @media (hover: hover) and (pointer: fine) {
   .page--gallery,
   .page--universe,
-  body.universe,
   .page--about {
     // 背景
     .timer-mini__bg:hover {
@@ -296,7 +294,6 @@ body.universe,
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
   .page--universe,
-  body.universe,
   body.about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
@@ -311,7 +308,6 @@ body.universe,
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   .page--universe,
-  body.universe,
   .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
@@ -436,7 +432,6 @@ body.universe,
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   .page--universe,
-  body.universe,
   body.about {
     .timer-mini {
       // トークン差し替え
@@ -543,7 +538,7 @@ body.universe,
 
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   // 🪐 universeのみ
-  body.universe,
+
   .page--universe {
     .timer-mini {
       margin-bottom: 0.2rem;

@@ -5,7 +5,6 @@
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 .page--gallery,
-body.universe,
 .page--universe,
 body.about,
 .page--about {
@@ -152,7 +151,6 @@ body:not([data-menu-open="true"]) .scrim {
 // 480px以上の縦向き
 @media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     .menu-drawer {
@@ -179,7 +177,6 @@ body:not([data-menu-open="true"]) .scrim {
 // 横向き・hoverなし・1440px以下
 @media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     // メニューパネル
@@ -197,7 +194,6 @@ body:not([data-menu-open="true"]) .scrim {
 // 位置(4) 📱mobile(land)
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     // メニューパネル

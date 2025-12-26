@@ -2,7 +2,6 @@
 
 .page--gallery,
 .page--universe,
-body.universe,
 .page--about {
   // ヘッダーエリア
   .page-header {
@@ -73,7 +72,7 @@ body.universe,
 
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   // 🪐 universeのみ
-  body.universe,
+
   .page--universe {
     // ヘッダーエリア
     .page-header {
