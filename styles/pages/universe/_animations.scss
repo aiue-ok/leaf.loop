@@ -89,6 +89,17 @@
   }
 }
 
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
 /* ===== アニメーション ===== */
 @keyframes distort-pulse {
   0%,
