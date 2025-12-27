@@ -6,6 +6,7 @@
 .page--universe.bg-ch1 {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch1);
+  --bg: var(--bg-ch1);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -118,6 +119,7 @@ $u-deep-1: #2a3d56 !default;
 .page--universe.bg-ch2 {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch2);
+  --bg: var(--bg-interlude-1);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -357,16 +359,7 @@ body.universe.bg-horizon,
     mix-blend-mode: overlay; /* 地に馴染ませる */
   }
 
-  /* ハンバーガー＆タイマーを currentColor に追従 */
-  .menu-btn .material-icons,
-  .timer-mini-container,
-  .timer-mini-container * {
-    color: currentcolor;
-  }
-
-  /* トランジション（全体の秒数トークンがあればそれに揃えてOK） */
-  // transition: background 2s ease, color 2s ease;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+  // animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
 }
 
 // ┗ ─────────────────────────── ┛
