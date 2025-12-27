@@ -227,9 +227,14 @@ body.universe.bg-distortion,
 
 /* ===== 対称（bg-symmetry） =====
    中央に対称図形（多角形）をSVGデータURIで重ねる。 */
-body.universe.bg-symmetry {
-  @include deep-sky-base;
+body.universe.bg-symmetry,
+.page--universe.bg-symmetry {
+  // @include deep-sky-base;
   @include grid-layer;
+
+  --main-color: var(--color-ch2);
+
+  background: var(--bg-ch2);
 
   &::after {
     /* 中央ハイライト（柔らかい光） */
@@ -251,34 +256,7 @@ body.universe.bg-symmetry {
 </svg>")
         center/ min(70vmin, 720px) no-repeat;
     animation: symmetry-breathe 14s ease-in-out infinite;
-    mix-blend-mode: screen;
-  }
-}
-
-/* ===== アニメーション ===== */
-@keyframes distort-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.95;
-  }
-
-  50% {
-    transform: scale(1.02);
-    opacity: 0.85;
-  }
-}
-
-@keyframes symmetry-breathe {
-  0%,
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.95;
-  }
-
-  50% {
-    transform: scale(1.03) rotate(1deg);
-    opacity: 0.88;
+    mix-blend-mode: soft-light; //overlay screen softlightがよい
   }
 }
 
