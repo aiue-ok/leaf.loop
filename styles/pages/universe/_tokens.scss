@@ -4,8 +4,6 @@
 
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
 .page--universe {
-  --dur-gradientFlow: 15000ms; // グラデーション
-
   // --- フォント ---
   --sub-font: "Kiwi Maru", serif;
   // 4章
@@ -221,6 +219,8 @@
   --dur-whiteout: 1400ms; // ホワイトアウト
   // 各章
 
+  --dur-gradientFlow: 15000ms; // グラデーション
+  --dur-wave: 8000ms;
   --dur-nabula: 22000ms; // グラデーション 星雲
   --dur-wind: 24000ms;
   --dur-ly-streak: 8000ms;

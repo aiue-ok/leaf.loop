@@ -154,19 +154,14 @@ body.universe.bg-wave::before,
   background-size: auto;
   pointer-events: none; // UIの邪魔しない
   z-index: var(--z-index-0); // 一番下に置く
+  animation: wave-pulse var(--dur-wave) ease infinite; // 🌻🌸🌺
 }
 
 body.universe.bg-wave,
 .page--universe.bg-wave {
-  @include deep-sky-base;
-  // @include grid-layer;
-
   --main-color: var(--color-ch2);
+  --bg: var(--bg-interlude-1);
   --text-shadow: 0 2px 8px var(--mid);
-
-  // background: var(--bg-wave);
-  background-size: 400% 400%;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
 }
 
 // --- 素粒子・量子 bg-quantum---
