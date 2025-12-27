@@ -321,7 +321,8 @@ body.universe.bg-orbit::after,
 //     グリッドは超薄＆mix-blend-mode: overlayで「観測の余韻」だけ載せる（不要なら&::before丸ごと削除でOK）。
 // このまま差し替えて、暗すぎ/明るすぎなら #142338 と #20344f を微調整してちょうど良い“深度”を探しましょ。
 // 「もう少し青寄り」なら #1a2d46 / #25405f あたりに寄せるのがおすすめです。
-body.universe.bg-horizon {
+body.universe.bg-horizon,
+.page--universe.bg-horizon {
   /* ベース：ほぼ黒〜深紺。01の闇 × 02の青み をブレンド */
   background: radial-gradient(
       60% 50% at 50% 65%,
@@ -333,7 +334,7 @@ body.universe.bg-horizon {
       to bottom,
       #0c1423 0%,
       /* ほぼ黒に近い紺（上） */ #142338 55%,
-      /* 01と02の中間っぽい深紺 */ #20344f 100%
+      /* 01と02の中間っぽい深紺 */ #20344f 60%
         /* わずかに青み（下=次章への橋渡し） */
     );
   color: rgb(226 235 245 / 92%); /* 読みやすい青白 */
@@ -345,14 +346,14 @@ body.universe.bg-horizon {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    opacity: 0.08; /* 目立ちすぎない */
+    opacity: 0.1;
     background-image: linear-gradient(
         to right,
         rgb(255 255 255 / 50%) 1px,
         transparent 1px
       ),
       linear-gradient(to bottom, rgb(255 255 255 / 50%) 1px, transparent 1px);
-    background-size: 48px 48px; /* 粗めグリッドで“遠さ”を出す */
+    background-size: 38px 38px; /* 粗めグリッドで“遠さ”を出す */
     mix-blend-mode: overlay; /* 地に馴染ませる */
   }
 
