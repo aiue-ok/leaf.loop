@@ -30,7 +30,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  transition: background-color 250ms ease;
+  // transition: background-color 250ms ease;
+  transition: background 4000ms ease, color 4000ms ease;
 
   .universe-words,
   .word {
@@ -91,20 +92,23 @@
     background: var(--bigin-white);
     opacity: 0; /* 初期は透明 */
     // --dur-whiteout: 1000ms; // ホワイトアウト
-    transition: opacity var(--dur-whiteout) var(--ease-standard); /* フェード時間 */
+    // transition: opacity var(--dur-whiteout) ease; /* フェード時間 */
+    transition: opacity 1000ms ease-out;
     will-change: opacity;
     z-index: core.$z-whiteout; /* なんでも上に */
     pointer-events: none;
   }
 
   /* 表示状態 */
-  #whiteout.active {
+  #whiteout.active,
+  #whiteout.show {
     opacity: 1;
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // mainタブ  .title-wrapperの外
   main {
+    // <body>display:flexに対して、<main> は自動で残りのスペースを使ってくれる
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -123,7 +127,19 @@
     padding-bottom: 6vh;
     text-align: center;
     font-size: clamp(1.4rem, 4vw, 2.2rem);
+    animation: fadeIn 2s ease-in-out;
   }
+
+  // .universe__title {
+  //   visibility: hidden;
+  //   opacity: 0;
+  //   transition: opacity 1.2s ease;
+  // }
+
+  // .universe__title.is-visible {
+  //   visibility: visible;
+  //   opacity: 1;
+  // }
 
   .word {
     margin: 0;
@@ -131,19 +147,21 @@
     font-family: var(--sub-font); //Kiwi Maru
     font-size: clamp(1.4rem, 4vw, 2.2rem);
     color: inherit;
-    transition: opacity 2000ms ease;
+    // transition: opacity 2000ms ease;
     opacity: 1;
-    will-change: opacity, transform;
+    will-change: color, opacity;
   }
 
-  // --dur-word-in: 1800ms; // 単語 入り
-  // --dur-word-out: 1800ms; // 単語 出
+  --dur-word-in: 1500ms; // 単語 入り
+  --dur-word-out: 1800ms; // 単語 出
+  // --fade-duration 1秒
+  // 戻すなら--ease-soft （ease-out：最初はゆっくり、最後スッと止まる感じ）
+
   .word.fade-in {
-    animation: fade-in var(--dur-word-in) var(--ease-soft) forwards;
+    animation: fadeIn var(--dur-word-in, 2s) ease-in-out forwards;
   }
-
   .word.fade-out {
-    animation: fade-out var(--dur-word-out) var(--ease-standard) forwards;
+    animation: fadeOut var(--dur-word-out, 1.8s) ease forwards;
   }
 
   .word.is-fade {
@@ -159,6 +177,7 @@
   }
 }
 
+// スマホでは余白やフォントサイズを少し大きめ
 @media (width <= 768px) {
   .page--universe {
     .word {

@@ -1,15 +1,25 @@
+import { whiteoutOnce } from "./whiteout-once.js";
+
+// どの要素を操作するか取得
 const wordEl = document.querySelector(".word");
+
+// .word ことばの配列
+// | `id`         | HTML操作・デバッグ時に識別しやすい
+// | `title`      | 章タイトルを表示（上部・左下などに使える）
+// | `background` | JSで `body.className = chapter.background` として切替可能 |
+// | `words`      | 各章の表示単語リスト。順に切り替え演出へ✨
 
 const chapters = [
   // 第1章：はじまりの音
   {
     id: "chapter-1",
-    title: "はじまりの音",
-    background: "bg-ch1",
+    title: "はじまりの音", //h2.innerText = chapter.title で章タイトル表示
+    background: "bg-ch1", //body.className = chapter.background で背景切り替え🪄
     words: [
+      //chapter.words で単語を順に表示できる
       "ビッグバン",
-      "始まり",
-      "光のひとしずく",
+      // "始まり",
+      // "光のひとしずく",
       // "宇宙の夜明け",
       // "透明",
       // "解放",
@@ -27,7 +37,7 @@ const chapters = [
     background: "bg-ch2",
     words: [
       //   観測の始まり系
-      { text: "重力波", bgClass: "bg-wave" },
+      { text: "重力波", bgClass: "bg-wave", delay: 8000 },
       // { text: "電磁波", bgClass: "bg-wave" },
       // { text: "素粒子", bgClass: "bg-quantum" },
       // { text: "量子", bgClass: "bg-quantum" },
@@ -50,16 +60,17 @@ const chapters = [
     words: [
       // Chapter 3: 星と時間（cinematic）
       { text: "星屑", bgClass: "bg-star" }, // 小粒から始めて目を馴らす
-      { text: "恒星", bgClass: "bg-star" }, // 明るさの核
-      { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
-      { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
-      { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
-      { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
-      { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
-      { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
-      { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
-      { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
-      { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
+      // { text: "恒星", bgClass: "bg-star" }, // 明るさの核
+      // { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
+      // { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
+      // { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
+      // { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
+      // { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
+      // { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
+      // { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
+      // { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
+      // { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
+      { text: "光は、やがて戻る。", bgClass: "bg-darkness" },
     ],
   },
 
@@ -70,15 +81,15 @@ const chapters = [
     background: "bg-ch4",
     words: [
       "無",
-      "兆し",
-      "残響",
-      "思念",
-      "まなざし",
-      "ゆらぎ",
-      "不確定",
-      "予感",
-      "間（ま）",
-      "静寂",
+      // "兆し",
+      // "残響",
+      // "思念",
+      // "まなざし",
+      // "ゆらぎ",
+      // "不確定",
+      // "予感",
+      // "間（ま）",
+      // "静寂",
     ],
   },
 
@@ -89,23 +100,25 @@ const chapters = [
     background: "bg-ch5",
     words: [
       "遠さ",
-      "すべて",
-      "宙",
-      "輪郭",
-      "幻",
-      "ふるえ",
-      "未来",
-      "光速",
-      "帰還",
-      "余白",
-      "白",
+      // "すべて",
+      // "宙",
+      // "輪郭",
+      // "幻",
+      // "ふるえ",
+      // "未来",
+      // "光速",
+      // "帰還",
+      // "余白",
+      // "白",
     ],
   },
 ];
 
+// 章と章の間の配列
 const interludes = [
   {
     h: "遠くのことを少しだけ",
+    h2: "遠くのことを少しだけ おしまい",
     title: "第1章：はじまりの音",
     text: "（生成と誕生）",
     titleFrom: "chapter-1",
@@ -132,16 +145,16 @@ const interludes = [
   },
 ];
 
+// 全体の再生リスト
 const playlist = [
-  // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
   {
     interlude: true,
-    text: interludes[0].h, // "はじまりの音"
+    text: interludes[0].h, // h: "遠くのことを少しだけ",
     background: "bg-intro",
   },
   {
-    interlude: true,
-    text: interludes[0].title,
+    interlude: true, // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
+    text: interludes[0].title, // "はじまりの音"
     background: "bg-interlude-0",
     titleFrom: "chapter-1",
   },
@@ -153,20 +166,20 @@ const playlist = [
     background: "bg-interlude-1",
     titleFrom: "chapter-2",
   },
-  chapters[1],
-  {
-    interlude: true,
-    text: interludes[2].title,
-    background: "bg-interlude-2",
-    titleFrom: "chapter-3",
-  },
-  chapters[2],
-  {
-    interlude: true,
-    text: interludes[3].title,
-    background: "bg-interlude-3",
-    titleFrom: "chapter-4",
-  },
+  // chapters[1],
+  // {
+  //   interlude: true,
+  //   text: interludes[2].title,
+  //   background: "bg-interlude-2",
+  //   titleFrom: "chapter-3",
+  // },
+  // chapters[2],
+  // {
+  //   interlude: true,
+  //   text: interludes[3].title,
+  //   background: "bg-interlude-3",
+  //   titleFrom: "chapter-4",
+  // },
   chapters[3],
   {
     interlude: true,
@@ -175,21 +188,30 @@ const playlist = [
     titleFrom: "chapter-5",
   },
   chapters[4],
+  {
+    interlude: true,
+    text: interludes[0].h2, // "はじまりの音"
+    background: "bg-intro",
+  },
 ];
 
+// 全単語を展開するリスト…全表示内容＋背景class
 // フラット化：章＋間奏を順番に整列
 const flattenedWords = [];
 
-playlist.forEach((item, index) => {
+// playlist.forEach((item, index) => {
+playlist.forEach((item) => {
   if (item.interlude) {
-    // 🌟章タイトル（間奏）
+    // 🌟章タイトル（間奏）の場合
     flattenedWords.push({
       text: item.text,
       background: item.background,
       interlude: true,
+      isInterlude: true,
     });
   } else {
     // 🌟章本文（言葉たち）
+    // chapter内の単語を1つずつpush（章の背景を添える）
     item.words.forEach((word) => {
       if (typeof word === "string") {
         // 旧形式
@@ -197,6 +219,7 @@ playlist.forEach((item, index) => {
           text: word,
           background: item.background,
           interlude: false,
+          isInterlude: false,
         });
       } else {
         // 新形式（オブジェクト形式）
@@ -205,123 +228,116 @@ playlist.forEach((item, index) => {
           background: item.background,
           bgClass: word.bgClass,
           interlude: false,
+          isInterlude: false,
         });
       }
     });
   }
 });
 
-// playlist.forEach((item) => {
-//   if (item.words) {
-//     // 章
-//     item.words.forEach((word) => {
-//       flattenedWords.push({
-//         text: word,
-//         background: item.background,
-//         isInterlude: false,
-//       });
-//     });
-//   } else if (item.interlude) {
-//     // 間奏
-//     flattenedWords.push({
-//       text: item.text,
-//       background: item.background,
-//       isInterlude: true, // ← 間奏には true を付ける！
-//     });
-//   }
-// });
-// flatten しなおす（間奏は入れない！）
-// const flattenedWords = chapters.flatMap(
-// (chapter) =>
-// map与えられた関数を配列のすべての要素に対して呼び出し、その結果からなる新しい配列を生成
-// chapter.words.map((word) => ({
-// text 配列のオブジェクトにつけたキーの名前（自由）
-// text: word,
-// background: chapter.background,
-// })) //オブジェクトリテラル（定義）
-// );
-
+// 現在のインデックスを記録
 let currentIndex = 0;
-// 次の処理までの待機時間 使ってないっぽい⚠️
-const intervalTime = 4000;
 const body = document.body;
 
-function showNextWord() {
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// 最後の単語と同時にフェードアウト or 静止…が可能になる 切り替えタイミングが？
+// const intervalTime = 5000;
+// const intervalTime = setInterval(showNextWord, 3000);
 
+// 定期的に自動再生
+// intervalTimeが過ぎたらまたshowNextWordが呼ばれる
+// const interval = setInterval(showNextWord, intervalTime);
+
+// 表示を切り替える関数
+function showNextWord() {
+  console.log("🔁 showNextWord 呼ばれた", currentIndex);
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 👷→ URL末尾に ?dev を付けたときだけ有効。
   // ⚒️ 例: http:localhost:5500/universe.html?dev
   if (
     location.search.includes("dev") &&
-    document.body.classList.contains("bg-wind")
+    document.body.classList.contains("bg-darkness")
   ) {
-    console.log("🚦 .bg-wind なので停止（devモード）");
+    console.log("🚦 .bg-darkness なので停止（devモード）");
     return; //条件を満たしたら return; でその場で関数終了 → 次の単語に進まなくなる。
   }
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
-  if (currentIndex >= flattenedWords.length) {
-    clearInterval(interval);
-    return;
-  }
+  // // すべて終了したら止める
+  // if (currentIndex >= flattenedWords.length) {
+  //   // 一巡だけして止まる
+  //   clearInterval(interval); // ⛔️ タイマー止める！
+  //   console.log("???:", interval);
+  //   return;
+  // }
   // 「flattenedWords の中の現在の currentIndex 番目の要素（＝単語オブジェクト）
   const current = flattenedWords[currentIndex];
-  // ⏱ 次の表示までの時間
-  const isInterlude = current.isInterlude;
+  console.log("▶️ 表示中:", current);
 
   // 🔁 表示済みの単語をいったん fade-out させる
-  wordEl.classList.remove("fade-in");
-  wordEl.classList.add("fade-out");
+  wordEl.classList.remove("fade-in"); // opacity: 0 → 1：静かに現れる
+  void wordEl.offsetWidth;
+  wordEl.classList.add("fade-out"); //消える
 
   // 次を表示するまで少し待ってから切り替え
-  const fadeDuration = 1500; // 1.5秒のアニメーションと揃える
+  const fadeDuration = 2000; // 1.5秒のアニメーションと揃える
 
+  // 次の表示時間を個別に設定
   setTimeout(() => {
-    // 1) 先に背景クラス（色含む）を切り替える
-    document.body.className = `page--universe ${current.background}`;
-    if (current.bgClass) {
-      body.classList.remove(
-        ...Array.from(body.classList).filter((cls) => cls.startsWith("bg-"))
-      );
-      body.classList.add(current.bgClass);
-    }
-    // 2) そのあとでテキストを差し替える
+    // 表示テキストの変更
     // 切り替え処理 画面の単語表示部分に、を表示
     //  current.text は現在のcurrent番目の単語テキスト "始まり" を取り出すということ
     // .textContent は HTML 要素にテキストを入れる標準プロパティ
     wordEl.textContent = current.text;
 
-    // 3) 最後にアニメ付与
+    // 1語ごとに背景クラス（先に背景クラス（色含む））を切り替える処理
+    document.body.className = `page--universe ${current.background}`;
+    if (current.bgClass) {
+      // アニメーションをリセットして付け直す
+      body.classList.remove(
+        ...Array.from(body.classList).filter((cls) => cls.startsWith("bg-"))
+      );
+      // 背景クラスをbodyに反映（他クラスを削除してから）
+      body.classList.add(current.bgClass);
+    }
+
+    // アニメーションをリセットして付け直す
     // アニメーション演出（fade-in）
-    wordEl.classList.remove("fade-out");
+    wordEl.classList.remove("fade-out"); //消える
     // void 演算子は与えられた式 (expression) を評価し、undefined を返します
     // offsetWidth プロパティは読み取り専用.要素のレイアウト幅を整数として返します
-    void wordEl.offsetWidth;
-    wordEl.classList.add("fade-in");
+    void wordEl.offsetWidth; // リセットのための再描画トリック
+    wordEl.classList.add("fade-in"); // opacity: 0 → 1：静かに現れる
 
-    // h1 を最初の1回だけ非表示に ⚠️つかってない
-    /*     if (currentIndex === 1 && !hasHiddenTitle) {
-      console.log("🫥 h1を消す処理 実行！");
-      title.classList.add("hidden");
-      hasHiddenTitle = true;
-    }
- */
     currentIndex++;
 
     // 内容によって秒数を変える
+    // `flattenedWords[currentIndex]` を見て、 `interlude` かどうか判定
     if (currentIndex < flattenedWords.length) {
-      const delay = isInterlude ? 2000 : 2000;
+      // **"ふわっ→しずむ→間" の美しい流れ**が作れるよ〜
+      // ⏱ 次の表示までの時間
+      // const isInterlude = current.text.includes("（"); // 間奏っぽいかどうかで判定
+      const isInterlude = current.isInterlude;
+
+      // ### ① `delay`：単語ごとの**表示間隔** 7000 4000初期値
+      const delay = isInterlude ? 3500 : 3000;
+      // const delay = current.bgClass === "interlude" ? 7000 : 3000;
+      // 単語を表示してから **何秒後に次を呼ぶか**
       setTimeout(showNextWord, delay); // ⏱️ 次を呼ぶ（再帰）
+
+      console.log(delay);
+      console.log("⏲️ 次の表示までの時間:", isInterlude);
     } else {
-      console.log("🌟 最後まで表示しましたしぇ〜！");
+      wordEl.classList.remove("fade-in"); // opacity: 0 → 1：静かに現れる
+      // const overlay = document.getElementById("whiteout");
+      // // 白フェード開始
+      // overlay.classList.add("show");
+      // setTimeout(() => {
+      //   overlay.classList.remove("show");
+      // }, 3000); // 1.2秒で消える
 
-      wordEl.classList.remove("fade-in");
-      wordEl.classList.add("fade-out");
-
-      // fade-outが終わるまで待ってから非表示
-      setTimeout(() => {
-        wordEl.style.display = "none"; // 完全に消す
-      }, fadeDuration);
+      wordEl.classList.add("fade-in"); //ふわっと
+      setTimeout(() => {}, 1000);
+      console.log("🌌 全単語の旅が終わりましたしぇ〜");
 
       return; // ここでループを終了
     }
@@ -330,24 +346,11 @@ function showNextWord() {
 
 showNextWord(); // 最初の1語
 
-//  ⚠️つかってない
-// 1語目の表示と同時にh1を消す
-// const title = document.getElementById("page-title");
-
-// // 一度だけ非表示にするフラグ
-// let hasHiddenTitle = false;
-
-function changeWord() {
-  currentIndex++;
-  if (currentIndex >= words.length) {
-    currentIndex = 0;
-    console.log("🌀 currentIndex:", currentIndex);
-  }
-
-  //   // 1回目だけ h1 を非表示にする
-  //   if (currentIndex === 0 && !hasHiddenTitle) {
-  //     console.log("🚨 h1非表示処理 実行！");
-  //     setTimeout(() => {}, 500); // 3秒くらいで消すと美しいかも
-  //     hasHiddenTitle = true;
-  //   }
-}
+// **すぐ止めたいとき（開発用スイッチ）**
+// ```scss
+// /* コンソールで document.body.classList.toggle('debug-no-anim') */
+// body.universe.debug-no-anim * {
+//   animation: none !important;
+//   transition: none !important;
+// }
+// ```

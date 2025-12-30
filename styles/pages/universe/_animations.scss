@@ -38,9 +38,11 @@
 }
 
 @keyframes fade-in {
+  // opacity: 0 → 1：静かに現れる
+  // translateY：ほんの少し下から浮かぶように
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
 
   to {

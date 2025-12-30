@@ -362,6 +362,14 @@ function playWords({ el, words, interval = 1100, pauseMs = null, jitter = 0 }) {
   };
 }
 
+// async（エイシンク）は「非同期 (asynchronous)」の略で、
+// プログラミングにおいて「時間のかかる処理を待たずに、
+// 他の処理を並行して進める仕組み」を作るためのキーワード
+
+// async/awaitの役割
+// async: 非同期関数を宣言する。「この関数はPromiseを返すよ」という印。
+// await: async関数の中で使い、「Promiseが解決（成功/失敗）するまで、ここで一時停止する」と指示する。
+// セットで使う: async関数内でawaitを使うことで、本来バラバラに動きがちな非同期処理を、あたかも順番通りに進むかのように記述でき、コードが読みやすくなる
 async function runUniverseSequence() {
   // 白幕そのものの時間
   const fadeMs = 1400;

@@ -52,6 +52,15 @@
   .decor-clock {
     animation: none;
   }
+
+  body.universe [class*="bg-"]::before,
+  body.universe [class*="bg-"]::after,
+  body.universe .universe-words::before,
+  body.universe .universe-words::after,
+  body.universe .ch5-dust {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* 画面が広い＋動きOKなら動画を解禁 */
