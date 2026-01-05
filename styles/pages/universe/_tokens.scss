@@ -209,14 +209,7 @@
 
   // ===== Durations (ms推奨) =====
 
-  --dur-bg: 2000ms; // 背景-色の基本
-
-  // 1回きり
-  --dur-word-in: 1800ms; // 単語 入り
-  --dur-word-out: 1800ms; // 単語 出
-  --dur-header-fade: 1500ms; // header/h1 opacity
-  --dur-header-height: 1000ms; // header/h1 height
-  --dur-whiteout: 1400ms; // ホワイトアウト
+  --dur-whiteout: 1500ms; // ホワイトアウト3000msの半分
   // 各章
 
   --dur-gradientFlow: 15000ms; // グラデーション
@@ -232,6 +225,7 @@
   --dur-slow: 2000ms;
 
   // ===== Easing =====
+  --ease-initial: ease-out;
   --ease-standard: ease;
   --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1); // 穏やか
   --ease-inout: ease-in-out;

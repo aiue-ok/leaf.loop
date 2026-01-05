@@ -63,6 +63,17 @@
   }
 }
 
+@keyframes fade-last {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+  }
+}
+
 // グラデーション背景
 @keyframes gradient-flow {
   0% {

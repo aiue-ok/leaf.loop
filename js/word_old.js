@@ -80,7 +80,7 @@ const chapters = [
     title: "ゆるやかな問い",
     background: "bg-ch4",
     words: [
-      "無",
+      // "無",
       // "兆し",
       // "残響",
       // "思念",
@@ -89,7 +89,7 @@ const chapters = [
       // "不確定",
       // "予感",
       // "間（ま）",
-      // "静寂",
+      "静寂",
     ],
   },
 
@@ -110,6 +110,7 @@ const chapters = [
       // "帰還",
       // "余白",
       // "白",
+      // " ",
     ],
   },
 ];
@@ -118,7 +119,6 @@ const chapters = [
 const interludes = [
   {
     h: "遠くのことを少しだけ",
-    h2: "遠くのことを少しだけ おしまい",
     title: "第1章：はじまりの音",
     text: "（生成と誕生）",
     titleFrom: "chapter-1",
@@ -152,20 +152,20 @@ const playlist = [
     text: interludes[0].h, // h: "遠くのことを少しだけ",
     background: "bg-intro",
   },
-  {
-    interlude: true, // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
-    text: interludes[0].title, // "はじまりの音"
-    background: "bg-interlude-0",
-    titleFrom: "chapter-1",
-  },
+  // {
+  //   interlude: true, // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
+  //   text: interludes[0].title, // "はじまりの音"
+  //   background: "bg-interlude-0",
+  //   titleFrom: "chapter-1",
+  // },
   // ここから第1章の言葉たち
-  chapters[0],
-  {
-    interlude: true,
-    text: interludes[1].title,
-    background: "bg-interlude-1",
-    titleFrom: "chapter-2",
-  },
+  // chapters[0],
+  // {
+  //   interlude: true,
+  //   text: interludes[1].title,
+  //   background: "bg-interlude-1",
+  //   titleFrom: "chapter-2",
+  // },
   // chapters[1],
   // {
   //   interlude: true,
@@ -188,11 +188,6 @@ const playlist = [
     titleFrom: "chapter-5",
   },
   chapters[4],
-  {
-    interlude: true,
-    text: interludes[0].h2, // "はじまりの音"
-    background: "bg-intro",
-  },
 ];
 
 // 全単語を展開するリスト…全表示内容＋背景class
@@ -205,6 +200,7 @@ playlist.forEach((item) => {
     // 🌟章タイトル（間奏）の場合
     flattenedWords.push({
       text: item.text,
+      // \n は改行を意味する（HTMLでは <br> として扱いたい時もある）
       background: item.background,
       interlude: true,
       isInterlude: true,
@@ -238,14 +234,39 @@ playlist.forEach((item) => {
 // 現在のインデックスを記録
 let currentIndex = 0;
 const body = document.body;
+// 次を表示するまで少し待ってから切り替え
+const fadeDuration = 2000; // 目安1800〜2200　アニメーションと揃える
 
-// 最後の単語と同時にフェードアウト or 静止…が可能になる 切り替えタイミングが？
-// const intervalTime = 5000;
-// const intervalTime = setInterval(showNextWord, 3000);
+function playEpilogue() {
+  // 🏁 ラスト 🔚
+  console.log("🌌 全単語の旅が終わりました");
+  // 🔁 表示済みの単語をいったん fade-out させる
+  wordEl.classList.remove("fade-in");
+  void wordEl.offsetWidth;
+  wordEl.classList.add("fade-shiro"); //消える
+  console.log("after add fade-out", wordEl.className);
+  // debugger; // ←ここで止まる
 
-// 定期的に自動再生
-// intervalTimeが過ぎたらまたshowNextWordが呼ばれる
-// const interval = setInterval(showNextWord, intervalTime);
+  const overlay = document.getElementById("whiteout");
+
+  // 背景を戻すなら（bg-introでもOK）
+  document.body.className = "page--universe bg-intro";
+
+  // 白フェード開始
+  overlay?.classList.add("show");
+
+  setTimeout(() => {
+    overlay?.classList.remove("show");
+
+    // ここで初めてエピローグ文をセット（チラ見えゼロ）
+    wordEl.textContent = "遠くのことを少しだけ\nおしまい";
+
+    // 競合を消して fade-last だけ
+    wordEl.classList.remove("fade-in", "fade-shiro");
+    void wordEl.offsetWidth;
+    wordEl.classList.add("fade-last");
+  }, 1500);
+}
 
 // 表示を切り替える関数
 function showNextWord() {
@@ -253,33 +274,24 @@ function showNextWord() {
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 👷→ URL末尾に ?dev を付けたときだけ有効。
   // ⚒️ 例: http:localhost:5500/universe.html?dev
-  if (
-    location.search.includes("dev") &&
-    document.body.classList.contains("bg-darkness")
-  ) {
-    console.log("🚦 .bg-darkness なので停止（devモード）");
+  if (location.search.includes("dev") && body.classList.contains("bg-ch4")) {
+    console.log("🚦 .bg-ch4 なので停止（devモード）");
     return; //条件を満たしたら return; でその場で関数終了 → 次の単語に進まなくなる。
   }
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
   // // すべて終了したら止める
-  // if (currentIndex >= flattenedWords.length) {
-  //   // 一巡だけして止まる
-  //   clearInterval(interval); // ⛔️ タイマー止める！
-  //   console.log("???:", interval);
-  //   return;
-  // }
+  if (currentIndex >= flattenedWords.length) return;
   // 「flattenedWords の中の現在の currentIndex 番目の要素（＝単語オブジェクト）
   const current = flattenedWords[currentIndex];
   console.log("▶️ 表示中:", current);
 
   // 🔁 表示済みの単語をいったん fade-out させる
-  wordEl.classList.remove("fade-in"); // opacity: 0 → 1：静かに現れる
+  wordEl.classList.remove("fade-in");
   void wordEl.offsetWidth;
   wordEl.classList.add("fade-out"); //消える
-
-  // 次を表示するまで少し待ってから切り替え
-  const fadeDuration = 2000; // 1.5秒のアニメーションと揃える
+  console.log("after add fade-out", wordEl.className);
+  // debugger; // ←ここで止まる
 
   // 次の表示時間を個別に設定
   setTimeout(() => {
@@ -326,21 +338,18 @@ function showNextWord() {
 
       console.log(delay);
       console.log("⏲️ 次の表示までの時間:", isInterlude);
-    } else {
-      wordEl.classList.remove("fade-in"); // opacity: 0 → 1：静かに現れる
-      // const overlay = document.getElementById("whiteout");
-      // // 白フェード開始
-      // overlay.classList.add("show");
-      // setTimeout(() => {
-      //   overlay.classList.remove("show");
-      // }, 3000); // 1.2秒で消える
-
-      wordEl.classList.add("fade-in"); //ふわっと
-      setTimeout(() => {}, 1000);
-      console.log("🌌 全単語の旅が終わりましたしぇ〜");
-
-      return; // ここでループを終了
+      return;
     }
+    // ① fade-in が完全に終わるのを待つ
+    setTimeout(() => {
+      // ② ここから「余韻」
+      const lingerMs = 3500; // ←2200〜3500
+
+      setTimeout(() => {
+        playEpilogue();
+      }, lingerMs);
+    }, fadeDuration);
+    return;
   }, fadeDuration);
 }
 

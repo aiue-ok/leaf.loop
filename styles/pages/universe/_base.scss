@@ -93,7 +93,7 @@
     opacity: 0; /* 初期は透明 */
     // --dur-whiteout: 1000ms; // ホワイトアウト
     // transition: opacity var(--dur-whiteout) ease; /* フェード時間 */
-    transition: opacity 1000ms ease-out;
+    transition: opacity 1400ms ease-out;
     will-change: opacity;
     z-index: core.$z-whiteout; /* なんでも上に */
     pointer-events: none;
@@ -147,6 +147,8 @@
     font-family: var(--sub-font); //Kiwi Maru
     font-size: clamp(1.4rem, 4vw, 2.2rem);
     color: inherit;
+    white-space: pre-line;
+
     // transition: opacity 2000ms ease;
     opacity: 1;
     will-change: color, opacity;
@@ -158,10 +160,19 @@
   // 戻すなら--ease-soft （ease-out：最初はゆっくり、最後スッと止まる感じ）
 
   .word.fade-in {
-    animation: fadeIn var(--dur-word-in, 2s) ease-in-out forwards;
+    animation: fade-in var(--dur-word-in, 2s) ease-in-out forwards;
   }
   .word.fade-out {
-    animation: fadeOut var(--dur-word-out, 1.8s) ease forwards;
+    animation: fade-out var(--dur-word-out, 1.8s) ease forwards;
+  }
+
+  // 最後の単語”白”
+  .word.fade-shiro {
+    animation: wordFadeOut 2000ms ease forwards;
+  }
+
+  .word.fade-last {
+    animation: fade-last 10000ms ease-in-out forwards;
   }
 
   .word.is-fade {
