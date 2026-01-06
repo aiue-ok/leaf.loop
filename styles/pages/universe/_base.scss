@@ -7,9 +7,13 @@
   display: flex;
   flex-direction: column;
   width: 100dvw;
-  height: 100%;
-  height: 100dvh;
-  overflow: hidden;
+  // height: 100dvh;　//ないほうがいい
+  min-height: 100vh; /* 保険 */
+  min-height: 100svh; /* iOSで安定 */
+  min-height: 100dvh; /* 対応ブラウザでは追従 */
+  min-height: calc(var(--vh, 1vh) * 100);
+  // overflow: hidden;　//いったんやめる
+  overflow-x: clip;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 0 intro
