@@ -20,6 +20,14 @@
   --mid: #c2c2c2; // 静思グレー #C2C2C2 思索の中間調
   --universe-indigo: #0e1020;
   --universe-bluestar: #b4d2ea;
+  // 深紺部分でくっきり、淡い水色部分でも読める
+  --moon-white: rgba(255, 255, 255, 0.92);
+  // 「光の粒」みたい水色背景に
+  --platinum-pearl: rgba(255, 236, 200, 0.9); // #FFECC8;
+  --platinum-pearl-shadow: 0 0 8px rgba(180, 210, 234, 0.6);
+  // 寒色系の幻想感“光って見える”演出
+  --blue-grow: rgba(210, 235, 255, 0.95); // #D2EBFF
+  --blue-grow-shadow: 0 0 8px rgba(180, 210, 234, 0.6);
 
   // は「他から設定が来たらそっちを優先していいよ」の印。
   // まずはここに仮置き→後で正式値に置換。
@@ -32,27 +40,69 @@
   --color-ch5: #888;
   --color-ch5-f0c: #f0cd90;
 
+  // `#333333`（落ち着いた濃いグレー）
   --color-interlude-0: var(--bigin-white);
+
+  // `#F8FAFF`（白寄り）
   --color-interlude-1: #e1f3ff;
+
+  // - **文字色**: `#B4D2EA`（薄青）
   --color-interlude-2: #d9e8f7;
+
+  // `#FAFAFA`（ほんのり柔らかい白）
   --color-interlude-3: #c7cbd0;
+
+  // `#A67C00`（光を感じるゴールド系）
   --color-interlude-4: rgb(
     0 0 0 / 55%
   ); // グレー寄りにしてやわらかく 45%くらいでもいい気がする
+  // 別案
+  $color-interlude-1: rgba(255, 236, 200, 0.9); // 薄金
+  $color-interlude-2: rgba(200, 245, 255, 0.9); // 青白
+  $color-interlude-3: rgba(240, 220, 255, 0.9); // 薄紫
+  $color-interlude-4: rgba(255, 240, 245, 0.9); // 桜白
+  $color-interlude-5: rgba(255, 255, 255, 0.95); // 月光ホワイト
+
+  //  テキスト色統一
+  $interlude-text: rgba(255, 255, 255, 0.85);
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
+
+  --bg-fallback: #1e2b42;
+
   --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
   --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+
+  // 濃紺 `#0B1C39` → 群青 `#1E2B4F`
+  --bg-ch3: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
+  --bg-ch4: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 32%) 0%,
+      rgb(255 255 255 / 10%) 24%,
+      rgb(0 0 0 / 0%) 82%
+    ),
+    #000;
+  --bg-ch5: linear-gradient(to bottom, #fff8e7 0%, rgb(255 248 231 / 90%) 100%);
+
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ 背景色 interlude
+  //  `#F8FAFF`（温度感のある白）
   --bg-interlude-0: radial-gradient(
     100% 100% at 0% 0%,
     #fff8e7 0%,
     #435372 10.76%,
     #1e2b42 100%
   );
+
+  // 🌌 暗色スタート案（例）
+  // 1. **ほぼ黒＋ほんのり青**
+  --bg-interlude-0-dark: linear-gradient(to bottom, #0b0b15 0%, #1c1e2b 100%);
+
+  // 青みグレー `#B4D2EA` → 暗紺 `#0E1020`
   --bg-interlude-1: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+
+  // 濃紺 `#0B1C39` → 群青 `#1E2B4F`
   --bg-interlude-2: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
 
   // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
@@ -63,6 +113,8 @@
       rgb(0 0 0 / 0%) 88%
     ),
     #000;
+
+  // 象牙色 `#FFFBE7` → 薄い蜂蜜色 `#FFF8E0`
   --bg-interlude-4: radial-gradient(
     50% 71.11% at 50% 50%,
     #fff8e7 0%,
@@ -119,7 +171,7 @@
 
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter3 第3章-星と時間
-  --bg-ch3: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
+
   // 星雲ネイビー	#0B1C39	銀河の深部色
   --Ch3-top-hex: #0b1c39;
   --Ch3-top-rgba: rgb(11 28 57 / 100%);
@@ -139,14 +191,8 @@
   --Interlude3-4-100-hex: #fff;
   --Interlude3-4-100-rgba: rgb(255 255 255 / 100%);
 
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter4 第4章-ゆるやかな問い
-  --bg-ch4: radial-gradient(
-      circle at 50% 50%,
-      rgb(255 255 255 / 32%) 0%,
-      rgb(255 255 255 / 10%) 24%,
-      rgb(0 0 0 / 0%) 82%
-    ),
-    #000;
 
   // Figma決定？カラーradialグラデ
   // radial 0 #fafafa
@@ -183,8 +229,8 @@
   --Interlude4-5-0-hex: #fff8e7;
   --Interlude4-5-0-rgba: rgb(255 248 231 / 100%);
 
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter5 第5章-還りゆく光
-  --bg-ch5: linear-gradient(to bottom, #fff8e7 0%, rgb(255 248 231 / 90%) 100%);
 
   // コズミックラテ	#FFF8E7	宇宙平均色、帰還の優しさ
   --Ch5-0-hex: #fff8e7;
@@ -192,6 +238,7 @@
   --Ch5-100-hex: #fffdf8;
   --Ch5-bottom-rgba: rgb(255 253 248 / 100%);
 
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ おわり
   // ピュアホワイト	#FFFFFF	すべてに還る光
   --Ch5-top-hex: #fff;
@@ -214,6 +261,7 @@
 
   --dur-gradientFlow: 15000ms; // グラデーション
   --dur-wave: 8000ms;
+  --dur-dot: 6000ms;
   --dur-nabula: 22000ms; // グラデーション 星雲
   --dur-wind: 24000ms;
   --dur-ly-streak: 8000ms;
@@ -237,4 +285,13 @@
   --z-index-0: 0;
   --z-index-1: 1;
   --z-index-2: 2;
+
+  // ▼z-index
+  // === 基本　hero ===
+  // $z-deeper: -2;
+  // $z-back: -1;
+  // $z-main: 0;
+  // $z-front: 1;
+  // $z-closer: 2;
+  // $z-nav: 0;
 }
