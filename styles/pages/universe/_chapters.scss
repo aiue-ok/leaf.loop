@@ -519,13 +519,23 @@ body.page--universe.bg-galaxy::before {
 
 // body.universe.bg-galaxy,
 body.page--universe.bg-galaxy {
+  // ページの文字・アイコンの基本色
+  --main-color: var(--color-ch3);
+  --bg: var(--bg-ch3-galaxy);
+  --mini-color: oklch(from var(--main-color) l c h / 80%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
   position: relative;
   overflow: hidden;
 
   .word {
-    color: inherit;
-    font-style: italic;
-    opacity: 0.5;
+    opacity: 0.9;
   }
 }
 
@@ -545,7 +555,10 @@ body.page--universe.bg-galaxy::after {
   mix-blend-mode: screen; /* 夜空に溶け込む */
   opacity: 0.85;
   background-size: 300% 300%;
-  animation: wind 24s ease-in-out infinite; // 🌻🌸🌺
+  // animation: wind 24s ease-in-out infinite; // 🌻🌸🌺
+  animation: wind 8000ms ease-in-out infinite; // 🌻🌸🌺
+}
+
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿

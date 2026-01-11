@@ -108,13 +108,12 @@ body.page--universe {
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter3 第3章-星と時間
 
-  // 星雲ネイビー	#0B1C39	銀河の深部色
-  --Ch3-top-hex: #0b1c39;
-  --Ch3-top-rgba: rgb(11 28 57 / 100%);
-
-  // 星と時間	星辰ブルー	#1E2B4F	中間色
-  --Ch3-middle-hex: #1e2b4f;
-  --Ch3-middle-rgba: rgb(30 43 79 / 100%);
+  --bg-ch3-galaxy: radial-gradient(
+      80vmax 80vmax at 70% 20%,
+      rgb(255 255 255 / 6%),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #0b1c39, #12174f);
 
   // 星と時間	宇宙銀青	#D9E8F7	光粒を思わせる淡い青
   --Ch3-bottom-hex: #d9e8f7;
