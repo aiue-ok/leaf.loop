@@ -88,6 +88,15 @@ body.page--universe {
   --bg-interlude-2: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
 
   // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
+  // --bg-interlude-3: radial-gradient(
+  //     circle at 50% 50%,
+  //     rgb(255 255 255 / 22%) 0%,
+  //     rgb(255 255 255 / 10%) 18%,
+  //     rgb(0 0 0 / 0%) 88%
+  //   ),
+  //   #000;
+
+  // 案１
   --bg-interlude-3: radial-gradient(
       circle at 50% 50%,
       rgb(190 205 220 / 18%) 0%,

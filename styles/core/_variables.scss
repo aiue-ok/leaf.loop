@@ -82,15 +82,16 @@ $moon-lit: oklch(75% 0.02 30deg / 25%);
 
 // 夜明けの深藍→青白
 $color-space-base: linear-gradient(to bottom, #0e1020, #b4d2ea);
-$color-space-fg: #e5eafb;
+
+// アクセント
 $color-space-sun: #fcebb8;
 $color-space-moon: #eaeff7;
-$color-space-earth: royalblue;
+
+// 飾り時計・ヘルプカードなど
 $color-space-far: #f8faff;
-$color-space-bit: #0e1020;
-$color-space-dust: #e1f3ff;
 $color-space-star: #f0cd90;
-$color-space-bang: #888;
+$color-space-dust: #e1f3ff;
+$color-space-earth: royalblue;
 
 // ════════════════════════════════
 // 👤 about
