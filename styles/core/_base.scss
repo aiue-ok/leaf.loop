@@ -42,7 +42,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100%; //universe以外
   overflow: hidden scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
 }
@@ -246,6 +246,15 @@ input {
 
   // 開閉メニューのフォントカラー
   --panel-cl: var(--main-color);
+
+  // 🪐 universe
+  // html background-color
+  //  background: var(--bg) が一瞬 none / transparent になる
+  /* universe だけ “世界の下地” を黒に固定 */
+  --html-bg-universe: #1e2b42;
+  --html-bg-int1: #0e1020;
+  --html-bg-int3: #1e1e1e; // 黒曜 #1E1E1E 禅的思索の闇 ;
+  --html-bg-int4: #fff8e7;
 }
 
 // 4) 既存トークンを活かす小ワザ
@@ -288,7 +297,7 @@ input {
 .page--universe {
   // グラデ
   --bg: #{$color-space-base};
-  --main-color: #{$color-space-fg};
+  --main-color: #{$color-space-far};
   --accent: #{$color-space-sun};
   --accent2: #{$color-space-moon};
 }

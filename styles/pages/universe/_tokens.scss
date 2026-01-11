@@ -43,9 +43,17 @@ body.page--universe {
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
 
-  --bg-fallback: #1e2b42;
+  // background 各章
+  // 1章
+  // --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
+  --bg-ch1: linear-gradient(
+    135deg,
+    oklab(89.66199999999999% -0.04255 -0.04819),
+    oklch(24.337% 0.10136 272.34),
+    oklch(28.895% 0.04608 261.374),
+    oklch(98.001% 0.02344 88.225)
+  );
 
-  --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
   --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
 
   // 濃紺 `#0B1C39` → 群青 `#1E2B4F`

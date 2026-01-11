@@ -22,8 +22,9 @@ body.page--universe {
   min-height: 100svh; /* iOSで安定 */
   min-height: 100dvh; /* 対応ブラウザでは追従 */
   min-height: calc(var(--vh, 1vh) * 100);
-  // overflow: hidden;　//いったんやめる
   overflow-x: clip;
+  position: relative;
+  z-index: 0;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 0 intro
@@ -45,10 +46,25 @@ body.page--universe {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  // transition: background-color 250ms ease;
-  transition: background 4000ms ease, color 4000ms ease;
+  transition: background-color 250ms ease, color 4000ms ease,
+    background-image 4000ms ease;
 
-  .universe-words,
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 4000ms ease; /* ここが滑らかさ担当 */
+    background: linear-gradient(to bottom, #0e1020, #b4d2ea);
+  }
+
+  &.is-returning::before {
+    opacity: 1;
+  }
+
+  .universe__word,
   .word {
     color: var(--main-color);
     text-shadow: var(--text-shadow, none);
@@ -106,9 +122,8 @@ body.page--universe {
     inset: 0; /* 画面全体 */
     background: var(--bigin-white);
     opacity: 0; /* 初期は透明 */
-    // --dur-whiteout: 1000ms; // ホワイトアウト
-    // transition: opacity var(--dur-whiteout) ease; /* フェード時間 */
-    transition: opacity 1400ms ease-out;
+    // opacityが 0→1 になるのに 1200ms かかる。
+    transition: opacity 700ms ease-in-out;
     will-change: opacity;
     z-index: core.$z-whiteout; /* なんでも上に */
     pointer-events: none;
@@ -168,6 +183,7 @@ body.page--universe {
     font-family: var(--sub-font); //Kiwi Maru
     font-size: clamp(1.4rem, 4vw, 2.2rem);
     white-space: pre-line;
+    z-index: core.$z-universe-word;
 
     // transition: opacity 2000ms ease;
     opacity: 1;
@@ -188,7 +204,7 @@ body.page--universe {
 
   // 最後の単語”白”
   .word.fade-shiro {
-    animation: wordFadeOut 2000ms ease forwards;
+    animation: wordFadeOut 1800ms ease-out forwards;
   }
 
   .word.fade-last {
@@ -206,6 +222,33 @@ body.page--universe {
     opacity: 0.6;
     letter-spacing: 0.1em;
   }
+
+  // リスタートリンク
+  .restart-link {
+    position: fixed;
+    bottom: 1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1200ms ease;
+  }
+
+  .restart-link:hover {
+    opacity: 0.7;
+  }
+
+  // iOS Safari に再描画を促す
+  .force-repaint {
+    transform: translateZ(0);
+  }
+}
+
+body.is-ended .restart-link {
+  opacity: 0.35;
+  pointer-events: auto;
 }
 
 // スマホでは余白やフォントサイズを少し大きめ

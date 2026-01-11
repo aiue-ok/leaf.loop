@@ -239,23 +239,32 @@ const fadeDuration = 2000; // 目安1800〜2200　アニメーションと揃え
 
 function playEpilogue() {
   // 🏁 ラスト 🔚
+  const overlay = document.getElementById("whiteout");
+  // 白フェード開始（要素が存在する場合にのみクラスを追加する）オプショナルチェーン演算子 (?)
+  // opacityが 0→1 になるのに 1200ms かかる。
+  overlay?.classList.add("show");
+
   console.log("🌌 全単語の旅が終わりました");
-  // 🔁 表示済みの単語をいったん fade-out させる
+
+  // 🔁 表示済みの単語をいったん fade-out させる 単語が1.8秒で消える
   wordEl.classList.remove("fade-in");
+  console.log("after remove fade-in", wordEl.className);
   void wordEl.offsetWidth;
   wordEl.classList.add("fade-shiro"); //消える
   console.log("after add fade-out", wordEl.className);
-  // debugger; // ←ここで止まる
-
-  const overlay = document.getElementById("whiteout");
-
-  // 背景を戻すなら（bg-introでもOK）
-  document.body.className = "page--universe bg-intro";
-
-  // 白フェード開始
-  overlay?.classList.add("show");
-
+  // 3) 白幕が“完全に”出る頃に背景を切り替える
   setTimeout(() => {
+    document.body.classList.remove("bg-ch5");
+    // 残り（5.0 - 1.2 - 1.8 = 2.0秒くらい）は “白い間”
+    // document.body.className = "page--universe bg-intro";
+    // ✅ bg-ch5はそのまま、宇宙膜を出す（滑らか）
+    document.body.classList.add("is-returning");
+  }, 1200); // whiteout の transition 時間に合わせる（例: 600ms）
+
+  // 4) その後に白幕を外して、エピローグ表示
+  // 5秒になったら白幕が1.2秒かけて消える + エピローグ10秒が始まる
+  setTimeout(() => {
+    // opacityが 1→0 に 1200ms かかる
     overlay?.classList.remove("show");
 
     // ここで初めてエピローグ文をセット（チラ見えゼロ）
@@ -265,7 +274,19 @@ function playEpilogue() {
     wordEl.classList.remove("fade-in", "fade-shiro");
     void wordEl.offsetWidth;
     wordEl.classList.add("fade-last");
-  }, 1500);
+    console.log("body classes:", document.body.className);
+    const timer = document.querySelector(".timer"); // 実際のセレクタに合わせて
+
+    // 背景クラス/変数を変えた直後 （再描画）
+    requestAnimationFrame(() => {
+      timer?.classList.add("force-repaint");
+      // 次のフレームで戻す（見た目は変えない）
+      requestAnimationFrame(() => timer?.classList.remove("force-repaint"));
+    });
+  }, 5000); //「5秒後に次の段へ」**という“待ち時間”
+
+  document.body.classList.add("is-ended");
+  console.log("body classes:", document.body.className);
 }
 
 // 表示を切り替える関数
