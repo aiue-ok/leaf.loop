@@ -3,7 +3,7 @@
 /* 宇宙ページのテーマ（ページ作用域で上書き */
 
 // body タグ
-.page--universe {
+body.page--universe {
   display: flex;
   flex-direction: column;
   width: 100dvw;
@@ -194,7 +194,7 @@
 
 // スマホでは余白やフォントサイズを少し大きめ
 @media (width <= 768px) {
-  .page--universe {
+  body.page--universe {
     .word {
       font-size: 1.5rem;
       line-height: 2.2rem;
