@@ -195,12 +195,21 @@ body.page--universe {
   // --fade-duration 1秒
   // 戻すなら--ease-soft （ease-out：最初はゆっくり、最後スッと止まる感じ）
 
+  // opacity: 0 → 1：静かに現れる
+  // translateY：ほんの少し下から浮かぶように
   .word.fade-in {
-    animation: fade-in var(--dur-word-in, 2s) ease-in-out forwards;
+    animation: fade-in var(--dur-word-in, 2s) ease-in forwards;
   }
+
+  // opacity: 1 → 0：静かに消える
+  // translateY：ほんの少し下から浮かぶように
   .word.fade-out {
-    animation: fade-out var(--dur-word-out, 1.8s) ease forwards;
+    animation: fade-out var(--dur-word-out, 1.8s) ease-out forwards;
   }
+
+  // fade-in（1500ms）
+  // fade-shiro（1800ms）
+  // fade-last（10000ms）
 
   // 最後の単語”白”
   .word.fade-shiro {
