@@ -757,6 +757,8 @@ body.page--universe.bg-past .universe__word::before {
   content: "";
   position: absolute;
   inset: -2%;
+  pointer-events: none;
+
   background: radial-gradient(
       120% 100% at 48% 46%,
       rgb(255 255 255 / 6%),
@@ -767,8 +769,26 @@ body.page--universe.bg-past .universe__word::before {
   filter: blur(0.6px);
   opacity: 0.35;
   animation: pastwarp 9s ease-in-out infinite alternate; // 🌻🌸🌺
+}
+
 // body.universe.bg-past,
 body.page--universe.bg-past {
+  // ページの文字・アイコンの基本色
+  --main-color: var(--color-ch3);
+  --bg: var(--bg-ch3);
+  --mini-color: oklch(from var(--main-color) l c h / 80%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
+  .word {
+    opacity: 0.9;
+  }
+
   background: linear-gradient(
     135deg,
     rgb(11 28 57 / 100%),
@@ -786,32 +806,23 @@ body.page--universe.bg-past {
 /* 本体の色味（少しドライに） */
 // body.universe.bg-past2,
 body.page--universe.bg-past2 {
+  // ページの文字・アイコンの基本色
+  --main-color: rgb(255 255 255 / 90%);
+  --bg: var(--bg-ch3);
+  --mini-color: oklch(from var(--main-color) l c h / 80%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
   .word {
-    color: inherit;
+    opacity: 0.9;
   }
-
-  h1,
-  .page-header {
-    color: #f5f5f5; // ← 明示的に固定してね！
-  }
-
-  .menu-btn .material-icons {
-    color: #d9e8f7;
-  }
-
-  // ミニタイマー font色
-  .timer-mini-container {
-    color: #d9e8f7;
-    opacity: 0.7;
-  }
-
-  // ▼ ミニタイマープリセット枠色
-  .timer-mini-preset-button,
-  .timer-mini__pill {
-    color: #d9e8f7;
-    border-color: #f5f5f5;
-  }
+  background: linear-gradient(180deg, #0e1629 0%, #1c2a3f 55%, #d9e8f7 100%);
+  color: rgb(255 255 255 / 90%);
 }
 
 /* 周縁が少し落ちるビネット */
