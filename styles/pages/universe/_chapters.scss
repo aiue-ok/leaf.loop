@@ -41,8 +41,11 @@ $u-deep-1: #2a3d56 !default;
     $u-deep-1 60%,
     rgba($u-deep-1, 0.95) 100%
   );
+  background-size: 100% 100%;
+  background-position: 0 0;
+
   --main-color: var(--color-ch2);
-  --text-shadow: 0 2px 8px #888;
+  // --text-shadow: 0 2px 8px #888; // 濃い背景なので影なし
 }
 
 /* 薄いグリッド（before）と演出レイヤ（after）のベース */
@@ -133,9 +136,11 @@ body.page--universe.bg-ch2 {
   --help-bg: oklch(from var(--main-color) l c h / 44%);
 
   background: var(--bg-interlude-0);
-  background-size: 400% 400%;
+  // background-size: 400% 400%;
+  background-size: 100% 100%;
+  background-position: 0 0;
   // グラデ背景
-  animation: var(--dur-gradientFlow) ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -185,7 +190,9 @@ body.page--universe.bg-quantum {
   @include deep-sky-base;
 
   --main-color: var(--color-ch2);
-  --text-shadow: 0 2px 8px var(--mid);
+  // --text-shadow: 0 2px 8px var(--mid);
+}
+
 }
 
 // --- ゆがみ・ひずみ・膨張 bg-distortion---
@@ -198,7 +205,9 @@ body.page--universe.bg-distortion {
   @include deep-sky-base;
   @include grid-layer;
 
-  --main-color: var(--color-ch2);
+  & {
+    --main-color: #{var(--color-ch2)};
+  }
 
   /* ひずみのカーブ（after） */
   &::after {
@@ -228,9 +237,10 @@ body.page--universe.bg-symmetry {
   // @include deep-sky-base;
   @include grid-layer;
 
-  --main-color: var(--color-ch2);
-
-  background: var(--bg-ch2);
+  & {
+    --main-color: #{var(--color-ch2)};
+    --bg: #{var(--bg-ch2)};
+  }
 
   &::after {
     /* 中央ハイライト（柔らかい光） */
