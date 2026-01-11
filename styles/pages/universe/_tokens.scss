@@ -5,7 +5,8 @@
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
 body.page--universe {
   // 4章
-  --accent-font: "Zen Kurenaido", sans-serif;
+  --accent-font: "Zen Kurenaido", system-ui, -apple-system, "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ Color フォント色
@@ -21,15 +22,15 @@ body.page--universe {
   --color-ch3: #d9e8f7;
   --color-ch4: #ccc8c6;
   --color-ch5: #888;
-  --color-ch5-f0c: #f0cd90;
 
+  // === Text Colors 間奏 interlude　文字色 ===
   // `#333333`（落ち着いた濃いグレー）
   --color-interlude-0: var(--bigin-white);
 
   // `#F8FAFF`（白寄り）
   --color-interlude-1: #e1f3ff;
 
-  // - **文字色**: `#B4D2EA`（薄青）
+  // `#B4D2EA`（薄青）
   --color-interlude-2: #d9e8f7;
 
   // `#FAFAFA`（ほんのり柔らかい白）
@@ -81,8 +82,8 @@ body.page--universe {
   // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
   --bg-interlude-3: radial-gradient(
       circle at 50% 50%,
-      rgb(255 255 255 / 40%) 0%,
-      rgb(255 255 255 / 18%) 18%,
+      rgb(190 205 220 / 18%) 0%,
+      rgb(190 205 220 / 8%) 22%,
       rgb(0 0 0 / 0%) 88%
     ),
     #000;

@@ -1,6 +1,24 @@
 // 着地＆帰還
 // body.universe.bg-intro,
 body.page--universe.bg-intro {
+  // ページの文字・アイコンの基本色
+  --main-color: var(--bigin-white);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  // --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
+  //  「基準値」 core/_base.scssの色
+  color: var(--main-color);
+  background: var(--bg);
+  background-size: 100% 100%;
+  background-position: 0 0;
+}
+
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // 第1章：はじまりの音
 // body.universe.bg-interlude-0,
@@ -16,6 +34,10 @@ body.page--universe.bg-interlude-0 {
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  //  「基準値」 core/_base.scssの色
+  background-size: 100% 100%; //スマホ対策
+  background-position: 0 0;
 
   .word {
     font-style: italic;
@@ -60,6 +82,9 @@ body.page--universe.bg-interlude-1 {
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  background-size: 100% 100%;
+  background-position: 0 0;
 
   .word {
     font-style: italic;
@@ -107,6 +132,9 @@ body.page--universe.bg-interlude-2 {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
 
+  background-size: 100% 100%;
+  background-position: 0 0;
+
   .word {
     font-style: italic;
     opacity: 0.7;
@@ -138,13 +166,27 @@ body.page--universe.bg-interlude-3 {
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 1px 3px rgb(255 255 255 / 25%);
 
+  color: var(--main-color);
+
+  background-color: #05070b;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgb(255 255 255 / 22%) 0%,
+    rgb(255 255 255 / 10%) 18%,
+    rgb(0 0 0 / 0%) 88%
+  );
+
   .word {
-    font-family: var(--accent-font);
+    font-family: var(--accent-font); //Zen Kurenaido
     font-style: italic;
+    font-kerning: normal;
+    font-feature-settings: "kern";
 
     /* 間奏テキストは少しだけ淡く・細く（任意） */
     opacity: 0.9;
-    letter-spacing: 0.02em;
+    // letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    // animation: soft-fade 1s ease-out;
   }
 
   // 文字の入りは softFade 2.6s。JS側の表示間隔（delay）が 4000ms なら、
@@ -171,6 +213,9 @@ body.page--universe.bg-interlude-4 {
   --btn-pill-bg-hover: var(--mid);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 1px 3px rgb(255 255 255 / 40%); // 光を感じる白影
+
+  background-size: 100% 100%;
+  background-position: 0 0;
 
   .word {
     font-style: italic;
