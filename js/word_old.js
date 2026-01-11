@@ -1,4 +1,4 @@
-import { whiteoutOnce } from "./whiteout-once.js";
+// import { whiteoutOnce } from "./whiteout-once.js";
 
 // どの要素を操作するか取得
 const wordEl = document.querySelector(".word");
