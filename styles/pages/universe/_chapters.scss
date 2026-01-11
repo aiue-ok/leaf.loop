@@ -52,6 +52,7 @@ $u-deep-1: #2a3d56 !default;
   &::before {
     content: "";
     position: fixed;
+    // `inset`は`top`, `right`, `bottom`, `left` を全部まとめて設定する shorthand
     inset: 0;
     background:
       /* 点を薄く足す（任意） */ radial-gradient(
@@ -99,11 +100,8 @@ $u-deep-1: #2a3d56 !default;
 body.page--universe.theme-ch2::before,
 body.page--universe.bg-ch2::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
 
   // グリッド
   background-image: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
@@ -145,19 +143,16 @@ body.page--universe.bg-ch2 {
 // body.universe.bg-wave::before,
 body.page--universe.bg-wave::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 
   // 波紋
   background-image: url("../../../assets/universe/svg/chapter2_wave-ellipse.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
-  pointer-events: none; // UIの邪魔しない
-  z-index: var(--z-index-0); // 一番下に置く
   animation: wave-pulse var(--dur-wave) ease infinite; // 🌻🌸🌺
 }
 
@@ -172,18 +167,15 @@ body.page--universe.bg-wave {
 // body.universe.bg-quantum::before,
 body.page--universe.bg-quantum::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // ドット
   background-image: url("../../../assets/universe/svg/chapter2_dot.svg");
   background-repeat: repeat;
   background-size: auto;
-  pointer-events: none; // UIの邪魔しない
-  z-index: var(--z-index-0); // 一番下に置く
   animation: dot-pulse var(--dur-dot) ease infinite; // 🌻🌸🌺
 }
 
@@ -280,17 +272,15 @@ body.page--universe.bg-symmetry {
 // body.universe.bg-orbit::before,
 body.page--universe.bg-orbit::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
+
   // grid
   background-image: url("../../../assets/universe/svg/chapter2_orbit-grid.svg");
   background-repeat: repeat;
   background-size: auto;
-  pointer-events: none; // UIの邪魔しない
-  z-index: var(--z-index-0); // 一番下に置く
 }
 
 // body.universe.bg-orbit,/
@@ -303,18 +293,17 @@ body.page--universe.bg-orbit {
 // body.universe.bg-orbit::after,
 body.page--universe.bg-orbit::after {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
   // 軌道風
   background-image: url("../../../assets/universe/svg/chapter2_orbit.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
   pointer-events: none; // UIの邪魔しない
-  z-index: 1; // 一番下に置く
+  z-index: var(--z-index-1); // 一番下に置く
 }
 
 /* 事象の地平線　bg-horizon */
@@ -374,18 +363,15 @@ body.page--universe.bg-horizon {
 body.page--universe.bg-ch3::before,
 body.page--universe.theme-ch3::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // 星空
   background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg"); // 間隔が大きい⚠️
   background-repeat: repeat;
   background-size: auto;
-  pointer-events: none; // UIの邪魔しない
-  z-index: var(--z-index-0); // 一番下に置く
 }
 
 body.page--universe.bg-ch3,
@@ -413,16 +399,16 @@ body.page--universe.theme-ch3 {
 // body.universe.bg-star::before,
 body.page--universe.bg-star::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
-  // グリッド
+  // 星屑
   background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
+}
 
 // body.universe.bg-star,
 body.page--universe.bg-star {
@@ -437,11 +423,10 @@ body.page--universe.bg-star {
 // body.universe.bg-nebula::before,
 body.page--universe.bg-nebula::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // グリッド
   background-image: url("../../../assets/universe/svg/grid.svg");
@@ -497,16 +482,17 @@ body.page--universe.bg-nebula {
 // body.universe.bg-galaxy::before,
 body.page--universe.bg-galaxy::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // グリッド
   background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
+}
+
 // body.universe.bg-galaxy,
 body.page--universe.bg-galaxy {
   position: relative;
@@ -543,16 +529,17 @@ body.page--universe.bg-galaxy::after {
 // body.universe.bg-gravity::before,
 body.page--universe.bg-gravity::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // 演出
   background-image: url("../../../assets/universe/svg/chapter3_bg-gravity_Vector_Field_Generator.svg"); // 間隔が大きい⚠️
   background-repeat: repeat;
   background-size: auto;
+  background-position: center;
+}
 
 // body.universe.bg-gravity,
 body.page--universe.bg-gravity {
@@ -570,16 +557,16 @@ body.page--universe.bg-gravity {
 // body.universe.bg-wind::before,
 body.page--universe.bg-wind::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 
   // 演出
   background-image: url("../../../assets/universe/svg/chapter3_wind-Vector_Field_Generator.svg");
   background-repeat: repeat;
   background-size: auto;
+}
 
 // body.universe.bg-wind,
 body.page--universe.bg-wind {
@@ -728,7 +715,7 @@ body.page--universe.bg-past2 {
 // body.universe.bg-past2 .universe__word::before,
 body.page--universe.bg-past2 .universe__word::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: -3%;
   pointer-events: none;
   background: radial-gradient(
@@ -743,7 +730,7 @@ body.page--universe.bg-past2 .universe__word::before {
 // body.universe.bg-past2 .universe__word::after,
 body.page--universe.bg-past2 .universe__word::after {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: -2%;
   pointer-events: none;
   opacity: 0.3;
@@ -763,6 +750,11 @@ body.page--universe.bg-past2 .universe__word::after {
 // ▼暗黒
 // body.universe.bg-darkness::before,
 body.page--universe.bg-darkness::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* 背景レイヤーとして */
+  pointer-events: none;
 // body.universe.bg-darkness,
 body.page--universe.bg-darkness {
 }
