@@ -1107,6 +1107,12 @@ body.page--universe.theme-ch5 {
     animation: ch5-breathe 8s ease-in-out infinite alternate;
     will-change: transform, opacity;
   }
+
+  .word {
+    font-size: clamp(1.2rem, 3.2vw, 1.85rem);
+    letter-spacing: 0.05em;
+    padding-inline: 0.3em;
+  }
 }
 
 body.page--universe.bg-ch5::after,
