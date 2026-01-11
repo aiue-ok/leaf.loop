@@ -414,7 +414,16 @@
     // スマホ横向き　ここまで
   }
 }
-
+// スマホ 横 高さ
+// 位置(4) 📱mobile(land) 浮・3列3行の正方形
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--universe {
+    // 文字の邪魔にならないよう少し小さく
+    .timer-mini {
+      scale: 0.87;
+    }
+  }
+}
 // 幅 600px 以下の縦向きタブレットだけ（Surface Duo みたいな細長系）
 @media (max-width: 600px) and (orientation: portrait) {
   .page--gallery,

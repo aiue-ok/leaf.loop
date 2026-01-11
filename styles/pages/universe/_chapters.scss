@@ -19,7 +19,9 @@ body.page--universe.bg-ch1 {
 
   background: var(--bg-ch1);
   background-size: 400% 400%;
-  animation: var(--dur-gradientFlow) ease infinite;
+  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
+}
+
 }
 
 // ┏ ───────────────────────────────────── ┓

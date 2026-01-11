@@ -270,7 +270,7 @@
 // oklch(0.42 0.06 55)　→ かなり黒より
 // oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ
 
-.page--universe > .timer-mini {
+body.page--universe > .timer-mini {
   // 10 使う色　🎨
   // palette層は「base / accent / ink」の3つ
   // ページタイトル（アニメなし時）

@@ -1,41 +1,4 @@
 // keyframes & 汎用トランジション
-@keyframes fade-in-word {
-  from {
-    opacity: 0;
-    transform: translateY(0.5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes wordFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-    filter: blur(1px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-@keyframes wordFadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-2px);
-    filter: blur(1px);
-  }
-}
 
 @keyframes fade-in {
   // opacity: 0 → 1：静かに現れる
@@ -63,6 +26,16 @@
   }
 }
 
+@keyframes wordFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// 最後「おしまい」の部分
 @keyframes fade-last {
   0%,
   100% {
@@ -102,6 +75,7 @@
   }
 }
 
+// --- 素粒子・量子 bg-quantum---
 @keyframes dot-pulse {
   0%,
   100% {
@@ -113,7 +87,7 @@
   }
 }
 
-/* ===== アニメーション ===== */
+// ===== ゆがみ・ひずみ・膨張（bg-distortion） =====
 @keyframes distort-pulse {
   0%,
   100% {
@@ -127,6 +101,7 @@
   }
 }
 
+// ===== 対称（bg-symmetry） =====
 @keyframes symmetry-breathe {
   0%,
   100% {
@@ -161,8 +136,7 @@
   }
 }
 
-// ▼過去・光年
-
+// ▼光年
 /* 付与クラス: body.universe.bg-ly */
 @keyframes ly-streak {
   from {
@@ -175,7 +149,6 @@
 }
 
 // ▼過去
-
 /* 付与クラス: body.universe.bg-past */
 @keyframes pastwarp {
   0% {
@@ -209,7 +182,7 @@
   }
 }
 
-/* keyframes */
+// 第5章
 @keyframes ch5-breathe {
   0% {
     transform: scale(0.97) translateY(2%);

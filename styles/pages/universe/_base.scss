@@ -7,7 +7,6 @@ body.page--universe {
   display: flex;
   flex-direction: column;
   width: 100dvw;
-  // height: 100dvh;　//ないほうがいい
   min-height: 100vh; /* 保険 */
   min-height: 100svh; /* iOSで安定 */
   min-height: 100dvh; /* 対応ブラウザでは追従 */
@@ -26,7 +25,7 @@ body.page--universe {
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
-  // --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+  --text-shadow: none;
 
   //  「基準値」 core/_base.scssの色
   color: var(--main-color);
@@ -67,7 +66,7 @@ body.page--universe {
   //  color var(--dur-bg) var(--ease-standard);
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // アニメ使う宣言
+  // アニメ使う宣言 使ってない
 
   /* 初期はトランジション切ってチラつき防止 */
   body.booting {
@@ -117,20 +116,26 @@ body.page--universe {
     display: flex;
     align-items: center;
     justify-content: center;
+    // モバイル縦・デスクトップであってOK モバイル横はいらない
     padding-top: 5vh;
+    padding-top: 5dvh;
+    // モバイル横で必要
     padding-bottom: 12vh;
+    padding-bottom: 12dvh;
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // 一語ずつ詩的に出現させる場所
   // JavaScriptで動的に表示切り替え
-  .universe-words {
+  .universe__word {
     min-height: 50vh;
+    min-height: 50dvh;
     display: grid;
     place-items: center;
     padding-bottom: 6vh;
+    padding-bottom: 6dvh;
     text-align: center;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    // font-size: clamp(1.4rem, 4vw, 2.2rem);
     animation: fadeIn 2s ease-in-out;
   }
 
@@ -150,7 +155,6 @@ body.page--universe {
     max-width: 90vw;
     font-family: var(--sub-font); //Kiwi Maru
     font-size: clamp(1.4rem, 4vw, 2.2rem);
-    color: inherit;
     white-space: pre-line;
 
     // transition: opacity 2000ms ease;
@@ -196,12 +200,71 @@ body.page--universe {
 @media (width <= 768px) {
   body.page--universe {
     .word {
-      font-size: 1.5rem;
-      line-height: 2.2rem;
+      // font-size: 1.5rem;
+      letter-spacing: 0.3dvmin;
     }
   }
 }
 
 .theme-intro {
   // background: var(--bigin-white);
+}
+
+// 高さ480px〜1024pxの横向き タブレット
+@media (height > #{core.$bp-sm}) and (height < #{core.$bp-lg}) and (orientation: landscape) {
+  body.page--universe {
+  }
+}
+
+// 480px〜1024px 縦向き　タブレット　portrait
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
+  body.page--universe {
+    .page-header {
+      padding-left: 5dvmin;
+      padding-top: 3dvmin;
+    }
+    .page-header__title,
+    .page-header__subtitle {
+      font-size: clamp(18px, 10dvmin, 24px);
+    }
+  }
+}
+
+// surface duoなど
+@media (min-width: 540px) and (max-height: 720px) and (orientation: portrait) {
+  body.page--universe {
+    .page-header {
+      padding-left: 0;
+      padding-top: 0;
+    }
+    .page-header__title,
+    .page-header__subtitle {
+      font-size: clamp(18px, 2dvmin, 24px);
+    }
+  }
+}
+
+// スマホ 横向き 高さ480pxまで
+// タイマー 📱mobile(land) 浮・3列3行の正方形
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  body.page--universe {
+    .word {
+      text-wrap: balance; /* 対応ブラウザなら */
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      // iPhone SE対策　タイマーと文字が重ならないように位置を下げる
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* 480px以下　スマホ 縦 */
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  body.page--universe {
+    --mini-background: tranceparent;
+
+    .word {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      padding-bottom: 12dvmin;
+    }
+  }
 }
