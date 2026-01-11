@@ -244,14 +244,14 @@ function playEpilogue() {
   // opacityが 0→1 になるのに 1200ms かかる。
   overlay?.classList.add("show");
 
-  console.log("🌌 全単語の旅が終わりました");
+  // console.log("🌌 全単語の旅が終わりました");
 
   // 🔁 表示済みの単語をいったん fade-out させる 単語が1.8秒で消える
   wordEl.classList.remove("fade-in");
-  console.log("after remove fade-in", wordEl.className);
+  // console.log("after remove fade-in", wordEl.className);
   void wordEl.offsetWidth;
   wordEl.classList.add("fade-shiro"); //消える
-  console.log("after add fade-out", wordEl.className);
+  // console.log("after add fade-out", wordEl.className);
   // 3) 白幕が“完全に”出る頃に背景を切り替える
   setTimeout(() => {
     document.body.classList.remove("bg-ch5");
@@ -274,7 +274,7 @@ function playEpilogue() {
     wordEl.classList.remove("fade-in", "fade-shiro");
     void wordEl.offsetWidth;
     wordEl.classList.add("fade-last");
-    console.log("body classes:", document.body.className);
+    // console.log("body classes:", document.body.className);
     const timer = document.querySelector(".timer"); // 実際のセレクタに合わせて
 
     // 背景クラス/変数を変えた直後 （再描画）
@@ -286,32 +286,39 @@ function playEpilogue() {
   }, 5000); //「5秒後に次の段へ」**という“待ち時間”
 
   document.body.classList.add("is-ended");
-  console.log("body classes:", document.body.className);
+  // console.log("body classes:", document.body.className);
 }
 
 // 表示を切り替える関数
 function showNextWord() {
-  console.log("🔁 showNextWord 呼ばれた", currentIndex);
+  // console.log("🔁 showNextWord 呼ばれた", currentIndex);
+
+  // if (location.search.includes("dev")) {
+  //   console.count("showNextWord called");
+  //   console.log("index:", currentIndex);
+  // }
+
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // === デバッグユーティリティ ===
   // 👷→ URL末尾に ?dev を付けたときだけ有効。
   // ⚒️ 例: http:localhost:5500/universe.html?dev
-  if (location.search.includes("dev") && body.classList.contains("bg-ch4")) {
-    console.log("🚦 .bg-ch4 なので停止（devモード）");
-    return; //条件を満たしたら return; でその場で関数終了 → 次の単語に進まなくなる。
-  }
+  // if (location.search.includes("dev") && body.classList.contains("bg-star")) {
+  //   console.log("🚦 .bg-star なので停止（devモード）");
+  //   return;
+  // }
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
   // // すべて終了したら止める
   if (currentIndex >= flattenedWords.length) return;
   // 「flattenedWords の中の現在の currentIndex 番目の要素（＝単語オブジェクト）
   const current = flattenedWords[currentIndex];
-  console.log("▶️ 表示中:", current);
+  // console.log("▶️ 表示中:", current);
 
   // 🔁 表示済みの単語をいったん fade-out させる
   wordEl.classList.remove("fade-in");
   void wordEl.offsetWidth;
   wordEl.classList.add("fade-out"); //消える
-  console.log("after add fade-out", wordEl.className);
+  // console.log("after add fade-out", wordEl.className);
   // debugger; // ←ここで止まる
 
   // 次の表示時間を個別に設定
@@ -322,8 +329,25 @@ function showNextWord() {
     // .textContent は HTML 要素にテキストを入れる標準プロパティ
     wordEl.textContent = current.text;
 
+    // if (location.search.includes("dev")) {
+    //   console.group("🌌 bg switch");
+    //   console.log(
+    //     "before:",
+    //     body.className,
+    //     "currentIndex:",
+    //     currentIndex,
+    //     "text:",
+    //     current.text
+    //   );
+    // }
+
     // 1語ごとに背景クラス（先に背景クラス（色含む））を切り替える処理
-    document.body.className = `page--universe ${current.background}`;
+    // console.log("computed bg:", cs.backgroundColor, cs.backgroundImage);
+
+    // if (location.search.includes("dev")) {
+    //   console.log("after remove:", body.className);
+    // }
+
     if (current.bgClass) {
       // アニメーションをリセットして付け直す
       body.classList.remove(
@@ -331,7 +355,18 @@ function showNextWord() {
       );
       // 背景クラスをbodyに反映（他クラスを削除してから）
       body.classList.add(current.bgClass);
-    }
+    // console.log("computed bg:", cs2.backgroundColor, cs2.backgroundImage);
+
+    //   if (location.search.includes("dev")) {
+    //     console.log("after add:", document.body.className);
+    //     console.groupEnd();
+    //   }
+    // }
+
+    // if (location.search.includes("dev")) {
+    //   console.log("final:", document.body.className);
+    //   console.groupEnd();
+    // }
 
     // アニメーションをリセットして付け直す
     // アニメーション演出（fade-in）
@@ -357,8 +392,8 @@ function showNextWord() {
       // 単語を表示してから **何秒後に次を呼ぶか**
       setTimeout(showNextWord, delay); // ⏱️ 次を呼ぶ（再帰）
 
-      console.log(delay);
-      console.log("⏲️ 次の表示までの時間:", isInterlude);
+      // console.log(delay);
+      // console.log("⏲️ 次の表示までの時間:", isInterlude);
       return;
     }
     // ① fade-in が完全に終わるのを待つ
@@ -375,12 +410,9 @@ function showNextWord() {
 }
 
 showNextWord(); // 最初の1語
-
-// **すぐ止めたいとき（開発用スイッチ）**
-// ```scss
-// /* コンソールで document.body.classList.toggle('debug-no-anim') */
-// body.universe.debug-no-anim * {
-//   animation: none !important;
-//   transition: none !important;
+// if (window.__leafLoopShowNextWordStarted) {
+//   console.warn("showNextWord already started; skip");
+// } else {
+//   window.__leafLoopShowNextWordStarted = true;
+//   showNextWord();
 // }
-// ```
