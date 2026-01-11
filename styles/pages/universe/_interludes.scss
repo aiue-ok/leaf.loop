@@ -19,6 +19,10 @@ body.page--universe.bg-intro {
   background-position: 0 0;
 }
 
+html:has(body.page--universe.bg-intro) {
+  background-color: var(--html-bg-universe);
+}
+
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // 第1章：はじまりの音
 // body.universe.bg-interlude-0,
@@ -50,6 +54,10 @@ body.page--universe.bg-interlude-0 {
   .timer-mini {
     opacity: 0.95;
   }
+}
+
+html:has(body.page--universe.bg-interlude-0) {
+  background-color: var(--html-bg-universe);
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -101,6 +109,10 @@ body.page--universe.bg-interlude-1 {
   // 🙂 ヘルプカードの背景が透ける　背景かblur調整
 }
 
+html:has(body.page--universe.bg-interlude-1) {
+  background-color: var(--html-bg-int1);
+}
+
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼ Chapter3 第3章-星と時間（宇宙スケール）
 // body.universe.bg-interlude-2::before,
@@ -146,6 +158,10 @@ body.page--universe.bg-interlude-2 {
   .timer-mini {
     opacity: 0.88;
   }
+}
+
+html:has(body.page--universe.bg-interlude-2) {
+  background-color: var(--html-bg-universe);
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -195,6 +211,10 @@ body.page--universe.bg-interlude-3 {
   //     にしておくと、アニメ完了後に少しだけ静止→次、の“呼吸”感が出ます
 }
 
+html:has(body.page--universe.bg-interlude-3) {
+  background-color: var(--html-bg-int3);
+}
+
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼ 背景 第5章：還りゆく光
 // 間奏の背景＆文字色（bg-interlude-*）
@@ -220,4 +240,8 @@ body.page--universe.bg-interlude-4 {
   .word {
     font-style: italic;
   }
+}
+
+html:has(body.page--universe.bg-interlude-4) {
+  background-color: var(--html-bg-int4);
 }

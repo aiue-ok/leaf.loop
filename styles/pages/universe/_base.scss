@@ -2,6 +2,17 @@
 
 /* 宇宙ページのテーマ（ページ作用域で上書き */
 
+/* universeページだけ高さ固定を解除 */
+html.has-fluid-viewport,
+html.has-fluid-viewport body {
+  height: auto;
+}
+
+/* universe だけ “世界の下地” を黒に固定 */
+html:has(body.page--universe) {
+  background-color: var(--html-bg-universe);
+}
+
 // body タグ
 body.page--universe {
   display: flex;
@@ -29,7 +40,8 @@ body.page--universe {
 
   //  「基準値」 core/_base.scssの色
   color: var(--main-color);
-  background: var(--bg);
+  background-color: #000;
+  background: var(--bg, #000);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
