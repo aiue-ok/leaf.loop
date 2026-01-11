@@ -115,9 +115,14 @@ body.page--universe {
     ),
     linear-gradient(160deg, #0b1c39, #12174f);
 
-  // 星と時間	宇宙銀青	#D9E8F7	光粒を思わせる淡い青
-  --Ch3-bottom-hex: #d9e8f7;
-  --Ch3-bottom-rgba: rgb(217 232 247 / 100%);
+  // 光速　文字色　シルバー
+  --color-ch3-ly: oklch(80% 0.01 260 / 88%);
+  --bg-ch3-ly: radial-gradient(
+    circle at 50% 35%,
+    rgb(14 18 32) 0%,
+    rgb(5 7 14) 55%,
+    rgb(0 0 0) 100%
+  );
 
   // === 間奏（interlude） ===
   // Chapter3〜4 章の転換	黒→白のグラデ
