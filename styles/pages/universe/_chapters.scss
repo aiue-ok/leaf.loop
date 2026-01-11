@@ -276,16 +276,6 @@ body.page--universe.bg-symmetry {
   }
 }
 
-/* 動きが苦手な環境ではアニメ停止 */
-@media (prefers-reduced-motion: reduce) {
-  // body.universe.bg-distortion::after,
-  body.page--universe.bg-distortion::after,
-  // body.universe.bg-symmetry::after,
-  body.page--universe.bg-symmetry::after {
-    animation: none !important;
-  }
-}
-
 // 🎈実験ここまで☀️
 
 // --- 軌道・対称性・事象の地平線 bg-orbit---

@@ -53,13 +53,29 @@
     animation: none;
   }
 
-  body.universe [class*="bg-"]::before,
-  body.universe [class*="bg-"]::after,
-  body.universe .universe-words::before,
-  body.universe .universe-words::after,
-  body.universe .ch5-dust {
-    animation: none !important;
-    transition: none !important;
+  body.page--universe {
+    [class*="bg-"]::before,
+    [class*="bg-"]::after,
+    .universe__word::before,
+    .universe__word::after,
+    .ch5-dust {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      background-position: 0% 50% !important; /* 動いてた場合の固定 */
+    }
+
+    /* 2) 文字まわりの“ふわっと”は短くする（ゼロでもOK） */
+    .word,
+    #whiteout {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    /* 3) 例外：whiteoutだけは瞬時に切り替えたいなら */
+    #whiteout {
+      transition: none !important;
+    }
   }
 }
 
