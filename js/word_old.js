@@ -18,15 +18,15 @@ const chapters = [
     words: [
       //chapter.words で単語を順に表示できる
       "ビッグバン",
-      // "始まり",
-      // "光のひとしずく",
-      // "宇宙の夜明け",
-      // "透明",
-      // "解放",
-      // "時間",
-      // "空間",
-      // "物質",
-      // "呼吸",
+      "始まり",
+      "光のひとしずく",
+      "宇宙の夜明け",
+      "時間",
+      "空間",
+      "物質",
+      "透明",
+      "解放",
+      "呼吸",
     ],
   },
 
@@ -37,19 +37,19 @@ const chapters = [
     background: "bg-ch2",
     words: [
       //   観測の始まり系
-      { text: "重力波", bgClass: "bg-wave", delay: 8000 },
-      // { text: "電磁波", bgClass: "bg-wave" },
-      // { text: "素粒子", bgClass: "bg-quantum" },
-      // { text: "量子", bgClass: "bg-quantum" },
-      // //   秩序やパターン系
-      // { text: "対称性", bgClass: "bg-symmetry" },
-      // { text: "軌道", bgClass: "bg-orbit" },
-      // //   空間や形の変化系
-      // { text: "ゆがみ", bgClass: "bg-distortion" },
-      // { text: "ひずみ", bgClass: "bg-distortion" },
-      // { text: "膨張", bgClass: "bg-distortion" },
-      // //   境界系で終わり
-      // { text: "事象の地平線", bgClass: "bg-horizon" },
+      { text: "重力波", bgClass: "bg-wave" },
+      { text: "電磁波", bgClass: "bg-wave" },
+      // { text: "素粒子", bgClass: "bg-quantum" },//polish送り
+      // { text: "量子", bgClass: "bg-quantum" },//polish送り
+      //   秩序やパターン系
+      { text: "対称性", bgClass: "bg-symmetry" },
+      // { text: "軌道", bgClass: "bg-orbit" }, //polish送り
+      //   空間や形の変化系
+      // { text: "ゆがみ", bgClass: "bg-distortion" },//polish送り
+      // { text: "ひずみ", bgClass: "bg-distortion" },//polish送り
+      { text: "膨張", bgClass: "bg-distortion" },
+      //   境界系で終わり
+      { text: "事象の地平線", bgClass: "bg-horizon" },
     ],
   },
   // 第3章：星と時間
@@ -60,16 +60,16 @@ const chapters = [
     words: [
       // Chapter 3: 星と時間（cinematic）
       { text: "星屑", bgClass: "bg-star" }, // 小粒から始めて目を馴らす
-      // { text: "恒星", bgClass: "bg-star" }, // 明るさの核
-      // { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
-      // { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
-      // { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
-      // { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
-      // { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
-      // { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
-      // { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
-      // { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
-      // { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
+      { text: "恒星", bgClass: "bg-star" }, // 明るさの核
+      { text: "連星", bgClass: "bg-star" }, // 反復＝リズム
+      { text: "星雲", bgClass: "bg-nebula" }, // ふわっと面で広がる
+      { text: "銀河", bgClass: "bg-galaxy" }, // スケール最大の“像”
+      { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
+      { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
+      { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
+      { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
+      { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
+      { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
       { text: "光は、やがて戻る。", bgClass: "bg-darkness" },
     ],
   },
@@ -80,16 +80,16 @@ const chapters = [
     title: "ゆるやかな問い",
     background: "bg-ch4",
     words: [
-      // "無",
-      // "兆し",
-      // "残響",
-      // "思念",
-      // "まなざし",
-      // "ゆらぎ",
-      // "不確定",
-      // "予感",
-      // "間（ま）",
+      "無",
+      "間",
       "静寂",
+      "まなざし",
+      "残響",
+      // "思念", //polish送り
+      // "ゆらぎ",//polish送り
+      // "不確定",//polish送り
+      // "予感",//polish送り
+      "兆し",
     ],
   },
 
@@ -99,18 +99,19 @@ const chapters = [
     title: "還りゆく光",
     background: "bg-ch5",
     words: [
+      "宙",
       "遠さ",
-      // "すべて",
-      // "宙",
-      // "輪郭",
-      // "幻",
-      // "ふるえ",
-      // "未来",
-      // "光速",
-      // "帰還",
-      // "余白",
-      // "白",
-      // " ",
+      "すべて",
+      "輪郭",
+      "ふるえ",
+      "幻",
+      "光速",
+      "帰還",
+      "未来",
+      "余白",
+      "白",
+      "",
+      // { text: "？？", bgClass: "bg-light" },
     ],
   },
 ];
