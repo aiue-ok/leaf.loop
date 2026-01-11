@@ -4,6 +4,11 @@
 
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
 body.page--universe {
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ font-family フォント・ファミリー
+  --sub-font: "Kiwi Maru", system-ui, -apple-system, "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+
   // 4章
   --accent-font: "Zen Kurenaido", system-ui, -apple-system, "Hiragino Sans",
     "Noto Sans JP", sans-serif;
