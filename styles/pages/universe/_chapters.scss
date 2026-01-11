@@ -943,12 +943,31 @@ html:has(body.page--universe.bg-darkness) {
 
 // body.universe.bg-ch4,
 body.page--universe.bg-ch4 {
+  // ページの文字・アイコンの基本色
+  --main-color: var(--color-ch4); /* 青寄りの静寂グレー */
+  --bg: var(--bg-ch4);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
 
-/* 第4章の単語は少し長めに“呼吸”して現れる */
-// ずれが生じる
-body.universe.bg-ch4 .word,
-.page--universe.bg-ch4 .word {
-  animation: soft-fade 2.6s ease-out;
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 1px 3px rgb(255 255 255 / 25%);
+
+  /* 第4章の単語は少し長めに“呼吸”して現れる */
+  .word {
+    font-family: var(--accent-font); //Zen Kurenaido
+    font-kerning: normal;
+    font-feature-settings: "kern";
+    font-size: clamp(1.25rem, 3.4vw, 1.95rem);
+    letter-spacing: 0.06em; /* Zen Kurenaidoの呼吸 */
+    padding-inline: 0.3em;
+    animation: soft-fade 1.6s ease-out;
+  }
+}
+
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
