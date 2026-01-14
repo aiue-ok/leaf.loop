@@ -9,8 +9,10 @@
   margin-inline: auto;
   margin-bottom: 40px;
   padding-right: 1rem;
+
   // text-align: center;
   animation: linear spin 3600s infinite;
+
   // linear アニメーションがそれぞれの周期の中でどのように進行するか
   // cubic-bezier(0.0, 0.0, 1.0, 1.0) と同じで、等しい速度でアニメーションします
   // animation-timing-function: linear;
@@ -68,6 +70,7 @@
     // 縦長でも横長でも揺れずに一貫して下に置ける
     margin-top: auto;
     margin-bottom: 2rem;
+
     // 右寄せ
     align-self: flex-end;
   }
@@ -81,6 +84,7 @@
     .decor-clock {
       // 小さめ
       max-inline-size: 180px;
+
       // 下の余白をカット
       margin-bottom: 0;
     }
@@ -96,8 +100,10 @@
     .decor-clock {
       max-inline-size: 120px;
       margin-inline: unset;
+
       // 右に寄せる
       margin-left: auto;
+
       // 下の余白
       margin-bottom: 4px;
       right: 16px;

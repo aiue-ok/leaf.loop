@@ -1,4 +1,5 @@
 @use "../../core/index" as core;
+
 /* 1章｜ビッグバン * 始まり 光のひとしずく 宇宙の夜明け * 透明 解放 時間 空間 物質 * 呼吸 📝「気配」や「生まれたての鼓動」が感じられる章。 */
 body.page--universe.theme-ch1,
 body.page--universe.bg-ch1 {
@@ -44,6 +45,7 @@ body.page--universe.bg-ch1 {
     background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg"); // 間隔が大きい⚠️
     background-repeat: repeat;
     background-size: auto;
+
     /* Safariの描画安定寄り */
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -124,6 +126,7 @@ $u-deep-1: #2a3d56 !default;
     z-index: 1;
   }
 }
+
 body.page--universe.theme-ch2::before,
 body.page--universe.bg-ch2::before {
   content: "";
@@ -136,6 +139,7 @@ body.page--universe.bg-ch2::before {
   pointer-events: none;
   z-index: var(--z-index-1); // 一番下に置く
 }
+
 body.page--universe.theme-ch2,
 body.page--universe.bg-ch2 {
   --main-color: var(--color-ch2);
@@ -152,11 +156,13 @@ body.page--universe.bg-ch2 {
   background-size: 100% 100%;
   background-position: 0 0;
   animation: gradient-flow var(--dur-gradientFlow) ease infinite;
+
   .theme-far {
     --help-fg: #030738d1;
     --help-bg: oklch(from var(--main-color) l c h / 44%);
   }
 }
+
 body.page--universe.bg-wave::before {
   content: "";
   position: fixed;
@@ -169,6 +175,7 @@ body.page--universe.bg-wave::before {
   background-size: auto;
   animation: wave-pulse var(--dur-wave) ease infinite; // 🌻🌸🌺
 }
+
 body.page--universe.bg-wave {
   --main-color: var(--color-ch2);
   --bg: var(--bg-interlude-1);
@@ -178,6 +185,7 @@ body.page--universe.bg-wave {
 html:has(body.page--universe.bg-wave) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-quantum::before {
   content: "";
   position: fixed;
@@ -189,6 +197,7 @@ body.page--universe.bg-quantum::before {
   background-size: auto;
   animation: dot-pulse var(--dur-dot) ease infinite; // 🌻🌸🌺
 }
+
 body.page--universe.bg-quantum {
   @include deep-sky-base;
 
@@ -260,9 +269,10 @@ body.page--universe.bg-symmetry {
 </svg>")
         center/ min(70vmin, 720px) no-repeat;
     animation: symmetry-breathe 14s ease-in-out infinite;
-    mix-blend-mode: soft-light; //overlay screen softlightがよい
+    mix-blend-mode: soft-light; // overlay screen softlightがよい
   }
 }
+
 body.page--universe.bg-orbit::before {
   content: "";
   position: fixed;
@@ -273,11 +283,13 @@ body.page--universe.bg-orbit::before {
   background-repeat: repeat;
   background-size: auto;
 }
+
 body.page--universe.bg-orbit {
   @include deep-sky-base;
 
   background-size: 200% 200%;
 }
+
 body.page--universe.bg-orbit::after {
   content: "";
   position: fixed;
@@ -337,6 +349,7 @@ body.page--universe.bg-horizon {
     inset: 0;
     z-index: -2;
     pointer-events: none;
+
     /* ベース：ほぼ黒〜深紺。01の闇 × 02の青み をブレンド */
     background: radial-gradient(
         60% 50% at 50% 65%,
@@ -357,6 +370,7 @@ body.page--universe.bg-horizon {
 html:has(body.page--universe.bg-horizon) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-ch3::before,
 body.page--universe.theme-ch3::before {
   content: "";
@@ -395,6 +409,7 @@ body.page--universe.theme-ch3 {
 html:has(body.page--universe.bg-ch3) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-star {
   --main-color: var(--color-ch3);
   --bg: var(--html-bg-universe);
@@ -415,7 +430,6 @@ body.page--universe.bg-star {
     inset: 0;
     z-index: -2; /* 背景レイヤーとして */
     pointer-events: none;
-
     background: transparent;
     background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
     background-repeat: repeat;
@@ -430,6 +444,7 @@ body.page--universe.bg-star {
 html:has(body.page--universe.bg-star) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-nebula {
   --main-color: var(--color-ch3);
   --bg: var(--html-bg-universe);
@@ -443,7 +458,7 @@ body.page--universe.bg-nebula {
 
   background: radial-gradient(
       80vmax 80vmax at 70% 20%,
-      rgba(255, 255, 255, 0.16),
+      rgb(255 255 255 / 16%),
       transparent 60%
     ),
     linear-gradient(160deg, #0b1c39, #12174f);
@@ -455,7 +470,6 @@ body.page--universe.bg-nebula {
     inset: 0;
     z-index: -2;
     pointer-events: none;
-
     background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
     background-repeat: repeat;
     background-size: auto;
@@ -469,13 +483,13 @@ body.page--universe.bg-nebula {
     background: linear-gradient(
         135deg,
         transparent 42%,
-        hsl(20 70% 62% / 0.42) 52%,
+        hsl(20deg 70% 62% / 42%) 52%,
         transparent 60%
       ),
       linear-gradient(
         135deg,
         transparent 58%,
-        hsl(330 70% 72% / 0.32) 66%,
+        hsl(330deg 70% 72% / 32%) 66%,
         transparent 74%
       );
     background-size: 280% 280%, 320% 320%;
@@ -490,6 +504,7 @@ body.page--universe.bg-nebula {
 html:has(body.page--universe.bg-nebula) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-galaxy {
   --main-color: var(--color-ch3);
   --bg: var(--html-bg-universe);
@@ -508,16 +523,15 @@ body.page--universe.bg-galaxy {
     ),
     linear-gradient(160deg, #0b1c39, #12174f);
   background-color: #1e2b42;
-
   position: relative;
   z-index: 0;
+
   &::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-
     background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
     background-repeat: repeat;
     background-size: auto;
@@ -530,7 +544,6 @@ body.page--universe.bg-galaxy {
     inset: -10vmax;
     z-index: 0;
     pointer-events: none;
-
     background: linear-gradient(
       135deg,
       transparent 40%,
@@ -541,6 +554,7 @@ body.page--universe.bg-galaxy {
     filter: blur(30px);
     mix-blend-mode: screen;
     opacity: 0.85;
+
     /* animation は章の性格で判断 */
     animation: wind 8000ms ease-in-out infinite; // 🌻🌸🌺
   }
@@ -553,6 +567,7 @@ body.page--universe.bg-galaxy {
 html:has(body.page--universe.bg-galaxy) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-gravity {
   --main-color: var(--color-ch3);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
@@ -568,7 +583,7 @@ body.page--universe.bg-gravity {
   --bgsize: 280% 280%;
   --dur: 21s;
   --ease: ease;
-  --vignette: rgba(0, 0, 0, 0.12);
+  --vignette: rgb(0 0 0 / 12%);
 
   position: relative;
   background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
@@ -603,7 +618,7 @@ body.page--universe.bg-darkenergy {
   --c3: #cdd9ff;
   --bgsize: 360% 360%;
   --ease: ease-in-out;
-  --vignette: rgba(0, 0, 0, 0.1);
+  --vignette: rgb(0 0 0 / 10%);
 
   position: relative;
   background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
@@ -635,7 +650,7 @@ body.page--universe.bg-wind {
   --bgsize: 320% 320%;
   --dur: 18s;
   --ease: ease-in-out;
-  --vignette: rgba(0, 0, 0, 0);
+  --vignette: rgb(0 0 0 / 0%);
   --c1: #0b1c39;
   --c2: #1e2b4f;
   --c3: #dfefff;
@@ -671,8 +686,8 @@ body.page--universe.bg-wind {
     background: linear-gradient(
       135deg,
       transparent 45%,
-      hsl(22 75% 65% / 0.2) 52%,
-      hsl(330 70% 72% / 0.18) 58%,
+      hsl(22deg 75% 65% / 20%) 52%,
+      hsl(330deg 70% 72% / 18%) 58%,
       transparent 65%
     );
     filter: blur(28px);
@@ -693,7 +708,7 @@ body.page--universe.bg-ly {
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-  --btn-pill-border: oklch(38% 0.03 250 / 35%);
+  --btn-pill-border: oklch(38% 0.03 250deg / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 0 18px rgb(210 235 255 / 14%), 0 2px 20px rgb(0 0 0 / 45%);
@@ -722,6 +737,7 @@ body.page--universe.bg-ly {
     filter: blur(0.6px);
     opacity: 0.9;
   }
+
   &::after {
     content: "";
     position: fixed;
@@ -732,14 +748,12 @@ body.page--universe.bg-ly {
     transform: translateY(-50%);
     pointer-events: none;
     z-index: -1; /* 背景レイヤーとして */
-
     background: linear-gradient(
       to right,
       transparent,
       rgb(230 245 255 / 55%),
       transparent
     );
-
     opacity: 0.8;
   }
 
@@ -794,7 +808,6 @@ body.page--universe.bg-past {
     position: absolute;
     inset: -2%;
     pointer-events: none;
-
     background: radial-gradient(
         120% 100% at 48% 46%,
         rgb(255 255 255 / 6%),
@@ -832,6 +845,7 @@ body.page--universe.bg-past2 {
     z-index: -1;
     background: linear-gradient(180deg, #0e1629 0%, #1c2a3f 55%, #d9e8f7 100%);
   }
+
   position: relative;
   z-index: 0;
 
@@ -879,6 +893,7 @@ body.page--universe.bg-past2 .universe__word::after {
 html:has(body.page--universe.bg-past2) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-darkness {
   --main-color: var(--color-ch3);
   --bg: var(--html-bg-universe);
@@ -892,6 +907,7 @@ body.page--universe.bg-darkness {
 
   position: relative;
   z-index: 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -935,6 +951,7 @@ body.page--universe.bg-darkness {
 html:has(body.page--universe.bg-darkness) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-final-message {
   --main-color: var(--color-ch3);
   --bg: var(--html-bg-universe);
@@ -948,6 +965,7 @@ body.page--universe.bg-final-message {
 
   position: relative;
   z-index: 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -984,7 +1002,6 @@ body.page--universe.bg-final-message {
         rgb(4 8 18) 55%,
         rgb(9 10 20) 100%
       );
-
     animation: exitBlink 2400ms ease-out forwards;
   }
 
@@ -998,6 +1015,7 @@ body.page--universe.bg-final-message {
 html:has(body.page--universe.bg-final-message) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-ch4 {
   --main-color: var(--color-ch4); /* 青寄りの静寂グレー */
   --bg: var(--html-bg-int3);
@@ -1023,7 +1041,7 @@ body.page--universe.bg-ch4 {
 
   /* 第4章の単語は少し長めに“呼吸”して現れる */
   .word {
-    font-family: var(--accent-font); //Zen Kurenaido
+    font-family: var(--accent-font); // Zen Kurenaido
     font-kerning: normal;
     font-feature-settings: "kern";
     font-size: clamp(1.25rem, 3.4vw, 1.95rem);
@@ -1035,6 +1053,7 @@ body.page--universe.bg-ch4 {
 html:has(body.page--universe.bg-ch4) {
   background-color: var(--html-bg-int3);
 }
+
 /* 第5章：やわらかな光アニメ（デフォルトは呼吸） */
 body.page--universe.bg-ch5,
 body.page--universe.theme-ch5 {

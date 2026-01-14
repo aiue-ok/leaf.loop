@@ -24,7 +24,6 @@ body.page--universe {
   // ▼ Color フォント色
 
   --bigin-white: #f8faff; // はじまりの白・白幕
-
   --mid: #c2c2c2; // 静思グレー #C2C2C2 思索の中間調
 
   // === Text Colors 各章　文字色 ===
@@ -52,6 +51,7 @@ body.page--universe {
   // `#A67C00`（光を感じるゴールド系）
   // グレー寄りにしてやわらかく 45%くらいでもいい気がする
   --color-interlude-4: rgb(0 0 0 / 55%);
+
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
 
@@ -68,12 +68,11 @@ body.page--universe {
   // 提案A     // in oklch shorter hue,
   --bg-ch1: linear-gradient(
     -35deg,
-    oklch(92% 0.03 85) 0%,
-    oklch(30% 0.08 270) 28%,
-    oklch(26% 0.05 260) 62%,
-    oklch(94% 0.02 95) 100%
+    oklch(92% 0.03 85deg) 0%,
+    oklch(30% 0.08 270deg) 28%,
+    oklch(26% 0.05 260deg) 62%,
+    oklch(94% 0.02 95deg) 100%
   );
-
   --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
 
   // 濃紺 `#0B1C39` → 群青 `#1E2B4F`
@@ -115,7 +114,6 @@ body.page--universe {
       rgb(0 0 0 / 0%) 88%
     ),
     #000;
-
   --bg-interlude-4: radial-gradient(
     circle at 50% 55%,
     #f7f2e6 0%,
@@ -142,11 +140,10 @@ body.page--universe {
       transparent 60%
     ),
     linear-gradient(160deg, #0b1c39, #12174f);
-
   --word-shift: 6dvh;
 
   // 光速　文字色　シルバー
-  --color-ch3-ly: oklch(80% 0.01 260 / 88%);
+  --color-ch3-ly: oklch(80% 0.01 260deg / 88%);
   --bg-ch3-ly: radial-gradient(
     circle at 50% 35%,
     rgb(14 18 32) 0%,

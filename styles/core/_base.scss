@@ -235,6 +235,7 @@ input {
   // ドロワーメニュー　 scrim (背景の半透明幕) */
   // ドロワーの幅
   // --menu-w: min(360px, 86vw);
+
   /* ドロワーの箱　2025/12/10 */
   --menu-w: clamp(320px, 30vw, 420px); // 画面に応じて
 
@@ -250,6 +251,7 @@ input {
   // 🪐 universe
   // html background-color
   //  background: var(--bg) が一瞬 none / transparent になる
+
   /* universe だけ “世界の下地” を黒に固定 */
   --html-bg-universe: #1e2b42;
   --html-bg-int1: #0e1020;
@@ -460,17 +462,23 @@ input {
 .theme-far {
   // ヘルプカードの背景色　影　光ってる
   --link-box-shdw: 0 8px 24px var(--main-color), inset 0 0 0 1px var(--shiro20);
+
   // ヘルプカードの背景色
   --help-bg: oklch(from var(--main-color) l c h / 3%);
+
   // カード内のテキスト
   --help-fg: #{$color-space-far};
+
   // 中見出し「時間設定」「操作方法」
   --help-h: color-mix(in oklch, #{$color-space-sun} 85%, var(--shiro) 55%);
+
   // ヘルプカードのボーダー色
   --help-border: oklch(from var(--bg) l c h / 38%);
+
   // 閉じるボタン
   --help-icon: #{$color-space-far};
   --help-icon-bg: oklch(from #{$color-space-moon} l c h / 75%);
+
   // カードホバー時
   --help-filter: opacity(100%) brightness(100%);
   --help-filter-hover: opacity(96%) brightness(103%);

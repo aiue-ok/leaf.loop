@@ -26,10 +26,12 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
 }
+
 @keyframes fade-last {
   0%,
   100% {
@@ -40,6 +42,7 @@
     opacity: 1;
   }
 }
+
 @keyframes gradient-flow {
   0% {
     background-position: 0% 50%;
@@ -53,6 +56,7 @@
     background-position: 0% 50%;
   }
 }
+
 @keyframes wave-pulse {
   0% {
     transform: scale(1);
@@ -64,6 +68,7 @@
     opacity: 0.65;
   }
 }
+
 @keyframes dot-pulse {
   0%,
   100% {
@@ -74,6 +79,7 @@
     opacity: 0.35;
   }
 }
+
 @keyframes distort-pulse {
   0%,
   100% {
@@ -86,6 +92,7 @@
     opacity: 0.85;
   }
 }
+
 @keyframes symmetry-breathe {
   0%,
   100% {
@@ -98,6 +105,7 @@
     opacity: 0.88;
   }
 }
+
 @keyframes wind {
   0% {
     background-position: 0% 50%;
@@ -114,38 +122,46 @@
     transform: translate3d(-2%, 0, 0);
   }
 }
+
 @keyframes windA {
   0%,
   100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
+
 @keyframes windB {
   0%,
   100% {
     background-position: 100% 50%;
   }
+
   50% {
     background-position: 0% 50%;
   }
 }
+
 @keyframes zoomFlow {
   0% {
     background-size: 320% 320%;
     background-position: 0% 50%;
   }
+
   50% {
     background-size: 380% 380%;
     background-position: 100% 50%;
   }
+
   100% {
     background-size: 320% 320%;
     background-position: 0% 50%;
   }
 }
+
 /* 付与クラス: body.universe.bg-ly */
 @keyframes ly-streak {
   from {
@@ -156,6 +172,7 @@
     transform: translateX(-6%) translateY(2%);
   }
 }
+
 /* 付与クラス: body.universe.bg-past */
 @keyframes pastwarp {
   0% {
@@ -171,9 +188,11 @@
   0% {
     opacity: 0;
   }
+
   30% {
     opacity: 0;
   }
+
   45% {
     opacity: 1;
   } /* 点いた */
@@ -184,6 +203,7 @@
     opacity: 0;
   }
 }
+
 @keyframes ch5-breathe {
   0% {
     transform: scale(0.97) translateY(2%);

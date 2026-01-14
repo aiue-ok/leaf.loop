@@ -7,10 +7,12 @@ body.page--universe.bg-intro {
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
   color: var(--main-color);
   background: var(--html-bg-universe);
   background-size: 100% 100%;
   background-position: 0 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -25,6 +27,7 @@ body.page--universe.bg-intro {
 html:has(body.page--universe.bg-intro) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-interlude-0 {
   --main-color: var(--color-interlude-0);
   --bg: var(--html-bg-int1);
@@ -34,6 +37,7 @@ body.page--universe.bg-interlude-0 {
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
   &::before {
     content: "";
     position: fixed;
@@ -59,6 +63,7 @@ body.page--universe.bg-interlude-0 {
 html:has(body.page--universe.bg-interlude-0) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-interlude-1 {
   --main-color: var(--color-interlude-1);
   --bg: var(--html-bg-int1);
@@ -73,6 +78,7 @@ body.page--universe.bg-interlude-1 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -81,6 +87,7 @@ body.page--universe.bg-interlude-1 {
     z-index: -2;
     background: var(--bg-interlude-1);
   }
+
   &::after {
     content: "";
     position: fixed;
@@ -109,6 +116,7 @@ body.page--universe.bg-interlude-1 {
 html:has(body.page--universe.bg-interlude-1) {
   background-color: var(--html-bg-int1);
 }
+
 body.page--universe.bg-interlude-2 {
   --main-color: var(--color-interlude-2);
   --bg: var(--html-bg-universe);
@@ -123,6 +131,7 @@ body.page--universe.bg-interlude-2 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -131,6 +140,7 @@ body.page--universe.bg-interlude-2 {
     z-index: -1;
     pointer-events: none;
   }
+
   &::after {
     content: "";
     position: fixed;
@@ -158,6 +168,7 @@ body.page--universe.bg-interlude-2 {
 html:has(body.page--universe.bg-interlude-2) {
   background-color: var(--html-bg-universe);
 }
+
 body.page--universe.bg-interlude-3 {
   --main-color: var(--color-interlude-3); /* 青寄りの静寂グレー */
   --bg: var(--html-bg-int3);
@@ -173,6 +184,7 @@ body.page--universe.bg-interlude-3 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
+
   &::before {
     content: "";
     position: fixed;
@@ -183,7 +195,7 @@ body.page--universe.bg-interlude-3 {
   }
 
   .word {
-    font-family: var(--accent-font); //Zen Kurenaido
+    font-family: var(--accent-font); // Zen Kurenaido
     font-style: italic;
     font-kerning: normal;
     font-feature-settings: "kern";
@@ -197,6 +209,7 @@ body.page--universe.bg-interlude-3 {
 html:has(body.page--universe.bg-interlude-3) {
   background-color: var(--html-bg-int3);
 }
+
 body.page--universe.bg-interlude-4 {
   --main-color: var(--color-interlude-4); /* 青寄りの静寂グレー */
   --bg: var(--html-bg-int4);
@@ -214,6 +227,7 @@ body.page--universe.bg-interlude-4 {
   background-color: var(--html-bg-int4);
   background-size: 100% 100%;
   background-position: 0 0;
+
   &::before {
     content: "";
     position: fixed;
