@@ -42,7 +42,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%; //universe以外
+  height: 100%;
   overflow: hidden scroll;
   scroll-snap-type: y mandatory; /* スクロールでパチッと止まる */
 }

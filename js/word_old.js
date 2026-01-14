@@ -67,10 +67,10 @@ const chapters = [
       { text: "光年", bgClass: "bg-ly" }, // 時間・距離の意識
       { text: "過去", bgClass: "bg-past2" }, // 彩度を落として“後ろへ”
       { text: "引力", bgClass: "bg-gravity" }, // 力学へブリッジ①
-      { text: "ダークエネルギー", bgClass: "bg-gravity" }, // 見えない加速
+      { text: "ダークエネルギー", bgClass: "bg-darkenergy" }, // 見えない加速
       { text: "風", bgClass: "bg-wind" }, // 宇宙風＝場の流れ（重力系演出でOK）
       { text: "暗黒", bgClass: "bg-darkness" }, // 終曲へ（短め表示→fade-out）
-      { text: "光は、やがて戻る。", bgClass: "bg-darkness" },
+      { text: "光は、やがて戻る。", bgClass: "bg-final-message" },
     ],
   },
 
@@ -111,7 +111,6 @@ const chapters = [
       "余白",
       "白",
       "",
-      // { text: "？？", bgClass: "bg-light" },
     ],
   },
 ];
@@ -153,34 +152,37 @@ const playlist = [
     text: interludes[0].h, // h: "遠くのことを少しだけ",
     background: "bg-intro",
   },
-  // {
-  //   interlude: true, // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
-  //   text: interludes[0].title, // "はじまりの音"
-  //   background: "bg-interlude-0",
-  //   titleFrom: "chapter-1",
-  // },
-  // ここから第1章の言葉たち
-  // chapters[0],
-  // {
-  //   interlude: true,
-  //   text: interludes[1].title,
-  //   background: "bg-interlude-1",
-  //   titleFrom: "chapter-2",
-  // },
-  // chapters[1],
-  // {
-  //   interlude: true,
-  //   text: interludes[2].title,
-  //   background: "bg-interlude-2",
-  //   titleFrom: "chapter-3",
-  // },
-  // chapters[2],
-  // {
-  //   interlude: true,
-  //   text: interludes[3].title,
-  //   background: "bg-interlude-3",
-  //   titleFrom: "chapter-4",
-  // },
+  {
+    interlude: true, // 🌟 最初のインタールード（第1章のタイトルだけを先に見せたい）
+    text: interludes[0].title, // "はじまりの音"
+    background: "bg-interlude-0",
+    titleFrom: "chapter-1",
+  },
+  // // // ここから第1章の言葉たち
+  chapters[0],
+  {
+    interlude: true,
+    text: interludes[1].title,
+    background: "bg-interlude-1",
+    titleFrom: "chapter-2",
+  },
+  // // ここから第2章の言葉たち
+  chapters[1],
+  {
+    interlude: true,
+    text: interludes[2].title,
+    background: "bg-interlude-2",
+    titleFrom: "chapter-3",
+  },
+  // ここから第3章の言葉たち
+  chapters[2],
+  {
+    interlude: true,
+    text: interludes[3].title,
+    background: "bg-interlude-3",
+    titleFrom: "chapter-4",
+  },
+  // ここから第4章の言葉たち
   chapters[3],
   {
     interlude: true,
@@ -188,6 +190,7 @@ const playlist = [
     background: "bg-interlude-4",
     titleFrom: "chapter-5",
   },
+  // ここから第5章の言葉たち
   chapters[4],
 ];
 
@@ -303,10 +306,13 @@ function showNextWord() {
   // === デバッグユーティリティ ===
   // 👷→ URL末尾に ?dev を付けたときだけ有効。
   // ⚒️ 例: http:localhost:5500/universe.html?dev
-  // if (location.search.includes("dev") && body.classList.contains("bg-star")) {
-  //   console.log("🚦 .bg-star なので停止（devモード）");
-  //   return;
-  // }
+  if (
+    location.search.includes("dev") &&
+    body.classList.contains("bg-interlude-4")
+  ) {
+    console.log("🚦 .bg-interlude-4 なので停止（devモード）");
+    return;
+  }
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
   // // すべて終了したら止める
@@ -343,20 +349,49 @@ function showNextWord() {
     // }
 
     // 1語ごとに背景クラス（先に背景クラス（色含む））を切り替える処理
+    // 一旦まっさら　をやめる！！
+    // document.body.className = `page--universe ${current.background}`;
+    // body.classList.add("page--universe");
+
+    // 1) 古い bg を消す（同フレーム内で完結）
+    const oldBgs = Array.from(body.classList).filter((cls) =>
+      cls.startsWith("bg-")
+    );
+    if (oldBgs.length) body.classList.remove(...oldBgs);
+
+    const cs = getComputedStyle(document.body);
     // console.log("computed bg:", cs.backgroundColor, cs.backgroundImage);
 
     // if (location.search.includes("dev")) {
     //   console.log("after remove:", body.className);
     // }
 
+    // 2) 新しい bg を付ける（sourceを一本化！）
+    // current.bgClass を使う方針なら background は使わない
     if (current.bgClass) {
-      // アニメーションをリセットして付け直す
-      body.classList.remove(
-        ...Array.from(body.classList).filter((cls) => cls.startsWith("bg-"))
-      );
-      // 背景クラスをbodyに反映（他クラスを削除してから）
       body.classList.add(current.bgClass);
+    } else if (current.background) {
+      body.classList.add(current.background);
+    }
+
+    const cs2 = getComputedStyle(document.body);
     // console.log("computed bg:", cs2.backgroundColor, cs2.backgroundImage);
+
+    // if (location.search.includes("dev")) {
+    //   console.log("after add:", body.className);
+    //   console.groupEnd();
+    // }
+    // if (current.bgClass) {
+    //   // アニメーションをリセットして付け直す
+    //   body.classList.remove(
+    //     ...Array.from(body.classList).filter((cls) => cls.startsWith("bg-"))
+    //   );
+
+    //   if (location.search.includes("dev")) {
+    //     console.log("after remove:", document.body.className);
+    //   }
+    //   // 背景クラスをbodyに反映（他クラスを削除してから）
+    //   body.classList.add(current.bgClass);
 
     //   if (location.search.includes("dev")) {
     //     console.log("after add:", document.body.className);
