@@ -388,10 +388,13 @@ function showNextWord() {
       const isInterlude = current.isInterlude;
 
       // ### ① `delay`：単語ごとの**表示間隔** 7000 4000初期値
-      const delay = isInterlude ? 3500 : 3000;
-      // const delay = current.bgClass === "interlude" ? 7000 : 3000;
+      // ↓ bgClass が変わっても壊れにくい　安全系
+      const delay = isInterlude ? 5500 : 3000;
+      // const delay = current.bgClass === "interlude" ? 5500 : 3000; // 今の構造が固定ならシンプル
+      // const delay = (isInterlude ? 7000 : 4000) / (window.dev.speed || 1);
       // 単語を表示してから **何秒後に次を呼ぶか**
       setTimeout(showNextWord, delay); // ⏱️ 次を呼ぶ（再帰）
+      // scheduleNext(showNextWord, delay);
 
       // console.log(delay);
       // console.log("⏲️ 次の表示までの時間:", isInterlude);

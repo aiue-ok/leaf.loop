@@ -312,11 +312,14 @@ body.is-ended .restart-link {
 // タイマー 📱mobile(land) 浮・3列3行の正方形
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   body.page--universe {
+    .universe__word {
+      padding-bottom: 0; /* ←ここ！ */
+      min-height: 50dvh; /* 保険：dvh優先 */
+    }
+
     .word {
-      text-wrap: balance; /* 対応ブラウザなら */
-      font-size: clamp(1.4rem, 5vw, 2.2rem);
-      // iPhone SE対策　タイマーと文字が重ならないように位置を下げる
-      padding-bottom: 0;
+      text-wrap: balance;
+      font-size: clamp(1.6rem, 3.8vw, 1.9rem);
     }
   }
 }
