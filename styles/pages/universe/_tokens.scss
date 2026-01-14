@@ -2,6 +2,13 @@
 // ↓ 以下、universeスタイルのセット
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
+// ● メモ
+// styles/core/_base.scss 【 body.universe 初期値 】
+// linear-gradient(to bottom, #0e1020, #b4d2ea);
+// --bg: #{$color-space-base};
+// #f8faff
+// --main-color: #{$color-space-far};
+
 /* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
 body.page--universe {
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -22,15 +29,16 @@ body.page--universe {
 
   // === Text Colors 各章　文字色 ===
 
-  --color-ch1: #b1e6ff;
+  // --color-ch1: #b1e6ff;
+  --color-ch1: #a4ddff;
   --color-ch2: #e1f3ff;
   --color-ch3: #d9e8f7;
   --color-ch4: #ccc8c6;
   --color-ch5: #888;
 
   // === Text Colors 間奏 interlude　文字色 ===
-  // `#333333`（落ち着いた濃いグレー）
-  --color-interlude-0: var(--bigin-white);
+  // var(--bigin-white);からあたたかく
+  --color-interlude-0: #fff3e6;
 
   // `#F8FAFF`（白寄り）
   --color-interlude-1: #e1f3ff;
@@ -44,19 +52,26 @@ body.page--universe {
   // `#A67C00`（光を感じるゴールド系）
   // グレー寄りにしてやわらかく 45%くらいでもいい気がする
   --color-interlude-4: rgb(0 0 0 / 55%);
-
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   // ▼ 背景色
 
   // background 各章
   // 1章
   // --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
+  // --bg-ch1: linear-gradient(
+  //   -35deg,
+  //   oklch(89.662% 0.06429 228.559),
+  //   oklch(24.337% 0.10136 272.34),
+  //   oklch(28.895% 0.04608 261.374),
+  //   oklch(94% 0.02344 88.225)
+  // );
+  // 提案A     // in oklch shorter hue,
   --bg-ch1: linear-gradient(
-    135deg,
-    oklab(89.66199999999999% -0.04255 -0.04819),
-    oklch(24.337% 0.10136 272.34),
-    oklch(28.895% 0.04608 261.374),
-    oklch(98.001% 0.02344 88.225)
+    -35deg,
+    oklch(92% 0.03 85) 0%,
+    oklch(30% 0.08 270) 28%,
+    oklch(26% 0.05 260) 62%,
+    oklch(94% 0.02 95) 100%
   );
 
   --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
@@ -78,7 +93,7 @@ body.page--universe {
   --bg-interlude-0: radial-gradient(
     100% 100% at 0% 0%,
     #fff8e7 0%,
-    #435372 10.76%,
+    #435372 14%,
     #1e2b42 100%
   );
 
@@ -93,28 +108,18 @@ body.page--universe {
   --bg-interlude-2: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
 
   // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
-  // --bg-interlude-3: radial-gradient(
-  //     circle at 50% 50%,
-  //     rgb(255 255 255 / 22%) 0%,
-  //     rgb(255 255 255 / 10%) 18%,
-  //     rgb(0 0 0 / 0%) 88%
-  //   ),
-  //   #000;
-
-  // 案１
   --bg-interlude-3: radial-gradient(
       circle at 50% 50%,
-      rgb(190 205 220 / 18%) 0%,
-      rgb(190 205 220 / 8%) 22%,
+      rgb(255 255 255 / 22%) 0%,
+      rgb(255 255 255 / 10%) 18%,
       rgb(0 0 0 / 0%) 88%
     ),
     #000;
 
-  // 象牙色 `#FFFBE7` → 薄い蜂蜜色 `#FFF8E0`
   --bg-interlude-4: radial-gradient(
-    50% 71.11% at 50% 50%,
-    #fff8e7 0%,
-    #f8f6f0 100%
+    circle at 50% 55%,
+    #f7f2e6 0%,
+    #eee9e2 100%
   );
 
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
@@ -138,6 +143,8 @@ body.page--universe {
     ),
     linear-gradient(160deg, #0b1c39, #12174f);
 
+  --word-shift: 6dvh;
+
   // 光速　文字色　シルバー
   --color-ch3-ly: oklch(80% 0.01 260 / 88%);
   --bg-ch3-ly: radial-gradient(
@@ -158,7 +165,6 @@ body.page--universe {
 
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
   // ▼ Chapter5 第5章-還りゆく光
-
   // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -169,7 +175,7 @@ body.page--universe {
   --dur-whiteout: 1500ms; // ホワイトアウト3000msの半分
   // 各章
 
-  --dur-gradientFlow: 15000ms; // グラデーション
+  --dur-gradientFlow: 12000ms; // グラデーション
   --dur-wave: 8000ms;
   --dur-dot: 6000ms;
   --dur-nabula: 22000ms; // グラデーション 星雲
