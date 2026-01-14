@@ -1,46 +1,81 @@
 @use "../../core/index" as core;
 
 /* 宇宙ページのテーマ（ページ作用域で上書き */
-body.universe {
-  // コメントアウト2025/12/16見た目影響なし
-  // /* タイマーの色味や強さだけ宇宙仕様にする */
-  // .timer {
-  //   --timer-fg: #444; /* そのままでもOK。必要に応じ変更 */
-  //   --timer-opacity: 0.7;
-  //   --timer-hover-bg: rgb(68 68 68 / 60%);
-  //   --timer-hover-border: rgb(68 68 68 / 60%);
-  //   --timer-hover-fg: #fff;
-  //   --timer-focus-border: rgb(68 68 68 / 85%);
-  //   --timer-focus-shadow: rgb(90 74 70 / 30%);
-  //   --timer-focus-icon: rgb(90 74 70 / 100%);
-  // }
 
-  // background: var(--u-bg);
-  // color: var(--u-fg);
+/* universeページだけ高さ固定を解除 */
+html.has-fluid-viewport,
+html.has-fluid-viewport body {
+  height: auto;
 }
 
-// body タグ
-.page--universe {
-  height: 100%;
+/* universe だけ “世界の下地” を黒に固定 */
+html:has(body.page--universe) {
+  background-color: var(--html-bg-universe);
+}
+
+body.page--universe {
+  display: flex;
+  flex-direction: column;
+  width: 100dvw;
+  min-height: 100vh; /* 保険 */
+  min-height: 100svh; /* iOSで安定 */
+  min-height: 100dvh; /* 対応ブラウザでは追従 */
+  min-height: calc(var(--vh, 1vh) * 100);
+  overflow-x: clip;
+  position: relative;
   overflow: hidden;
-}
+  z-index: 0;
 
-body.universe {
-  //  「基準値」
-  color: #f5f5f5;
-  background: linear-gradient(to bottom, #0e1020, #b4d2ea);
-  transition: background var(--dur-bg) var(--ease-standard),
-    color var(--dur-bg) var(--ease-standard);
+  --main-color: var(--bigin-white);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: none;
+
+  color: var(--main-color);
+  background-color: #000;
+  background: var(--bg, #000);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 100dvw;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
+  transition: background-color 250ms ease, color 4000ms ease,
+    background-image 4000ms ease;
 
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // アニメ使う宣言
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 4000ms ease; /* ここが滑らかさ担当 */
+    background: linear-gradient(to bottom, #0e1020, #b4d2ea);
+  }
+
+  .universe__word,
+  .word {
+    color: var(--main-color);
+    text-shadow: var(--text-shadow, none);
+  }
+
+  .timer-mini__pill {
+    border-color: var(--btn-pill-border);
+    color: var(--main-color);
+  }
+
+  .timer-mini .timer-mini__icon-btn button,
+  .page-header {
+    color: var(--main-color);
+    text-shadow: var(--text-shadow);
+  }
+
+  .visual-card-help-bg {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    will-change: backdrop-filter;
+  }
 
   /* 初期はトランジション切ってチラつき防止 */
   body.booting {
@@ -53,168 +88,184 @@ body.universe {
     opacity: 0;
   }
 
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // ヘッダー ことばが表示されたら消える
-  // コメントアウト2025/12/16見た目影響なし　消して良いやつだけど、jsと連動している
-  .menu-btn .material-icons {
-    // 🍎src/scss/tokens/_colors.scss変数化アイコン
-    // color: white;
-  }
-
-  /* 既存：h1のフェード/高さトランジションと共存OK */
-  // Expected selector "header h1" to come before selector no-descending-specificity
-  // tokensに値ある h1だけじゃなくハンバーガーアイコンとh2にも適用が必要2025/12/16 未着手
-  header h1 {
-    transition: opacity var(--dur-header-fade) var(--ease-standard),
-      height var(--dur-header-height) var(--ease-standard);
-  }
-
   /* タイトルラッパは相対配置 */
-  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
   .title-wrapper {
     position: relative;
     display: inline-block; /* タイトル幅にフィット */
   }
 
   /* ホワイトアウトの白板 "overlay" */
-  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
   #whiteout {
     position: fixed;
     inset: 0; /* 画面全体 */
     background: var(--bigin-white);
     opacity: 0; /* 初期は透明 */
-    transition: opacity var(--dur-whiteout) var(--ease-standard); /* フェード時間 */
+    transition: opacity 700ms ease-in-out;
+    will-change: opacity;
     z-index: core.$z-whiteout; /* なんでも上に */
     pointer-events: none;
-    will-change: opacity;
   }
 
   /* 表示状態 */
-  #whiteout.active {
+  #whiteout.active,
+  #whiteout.show {
     opacity: 1;
   }
 
-  // IDなし　コメントアウト　2025/12/16
-  // #page-header {
-  //   transition: all --dur-header-height --ease-standard;
-  //   &.hidden {
-  //     height: 0;
-  //     overflow: hidden;
-  //   }
-  //   header {
-  //     height: auto;
-  //     transition: opacity --dur-header-fade --ease-standard,
-  //       height --dur-header-height --ease-standard;
-  //     &.hidden {
-  //       opacity: 0;
-  //       height: 0;
-  //       overflow: hidden;
-  //       margin-top: 0; // ←これでぴたっと消える
-  //     }
-  //   }
-  //   h1 {
-  //     transition: opacity --dur-header-fade --ease-standard,
-  //       height --dur-header-height ease;
-  //     color: #f5f5f5;
-  //     &.hidden {
-  //       opacity: 0;
-  //       pointer-events: none;
-  //     }
-  //   }
-  // }
-
-  // h1を重ねて浮かせる
-  // 2025/12/16 html内にID設定無し
-  // #page-title {
-  //   position: absolute;
-  //   top: 1.5rem;
-  //   left: 1.5rem;
-  //   z-index: 10;
-  //   opacity: 1;
-  //   transition: opacity --dur-header-fade --ease-standard;
-  // }
-
-  // // いっしょにホワイトアウト
-  // #page-title.active {
-  //   color: #f5f5f5;
-  //   opacity: 0.9;
-  // }
-
-  // // 消えたらクリック無効
-  // #page-title.hidden {
-  //   opacity: 0;
-  //   pointer-events: none;
-  // }
-
-  // 仮　戻るリンク
-
-  /*   a.back {
-    display: block;
-    text-align: right;
-    color: --color-accent-amber;
-    text-decoration: none;
-    outline: none;
-  } */
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // mainタブ
   main {
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 5vh;
+    padding-top: 5dvh;
     padding-bottom: 12vh;
+    padding-bottom: 12dvh;
   }
 
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // 一語ずつ詩的に出現させる場所
-  // JavaScriptで動的に表示切り替え
-  .universe-words,
   .universe__word {
-    // background: core.$test-bg2;
     min-height: 50vh;
+    min-height: 50dvh;
     display: grid;
     place-items: center;
     padding-bottom: 6vh;
+    padding-bottom: 6dvh;
     text-align: center;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    animation: fadeIn 2s ease-in-out;
   }
 
   .word {
     margin: 0;
     max-width: 90vw;
-    font-family: var(--sub-font);
-
-    // font-size: var(--font-size-universe); /* ← 2rem直書きは削除して集約 */
+    font-family: var(--sub-font); // Kiwi Maru
     font-size: clamp(1.4rem, 4vw, 2.2rem);
-    color: var(--color-text-dark-444);
-    opacity: 0;
-    animation: fade-in-word var(--dur-word-in) ease-out forwards;
+    white-space: pre-line;
+    z-index: core.$z-universe-word;
+    opacity: 1;
+    will-change: color, opacity;
   }
 
+  --dur-word-in: 1500ms; // 単語 入り
+  --dur-word-out: 1800ms; // 単語 出
   .word.fade-in {
-    animation: fade-in var(--dur-word-in) var(--dur-whiteout) forwards;
+    animation: fade-in var(--dur-word-in, 2s) ease-in forwards;
   }
 
   .word.fade-out {
-    animation: fade-out var(--dur-word-out) var(--ease-standard) forwards;
+    animation: fade-out var(--dur-word-out, 1.8s) ease-out forwards;
   }
 
-  // 間奏　言葉のフォント設定（ほぼ無言のため消す）　⚠️各章にて設定上書き
+  .word.fade-shiro {
+    animation: wordFadeOut 1800ms ease-out forwards;
+  }
+
+  .word.fade-last {
+    animation: fade-last 10000ms ease-in-out forwards;
+  }
+
+  .word.is-fade {
+    opacity: 0;
+  }
+
   .word.interlude {
     font-style: italic;
     font-size: 1.2em;
     opacity: 0.6;
     letter-spacing: 0.1em;
   }
+
+  .restart-link {
+    position: fixed;
+    bottom: 1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: currentcolor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1200ms ease;
+  }
+
+  .restart-link:hover {
+    opacity: 0.7;
+  }
+
+  .force-repaint {
+    transform: translateZ(0);
+  }
+}
+
+body.is-ended .restart-link {
+  opacity: 0.35;
+  pointer-events: auto;
 }
 
 @media (width <= 768px) {
-  .page--universe {
+  body.page--universe {
     .word {
-      font-size: 1.5rem;
-      line-height: 2.2rem;
+      letter-spacing: 0.3dvmin;
+    }
+  }
+}
+
+.theme-intro {
+}
+
+@media (height > #{core.$bp-sm}) and (height < #{core.$bp-lg}) and (orientation: landscape) {
+  body.page--universe {
+  }
+}
+
+@media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
+  body.page--universe {
+    .page-header {
+      padding-left: 5dvmin;
+      padding-top: 3dvmin;
+    }
+
+    .page-header__title,
+    .page-header__subtitle {
+      font-size: clamp(18px, 10dvmin, 24px);
+    }
+  }
+}
+
+@media (min-width: 540px) and (max-height: 720px) and (orientation: portrait) {
+  body.page--universe {
+    .page-header {
+      padding-left: 0;
+      padding-top: 0;
+    }
+
+    .page-header__title,
+    .page-header__subtitle {
+      font-size: clamp(18px, 2dvmin, 24px);
+    }
+  }
+}
+
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  body.page--universe {
+    .universe__word {
+      padding-bottom: 0; /* ←ここ！ */
+      min-height: 50dvh; /* 保険：dvh優先 */
+    }
+
+    .word {
+      text-wrap: balance;
+      font-size: clamp(1.6rem, 3.8vw, 1.9rem);
+    }
+  }
+}
+
+/* 480px以下　スマホ 縦 */
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  body.page--universe {
+    --mini-background: tranceparent;
+
+    .word {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      padding-bottom: 12dvmin;
     }
   }
 }

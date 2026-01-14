@@ -62,7 +62,6 @@
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
     inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
-
   --preset-mask: linear-gradient(
     to bottom,
     var(--kuro) 0 60%,
@@ -269,3 +268,20 @@
 // oklch(0.55 0.08 60)　→ チャイミディアム
 // oklch(0.42 0.06 55)　→ かなり黒より
 // oklch(0.75 0.05 70)　→ かなり明るい　ギリギリ
+
+body.page--universe > .timer-mini {
+  // 10 使う色　🎨
+  // palette層は「base / accent / ink」の3つ
+  // ページタイトル（アニメなし時）
+  // デスクトップ（default）
+  --mini-color-base: #{var(--bg)};
+  --mini-color-accent: #{var(--accent2)};
+  --mini-color-ink: #{var(--main-color)};
+  --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
+
+  // モバイルカラー
+  // パレット
+  --mini-color-base2: #{var(--bg)};
+  --mini-color-accent2: #{var(--accent2)};
+  --mini-color-ink2: #{var(--main-color)};
+}

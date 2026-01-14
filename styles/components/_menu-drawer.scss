@@ -5,7 +5,6 @@
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 .page--gallery,
-body.universe,
 .page--universe,
 body.about,
 .page--about {
@@ -53,6 +52,7 @@ body.about,
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       // リストとの間隔
       margin-bottom: 1.5rem;
     }
@@ -71,7 +71,7 @@ body.about,
       height: 44px;
       text-align: center;
       color: #{var(--panel-pop)};
-      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.15));
+      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 15%));
       scale: 100%;
       transition: scale #{var(--motion-tap)} ease;
 
@@ -152,7 +152,6 @@ body:not([data-menu-open="true"]) .scrim {
 // 480px以上の縦向き
 @media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     .menu-drawer {
@@ -179,7 +178,6 @@ body:not([data-menu-open="true"]) .scrim {
 // 横向き・hoverなし・1440px以下
 @media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     // メニューパネル
@@ -197,14 +195,15 @@ body:not([data-menu-open="true"]) .scrim {
 // 位置(4) 📱mobile(land)
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
-  body.universe,
   .page--universe,
   body.about {
     // メニューパネル
     .menu-drawer {
       padding: 24px 25px 25px;
+
       // --safe-right: env(safe-area-inset-right, 0px);
       padding-block: 1rem;
+
       //  上下を少しだけ詰める（左右は今のままでOK）
 
       /* 中身のレイアウト　Menu+ Xbutton */
@@ -218,6 +217,7 @@ body:not([data-menu-open="true"]) .scrim {
         margin-left: 3px;
         font-size: 1.3rem;
       }
+
       // （Xボタン）
       &__close {
         // 閉じるボタンの位置調整

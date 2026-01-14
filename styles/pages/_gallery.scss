@@ -249,11 +249,9 @@
     z-index: core.$z-lightbox-bg;
     inset: 0;
     padding: clamp(16px, 4vw, 32px);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: #{var(--lightbox-bg)};
     pointer-events: auto;
     overflow: auto;
@@ -295,6 +293,7 @@
     align-items: center;
     justify-content: center;
     margin: 0.75rem auto;
+
     // キャプションの「下寄せ」のため　2025/12/09
     margin-bottom: clamp(16px, 4vh, 40px);
     padding: 0.5rem;
@@ -309,7 +308,6 @@
     -webkit-backdrop-filter: blur(4px);
     will-change: backdrop-filter;
     animation: fadeInUp 0.5s ease-out;
-
     cursor: zoom-in;
 
     // テキスト
@@ -375,6 +373,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     // 見た目
     border: 1px solid var(--shiro20);
     border-radius: 50%;
@@ -517,6 +516,7 @@
       padding-block: 2.5rem;
       width: 100%;
       max-width: 960px;
+
       // 範囲を決める
       height: min-content;
       max-height: calc(100dvh - 4rem);
@@ -599,6 +599,7 @@
 
       &__caption {
         margin-top: 1rem;
+
         // margin-bottom: 0;
         margin-bottom: clamp(12px, 3vh, 24px); // 下に少し余白
         max-width: calc(18px * 25);

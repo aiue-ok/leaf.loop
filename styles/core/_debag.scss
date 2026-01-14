@@ -1,4 +1,3 @@
-// デフォは無効。style.scss から上書きできるよう !default
 $enable-debug: false !default;
 
 @layer debug {
@@ -20,18 +19,14 @@ $enable-debug: false !default;
 }
 
 * {
-  outline: 1px dotted blue;
+  // outline: 1px dotted yellow;
 }
 
-// test用ボーダー
-// border:core.$test;
 $test1: 1px solid rgb(255 0 0 / 30%);
 $test2: 1px solid rgb(255 200 0);
 $test3: 1px solid rgb(0 251 255);
 $test4: 1px solid rgb(255 0 238);
 $test5: 1px solid rgb(255 247 0);
-
-// background:core.$test-bg1;
 $test-bg1: rgb(200 255 0 / 40%);
 $test-bg2: rgb(69 110 198 / 40%);
 $test-bg3: rgb(44 251 48 / 30%);

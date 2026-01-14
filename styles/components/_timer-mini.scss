@@ -2,7 +2,6 @@
 
 .page--gallery,
 .page--universe,
-body.universe,
 .page--about {
   .timer-mini {
     /* レイアウト・背景・トークンの初期値など */
@@ -227,7 +226,6 @@ body.universe,
 @media (hover: hover) and (pointer: fine) {
   .page--gallery,
   .page--universe,
-  body.universe,
   .page--about {
     // 背景
     .timer-mini__bg:hover {
@@ -275,6 +273,7 @@ body.universe,
 
       // 幅・高さ
       width: min-content;
+
       // タブレット縦の癖（vh変動）にも耐える
       height: 16vh;
       min-height: 175px;
@@ -296,7 +295,6 @@ body.universe,
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
   .page--universe,
-  body.universe,
   body.about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
@@ -311,7 +309,6 @@ body.universe,
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   .page--universe,
-  body.universe,
   .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
@@ -419,6 +416,17 @@ body.universe,
   }
 }
 
+// スマホ 横 高さ
+// 位置(4) 📱mobile(land) 浮・3列3行の正方形
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--universe {
+    // 文字の邪魔にならないよう少し小さく
+    .timer-mini {
+      scale: 0.87;
+    }
+  }
+}
+
 // 幅 600px 以下の縦向きタブレットだけ（Surface Duo みたいな細長系）
 @media (max-width: 600px) and (orientation: portrait) {
   .page--gallery,
@@ -436,7 +444,6 @@ body.universe,
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   .page--universe,
-  body.universe,
   body.about {
     .timer-mini {
       // トークン差し替え
@@ -543,12 +550,10 @@ body.universe,
 
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   // 🪐 universeのみ
-  body.universe,
+
   .page--universe {
     .timer-mini {
       margin-bottom: 0.2rem;
-      // 高さを決めた方がいいか
-      height: 50px;
     }
   }
 }

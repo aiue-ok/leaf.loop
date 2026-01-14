@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="has-fluid-viewport">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,28 +8,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Kiwi+Maru&family=Kosugi+Maru&family=M+PLUS+1p&family=Zen+Kurenaido&family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Zen+Kurenaido&Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <!-- Noto Sans -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-
+    <script src="js/viewport-fix.js" defer></script>
     <script src="js/timer-base.js" defer></script>
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <script src="js/word.js" defer></script>
-    <script src="js/whiteout-once.js" defer></script>
+    <script type="module" src="js/word_old.js" defer></script>
+    <!-- <script type="module" src="js/word.js" defer></script> -->
+    <!-- <script type="module" src="js/whiteout-once.js" defer></script> -->
     <title>遠くのことを少しだけ</title>
   </head>
-  <body class="universe booting page--universe">
+  <body class="universe page--universe">
+    <!-- <body class="universe booting page--universe"></body> -->
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
     <aside class="timer-mini" aria-label="ティータイマー">
       <!-- カードの背景 -->
@@ -250,7 +247,7 @@
         </button>
         <div class="page-header__brand" id="page-title">
           <h1 class="page-header__title">leaf.loop - portfolio</h1>
-          <h2 class="page-header__subtitle">世界のお茶を少しだけ</h2>
+          <h2 class="page-header__subtitle">遠くのことを少しだけ</h2>
         </div>
       </div>
     </header>
@@ -259,8 +256,7 @@
         <div id="whiteout" aria-hidden="true"></div>
       </div>
       <!-- // 一語ずつ詩的に出現させる場所 -->
-      <section class="universe-words">
-        <!-- <p class="universe__word">はじまり</p> -->
+      <section class="universe-words universe__word">
         <!-- JSで順次表示 -->
         <p class="word" id="word"></p>
       </section>
@@ -278,7 +274,7 @@
     >
       <div class="info-help-container">
         <div
-          class="visual-card-help-bg theme-gal help-content m-plus-1p-regular"
+          class="visual-card-help-bg theme-far help-content m-plus-1p-regular"
         >
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
@@ -549,11 +545,13 @@
         </svg>
       </div>
     </nav>
-    <audio id="alarmSound" src="/assets/mp3/alarm.mp3" preload="auto"></audio>
+    <audio id="alarmSound" src="./assets/mp3/alarm.mp3" preload="auto"></audio>
     <div class="offcanvas-backdrop" hidden></div>
     <!-- 画面表示（トースト） -->
     <div id="toast" class="js-toast" role="status" aria-live="polite" hidden>
       お湯の準備ができました
     </div>
+    <!-- 今いる URL（universe.html）をもう一度読み直す（＝リロード） -->
+    <a class="restart-link" href="" aria-label="はじめから再生"> はじめから </a>
   </body>
 </html>

@@ -1,20 +1,7 @@
-// keyframes & 汎用トランジション
-@keyframes fade-in-word {
-  from {
-    opacity: 0;
-    transform: translateY(0.5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
 
   to {
@@ -35,7 +22,27 @@
   }
 }
 
-// グラデーション背景
+@keyframes wordFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-last {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+  }
+}
+
 @keyframes gradient-flow {
   0% {
     background-position: 0% 50%;
@@ -50,10 +57,55 @@
   }
 }
 
-// ▼ Chapter3 第3章-星と時間（宇宙スケール）
-// ▼bg-galaxy 銀河
-// 単語のフェードイン → 停止 → フェードアウトの「停止」を長めにする
-// 6〜7秒くらいまで伸ばす
+@keyframes wave-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 0.65;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes distort-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+}
+
+@keyframes symmetry-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.95;
+  }
+
+  50% {
+    transform: scale(1.03) rotate(1deg);
+    opacity: 0.88;
+  }
+}
+
 @keyframes wind {
   0% {
     background-position: 0% 50%;
@@ -71,7 +123,44 @@
   }
 }
 
-// ▼過去・光年
+@keyframes windA {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes windB {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes zoomFlow {
+  0% {
+    background-size: 320% 320%;
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-size: 380% 380%;
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-size: 320% 320%;
+    background-position: 0% 50%;
+  }
+}
 
 /* 付与クラス: body.universe.bg-ly */
 @keyframes ly-streak {
@@ -84,8 +173,6 @@
   }
 }
 
-// ▼過去
-
 /* 付与クラス: body.universe.bg-past */
 @keyframes pastwarp {
   0% {
@@ -97,28 +184,26 @@
   }
 }
 
-/* 単語の“息をする”フェード */
-@keyframes soft-fade {
+@keyframes exitBlink {
   0% {
     opacity: 0;
-    filter: blur(2px);
-    letter-spacing: 0.08em;
-    transform: translateY(6px);
   }
 
-  60% {
+  30% {
+    opacity: 0;
+  }
+
+  45% {
     opacity: 1;
-    filter: blur(0);
-    letter-spacing: 0;
-    transform: translateY(0);
-  }
-
+  } /* 点いた */
+  55% {
+    opacity: 1;
+  } /* ← ここを確保 */
   100% {
-    opacity: 1;
+    opacity: 0;
   }
 }
 
-/* keyframes */
 @keyframes ch5-breathe {
   0% {
     transform: scale(0.97) translateY(2%);

@@ -247,9 +247,10 @@ const intervalTime = 4000;
 const body = document.body;
 
 function showNextWord() {
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+
   // 👷→ URL末尾に ?dev を付けたときだけ有効。
-  //⚒️localhost:5500/universe.html?dev
-  // 例: http:
+  // ⚒️ 例: http:localhost:5500/universe.html?dev
   if (
     location.search.includes("dev") &&
     document.body.classList.contains("bg-ch1")
@@ -257,6 +258,7 @@ function showNextWord() {
     console.log("🚦 .bg-ch1 なので停止（devモード）");
     return; //条件を満たしたら return; でその場で関数終了 → 次の単語に進まなくなる。
   }
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
   if (currentIndex >= flattenedWords.length) {
     clearInterval(interval);
@@ -326,26 +328,26 @@ function showNextWord() {
   }, fadeDuration);
 }
 
-showNextWord(); // 最初の1語
+// showNextWord(); // 最初の1語
 
 //  ⚠️つかってない
 // 1語目の表示と同時にh1を消す
-const title = document.getElementById("page-title");
+// const title = document.getElementById("page-title");
 
-// 一度だけ非表示にするフラグ
-let hasHiddenTitle = false;
+// // 一度だけ非表示にするフラグ
+// let hasHiddenTitle = false;
 
-function changeWord() {
-  currentIndex++;
-  if (currentIndex >= words.length) {
-    currentIndex = 0;
-    console.log("🌀 currentIndex:", currentIndex);
-  }
+// function changeWord() {
+//   currentIndex++;
+//   if (currentIndex >= words.length) {
+//     currentIndex = 0;
+//     console.log("🌀 currentIndex:", currentIndex);
+//   }
 
-  // 1回目だけ h1 を非表示にする
-  if (currentIndex === 0 && !hasHiddenTitle) {
-    console.log("🚨 h1非表示処理 実行！");
-    setTimeout(() => {}, 500); // 3秒くらいで消すと美しいかも
-    hasHiddenTitle = true;
-  }
-}
+//   // 1回目だけ h1 を非表示にする
+//   if (currentIndex === 0 && !hasHiddenTitle) {
+//     console.log("🚨 h1非表示処理 実行！");
+//     setTimeout(() => {}, 500); // 3秒くらいで消すと美しいかも
+//     hasHiddenTitle = true;
+//   }
+// }
