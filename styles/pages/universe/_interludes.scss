@@ -1,31 +1,22 @@
-// 着地＆帰還
-// body.universe.bg-intro,
 body.page--universe.bg-intro {
-  // ページの文字・アイコンの基本色
   --main-color: var(--bigin-white);
   --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
-
-  //  「基準値」 core/_base.scssの色
   color: var(--main-color);
   background: var(--html-bg-universe);
   background-size: 100% 100%;
   background-position: 0 0;
-
-  // グラデはbefore
   &::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: -1;
-    // opacity: 0;
     transition: opacity 4000ms ease; /* ここが滑らかさ担当 */
     background: linear-gradient(to bottom, #0e1020, #b4d2ea);
   }
@@ -34,24 +25,15 @@ body.page--universe.bg-intro {
 html:has(body.page--universe.bg-intro) {
   background-color: var(--html-bg-universe);
 }
-
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// 第1章：はじまりの音
-// body.universe.bg-interlude-0,
 body.page--universe.bg-interlude-0 {
-  // ページの文字・アイコンの基本色
   --main-color: var(--color-interlude-0);
   --bg: var(--html-bg-int1);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
-
-  // グラデはbefore
   &::before {
     content: "";
     position: fixed;
@@ -77,23 +59,12 @@ body.page--universe.bg-interlude-0 {
 html:has(body.page--universe.bg-interlude-0) {
   background-color: var(--html-bg-universe);
 }
-
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼ 間奏 Chapter2 第2章-ゆらぎと法則（物理と観測）
-// // body.universe.bg-interlude-1::before,
-// body.page--universe.bg-interlude-1::before {
-// }
-
-// body.universe.bg-interlude-1,
 body.page--universe.bg-interlude-1 {
-  // ページの文字・アイコンの基本色
   --main-color: var(--color-interlude-1);
   --bg: var(--html-bg-int1);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
@@ -102,8 +73,6 @@ body.page--universe.bg-interlude-1 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
-
-  // グラデはbefore
   &::before {
     content: "";
     position: fixed;
@@ -112,16 +81,12 @@ body.page--universe.bg-interlude-1 {
     z-index: -2;
     background: var(--bg-interlude-1);
   }
-
-  // グリッドsvg
   &::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-
-    // グリッド
     background: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
     background-repeat: repeat;
     background-size: auto;
@@ -139,27 +104,17 @@ body.page--universe.bg-interlude-1 {
   .timer-mini {
     opacity: 0.7;
   }
-
-  // 🙂 ヘルプカードの背景が透ける　背景かblur調整
 }
 
 html:has(body.page--universe.bg-interlude-1) {
   background-color: var(--html-bg-int1);
 }
-
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼ Chapter3 第3章-星と時間（宇宙スケール）
-// 第3章-星と時間　背景ベース
-// body.universe.bg-interlude-2,
 body.page--universe.bg-interlude-2 {
-  // ページの文字・アイコンの基本色
   --main-color: var(--color-interlude-2);
   --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
@@ -168,8 +123,6 @@ body.page--universe.bg-interlude-2 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
-
-  // グラデ
   &::before {
     content: "";
     position: fixed;
@@ -178,15 +131,12 @@ body.page--universe.bg-interlude-2 {
     z-index: -1;
     pointer-events: none;
   }
-
-  // 星空svg
   &::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    // 星空
     background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
     background-repeat: repeat;
     background-size: auto;
@@ -208,20 +158,12 @@ body.page--universe.bg-interlude-2 {
 html:has(body.page--universe.bg-interlude-2) {
   background-color: var(--html-bg-universe);
 }
-
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼ 背景 第4章-ゆるやかな問い
-// ▼ 間奏- Ch3〜Ch4 第3章〜第4章
-// body.universe.bg-interlude-3,
 body.page--universe.bg-interlude-3 {
-  // ページの文字・アイコンの基本色
   --main-color: var(--color-interlude-3); /* 青寄りの静寂グレー */
   --bg: var(--html-bg-int3);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
@@ -231,8 +173,6 @@ body.page--universe.bg-interlude-3 {
   z-index: 0;
   background-size: 100% 100%;
   background-position: 0 0;
-
-  // グラデ
   &::before {
     content: "";
     position: fixed;
@@ -250,7 +190,6 @@ body.page--universe.bg-interlude-3 {
 
     /* 間奏テキストは少しだけ淡く・細く（任意） */
     opacity: 0.9;
-    // letter-spacing: 0.02em;
     letter-spacing: 0.08em;
   }
 }
@@ -258,21 +197,12 @@ body.page--universe.bg-interlude-3 {
 html:has(body.page--universe.bg-interlude-3) {
   background-color: var(--html-bg-int3);
 }
-
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼ 背景 第5章：還りゆく光
-// 間奏の背景＆文字色（bg-interlude-*）
-// ▼ 間奏- Ch4〜Ch5
-// body.universe.bg-interlude-4,
 body.page--universe.bg-interlude-4 {
-  // ページの文字・アイコンの基本色
   --main-color: var(--color-interlude-4); /* 青寄りの静寂グレー */
   --bg: var(--html-bg-int4);
   --mini-color: var(--main-color);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--color-interlude-4);
-
-  // ボタン枠（薄線）
   --btn-pill-border: var(--main-color);
   --btn-pill-bg-hover: var(--mid);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
@@ -284,8 +214,6 @@ body.page--universe.bg-interlude-4 {
   background-color: var(--html-bg-int4);
   background-size: 100% 100%;
   background-position: 0 0;
-
-  // グラデ
   &::before {
     content: "";
     position: fixed;
@@ -301,9 +229,7 @@ body.page--universe.bg-interlude-4 {
 
   .theme-far {
     --help-bg: oklch(from var(--main-color) l c h / 50%);
-    // カード内のテキスト
     --help-fg: var(--color-interlude-4);
-    // 中見出し「時間設定」「操作方法」
     --help-h: color-mix(
       in oklch,
       var(--color-interlude-4) 85%,

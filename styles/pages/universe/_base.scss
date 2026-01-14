@@ -12,8 +12,6 @@ html.has-fluid-viewport body {
 html:has(body.page--universe) {
   background-color: var(--html-bg-universe);
 }
-
-// body タグ
 body.page--universe {
   display: flex;
   flex-direction: column;
@@ -24,22 +22,16 @@ body.page--universe {
   min-height: calc(var(--vh, 1vh) * 100);
   overflow-x: clip;
   position: relative;
+  overflow: hidden;
   z-index: 0;
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // 0 intro
-  // ページの文字・アイコンの基本色
   --main-color: var(--bigin-white);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
-  // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: none;
-
-  //  「基準値」 core/_base.scssの色
   color: var(--main-color);
   background-color: #000;
   background: var(--bg, #000);
@@ -48,53 +40,35 @@ body.page--universe {
   background-position: center;
   transition: background-color 250ms ease, color 4000ms ease,
     background-image 4000ms ease;
-
   &::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: -1;
-    // opacity: 0;
     transition: opacity 4000ms ease; /* ここが滑らかさ担当 */
     background: linear-gradient(to bottom, #0e1020, #b4d2ea);
   }
-
-  // &.is-returning::before {
-  //   opacity: 1;
-  // }
 
   .universe__word,
   .word {
     color: var(--main-color);
     text-shadow: var(--text-shadow, none);
   }
-
-  // ピル系・ボタン枠
-  // 丸ボタン
   .timer-mini__pill {
     border-color: var(--btn-pill-border);
     color: var(--main-color);
   }
-
-  // タイマー、アイコンSVG、ページタイトル
   .timer-mini .timer-mini__icon-btn button,
   .page-header {
     color: var(--main-color);
     text-shadow: var(--text-shadow);
   }
-
-  // ヘルプカードの背景blur 強め
   .visual-card-help-bg {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     will-change: backdrop-filter;
   }
-  // transition: background var(--dur-bg) var(--ease-standard),
-  //  color var(--dur-bg) var(--ease-standard);
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // アニメ使う宣言 使ってない
 
   /* 初期はトランジション切ってチラつき防止 */
   body.booting {
@@ -106,23 +80,18 @@ body.page--universe {
   body.booting .word {
     opacity: 0;
   }
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
   /* タイトルラッパは相対配置 */
-  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
   .title-wrapper {
     position: relative;
     display: inline-block; /* タイトル幅にフィット */
   }
 
   /* ホワイトアウトの白板 "overlay" */
-  // main 内にあるクラス　#page-header {}から外へ移動2025/12/16
   #whiteout {
     position: fixed;
     inset: 0; /* 画面全体 */
     background: var(--bigin-white);
     opacity: 0; /* 初期は透明 */
-    // opacityが 0→1 になるのに 1200ms かかる。
     transition: opacity 700ms ease-in-out;
     will-change: opacity;
     z-index: core.$z-whiteout; /* なんでも上に */
@@ -134,26 +103,16 @@ body.page--universe {
   #whiteout.show {
     opacity: 1;
   }
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // mainタブ  .title-wrapperの外
   main {
-    // <body>display:flexに対して、<main> は自動で残りのスペースを使ってくれる
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    // モバイル縦・デスクトップであってOK モバイル横はいらない
     padding-top: 5vh;
     padding-top: 5dvh;
-    // モバイル横で必要
     padding-bottom: 12vh;
     padding-bottom: 12dvh;
   }
-
-  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-  // 一語ずつ詩的に出現させる場所
-  // JavaScriptで動的に表示切り替え
   .universe__word {
     min-height: 50vh;
     min-height: 50dvh;
@@ -162,20 +121,8 @@ body.page--universe {
     padding-bottom: 6vh;
     padding-bottom: 6dvh;
     text-align: center;
-    // font-size: clamp(1.4rem, 4vw, 2.2rem);
     animation: fadeIn 2s ease-in-out;
   }
-
-  // .universe__title {
-  //   visibility: hidden;
-  //   opacity: 0;
-  //   transition: opacity 1.2s ease;
-  // }
-
-  // .universe__title.is-visible {
-  //   visibility: visible;
-  //   opacity: 1;
-  // }
 
   .word {
     margin: 0;
@@ -184,34 +131,18 @@ body.page--universe {
     font-size: clamp(1.4rem, 4vw, 2.2rem);
     white-space: pre-line;
     z-index: core.$z-universe-word;
-
-    // transition: opacity 2000ms ease;
     opacity: 1;
     will-change: color, opacity;
   }
 
   --dur-word-in: 1500ms; // 単語 入り
   --dur-word-out: 1800ms; // 単語 出
-  // --fade-duration 1秒
-  // 戻すなら--ease-soft （ease-out：最初はゆっくり、最後スッと止まる感じ）
-
-  // opacity: 0 → 1：静かに現れる
-  // translateY：ほんの少し下から浮かぶように
   .word.fade-in {
     animation: fade-in var(--dur-word-in, 2s) ease-in forwards;
   }
-
-  // opacity: 1 → 0：静かに消える
-  // translateY：ほんの少し下から浮かぶように
   .word.fade-out {
     animation: fade-out var(--dur-word-out, 1.8s) ease-out forwards;
   }
-
-  // fade-in（1500ms）
-  // fade-shiro（1800ms）
-  // fade-last（10000ms）
-
-  // 最後の単語”白”
   .word.fade-shiro {
     animation: wordFadeOut 1800ms ease-out forwards;
   }
@@ -223,16 +154,12 @@ body.page--universe {
   .word.is-fade {
     opacity: 0;
   }
-
-  // 間奏　言葉のフォント設定（ほぼ無言のため消す）　⚠️各章にて設定上書き
   .word.interlude {
     font-style: italic;
     font-size: 1.2em;
     opacity: 0.6;
     letter-spacing: 0.1em;
   }
-
-  // リスタートリンク
   .restart-link {
     position: fixed;
     bottom: 1.6rem;
@@ -248,8 +175,6 @@ body.page--universe {
   .restart-link:hover {
     opacity: 0.7;
   }
-
-  // iOS Safari に再描画を促す
   .force-repaint {
     transform: translateZ(0);
   }
@@ -259,28 +184,20 @@ body.is-ended .restart-link {
   opacity: 0.35;
   pointer-events: auto;
 }
-
-// スマホでは余白やフォントサイズを少し大きめ
 @media (width <= 768px) {
   body.page--universe {
     .word {
-      // font-size: 1.5rem;
       letter-spacing: 0.3dvmin;
     }
   }
 }
 
 .theme-intro {
-  // background: var(--bigin-white);
 }
-
-// 高さ480px〜1024pxの横向き タブレット
 @media (height > #{core.$bp-sm}) and (height < #{core.$bp-lg}) and (orientation: landscape) {
   body.page--universe {
   }
 }
-
-// 480px〜1024px 縦向き　タブレット　portrait
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
   body.page--universe {
     .page-header {
@@ -293,8 +210,6 @@ body.is-ended .restart-link {
     }
   }
 }
-
-// surface duoなど
 @media (min-width: 540px) and (max-height: 720px) and (orientation: portrait) {
   body.page--universe {
     .page-header {
@@ -307,9 +222,6 @@ body.is-ended .restart-link {
     }
   }
 }
-
-// スマホ 横向き 高さ480pxまで
-// タイマー 📱mobile(land) 浮・3列3行の正方形
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   body.page--universe {
     .universe__word {

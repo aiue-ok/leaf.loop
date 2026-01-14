@@ -1,8 +1,4 @@
-// keyframes & 汎用トランジション
-
 @keyframes fade-in {
-  // opacity: 0 → 1：静かに現れる
-  // translateY：ほんの少し下から浮かぶように
   from {
     opacity: 0;
     transform: translateY(5px);
@@ -34,8 +30,6 @@
     opacity: 0;
   }
 }
-
-// 最後「おしまい」の部分
 @keyframes fade-last {
   0%,
   100% {
@@ -46,8 +40,6 @@
     opacity: 1;
   }
 }
-
-// グラデーション背景
 @keyframes gradient-flow {
   0% {
     background-position: 0% 50%;
@@ -61,8 +53,6 @@
     background-position: 0% 50%;
   }
 }
-
-// bg-wave 広がり
 @keyframes wave-pulse {
   0% {
     transform: scale(1);
@@ -74,8 +64,6 @@
     opacity: 0.65;
   }
 }
-
-// --- 素粒子・量子 bg-quantum---
 @keyframes dot-pulse {
   0%,
   100% {
@@ -86,8 +74,6 @@
     opacity: 0.35;
   }
 }
-
-// ===== ゆがみ・ひずみ・膨張（bg-distortion） =====
 @keyframes distort-pulse {
   0%,
   100% {
@@ -100,8 +86,6 @@
     opacity: 0.85;
   }
 }
-
-// ===== 対称（bg-symmetry） =====
 @keyframes symmetry-breathe {
   0%,
   100% {
@@ -114,11 +98,6 @@
     opacity: 0.88;
   }
 }
-
-// ▼ Chapter3 第3章-星と時間（宇宙スケール）
-// ▼bg-galaxy 銀河 風
-// 単語のフェードイン → 停止 → フェードアウトの「停止」を長めにする
-// 6〜7秒くらいまで伸ばす
 @keyframes wind {
   0% {
     background-position: 0% 50%;
@@ -135,8 +114,6 @@
     transform: translate3d(-2%, 0, 0);
   }
 }
-
-// .bg-nebula after
 @keyframes windA {
   0%,
   100% {
@@ -155,8 +132,6 @@
     background-position: 0% 50%;
   }
 }
-
-// ダークエネルギー　膨張感
 @keyframes zoomFlow {
   0% {
     background-size: 320% 320%;
@@ -171,8 +146,6 @@
     background-position: 0% 50%;
   }
 }
-
-// ▼光年
 /* 付与クラス: body.universe.bg-ly */
 @keyframes ly-streak {
   from {
@@ -183,8 +156,6 @@
     transform: translateX(-6%) translateY(2%);
   }
 }
-
-// ▼過去
 /* 付与クラス: body.universe.bg-past */
 @keyframes pastwarp {
   0% {
@@ -213,8 +184,6 @@
     opacity: 0;
   }
 }
-
-// 第5章
 @keyframes ch5-breathe {
   0% {
     transform: scale(0.97) translateY(2%);
