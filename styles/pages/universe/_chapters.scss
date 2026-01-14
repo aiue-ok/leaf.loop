@@ -6,20 +6,58 @@ body.page--universe.theme-ch1,
 body.page--universe.bg-ch1 {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch1);
-  --bg: var(--bg-ch1);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
   // ボタン枠（薄線）
   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+  --mini-color-accent: #fff8e7;
   // ヘルプカード
   --help-fg: #030738d1;
   --help-bg: oklch(from var(--main-color) l c h / 44%);
 
-  background: var(--bg-ch1);
-  background-size: 400% 400%;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite;
+  position: relative;
+  z-index: 0;
+  background-color: var(--html-bg-universe);
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 1;
+    background: var(--bg-ch1);
+    background-size: 200% 200%;
+    animation: gradient-flow var(--dur-gradientFlow) linear infinite;
+
+    /* Safariの描画安定寄り */
+    // Safari の描画チラつき対策として有名 レイヤーを1枚増やす行為
+    transform: translateZ(0);
+    // 3D transform の裏面を隠すプロパティ
+    backface-visibility: hidden;
+    // 「これから変わりますよ」とブラウザに前借り宣言
+    will-change: background-position;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.03;
+    // 技術ノイズ
+    background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg"); // 間隔が大きい⚠️
+    background-repeat: repeat;
+    background-size: auto;
+    /* Safariの描画安定寄り */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: background-position;
+  }
 }
 
 html:has(body.page--universe.bg-ch1) {
@@ -135,9 +173,6 @@ body.page--universe.bg-ch2 {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
-  // ヘルプカード
-  --help-fg: #030738d1;
-  --help-bg: oklch(from var(--main-color) l c h / 44%);
 
   background: var(--bg-interlude-0);
   // background-size: 400% 400%;
@@ -145,6 +180,12 @@ body.page--universe.bg-ch2 {
   background-position: 0 0;
   // グラデ背景
   animation: gradient-flow var(--dur-gradientFlow) ease infinite;
+
+  // ヘルプカード
+  .theme-far {
+    --help-fg: #030738d1;
+    --help-bg: oklch(from var(--main-color) l c h / 44%);
+  }
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -307,13 +348,12 @@ body.page--universe.bg-orbit::after {
   inset: 0;
   z-index: 0; /* 背景レイヤーとして */
   pointer-events: none;
+
   // 軌道風
   background-image: url("../../../assets/universe/svg/chapter2_orbit.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
-  pointer-events: none; // UIの邪魔しない
-  z-index: var(--z-index-1); // 一番下に置く
 }
 
 html:has(body.page--universe.bg-orbit) {
@@ -332,28 +372,30 @@ html:has(body.page--universe.bg-orbit) {
 // 「もう少し青寄り」なら #1a2d46 / #25405f あたりに寄せるのがおすすめです。
 // body.universe.bg-horizon,
 body.page--universe.bg-horizon {
-  /* ベース：ほぼ黒〜深紺。01の闇 × 02の青み をブレンド */
-  background: radial-gradient(
-      60% 50% at 50% 65%,
-      rgb(255 255 255 / 10%) 0%,
-      /* 中心にごく弱い光 */ rgb(255 255 255 / 4%) 22%,
-      rgb(255 255 255 / 0%) 40%
-    ),
-    linear-gradient(
-      to bottom,
-      #0c1423 0%,
-      /* ほぼ黒に近い紺（上） */ #142338 55%,
-      /* 01と02の中間っぽい深紺 */ #20344f 60%
-        /* わずかに青み（下=次章への橋渡し） */
-    );
-  color: rgb(226 235 245 / 92%); /* 読みやすい青白 */
-  text-shadow: 0 0 8px rgb(180 210 234 / 25%);
+  // ページの文字・アイコンの基本色
+  --main-color: rgb(226 235 245 / 92%);
+  --bg: var(--html-bg-universe);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --text-shadow: 0 0 8px rgb(180 210 234 / 25%);
+
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  position: relative;
+  z-index: 0;
+  background-size: 100% 100%;
+  background-position: 0 0;
 
   /* ほんのり“観測”の気配：極薄グリッド（好みでON） */
   &::before {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: -1;
     pointer-events: none;
     opacity: 0.1;
     background-image: linear-gradient(
@@ -366,6 +408,27 @@ body.page--universe.bg-horizon {
     mix-blend-mode: overlay; /* 地に馴染ませる */
   }
 
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    /* ベース：ほぼ黒〜深紺。01の闇 × 02の青み をブレンド */
+    background: radial-gradient(
+        60% 50% at 50% 65%,
+        rgb(255 255 255 / 10%) 0%,
+        /* 中心にごく弱い光 */ rgb(255 255 255 / 4%) 22%,
+        rgb(255 255 255 / 0%) 40%
+      ),
+      linear-gradient(
+        to bottom,
+        #0c1423 0%,
+        /* ほぼ黒に近い紺（上） */ #142338 55%,
+        /* 01と02の中間っぽい深紺 */ #20344f 60%
+          /* わずかに青み（下=次章への橋渡し） */
+      );
+  }
   // animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
 }
 
@@ -383,20 +446,17 @@ body.page--universe.theme-ch3::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
+  z-index: -2; /* 背景レイヤーとして */
   pointer-events: none;
-
-  // 星空
-  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg"); // 間隔が大きい⚠️
-  background-repeat: repeat;
-  background-size: auto;
+  background-image: var(--bg-ch3);
+  transition: none;
 }
 
 body.page--universe.bg-ch3,
 body.page--universe.theme-ch3 {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3);
-  --bg: var(--bg-ch3);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -405,6 +465,16 @@ body.page--universe.theme-ch3 {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
+  // 背景
+
+  position: relative;
+  z-index: 0; /* 背景レイヤーとして */
+
+  // 星空
+  background: url("../../../assets/universe/svg/chapter3-title-stars.svg"); // 間隔が大きい⚠️
+  background-repeat: repeat;
+  background-size: auto;
 
   .word {
     font-style: italic;
@@ -418,25 +488,11 @@ html:has(body.page--universe.bg-ch3) {
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼bg-star 星屑・恒星・連星
-// body.universe.bg-star::before,
-body.page--universe.bg-star::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
-
-  // 星屑
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
-  background-repeat: repeat;
-  background-size: auto;
-}
-
 // body.universe.bg-star,
 body.page--universe.bg-star {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3);
-  --bg: var(--bg-ch3);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -445,6 +501,23 @@ body.page--universe.bg-star {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2; /* 背景レイヤーとして */
+    pointer-events: none;
+
+    background: transparent;
+    // 星屑
+    background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+    background-repeat: repeat;
+    background-size: auto;
+  }
 
   .word {
     opacity: 0.9;
@@ -457,25 +530,11 @@ html:has(body.page--universe.bg-star) {
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼bg-nebula 星雲
-// body.universe.bg-nebula::before,
-body.page--universe.bg-nebula::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
-
-  // グリッド
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
-  background-repeat: repeat;
-  background-size: auto;
-  opacity: 0.85;
-}
-
 // body.universe.bg-nebula,
 body.page--universe.bg-nebula {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -485,37 +544,50 @@ body.page--universe.bg-nebula {
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
-  // 135deg
-  background: linear-gradient(
-    141deg,
-    #0b1c39 0%,
-    #1e2b4f 25%,
-    #94c0de 48%,
-    color-mix(in oklch, #ca7b3d 70%, #1e2b4f 30%) 62%,
-    /* オレンジを少し落ち着かせ */ hsl(350deg 75% 75% / 30%) 70%,
-    /* ← ピンクに透明度を持たせる */ transparent 78%
-      /* ← すぐ透明に逃がす＝帯が細く見える */
-  );
-  background-size: 250% 250%; /* 400% → 250%（帯をやや細く）　　もっと細めに */
-  animation: gradient-flow 22s ease-in-out infinite; /* ゆっくり */ // 🌻🌸🌺
-}
+  background: radial-gradient(
+      80vmax 80vmax at 70% 20%,
+      rgba(255, 255, 255, 0.16),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #0b1c39, #12174f);
+  position: relative;
 
-body.page--universe.bg-nebula::after {
-  content: "";
-  position: absolute;
-  inset: -10vmax;
-  background: linear-gradient(
-    135deg,
-    transparent 40%,
-    hsl(25 70% 60% / 0.28) 55%,
-    hsl(345 75% 75% / 0.22) 62%,
-    transparent 70%
-  );
-  filter: blur(30px); /* もや感 */
-  mix-blend-mode: screen; /* 夜空に溶け込む */
-  opacity: 0.85;
-  background-size: 300% 300%;
-  animation: wind 24s ease-in-out infinite;
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.78; /* お好みで */
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -15vmax;
+    background: linear-gradient(
+        135deg,
+        transparent 42%,
+        hsl(20 70% 62% / 0.42) 52%,
+        transparent 60%
+      ),
+      linear-gradient(
+        135deg,
+        transparent 58%,
+        hsl(330 70% 72% / 0.32) 66%,
+        transparent 74%
+      );
+    background-size: 280% 280%, 320% 320%;
+    background-position: 0% 50%, 100% 50%;
+    filter: blur(28px);
+    mix-blend-mode: soft-light;
+    animation: windA 9000ms ease-in-out infinite,
+      windB 15000ms ease-in-out infinite;
+  }
 }
 
 html:has(body.page--universe.bg-nebula) {
@@ -524,27 +596,12 @@ html:has(body.page--universe.bg-nebula) {
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼bg-galaxy 銀河
-// 単語のフェードイン → 停止 → フェードアウトの「停止」を長めにする
-// 6〜7秒くらいまで伸ばす
-// body.universe.bg-galaxy::before,
-body.page--universe.bg-galaxy::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
-
-  // グリッド
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
-  background-repeat: repeat;
-  background-size: auto;
-}
 
 // body.universe.bg-galaxy,
 body.page--universe.bg-galaxy {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3);
-  --bg: var(--bg-ch3-galaxy);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -554,32 +611,58 @@ body.page--universe.bg-galaxy {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
 
+  /* 地面：動かない・安定 */
+  background: radial-gradient(
+      80vmax 80vmax at 70% 20%,
+      rgb(255 255 255 / 6%),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #0b1c39, #12174f);
+  background-color: #1e2b42;
+
   position: relative;
-  overflow: hidden;
+  z-index: 0;
+
+  // 単語のフェードイン → 停止 → フェードアウトの「停止」を長めにする
+  // 6〜7秒くらいまで伸ばす
+  // body.universe.bg-galaxy::before,
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 1;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: -10vmax;
+    z-index: 0;
+    pointer-events: none;
+
+    background: linear-gradient(
+      135deg,
+      transparent 40%,
+      hsl(25deg 70% 60% / 28%) 55%,
+      hsl(345deg 75% 75% / 22%) 62%,
+      transparent 70%
+    );
+    filter: blur(30px);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    /* animation は章の性格で判断 */
+    animation: wind 8000ms ease-in-out infinite; // 🌻🌸🌺
+  }
 
   .word {
     opacity: 0.9;
   }
-}
-
-// body.universe.bg-galaxy::after,
-body.page--universe.bg-galaxy::after {
-  content: "";
-  position: absolute;
-  inset: -10vmax;
-  background: linear-gradient(
-    135deg,
-    transparent 40%,
-    hsl(25deg 70% 60% / 28%) 55%,
-    hsl(345deg 75% 75% / 22%) 62%,
-    transparent 70%
-  );
-  filter: blur(30px); /* もや感 */
-  mix-blend-mode: screen; /* 夜空に溶け込む */
-  opacity: 0.85;
-  background-size: 300% 300%;
-  // animation: wind 24s ease-in-out infinite; // 🌻🌸🌺
-  animation: wind 8000ms ease-in-out infinite; // 🌻🌸🌺
 }
 
 html:has(body.page--universe.bg-galaxy) {
@@ -588,20 +671,6 @@ html:has(body.page--universe.bg-galaxy) {
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼bg-gravity 引力・ダークエネルギー
-// body.universe.bg-gravity::before,
-body.page--universe.bg-gravity::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
-
-  // 演出
-  background-image: url("../../../assets/universe/svg/chapter3_bg-gravity_Vector_Field_Generator.svg"); // 間隔が大きい⚠️
-  background-repeat: repeat;
-  background-size: auto;
-  background-position: center;
-}
 
 // body.universe.bg-gravity,
 body.page--universe.bg-gravity {
@@ -615,69 +684,189 @@ body.page--universe.bg-gravity {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+  --c1: #060e22;
+  --c2: #162547;
+  --c3: #b9cde2;
+  --bgsize: 280% 280%;
+  --dur: 21s;
+  --ease: ease;
+  --vignette: rgba(0, 0, 0, 0.12);
+
+  position: relative;
+  background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+  background-size: var(--bgsize);
+  animation: gradient-flow var(--dur) var(--ease) infinite;
+
+  // content: "";
+  // position: fixed;
+  // inset: 0;
+  // z-index: 0; /* 背景レイヤーとして */
+  // pointer-events: none;
+
+  // // 演出
+  // background-image: url("../../../assets/universe/svg/chapter3_bg-gravity_Vector_Field_Generator.svg"); // 間隔が大きい⚠️
+  // background-repeat: repeat;
+  // background-size: auto;
+  // background-position: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10vmax;
+    pointer-events: none;
+    background: radial-gradient(
+      70vmax 70vmax at 50% 55%,
+      var(--vignette),
+      transparent 70%
+    );
+    mix-blend-mode: multiply;
+    // background: linear-gradient(
+    //   135deg,
+    //   rgb(11 28 57 / 100%),
+    //   rgb(30 43 79 / 100%),
+    //   rgb(217 232 247 / 100%)
+    // );
+    // background-size: 400% 400%;
+    // animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+  }
 
   .word {
     opacity: 0.9;
   }
-
-  background: linear-gradient(
-    135deg,
-    rgb(11 28 57 / 100%),
-    rgb(30 43 79 / 100%),
-    rgb(217 232 247 / 100%)
-  );
-  background-size: 400% 400%;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
 }
 
 html:has(body.page--universe.bg-gravity) {
   background-color: var(--html-bg-universe);
 }
 
-// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-// ▼bg-wind 風
-// body.universe.bg-wind::before,
-body.page--universe.bg-wind::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
+body.page--universe.bg-darkenergy {
+  --c1: #0a0b2a;
+  --c2: #2a2460;
+  --c3: #cdd9ff;
+  --bgsize: 360% 360%;
+  --ease: ease-in-out;
+  --vignette: rgba(0, 0, 0, 0.1);
 
-  // 演出
-  background-image: url("../../../assets/universe/svg/chapter3_wind-Vector_Field_Generator.svg");
-  background-repeat: repeat;
-  background-size: auto;
+  position: relative;
+  background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+  background-size: var(--bgsize);
+  animation: zoomFlow 6s ease-in-out infinite;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10vmax;
+    pointer-events: none;
+    background: radial-gradient(
+      70vmax 70vmax at 50% 55%,
+      var(--vignette),
+      transparent 70%
+    );
+    mix-blend-mode: multiply;
+  }
 }
 
-// body.universe.bg-wind,
-body.page--universe.bg-wind {
-  // ページの文字・アイコンの基本色
-  --main-color: var(--color-ch3);
-  --bg: var(--bg-ch3);
-  --mini-color: oklch(from var(--main-color) l c h / 80%);
-  --mini-color-base2: var(--mini-color);
-  --mini-color-ink: var(--bg);
-  // ボタン枠（薄線）
-  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
-  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
-  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
-  --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+html:has(body.page--universe.bg-darkenergy) {
+  background-color: var(--html-bg-universe);
+}
 
-  .word {
-    opacity: 0.9;
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// ▼bg-wind 風
+// body.universe.bg-wind,
+// body.page--universe.bg-wind {
+//   // ページの文字・アイコンの基本色
+//   --main-color: var(--color-ch3);
+//   --bg: var(--bg-ch3);
+//   --mini-color: oklch(from var(--main-color) l c h / 80%);
+//   --mini-color-base2: var(--mini-color);
+//   --mini-color-ink: var(--bg);
+//   // ボタン枠（薄線）
+//   --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+//   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+//   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+//   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+
+//   // 角度を真横から
+//   background: linear-gradient(
+//     90deg,
+//     rgb(11 28 57 / 100%),
+//     rgb(30 43 79 / 100%),
+//     rgb(217 232 247 / 100%)
+//   );
+
+//   background-size: 400% 400%;
+//   animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+
+//   &::before {
+//     content: "";
+//     position: fixed;
+//     inset: 0;
+//     z-index: 0; /* 背景レイヤーとして */
+//     pointer-events: none;
+
+//     // 演出
+//     background-image: url("../../../assets/universe/svg/chapter3_wind-Vector_Field_Generator.svg");
+//     background-repeat: repeat;
+//     background-size: auto;
+//   }
+
+//   .word {
+//     opacity: 0.9;
+//   }
+// }
+
+body.page--universe.bg-wind {
+  --c1: #0b1c39; /* 深紺 */
+  --c2: #1e2b4f; /* 紺 */
+  --c3: #d9e8f7; /* 薄い青 */
+  --bgsize: 320% 320%;
+  --dur: 18s;
+  --ease: ease-in-out;
+  --vignette: rgba(0, 0, 0, 0);
+  --c1: #0b1c39;
+  --c2: #1e2b4f;
+  --c3: #dfefff;
+  --bgsize: 320% 320%;
+  --dur: 18000ms;
+
+  position: relative;
+  background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+  background-size: var(--bgsize);
+  animation: gradient-flow var(--dur) var(--ease) infinite;
+
+  /* ふわっと中心を引き締めるビネット（控えめ） */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10vmax;
+    pointer-events: none;
+    background: radial-gradient(
+      70vmax 70vmax at 50% 55%,
+      var(--vignette),
+      transparent 70%
+    );
+    mix-blend-mode: multiply;
   }
 
-  // 角度を真横から
-  background: linear-gradient(
-    90deg,
-    rgb(11 28 57 / 100%),
-    rgb(30 43 79 / 100%),
-    rgb(217 232 247 / 100%)
-  );
-
-  background-size: 400% 400%;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+  /* 風の細い帯（必要なシーンだけで出す） */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -12vmax;
+    pointer-events: none;
+    opacity: 0.85;
+    background: linear-gradient(
+      135deg,
+      transparent 45%,
+      hsl(22 75% 65% / 0.2) 52%,
+      hsl(330 70% 72% / 0.18) 58%,
+      transparent 65%
+    );
+    filter: blur(28px);
+    mix-blend-mode: screen;
+    background-size: 260% 260%;
+    animation: wind 6s ease-in-out infinite;
+  }
 }
 
 html:has(body.page--universe.bg-wind) {
@@ -688,62 +877,12 @@ html:has(body.page--universe.bg-wind) {
 // ▼光年
 
 /* 付与クラス: body.universe.bg-ly */
-// 1️⃣文字のあたりに斜めラインがある
-// 極細ラインを斜めに流す。
-// body.universe.bg-ly .universe__word,
-// body.page--universe.bg-ly .universe__word {
-//   position: relative;
-//   overflow: hidden;
-// }
-
-// 極細の斜めライン
-// body.universe.bg-ly .universe__word::before,
-// body.page--universe.bg-ly .universe__word::before {
-//   content: "";
-//   position: absolute;
-//   inset: -10%;
-//   pointer-events: none;
-
-//   // 演出
-//   background-image: repeating-linear-gradient(
-//     -12deg,
-//     rgb(255 255 255 / 12%) 0 1px,
-//     transparent 1px 24px
-//   );
-//   filter: blur(0.2px);
-//   opacity: 0.25; //うす〜く
-//   animation: ly-streak 8s linear infinite; // 🌻🌸🌺
-// }
-
-/* 2️⃣中央の光束バー（動かさない） */
-// body.universe.bg-ly .universe__word::before,
-body.page--universe.bg-ly .universe__word::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0; /* 背景レイヤーとして */
-
-  /* 横に貫く光 */
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgb(255 255 255 / 0%) 46%,
-    rgb(220 235 255 / 35%) 50%,
-    rgb(255 255 255 / 0%) 54%,
-    transparent 100%
-  );
-
-  /* ほんわり滲み */
-  filter: blur(0.6px);
-  opacity: 0.9;
-}
 
 // body.universe.bg-ly,
 body.page--universe.bg-ly {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3-ly);
-  --bg: var(--bg-ch3-ly);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -752,29 +891,61 @@ body.page--universe.bg-ly {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 0 18px rgb(210 235 255 / 14%), 0 2px 20px rgb(0 0 0 / 45%);
-}
 
-// 芯の細線を1本入れる
-// body.universe.bg-ly .universe__word::after,
-body.page--universe.bg-ly .universe__word::after {
-  content: "";
-  position: fixed;
-  left: 8%;
-  right: 8%;
-  top: 50%;
-  height: 1px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 0; /* 背景レイヤーとして */
+  // 軸の変数
+  --ly-center: 50%;
+  --ly-band: 0.8%; /* 光束の太さ（調整つまみ） */
 
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgb(230 245 255 / 55%),
-    transparent
-  );
+  /* 2️⃣中央の光束バー（動かさない） */
+  // body.universe.bg-ly .universe__word::before,
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2; /* 背景レイヤーとして */
 
-  opacity: 0.8;
+    /* 横に貫く光 calcで　 % と % を計算する */
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgb(255 255 255 / 0%) calc(var(--ly-center) - var(--ly-band) * 2),
+      rgb(220 235 255 / 35%) var(--ly-center),
+      rgb(255 255 255 / 0%) calc(var(--ly-center) + var(--ly-band) * 2),
+      transparent 100%
+    );
+
+    /* ほんわり滲み */
+    filter: blur(0.6px);
+    opacity: 0.9;
+  }
+
+  // 芯の細線を1本入れる
+  // body.universe.bg-ly .universe__word::after,
+  &::after {
+    content: "";
+    position: fixed;
+    left: 8%;
+    right: 8%;
+    top: var(--ly-center);
+    height: 1px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: -1; /* 背景レイヤーとして */
+
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(230 245 255 / 55%),
+      transparent
+    );
+
+    opacity: 0.8;
+  }
+
+  .universe__word {
+    top: var(--ly-center);
+  }
 }
 
 html:has(body.page--universe.bg-ly) {
@@ -785,30 +956,6 @@ html:has(body.page--universe.bg-ly) {
 // ▼過去
 
 /* 付与クラス: body.universe.bg-past */
-// body.universe.bg-past .universe__word,
-body.page--universe.bg-past .universe__word {
-  position: relative;
-  filter: saturate(0.9) contrast(0.98);
-}
-
-// body.universe.bg-past .universe__word::before,
-body.page--universe.bg-past .universe__word::before {
-  content: "";
-  position: absolute;
-  inset: -2%;
-  pointer-events: none;
-
-  background: radial-gradient(
-      120% 100% at 48% 46%,
-      rgb(255 255 255 / 6%),
-      transparent 60%
-    ),
-    radial-gradient(90% 80% at 55% 58%, rgb(180 210 234 / 8%), transparent 55%);
-  mix-blend-mode: soft-light;
-  filter: blur(0.6px);
-  opacity: 0.35;
-  animation: pastwarp 9s ease-in-out infinite alternate; // 🌻🌸🌺
-}
 
 // body.universe.bg-past,
 body.page--universe.bg-past {
@@ -824,18 +971,52 @@ body.page--universe.bg-past {
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(
+      135deg,
+      rgb(11 28 57 / 100%),
+      rgb(30 43 79 / 100%),
+      rgb(217 232 247 / 70%)
+    );
+    background-size: 400% 400%;
+    animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+  }
+
   .word {
     opacity: 0.9;
   }
 
-  background: linear-gradient(
-    135deg,
-    rgb(11 28 57 / 100%),
-    rgb(30 43 79 / 100%),
-    rgb(217 232 247 / 70%)
-  );
-  background-size: 400% 400%;
-  animation: gradient-flow var(--dur-gradientFlow) ease infinite; // 🌻🌸🌺
+  .universe__word {
+    position: relative;
+    filter: saturate(0.9) contrast(0.98);
+  }
+
+  & .universe__word::before {
+    content: "";
+    position: absolute;
+    inset: -2%;
+    pointer-events: none;
+
+    background: radial-gradient(
+        120% 100% at 48% 46%,
+        rgb(255 255 255 / 6%),
+        transparent 60%
+      ),
+      radial-gradient(
+        90% 80% at 55% 58%,
+        rgb(180 210 234 / 8%),
+        transparent 55%
+      );
+    mix-blend-mode: soft-light;
+    filter: blur(0.6px);
+    opacity: 0.35;
+    animation: pastwarp 9s ease-in-out infinite alternate; // 🌻🌸🌺
+  }
 }
 
 // - - - - - - - - - - - - -  - - - -  -
@@ -847,7 +1028,7 @@ body.page--universe.bg-past {
 body.page--universe.bg-past2 {
   // ページの文字・アイコンの基本色
   --main-color: rgb(255 255 255 / 90%);
-  --bg: var(--bg-ch3);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -857,11 +1038,20 @@ body.page--universe.bg-past2 {
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(180deg, #0e1629 0%, #1c2a3f 55%, #d9e8f7 100%);
+  }
+  position: relative;
+  z-index: 0;
+
   .word {
     opacity: 0.9;
   }
-  background: linear-gradient(180deg, #0e1629 0%, #1c2a3f 55%, #d9e8f7 100%);
-  color: rgb(255 255 255 / 90%);
 }
 
 /* 周縁が少し落ちるビネット */
@@ -871,6 +1061,7 @@ body.page--universe.bg-past2 .universe__word::before {
   position: fixed;
   inset: -3%;
   pointer-events: none;
+  z-index: -2;
   background: radial-gradient(
     120% 90% at 50% 40%,
     transparent 0 50%,
@@ -886,7 +1077,8 @@ body.page--universe.bg-past2 .universe__word::after {
   position: fixed;
   inset: -2%;
   pointer-events: none;
-  opacity: 0.3;
+  z-index: -1;
+  opacity: 0.4;
   background: repeating-linear-gradient(
       0deg,
       rgb(255 255 255 / 6%) 0 1px,
@@ -907,31 +1099,11 @@ html:has(body.page--universe.bg-past2) {
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // ▼暗黒
 
-// body.universe.bg-darkness::before,
-body.page--universe.bg-darkness::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0; /* 背景レイヤーとして */
-  pointer-events: none;
-
-  /* 静かな底なし感：周辺を落とす */
-  background: radial-gradient(
-    circle at 50% 45%,
-    transparent 0%,
-    rgb(0 0 0 / 55%) 75%,
-    rgb(0 0 0 / 85%) 100%
-  );
-
-  /* ここでだけ “死んだ宇宙” 感を調整 */
-  filter: grayscale(1) brightness(0.85);
-}
-
 // body.universe.bg-darkness,
 body.page--universe.bg-darkness {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch3);
-  --bg: var(--bg-ch3);
+  --bg: var(--html-bg-universe);
   --mini-color: oklch(from var(--main-color) l c h / 80%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -941,15 +1113,42 @@ body.page--universe.bg-darkness {
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
+  position: relative;
+  z-index: 0;
   // color: rgb(200 200 255 / 30%); // ぼんやり光る青白さ
   // text-shadow: 0 0 8px rgb(200 200 255 / 20%);
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2; /* 背景レイヤーとして */
+    pointer-events: none;
 
-  background: linear-gradient(
-    to bottom,
-    rgb(0 0 0) 0%,
-    rgb(4 8 18) 55%,
-    rgb(9 10 20) 100%
-  );
+    /* 静かな底なし感：周辺を落とす */
+    background: radial-gradient(
+      circle at 50% 45%,
+      transparent 0%,
+      rgb(0 0 0 / 55%) 75%,
+      rgb(0 0 0 / 85%) 100%
+    );
+
+    /* ここでだけ “死んだ宇宙” 感を調整 */
+    filter: grayscale(1) brightness(0.85);
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0) 0%,
+      rgb(4 8 18) 55%,
+      rgb(9 10 20) 100%
+    );
+  }
 
   /* 単語（暗黒の“残光”） */
   .word {
@@ -966,16 +1165,87 @@ html:has(body.page--universe.bg-darkness) {
   background-color: var(--html-bg-universe);
 }
 
-.final-message {
-  //   ## 🌌 提案3｜**星が消える演出 or ノイズを入れる**
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+// text: "光は、やがて戻る。"
+// body.page--universe.bg-final-message {
+//   ## 🌌 提案3｜**星が消える演出 or ノイズを入れる**
 
-  // ちょっと凝るなら…
+// ちょっと凝るなら…
 
-  // - `.bg-darkness` 時だけ、`background-image` で **ノイズテクスチャ**（粒子っぽい）を重ねて「視界不良」演出
-  // - `::after` などで **透明黒をフェードインさせる覆い** → 徐々に暗くなる
-  // - `filter: grayscale(1) brightness(0.4)` を全体に適用して「静かに死んだ宇宙」感も出せる
+// - `.bg-darkness` 時だけ、`background-image` で **ノイズテクスチャ**（粒子っぽい）を重ねて「視界不良」演出
+// - `::after` などで **透明黒をフェードインさせる覆い** → 徐々に暗くなる
+// - `filter: grayscale(1) brightness(0.4)` を全体に適用して「静かに死んだ宇宙」感も出せる
+// body.universe.bg-darkness,
+body.page--universe.bg-final-message {
+  // ページの文字・アイコンの基本色
+  --main-color: var(--color-ch3);
+  --bg: var(--html-bg-universe);
+  --mini-color: oklch(from var(--main-color) l c h / 80%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  // ボタン枠（薄線）
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
 
-  // ---
+  position: relative;
+  z-index: 0;
+  // color: rgb(200 200 255 / 30%); // ぼんやり光る青白さ
+  // text-shadow: 0 0 8px rgb(200 200 255 / 20%);
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2; /* 背景レイヤーとして */
+    pointer-events: none;
+
+    /* 静かな底なし感：周辺を落とす */
+    background: radial-gradient(
+      circle at 50% 45%,
+      transparent 0%,
+      rgb(0 0 0 / 55%) 75%,
+      rgb(0 0 0 / 85%) 100%
+    );
+
+    /* ここでだけ “死んだ宇宙” 感を調整 */
+    filter: grayscale(1) brightness(0.85);
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(
+        circle at 61% 47%,
+        rgb(200 215 255) 0 2px,
+        transparent 8px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(0 0 0) 0%,
+        rgb(4 8 18) 55%,
+        rgb(9 10 20) 100%
+      );
+
+    animation: exitBlink 2400ms ease-out forwards;
+  }
+
+  /* 単語（暗黒の“残光”） */
+  .word {
+    // 1️⃣
+    // color: oklch(90% 0.03 265 / 45%);
+    // text-shadow: 0 0 10px rgb(200 220 255 / 12%);
+    // 2️⃣
+    color: rgb(210 220 255 / 42%);
+    text-shadow: 0 0 12px rgb(180 210 255 / 12%), 0 2px 20px rgb(0 0 0 / 35%);
+  }
+}
+
+html:has(body.page--universe.bg-final-message) {
+  background-color: var(--html-bg-universe);
 }
 
 // ┗ ─────────────────────────── ┛
@@ -987,7 +1257,7 @@ html:has(body.page--universe.bg-darkness) {
 body.page--universe.bg-ch4 {
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch4); /* 青寄りの静寂グレー */
-  --bg: var(--bg-ch4);
+  --bg: var(--html-bg-int3);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg);
@@ -997,6 +1267,18 @@ body.page--universe.bg-ch4 {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 1px 3px rgb(255 255 255 / 25%);
+
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: var(--bg-ch4);
+  }
 
   /* 第4章の単語は少し長めに“呼吸”して現れる */
   .word {
@@ -1069,41 +1351,41 @@ html:has(body.page--universe.bg-ch4) {
 //   }
 
 //   /* 粉塵（淡い粒子、--dustでon） */
-//   .ch5-dust {
-//     position: absolute;
-//     inset: 0;
-//     z-index: var(--z-index-0);
-//     pointer-events: none;
-//     background: radial-gradient(
-//         2px 2px at 10% 20%,
-//         rgb(255 255 255 / 28%) 99%,
-//         transparent 100%
-//       ),
-//       radial-gradient(
-//         1.5px 1.5px at 30% 70%,
-//         rgb(255 255 255 / 22%) 99%,
-//         transparent 100%
-//       ),
-//       radial-gradient(
-//         1px 1px at 70% 40%,
-//         rgb(255 255 255 / 20%) 99%,
-//         transparent 100%
-//       ),
-//       radial-gradient(
-//         1.5px 1.5px at 85% 80%,
-//         rgb(255 255 255 / 18%) 99%,
-//         transparent 100%
-//       ),
-//       radial-gradient(
-//         1px 1px at 55% 15%,
-//         rgb(255 255 255 / 22%) 99%,
-//         transparent 100%
-//       );
-//     background-repeat: no-repeat;
-//     animation: ch5-dust 40s linear infinite; // 🌻🌸🌺
-//     opacity: 0.25;
-//     transform: translateZ(0);
-//   }
+// .ch5-dust {
+//   position: absolute;
+//   inset: 0;
+//   z-index: var(--z-index-0);
+//   pointer-events: none;
+//   background: radial-gradient(
+//       2px 2px at 10% 20%,
+//       rgb(255 255 255 / 28%) 99%,
+//       transparent 100%
+//     ),
+//     radial-gradient(
+//       1.5px 1.5px at 30% 70%,
+//       rgb(255 255 255 / 22%) 99%,
+//       transparent 100%
+//     ),
+//     radial-gradient(
+//       1px 1px at 70% 40%,
+//       rgb(255 255 255 / 20%) 99%,
+//       transparent 100%
+//     ),
+//     radial-gradient(
+//       1.5px 1.5px at 85% 80%,
+//       rgb(255 255 255 / 18%) 99%,
+//       transparent 100%
+//     ),
+//     radial-gradient(
+//       1px 1px at 55% 15%,
+//       rgb(255 255 255 / 22%) 99%,
+//       transparent 100%
+//     );
+//   background-repeat: no-repeat;
+//   animation: ch5-dust 40s linear infinite; // 🌻🌸🌺
+//   opacity: 0.25;
+//   transform: translateZ(0);
+// }
 
 //   /* 文字とUIは前面に */
 //   .universe__word,
@@ -1125,6 +1407,7 @@ body.page--universe.theme-ch5 {
 
   // ページの文字・アイコンの基本色
   --main-color: var(--color-ch5);
+  --bg: var(--html-bg-ch5);
   --mini-color: oklch(from var(--main-color) l c h / 90%);
   --mini-color-base2: var(--mini-color);
   --mini-color-ink: var(--bg-ch5);
@@ -1134,7 +1417,9 @@ body.page--universe.theme-ch5 {
   --btn-pill-shadow-hover: 0 1px 3px rgb(255 255 255 / 15%);
   --text-shadow: 0 1px 3px rgb(255 255 255 / 40%);
 
-  background: var(--bg-ch5);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 
   &::before {
     content: "";
@@ -1152,14 +1437,43 @@ body.page--universe.theme-ch5 {
     will-change: transform, opacity;
   }
 
+  &::after {
+    // ←命名を合わせるならここも
+    content: "";
+    position: absolute;
+    inset: -10%;
+    pointer-events: none;
+    z-index: var(--z-index-0);
+    background: repeating-linear-gradient(
+      115deg,
+      rgb(255 255 255 / 6%) 0 2px,
+      transparent 2px 22px
+    );
+    mix-blend-mode: screen;
+    opacity: 0.18;
+    animation: ch5-ray 22s linear infinite;
+    will-change: background-position;
+  }
+
   .word {
     font-size: clamp(1.2rem, 3.2vw, 1.85rem);
     letter-spacing: 0.05em;
     padding-inline: 0.3em;
   }
+
+  .theme-far {
+    --help-bg: oklch(from var(--main-color) l c h / 50%);
+    // カード内のテキスト
+    --help-fg: var(--color-interlude-4);
+    // 中見出し「時間設定」「操作方法」
+    --help-h: color-mix(
+      in oklch,
+      var(--color-interlude-4) 85%,
+      var(--kuro) 55%
+    );
+  }
 }
 
-body.page--universe.bg-ch5::after,
 body.page--universe.theme-ch5::after {
   // ←命名を合わせるならここも
   content: "";
@@ -1179,7 +1493,5 @@ body.page--universe.theme-ch5::after {
 }
 
 html:has(body.page--universe.bg-ch5) {
-  background-color: var(--html-bg-int4);
+  background-color: var(--html-bg-ch5);
 }
-
-// ┗ ─────────────────────────── ┛

@@ -116,7 +116,7 @@
 }
 
 // ▼ Chapter3 第3章-星と時間（宇宙スケール）
-// ▼bg-galaxy 銀河
+// ▼bg-galaxy 銀河 風
 // 単語のフェードイン → 停止 → フェードアウトの「停止」を長めにする
 // 6〜7秒くらいまで伸ばす
 @keyframes wind {
@@ -133,6 +133,42 @@
   100% {
     background-position: 0% 50%;
     transform: translate3d(-2%, 0, 0);
+  }
+}
+
+// .bg-nebula after
+@keyframes windA {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes windB {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+// ダークエネルギー　膨張感
+@keyframes zoomFlow {
+  0% {
+    background-size: 320% 320%;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-size: 380% 380%;
+    background-position: 100% 50%;
+  }
+  100% {
+    background-size: 320% 320%;
+    background-position: 0% 50%;
   }
 }
 
@@ -160,25 +196,21 @@
   }
 }
 
-// ▼ Chapter4 第4章-ゆるやかな問い（心・思索）
-/* 単語の“息をする”フェード */
-@keyframes soft-fade {
+@keyframes exitBlink {
   0% {
     opacity: 0;
-    filter: blur(2px);
-    letter-spacing: 0.08em;
-    transform: translateY(6px);
   }
-
-  60% {
+  30% {
+    opacity: 0;
+  }
+  45% {
     opacity: 1;
-    filter: blur(0);
-    letter-spacing: 0;
-    transform: translateY(0);
-  }
-
+  } /* 点いた */
+  55% {
+    opacity: 1;
+  } /* ← ここを確保 */
   100% {
-    opacity: 1;
+    opacity: 0;
   }
 }
 
