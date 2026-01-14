@@ -259,7 +259,7 @@ function playEpilogue() {
     // 残り（5.0 - 1.2 - 1.8 = 2.0秒くらい）は “白い間”
     // document.body.className = "page--universe bg-intro";
     // ✅ bg-ch5はそのまま、宇宙膜を出す（滑らか）
-    document.body.classList.add("is-returning");
+    // document.body.classList.add("is-returning");
   }, 1200); // whiteout の transition 時間に合わせる（例: 600ms）
 
   // 4) その後に白幕を外して、エピローグ表示
