@@ -1,5 +1,9 @@
 # leaf.loop – A quiet web space for gentle reset
 
+> **Update (v0.1.8):**
+> The _Universe_ and _About_ pages are now live, completing the first public
+> release cycle of leaf.loop as a quiet, multi-page web experience.
+
 leaf.loop is a small web project designed to offer calmness through quiet visuals,
 simple interactions, and soft temporal experiences.
 Its purpose is to create a moment of stillness — a brief pause, like the warmth
@@ -13,12 +17,25 @@ leaf.loop focuses on minimal, restful digital interactions.
 It offers short timers and a lightweight gallery experience, keeping the interface
 clear, quiet, and easy to breathe in.
 
+### Newly Released Pages
+
+- **Universe**
+  A poetic, time-based page built around a word sequence and layered background
+  visuals. The experience unfolds gradually, encouraging stillness rather than
+  interaction.
+
+- **About**
+  A long-form page describing the intent, tone, and structure of leaf.loop.
+  Designed for quiet reading, with dedicated color tokens and spacing tuned for
+  calm focus.
+
 ### Core Features
 
 - 3 / 4 / 5-minute timers
 - A responsive image gallery with lightbox
 - Global UI components shared across pages
   (menu drawer, mini timer, help card, decorative clock)
+- A time-based “Universe” experience with subtle motion and background layers
 
 ---
 
@@ -185,7 +202,15 @@ Converted SVG icons based on Material Symbols are also credited there.
 
 ---
 
-## 8. Changelog (2025 Oct–Dec)
+## 8. Changelog (2026 JAN)
+
+### v0.1.8 (Universe & About Launch)
+
+- Launched the **Universe** page with timed word sequences and layered SVG backgrounds
+- Added the **About** page with long-form layout and dedicated design tokens
+- Unified background handling across pages (base color + gradient layers)
+- Refined navigation and page-specific body classes
+- Synced all deployment assets to `docs/` for GitHub Pages
 
 - Added the gallery page with responsive grid and AVIF/WebP optimization
 - Implemented a new lightbox with captions, keyboard input, and contain/cover toggle
@@ -199,10 +224,8 @@ Converted SVG icons based on Material Symbols are also credited there.
 
 ## 9. Future Plans
 
-Upcoming pages include the _Universe_ and _About_ sections, following the same
-quiet design language and accessible interaction patterns.
-
-Potential enhancements include optional gallery categories, subtle page-transition
-effects, and ongoing refinement of shared UI components as the project grows.
+Future enhancements may include further refinement of the Universe experience,
+additional quiet pages, and continued tuning of shared UI components as leaf.loop
+evolves.
 
 ---
