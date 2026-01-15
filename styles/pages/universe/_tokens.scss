@@ -1,0 +1,230 @@
+// ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+// ↓ 以下、universeスタイルのセット
+// ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+
+// ● メモ
+// styles/core/_base.scss 【 body.universe 初期値 】
+// linear-gradient(to bottom, #0e1020, #b4d2ea);
+// --bg: #{$color-space-base};
+// #f8faff
+// --main-color: #{$color-space-far};
+
+/* 宇宙テーマ用の page-scoped 変数（グローバルに漏らさない） */
+body.page--universe {
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ font-family フォント・ファミリー
+  --sub-font: "Kiwi Maru", system-ui, -apple-system, "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+
+  // 4章
+  --accent-font: "Zen Kurenaido", system-ui, -apple-system, "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ Color フォント色
+
+  --bigin-white: #f8faff; // はじまりの白・白幕
+  --mid: #c2c2c2; // 静思グレー #C2C2C2 思索の中間調
+
+  // === Text Colors 各章　文字色 ===
+
+  // --color-ch1: #b1e6ff;
+  --color-ch1: #a4ddff;
+  --color-ch2: #e1f3ff;
+  --color-ch3: #d9e8f7;
+  --color-ch4: #ccc8c6;
+  --color-ch5: #888;
+
+  // === Text Colors 間奏 interlude　文字色 ===
+  // var(--bigin-white);からあたたかく
+  --color-interlude-0: #fff3e6;
+
+  // `#F8FAFF`（白寄り）
+  --color-interlude-1: #e1f3ff;
+
+  // `#B4D2EA`（薄青）
+  --color-interlude-2: #d9e8f7;
+
+  // `#FAFAFA`（ほんのり柔らかい白）
+  --color-interlude-3: #c7cbd0;
+
+  // `#A67C00`（光を感じるゴールド系）
+  // グレー寄りにしてやわらかく 45%くらいでもいい気がする
+  --color-interlude-4: rgb(0 0 0 / 55%);
+
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ 背景色
+
+  // background 各章
+  // 1章
+  // --bg-ch1: linear-gradient(135deg, #b1e6ff, #12174f, #1e2b42, #fff8e7);
+  // --bg-ch1: linear-gradient(
+  //   -35deg,
+  //   oklch(89.662% 0.06429 228.559),
+  //   oklch(24.337% 0.10136 272.34),
+  //   oklch(28.895% 0.04608 261.374),
+  //   oklch(94% 0.02344 88.225)
+  // );
+  // 提案A     // in oklch shorter hue,
+  --bg-ch1: linear-gradient(
+    -35deg,
+    oklch(92% 0.03 85deg) 0%,
+    oklch(30% 0.08 270deg) 28%,
+    oklch(26% 0.05 260deg) 62%,
+    oklch(94% 0.02 95deg) 100%
+  );
+  --bg-ch2: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+
+  // 濃紺 `#0B1C39` → 群青 `#1E2B4F`
+  --bg-ch3: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
+  --bg-ch4: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 32%) 0%,
+      rgb(255 255 255 / 10%) 24%,
+      rgb(0 0 0 / 0%) 82%
+    ),
+    #000;
+  --bg-ch5: linear-gradient(to bottom, #fff8e7 0%, rgb(255 248 231 / 90%) 100%);
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ 背景色 interlude
+  //  `#F8FAFF`（温度感のある白）
+  --bg-interlude-0: radial-gradient(
+    100% 100% at 0% 0%,
+    #fff8e7 0%,
+    #435372 14%,
+    #1e2b42 100%
+  );
+
+  // 🌌 暗色スタート案（例）
+  // 1. **ほぼ黒＋ほんのり青**
+  --bg-interlude-0-dark: linear-gradient(to bottom, #0b0b15 0%, #1c1e2b 100%);
+
+  // 青みグレー `#B4D2EA` → 暗紺 `#0E1020`
+  --bg-interlude-1: linear-gradient(180deg, #b4d2ea 0%, #0e1020 100%);
+
+  // 濃紺 `#0B1C39` → 群青 `#1E2B4F`
+  --bg-interlude-2: linear-gradient(90deg, #0b1c39 0%, #1e2b4f 100%);
+
+  // 背景の強さは 0.40 → 0.32 の数値で調整できます。もっと“ふわっ”にしたいなら 0.28 / 0.24 くらいまで下げてみて。
+  --bg-interlude-3: radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 22%) 0%,
+      rgb(255 255 255 / 10%) 18%,
+      rgb(0 0 0 / 0%) 88%
+    ),
+    #000;
+  --bg-interlude-4: radial-gradient(
+    circle at 50% 55%,
+    #f7f2e6 0%,
+    #eee9e2 100%
+  );
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ Ch2 第2章-ゆらぎと法則
+  --bg-wave: linear-gradient(
+    135deg,
+    rgb(14 16 32 / 50%),
+    #b4d2ea,
+    rgb(59 67 134 / 50%)
+  );
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ Chapter3 第3章-星と時間
+
+  --bg-ch3-galaxy: radial-gradient(
+      80vmax 80vmax at 70% 20%,
+      rgb(255 255 255 / 6%),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #0b1c39, #12174f);
+  --word-shift: 6dvh;
+
+  // 光速　文字色　シルバー
+  --color-ch3-ly: oklch(80% 0.01 260deg / 88%);
+  --bg-ch3-ly: radial-gradient(
+    circle at 50% 35%,
+    rgb(14 18 32) 0%,
+    rgb(5 7 14) 55%,
+    rgb(0 0 0) 100%
+  );
+
+  // === 間奏（interlude） ===
+  // Chapter3〜4 章の転換	黒→白のグラデ
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ Chapter4 第4章-ゆるやかな問い
+
+  // === 間奏（interlude） ===
+  // Chapter4〜5 呼吸の間奏:100% #F8F6F0〜0% #FFF8E7 - 楕円の光radial「呼吸」
+
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+  // ▼ Chapter5 第5章-還りゆく光
+  // ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ 時間・トランジション秒数
+
+  // ===== Durations (ms推奨) =====
+
+  --dur-whiteout: 1500ms; // ホワイトアウト3000msの半分
+  // 各章
+
+  --dur-gradientFlow: 12000ms; // グラデーション
+  --dur-wave: 8000ms;
+  --dur-dot: 6000ms;
+  --dur-nabula: 22000ms; // グラデーション 星雲
+  --dur-wind: 24000ms;
+  --dur-ly-streak: 8000ms;
+  --dur-pastwarp: 9000ms;
+
+  // オプションスケール
+  --dur-quick: 300ms;
+  --dur-mid: 1000ms;
+  --dur-slow: 2000ms;
+
+  // ===== Easing =====
+  --ease-initial: ease-out;
+  --ease-standard: ease;
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1); // 穏やか
+  --ease-inout: ease-in-out;
+
+  // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  // ▼ z-index
+  // h1を重ねて浮かせる
+  --z-index-page-title: 10;
+  --z-index-0: 0;
+  --z-index-1: 1;
+  --z-index-2: 2;
+
+  // ▼z-index
+  // === 基本　hero ===
+  // $z-deeper: -2;
+  // $z-back: -1;
+  // $z-main: 0;
+  // $z-front: 1;
+  // $z-closer: 2;
+  // $z-nav: 0;
+}
+
+// --universe-indigo: #0e1020;
+// --universe-bluestar: #b4d2ea;
+// 深紺部分でくっきり、淡い水色部分でも読める
+// --moon-white: rgba(255, 255, 255, 0.92);
+// 「光の粒」みたい水色背景に
+// --platinum-pearl: rgba(255, 236, 200, 0.9); // #FFECC8;
+// --platinum-pearl-shadow: 0 0 8px rgba(180, 210, 234, 0.6);
+// 寒色系の幻想感“光って見える”演出
+// --blue-grow: rgba(210, 235, 255, 0.95); // #D2EBFF
+// --blue-grow-shadow: 0 0 8px rgba(180, 210, 234, 0.6);
+// --color-ch5-f0c: #f0cd90; //92,20: $color-space-star: #f0cd90;
+// 別案
+// $color-interlude-1: rgba(255, 236, 200, 0.9); // 薄金
+// $color-interlude-2: rgba(200, 245, 255, 0.9); // 青白
+// $color-interlude-3: rgba(240, 220, 255, 0.9); // 薄紫
+// $color-interlude-4: rgba(255, 240, 245, 0.9); // 桜白
+// $color-interlude-5: rgba(255, 255, 255, 0.95); // 月光ホワイト
+//  テキスト色統一
+// $interlude-text: rgba(255, 255, 255, 0.85);

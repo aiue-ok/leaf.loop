@@ -1,103 +1,42 @@
-// 目次 パレット / mixin
-// 1.カラーパレット🎨 絶対値の色
-// 2.固定トークン
-// “CSS 変数”はなし
-
-// ════════════════════════════════
-// 🌿 leaf.loop パレット
-// ════════════════════════════════
-
-// #f5f5f5
 $main-color: oklch(97.015% 0.0001 271.152deg);
 $main-color-70: oklch(97.015% 0.0001 271.152deg / 70%);
 $main-color-80: oklch(97.015% 0.0001 271.152deg / 80%);
-
-// ════════════════════════════════
-// ✨ hero
-// ════════════════════════════════
 $hero-shadow: 1px 1px 3px #c2c2c2;
 $hover-shadow: 0 2px 8px rgb(0 0 0 / 35%);
 $hero-background: rgb(161 161 161 / 40%);
-
-// 柳鼠フィルター rgb(200 211 192 / 0.4)
 $filter-yanaginezu: rgb(200 211 192 / 40%);
-
-// アイコンサイズ 最小44px,最大56px 使ってない
 $icon-size: clamp(2.75rem, 2.2993rem + 1.9231vw, 3.5rem);
 $icon-size-nottap: clamp(24px, 16.958px + 1.878vw, 44px);
-
-// ▼フォントサイズ
 $text-main: clamp(16px, 1.111vw, 24px);
-
-// === 白と黒 ===
-
 $shiro100: oklch(100% 0.0001 271.152deg);
 $shiro10: oklch(100% 0.0001 271.152deg / 10%);
 $kuro70: oklch(0% 0 0deg / 70%);
 $kuro100: oklch(0% 0 0deg);
-
-// ════════════════════════════════
-// 🖼️ Gallery : blue-black & cosmic-latte scheme (OKLCH版)
-// ════════════════════════════════
-
-// 深いブルーブラック：夜空のような基調
 $color-g-blueblack: oklch(22% 0.03 266deg); // ≒ #151a25
-
-// ギャラリー白10%（透明オーバーレイ用）
 $color-g-shiro10: oklch(100% 0 0deg / 10%);
 $color-g-shiro20: oklch(100% 0 0deg / 20%);
-
-// ギャラリー黒70%（オーバーレイや文字補助）
 $color-g-kuro70: oklch(0% 0 0deg / 70%);
 $color-g-lb-overlay: oklch(78.407% 0.0673 63.555deg);
-
-// コズミックラテ（渋）
 $color-g-latte-dark: oklch(90% 0.02 85deg); // ≒ #eae5da
-
-// コズミックラテ（明るめ）
 $color-g-latte-light: oklch(96% 0.01 85deg); // ≒ #f4efe8
-
-// コズミックラテ（標準）
 $color-g-latte-normal: oklch(98% 0.01 85deg); // ≒ #fff8e7
-
-// アクセント
 $color-g-chai: #d8b08c;
 $color-g-cha: #9dc5af;
 $color-g-jasmin: oklch(95% 0.03 105deg);
 $color-g-chaisoft: oklch(32% 0.04 50deg / 95%);
-
-// ドロワーメニュー
 $carrots: #ff8c00;
-
-// === ヘルプカード ===
 $chai-dark: oklch(44% 0.05 66.85deg);
 $red-velvet: #b74152;
 $cream-cheese: oklch(96% 0.015 75deg);
 $moon-vanilla: rgb(255 255 255 / 25%);
 $moon-lit: oklch(75% 0.02 30deg / 25%);
-
-// ════════════════════════════════
-// 🪐 universe
-// ════════════════════════════════
-
+$color-space-base: linear-gradient(to bottom, #0e1020, #b4d2ea);
+$color-space-sun: #fcebb8;
+$color-space-moon: #eaeff7;
 $color-space-far: #f8faff;
+$color-space-star: #f0cd90;
 $color-space-bit: #0e1020;
 $color-space-dust: #e1f3ff;
-$color-space-star: #f0cd90;
-$color-space-bang: #888;
-
-// ════════════════════════════════
-// 👤 about
-// ════════════════════════════════
-
-// -- 装飾 --
-// --divider: oklch(55% 0.02 260 / 0.15);
-// --note: oklch(55% 0.02 260 / 0.35);
-// --mono-bg: oklch(98% 0.01 95deg / 0.65);
-// --mono-bd: oklch(55% 0.04 260deg / 0.35);
-// --mono-fc: oklch(30% 0.03 260deg);
-// --one-line: oklch(45% 0.02 260);
-// --drop-cap: oklch(35% 0.05 260deg);
 $color-a-paper: #f6f5f2;
 $color-a-ink: #2f2f2c;
 $color-a-sub: #4a4a46;
@@ -105,103 +44,45 @@ $color-a-tec: #e7ece8;
 $color-a-deco: #cfcac2;
 $color-a-ex: #387f5a;
 $color-a-book: #2e4f3e;
-
-// 2025/12/19追加
 $base-bg: #f6f5f2;
-// ほぼ白の温度あり（ミルク寄り）
 $sub-bg: #efede8;
-// （区切り用・薄）真っ白を避けるだけで、文字の角が丸く見える。
-
-// 2) グレー系（UI・区切り・注釈）
-// （本文補助）
 $gray-1: #5e5e5e;
-// （罫線・区切り）:
 $gray-2: #cfcac2;
-// （弱UI）:
 $gray-3: #b8b3aa;
-
-// 3) 文字色（やわらか主役）
 $text-main: #2f2f2c;
-
 $text-sub: #4a4a46;
-// （見出し補助・注釈）「アクセシブルだけど柔らかい」の正解は、黒を薄めるじゃなく色相をずらす。
-
-// アクセント（1色だけ）
-// 用途はリンク・強調・ほんの印。
-$baked-apple: #c8743c; //（焼きリンゴ）
+$baked-apple: #c8743c;
 $adobe: #8c4b3a;
 $deep-green: #3e5f4b;
-
-// ════════════════════════════════
-// 🔋　固定トークン
-// ════════════════════════════════
-
-// ▼z-index
-// === 基本　hero ===
 $z-deeper: -2;
 $z-back: -1;
 $z-main: 0;
 $z-front: 1;
 $z-closer: 2;
 $z-nav: 0;
-
-// === 各ページ ===
-// main
-// ミニタイマー・ヘルプアイコン
-$z-timer-mini: 5;
-$z-timer-toast: 4000;
-
-// ─────────────────────────────
-// 【gallery】 Lightbox画像
-// lightbox モーダル全体（ブロック）
-$z-lightbox-block: 2000;
-
-// 背景
-$z-lightbox-bg: 100;
-
-// コンテンツ領域 画像（img）　キャプション
-$z-lightbox-img: 2000;
-
-// lightbox クローズボタン
-$z-lightbox-close: 2100;
-
-// ナビボタン
-$z-lightbox-nav: 2100;
-
-// ─────────────────────────────
-// メニュー
-// ハンバーガー
 $z-menu-hbg: 1000;
-
-/* パネル本体（右から） */
 $z-menu-offcanvas: 1100;
-
-// 背景の半透明幕
 $z-menu-backdrop: 999;
-
-// ─────────────────────────────
-// サイド
-// ヘルプカード
 $z-help: 3000;
-
-// z-index: 100; /* ヘルプカード内で最上層に */
 $z-help-close: 3100;
-
-// ─────────────────────────────
-
-/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
-// ▼ 間隔
+$z-timer-mini: 400;
+$z-timer-toast: 4000;
+$z-universe-word: 500;
+$z-universe-bg: 50;
+$z-universe-layer: 100;
+$z-whiteout: 3500;
+$z-lightbox-block: 2000;
+$z-lightbox-bg: 100;
+$z-lightbox-img: 2000;
+$z-lightbox-close: 2100;
+$z-lightbox-nav: 2100;
 $gap-xs: 8px;
 $gap-sm: 12px;
 $gap-md: 16px;
 $gap-lg: 20px;
 $gap-xl: 24px;
-
-// ▼ ブレイクポイント
 $bp-xs: 376px;
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1440px;
-
-// ─────────────────────────────

@@ -129,27 +129,35 @@
   background: var(--help-bg);
   border: 1px solid var(--help-border);
   box-shadow: var(--link-box-shdw);
-  transition: box-shadow 240ms ease, transform 240ms ease;
-}
 
-.visual-card-help-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: oklch(100% 0 0 / 0.04); /* 超うす */
-  opacity: 0;
-  transition: opacity 200ms ease;
-  pointer-events: none;
-}
+  filter: var(--help-filter);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  will-change: backdrop-filter;
+  transition: background var(--motion-snap) ease, filter var(--motion-soft) ease;
 
-.visual-card-help-bg:hover::after {
-  opacity: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: oklch(100% 0 0 / 0.04); /* 超うす */
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
 }
 
 .visual-card-help-bg:hover {
+  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
+  filter: var(--help-filter-hover);
   transform: translateY(-1px);
   box-shadow: var(--link-box-shdw-hover);
+  transition: box-shadow 240ms ease, transform 240ms ease;
+
+  &::after {
+    opacity: 1;
+  }
 }
 
 // カード内のテキスト

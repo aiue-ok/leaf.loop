@@ -51,6 +51,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       // リストとの間隔
       margin-bottom: 1.5rem;
     }
@@ -69,7 +70,7 @@
       height: 44px;
       text-align: center;
       color: #{var(--panel-pop)};
-      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.15));
+      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 15%));
       scale: 100%;
       transition: scale #{var(--motion-tap)} ease;
 
@@ -151,7 +152,7 @@ body:not([data-menu-open="true"]) .scrim {
 // 480px以上の縦向き
 @media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   .page--about {
     .menu-drawer {
       justify-content: flex-start;
@@ -199,8 +200,10 @@ body:not([data-menu-open="true"]) .scrim {
     // メニューパネル
     .menu-drawer {
       padding: 24px 25px 25px;
+
       // --safe-right: env(safe-area-inset-right, 0px);
       padding-block: 1rem;
+
       //  上下を少しだけ詰める（左右は今のままでOK）
 
       /* 中身のレイアウト　Menu+ Xbutton */
@@ -214,6 +217,7 @@ body:not([data-menu-open="true"]) .scrim {
         margin-left: 3px;
         font-size: 1.3rem;
       }
+
       // （Xボタン）
       &__close {
         // 閉じるボタンの位置調整

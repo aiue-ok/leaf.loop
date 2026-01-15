@@ -62,7 +62,6 @@
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
   --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
     inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
-
   --preset-mask: linear-gradient(
     to bottom,
     var(--kuro) 0 60%,
@@ -258,15 +257,21 @@
   --t-accent: var(--mini-color-accent);
 }
 
-// color-mix(in oklch, var(--mini-inline-text) 80%, var(--kuro) 10%)
-// color-mix(in oklch, var(--mini-inline-text) 80%, var(--shiro) 5%)
+body.page--universe > .timer-mini {
+  // デスクトップ（default）
+  --mini-color-base: #{var(--bg)};
+  --mini-color-accent: #{var(--accent2)};
+  --mini-color-ink: #{var(--main-color)};
+  --btn-pill-border: oklch(from var(--mini-color-ink) l c h / 70%);
 
-// --mini-bg-hover: oklch(0.96 0.04 80 / 0.6);
-// --mini-mb-color: oklch(0.2 0.05 40 / 0.7);
+  // モバイルカラー
+  // パレット
+  --mini-color-base2: #{var(--bg)};
+  --mini-color-accent2: #{var(--accent2)};
+  --mini-color-ink2: #{var(--main-color)};
+}
 
 .page--about > .timer-mini {
-  // 10 使う色　🎨
-  // palette層は「base / accent / ink」の3つ
   // デスクトップ（default）
   --mini-color-base: #{var(--bg)}; // 紙
   --mini-color-accent: #{var(--accent)}; // 薄い緑色

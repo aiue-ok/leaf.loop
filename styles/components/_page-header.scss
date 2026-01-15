@@ -5,7 +5,7 @@
 .page--about {
   // ヘッダーエリア
   .page-header {
-    color: var(--page-color);
+    color: var(--main-color);
     width: 100%;
     height: fit-content;
     padding: 0;
@@ -30,6 +30,11 @@
       color: inherit;
       grid-area: site-menu;
       text-align: center;
+
+      &:hover {
+        cursor: pointer;
+        color: oklch(from #{var(--main-color)} l c h / 93%);
+      }
     }
 
     // タイトル容器（コンテナクエリ親）
@@ -61,6 +66,21 @@
       font-style: normal;
       font-size: clamp(14px, 8vw, 18px);
       white-space: nowrap;
+    }
+  }
+}
+
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  // 🪐 universeのみ
+
+  .page--universe {
+    // ヘッダーエリア
+    .page-header {
+      // 1行のレイアウト帯
+      &__bar {
+        // タイトル上下の余白をカットする
+        padding: 0;
+      }
     }
   }
 }

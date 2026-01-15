@@ -263,6 +263,7 @@
 // 位置(3) Tablet(port) 右上
 @media (min-width: #{core.$bp-sm}) and (max-width: #{core.$bp-lg}) and (orientation: portrait) {
   .page--gallery,
+  .page--universe,
   .page--about {
     .timer-mini {
       position: fixed;
@@ -273,6 +274,7 @@
 
       // 幅・高さ
       width: min-content;
+
       // タブレット縦の癖（vh変動）にも耐える
       height: 16vh;
       min-height: 175px;
@@ -308,7 +310,7 @@
 
 @container (inline-size < #{core.$bp-sm}) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   .page--about {
     .timer-mini {
       --btn-hit: var(--btn-hit-small); // 36px
@@ -322,7 +324,7 @@
 // 位置(4) 📱mobile(land) 浮・3列3行の正方形
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   .page--about {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
@@ -430,10 +432,25 @@
   }
 }
 
+// スマホ 横 高さ
+// 位置(4) 📱mobile(land) 浮・3列3行の正方形
+@media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
+  .page--universe {
+    // 文字の邪魔にならないよう少し小さく
+    .timer-mini {
+      scale: 0.87;
+    }
+  }
+}
+
 // 幅 600px 以下の縦向きタブレットだけ（Surface Duo みたいな細長系）
 @media (max-width: 600px) and (orientation: portrait) {
-  .timer-mini {
-    max-height: 180px; // 200px からちょい下げる
+  .page--gallery,
+  .page--universe,
+  .page--about {
+    .timer-mini {
+      max-height: 180px; // 200px からちょい下げる
+    }
   }
 }
 
@@ -442,7 +459,7 @@
 /* 480px以下　スマホ 縦 */
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
-  body.universe,
+  .page--universe,
   .page--about {
     .timer-mini {
       // トークン差し替え
@@ -547,11 +564,21 @@
   }
 }
 
-// aboutページのみの変更
-// ヘルプアイコンの色
-// 丸ボタンの枠の色
-.page--about {
-  @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  // 🪐 universeのみ
+
+  .page--universe {
+    .timer-mini {
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  // aboutページのみの変更
+  // ヘルプアイコンの色
+  // 丸ボタンの枠の色
+  .page--about {
     .timer-mini__screen--help {
       color: var(--text-sub);
 
@@ -559,9 +586,10 @@
         color: var(--accent-hover);
       }
     }
-  }
-  // 丸ボタン
-  .timer-mini__pill {
-    border: var(--btn-border-width) solid var(--bg);
+
+    // 丸ボタン
+    .timer-mini__pill {
+      border: var(--btn-border-width) solid var(--bg);
+    }
   }
 }

@@ -1,23 +1,23 @@
 @use "../core/index" as core;
 
-.page--about {
+// waves
+.page--about__bg-top {
+  position: absolute;
+  inset: 0;
+  z-index: core.$z-deeper;
+}
+
+.page--about__bg-bottom {
+  position: absolute;
+  inset: -6px;
+  align-content: end;
+  z-index: core.$z-deeper;
+}
+
+body.page--about {
   /* ベース色（やさしい生成り＋深い文字色） */
   background: var(--bg);
   color: var(--main-color);
-
-  // waves
-  &__bg-top {
-    position: absolute;
-    inset: 0;
-    z-index: core.$z-deeper;
-  }
-
-  &__bg-bottom {
-    position: absolute;
-    inset: -6px;
-    align-content: end;
-    z-index: core.$z-deeper;
-  }
 
   main {
     width: 100%;
@@ -185,24 +185,21 @@
     }
   }
 
-  .page--about .about__short,
-  .page--about .about__long {
+  .about__short,
+  .about__long {
     // font-size: clamp(16px, 3.8vw, 18px);
     // line-height: 1.9;
   }
 
-  .page--about .about__short ul,
-  .page--about .about__long ul {
+  .about__short ul,
+  .about__long ul {
     margin: 0 0 1.15em;
     padding-left: 1.2em;
   }
 
-  .page--about .about__short li,
-  .page--about .about__long li {
+  .about__short li,
+  .about__long li {
     margin: 0.45em 0;
-  }
-
-  @media (max-width: 480px) {
   }
 
   @media (min-width: 768px) {

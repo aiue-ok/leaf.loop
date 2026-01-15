@@ -1,0 +1,257 @@
+body.page--universe.bg-intro {
+  --main-color: var(--bigin-white);
+  --bg: var(--html-bg-universe);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  color: var(--main-color);
+  background: var(--html-bg-universe);
+  background-size: 100% 100%;
+  background-position: 0 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 4000ms ease; /* ここが滑らかさ担当 */
+    background: linear-gradient(to bottom, #0e1020, #b4d2ea);
+  }
+}
+
+html:has(body.page--universe.bg-intro) {
+  background-color: var(--html-bg-universe);
+}
+
+body.page--universe.bg-interlude-0 {
+  --main-color: var(--color-interlude-0);
+  --bg: var(--html-bg-int1);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: var(--bg-interlude-0);
+  }
+
+  .word {
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  .page-header h1,
+  .page-header h2,
+  .page-header__toggle svg,
+  .timer-mini {
+    opacity: 0.95;
+  }
+}
+
+html:has(body.page--universe.bg-interlude-0) {
+  background-color: var(--html-bg-universe);
+}
+
+body.page--universe.bg-interlude-1 {
+  --main-color: var(--color-interlude-1);
+  --bg: var(--html-bg-int1);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  position: relative;
+  z-index: 0;
+  background-size: 100% 100%;
+  background-position: 0 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background: var(--bg-interlude-1);
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center center;
+  }
+
+  .word {
+    font-style: italic;
+    opacity: 0.7;
+  }
+
+  .page-header h1,
+  .page-header h2,
+  .page-header__toggle svg,
+  .timer-mini {
+    opacity: 0.7;
+  }
+}
+
+html:has(body.page--universe.bg-interlude-1) {
+  background-color: var(--html-bg-int1);
+}
+
+body.page--universe.bg-interlude-2 {
+  --main-color: var(--color-interlude-2);
+  --bg: var(--html-bg-universe);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+
+  position: relative;
+  z-index: 0;
+  background-size: 100% 100%;
+  background-position: 0 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg-interlude-2);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
+  .word {
+    font-style: italic;
+    opacity: 0.7;
+  }
+
+  .page-header h1,
+  .page-header h2,
+  .page-header__toggle svg,
+  .timer-mini {
+    opacity: 0.88;
+  }
+}
+
+html:has(body.page--universe.bg-interlude-2) {
+  background-color: var(--html-bg-universe);
+}
+
+body.page--universe.bg-interlude-3 {
+  --main-color: var(--color-interlude-3); /* 青寄りの静寂グレー */
+  --bg: var(--html-bg-int3);
+  --mini-color: oklch(from var(--main-color) l c h / 90%);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--bg);
+  --btn-pill-border: oklch(from var(--main-color) l c h / 35%);
+  --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 1px 3px rgb(255 255 255 / 25%);
+
+  position: relative;
+  z-index: 0;
+  background-size: 100% 100%;
+  background-position: 0 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg-interlude-3);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .word {
+    font-family: var(--accent-font); // Zen Kurenaido
+    font-style: italic;
+    font-kerning: normal;
+    font-feature-settings: "kern";
+
+    /* 間奏テキストは少しだけ淡く・細く（任意） */
+    opacity: 0.9;
+    letter-spacing: 0.08em;
+  }
+}
+
+html:has(body.page--universe.bg-interlude-3) {
+  background-color: var(--html-bg-int3);
+}
+
+body.page--universe.bg-interlude-4 {
+  --main-color: var(--color-interlude-4); /* 青寄りの静寂グレー */
+  --bg: var(--html-bg-int4);
+  --mini-color: var(--main-color);
+  --mini-color-base2: var(--mini-color);
+  --mini-color-ink: var(--color-interlude-4);
+  --btn-pill-border: var(--main-color);
+  --btn-pill-bg-hover: var(--mid);
+  --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
+  --text-shadow: 0 1px 3px rgb(255 255 255 / 40%); // 光を感じる白影
+
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--html-bg-int4);
+  background-size: 100% 100%;
+  background-position: 0 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg-interlude-4);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .word {
+    font-style: italic;
+  }
+
+  .theme-far {
+    --help-bg: oklch(from var(--main-color) l c h / 50%);
+    --help-fg: var(--color-interlude-4);
+    --help-h: color-mix(
+      in oklch,
+      var(--color-interlude-4) 85%,
+      var(--kuro) 55%
+    );
+  }
+}
+
+html:has(body.page--universe.bg-interlude-4) {
+  background-color: var(--html-bg-int4);
+}

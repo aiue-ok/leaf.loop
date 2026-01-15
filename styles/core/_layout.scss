@@ -1,7 +1,3 @@
-// 余白・中央寄せ・共通コンテナなどレイアウト共通部分
-// 高さはなるべく縛らない、幅は拡げすぎない」
-
-// 中央寄せ
 .center {
   display: flex;
   justify-content: center;
@@ -16,17 +12,10 @@
   align-items: center;
 }
 
-// これだけで モバイル〜デスクトップまで柔軟に拡がる幅が作れます。
-
-// 💡 2. 高さ：できるだけ「中身に任せる」
 .section {
   padding: 80px 0;
 }
 
-// * これは高さを「固定」してないけど、見た目は安定して見える
-// * 中に入れるテキスト・画像が自然に高さを決めてくれる
-
-// 💡 3. 高さを画面いっぱいにしたいときだけ、100vh or 100svh
 .fullscreen-section {
   height: 100vh; /* PCで全画面 */
   height: 100svh; /* モバイルでアドレスバー考慮 */
@@ -35,7 +24,6 @@
   justify-content: center;
 }
 
-// タイマー3/4/5 ＆　操作ボタン 旧
 .grid-parent-timer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,7 +50,6 @@
   }
 }
 
-// 📍📍📍 幅768px（スマホ横向き）以下
 @media screen and (width <= 768px) and (orientation: landscape) {
   @media (orientation: landscape) and (max-width: 736px) {
     body.hero {
@@ -75,7 +62,6 @@
 
 /* override: 対応ブラウザでは dvh を上書き（ベースの後に置く） */
 @supports (height: 100dvh) {
-  // 新　残す方
   .hero .hero__grid {
     min-height: 100dvh;
   }
