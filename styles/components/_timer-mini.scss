@@ -447,7 +447,7 @@
 @media (max-width: 600px) and (orientation: portrait) {
   .page--gallery,
   .page--universe,
-  body.universe {
+  .page--about {
     .timer-mini {
       max-height: 180px; // 200px からちょい下げる
     }
@@ -574,11 +574,11 @@
   }
 }
 
-// aboutページのみの変更
-// ヘルプアイコンの色
-// 丸ボタンの枠の色
-.page--about {
-  @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+@media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
+  // aboutページのみの変更
+  // ヘルプアイコンの色
+  // 丸ボタンの枠の色
+  .page--about {
     .timer-mini__screen--help {
       color: var(--text-sub);
 
