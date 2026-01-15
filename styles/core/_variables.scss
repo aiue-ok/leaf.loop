@@ -35,12 +35,23 @@ $color-space-sun: #fcebb8;
 $color-space-moon: #eaeff7;
 $color-space-far: #f8faff;
 $color-space-star: #f0cd90;
-$color-space-dust: #e1f3ff;
-$color-space-earth: royalblue;
-$color-u-ex: #387f5a;
-$color-u-note: #d7d9d7;
-$color-u-tec: #d8b08c;
-$color-u-book: #2e4f3e;
+$color-a-paper: #f6f5f2;
+$color-a-ink: #2f2f2c;
+$color-a-sub: #4a4a46;
+$color-a-tec: #e7ece8;
+$color-a-deco: #cfcac2;
+$color-a-ex: #387f5a;
+$color-a-book: #2e4f3e;
+$base-bg: #f6f5f2;
+$sub-bg: #efede8;
+$gray-1: #5e5e5e;
+$gray-2: #cfcac2;
+$gray-3: #b8b3aa;
+$text-main: #2f2f2c;
+$text-sub: #4a4a46;
+$baked-apple: #c8743c;
+$adobe: #8c4b3a;
+$deep-green: #3e5f4b;
 $z-deeper: -2;
 $z-back: -1;
 $z-main: 0;
@@ -48,12 +59,10 @@ $z-front: 1;
 $z-closer: 2;
 $z-nav: 0;
 $z-menu-hbg: 1000;
-
-/* パネル本体（右から） */
 $z-menu-offcanvas: 1100;
 $z-menu-backdrop: 999;
-$z-help: 3000; // ヘルプカード
-$z-help-close: 3100; // 閉じるボタン
+$z-help: 3000;
+$z-help-close: 3100;
 $z-timer-mini: 400;
 $z-timer-toast: 4000;
 $z-universe-word: 500;
@@ -65,8 +74,6 @@ $z-lightbox-bg: 100;
 $z-lightbox-img: 2000;
 $z-lightbox-close: 2100;
 $z-lightbox-nav: 2100;
-
-/* gallery：列数とブレイクポイント（モバイル先行、汎用） */
 $gap-xs: 8px;
 $gap-sm: 12px;
 $gap-md: 16px;

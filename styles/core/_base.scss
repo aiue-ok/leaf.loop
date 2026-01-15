@@ -282,6 +282,7 @@ input {
 .page--gallery {
   --bg: #{$color-g-latte-dark};
   --main-color: #{$color-g-blueblack};
+  --page-color: var(--main-color);
   --accent: #{$color-g-chai};
   --accent2: #{$color-g-cha};
   --jasmin: #{$color-g-jasmin};
@@ -306,8 +307,32 @@ input {
 }
 
 .page--about {
-  --timer-bg: #{$color-u-note};
-  --help-card-bg: #{$color-u-book};
+  // 文庫本の紙の色
+  --bg: #{$color-a-paper};
+  // 文字インク
+  --main-color: #{$color-a-ink};
+  --text-sub: #{$color-a-sub};
+  --page-color: var(--main-color);
+  // 薄い緑色
+  --accent: #{$color-a-tec};
+  --accent2: #{$color-a-tec};
+
+  // -- 装飾線
+  --divider: #{$color-a-deco};
+  // h2 の上に ＊ を1つ 文末にも１つ
+  --note: #b8b3aa;
+
+  // モノローグ
+  --mono-bg: oklch(from #efede8 l c h / 62%);
+  --mono-bd: #{$color-a-deco};
+  --mono-fc: var(--text-sub);
+  // ひとこと
+  --one-line: var(--text-sub);
+  // ドロップキャップ
+  --drop-cap: var(--text-sub);
+  // リンク
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
 /* ===== styles/components/_menu-drawer.scss ===== */
@@ -367,8 +392,31 @@ input {
 }
 
 .page--about {
-  --accent: #{$color-u-ex};
-} // デフォルトと同じでもOK
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: #{$sub-bg};
+
+  // パネル左の枠の色
+  --panel-bd: var(--mono-bd);
+
+  // フォントカラー
+  --panel-cl: var(--text-sub);
+
+  // 現在地
+  --current-page: #{$adobe};
+
+  // 差し色
+  --panel-pop: oklch(from #{$baked-apple} l c h / 65%);
+
+  // 背景の半透明幕
+  --scrim: transparent;
+
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
+  // scrim水玉模様の色
+  --dots: oklch(from var(--panel-bg) l c h / 60%);
+}
 
 /* ===== styles/components/_timer-mini.scss ===== */
 // 　→ styles/core/_timer.vars.scss
@@ -398,10 +446,6 @@ input {
   // 中心
   --center: #{$color-g-chai};
 
-  // 分針のサイズ
-  --m-width: 8rem;
-  --m-height: 6rem;
-
   // .decor-clock svg
   --clock-filter: drop-shadow(0 0 5px rgb(200 200 255 / 30%));
 }
@@ -418,13 +462,13 @@ input {
 }
 
 .page--about {
-  --back: red;
-  --mid: red;
-  --front: red;
-  --h: blue;
-  --m: yellow;
-  --s: orange;
-  --center: pink;
+  --back: oklch(from #{$color-a-deco} l c h / 35%);
+  --mid: #{$color-a-tec};
+  --front: oklch(from #{$color-a-paper} l c h / 78%);
+  --h: #{$gray-1};
+  --m: #{$gray-2};
+  --s: #{$gray-3};
+  --center: oklch(from #{$text-main} l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -442,8 +486,12 @@ input {
   --help-h: #fff;
   --help-border: rgb(196 214 205 / 35%);
   --help-icon: #c8e5d6;
+
   --help-filter: opacity(100%) brightness(100%);
   --help-filter-hover: opacity(95%) brightness(101%);
+
+  --link-box-shdw-hover: 0 8px 24px rgb(0 0 0 / 15%),
+    inset 0 0 0 1px rgb(255 255 255 / 25%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -484,13 +532,19 @@ input {
   --help-filter-hover: opacity(96%) brightness(103%);
 }
 
-/* Dew */
+/* Dew about */
 .theme-dew {
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+  --link-padding: 0.6em 1.1em;
+  --link-main-color: #{$color-a-ink};
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 12%),
     inset 0 0 0 1px rgb(255 255 255 / 35%);
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
+  --help-bg: #{$sub-bg};
+  --help-fg: #474747;
+  --help-h: #{$color-a-ink};
   --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
+  --help-icon: #{$gray-2};
+  --help-icon-bg: oklch(from #{$gray-3} l c h / 8%);
+  --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 16%),
+    inset 0 0 0 1px rgb(255 255 255 / 40%);
 }

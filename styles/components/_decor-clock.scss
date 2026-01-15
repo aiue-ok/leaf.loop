@@ -66,13 +66,17 @@
 
 // 480px以上の縦向き
 @media (width >= #{core.$bp-sm}) and (orientation: portrait) {
-  .decor-clock {
-    // 縦長でも横長でも揺れずに一貫して下に置ける
-    margin-top: auto;
-    margin-bottom: 2rem;
+  .page--gallery,
+  .page--universe,
+  .page--about {
+    .decor-clock {
+      // 縦長でも横長でも揺れずに一貫して下に置ける
+      margin-top: auto;
+      margin-bottom: 2rem;
 
-    // 右寄せ
-    align-self: flex-end;
+      // 右寄せ
+      align-self: flex-end;
+    }
   }
 }
 
@@ -80,7 +84,7 @@
 @media (width <= #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   .page--universe,
-  body.about {
+  .page--about {
     .decor-clock {
       // 小さめ
       max-inline-size: 180px;
@@ -96,7 +100,7 @@
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   .page--universe,
-  body.about {
+  .page--about {
     .decor-clock {
       max-inline-size: 120px;
       margin-inline: unset;
