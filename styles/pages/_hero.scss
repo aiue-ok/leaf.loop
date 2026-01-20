@@ -63,20 +63,30 @@ body.hero {
   // <video> hero-video
 
   /* 既定は静止画だけを見せる */
-  .hero__media-video {
-    display: none;
+  // 非フォーカス <img>
+  // 旧hero-poster
+  .hero__media-poster {
+    // display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  // 非フォーカス <img>
-  // 旧hero-poster
-  .hero__media-poster {
+  .hero__media-video {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .hero.is-slow .hero__media-video,
+  .hero.is-reduced-motion .hero__media-video {
+    display: none;
+  }
+
+  .hero.is-slow .hero__media-poster,
+  .hero.is-reduced-motion .hero__media-poster {
+    display: block;
   }
 
   /* コンテンツ/UIは前面へ */

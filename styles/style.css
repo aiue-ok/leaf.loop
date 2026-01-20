@@ -2502,17 +2502,24 @@ body.hero #background-video {
   top: 0;
   left: 0;
 }
-body.hero .hero__media-video {
-  display: none;
+body.hero .hero__media-poster {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-body.hero .hero__media-poster {
+body.hero .hero__media-video {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+body.hero .hero.is-slow .hero__media-video,
+body.hero .hero.is-reduced-motion .hero__media-video {
+  display: none;
+}
+body.hero .hero.is-slow .hero__media-poster,
+body.hero .hero.is-reduced-motion .hero__media-poster {
+  display: block;
 }
 body.hero .hero .hero__grid,
 body.hero .notify-controls {
