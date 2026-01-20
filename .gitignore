@@ -13,13 +13,14 @@ node_modules/
 dist/
 build/
 guide/
+_archive/
 
 # diff生成物を無視
 DIFF_*.txt
 *.diff.txt
 *.patch.txt
-legacy/_timer-mini copy20251203/_timer-mini copy20251203.scss
-legacy/_timer-mini copy20251203/gallery copy.html
+
+#その他
 styles/core/_debag.scss
 assets/gallery/full/018.avif
 assets/gallery/full/018.webp
@@ -27,4 +28,3 @@ assets/gallery/thumbs/018.webp
 assets/gallery/thumbs/018@2x.webp
 assets/gallery/thumbs/019.webp
 assets/gallery/thumbs/019@2x.webp
-legacy/20250927style.css
