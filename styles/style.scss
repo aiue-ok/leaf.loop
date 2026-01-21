@@ -4,20 +4,14 @@
 // Components
 @use "components/timer";
 @use "components/info";
-
-// @use "components/site-menu";
-// @use "components/timer-mini";
+@use "components/page-header";
+@use "components/menu-drawer";
+@use "components/scrim";
+@use "components/decor-clock";
+@use "components/timer-mini";
 
 // Pages
 @use "pages/hero";
-
-// @use "pages/gallery";
-// @use "pages/universe";
-// @use "pages/about";
-
-// 絶対パス /styles/... は使わない。相対
-
-// ローカルでデバッグしたいときは true で再読み込み
-// @use "core/index" with (
-//   $enable-debug: true
-// );
+@use "pages/gallery";
+@use "pages/universe";
+@use "pages/about";

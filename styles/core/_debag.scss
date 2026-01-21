@@ -1,4 +1,3 @@
-// デフォは無効。style.scss から上書きできるよう !default
 $enable-debug: false !default;
 
 @layer debug {
@@ -20,20 +19,144 @@ $enable-debug: false !default;
 }
 
 * {
-  // outline: 1px dotted white;
+  // outline: 1px dotted yellow;
 }
 
-// test用ボーダー
-// border:core.$test;
 $test1: 1px solid rgb(255 0 0 / 30%);
 $test2: 1px solid rgb(255 200 0);
 $test3: 1px solid rgb(0 251 255);
 $test4: 1px solid rgb(255 0 238);
 $test5: 1px solid rgb(255 247 0);
-
-// background:core.$test-bg1;
 $test-bg1: rgb(200 255 0 / 40%);
 $test-bg2: rgb(69 110 198 / 40%);
 $test-bg3: rgb(44 251 48 / 30%);
 $test-bg4: rgb(255 0 64 / 30%);
 $test-bg5: rgb(195 0 255 / 30%);
+
+// --------------------
+// 通知テスト 開発用
+// --------------------
+
+/* base.scss の下の方に追加（all:unset の“あと”に書く） */
+input[type="checkbox"] {
+  all: revert; /* 既定のUIに戻す */
+  accent-color: var(--accent, #78c37b); /* チェック色だけ合わせる */
+  width: 1.1rem;
+  height: 1.1rem; /* ほんの少し統一（レイアウトは変えない） */
+}
+
+/* 既定は非表示 */
+.notify-controls[hidden] {
+  display: none;
+}
+
+/* デバッグ時だけ出したいなら：html[data-debug="1"]
+.notify-controls { display:flex } */
+:html[data-debug="1"] {
+  .notify-controls {
+    display: flex;
+  }
+}
+
+.notify-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: left;
+  position: relative;
+  z-index: 2; /* オーバーレイより前 */
+  padding: 12px;
+  border: 1px solid oklch(from #{var(--shiro)} l c h / 50%);
+  border-radius: 12px;
+  background: oklch(from #{var(--kuro)} l c h / 15%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  will-change: backdrop-filter;
+}
+
+.help-button-look {
+  background-color: #f5f5f5;
+  color: #0a0a0a;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explanation p {
+  width: 100%;
+}
+
+.label-box {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 共通チップ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--chip-bd);
+  background: var(--chip-bg);
+  color: var(--shiro);
+  text-decoration: none;
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+/* 入力本体は見せないがフォーカスは可視化 */
+.chip > input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: auto; /* ラベル全体クリック可 */
+}
+
+.chip:focus-within {
+  outline: 2px solid var(--shiro);
+  outline-offset: 3px;
+}
+
+/* チェック状態の見た目（Safari OK） */
+.chip:has(input:checked) {
+  background: var(--chip-bg-active);
+  border-color: var(--chip-bd-active);
+}
+
+/* テストボタンも同じ見た目に */
+.chip--action {
+  cursor: pointer;
+  border: 1px solid var(--chip-bd-active);
+  background: linear-gradient(180deg, #{var(--shiro20)}, #{var(--shiro10)});
+}
+
+.chip--action:active {
+  transform: translateY(1px);
+}
+
+.timer4 span.chip__text {
+  display: none;
+}
+
+@media screen and (orientation: portrait) {
+  .notify-controls {
+    margin: 24px;
+  }
+
+  .timer4 span.chip__text {
+    display: none;
+  }
+
+  .test-button-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

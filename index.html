@@ -44,8 +44,6 @@
   <body class="hero page page--hero">
     <!-- 動画の背景 -->
     <div class="hero__media-body" aria-hidden="true">
-      <!-- 非フォーカス（装飾のため） -->
-      <img class="hero__media-poster" src="assets/jpg/hero-bg.jpg" alt="" />
       <!-- autoplay：ページが読み込まれた時に自動で再生 -->
       <!-- muted：音声をミュートに設定 -->
       <!-- loop：動画を繰り返し再生 -->
@@ -75,6 +73,8 @@
         />
         お使いのブラウザは動画タグに対応していません。
       </video>
+      <!-- 非フォーカス（装飾のため） -->
+      <img class="hero__media-poster" src="assets/jpg/hero-bg.jpg" alt="" />
     </div>
     <header class="site-header">
       <h1 class="site-header__title kiwi-maru-regular">
@@ -309,7 +309,7 @@
             >
               <a
                 class="nav-tile nav-tile--gallery"
-                href="#/gallery"
+                href="gallery.html"
                 aria-label="ギャラリー"
               >
                 <span class="nav-tile__media" aria-hidden="true"></span>
@@ -327,7 +327,7 @@
             >
               <a
                 class="nav-tile nav-tile--universe"
-                href="#/universe"
+                href="universe.html"
                 aria-label="ユニバース"
               >
                 <span class="nav-tile__media" aria-hidden="true"></span>
@@ -365,7 +365,7 @@
               <nav class="info" aria-label="補助メニュー">
                 <ul class="info__list">
                   <li class="info__item">
-                    <a class="info__link info__link--about" href="#"
+                    <a class="info__link info__link--about" href="about.html"
                       ><span aria-hidden="true">🌱</span> このサイトについて</a
                     >
                   </li>

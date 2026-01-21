@@ -4,14 +4,14 @@
   *::before,
   *::after {
     /* 0.001ms ハックでもOK。JSの transitionend を必要としないなら 0s でも可 */
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0s !important;
+    animation-duration: 0s;
+    animation-iteration-count: 1;
+    transition-duration: 0s;
   }
 
   * {
-    transition: none !important;
-    animation: none !important;
+    transition: none;
+    animation: none;
   }
 
   .hero__media-video {
@@ -23,14 +23,14 @@
   }
 
   #background-video {
-    display: none !important;
+    display: none;
   }
 
   .bg-fade,
   .parallax,
   .word-dissolve {
-    animation: none !important;
-    transition: none !important;
+    animation: none;
+    transition: none;
   }
 
   // トースト
@@ -47,6 +47,35 @@
   // ヘルプカード
   .mini-help__card {
     transition: none;
+  }
+
+  .decor-clock {
+    animation: none;
+  }
+
+  body.page--universe {
+    [class*="bg-"]::before,
+    [class*="bg-"]::after,
+    .universe__word::before,
+    .universe__word::after,
+    .ch5-dust {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      background-position: 0% 50% !important; /* 動いてた場合の固定 */
+    }
+
+    /* 2) 文字まわりの“ふわっと”は短くする（ゼロでもOK） */
+    .word,
+    #whiteout {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    /* 3) 例外：whiteoutだけは瞬時に切り替えたいなら */
+    #whiteout {
+      transition: none !important;
+    }
   }
 }
 
@@ -86,6 +115,10 @@ input[type="range"] {
 }
 
 /* まずは :focus-visible */
+// fucus-visible
+// --focus-ring: #{$main-color};
+// --focus-ring-width: 2px;
+// --focus-ring-offset: 2px;
 :where(
     a,
     button,
@@ -97,6 +130,7 @@ input[type="range"] {
   ):focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
+  border-radius: var(--focus-ring-radius, 0.4rem);
 
   /* 影の補助（任意） */
   box-shadow: 0 0 0 calc(var(--focus-ring-width) + 1px)
@@ -115,16 +149,16 @@ input[type="range"] {
       textarea,
       summary
     ):focus-visible {
-    outline-color: CanvasText !important;
-    box-shadow: none !important;
+    outline-color: CanvasText;
+    box-shadow: none;
   }
 }
 
 :focus-visible {
-  outline: 3px solid rgb(255 255 255 / 95%);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgb(0 0 0 / 35%); /* 反転背景でも見えるよう二重 */
-  border-radius: 12px;
+  // outline: 3px solid oklch(from #{var(--shiro)} l c h / 0.95);
+  // outline-offset: 3px;
+  // box-shadow: 0 0 0 3px oklch(from #{var(--kuro)} l c h / 0.35); /* 反転背景でも見えるよう二重 */
+  // border-radius: 12px;
 }
 
 /* キーボード操作にも効かせる（アクセシビリティ） */
@@ -169,7 +203,7 @@ input[type="range"] {
   inset: -0.01em;
 
   // text-shadow: 10px 10px 2px rgb(0 0 0 / 0.28); /* 初期は28%の黒ベール */
-  background: rgb(0 0 0 / 28%); /* 初期は28%の黒ベール */
+  background: oklch(from #{var(--kuro)} l c h / 28%); /* 初期は28%の黒ベール */
   border-radius: 0.2em;
   filter: blur(1.5px); /* 柔らかく馴染ませる（なくてもOK） */
   z-index: -1;
@@ -178,19 +212,19 @@ input[type="range"] {
 /* もっとコントラストが要る人に寄り添う */
 @media (prefers-contrast: more) {
   .contrast-pad::before {
-    background: rgb(0 0 0 / 45%);
+    background: oklch(from #{var(--kuro)} l c h / 45%);
   }
 }
 
 .pill {
-  background: rgb(0 0 0 / 30%);
+  background: oklch(from #{var(--kuro)} l c h / 30%);
   padding: 0.15em 0.5em;
   border-radius: 999px;
 }
 
 @media (prefers-contrast: more) {
   .pill {
-    background: rgb(0 0 0 / 50%);
+    background: oklch(from #{var(--kuro)} l c h / 50%);
   }
 }
 
@@ -204,11 +238,14 @@ input[type="range"] {
   /* 透明黒＋ほんのりガラス */
   background: color-mix(in oklab, black 42%, transparent);
   backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  will-change: backdrop-filter;
   border: 1px solid var(--glass-border);
 
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), var(--glass-shadow);
-  text-shadow: 0 1px 1px rgb(0 0 0 / 25%);
+  box-shadow: inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
+    var(--glass-shadow);
+  text-shadow: 0 1px 1px #{var(--kuro25)};
   max-inline-size: 28ch; /* 行が伸びすぎないように */
   text-wrap: balance; /* 気持ちよく改行 */
 }
@@ -219,6 +256,7 @@ input[type="range"] {
   .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), var(--glass-shadow);
+    box-shadow: inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
+      var(--glass-shadow);
   }
 }

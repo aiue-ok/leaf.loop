@@ -1,8 +1,10 @@
 @use "../core/index" as core;
 
-/* ===== _info.scss ===== */
-
 .hero__slot--side :where(.info) {
+  --link-main-color: #{core.$main-color};
+  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
+    inset 0 0 0 1px rgb(255 255 255 / 35%);
+
   /* Block本体 */
   .info {
     display: grid;
@@ -23,21 +25,23 @@
     display: inline-block;
   }
 
+  // index.html用
   .info__link {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
     inline-size: max-content;
     max-inline-size: min(70vw, 420px);
-    padding: 0.6em 1.1em;
+    height: 44px;
+    padding: 8px;
     border-radius: 999px;
+    background: oklch(from #{var(--kuro)} l c h / 16%);
     backdrop-filter: blur(8px) saturate(140%);
-    background: rgb(0 0 0 / 16%);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 25%),
-      inset 0 0 0 1px rgb(255 255 255 / 35%);
-    color: core.$main-color;
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    will-change: backdrop-filter;
+    box-shadow: var(--link-box-shdw);
+    color: var(--link-main-color);
     font-size: 16px;
-    z-index: core.$z-closer;
   }
 
   .info a.info__link,
@@ -51,16 +55,16 @@
   .info a:focus-visible .info__link,
   .info button.info__link:focus-visible {
     /* 任意：あなたのトークンに置き換え可 */
-    background-color: rgb(
-      0 0 0 / 10%
-    ); /* or var(--focus-bg, rgb(0 0 0 / .10)) */
+    background-color: oklch(from #{var(--kuro)} l c h / 10%);
+
+    /* or var(--focus-bg, rgb(0 0 0 / .10)) */
 
     /* 視認性UPのための微弱な影（レイアウト不変） */
-    box-shadow: 0 0 0 2px rgb(255 255 255 / 25%) inset;
+    box-shadow: 0 0 0 2px oklch(from #{core.$shiro100} l c h / 25%) inset;
   }
 
   .info__link:focus-visible {
-    outline: 2px solid var(--focus-ring, #7aa2ff);
+    outline: 2px solid var(--focus-ring, #{core.$shiro100});
     outline-offset: 2px;
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -70,7 +74,7 @@
   @media (hover: hover) {
     /* ホバーと揃えたい場合はお好みで */
     .info a:hover .info__link {
-      background-color: rgb(0 0 0 / 6%);
+      background-color: oklch(from #{var(--kuro)} l c h / 6%);
     }
 
     /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
@@ -86,88 +90,81 @@
       cursor: pointer;
     }
   }
-
-  /* アイコンサイズを上書きする */
-  span.help-icon-size {
-    font-size: 1rem;
-  }
 }
 
-// ▼ヘルプパネル　位置
+// ════════════════════════════════
+// ✨ヘルプカード（共通設定）
+// js help.js
+// ════════════════════════════════
+
 .info-help-card[hidden] {
   display: none;
 }
 
+// ▼ヘルプパネル　位置
 .info-help-card {
   // position: absolute;
   position: fixed;
   top: 0;
   right: -100%;
-  transition: transform 0.4s ease, right 0.4s ease;
+  transition: transform var(--motion-snap) ease, right var(--motion-snap) ease;
   z-index: core.$z-help;
-
-  /* アイコンサイズを上書きする */
-  & span.help-icon-size {
-    font-size: 2rem;
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--help-icon);
-  }
 }
 
 .info-help-card.is-open {
   right: 0;
 }
 
-// 通知テストセクションを隠しておく
-.info-hidden {
-  // display: none;
-}
-
-/* ヘルプエリア w h */
+/* ヘルプエリア 幅と高さ　デフォルト */
 .info-help-container {
   width: min(90vw, 360px); /* スマホなら90%、PCなら最大320px */
   height: auto;
 }
 
-/* 背景 */
-
-/* Moss */
-.theme-moss {
-  --help-bg: rgb(24 36 28 / 72%);
-  --help-fg: #ebf3ef;
-  --help-h: #fff;
-  --help-border: rgb(196 214 205 / 35%);
-  --help-icon: #c8e5d6;
-}
-
-/* Dew */
-.theme-dew {
-  --help-bg: rgb(240 245 243 / 82%);
-  --help-fg: #1e2b4f;
-  --help-h: #0b1c39;
-  --help-border: rgb(11 28 57 / 15%);
-  --help-icon: #0e1020;
-}
-
+// ヘルプカードの背景色
 .visual-card-help-bg {
+  position: relative;
+  overflow: hidden;
   border-radius: 20px;
   background: var(--help-bg);
   border: 1px solid var(--help-border);
-  box-shadow: 0 8px 30px rgb(0 0 0 / 35%);
+  box-shadow: var(--link-box-shdw);
+
+  filter: var(--help-filter);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  will-change: backdrop-filter;
+  transition: background var(--motion-snap) ease, filter var(--motion-soft) ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: oklch(100% 0 0 / 0.04); /* 超うす */
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
 }
 
 .visual-card-help-bg:hover {
-  background: rgb(0 0 0 / 55%);
-  transition: background 0.3s ease-in;
+  background: color-mix(in oklch, var(--help-bg) 90%, var(--kuro) 5%);
+  filter: var(--help-filter-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--link-box-shdw-hover);
+  transition: box-shadow 240ms ease, transform 240ms ease;
+
+  &::after {
+    opacity: 1;
+  }
 }
 
-// テキスト関係
+// カード内のテキスト
 .help-content {
   padding: 1rem;
   color: var(--help-fg);
   text-decoration: none;
-  font-size: 1rem;
   line-height: 1.6;
   text-align: left;
 
@@ -181,43 +178,36 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.6;
-  padding: 0.5rem;
-  text-align: center;
+  margin-bottom: 0.5rem;
 
   & h2 {
-    display: block;
-  }
-
-  & span.help-icon {
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 }
 
-// ボタン内　中央寄せ
-.info-help-card button.close-button {
-  text-align: center;
-  margin: 0;
-}
-
-// ボタン見た目と配置
+// 閉じるボタン
 .info-help-card .close-button {
-  color: var(--help-icon);
-  font-size: 1.4rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgb(96 96 96 / 38%);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  color: var(--help-icon);
+  background: var(--help-icon-bg);
+  pointer-events: auto;
+  z-index: core.$z-help-close;
+  transition: background var(--motion-tap) ease-in,
+    scale var(--motion-tap) ease-in;
 }
 
 // 閉じるボタン　ホバー
 .info-help-card .close-button:hover {
-  background-color: #606060;
+  background: oklch(from #{var(--help-icon-bg)} l c h / 20%);
   scale: 105%;
-  cursor: pointer;
 }
 
 .info-help-card .close-button:focus-visible {
@@ -226,11 +216,16 @@
   outline-offset: 4px;
 }
 
-// 行間
+// 中見出し「時間設定」「操作方法」
 .info-help-card h3 {
   line-height: 1.8; /* フォントサイズの1.5倍に設定 */
   margin-block: 0.25rem 0.5rem;
-  color: #b4d2ea;
+  color: var(--help-h);
+}
+
+// ＃helpTitle タイマーの使い方
+.link-text {
+  font-size: 1.25rem;
 }
 
 // 間隔
@@ -238,18 +233,15 @@
   margin: 6px 0;
 }
 
-// pタグ内のアイコンフォントのテキスト関係
-.info-help-card span.p-icon-size {
-  font-size: 1.2rem;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0.2rem;
-  line-height: 1.5;
-  color: var(--help-icon);
-  opacity: 0.9;
+// 停止■ボタン説明のアイコンを２行で表示
+.help-card__row > svg {
+  padding-right: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: text-bottom; // or middle / text-bottom で微調整
 }
 
-// pタグ内の行揃え
+// 説明のレイアウト：<p>タグ内の配置・左寄せ・タブ
 .flex-parent-help-p {
   display: flex;
   justify-content: left;
@@ -261,77 +253,82 @@
 // 📍📍📍 高さ500px以下（スマホ横向きなど）以下
 @media screen and (max-height: 500px) and (orientation: landscape) {
   body {
+    .help-content {
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
     /* ヘルプエリア w h */
     .info-help-container {
-      width: 90vw;
-      height: auto; // ここなおす1️⃣
+      width: min(600px, 90vw); // ← 横でも“伸びすぎない”幅
+      margin-inline: auto; // ← 中央寄せ
+      padding: 0.75rem 1rem; // ← 縦向きより少なめの余白
+      font-size: 0.95rem; // ← 気持ち下げると横向きで美しく読める
+    }
+
+    .flex-parent-help-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .flex-parent-help-h h2 {
+      font-size: 24px;
+    }
+
+    // ボタン見た目と配置
+    .info-help-card .close-button {
+      position: relative;
+      top: 0.3rem;
+      right: 0.75rem;
+    }
+
+    .info-help-card h3 {
+      line-height: unset;
+      margin-block: 0.25rem 0;
+    }
+
+    .help-textbox {
+      margin-top: 0.5rem;
+    }
+
+    .link-text {
+      font-size: 1.1rem;
+    }
+
+    .help-content p {
+      padding-left: 0.4rem;
     }
 
     .flex-parent-help-unit {
       display: flex;
-      justify-content: left;
-      align-items: center;
-      text-align: left;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem; // ← 横向きは “狭め”
     }
 
     .wrap-help-unit-l {
-      width: 50%;
+      width: auto;
+      max-width: 250px;
+      flex: 1 1 0;
     }
 
     .wrap-help-unit-r {
-      width: 50%;
-      border: 1px solid #f0f0f0;
+      width: auto;
+      flex: 1 1 0;
+      max-width: 250px; // ← アイコン説明欄をコンパクトに
+      border: var(--help-unit-bd); // 枠色を入れてみやすく
+      margin-top: 0.25rem;
       padding: 0.4rem;
       border-radius: 8px;
     }
+
+    .help-card__row > svg {
+      padding-right: 0.3em;
+      vertical-align: middle;
+    }
   }
-}
-
-// ---
-// ▼ミニヘルプ（各ページ）
-.mini-help {
-  position: fixed;
-  right: 12px;
-  bottom: 88px;
-  z-index: 60;
-}
-
-.mini-help > summary {
-  list-style: none;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgb(14 16 32 / 35%);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgb(255 255 255 / 18%);
-}
-
-.mini-help[open] > summary {
-  visibility: hidden;
-} /* カード表示時は?隠す */
-
-.mini-help__card {
-  min-width: 220px;
-  max-width: 280px;
-  background: var(--timer-surface);
-  color: var(--timer-fg);
-  border: 1px solid var(--timer-border);
-  border-radius: 12px;
-  box-shadow: var(--timer-shadow);
-  padding: 12px 14px;
-  backdrop-filter: blur(10px) saturate(140%);
-}
-
-.mini-help__card ul {
-  margin: 6px 0 10px;
-  padding-left: 1em;
-}
-
-.mini-help__close {
-  width: 100%;
-  border-radius: 8px;
 }
