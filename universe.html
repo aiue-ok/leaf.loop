@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja" class="has-fluid-viewport">
   <head>
     <meta charset="UTF-8" />
@@ -36,13 +36,16 @@
           <div class="timer-mini__screen" aria-live="polite">
             <div class="timer-mini__screen--grid">
               <!-- gridアイテム①：残り時間 -->
-              <div class="timer-mini__screen--display">
-                <span
+              <div
+                class="timer-mini__screen--display"
+                role="timer"
+                aria-label="お茶のタイマー 残り時間"
+              >
+                <time
                   id="timer"
                   class="timer-mini__screen--count timer-mini__screen--tnum"
-                  role="timer"
-                  aria-label="お茶のタイマー 残り時間"
-                  >00:00</span
+                  datetime="PT0S"
+                  >00:00</time
                 >
                 <!-- 読み上げ専用（視覚には非表示） -->
                 <div
