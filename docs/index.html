@@ -107,15 +107,18 @@
                 <!-- タイマーgrid 親 -->
                 <div class="timer__grid timer__grid--vertical">
                   <!-- タイマー子①：見えるタイマー表示 -->
-                  <div class="timer__screen timer__screen--display">
-                    <h1
+                  <div
+                    class="timer__screen timer__screen--display"
+                    role="timer"
+                    aria-label="お茶のタイマー 残り時間"
+                  >
+                    <time
                       id="timer"
                       class="timer__screen--tnum timer__screen--count"
-                      role="timer"
-                      aria-label="お茶のタイマー 残り時間"
+                      datetime="PT0S"
                     >
                       00:00
-                    </h1>
+                    </time>
                     <!-- 読み上げ専用（視覚には非表示） -->
                     <div
                       id="timerLive"
