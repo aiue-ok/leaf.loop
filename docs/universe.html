@@ -1,21 +1,6 @@
 <!doctype html>
 <html lang="ja" class="has-fluid-viewport">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-WMSF4BCRJN"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-WMSF4BCRJN");
-    </script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/style.css" />
@@ -35,7 +20,7 @@
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <script type="module" src="js/word_old.js" defer></script>
+    <script src="js/word_old.js" defer></script>
     <!-- <script type="module" src="js/word.js" defer></script> -->
     <!-- <script type="module" src="js/whiteout-once.js" defer></script> -->
     <title>遠くのことを少しだけ</title>
@@ -274,10 +259,10 @@
         <div id="whiteout" aria-hidden="true"></div>
       </div>
       <!-- // 一語ずつ詩的に出現させる場所 -->
-      <section class="universe-words universe__word">
+      <div class="universe-words universe__word">
         <!-- JSで順次表示 -->
         <p class="word" id="word"></p>
-      </section>
+      </div>
     </main>
     <!-- /* ≡≡≡ ヘルプカードここから */ -->
     <!-- aria-labelledbyは、要素にラベルを付けるためのARIA属性。 -->
@@ -435,7 +420,7 @@
     <!-- 背景クリック用 -->
     <div class="scrim dots" hidden></div>
     <!-- 右端で待機するメニュー-->
-    <nav id="site-menu" class="menu-drawer" role="navigation" hidden>
+    <nav id="site-menu" class="menu-drawer" hidden>
       <div class="menu-drawer__wrapper">
         <div class="menu-drawer__head">
           <span class="menu-drawer__title">Menu</span>
