@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>レシピ一覧</title>
+    <script type="module" src="js/data/recipes.js"></script>
+    <style>
+      h2 {
+        color: teal;
+      }
+      .tags {
+        display: flex;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+      }
+      .tags li {
+        background: #eee;
+        padding: 2px 8px;
+        border-radius: 999px;
+      }
+      ol {
+        padding-left: 1.2em;
+        list-style-position: inside;
+      }
+
+      ol li {
+        margin-bottom: 0.6em;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="recipe"></main>
+
+    <script type="module">
+      import { recipes } from "./js/data/recipes.js";
+
+      const recipe = recipes[0];
+      const container = document.getElementById("recipe");
+
+      container.innerHTML = recipes
+        .slice(0, 1)
+        .map(
+          (recipe) => `
+          <article class="recipe">
+            <h2>${recipe.title}</h2>
+
+            <ul class="tags">
+              ${recipe.tags.map((tag) => `<li>${tag}</li>`).join("")}
+            </ul>
+
+            <h2>材料</h2>
+            <ul>${recipe.ingredients.map((i) => `<li>${i}</li>`).join("")}</ul>
+
+${
+  recipe.steps.prep.length > 0
+    ? `
+<h3>下ごしらえ</h3>
+<ol>
+  ${recipe.steps.prep.map((s) => `<li>${s}</li>`).join("")}
+</ol>
+`
+    : ""
+}
+            <h2>手順</h2>
+
+            <ol>
+              ${recipe.steps.cook.map((s) => `<li>${s}</li>`).join("")}
+              </ol>
+
+            <h2>ポイント</h2>
+            <ul class="tips">${recipe.tips.map((i) => `<li>${i}</li>`).join("")}</ul>
+          </article>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>
