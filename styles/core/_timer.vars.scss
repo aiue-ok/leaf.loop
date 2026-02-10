@@ -37,7 +37,8 @@
   --count-radius: 0.6rem;
 
   // 等幅数字を柔らかく※ 影の数を増やすより、**半径と不透明度の“比率”**が大事。強すぎたら .03/.15/.36 くらいに全部落とす。
-  --count-shadow: 0 0 0.03rem rgb(255 255 255 / 55%),
+  --count-shadow:
+    0 0 0.03rem rgb(255 255 255 / 55%),
     /* エッジの微光 */ 0 0 0.18rem rgb(255 255 255 / 30%),
     /* 近距離の霧 */ 0 0 0.44rem rgb(255 255 255 / 18%); /* 遠くのベール */
 
@@ -60,8 +61,9 @@
   );
 
   /* ★内縁ハイライト + 外側の落ち影（ガラスと統一） */
-  --preset-glass: inset 0 0 0 1px rgb(0 0 0 / 16%),
-    inset 0 8px 20px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 25%);
+  --preset-glass:
+    inset 0 0 0 1px rgb(0 0 0 / 16%), inset 0 8px 20px rgb(0 0 0 / 6%),
+    0 8px 24px rgb(0 0 0 / 25%);
   --preset-mask: linear-gradient(
     to bottom,
     var(--kuro) 0 60%,
@@ -78,7 +80,8 @@
   --preset-fg-current: var(--t-main-color);
   --preset-gl-current: var(--preset-glass);
   --preset-bg-accent: solid 2.27px #{var(--t-main-color)};
-  --preset-shadow-accent: inset 0 0 0 1px rgb(255 255 255 / 22%),
+  --preset-shadow-accent:
+    inset 0 0 0 1px rgb(255 255 255 / 22%),
     inset 0 6px 14px rgb(255 255 255 / 4%), 0 4px 12px rgb(0 0 0 / 22%);
   --preset-bg-active: color-mix(
     in oklch,
@@ -271,7 +274,8 @@ body.page--universe > .timer-mini {
   --mini-color-ink2: #{var(--main-color)};
 }
 
-.page--about > .timer-mini {
+.page--about > .timer-mini,
+.recipe > .timer-mini {
   // デスクトップ（default）
   --mini-color-base: #{var(--bg)}; // 紙
   --mini-color-accent: #{var(--accent)}; // 薄い緑色

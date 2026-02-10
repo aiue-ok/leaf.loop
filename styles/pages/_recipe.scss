@@ -1,0 +1,123 @@
+@use "../core/index" as core;
+
+body.recipe {
+  --main-color: #2f2f2c;
+  --bg: #f6f5f2;
+  // 1) 背景
+  --base-bg: #f6f5f2; // ほぼ白の温度あり ミルク寄り
+  --sub-bg: #efede8; // （区切り用・薄） 真っ白を避けるだけで、文字の角が丸く見える。
+
+  // 2) グレー系（UI・区切り・注釈）
+  --gray-1: #5e5e5e; // （本文補助）
+  --gray-2: #cfcac2; // （罫線・区切り）
+  --gray-3: #b8b3aa; // （弱UI）
+  // グレーは“青みゼロ”。
+
+  // 3) 文字色（やわらか主役）
+  --text-main: #2f2f2c; // 真っ黒じゃない
+  --text-sub: #4a4a46; // （見出し補助・注釈）
+
+  // アクセント（1色だけ） 用途はリンク・強調・ほんの印。
+  --accent: #3e5f4b;
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
+
+  background-color: var(--base-bg);
+  color: var(--text-main);
+  font-family:
+    "Zen Kaku Gothic New",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic Medium",
+    "Yu Gothic",
+    "Meiryo",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    roboto,
+    "Helvetica Neue",
+    arial,
+    sans-serif;
+
+  main {
+    margin: 2rem 1rem;
+  }
+
+  article h2 {
+    // kosugi-maru-regular
+    font-family: "Kosugi Maru", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border-bottom: #2f2f2c 1px solid;
+    margin: 0.2rem 0;
+  }
+
+  h3 {
+    margin-bottom: 0.3rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .tags li {
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  ol,
+  ul {
+    padding-left: 1.2em;
+    list-style-position: inside;
+  }
+
+  ol li,
+  ul li {
+    margin-bottom: 0.6em;
+    line-height: 1.6;
+  }
+
+  li {
+    margin: 0.45em 0;
+  }
+
+  li > p {
+    margin: 0.35em 0;
+  } /* もしli内にpが出ても破綻しない保険 */
+
+  //   材料
+  .ingredients li {
+    list-style: none; /* リストの点を削除 */
+  }
+
+  .recipe_card {
+    background-color: var(--sub-bg);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .recipe_card_accent {
+    background-color: var(--accent-bg);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .recipe_image {
+  }
+}
+
+@media (width < 480px) {
+  body.recipe {
+    main {
+      font-size: clamp(16px, 1.111vw, 20px);
+    }
+    .tags {
+      font-size: 16px;
+    }
+  }
+}
