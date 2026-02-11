@@ -5441,7 +5441,7 @@ body.recipe {
   --accent-bg: #e7ece8; /* hover時の薄い面 */
   background-color: var(--base-bg);
   color: var(--text-main);
-  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
   /* もしli内にpが出ても破綻しない保険 */
 }
 body.recipe main {
@@ -5451,7 +5451,8 @@ body.recipe article h2 {
   font-family: "Kosugi Maru", sans-serif;
   font-weight: 400;
   font-style: normal;
-  border-bottom: #2f2f2c 1px solid;
+  border-bottom: var(--gray-2) 1px solid;
+  padding-bottom: 0.5rem;
   margin: 0.2rem 0;
 }
 body.recipe h3 {
@@ -5459,7 +5460,8 @@ body.recipe h3 {
 }
 body.recipe .tags {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
   list-style: none;
   padding: 0;
 }
@@ -5499,6 +5501,14 @@ body.recipe .recipe_card_accent {
   padding: 16px;
   margin-bottom: 32px;
 }
+body.recipe .recipe_image img {
+  width: 100%;
+  max-width: 700px;
+  height: clamp(240px, 40vw, 420px);
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 @media (width < 480px) {
   body.recipe main {
     font-size: clamp(16px, 1.111vw, 20px);

@@ -15,8 +15,10 @@
     <script src="js/site-menu.js" defer></script>
     <script src="js/help.js" defer></script>
     <script src="js/clock.js" defer></script>
-    <script type="module" src="js/data/recipesData.js"></script>
-    <script type="module" src="js/main.js"></script>
+    <!-- <script type="module" src="js/data/recipesData.js"></script> -->
+    <!-- <script type="module" src="js/main.js"></script> -->
+    <script type="module" src="/js/pages/recipeDetailPage.js"></script>
+
     <!-- <style>
       h2 {
         color: teal;
@@ -272,7 +274,7 @@
       </div>
     </header>
 
-    <main id="recipe"></main>
+    <main id="recipe" class="recipe-detail"></main>
     <!-- /* ≡≡≡ ヘルプカードここから */ -->
     <!-- aria-labelledbyは、要素にラベルを付けるためのARIA属性。 -->
     <!-- 他の要素のidを指定することで、視覚的に表示されているテキストと要素を関連付けます。 -->
@@ -563,67 +565,5 @@
     </div>
 
     <audio id="alarmSound" src="./assets/mp3/alarm.mp3" preload="auto"></audio>
-
-    <script type="module">
-      import { recipes } from "./js/data/recipesData.js";
-
-      const recipe = recipes[0];
-      const container = document.getElementById("recipe");
-
-      container.innerHTML = recipes
-        .slice(0, 3)
-        .map(
-          (recipe) => `
-          <article class="recipe">
-
-
-              <h2>${recipe.title}</h2>
-<div class="recipe_image">
-画像
-</div>
-            <ul class="tags">
-              ${recipe.tags.map((tag) => `<li>${tag}</li>`).join("")}
-            </ul>
-
-            <h3>材料</h3>
-            <div class="recipe_card">
-            <ul class="ingredients">${recipe.ingredients.map((i) => `<li>${i}</li>`).join("")}</ul>
-
-${
-  recipe.steps.prep.length > 0
-    ? `
-<h4>下ごしらえ</h4>
-<ol>
-  ${recipe.steps.prep.map((s) => `<li>${s}</li>`).join("")}
-</ol>
-`
-    : ""
-}
-</div>
-
-            <h3>手順</h3>
-<div class="recipe_card">
-            <ol>
-              ${recipe.steps.cook.map((s) => `<li>${s}</li>`).join("")}
-              </ol>
-</div>
-
-<h3>できあがりイメージ</h3>
-<div class="recipe_card">
-</div>
-
-
-            <h3>ポイント</h3>
-            <div class="recipe_card_accent">
-            <ul class="tips">${recipe.tips.map((i) => `<li>${i}</li>`).join("")}</ul>
-            </div>
-
-            <button>前のレシピ</button>
-            <button>一覧に戻る</button>
-            <button>次のレシピ</button>
-          </article>`,
-        )
-        .join("");
-    </script>
   </body>
 </html>

@@ -26,15 +26,8 @@ body.recipe {
   color: var(--text-main);
   font-family:
     "Zen Kaku Gothic New",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium",
-    "Yu Gothic",
-    "Meiryo",
     system-ui,
     -apple-system,
-    "Segoe UI",
-    roboto,
-    "Helvetica Neue",
     arial,
     sans-serif;
 
@@ -47,7 +40,8 @@ body.recipe {
     font-family: "Kosugi Maru", sans-serif;
     font-weight: 400;
     font-style: normal;
-    border-bottom: #2f2f2c 1px solid;
+    border-bottom: var(--gray-2) 1px solid;
+    padding-bottom: 0.5rem;
     margin: 0.2rem 0;
   }
 
@@ -57,7 +51,8 @@ body.recipe {
 
   .tags {
     display: flex;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
     list-style: none;
     padding: 0;
   }
@@ -108,6 +103,22 @@ body.recipe {
   }
 
   .recipe_image {
+  }
+
+  .recipe_image img {
+    // width: 100%;
+    // height: auto;
+    // display: block;
+    // width: 100%;
+    // max-width: 700px;
+    // height: auto;
+    // display: block;
+    // margin: 0 auto;
+    width: 100%;
+    max-width: 700px;
+    height: clamp(240px, 40vw, 420px);
+    object-fit: cover;
+    border-radius: 8px;
   }
 }
 
