@@ -5522,7 +5522,7 @@ body.recipes {
   --accent-bg: #e7ece8; /* hover時の薄い面 */
   background-color: var(--base-bg);
   color: var(--text-main);
-  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
   /* もしli内にpが出ても破綻しない保険 */
 }
 body.recipes main {
