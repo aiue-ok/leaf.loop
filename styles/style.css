@@ -5523,50 +5523,78 @@ body.recipes {
   background-color: var(--base-bg);
   color: var(--text-main);
   font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
-  /* もしli内にpが出ても破綻しない保険 */
 }
 body.recipes main {
-  margin: 2rem 1rem;
+  width: min(92%, 1000px);
+  margin: 1rem auto;
+  display: grid;
+  gap: clamp(24px, 4vw, 60px);
+}
+body.recipes .recipe-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+body.recipes article.recipe {
+  height: 100%;
+  background-color: var(--sub-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+body.recipes .recipe-link:hover article.recipe {
+  background-color: var(--accent-bg);
+  transition: 0.2s ease;
 }
 body.recipes article h2 {
+  margin: 1rem 0;
+  height: 2rem;
   font-family: "Kosugi Maru", sans-serif;
   font-weight: 400;
   font-style: normal;
-  margin: 0.2rem 0;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.4;
 }
 body.recipes .recipe_bar {
-  background-color: var(--sub-bg);
-  padding: 20px 40px;
-  margin-bottom: 32px;
-  text-align: center;
-}
-body.recipes ol,
-body.recipes ul {
-  padding-left: 1.2em;
-  list-style-position: inside;
-}
-body.recipes ol li,
-body.recipes ul li {
-  margin-bottom: 0.6em;
-  line-height: 1.6;
-}
-body.recipes li {
-  margin: 0.45em 0;
-}
-body.recipes li > p {
-  margin: 0.35em 0;
-}
-body.recipes .recipe_detail {
-  display: none;
+  padding: clamp(16px, 3vw, 40px);
 }
 body.recipes .recipe.open .recipe_detail {
   display: block;
 }
-body.recipes .meta {
-  background-color: var(--accent-bg);
+body.recipes .recipe_detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(12px, 2vw, 32px);
+  margin-top: 0.2rem;
+}
+body.recipes p.meta {
+  line-height: 1.3;
+}
+body.recipes .recipe_image-box {
+  width: clamp(150px, 30vw, 600px);
 }
 body.recipes .recipe_image {
-  width: 300px;
-  height: auto;
+  flex: 0 0 clamp(150px, 25%, 300px);
+  width: 100%;
+  height: clamp(180px, 22vw, 260px);
   object-fit: cover;
+  border-radius: 8px;
+}
+body.recipes .recipe_topic {
+  flex: 1;
+  text-align: left;
+  display: grid;
+  gap: clamp(12px, 2vw, 32px);
+  align-self: flex-start;
+  padding-left: 16px;
+}
+body.recipes .recipe_topic > p {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  body.recipes main {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 200px;
+  }
 }/*# sourceMappingURL=style.css.map */
