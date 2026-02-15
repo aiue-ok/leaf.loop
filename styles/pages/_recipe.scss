@@ -118,7 +118,85 @@ body.recipe {
     max-width: 700px;
     height: clamp(240px, 40vw, 420px);
     object-fit: cover;
+
+  // 印刷・メール
+  .recipe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2); /* 1rem */
+    margin: 40px 0;
+
+    color: var(--accent);
+  }
+
+  button.recipe-actions-btn {
+    margin-right: 6px;
+  }
+
+  svg.recipe_print {
+    margin-right: 1rem;
+  }
+
+  ul.info__list {
+    list-style: none; /* リストの点を削除 */
+    text-align: right; /* 右寄せ */
+    display: flex;
+    gap: var(--space-2); /* 1rem */
+    margin: 0;
+    padding: 0;
+  }
+
+  li.info__item {
+    display: inline-flex;
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 0 8px;
+    background-color: transparent;
     border-radius: 8px;
+    border: transparent;
+
+    &:hover {
+      color: var(--accent-hover);
+      background-color: var(--accent-bg);
+      border: var(--accent-bg);
+    }
+  }
+
+  li.info__item button,
+  li.info__item a {
+    display: inline-flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // 区切り線
+  .recipe_divider {
+    width: 70vw;
+    border: 1px solid var(--gray-2);
+    margin: 24px auto;
+  }
+
+  // 関連レシピ表示
+  .related {
+    margin-top: 100px;
+    margin-bottom: 120px;
+  }
+
+  // 関連レシピの並び
+  .related-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 8px;
+  }
+
+  // 関連レシピ　画像
+  .related-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 }
 
@@ -130,5 +208,49 @@ body.recipe {
     .tags {
       font-size: 16px;
     }
+// }
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important; /* はみ出し部分を表示させる */
+    margin: 0;
+    padding: 0;
+    line-height: unset;
+  }
+
+  @page {
+    margin: 10mm;
+  }
+
+  .recipe_head-wrapper {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  article.recipe {
+    break-inside: auto;
+  }
+
+  li,
+  ul,
+  ol {
+    break-inside: auto;
+  }
+
+  aside,
+  header,
+  nav,
+  .recipe_back,
+  hr,
+  h3.recipe_fin_heading,
+  .recipe_image-fin,
+  .recipe_image-fin img,
+  .recipe-actions,
+  .related {
+    display: none;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
   }
 }
