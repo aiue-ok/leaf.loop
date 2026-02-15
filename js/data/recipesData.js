@@ -31,7 +31,7 @@ export const recipes = [
     },
     image_alt:
       "豚とかぼちゃのやさしい煮びたし風の器に盛り付けられた完成イメージ",
-    image: "assets/png/recipe/butakabotya.png",
+    image: "assets/recipe/butakabotya.webp",
     tips: [
       "豚バラは別の鍋でさっと熱湯で茹でて脂を落とすとよいです。",
       "とろっとしたかぼちゃの甘みに、豚の出汁が自然に絡んで「え、こんなに優しいのにコクがある!?」という感じです。",
@@ -62,7 +62,7 @@ export const recipes = [
       ],
     },
     image_alt: "なすの蒸し煮に梅肉がからんだ完成イメージ",
-    image: "assets/png/recipe/umenasuni.png",
+    image: "assets/recipe/umenasuni.webp",
     tips: [
       "ナスは柔らかくなるまで煮ると、油ゼロでも「とろん・じゅわっ」食感。",
       "梅の酸味が胃の負担をすっと軽くしてくれます。",
@@ -106,7 +106,7 @@ export const recipes = [
     },
     image_alt:
       "味噌タレにつけた豚しゃぶとなすとにんじんが鍋に入った完成イメージ",
-    image: "assets/png/recipe/nasubutamiso.png",
+    image: "assets/recipe/nasubutamiso.webp",
     tips: [
       "30分ほど事前に、出汁用の水に軽くふきんなどで表面を拭いた昆布をいれておいてもよい。",
       "油っぽいのを避けたい日は豚もも肉や豚肩ロースのしゃぶしゃぶもおすすめです。",
@@ -144,7 +144,7 @@ export const recipes = [
       ],
     },
     image_alt: "ささみと豆腐、ブロッコリーが器に盛り付けられた完成イメージ",
-    image: "assets/png/recipe/burokoritofu.png",
+    image: "assets/recipe/burokoritofu.webp",
     tips: [
       "弱火がポイント。3〜4分ほどで沸いたら、火を止めて10分蓋をしたまま具材に火を通すとささみが柔らかく仕上がる。",
     ],
@@ -185,7 +185,7 @@ export const recipes = [
       // "できあがり。",
     },
     image_alt: "黒糖蒸しパンとプレーン蒸しパンの完成イメージ",
-    image: "assets/png/recipe/mushipan.png",
+    image: "assets/recipe/mushipan.webp",
     tips: [
       "容器は大きさをそろえて、コップくらいのサイズの容器（市販のシリコンカップやマフィンカップ）が作りやすいです。",
       "時間が来たら、あればつまようじや竹串などで生地を刺し、くっついてこなければ中まで火が通った目安になります。",
@@ -219,7 +219,7 @@ export const recipes = [
       ],
     },
     image_alt: "マグカップに薄切りレモンを入れたホットレモネードの完成イメージ",
-    image: "assets/png/recipe/hotlemonade.png",
+    image: "assets/recipe/hotlemonade.webp",
     tips: [
       "温かい飲み物は、冷たいより酸を強く感じる",
       "レモン果汁を増やすのは味見の後から",
