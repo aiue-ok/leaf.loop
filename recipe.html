@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>leaf.loop | 🍳レシピ詳細</title>
+    <title>leaf.loop | おいしいものを少しだけ 🍳レシピ詳細</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,9 +45,9 @@
       }
     </style> -->
   </head>
-  <body class="recipe">
+  <body class="recipe page--recipe">
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
-    <aside class="timer-mini" aria-label="ティータイマー">
+    <aside hidden class="timer-mini" aria-label="ティータイマー">
       <!-- カードの背景 -->
       <div class="timer-mini__bg">
         <div class="timer-mini__grid">
@@ -269,7 +269,9 @@
         </button>
         <div class="page-header__brand">
           <h1 class="page-header__title">leaf.loop - portfolio</h1>
-          <h2 class="page-header__subtitle">このサイトについて</h2>
+          <h2 class="page-header__subtitle">
+            おいしいものを少しだけ 🍳レシピ詳細
+          </h2>
         </div>
       </div>
     </header>
@@ -295,7 +297,7 @@
     >
       <div class="info-help-container">
         <div
-          class="visual-card-help-bg theme-dew help-content m-plus-1p-regular"
+          class="visual-card-help-bg theme-wa help-content m-plus-1p-regular"
         >
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
@@ -477,8 +479,14 @@
           </li>
 
           <li class="menu-drawer__item">
-            <span class="menu-drawer__link" aria-current="page"
-              >このサイトについて</span
+            <a class="menu-drawer__link" href="recipes.html"
+              >おいしいものを少しだけ</a
+            >
+          </li>
+
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="about.html"
+              >このサイトについて</a
             >
           </li>
         </ul>

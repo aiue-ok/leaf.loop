@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>leaf.loop | 🍳レシピ一覧</title>
+    <title>leaf.loop | おいしいものを少しだけ レシピ一覧</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,7 +45,7 @@
       }
     </style> -->
   </head>
-  <body class="recipes">
+  <body class="recipes page--recipes">
     <!-- /* ≡≡≡ ミニタイマーここから */ -->
     <aside class="timer-mini" aria-label="ティータイマー">
       <!-- カードの背景 -->
@@ -241,6 +241,7 @@
       </div>
     </aside>
     <!-- /* ≡≡≡ メニューここから */ -->
+    <div id="to_top"></div>
     <!-- ページ共通のヘッダ -->
     <header class="page-header">
       <div class="page-header__bar">
@@ -269,13 +270,17 @@
         </button>
         <div class="page-header__brand">
           <h1 class="page-header__title">leaf.loop - portfolio</h1>
-          <h2 class="page-header__subtitle">レシピ集</h2>
+          <h2 class="page-header__subtitle">
+            おいしいものを少しだけ 🥘レシピ一覧
+          </h2>
         </div>
       </div>
     </header>
 
     <main id="recipe"></main>
-
+    <footer>
+      <span class="jump"><a href="#to_top">▲ 一番上へ</a></span>
+    </footer>
     <!-- /* ≡≡≡ ヘルプカードここから */ -->
     <!-- aria-labelledbyは、要素にラベルを付けるためのARIA属性。 -->
     <!-- 他の要素のidを指定することで、視覚的に表示されているテキストと要素を関連付けます。 -->
@@ -289,7 +294,7 @@
     >
       <div class="info-help-container">
         <div
-          class="visual-card-help-bg theme-dew help-content m-plus-1p-regular"
+          class="visual-card-help-bg theme-wa help-content m-plus-1p-regular"
         >
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
@@ -472,7 +477,13 @@
 
           <li class="menu-drawer__item">
             <span class="menu-drawer__link" aria-current="page"
-              >このサイトについて</span
+              >おいしいものを少しだけ</span
+            >
+          </li>
+
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="about.html"
+              >このサイトについて</a
             >
           </li>
         </ul>

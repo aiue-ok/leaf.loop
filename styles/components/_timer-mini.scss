@@ -336,8 +336,8 @@
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     // レイアウト・背景・トークンの初期値など
     .timer-mini {
       // stacked パレット　トークン差し替え
@@ -475,8 +475,8 @@
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     .timer-mini {
       // トークン差し替え
       --mini-color-base: #{var(--mini-color-base2)}; // （ブラウン）
@@ -591,7 +591,7 @@
 }
 
 @media (max-width: #{core.$bp-sm}) and (orientation: portrait) {
-  // aboutページのみの変更
+  // aboutのみの変更
   // ヘルプアイコンの色
   // 丸ボタンの枠の色
   .page--about {
@@ -606,6 +606,25 @@
     // 丸ボタン
     .timer-mini__pill {
       border: var(--btn-border-width) solid var(--bg);
+    }
+  }
+
+  // レシピページのみの変更
+  // ヘルプアイコンの色
+  // 丸ボタンの枠の色
+  .page--recipe,
+  .page--recipes {
+    .timer-mini__screen--help {
+      color: var(--text-sub);
+
+      &:hover {
+        color: var(--accent-hover);
+      }
+    }
+
+    // 丸ボタン
+    .timer-mini__pill {
+      border: var(--btn-border-width) solid var(-accent);
     }
   }
 }

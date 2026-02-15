@@ -274,8 +274,7 @@ body.page--universe > .timer-mini {
   --mini-color-ink2: #{var(--main-color)};
 }
 
-.page--about > .timer-mini,
-.recipe > .timer-mini {
+.page--about > .timer-mini {
   // デスクトップ（default）
   --mini-color-base: #{var(--bg)}; // 紙
   --mini-color-accent: #{var(--accent)}; // 薄い緑色
@@ -335,6 +334,80 @@ body.page--universe > .timer-mini {
   //  ボタン
   --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
   --btn-fg-hover: var(--mini-color-ink);
+
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+
+  // focus-visible
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+
+  // 丸ボタンの枠色
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+
+  // カウント用影
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+
+  // JavaScript用 body {:where(.is-active) { color: var(--t-accent);}
+  --t-accent: var(--mini-color-accent);
+}
+
+.page--recipes > .timer-mini {
+  // デスクトップ（default）
+  --mini-color-base: #{var(--bg)}; // 紙
+  --mini-color-accent: #{var(--accent)}; // 薄い緑色
+  --mini-color-ink: #{var(--gray-3)};
+
+  // モバイルカラー
+  // パレット
+  --mini-color-base2: #{var(--bg)}; // なまえつけて
+  --mini-color-accent2: #{var(--accent2)};
+  --mini-color-ink2: #{var(--text-sub)}; // ジャスミン薄白のもと oklch(0.95 0.03 105)
+  // 予備やわらか
+  // oklch(0.42 0.06 80 / 1);
+
+  // 用途トークンは「ink / surface / border / fg / fg-hover」くらいに整理
+  // ✏️ フォントカラー　/ アイコン　デフォルト
+  --mini-color: #7a7a78;
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
+
+  // 🖼️ カード背景色
+  --mini-background: oklch(from var(--mini-color-base) l c h / 45%);
+  --mini-background-hover: oklch(from var(--mini-color-base) l c h / 30%);
+
+  // 🖼️ カード　ボーダーカラー
+  --mini-background-border: color-mix(
+    in oklch,
+    var(--mini-color-ink) 20%,
+    var(--bg) 15%
+  );
+  // 🖼️ カード シャドウ
+  // 影：8px の極薄影（ふわっ）
+  --mini-background-shadow: 0 0 8px var(--gray-3);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--shiro) 5%);
+
+  // ⏲️タイマーカウント 0:00 影
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 40%, var(--kuro) 5%);
+
+  // ◼︎ 丸数字ボタン用
+  // 丸ボタンの枠色
+  --btn-pill-border: #{var(--mini-color-accent)};
+
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: #{var(--mini-color-base)};
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+
+  // アイコンSVG
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+
+  //  ボタン
+  --btn-fg: var(--mini-color-accent);
+  --btn-fg-hover: var(--mini-color-base);
 
   /* 影（軽い触れ感） */
   --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);

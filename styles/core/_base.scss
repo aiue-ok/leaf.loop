@@ -336,6 +336,28 @@ input {
   --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
+// レシピ
+.page--recipe,
+.page--recipes {
+  --main-color: #{$text-main};
+  --bg: #{$base-bg}; // ほぼ白の温度あり ミルク寄り
+  --sub-bg: #{$sub-bg}; // （区切り用・薄） 真っ白を避けるだけで、文字の角が丸く見える。
+
+  // 2) グレー系（UI・区切り・注釈）
+  --gray-1: #{$gray-1};
+  --gray-2: #{$gray-2};
+  --gray-3: #{$gray-3};
+
+  // 3) 文字色（やわらか主役）
+  --text-main: #2f2f2c; // 真っ黒じゃない
+  --text-sub: #4a4a46; // （見出し補助・注釈）
+
+  // アクセント（1色だけ） 用途はリンク・強調・ほんの印。
+  --accent: #3e5f4b;
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
+}
+
 /* ===== styles/components/_menu-drawer.scss ===== */
 
 .page--gallery {
@@ -392,8 +414,7 @@ input {
   --dots: color-mix(in oklch, var(--panel-bd) 45%, var(--shiro) 15%);
 }
 
-.page--about,
-recipe {
+.page--about {
   // ドロワーメニュー
   // メニューのバックグラウンドカラー
   --panel-bg: #{$sub-bg};
@@ -418,6 +439,36 @@ recipe {
 
   // scrim水玉模様の色
   --dots: oklch(from var(--panel-bg) l c h / 60%);
+}
+
+body.recipe,
+body.recipes,
+body.page--recipes,
+body.page--recipe {
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: #{$sub-bg};
+
+  // パネル左の枠の色
+  --panel-bd: var(--mono-bd);
+
+  // フォントカラー
+  --panel-cl: var(--text-sub);
+
+  // 現在地
+  --current-page: var(--accent);
+
+  // 差し色
+  --panel-pop: oklch(from var(--accent) l c h / 65%);
+
+  // 背景の半透明幕
+  --scrim: transparent;
+
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
+  // scrim水玉模様の色
+  --dots: oklch(from var(--accent-bg) l c h / 60%);
 }
 
 /* ===== styles/components/_timer-mini.scss ===== */
@@ -471,6 +522,17 @@ recipe {
   --m: #{$gray-2};
   --s: #{$gray-3};
   --center: oklch(from #{$text-main} l c h / 65%);
+}
+
+.page--recipes,
+.page--recipe {
+  --back: rgb(201 201 201 / 30%);
+  --mid: oklch(from #{$gray-2} l c h / 48%);
+  --front: oklch(from #{$gray-3} l c h / 38%);
+  --h: var(--accent);
+  --m: var(--accent-bg);
+  --s: var(--bg);
+  --center: oklch(from var(--accent-hover) l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -549,4 +611,29 @@ recipe {
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
   --link-box-shdw:
     0 8px 24px rgb(0 0 0 / 16%), inset 0 0 0 1px rgb(255 255 255 / 40%);
+}
+
+.theme-wa {
+  // ヘルプカードの背景色　影　光ってる
+  --link-box-shdw: 0 2px 4px var(--base-bg), inset 0 0 0 1px var(--shiro20);
+
+  // ヘルプカードの背景色
+  --help-bg: oklch(from var(--main-color) l c h / 80%);
+
+  // カード内のテキスト
+  --help-fg: var(--accent-bg);
+
+  // 中見出し「時間設定」「操作方法」
+  --help-h: var(--sub-bg);
+
+  // ヘルプカードのボーダー色
+  --help-border: oklch(from var(--gray-2) l c h / 38%);
+
+  // 閉じるボタン
+  --help-icon: var(--accent-bg);
+  --help-icon-bg: oklch(from var(--accent-hover) l c h / 75%);
+
+  // カードホバー時
+  --help-filter: opacity(100%) brightness(100%);
+  --help-filter-hover: opacity(96%) brightness(103%);
 }

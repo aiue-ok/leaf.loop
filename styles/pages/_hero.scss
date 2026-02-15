@@ -18,11 +18,8 @@ body.hero {
     inset: 0; /* ← padding-box まできっちり覆う */
     pointer-events: none;
     z-index: core.$z-back;
-    background: linear-gradient(
-        to right,
-        rgb(200 211 192 / 40%),
-        rgb(200 211 192 / 40%)
-      ),
+    background:
+      linear-gradient(to right, rgb(200 211 192 / 40%), rgb(200 211 192 / 40%)),
       rgb(0 0 0 / var(--hero-veil, 0.28));
     mix-blend-mode: multiply;
     will-change: transform;
@@ -239,10 +236,7 @@ body.hero {
   }
 
   // 背景画像・フィルタ
-  .nav-tile--gallery {
-    background: transparent;
-  }
-
+  .nav-tile--gallery,
   .nav-tile--universe {
     background: transparent;
   }
@@ -263,17 +257,20 @@ body.hero {
 
   .nav-tile:hover.nav-tile--gallery,
   .nav-tile:focus-visible.nav-tile--gallery {
-    background: linear-gradient(
-        to top,
-        rgb(237 224 212 / 32.6%),
-        rgb(191 192 185 / 61.2%),
-        rgb(153 147 138 / 89.8%),
-        rgb(142 136 128 / 34.2%),
-        rgb(125 124 120 / 22.7%)
-      ),
-      url("../assets/png/hero/frame_02_gallery_mobile.png");
-    filter: brightness(1.2);
+    background:
+      no-repeat center/100%
+        linear-gradient(
+          to top,
+          rgba(57, 45, 37, 0.55),
+          rgba(57, 45, 37, 0.35),
+          rgba(57, 45, 37, 0.15),
+          rgba(57, 45, 37, 0)
+        ),
+      url("../assets/gallery/full/001.webp");
+
+    filter: brightness(1.08) contrast(1.05);
     opacity: 0.8;
+    transition: all 1s ease;
   }
 
   .nav-tile:hover.nav-tile--universe,
@@ -448,7 +445,8 @@ body.hero {
       place-self: start center;
 
       /* 親グリッドに対して左上寄せ（stretch無効化） */
-      width: max-content; /* 内容幅にフィット（fit-content より狙いが明確） */
+      //width: max-content; /* 内容幅にフィット（fit-content より狙いが明確） */
+      width: 100%;
       place-items: center;
       text-decoration: none;
       position: relative;

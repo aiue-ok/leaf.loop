@@ -1,6 +1,7 @@
 @use "../core/index" as core;
 
-body.recipe {
+body.recipe,
+body.page--recipe {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
 

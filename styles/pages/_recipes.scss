@@ -1,6 +1,7 @@
 @use "../core/index" as core;
 
-body.recipes {
+body.recipes,
+body.page--recipes {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
   // 1) 背景
@@ -38,6 +39,14 @@ body.recipes {
     margin: 1rem auto;
     display: grid;
     gap: clamp(24px, 4vw, 60px);
+  }
+
+  footer {
+    width: min(92%, 1000px);
+    margin: 1rem auto;
+    margin-bottom: 180px;
+    color: var(--text-sub);
+    text-align: right;
   }
 
   // 詳細ページへの単一リンク
