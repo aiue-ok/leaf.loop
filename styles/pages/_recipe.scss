@@ -3,6 +3,7 @@
 body.recipe {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
+
   // 1) 背景
   --base-bg: #f6f5f2; // ほぼ白の温度あり ミルク寄り
   --sub-bg: #efede8; // （区切り用・薄） 真っ白を避けるだけで、文字の角が丸く見える。
@@ -32,23 +33,24 @@ body.recipe {
     sans-serif;
 
   main {
-    margin: 2rem 1rem;
+    max-width: 1000px; /* または 960px / 1100px */
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
-  article h2 {
-    // kosugi-maru-regular
-    font-family: "Kosugi Maru", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    border-bottom: var(--gray-2) 1px solid;
-    padding-bottom: 0.5rem;
-    margin: 0.2rem 0;
+  // js内の表示領域
+  article.recipe {
+    // background-color: papayawhip;
   }
 
-  h3 {
-    margin-bottom: 0.3rem;
+  // 一覧へ戻るリンク
+  .recipe_back {
+    color: var(--accent);
+    text-align: right;
+    margin: 24px auto;
   }
 
+  // タグ
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -57,15 +59,75 @@ body.recipe {
     padding: 0;
   }
 
-  .tags li {
+  .tags > li {
     background: #eee;
     padding: 2px 8px;
     border-radius: 999px;
+    margin: 0 0;
   }
 
+  // レシピ詳細のヘッダー
+  .recipe_head-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // タイトル・時間・人数
+  .recipe_title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .recipe_title h2 {
+    // kosugi-maru-regular
+    font-family: "Kosugi Maru", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    margin: 0.2rem 0;
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .recipe_time,
+  .recipe_servings {
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  // 冒頭の写真
+  .recipe_image {
+    margin: 20px 0 0;
+    width: 320px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .recipe_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // 見出し
+  h3 {
+    margin-bottom: 0.3rem;
+  }
+
+  // レシピ本文の並び
+  .recipe_body {
+    display: grid;
+    grid-template-columns: minmax(240px, 300px) 1fr;
+    gap: 48px;
+    margin-top: 30px;
+  }
+
+  // 箇条書き・数字リスト
   ol,
   ul {
-    padding-left: 1.2em;
+    // padding-left: 1.2em;
     list-style-position: inside;
   }
 
@@ -86,13 +148,30 @@ body.recipe {
   //   材料
   .ingredients li {
     list-style: none; /* リストの点を削除 */
+    line-height: 1.8;
+    padding: 4px 0;
   }
 
+  // レシピ　ポイントとこつ
+  .recipe_tips {
+    width: 600px;
+    margin: 20px auto;
+  }
+
+  // 角丸カード
   .recipe_card {
-    background-color: var(--sub-bg);
-    border-radius: 18px;
-    padding: 16px;
-    margin-bottom: 32px;
+    // background-color: var(--sub-bg);
+    // border-radius: 18px;
+    // padding: 16px;
+    // margin-bottom: 32px;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--shiro);
+  }
+
+  .recipe_main > h4 {
+    margin-top: 12px;
+    line-height: 2.4;
   }
 
   .recipe_card_accent {
@@ -102,22 +181,27 @@ body.recipe {
     margin-bottom: 32px;
   }
 
-  .recipe_image {
+  // できあがりの写真
+  .recipe_image-fin > img {
+    // width: 100%;
+    // height: auto;
+    // display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .recipe_image img {
-    // width: 100%;
-    // height: auto;
-    // display: block;
-    // width: 100%;
-    // max-width: 700px;
-    // height: auto;
-    // display: block;
-    // margin: 0 auto;
-    width: 100%;
-    max-width: 700px;
-    height: clamp(240px, 40vw, 420px);
-    object-fit: cover;
+  .recipe_image-fin {
+    // margin-bottom: 60px;
+    max-width: 1000px; /* mainと揃える */
+    margin: 10px auto 0;
+    height: clamp(300px, 63vw, 600px);
+    // height: 420px; /* ←ここで高さ制御 */
+    // height: clamp(300px, 40vw, 500px);
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 120px;
+  }
 
   // 印刷・メール
   .recipe-actions {
@@ -202,13 +286,76 @@ body.recipe {
 
 @media (width < 480px) {
   body.recipe {
+    // js内の表示
+    article.recipe {
+      // スマホでは文字をくっきり
+      font-weight: 500;
+    }
+
     main {
       font-size: clamp(16px, 1.111vw, 20px);
     }
+
     .tags {
-      font-size: 16px;
+      font-size: clamp(14px, 4vw, 18px);
     }
-// }
+
+    .recipe_head-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .recipe_title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .recipe_title h2 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin: 6px 0;
+    }
+
+    .recipe_image img {
+      display: block;
+      flex: 0 0 clamp(150px, 25%, 300px);
+      // width: 100%;
+      // height: clamp(180px, 22vw, 260px);
+
+      // object-fit: cover;
+      border-radius: 8px;
+    }
+
+    // レシピ本文の並び
+    .recipe_body {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      margin-top: 20px;
+    }
+
+    .recipe_main {
+      margin-bottom: 20px;
+    }
+    .recipe .ingredients li {
+      line-height: 1.5;
+      padding: 3px 0;
+    }
+
+    .recipe_tips {
+      width: 100%;
+      margin: 0.5rem auto;
+    }
+
+    .recipe_image-fin {
+      margin-bottom: 60px;
+    }
+
+    .related {
+      margin-top: 60px;
+    }
+  }
+}
+
 @media print {
   html,
   body {

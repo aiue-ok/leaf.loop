@@ -64,11 +64,11 @@ body.recipes {
   article h2 {
     margin: 1rem 0;
     height: 2rem;
+
     // kosugi-maru-regular
     font-family: "Kosugi Maru", sans-serif;
     font-weight: 400;
     font-style: normal;
-    // font-size: 20px;
     font-size: clamp(1rem, 1.2vw, 1.25rem);
     line-height: 1.4;
   }
@@ -102,7 +102,7 @@ body.recipes {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: clamp(12px, 2vw, 32px);
+    gap: clamp(12px, 2vw, 16px);
     margin-top: 0.2rem;
   }
 
@@ -112,12 +112,13 @@ body.recipes {
   }
 
   p.meta {
-    line-height: 1.3;
+    font-size: clamp(16px, 1.111vw, 20px);
+    line-height: 1.2;
   }
 
   // レシピ・イメージ　枠
   .recipe_image-box {
-    width: clamp(150px, 30vw, 600px);
+    width: clamp(270px, 30vw, 600px);
   }
 
   // レシピ・イメージ　画像
@@ -134,9 +135,9 @@ body.recipes {
     flex: 1;
     text-align: left;
     display: grid;
-    gap: clamp(12px, 2vw, 32px);
+    gap: clamp(12px, 2vw, 16px);
     align-self: flex-start;
-    padding-left: 16px;
+    padding-left: clamp(1rem, 5vw, 3rem);
   }
 
   .recipe_topic > p {
@@ -149,7 +150,7 @@ body.recipes {
     main {
       grid-template-columns: repeat(2, 1fr);
       // タイマー分の高さ
-      margin-bottom: 200px;
+      margin-bottom: 60px;
     }
   }
 }
