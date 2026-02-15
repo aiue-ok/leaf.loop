@@ -2,8 +2,8 @@
 
 .hero__slot--side :where(.info) {
   --link-main-color: #{core.$main-color};
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --link-box-shdw:
+    0 8px 24px rgb(0 0 0 / 25%), inset 0 0 0 1px rgb(255 255 255 / 35%);
 
   /* Block本体 */
   .info {
@@ -16,8 +16,12 @@
     text-align: right; /* 右寄せ */
     display: flex;
     gap: var(--space-2); /* 1rem */
-    margin: 0;
+    // margin: 0;
     padding: 0;
+    margin: 0 1rem;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   li.info__item {
@@ -29,11 +33,11 @@
   .info__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.4em;
     inline-size: max-content;
     max-inline-size: min(70vw, 420px);
     height: 44px;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 999px;
     background: oklch(from #{var(--kuro)} l c h / 16%);
     backdrop-filter: blur(8px) saturate(140%);
@@ -41,14 +45,14 @@
     will-change: backdrop-filter;
     box-shadow: var(--link-box-shdw);
     color: var(--link-main-color);
-    font-size: 16px;
+    font-size: 13px; // 16px → １３px
   }
 
   .info a.info__link,
   .info button.info__link {
     display: inline-block; /* 中身サイズにフィット（幅は変えない） */
     text-decoration: none; /* 通常は下線オフ */
-    // -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; //非標準 /* 強調をなくす */
   }
 
   /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
@@ -69,6 +73,21 @@
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-thickness: 2px; /* 太めで見えやすく */
+  }
+
+  // 🆕 NEW　新着ラベル
+  .info__link--new {
+    background: linear-gradient(90deg, #f5f1e6, #b4e2f8, #ffaf7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.9;
+    transition: background 0.4s ease;
+
+    &:hover {
+      color: inherit;
+      background: transparent;
+    }
   }
 
   @media (hover: hover) {
@@ -107,7 +126,9 @@
   position: fixed;
   top: 0;
   right: -100%;
-  transition: transform var(--motion-snap) ease, right var(--motion-snap) ease;
+  transition:
+    transform var(--motion-snap) ease,
+    right var(--motion-snap) ease;
   z-index: core.$z-help;
 }
 
@@ -134,7 +155,9 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   will-change: backdrop-filter;
-  transition: background var(--motion-snap) ease, filter var(--motion-soft) ease;
+  transition:
+    background var(--motion-snap) ease,
+    filter var(--motion-soft) ease;
 
   &::after {
     content: "";
@@ -153,7 +176,9 @@
   filter: var(--help-filter-hover);
   transform: translateY(-1px);
   box-shadow: var(--link-box-shdw-hover);
-  transition: box-shadow 240ms ease, transform 240ms ease;
+  transition:
+    box-shadow 240ms ease,
+    transform 240ms ease;
 
   &::after {
     opacity: 1;
@@ -200,7 +225,8 @@
   background: var(--help-icon-bg);
   pointer-events: auto;
   z-index: core.$z-help-close;
-  transition: background var(--motion-tap) ease-in,
+  transition:
+    background var(--motion-tap) ease-in,
     scale var(--motion-tap) ease-in;
 }
 
