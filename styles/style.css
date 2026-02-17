@@ -240,6 +240,21 @@ input {
   --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
+.page--recipe,
+.page--recipes {
+  --main-color: #2f2f2c;
+  --bg: #f6f5f2;
+  --sub-bg: #efede8;
+  --gray-1: #5e5e5e;
+  --gray-2: #cfcac2;
+  --gray-3: #b8b3aa;
+  --text-main: #2f2f2c;
+  --text-sub: #4a4a46;
+  --accent: #3e5f4b;
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
+}
+
 /* ===== styles/components/_menu-drawer.scss ===== */
 .page--gallery {
   --panel-bg: oklch(96% 0.01 85deg);
@@ -263,8 +278,7 @@ input {
   --dots: color-mix(in oklch, var(--panel-bd) 45%, var(--shiro) 15%);
 }
 
-.page--about,
-recipe {
+.page--about {
   --panel-bg: #efede8;
   --panel-bd: var(--mono-bd);
   --panel-cl: var(--text-sub);
@@ -273,6 +287,20 @@ recipe {
   --scrim: transparent;
   --overlay-bg: oklch(from var(--kuro) l c h / 45%);
   --dots: oklch(from var(--panel-bg) l c h / 60%);
+}
+
+body.recipe,
+body.recipes,
+body.page--recipes,
+body.page--recipe {
+  --panel-bg: #efede8;
+  --panel-bd: var(--mono-bd);
+  --panel-cl: var(--text-sub);
+  --current-page: var(--accent);
+  --panel-pop: oklch(from var(--accent) l c h / 65%);
+  --scrim: transparent;
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+  --dots: oklch(from var(--accent-bg) l c h / 60%);
 }
 
 /* ===== styles/components/_timer-mini.scss ===== */
@@ -306,6 +334,17 @@ recipe {
   --m: #cfcac2;
   --s: #b8b3aa;
   --center: oklch(from #2f2f2c l c h / 65%);
+}
+
+.page--recipes,
+.page--recipe {
+  --back: rgb(201 201 201 / 30%);
+  --mid: oklch(from #cfcac2 l c h / 48%);
+  --front: oklch(from #b8b3aa l c h / 38%);
+  --h: var(--accent);
+  --m: var(--accent-bg);
+  --s: var(--bg);
+  --center: oklch(from var(--accent-hover) l c h / 65%);
 }
 
 /* ===== _styles/components/_info.scss ===== */
@@ -367,6 +406,18 @@ recipe {
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
   --link-box-shdw:
     0 8px 24px rgb(0 0 0 / 16%), inset 0 0 0 1px rgb(255 255 255 / 40%);
+}
+
+.theme-wa {
+  --link-box-shdw: 0 2px 4px var(--base-bg), inset 0 0 0 1px var(--shiro20);
+  --help-bg: oklch(from var(--main-color) l c h / 80%);
+  --help-fg: var(--accent-bg);
+  --help-h: var(--sub-bg);
+  --help-border: oklch(from var(--gray-2) l c h / 38%);
+  --help-icon: var(--accent-bg);
+  --help-icon-bg: oklch(from var(--accent-hover) l c h / 75%);
+  --help-filter: opacity(100%) brightness(100%);
+  --help-filter-hover: opacity(96%) brightness(103%);
 }
 
 .center {
@@ -480,10 +531,6 @@ recipe {
   .decor-clock {
     animation: none;
   }
-  body.page--universe {
-    /* 2) 文字まわりの“ふわっと”は短くする（ゼロでもOK） */
-    /* 3) 例外：whiteoutだけは瞬時に切り替えたいなら */
-  }
   body.page--universe [class*=bg-]::before,
   body.page--universe [class*=bg-]::after,
   body.page--universe .universe__word::before,
@@ -494,10 +541,16 @@ recipe {
     transform: none !important;
     background-position: 0% 50% !important; /* 動いてた場合の固定 */
   }
+  body.page--universe {
+    /* 2) 文字まわりの“ふわっと”は短くする（ゼロでもOK） */
+  }
   body.page--universe .word,
   body.page--universe #whiteout {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+  body.page--universe {
+    /* 3) 例外：whiteoutだけは瞬時に切り替えたいなら */
   }
   body.page--universe #whiteout {
     transition: none !important;
@@ -917,8 +970,7 @@ body.page--universe > .timer-mini {
   --mini-color-ink2: var(--main-color);
 }
 
-.page--about > .timer-mini,
-.recipe > .timer-mini {
+.page--about > .timer-mini {
   --mini-color-base: var(--bg);
   --mini-color-accent: var(--accent);
   --mini-color-ink: var(--main-color);
@@ -953,6 +1005,46 @@ body.page--universe > .timer-mini {
     color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
   --btn-fg: oklch(from var(--mini-color-ink) l c h / 80%);
   --btn-fg-hover: var(--mini-color-ink);
+  /* 影（軽い触れ感） */
+  --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
+  --btn-bxshadow-focus: 0 0 0 2px oklch(from var(--mini-color) l c h / 70%);
+  --btn-pill-inline: oklch(from var(--mini-color-base) l c h / 70%);
+  --mini-count-shadow-stacked: 0 1px 0.5px
+    color-mix(in oklch, var(--mini-color) 30%, var(--shiro) 35%);
+  --t-accent: var(--mini-color-accent);
+}
+
+.page--recipes > .timer-mini {
+  --mini-color-base: var(--bg);
+  --mini-color-accent: var(--accent);
+  --mini-color-ink: var(--gray-3);
+  --mini-color-base2: var(--bg);
+  --mini-color-accent2: var(--accent2);
+  --mini-color-ink2: var(--text-sub);
+  --mini-color: #7a7a78;
+  --mini-color-soft: oklch(from var(--mini-color-base) l c h / 80%);
+  --mini-background: oklch(from var(--mini-color-base) l c h / 45%);
+  --mini-background-hover: oklch(from var(--mini-color-base) l c h / 30%);
+  --mini-background-border: color-mix(
+    in oklch,
+    var(--mini-color-ink) 20%,
+    var(--bg) 15%
+  );
+  --mini-background-shadow: 0 0 8px var(--gray-3);
+  --mini-background-shadow-hover: 0 0 6px
+    color-mix(in oklch, var(--mini-color-ink) 30%, var(--shiro) 5%);
+  --mini-count-shadow: 0 1px 2px
+    color-mix(in oklch, var(--mini-color-ink) 40%, var(--kuro) 5%);
+  --btn-pill-border: var(--mini-color-accent);
+  /* 背景（pill のみ使う） */
+  --btn-pill-bg: transparent;
+  --btn-pill-bg-hover: var(--mini-color-base);
+  --btn-pill-bg-active: oklch(from var(--mini-color-accent) l c h / 15%);
+  --mini-icon-hover: 1px 1px 3px
+    color-mix(in oklch, var(--mini-color-accent) 80%, var(--shiro) 15%);
+  --btn-fg: var(--mini-color-accent);
+  --btn-fg-hover: var(--mini-color-base);
   /* 影（軽い触れ感） */
   --btn-shadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
   --btn-bxshadow-hover: 0 1px 2px oklch(from var(--mini-color-ink) l c h / 10%);
@@ -1031,12 +1123,14 @@ body .js-toast--visible {
 }
 .timer__screen {
   grid-area: count;
-  /* h1 カウントダウン表示 */
 }
 .timer__screen--display {
   min-width: 5ch;
   max-width: 20vw;
   margin: 0 auto;
+}
+.timer__screen {
+  /* h1 カウントダウン表示 */
 }
 .timer__screen--count {
   display: inline-block;
@@ -1107,8 +1201,6 @@ body .js-toast--visible {
   box-shadow: var(--preset-inner), var(--preset-glass);
   position: relative;
   transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.1s ease, color 0.18s ease;
-  /* 共有状態（hover / is-active / aria-pressed） */
-  /* “選択保持”の方を一段強く */
 }
 .timer__preset-btn::before {
   content: "";
@@ -1119,6 +1211,9 @@ body .js-toast--visible {
   background: var(--preset-gloss);
   mask: var(--preset-mask);
 }
+.timer__preset-btn {
+  /* 共有状態（hover / is-active / aria-pressed） */
+}
 .timer__preset-btn:is(:hover, .is-active, [aria-pressed=true]) {
   --preset-bg-current: color-mix(
     in oklch,
@@ -1128,6 +1223,9 @@ body .js-toast--visible {
   --preset-fg-current: var(--t-complementary-color);
   transform: translateY(-0.5px);
   box-shadow: 0 0 0 2px rgba(14, 16, 32, 0.75), 0 0 0 3px oklch(from oklch(100% 0.0001 271.152deg) l c h/45%), inset 0 0 0 1px oklch(from oklch(100% 0.0001 271.152deg) l c h/30%), 0 8px 24px var(--kuro25);
+}
+.timer__preset-btn {
+  /* “選択保持”の方を一段強く */
 }
 .timer__preset-btn.is-active, .timer__preset-btn[aria-pressed=true] {
   --preset-bg-current: color-mix(
@@ -1326,10 +1424,9 @@ body .js-toast--visible {
 }
 .hero__slot--side :where(.info) {
   --link-main-color: oklch(97.015% 0.0001 271.152deg);
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --link-box-shdw:
+    0 8px 24px rgb(0 0 0 / 25%), inset 0 0 0 1px rgb(255 255 255 / 35%);
   /* Block本体 */
-  /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
 }
 .hero__slot--side :where(.info) .info {
   display: grid;
@@ -1340,8 +1437,11 @@ body .js-toast--visible {
   text-align: right; /* 右寄せ */
   display: flex;
   gap: var(--space-2); /* 1rem */
-  margin: 0;
   padding: 0;
+  margin: 0 1rem;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .hero__slot--side :where(.info) li.info__item {
   display: inline-block;
@@ -1349,11 +1449,11 @@ body .js-toast--visible {
 .hero__slot--side :where(.info) .info__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.4em;
   inline-size: max-content;
   max-inline-size: min(70vw, 420px);
   height: 44px;
-  padding: 8px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: oklch(from var(--kuro) l c h/16%);
   backdrop-filter: blur(8px) saturate(140%);
@@ -1361,12 +1461,16 @@ body .js-toast--visible {
   will-change: backdrop-filter;
   box-shadow: var(--link-box-shdw);
   color: var(--link-main-color);
-  font-size: 16px;
+  font-size: 13px;
 }
 .hero__slot--side :where(.info) .info a.info__link,
 .hero__slot--side :where(.info) .info button.info__link {
   display: inline-block; /* 中身サイズにフィット（幅は変えない） */
   text-decoration: none; /* 通常は下線オフ */
+  -webkit-tap-highlight-color: transparent;
+}
+.hero__slot--side :where(.info) {
+  /* 1) フォーカス時：背景をほんのり暗く（レイアウト不変） */
 }
 .hero__slot--side :where(.info) .info a:focus-visible .info__link,
 .hero__slot--side :where(.info) .info button.info__link:focus-visible {
@@ -1383,13 +1487,27 @@ body .js-toast--visible {
   text-underline-offset: 2px;
   text-decoration-thickness: 2px; /* 太めで見えやすく */
 }
+.hero__slot--side :where(.info) .info__link--new {
+  background: linear-gradient(90deg, #f5f1e6, #b4e2f8, #ffaf7b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.9;
+  transition: background 0.4s ease;
+}
+.hero__slot--side :where(.info) .info__link--new:hover {
+  color: inherit;
+  background: transparent;
+}
 @media (hover: hover) {
   .hero__slot--side :where(.info) {
     /* ホバーと揃えたい場合はお好みで */
-    /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
   }
   .hero__slot--side :where(.info) .info a:hover .info__link {
     background-color: oklch(from var(--kuro) l c h/6%);
+  }
+  .hero__slot--side :where(.info) {
+    /* 既存の :focus で outline: none; が入ってたら消すか、上書きで無効化 */
   }
   .hero__slot--side :where(.info) .info a:hover,
   .hero__slot--side :where(.info) .info a:focus {
@@ -1539,13 +1657,13 @@ body .js-toast--visible {
 }
 
 @media screen and (max-height: 500px) and (orientation: landscape) {
-  body {
-    /* ヘルプエリア w h */
-  }
   body .help-content {
     padding: 1rem;
     font-size: 0.9rem;
     line-height: 1.5;
+  }
+  body {
+    /* ヘルプエリア w h */
   }
   body .info-help-container {
     width: min(600px, 90vw);
@@ -1688,13 +1806,6 @@ body .js-toast--visible {
     padding: 0;
   }
 }
-.page--gallery,
-.page--universe,
-.page--about,
-.recipe,
-.recipes {
-  /* パネル本体（右から） */
-}
 .page--gallery .menu-drawer,
 .page--gallery .scrim,
 .page--universe .menu-drawer,
@@ -1708,6 +1819,13 @@ body .js-toast--visible {
   position: fixed;
   top: 0;
   bottom: 0;
+}
+.page--gallery,
+.page--universe,
+.page--about,
+.recipe,
+.recipes {
+  /* パネル本体（右から） */
 }
 .page--gallery .menu-drawer,
 .page--universe .menu-drawer,
@@ -2051,14 +2169,6 @@ body:not([data-menu-open=true]) .scrim {
     bottom: 12px;
   }
 }
-.page--gallery,
-.page--universe,
-.page--about,
-.recipe,
-.recipes {
-  /* 2. 子要素・部品（BEMの __◯◯） */
-  /* 3. 状態（:hover, :active, :focus-visibleなど） */
-}
 .page--gallery .timer-mini,
 .page--universe .timer-mini,
 .page--about .timer-mini,
@@ -2114,6 +2224,13 @@ body:not([data-menu-open=true]) .scrim {
   gap: var(--gap-g-button);
   justify-content: center;
   align-items: center;
+}
+.page--gallery,
+.page--universe,
+.page--about,
+.recipe,
+.recipes {
+  /* 2. 子要素・部品（BEMの __◯◯） */
 }
 .page--gallery .timer-mini__screen,
 .page--universe .timer-mini__screen,
@@ -2241,6 +2358,13 @@ body:not([data-menu-open=true]) .scrim {
   justify-content: center;
   line-height: 1.1;
   transition: color 0.25s ease text-shadow 0.25s ease;
+}
+.page--gallery,
+.page--universe,
+.page--about,
+.recipe,
+.recipes {
+  /* 3. 状態（:hover, :active, :focus-visibleなど） */
 }
 .page--gallery .timer-mini__pill:active,
 .page--universe .timer-mini__pill:active,
@@ -2396,8 +2520,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
   .page--about .timer-mini,
-  .recipe .timer-mini,
-  .recipes .timer-mini {
+  .page--recipe .timer-mini,
+  .page--recipes .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2427,15 +2551,15 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__bg,
   .page--universe .timer-mini__bg,
   .page--about .timer-mini__bg,
-  .recipe .timer-mini__bg,
-  .recipes .timer-mini__bg {
+  .page--recipe .timer-mini__bg,
+  .page--recipes .timer-mini__bg {
     border: 0.8px solid var(--mini-background-border);
   }
   .page--gallery .timer-mini__grid,
   .page--universe .timer-mini__grid,
   .page--about .timer-mini__grid,
-  .recipe .timer-mini__grid,
-  .recipes .timer-mini__grid {
+  .page--recipe .timer-mini__grid,
+  .page--recipes .timer-mini__grid {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-areas: "count" "presets" "controls";
@@ -2445,16 +2569,16 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__grid--vertical,
   .page--universe .timer-mini__grid--vertical,
   .page--about .timer-mini__grid--vertical,
-  .recipe .timer-mini__grid--vertical,
-  .recipes .timer-mini__grid--vertical {
+  .page--recipe .timer-mini__grid--vertical,
+  .page--recipes .timer-mini__grid--vertical {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
   .page--gallery .timer-mini__screen--grid,
   .page--universe .timer-mini__screen--grid,
   .page--about .timer-mini__screen--grid,
-  .recipe .timer-mini__screen--grid,
-  .recipes .timer-mini__screen--grid {
+  .page--recipe .timer-mini__screen--grid,
+  .page--recipes .timer-mini__screen--grid {
     display: grid;
     grid-template-areas: "time help";
     justify-content: center;
@@ -2463,23 +2587,23 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen--display,
   .page--universe .timer-mini__screen--display,
   .page--about .timer-mini__screen--display,
-  .recipe .timer-mini__screen--display,
-  .recipes .timer-mini__screen--display {
+  .page--recipe .timer-mini__screen--display,
+  .page--recipes .timer-mini__screen--display {
     width: 100%;
   }
   .page--gallery .timer-mini__screen--count,
   .page--universe .timer-mini__screen--count,
   .page--about .timer-mini__screen--count,
-  .recipe .timer-mini__screen--count,
-  .recipes .timer-mini__screen--count {
+  .page--recipe .timer-mini__screen--count,
+  .page--recipes .timer-mini__screen--count {
     text-align: left;
     line-height: 1.3; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   .page--universe .timer-mini__screen--help,
   .page--about .timer-mini__screen--help,
-  .recipe .timer-mini__screen--help,
-  .recipes .timer-mini__screen--help {
+  .page--recipe .timer-mini__screen--help,
+  .page--recipes .timer-mini__screen--help {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2487,8 +2611,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen--help .i-32,
   .page--universe .timer-mini__screen--help .i-32,
   .page--about .timer-mini__screen--help .i-32,
-  .recipe .timer-mini__screen--help .i-32,
-  .recipes .timer-mini__screen--help .i-32 {
+  .page--recipe .timer-mini__screen--help .i-32,
+  .page--recipes .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help);
     height: var(--btn-size-help);
   }
@@ -2512,8 +2636,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
   .page--about .timer-mini,
-  .recipe .timer-mini,
-  .recipes .timer-mini {
+  .page--recipe .timer-mini,
+  .page--recipes .timer-mini {
     --mini-color-base: var(--mini-color-base2);
     --mini-color-accent: var(--accent2);
     --mini-color-ink: var(--mini-color-ink2);
@@ -2542,8 +2666,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__grid,
   .page--universe .timer-mini__grid,
   .page--about .timer-mini__grid,
-  .recipe .timer-mini__grid,
-  .recipes .timer-mini__grid {
+  .page--recipe .timer-mini__grid,
+  .page--recipes .timer-mini__grid {
     display: grid;
     grid-template-areas: "count presets controls";
     justify-content: center;
@@ -2553,8 +2677,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__grid--vertical,
   .page--universe .timer-mini__grid--vertical,
   .page--about .timer-mini__grid--vertical,
-  .recipe .timer-mini__grid--vertical,
-  .recipes .timer-mini__grid--vertical {
+  .page--recipe .timer-mini__grid--vertical,
+  .page--recipes .timer-mini__grid--vertical {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
@@ -2564,31 +2688,31 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen,
   .page--universe .timer-mini__screen,
   .page--about .timer-mini__screen,
-  .recipe .timer-mini__screen,
-  .recipes .timer-mini__screen {
+  .page--recipe .timer-mini__screen,
+  .page--recipes .timer-mini__screen {
     margin: 0 auto;
     min-height: 0;
   }
   .page--gallery .timer-mini__screen--grid,
   .page--universe .timer-mini__screen--grid,
   .page--about .timer-mini__screen--grid,
-  .recipe .timer-mini__screen--grid,
-  .recipes .timer-mini__screen--grid {
+  .page--recipe .timer-mini__screen--grid,
+  .page--recipes .timer-mini__screen--grid {
     grid-template-areas: "help time";
   }
   .page--gallery .timer-mini__screen--count,
   .page--universe .timer-mini__screen--count,
   .page--about .timer-mini__screen--count,
-  .recipe .timer-mini__screen--count,
-  .recipes .timer-mini__screen--count {
+  .page--recipe .timer-mini__screen--count,
+  .page--recipes .timer-mini__screen--count {
     text-align: center;
     line-height: 1.5; /* ←これで上下の余白をカット */
   }
   .page--gallery .timer-mini__screen--help,
   .page--universe .timer-mini__screen--help,
   .page--about .timer-mini__screen--help,
-  .recipe .timer-mini__screen--help,
-  .recipes .timer-mini__screen--help {
+  .page--recipe .timer-mini__screen--help,
+  .page--recipes .timer-mini__screen--help {
     display: unset;
     position: absolute;
     top: 4.1rem;
@@ -2597,8 +2721,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen--help .i-32,
   .page--universe .timer-mini__screen--help .i-32,
   .page--about .timer-mini__screen--help .i-32,
-  .recipe .timer-mini__screen--help .i-32,
-  .recipes .timer-mini__screen--help .i-32 {
+  .page--recipe .timer-mini__screen--help .i-32,
+  .page--recipes .timer-mini__screen--help .i-32 {
     width: var(--btn-size-help-inline);
     height: var(--btn-size-help-inline);
   }
@@ -2618,6 +2742,18 @@ body:not([data-menu-open=true]) .scrim {
   .page--about .timer-mini__pill {
     border: var(--btn-border-width) solid var(--bg);
   }
+  .page--recipe .timer-mini__screen--help,
+  .page--recipes .timer-mini__screen--help {
+    color: var(--text-sub);
+  }
+  .page--recipe .timer-mini__screen--help:hover,
+  .page--recipes .timer-mini__screen--help:hover {
+    color: var(--accent-hover);
+  }
+  .page--recipe .timer-mini__pill,
+  .page--recipes .timer-mini__pill {
+    border: var(--btn-border-width) solid var(-accent);
+  }
 }
 body.hero {
   position: relative;
@@ -2626,11 +2762,6 @@ body.hero {
   overflow-x: hidden;
   color: oklch(97.015% 0.0001 271.152deg);
   /* 親全体を覆う半透明オーバーレイ（パディングも含めてカバー） */
-  /* 背景メディアは最背面 <div> */
-  /* 既定は静止画だけを見せる */
-  /* コンテンツ/UIは前面へ */
-  /* メインコンテンツ 動画より前 新 */
-  /* タイルの中身の潰れ対策（共通） 新 */
 }
 body.hero::before {
   content: "";
@@ -2643,6 +2774,9 @@ body.hero::before {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+body.hero {
+  /* 背景メディアは最背面 <div> */
 }
 body.hero .hero__media-body {
   position: absolute;
@@ -2668,6 +2802,9 @@ body.hero #background-video {
   top: 0;
   left: 0;
 }
+body.hero {
+  /* 既定は静止画だけを見せる */
+}
 body.hero .hero__media-poster {
   width: 100%;
   height: 100%;
@@ -2686,6 +2823,9 @@ body.hero .hero.is-reduced-motion .hero__media-video {
 body.hero .hero.is-slow .hero__media-poster,
 body.hero .hero.is-reduced-motion .hero__media-poster {
   display: block;
+}
+body.hero {
+  /* コンテンツ/UIは前面へ */
 }
 body.hero .hero .hero__grid,
 body.hero .notify-controls {
@@ -2722,6 +2862,9 @@ body.hero .hero__inner {
   width: 100%;
   height: 100vh;
 }
+body.hero {
+  /* メインコンテンツ 動画より前 新 */
+}
 body.hero.hero__content,
 body.hero .hero__content {
   position: relative;
@@ -2734,6 +2877,9 @@ body.hero .hero__grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: minmax(192px, 1fr);
   grid-template-areas: "item1 item2 item3 item4";
+}
+body.hero {
+  /* タイルの中身の潰れ対策（共通） 新 */
 }
 body.hero .hero__slot {
   box-sizing: border-box;
@@ -2797,9 +2943,7 @@ body.hero .nav-tile--universe .nav-tile__media {
   opacity: 0.5;
   z-index: 0;
 }
-body.hero .nav-tile--gallery {
-  background: transparent;
-}
+body.hero .nav-tile--gallery,
 body.hero .nav-tile--universe {
   background: transparent;
 }
@@ -2814,9 +2958,10 @@ body.hero .nav-tile:focus-visible .nav-tile__text {
 }
 body.hero .nav-tile:hover.nav-tile--gallery,
 body.hero .nav-tile:focus-visible.nav-tile--gallery {
-  background: linear-gradient(to top, rgba(237, 224, 212, 0.326), rgba(191, 192, 185, 0.612), rgba(153, 147, 138, 0.898), rgba(142, 136, 128, 0.342), rgba(125, 124, 120, 0.227)), url("../assets/png/hero/frame_02_gallery_mobile.png");
-  filter: brightness(1.2);
+  background: no-repeat center/100% linear-gradient(to top, rgba(57, 45, 37, 0.55), rgba(57, 45, 37, 0.35), rgba(57, 45, 37, 0.15), rgba(57, 45, 37, 0)), url("../assets/gallery/full/001.webp");
+  filter: brightness(1.08) contrast(1.05);
   opacity: 0.8;
+  transition: all 1s ease;
 }
 body.hero .nav-tile:hover.nav-tile--universe,
 body.hero .nav-tile:focus-visible.nav-tile--universe {
@@ -2858,15 +3003,18 @@ body.hero .hero__head {
     padding-block: clamp(48px, 8svh, 96px);
     padding-bottom: max(16px, env(safe-area-inset-bottom));
     /* 背景レイヤーの土台：ページの一番うしろに固定 */
-    /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
-    /* 新しい単位が使える環境では、動的vhでより正確に */
-    /* 共通（高さを中身に任せる等） */
   }
   body.hero .hero__media-body {
     position: fixed; /* 画面に固定（スクロールしても動かない） */
   }
+  body.hero {
+    /* 動画を“縦にも横にも”はみ出しつつ全面カバー */
+  }
   body.hero #background-video {
     height: 100svh; /* まずは小さいvh（アドレスバー配慮） */
+  }
+  body.hero {
+    /* 新しい単位が使える環境では、動的vhでより正確に */
   }
   @supports (height: 100dvh) {
     body.hero #background-video {
@@ -2886,6 +3034,9 @@ body.hero .hero__head {
     grid-template-areas: "item4" "item1" "item2" "item3" "item5"; /* ヘルプ等 */
     gap: 1rem;
     align-items: start;
+  }
+  body.hero {
+    /* 共通（高さを中身に任せる等） */
   }
   body.hero .hero__slot {
     min-height: auto; /* なくても既定はauto。書くならこの1行だけを共通に */
@@ -2949,7 +3100,7 @@ body.hero .hero__head {
     display: inline-grid; /* ブロック→インライン化で横幅が内容起点に */
     place-self: start center;
     /* 親グリッドに対して左上寄せ（stretch無効化） */
-    width: max-content; /* 内容幅にフィット（fit-content より狙いが明確） */
+    width: 100%;
     place-items: center;
     text-decoration: none;
     position: relative;
@@ -2974,8 +3125,6 @@ body.hero .hero__head {
     /* スクロール終端のチラ見え対策（ツールバー連動/ゴムスクロール） */
     background: var(--page-bg, #0b1c39); /* 画像最暗部に合わせる */
     overscroll-behavior-y: contain; /* iOS16+ で有効 */
-    /* ヘッダー */
-    /* すぅ〜 */
   }
   body.hero::before {
     transform: none !important;
@@ -2986,6 +3135,9 @@ body.hero .hero__head {
     will-change: transform; /* スクロールでの再描画を軽減 */
     contain: paint; /* 塗り分離で影響範囲を限定 */
     backface-visibility: hidden; /* レイヤ合成の安定化 */
+  }
+  body.hero {
+    /* ヘッダー */
   }
   body.hero header.site-header {
     position: sticky;
@@ -3058,6 +3210,9 @@ body.hero .hero__head {
     will-change: backdrop-filter;
     z-index: -1;
   }
+  body.hero {
+    /* すぅ〜 */
+  }
   body.hero .hero__heading img {
     height: auto; /* 高さは幅に合わせて自動調整 */
   }
@@ -3103,9 +3258,6 @@ body.hero .hero__head {
   padding: 16px 0;
   overflow: auto;
 }
-.page--gallery .gallery {
-  /* コンテナ化（親にcontainer-typeを付与） */
-}
 .page--gallery .gallery__bg {
   container-type: inline-size;
   container-name: inner;
@@ -3146,6 +3298,9 @@ body.hero .hero__head {
   .page--gallery .gallery__inner {
     padding: 24px;
   }
+}
+.page--gallery .gallery {
+  /* コンテナ化（親にcontainer-typeを付与） */
 }
 .page--gallery .gallery__photo--container {
   container-type: inline-size;
@@ -3873,13 +4028,6 @@ body.page--universe {
   background-repeat: no-repeat;
   background-position: center;
   transition: background-color 250ms ease, color 4000ms ease, background-image 4000ms ease;
-  /* 初期はトランジション切ってチラつき防止 */
-  /* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
-  /* タイトルラッパは相対配置 */
-  /* ホワイトアウトの白板 "overlay" */
-  /* 表示状態 */
-  --dur-word-in: 1500ms;
-  --dur-word-out: 1800ms;
 }
 body.page--universe::before {
   content: "";
@@ -3909,16 +4057,28 @@ body.page--universe .visual-card-help-bg {
   -webkit-backdrop-filter: blur(6px);
   will-change: backdrop-filter;
 }
+body.page--universe {
+  /* 初期はトランジション切ってチラつき防止 */
+}
 body.page--universe body.booting {
   transition: none !important;
+}
+body.page--universe {
+  /* 初期はタイトル＆単語を隠す（JS準備できたら出す） */
 }
 body.page--universe body.booting #page-title,
 body.page--universe body.booting .word {
   opacity: 0;
 }
+body.page--universe {
+  /* タイトルラッパは相対配置 */
+}
 body.page--universe .title-wrapper {
   position: relative;
   display: inline-block; /* タイトル幅にフィット */
+}
+body.page--universe {
+  /* ホワイトアウトの白板 "overlay" */
 }
 body.page--universe #whiteout {
   position: fixed;
@@ -3929,6 +4089,9 @@ body.page--universe #whiteout {
   will-change: opacity;
   z-index: 3500; /* なんでも上に */
   pointer-events: none;
+}
+body.page--universe {
+  /* 表示状態 */
 }
 body.page--universe #whiteout.active,
 body.page--universe #whiteout.show {
@@ -3963,6 +4126,10 @@ body.page--universe .word {
   z-index: 500;
   opacity: 1;
   will-change: color, opacity;
+}
+body.page--universe {
+  --dur-word-in: 1500ms;
+  --dur-word-out: 1800ms;
 }
 body.page--universe .word.fade-in {
   animation: fade-in var(--dur-word-in, 2s) ease-in forwards;
@@ -4436,7 +4603,6 @@ body.page--universe.bg-distortion {
   background-position: 0 0;
   --main-color: var(--color-ch2);
   position: relative;
-  /* ひずみのカーブ（after） */
 }
 body.page--universe.bg-distortion::before {
   content: "";
@@ -4456,6 +4622,9 @@ body.page--universe.bg-distortion::after {
 }
 body.page--universe.bg-distortion {
   --main-color: var(--color-ch2);
+}
+body.page--universe.bg-distortion {
+  /* ひずみのカーブ（after） */
 }
 body.page--universe.bg-distortion::after {
   /* 同心リングを薄く：repeating-radial-gradient */
@@ -4812,7 +4981,6 @@ body.page--universe.bg-wind {
   background-size: var(--bgsize);
   animation: gradient-flow var(--dur) var(--ease) infinite;
   /* ふわっと中心を引き締めるビネット（控えめ） */
-  /* 風の細い帯（必要なシーンだけで出す） */
 }
 body.page--universe.bg-wind::before {
   content: "";
@@ -4821,6 +4989,9 @@ body.page--universe.bg-wind::before {
   pointer-events: none;
   background: radial-gradient(70vmax 70vmax at 50% 55%, var(--vignette), transparent 70%);
   mix-blend-mode: multiply;
+}
+body.page--universe.bg-wind {
+  /* 風の細い帯（必要なシーンだけで出す） */
 }
 body.page--universe.bg-wind::after {
   content: "";
@@ -4939,8 +5110,6 @@ body.page--universe.bg-past2 {
   --btn-pill-bg-hover: oklch(from var(--main-color) l c h / 5%);
   --btn-pill-shadow-hover: 0 1px 3px rgb(0 0 0 / 15%);
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
-  position: relative;
-  z-index: 0;
 }
 body.page--universe.bg-past2::before {
   content: "";
@@ -4949,6 +5118,10 @@ body.page--universe.bg-past2::before {
   pointer-events: none;
   z-index: -1;
   background: linear-gradient(180deg, #0e1629 0%, #1c2a3f 55%, #d9e8f7 100%);
+}
+body.page--universe.bg-past2 {
+  position: relative;
+  z-index: 0;
 }
 body.page--universe.bg-past2 .word {
   opacity: 0.9;
@@ -4992,7 +5165,6 @@ body.page--universe.bg-darkness {
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
   position: relative;
   z-index: 0;
-  /* 単語（暗黒の“残光”） */
 }
 body.page--universe.bg-darkness::before {
   content: "";
@@ -5012,6 +5184,9 @@ body.page--universe.bg-darkness::after {
   pointer-events: none;
   z-index: -1;
   background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(4, 8, 18) 55%, rgb(9, 10, 20) 100%);
+}
+body.page--universe.bg-darkness {
+  /* 単語（暗黒の“残光”） */
 }
 body.page--universe.bg-darkness .word {
   color: rgba(210, 220, 255, 0.42);
@@ -5034,7 +5209,6 @@ body.page--universe.bg-final-message {
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
   position: relative;
   z-index: 0;
-  /* 単語（暗黒の“残光”） */
 }
 body.page--universe.bg-final-message::before {
   content: "";
@@ -5055,6 +5229,9 @@ body.page--universe.bg-final-message::after {
   z-index: -1;
   background: radial-gradient(circle at 61% 47%, rgb(200, 215, 255) 0 2px, transparent 8px), linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(4, 8, 18) 55%, rgb(9, 10, 20) 100%);
   animation: exitBlink 2400ms ease-out forwards;
+}
+body.page--universe.bg-final-message {
+  /* 単語（暗黒の“残光”） */
 }
 body.page--universe.bg-final-message .word {
   color: rgba(210, 220, 255, 0.42);
@@ -5077,7 +5254,6 @@ body.page--universe.bg-ch4 {
   --text-shadow: 0 1px 3px rgb(255 255 255 / 25%);
   position: relative;
   z-index: 0;
-  /* 第4章の単語は少し長めに“呼吸”して現れる */
 }
 body.page--universe.bg-ch4::before {
   content: "";
@@ -5086,6 +5262,9 @@ body.page--universe.bg-ch4::before {
   pointer-events: none;
   z-index: -1;
   background: var(--bg-ch4);
+}
+body.page--universe.bg-ch4 {
+  /* 第4章の単語は少し長めに“呼吸”して現れる */
 }
 body.page--universe.bg-ch4 .word {
   font-family: var(--accent-font);
@@ -5215,9 +5394,6 @@ body.page--about .about {
   font-weight: 400;
   font-style: normal;
   /*  段落とリストのリズム */
-  /* もしli内にpが出ても破綻しない保険 */
-  /* 1章の最初の p にだけドロップキャップ */
-  /* ふわっとした点線の区切り */
 }
 body.page--about .about h2 {
   margin: 2.2rem 0 0.85rem;
@@ -5252,6 +5428,10 @@ body.page--about .about li {
 body.page--about .about li > p {
   margin: 0.35em 0;
 }
+body.page--about .about {
+  /* もしli内にpが出ても破綻しない保険 */
+  /* 1章の最初の p にだけドロップキャップ */
+}
 body.page--about .about .prologue:first-of-type::first-letter {
   float: left;
   font-family: "Kiwi Maru", serif;
@@ -5263,6 +5443,9 @@ body.page--about .about .prologue:first-of-type::first-letter {
 body.page--about .about p.prologue {
   margin: 2.2rem 0;
   font-size: 1.05rem;
+}
+body.page--about .about {
+  /* ふわっとした点線の区切り */
 }
 body.page--about .about .divider {
   height: 1px;
@@ -5426,7 +5609,8 @@ body.page--about .about__long li {
     max-inline-size: 40ch;
   }
 }
-body.recipe {
+body.recipe,
+body.page--recipe {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
   --base-bg: #f6f5f2;
@@ -5442,82 +5626,324 @@ body.recipe {
   background-color: var(--base-bg);
   color: var(--text-main);
   font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
-  /* もしli内にpが出ても破綻しない保険 */
 }
-body.recipe main {
-  margin: 2rem 1rem;
+body.recipe main,
+body.page--recipe main {
+  max-width: 1000px; /* または 960px / 1100px */
+  margin: 0 auto;
+  padding: 0 24px;
 }
-body.recipe article h2 {
-  font-family: "Kosugi Maru", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  border-bottom: var(--gray-2) 1px solid;
-  padding-bottom: 0.5rem;
-  margin: 0.2rem 0;
+body.recipe .recipe_back,
+body.page--recipe .recipe_back {
+  color: var(--accent);
+  text-align: right;
+  margin: 24px auto;
 }
-body.recipe h3 {
-  margin-bottom: 0.3rem;
-}
-body.recipe .tags {
+body.recipe .tags,
+body.page--recipe .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   list-style: none;
   padding: 0;
 }
-body.recipe .tags li {
+body.recipe .tags > li,
+body.page--recipe .tags > li {
   background: #eee;
   padding: 2px 8px;
   border-radius: 999px;
+  margin: 0 0;
+}
+body.recipe .recipe_head-wrapper,
+body.page--recipe .recipe_head-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+body.recipe .recipe_title,
+body.page--recipe .recipe_title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body.recipe .recipe_title h2,
+body.page--recipe .recipe_title h2 {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0.2rem 0;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+body.recipe .recipe_time,
+body.recipe .recipe_servings,
+body.page--recipe .recipe_time,
+body.page--recipe .recipe_servings {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+body.recipe .recipe_image,
+body.page--recipe .recipe_image {
+  margin: 20px 0 0;
+  width: 320px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 12px;
+}
+body.recipe .recipe_image img,
+body.page--recipe .recipe_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body.recipe h3,
+body.page--recipe h3 {
+  margin-bottom: 0.3rem;
+}
+body.recipe .recipe_body,
+body.page--recipe .recipe_body {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: 48px;
+  margin-top: 30px;
 }
 body.recipe ol,
-body.recipe ul {
-  padding-left: 1.2em;
+body.recipe ul,
+body.page--recipe ol,
+body.page--recipe ul {
   list-style-position: inside;
 }
 body.recipe ol li,
-body.recipe ul li {
+body.recipe ul li,
+body.page--recipe ol li,
+body.page--recipe ul li {
   margin-bottom: 0.6em;
   line-height: 1.6;
 }
-body.recipe li {
+body.recipe li,
+body.page--recipe li {
   margin: 0.45em 0;
 }
-body.recipe li > p {
+body.recipe li > p,
+body.page--recipe li > p {
   margin: 0.35em 0;
 }
-body.recipe .ingredients li {
+body.recipe,
+body.page--recipe {
+  /* もしli内にpが出ても破綻しない保険 */
+}
+body.recipe .ingredients li,
+body.page--recipe .ingredients li {
   list-style: none; /* リストの点を削除 */
+  line-height: 1.8;
+  padding: 4px 0;
 }
-body.recipe .recipe_card {
-  background-color: var(--sub-bg);
-  border-radius: 18px;
-  padding: 16px;
-  margin-bottom: 32px;
+body.recipe .recipe_tips,
+body.page--recipe .recipe_tips {
+  width: 600px;
+  margin: 20px auto;
 }
-body.recipe .recipe_card_accent {
+body.recipe .recipe_card,
+body.page--recipe .recipe_card {
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--shiro);
+}
+body.recipe .recipe_main > h4,
+body.page--recipe .recipe_main > h4 {
+  margin-top: 12px;
+  line-height: 2.4;
+}
+body.recipe .recipe_card_accent,
+body.page--recipe .recipe_card_accent {
   background-color: var(--accent-bg);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 32px;
 }
-body.recipe .recipe_image img {
+body.recipe .recipe_image-fin > img,
+body.page--recipe .recipe_image-fin > img {
   width: 100%;
-  max-width: 700px;
-  height: clamp(240px, 40vw, 420px);
+  height: 100%;
   object-fit: cover;
+}
+body.recipe .recipe_image-fin,
+body.page--recipe .recipe_image-fin {
+  max-width: 1000px; /* mainと揃える */
+  margin: 10px auto 0;
+  height: clamp(300px, 63vw, 600px);
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 120px;
+}
+body.recipe .recipe-actions,
+body.page--recipe .recipe-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2); /* 1rem */
+  margin: 40px 0;
+  color: var(--accent);
+}
+body.recipe button.recipe-actions-btn,
+body.page--recipe button.recipe-actions-btn {
+  margin-right: 6px;
+}
+body.recipe svg.recipe_print,
+body.page--recipe svg.recipe_print {
+  margin-right: 1rem;
+}
+body.recipe ul.info__list,
+body.page--recipe ul.info__list {
+  list-style: none; /* リストの点を削除 */
+  text-align: right; /* 右寄せ */
+  display: flex;
+  gap: var(--space-2); /* 1rem */
+  margin: 0;
+  padding: 0;
+}
+body.recipe li.info__item,
+body.page--recipe li.info__item {
+  display: inline-flex;
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 0 8px;
+  background-color: transparent;
   border-radius: 8px;
+  border: transparent;
+}
+body.recipe li.info__item:hover,
+body.page--recipe li.info__item:hover {
+  color: var(--accent-hover);
+  background-color: var(--accent-bg);
+  border: var(--accent-bg);
+}
+body.recipe li.info__item button,
+body.recipe li.info__item a,
+body.page--recipe li.info__item button,
+body.page--recipe li.info__item a {
+  display: inline-flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+}
+body.recipe .recipe_divider,
+body.page--recipe .recipe_divider {
+  width: 70vw;
+  border: 1px solid var(--gray-2);
+  margin: 24px auto;
+}
+body.recipe .related,
+body.page--recipe .related {
+  margin-top: 100px;
+  margin-bottom: 120px;
+}
+body.recipe .related-grid,
+body.page--recipe .related-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding: 8px;
+}
+body.recipe .related-card img,
+body.page--recipe .related-card img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 @media (width < 480px) {
+  body.recipe article.recipe {
+    font-weight: 500;
+  }
   body.recipe main {
     font-size: clamp(16px, 1.111vw, 20px);
   }
   body.recipe .tags {
-    font-size: 16px;
+    font-size: clamp(14px, 4vw, 18px);
+  }
+  body.recipe .recipe_head-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  body.recipe .recipe_title {
+    display: flex;
+    flex-direction: column;
+  }
+  body.recipe .recipe_title h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 6px 0;
+  }
+  body.recipe .recipe_image img {
+    display: block;
+    flex: 0 0 clamp(150px, 25%, 300px);
+    border-radius: 8px;
+  }
+  body.recipe .recipe_body {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-top: 20px;
+  }
+  body.recipe .recipe_main {
+    margin-bottom: 20px;
+  }
+  body.recipe .recipe .ingredients li {
+    line-height: 1.5;
+    padding: 3px 0;
+  }
+  body.recipe .recipe_tips {
+    width: 100%;
+    margin: 0.5rem auto;
+  }
+  body.recipe .recipe_image-fin {
+    margin-bottom: 60px;
+  }
+  body.recipe .related {
+    margin-top: 60px;
   }
 }
-body.recipes {
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important; /* はみ出し部分を表示させる */
+    margin: 0;
+    padding: 0;
+    line-height: unset;
+  }
+  @page {
+    margin: 10mm;
+  }
+  .recipe_head-wrapper {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  article.recipe {
+    break-inside: auto;
+  }
+  li,
+  ul,
+  ol {
+    break-inside: auto;
+  }
+  aside,
+  header,
+  nav,
+  .recipe_back,
+  hr,
+  h3.recipe_fin_heading,
+  .recipe_image-fin,
+  .recipe_image-fin img,
+  .recipe-actions,
+  .related {
+    display: none;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+body.recipes,
+body.page--recipes {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
   --base-bg: #f6f5f2;
@@ -5534,27 +5960,40 @@ body.recipes {
   color: var(--text-main);
   font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
 }
-body.recipes main {
+body.recipes main,
+body.page--recipes main {
   width: min(92%, 1000px);
   margin: 1rem auto;
   display: grid;
   gap: clamp(24px, 4vw, 60px);
 }
-body.recipes .recipe-link {
+body.recipes footer,
+body.page--recipes footer {
+  width: min(92%, 1000px);
+  margin: 1rem auto;
+  margin-bottom: 180px;
+  color: var(--text-sub);
+  text-align: right;
+}
+body.recipes .recipe-link,
+body.page--recipes .recipe-link {
   display: block;
   text-decoration: none;
   color: inherit;
 }
-body.recipes article.recipe {
+body.recipes article.recipe,
+body.page--recipes article.recipe {
   height: 100%;
   background-color: var(--sub-bg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
-body.recipes .recipe-link:hover article.recipe {
+body.recipes .recipe-link:hover article.recipe,
+body.page--recipes .recipe-link:hover article.recipe {
   background-color: var(--accent-bg);
   transition: 0.2s ease;
 }
-body.recipes article h2 {
+body.recipes article h2,
+body.page--recipes article h2 {
   margin: 1rem 0;
   height: 2rem;
   font-family: "Kosugi Maru", sans-serif;
@@ -5563,48 +6002,57 @@ body.recipes article h2 {
   font-size: clamp(1rem, 1.2vw, 1.25rem);
   line-height: 1.4;
 }
-body.recipes .recipe_bar {
+body.recipes .recipe_bar,
+body.page--recipes .recipe_bar {
   padding: clamp(16px, 3vw, 40px);
 }
-body.recipes .recipe.open .recipe_detail {
+body.recipes .recipe.open .recipe_detail,
+body.page--recipes .recipe.open .recipe_detail {
   display: block;
 }
-body.recipes .recipe_detail-wrapper {
+body.recipes .recipe_detail-wrapper,
+body.page--recipes .recipe_detail-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: clamp(12px, 2vw, 32px);
+  gap: clamp(12px, 2vw, 16px);
   margin-top: 0.2rem;
 }
-body.recipes p.meta {
-  line-height: 1.3;
+body.recipes p.meta,
+body.page--recipes p.meta {
+  font-size: clamp(16px, 1.111vw, 20px);
+  line-height: 1.2;
 }
-body.recipes .recipe_image-box {
-  width: clamp(150px, 30vw, 600px);
+body.recipes .recipe_image-box,
+body.page--recipes .recipe_image-box {
+  width: clamp(270px, 30vw, 600px);
 }
-body.recipes .recipe_image {
+body.recipes .recipe_image,
+body.page--recipes .recipe_image {
   flex: 0 0 clamp(150px, 25%, 300px);
   width: 100%;
   height: clamp(180px, 22vw, 260px);
   object-fit: cover;
   border-radius: 8px;
 }
-body.recipes .recipe_topic {
+body.recipes .recipe_topic,
+body.page--recipes .recipe_topic {
   flex: 1;
   text-align: left;
   display: grid;
-  gap: clamp(12px, 2vw, 32px);
+  gap: clamp(12px, 2vw, 16px);
   align-self: flex-start;
-  padding-left: 16px;
+  padding-left: clamp(1rem, 5vw, 3rem);
 }
-body.recipes .recipe_topic > p {
+body.recipes .recipe_topic > p,
+body.page--recipes .recipe_topic > p {
   width: 100%;
 }
 
 @media (min-width: 768px) {
   body.recipes main {
     grid-template-columns: repeat(2, 1fr);
-    margin-bottom: 200px;
+    margin-bottom: 60px;
   }
 }/*# sourceMappingURL=style.css.map */
