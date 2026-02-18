@@ -165,13 +165,14 @@ input {
   // フォント切り替え時のレイアウト揺れ（CLS）を抑える
 
   /* 和文はZen Kakuを第一候補、落ちても見栄えの良いシステム和文で */
-  --ff-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN",
-    "Yu Gothic Medium", "Yu Gothic", "Meiryo", system-ui, -apple-system,
-    "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+  --ff-jp:
+    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium",
+    "Yu Gothic", "Meiryo", system-ui, -apple-system, "Segoe UI", roboto,
+    "Helvetica Neue", arial, sans-serif;
 
   /* 欧文/数字はInterを第一候補に（タイマーカウント用） */
-  --ff-en: "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial,
-    sans-serif;
+  --ff-en:
+    "Inter", system-ui, -apple-system, "Segoe UI", roboto, arial, sans-serif;
 
   // メニューパネル使用中
   // * 1440px で 1vw = 14.4px。16px にしたい → 16 / 14.4 = 1.111…vw
@@ -335,6 +336,28 @@ input {
   --accent-bg: #e7ece8; /* hover時の薄い面 */
 }
 
+// レシピ
+.page--recipe,
+.page--recipes {
+  --main-color: #{$text-main};
+  --bg: #{$base-bg}; // ほぼ白の温度あり ミルク寄り
+  --sub-bg: #{$sub-bg}; // （区切り用・薄） 真っ白を避けるだけで、文字の角が丸く見える。
+
+  // 2) グレー系（UI・区切り・注釈）
+  --gray-1: #{$gray-1};
+  --gray-2: #{$gray-2};
+  --gray-3: #{$gray-3};
+
+  // 3) 文字色（やわらか主役）
+  --text-main: #2f2f2c; // 真っ黒じゃない
+  --text-sub: #4a4a46; // （見出し補助・注釈）
+
+  // アクセント（1色だけ） 用途はリンク・強調・ほんの印。
+  --accent: #3e5f4b;
+  --accent-hover: #5e6f63; /* グレー寄り深緑 */
+  --accent-bg: #e7ece8; /* hover時の薄い面 */
+}
+
 /* ===== styles/components/_menu-drawer.scss ===== */
 
 .page--gallery {
@@ -418,6 +441,36 @@ input {
   --dots: oklch(from var(--panel-bg) l c h / 60%);
 }
 
+body.recipe,
+body.recipes,
+body.page--recipes,
+body.page--recipe {
+  // ドロワーメニュー
+  // メニューのバックグラウンドカラー
+  --panel-bg: #{$sub-bg};
+
+  // パネル左の枠の色
+  --panel-bd: var(--mono-bd);
+
+  // フォントカラー
+  --panel-cl: var(--text-sub);
+
+  // 現在地
+  --current-page: var(--accent);
+
+  // 差し色
+  --panel-pop: oklch(from var(--accent) l c h / 65%);
+
+  // 背景の半透明幕
+  --scrim: transparent;
+
+  // メニュー背景レイヤー（代替グラデーションを指定）
+  --overlay-bg: oklch(from var(--kuro) l c h / 45%);
+
+  // scrim水玉模様の色
+  --dots: oklch(from var(--accent-bg) l c h / 60%);
+}
+
 /* ===== styles/components/_timer-mini.scss ===== */
 // 　→ styles/core/_timer.vars.scss
 
@@ -471,6 +524,17 @@ input {
   --center: oklch(from #{$text-main} l c h / 65%);
 }
 
+.page--recipes,
+.page--recipe {
+  --back: rgb(201 201 201 / 30%);
+  --mid: oklch(from #{$gray-2} l c h / 48%);
+  --front: oklch(from #{$gray-3} l c h / 38%);
+  --h: var(--accent);
+  --m: var(--accent-bg);
+  --s: var(--bg);
+  --center: oklch(from var(--accent-hover) l c h / 65%);
+}
+
 /* ===== _styles/components/_info.scss ===== */
 
 /* ヘルプカード　背景 */
@@ -479,8 +543,8 @@ input {
 .theme-moss {
   --link-padding: 0.6em 1.1em;
   --link-main-color: #{$main-color};
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 25%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --link-box-shdw:
+    0 8px 24px rgb(0 0 0 / 25%), inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: rgb(24 36 28 / 72%);
   --help-fg: #ebf3ef;
   --help-h: #fff;
@@ -490,8 +554,8 @@ input {
   --help-filter: opacity(100%) brightness(100%);
   --help-filter-hover: opacity(95%) brightness(101%);
 
-  --link-box-shdw-hover: 0 8px 24px rgb(0 0 0 / 15%),
-    inset 0 0 0 1px rgb(255 255 255 / 25%);
+  --link-box-shdw-hover:
+    0 8px 24px rgb(0 0 0 / 15%), inset 0 0 0 1px rgb(255 255 255 / 25%);
 }
 
 /* gallery ヘルプカード使用中 */
@@ -536,8 +600,8 @@ input {
 .theme-dew {
   --link-padding: 0.6em 1.1em;
   --link-main-color: #{$color-a-ink};
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 12%),
-    inset 0 0 0 1px rgb(255 255 255 / 35%);
+  --link-box-shdw:
+    0 8px 24px rgb(0 0 0 / 12%), inset 0 0 0 1px rgb(255 255 255 / 35%);
   --help-bg: #{$sub-bg};
   --help-fg: #474747;
   --help-h: #{$color-a-ink};
@@ -545,6 +609,31 @@ input {
   --help-icon: #{$gray-2};
   --help-icon-bg: oklch(from #{$gray-3} l c h / 8%);
   --help-unit-bd: 1px solid oklch(from var(--help-h) l c h / 58%);
-  --link-box-shdw: 0 8px 24px rgb(0 0 0 / 16%),
-    inset 0 0 0 1px rgb(255 255 255 / 40%);
+  --link-box-shdw:
+    0 8px 24px rgb(0 0 0 / 16%), inset 0 0 0 1px rgb(255 255 255 / 40%);
+}
+
+.theme-wa {
+  // ヘルプカードの背景色　影　光ってる
+  --link-box-shdw: 0 2px 4px var(--base-bg), inset 0 0 0 1px var(--shiro20);
+
+  // ヘルプカードの背景色
+  --help-bg: oklch(from var(--main-color) l c h / 80%);
+
+  // カード内のテキスト
+  --help-fg: var(--accent-bg);
+
+  // 中見出し「時間設定」「操作方法」
+  --help-h: var(--sub-bg);
+
+  // ヘルプカードのボーダー色
+  --help-border: oklch(from var(--gray-2) l c h / 38%);
+
+  // 閉じるボタン
+  --help-icon: var(--accent-bg);
+  --help-icon-bg: oklch(from var(--accent-hover) l c h / 75%);
+
+  // カードホバー時
+  --help-filter: opacity(100%) brightness(100%);
+  --help-filter-hover: opacity(96%) brightness(103%);
 }

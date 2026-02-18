@@ -1,12 +1,15 @@
 {
+  "name": "leaf.loop",
+  "version": "0.1.9",
   "devDependencies": {
     "marked": "^17.0.1",
     "postcss-scss": "^4.0.9",
+    "standard-version": "^9.5.0",
     "stylelint": "^16.24.0",
     "stylelint-config-standard-scss": "^15.0.1"
-  }
-,
+  },
   "scripts": {
-    "build:credit": "node scripts/build-assets-credit.mjs"
+    "build:credit": "node scripts/build-assets-credit.mjs",
+    "release": "standard-version"
   }
 }

@@ -16,5 +16,6 @@
   "start_url": "https://aiue-ok.github.io/leaf.loop/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0b1c39"
+  "theme_color": "#0b1c39",
+  "version": "0.1.9"
 }

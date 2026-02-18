@@ -6,7 +6,9 @@
 
 .page--gallery,
 .page--universe,
-.page--about {
+.page--about,
+.recipe,
+.recipes {
   .menu-drawer,
   .scrim {
     position: fixed;
@@ -153,7 +155,9 @@ body:not([data-menu-open="true"]) .scrim {
 @media (width > #{core.$bp-sm}) and (orientation: portrait) {
   .page--gallery,
   .page--universe,
-  .page--about {
+  .page--about,
+  .recipe,
+  .recipes {
     .menu-drawer {
       justify-content: flex-start;
       padding: 2rem 2.5rem;
@@ -179,7 +183,9 @@ body:not([data-menu-open="true"]) .scrim {
 @media (width >= #{core.$bp-md}) and (width <= #{core.$bp-xl})  and (orientation: landscape) and (hover: none) {
   .page--gallery,
   .page--universe,
-  .page--about {
+  .page--about,
+  .recipe,
+  .recipes {
     // メニューパネル
     .menu-drawer {
       --menu-w: min(360px, 40vw);
@@ -196,7 +202,9 @@ body:not([data-menu-open="true"]) .scrim {
 @media screen and (max-height: #{core.$bp-sm}) and (orientation: landscape) {
   .page--gallery,
   .page--universe,
-  .page--about {
+  .page--about,
+  .recipe,
+  .recipes {
     // メニューパネル
     .menu-drawer {
       padding: 24px 25px 25px;
