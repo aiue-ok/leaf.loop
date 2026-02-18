@@ -14,13 +14,7 @@ It asks for almost nothing. Just look. Let the sound of boiling water and the pr
 leaf.loop follows a simple principle:
 to offer calm through restrained visuals, minimal interaction, and a softened sense of time.
 
----
-
-## 📄 License
-
-- All external assets follow their respective licenses.
-- The source code is released under the MIT License.
-- If the project expands into commercial use, licenses will be re-evaluated accordingly.
+> Continuously evolving.
 
 ---
 
@@ -30,29 +24,37 @@ https://aiue-ok.github.io/leaf.loop/
 
 ---
 
+## 🚀 Current Release
+
+#### 🍴 Recipe
+
+- `recipe.html`
+- `recipes.html`
+
+JavaScript-based client-side rendering.
+Dynamic DOM generation and rendering.
+
+---
+
 ## 1. Overview
 
-leaf.loop currently consists of several interconnected pages built around a shared UI foundation. Each section serves a distinct purpose, while maintaining a consistent visual language and interaction model across the site.
-
-### ✨ New Release
-
-#### 🍴 Recipe Collection – A page dedicated to cooking instructions
-
-A Little Bit of Delicious Food
-A client-side rendered page built with vanilla JavaScript, dynamically generating and rendering the DOM from structured JSON data.
+leaf.loop currently consists of several interconnected pages built around a shared UI foundation.
+Designed as a “non-interactive viewing space” with mobile-first architecture.
+Each section serves a distinct purpose, while maintaining a consistent visual language and interaction model across the site.
 
 ### Overall Structure
 
-- `index.html (Site Entrance)`
+- `index.html` (Site Entrance)
   The main entry point centers around the timer as its primary feature, using a grid layout with hover-based links embedded within the background image. Although there is no hamburger menu on this page, navigation paths to all sections are accessible within the visible screen.
-- `Gallery Page (“A Little Bit of Tea from Around the World”)`
+- `gallery.html` (“A Little Bit of Tea from Around the World”)
   A responsive grid-based image display space featuring a clickable lightbox for enlarged viewing. Images are optimized for both WebP and AVIF formats.
-- `A Little Bit of Distant Things`
+- `universe.html`("A Little Bit of Distant Things")
   A web space inspired by the format of a picture-story show, where words and layered backgrounds shift over time. Visual changes respond to themes and selected text.
-- `About This Site`
+- `about.html`("About This Site")
   A descriptive section explaining the concept of leaf.loop. Text length is adjusted between mobile and desktop versions to improve scrolling rhythm and readability.
-- `Recipe Collection (“A Little Bit of Delicious Food”)`
-  A client-side rendered recipe application built with vanilla JavaScript. The DOM is dynamically generated from JSON data, and SPA-style screen transitions are implemented.
+- `recipes.html` (“A Little Bit of Delicious Food”)
+  A client-side rendered recipe application built with vanilla JavaScript. Uses `js/data/recipesData.js` as a data source.
+  Implements client-side rendering based on URL query parameters.
 
 ---
 
@@ -245,44 +247,31 @@ Improvements to z-index logic, removal of unused styles, and refined image loadi
 
 ---
 
-## 7. Image Credits
+## 7. Assets & Credits
 
-- Recipe images are generated using ChatGPT.
-- Gallery images and external media credits are listed in [`assets_credit.md`](assets_credit.md), including source links, photographer information, and license details.
-- Converted SVG icons based on Material Symbols are credited in the same file.
+All images, icons, fonts, and external media sources are documented in
+[`assets_credit.md`](./assets_credit.md).
+
+- Includes source links, photographers, and license information.
+- SVG icons converted from Material Symbols are also credited there.
+- All recipe images were generated using ChatGPT.
 
 ---
 
 ## 8. Changelog
 
-### v0.1.9 (Recipe Feature Update) 2026 FEB
+See [CHANGELOG.md](./CHANGELOG.md) for full release history.
 
-- Improved recipe rendering structure
-- Updated README module descriptions
-- Minor UI refinements
+### v0.1.9 (Recipe)
 
-### v0.1.8 (Universe & About Launch) 2026 JAN
+#### February 2026 _(Updated: 2026-02-17)_
 
-> The _Universe_ and _About_ pages are now live, completing the first public
-> release cycle of leaf.loop as a quiet, multi-page web experience.
+- Introduced a new Recipe page with structured content rendering.
+- Implemented navigation from the hero section to the Recipe page.
+- Applied incremental UI adjustments for consistency and accessibility.
+- Refactored markup to comply with HTML standards and improved semantic structure.
 
-- Launched the **Universe** page with timed word sequences and layered SVG backgrounds
-- Added the **About** page with long-form layout and dedicated design tokens
-- Unified background handling across pages (base color + gradient layers)
-- Refined navigation and page-specific body classes
-- Synced all deployment assets to `docs/` for GitHub Pages
-
-### v0.1.7 (Gallery Launch) 2025 DEC
-
-- Added the gallery page with responsive grid and AVIF/WebP optimization
-- Implemented a new lightbox with captions, keyboard input, and contain/cover toggle
-- Introduced global UI components: mini timer, menu drawer, help card, decorative clock
-- Refined SCSS structure (variables, tokens, accessibility, component separation)
-- Improved performance via lazy loading, fetchpriority, and reduced unused styles
-- Strengthened accessibility: dialog roles, keyboard navigation, reduced-motion handling
-- Adjusted z-index and layout behavior for consistent responsive design
-
----
+Enhanced navigational flow and semantic structure to support scalable content expansion.
 
 ## 9. Future Plans
 
@@ -296,5 +285,10 @@ This project will continue to evolve through incremental improvements and ongoin
 
 ---
 
-> [!NOTE]
-> This article was created by chatGPT. There may be grammatical or linguistic errors, but I have published it as is.
+## 10. 📄 License
+
+- All external assets follow their respective licenses.
+- The source code is released under the MIT License.
+- If the project expands into commercial use, licenses will be re-evaluated accordingly.
+
+---
