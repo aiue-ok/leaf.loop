@@ -27,6 +27,22 @@
 | 016.webp<br>016.avif | [Unsplash の Ewien van Bergeijk - Kwant が撮影した写真](https://unsplash.com/photos/a-person-holding-a-coffee-mug-with-a-flower-in-it-LIbXABpmzfc)                                                        | [Ewien van Bergeijk - Kwant](https://unsplash.com/ja/@btwien?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)                                  | Unsplash ライセンスで無料 | ギャラリー 16 枚目<br>a person holding a coffee mug with a flower in it<br><img src="assets/gallery/thumbs/016.webp" alt="a person holding a coffee mug with a flower in it" width="50%" align="center">                                                    |
 | 017.webp<br>017.avif | [Unsplash の Vivek Kumar が撮影した写真](https://unsplash.com/photos/green-fields-JS_ohjocm00)                                                                                                            | [Vivek Kumar](https://unsplash.com/ja/@qriusv?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)                                                 | Unsplash ライセンスで無料 | ギャラリー 17 枚目<br>green fields<br><img src="assets/gallery/thumbs/017.webp" alt="green fields" width="50%" align="center">                                                                                                                              |
 
+---
+
+### 🥘 レシピページ掲載画像　recipes.html / recipe.html
+
+画像はレシピ内容をもとに、AIによって生成されたものです。
+Certain images were generated with AI assistance (ChatGPT by OpenAI)
+
+| 料理名                                         | ファイル名                      | 画像                                                    |
+| ---------------------------------------------- | ------------------------------- | ------------------------------------------------------- |
+| ささみ・豆腐・ブロッコリーの重ね蒸し           | assets/recipe/burokoritofu.webp | <img src="assets/recipe/burokoritofu.webp" width="200"> |
+| 豚とかぼちゃのやさしい煮びたし風（ノンフライ） | assets/recipe/butakabotya.webp  | <img src="assets/recipe/butakabotya.webp" width="200">  |
+| ほんとうにやさしいホットレモネード             | assets/recipe/hotlemonade.webp  | <img src="assets/recipe/hotlemonade.webp" width="200">  |
+| ザ・蒸しパン（黒糖／プレーン）                 | assets/recipe/mushipan.webp     | <img src="assets/recipe/mushipan.webp" width="200">     |
+| 豚となすとにんじんの出汁しゃぶ                 | assets/recipe/nasubutamiso.webp | <img src="assets/recipe/nasubutamiso.webp" width="200"> |
+| なすの蒸し煮・梅風味だしあん                   | assets/recipe/umenasuni.webp    | <img src="assets/recipe/umenasuni.webp" width="200">    |
+
 ## 🎞 動画 / Videos
 
 | ファイル名                     | 出典サイト                                                                          | 作者名・ID    | ライセンス | メモ（使用箇所        |
@@ -50,28 +66,24 @@
 ## Fonts（Google Fonts / Web 配信）
 
 - **Zen Maru Gothic**
-
   - Variants: `Regular`
   - Source: https://fonts.google.com/specimen/Zen+Maru+Gothic
   - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
   - Obtained: 2025-09-19
 
 - **Zen Kaku Gothic New**
-
   - Variants: `Regular`, `Bold`
   - Source: https://fonts.google.com/specimen/Zen+Kaku+Gothic+New
   - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
   - Obtained: 2025-09-19
 
 - **Kiwi Maru**
-
   - Variants: `Regular`
   - Source: https://fonts.google.com/specimen/Kiwi+Maru
   - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
   - Obtained: 2025-09-19
 
 - **M PLUS 1p**
-
   - Variants: `Regular`
   - Source: https://fonts.google.com/specimen/M+PLUS+1p
   - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
@@ -82,6 +94,12 @@
   - Source: https://fonts.google.com/specimen/Zen+Kurenaido
   - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
   - Obtained: 2025-12-08
+
+- **Kosugi Maru**
+  - Variants: `Regular`
+  - Source: https://fonts.google.com/specimen/Kosugi+Maru
+  - License: **SIL Open Font License 1.1** — https://scripts.sil.org/OFL
+  - Obtained: 2026-2-11
 
 > Notes: Google Fonts 経由で配信。ローカル同梱・サブセット化なし（現状）。
 
@@ -96,9 +114,14 @@
 - Use: SVG を個別に取得し `<img>`／`<svg>` で使用
 - Used icon names:
   `play_circle`, `stop_circle`, `refresh`, `volume_off`,
-  `help`, `close`, `sound_sampler`, `mobile_vibrate`, `toast`
-- Obtained: 2025-12-08
-  > Notes: 個別 SVG 化により読み込みの制御性・可読性向上
+  `help`, `close`, `sound_sampler`, `mobile_vibrate`, `toast`, `mail`, `print`
+- Obtained:
+  - 2025-12-08
+  - 2026-02-14
+
+  > Notes:
+  - 個別 SVG 化により読み込みの制御性・可読性向上
+  - UI操作アイコンとして使用。軽量化のためフォントは未使用。
 
 ---
 
@@ -123,6 +146,7 @@
 
 ## Change Log
 
+- 2026-01-14: **第 3 版作成**レシピ画像・Material Symbols・Google Fonts 追加
 - 2025-12-08: **第 2 版作成**
   - Material Symbols を Static font → SVG 方式に変更（現行方式へ）
   - icon name を一覧化し明確化
