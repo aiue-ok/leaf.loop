@@ -19,7 +19,7 @@
         "select",
         "textarea",
         '[tabindex]:not([tabindex="-1"])',
-      ].join(",")
+      ].join(","),
     );
 
   const open = () => {
