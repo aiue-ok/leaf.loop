@@ -280,6 +280,7 @@ body.page--recipe {
   // 関連レシピ　画像
   .related-card img {
     width: 100%;
+    height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
   }

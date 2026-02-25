@@ -18,13 +18,11 @@ function renderRecipeDetail(recipe) {
       </div>
       <div class="recipe_image">
         <img
-          srcset="${recipe.image.srcset}"
          src= "${recipe.image.src}"
           alt="${recipe.image.image_alt}"
-          sizes="320px"
           width="${recipe.image.width}"
           height="${recipe.image.height}"
-          loading="lazy" />
+          fetchpriority="high" />
       </div>
     </div>
 
@@ -174,6 +172,8 @@ function renderRelatedRecipes(allRecipes, currentRecipeId) {
           srcset= "${r.image.srcset}"
           alt= "${r.image.image_alt}"
           sizes="(min-width: 375px) 23vw, 300px"
+                    width= "${recipe.image.width}"
+          height ="${recipe.image.height}"
           loading="lazy" />
       <p>${r.title}</p>
     </a>
