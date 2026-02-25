@@ -64,7 +64,7 @@ body.page--recipe {
     background: #eee;
     padding: 2px 8px;
     border-radius: 999px;
-    margin: 0 0;
+    margin: 0;
   }
 
   // レシピ詳細のヘッダー
@@ -317,13 +317,16 @@ body.page--recipe {
       margin: 6px 0;
     }
 
+    // 冒頭の写真
+    .recipe_image {
+      width: 100%;
+      margin: 10px auto 0;
+    }
+
     .recipe_image img {
       display: block;
-      flex: 0 0 clamp(150px, 25%, 300px);
-      // width: 100%;
-      // height: clamp(180px, 22vw, 260px);
-
-      // object-fit: cover;
+      width: clamp(150px, 25%, 300px);
+      height: auto;
       border-radius: 8px;
     }
 
