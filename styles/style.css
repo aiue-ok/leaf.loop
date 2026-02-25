@@ -5843,6 +5843,7 @@ body.page--recipe .related-grid {
 body.recipe .related-card img,
 body.page--recipe .related-card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
 }
@@ -5876,7 +5877,8 @@ body.page--recipe .related-card img {
   }
   body.recipe .recipe_image img {
     display: block;
-    flex: 0 0 clamp(150px, 25%, 300px);
+    width: clamp(150px, 25%, 300px);
+    height: auto;
     border-radius: 8px;
   }
   body.recipe .recipe_body {
