@@ -110,24 +110,20 @@ button {
   min-height: 44px;
 }
 
-input[type="range"] {
-  height: 16px;
-}
-
 /* まずは :focus-visible */
 // fucus-visible
 // --focus-ring: #{$main-color};
 // --focus-ring-width: 2px;
 // --focus-ring-offset: 2px;
 :where(
-    a,
-    button,
-    [role="button"],
-    input,
-    select,
-    textarea,
-    summary
-  ):focus-visible {
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  summary
+):focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
   border-radius: var(--focus-ring-radius, 0.4rem);
@@ -141,14 +137,14 @@ input[type="range"] {
 @media (forced-colors: active) {
   :where(a, button, [role="button"], input, select, textarea, summary):focus,
   :where(
-      a,
-      button,
-      [role="button"],
-      input,
-      select,
-      textarea,
-      summary
-    ):focus-visible {
+    a,
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary
+  ):focus-visible {
     outline-color: CanvasText;
     box-shadow: none;
   }
@@ -243,7 +239,8 @@ input[type="range"] {
   border: 1px solid var(--glass-border);
 
   /* 内外の二層影：フチが立ちすぎないよう弱めに */
-  box-shadow: inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
+  box-shadow:
+    inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
     var(--glass-shadow);
   text-shadow: 0 1px 1px #{var(--kuro25)};
   max-inline-size: 28ch; /* 行が伸びすぎないように */
@@ -256,7 +253,8 @@ input[type="range"] {
   .u-contrast-underline {
     border-radius: clamp(8px, 2.8vw, 12px);
     padding: 0.4em 0.7em;
-    box-shadow: inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
+    box-shadow:
+      inset 0 1px 0 oklch(from #{var(--shiro)} l c h / 6%),
       var(--glass-shadow);
   }
 }
