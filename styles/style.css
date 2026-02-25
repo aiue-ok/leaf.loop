@@ -583,10 +583,6 @@ button {
   min-height: 44px;
 }
 
-input[type=range] {
-  height: 16px;
-}
-
 /* まずは :focus-visible */
 :where(a,
 button,
@@ -4310,7 +4306,7 @@ body.page--universe.bg-interlude-1::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
+  background: url("../assets/universe/svg/chapter2_quantum-grid-fff.svg");
   background-repeat: repeat;
   background-size: auto;
   background-position: center center;
@@ -4358,7 +4354,7 @@ body.page--universe.bg-interlude-2::after {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
+  background-image: url("../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
 }
@@ -4497,7 +4493,7 @@ body.page--universe.bg-ch1::after {
   pointer-events: none;
   z-index: -1;
   opacity: 0.03;
-  background-image: url("../../../assets/universe/svg/chapter3-title-stars.svg");
+  background-image: url("../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
   /* Safariの描画安定寄り */
@@ -4518,7 +4514,7 @@ body.page--universe.bg-ch2::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("../../../assets/universe/svg/chapter2_quantum-grid-fff.svg");
+  background-image: url("../assets/universe/svg/chapter2_quantum-grid-fff.svg");
   background-repeat: repeat;
   background-size: auto;
   background-position: center center;
@@ -4554,7 +4550,7 @@ body.page--universe.bg-wave::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter2_wave-ellipse.svg");
+  background-image: url("../assets/universe/svg/chapter2_wave-ellipse.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
@@ -4577,7 +4573,7 @@ body.page--universe.bg-quantum::before {
   inset: 0;
   z-index: 0; /* 背景レイヤーとして */
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter2_dot.svg");
+  background-image: url("../assets/universe/svg/chapter2_dot.svg");
   background-repeat: repeat;
   background-size: auto;
   animation: dot-pulse var(--dur-dot) ease infinite;
@@ -4672,7 +4668,7 @@ body.page--universe.bg-orbit::before {
   inset: 0;
   z-index: 0; /* 背景レイヤーとして */
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter2_orbit-grid.svg");
+  background-image: url("../assets/universe/svg/chapter2_orbit-grid.svg");
   background-repeat: repeat;
   background-size: auto;
 }
@@ -4691,7 +4687,7 @@ body.page--universe.bg-orbit::after {
   inset: 0;
   z-index: 0; /* 背景レイヤーとして */
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter2_orbit.svg");
+  background-image: url("../assets/universe/svg/chapter2_orbit.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: auto;
@@ -4768,7 +4764,7 @@ body.page--universe.theme-ch3 {
   --text-shadow: 0 2px 10px rgb(0 0 0 / 18%);
   position: relative;
   z-index: 0; /* 背景レイヤーとして */
-  background: url("../../../assets/universe/svg/chapter3-title-stars.svg");
+  background: url("../assets/universe/svg/chapter3-title-stars.svg");
   background-repeat: repeat;
   background-size: auto;
 }
@@ -4802,7 +4798,7 @@ body.page--universe.bg-star::before {
   z-index: -2; /* 背景レイヤーとして */
   pointer-events: none;
   background: transparent;
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+  background-image: url("../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
 }
@@ -4833,7 +4829,7 @@ body.page--universe.bg-nebula::before {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+  background-image: url("../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
   opacity: 0.78; /* お好みで */
@@ -4875,7 +4871,7 @@ body.page--universe.bg-galaxy::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("../../../assets/universe/svg/chapter3_stars-stardust.svg");
+  background-image: url("../assets/universe/svg/chapter3_stars-stardust.svg");
   background-repeat: repeat;
   background-size: auto;
   opacity: 1;
@@ -5652,7 +5648,7 @@ body.page--recipe .tags > li {
   background: #eee;
   padding: 2px 8px;
   border-radius: 999px;
-  margin: 0 0;
+  margin: 0;
 }
 body.recipe .recipe_head-wrapper,
 body.page--recipe .recipe_head-wrapper {
@@ -5847,6 +5843,7 @@ body.page--recipe .related-grid {
 body.recipe .related-card img,
 body.page--recipe .related-card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
 }
@@ -5874,9 +5871,14 @@ body.page--recipe .related-card img {
     line-height: 1.2;
     margin: 6px 0;
   }
+  body.recipe .recipe_image {
+    width: 100%;
+    margin: 10px auto 0;
+  }
   body.recipe .recipe_image img {
     display: block;
-    flex: 0 0 clamp(150px, 25%, 300px);
+    width: clamp(150px, 25%, 300px);
+    height: auto;
     border-radius: 8px;
   }
   body.recipe .recipe_body {

@@ -16,8 +16,13 @@ export function renderRecipeList(recipes) {
       <div class="recipe_detail-wrapper">
         <div class="recipe_image-box">
           <img
-            src="${recipe.image}"
-            alt="${recipe.image_alt}"
+            srcset="${recipe.image.srcset}"
+            src="${recipe.image.src}"
+            width="${recipe.image.width}"
+            height="${recipe.image.height}"
+            alt="${recipe.image.image_alt}"
+            sizes="(max-width: 768px) 30vw, 600px"
+            loading="lazy"
             class="meta recipe_image"
           />
         </div>
