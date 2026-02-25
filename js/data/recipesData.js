@@ -29,9 +29,15 @@ export const recipes = [
         "味噌かしょうゆ少々で整えて、仕上げにすりごま少し。",
       ],
     },
-    image_alt:
-      "豚とかぼちゃのやさしい煮びたし風の器に盛り付けられた完成イメージ",
-    image: "assets/recipe/butakabotya.webp",
+    image: {
+      src: "assets/recipe/recipe-01_butakabotya-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-01_butakabotya.webp 1024w, assets/recipe/recipe-01_butakabotya-mobile.webp 800w",
+      width: 800,
+      height: 533,
+      image_alt:
+        "豚とかぼちゃのやさしい煮びたし風の器に盛り付けられた完成イメージ",
+    },
     tips: [
       "とろっとしたかぼちゃの甘みに、豚の出汁が自然に絡んで「え、こんなに優しいのにコクがある!?」という感じです。",
     ],
@@ -60,8 +66,14 @@ export const recipes = [
         "水溶き片栗粉でとろみをつけ1分ほど煮て完成。",
       ],
     },
-    image_alt: "なすの蒸し煮に梅肉がからんだ完成イメージ",
-    image: "assets/recipe/umenasuni.webp",
+    image: {
+      src: "assets/recipe/recipe-02_umenasuni-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-02_umenasuni.webp 1024w, assets/recipe/recipe-02_umenasuni-mobile.webp 800w",
+      width: 800,
+      height: 1200,
+      image_alt: "なすの蒸し煮に梅肉がからんだ完成イメージ",
+    },
     tips: [
       "ナスは柔らかくなるまで煮ると、油ゼロでも「とろん・じゅわっ」食感。",
       "梅の酸味が胃の負担をすっと軽くしてくれます。",
@@ -103,9 +115,15 @@ export const recipes = [
         "出汁に、味噌＋すりごまを入れて作った“やさしいタレ”で食べる。（ポン酢系でもOK、酸味は胃の回復を促す）",
       ],
     },
-    image_alt:
-      "味噌タレにつけた豚しゃぶとなすとにんじんが鍋に入った完成イメージ",
-    image: "assets/recipe/nasubutamiso.webp",
+    image: {
+      src: "assets/recipe/recipe-03_nasubutamiso-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-03_nasubutamiso.webp 1024w, assets/recipe/recipe-03_nasubutamiso.webp 800w",
+      width: 800,
+      height: 1200,
+      image_alt:
+        "味噌タレにつけた豚しゃぶとなすとにんじんが鍋に入った完成イメージ",
+    },
     tips: [
       "30分ほど事前に、出汁用の水に軽くふきんなどで表面を拭いた昆布をいれておいてもよい。",
       "油っぽいのを避けたい日は豚もも肉や豚肩ロースのしゃぶしゃぶもおすすめです。",
@@ -142,8 +160,14 @@ export const recipes = [
         "仕上げに鍋の残り汁に梅干し or 味噌を溶いて、4の具材にを上からかけて完成。",
       ],
     },
-    image_alt: "ささみと豆腐、ブロッコリーが器に盛り付けられた完成イメージ",
-    image: "assets/recipe/burokoritofu.webp",
+    image: {
+      src: "assets/recipe/recipe-04_burokoritofu-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-04_burokoritofu.webp 1024w, assets/recipe/recipe-04_burokoritofu-mobile.webp 800w",
+      width: 800,
+      height: 800,
+      image_alt: "ささみと豆腐、ブロッコリーが器に盛り付けられた完成イメージ",
+    },
     tips: [
       "弱火がポイント。3〜4分ほどで沸いたら、火を止めて10分蓋をしたまま具材に火を通すとささみが柔らかく仕上がる。",
     ],
@@ -183,8 +207,14 @@ export const recipes = [
       // "沸いた蒸し器に並べて、約12分弱目の中火にかける。",
       // "できあがり。",
     },
-    image_alt: "黒糖蒸しパンとプレーン蒸しパンの完成イメージ",
-    image: "assets/recipe/mushipan.webp",
+    image: {
+      src: "assets/recipe/recipe-05_mushipan-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-05_mushipan.webp 1024w, assets/recipe/recipe-05_mushipan-mobile.webp 800w",
+      width: 800,
+      height: 800,
+      image_alt: "黒糖蒸しパンとプレーン蒸しパンの完成イメージ",
+    },
     tips: [
       "容器は大きさをそろえて、コップくらいのサイズの容器（市販のシリコンカップやマフィンカップ）が作りやすいです。",
       "時間が来たら、あればつまようじや竹串などで生地を刺し、くっついてこなければ中まで火が通った目安になります。",
@@ -217,8 +247,15 @@ export const recipes = [
         "酸味が強い → お湯を少し足す",
       ],
     },
-    image_alt: "マグカップに薄切りレモンを入れたホットレモネードの完成イメージ",
-    image: "assets/recipe/hotlemonade.webp",
+    image: {
+      src: "assets/recipe/recipe-06_hotlemonade-mobile.webp",
+      srcset:
+        "assets/recipe/recipe-06_hotlemonade.webp 1024w, assets/recipe/recipe-06_hotlemonade-mobile.webp 800w",
+      width: 800,
+      height: 1200,
+      image_alt:
+        "マグカップに薄切りレモンを入れたホットレモネードの完成イメージ",
+    },
     tips: [
       "温かい飲み物は、冷たいより酸を強く感じる",
       "レモン果汁を増やすのは味見の後から",

@@ -17,7 +17,14 @@ function renderRecipeDetail(recipe) {
         <p class="recipe_servings">人数：${recipe.servings}</p>
       </div>
       <div class="recipe_image">
-        <img src="${recipe.image}" alt="${recipe.image_alt}" />
+        <img
+          srcset="${recipe.image.srcset}"
+         src= "${recipe.image.src}"
+          alt="${recipe.image.image_alt}"
+          sizes="320px"
+          width="${recipe.image.width}"
+          height="${recipe.image.height}"
+          loading="lazy" />
       </div>
     </div>
 
@@ -88,18 +95,25 @@ function renderRecipeDetail(recipe) {
 
       <h3  class="recipe_fin_heading">できあがりイメージ</h3>
       <div class="recipe_image-fin">
-        <img src="${recipe.image}" alt="${recipe.image_alt}" />
+          <img
+          src= "${recipe.image.src}"
+          srcset= "${recipe.image.srcset}"
+          alt= "${recipe.image.image_alt}"
+          sizes="(max-width: 1000px) 100vw, 1000px"
+          width= "${recipe.image.width}"
+          height ="${recipe.image.height}"
+          loading="lazy" />
       </div>
 
       <section class="recipe-actions">
-                      <ul class="info__list">
-                  <li class="info__item">
+        <ul class="info__list">
+        <li class="info__item">
         <button  class="recipe-actions-btn">
         <svg class="i i-28 recipe_print" viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 -960 960 960"><path d="M640-640v-120H320v120h-80v-200h480v200zm-480 80h640zm560 100q17 0 28.5-11.5T760-500t-11.5-28.5T720-540t-28.5 11.5T680-500t11.5 28.5T720-460m-80 260v-160H320v160zm80 80H240v-160H80v-240q0-51 35-85.5t85-34.5h560q51 0 85.5 34.5T880-520v240H720zm80-240v-160q0-17-11.5-28.5T760-560H200q-17 0-28.5 11.5T160-520v160h80v-80h480v80z"/></svg>
                 印刷
         </button>
-                  </li>
-                  <li class="info__item">
+        </li>
+        <li class="info__item">
 
         <a href="mailto:?subject=レシピ&body=URL">
         <button  class="recipe-actions-btn">
@@ -155,7 +169,12 @@ function renderRelatedRecipes(allRecipes, currentRecipeId) {
     .map(
       (r) => `
     <a href="recipe.html?id=${r.id}" class="related-card">
-      <img src="${r.image}" alt="${r.title}">
+           <img
+          src= "${r.image.src}"
+          srcset= "${r.image.srcset}"
+          alt= "${r.image.image_alt}"
+          sizes="(min-width: 375px) 23vw, 300px"
+          loading="lazy" />
       <p>${r.title}</p>
     </a>
   `,
