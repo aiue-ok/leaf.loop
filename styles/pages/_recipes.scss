@@ -1,6 +1,5 @@
 @use "../core/index" as core;
 
-body.recipes,
 body.page--recipes {
   --main-color: #2f2f2c;
   --bg: #f6f5f2;
@@ -155,7 +154,7 @@ body.page--recipes {
 }
 
 @media (min-width: 768px) {
-  body.recipes {
+  body.page--recipes {
     main {
       grid-template-columns: repeat(2, 1fr);
       // タイマー分の高さ

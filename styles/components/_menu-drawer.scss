@@ -7,8 +7,8 @@
 .page--gallery,
 .page--universe,
 .page--about,
-.recipe,
-.recipes {
+.page--recipe,
+.page--recipes {
   .menu-drawer,
   .scrim {
     position: fixed;
@@ -156,8 +156,8 @@ body:not([data-menu-open="true"]) .scrim {
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     .menu-drawer {
       justify-content: flex-start;
       padding: 2rem 2.5rem;
@@ -184,8 +184,8 @@ body:not([data-menu-open="true"]) .scrim {
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     // メニューパネル
     .menu-drawer {
       --menu-w: min(360px, 40vw);
@@ -203,8 +203,8 @@ body:not([data-menu-open="true"]) .scrim {
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     // メニューパネル
     .menu-drawer {
       padding: 24px 25px 25px;
