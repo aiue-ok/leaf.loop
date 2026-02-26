@@ -34,14 +34,14 @@
 画像はレシピ内容をもとに、AIによって生成されたものです。
 Certain images were generated with AI assistance (ChatGPT by OpenAI)
 
-| 料理名                                         | ファイル名                      | 画像                                                    |
-| ---------------------------------------------- | ------------------------------- | ------------------------------------------------------- |
-| ささみ・豆腐・ブロッコリーの重ね蒸し           | assets/recipe/burokoritofu.webp | <img src="assets/recipe/burokoritofu.webp" width="200"> |
-| 豚とかぼちゃのやさしい煮びたし風（ノンフライ） | assets/recipe/butakabotya.webp  | <img src="assets/recipe/butakabotya.webp" width="200">  |
-| ほんとうにやさしいホットレモネード             | assets/recipe/hotlemonade.webp  | <img src="assets/recipe/hotlemonade.webp" width="200">  |
-| ザ・蒸しパン（黒糖／プレーン）                 | assets/recipe/mushipan.webp     | <img src="assets/recipe/mushipan.webp" width="200">     |
-| 豚となすとにんじんの出汁しゃぶ                 | assets/recipe/nasubutamiso.webp | <img src="assets/recipe/nasubutamiso.webp" width="200"> |
-| なすの蒸し煮・梅風味だしあん                   | assets/recipe/umenasuni.webp    | <img src="assets/recipe/umenasuni.webp" width="200">    |
+| 料理名                                         | ファイル名                      | 画像                                                                     |
+| ---------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------ |
+| ささみ・豆腐・ブロッコリーの重ね蒸し           | assets/recipe/burokoritofu.webp | <img src="assets/recipe/recipe-04_burokoritofu-mobile.webp" width="200"> |
+| 豚とかぼちゃのやさしい煮びたし風（ノンフライ） | assets/recipe/butakabotya.webp  | <img src="assets/recipe/recipe-01_butakabotya-mobile.webp" width="200">  |
+| ほんとうにやさしいホットレモネード             | assets/recipe/hotlemonade.webp  | <img src="assets/recipe/recipe-06_hotlemonade-mobile.webp" width="200">  |
+| ザ・蒸しパン（黒糖／プレーン）                 | assets/recipe/mushipan.webp     | <img src="assets/recipe/recipe-05_mushipan-mobile.webp" width="200">     |
+| 豚となすとにんじんの出汁しゃぶ                 | assets/recipe/nasubutamiso.webp | <img src="assets/recipe/recipe-03_nasubutamiso-mobile.webp" width="200"> |
+| なすの蒸し煮・梅風味だしあん                   | assets/recipe/umenasuni.webp    | <img src="assets/recipe/recipe-02_umenasuni-mobile.webp" width="200">    |
 
 ## 🎞 動画 / Videos
 
@@ -147,6 +147,7 @@ Certain images were generated with AI assistance (ChatGPT by OpenAI)
 ## Change Log
 
 - 2026-01-14: **第 3 版作成**レシピ画像・Material Symbols・Google Fonts 追加
+  - 2026-02-26: 画像ファイル名変更に伴うパス修正
 - 2025-12-08: **第 2 版作成**
   - Material Symbols を Static font → SVG 方式に変更（現行方式へ）
   - icon name を一覧化し明確化

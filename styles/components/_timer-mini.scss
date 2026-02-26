@@ -3,8 +3,8 @@
 .page--gallery,
 .page--universe,
 .page--about,
-.recipe,
-.recipes {
+.page--recipe,
+.page--recipes {
   .timer-mini {
     /* レイアウト・背景・トークンの初期値など */
     position: fixed;
@@ -234,8 +234,8 @@
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     // 背景
     .timer-mini__bg:hover {
       background: var(--mini-background-hover);
@@ -273,8 +273,8 @@
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     .timer-mini {
       position: fixed;
       top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
@@ -460,8 +460,8 @@
   .page--gallery,
   .page--universe,
   .page--about,
-  .recipe,
-  .recipes {
+  .page--recipe,
+  .page--recipes {
     .timer-mini {
       max-height: 180px; // 200px からちょい下げる
     }
