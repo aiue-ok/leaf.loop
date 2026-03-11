@@ -1,20 +1,9 @@
 {
   "extends": ["stylelint-config-standard-scss"],
-  "overrides": [{ "files": ["**/*.scss"], "customSyntax": "postcss-scss" }],
-  "plugins": ["stylelint-scss"],
   "rules": {
-    "selector-class-pattern": null,
-
-    "property-no-vendor-prefix": null,
-    "value-no-vendor-prefix": null,
-    "selector-no-vendor-prefix": null,
-    "media-feature-name-no-vendor-prefix": null,
-    "at-rule-no-vendor-prefix": null,
-
-    "media-feature-range-notation": "prefix",
     "no-descending-specificity": null,
-    "scss/no-duplicate-dollar-variables": true,
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    "scss/no-duplicate-dollar-variables": true
   }
 }
