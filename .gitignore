@@ -6,7 +6,9 @@
 **/*.map
 
 # Editor / Node
-.vscode/
+# VSCode personal settings 全部無視するけど!だけは残す、という意味
+.vscode/*
+!.vscode/settings.json
 node_modules/
 
 # Build artifacts
@@ -14,6 +16,11 @@ dist/
 build/
 guide/
 _archive/
+_desk🖊️
+_archive🚪
+
+# logs
+*.log
 
 # diff生成物を無視
 DIFF_*.txt
