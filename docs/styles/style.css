@@ -1723,7 +1723,7 @@ body .js-toast--visible {
 .page--gallery .page-header,
 .page--universe .page-header,
 .page--about .page-header,
-.recipe .page-header,
+.page--recipe .page-header,
 .page--recipes .page-header {
   color: var(--main-color);
   width: 100%;
@@ -1733,7 +1733,7 @@ body .js-toast--visible {
 .page--gallery .page-header__bar,
 .page--universe .page-header__bar,
 .page--about .page-header__bar,
-.recipe .page-header__bar,
+.page--recipe .page-header__bar,
 .page--recipes .page-header__bar {
   padding: 16px 0;
   display: grid;
@@ -1746,7 +1746,7 @@ body .js-toast--visible {
 .page--gallery .page-header__toggle,
 .page--universe .page-header__toggle,
 .page--about .page-header__toggle,
-.recipe .page-header__toggle,
+.page--recipe .page-header__toggle,
 .page--recipes .page-header__toggle {
   display: block;
   color: inherit;
@@ -1756,7 +1756,7 @@ body .js-toast--visible {
 .page--gallery .page-header__toggle:hover,
 .page--universe .page-header__toggle:hover,
 .page--about .page-header__toggle:hover,
-.recipe .page-header__toggle:hover,
+.page--recipe .page-header__toggle:hover,
 .page--recipes .page-header__toggle:hover {
   cursor: pointer;
   color: oklch(from var(--main-color) l c h/93%);
@@ -1764,7 +1764,7 @@ body .js-toast--visible {
 .page--gallery .page-header__brand,
 .page--universe .page-header__brand,
 .page--about .page-header__brand,
-.recipe .page-header__brand,
+.page--recipe .page-header__brand,
 .page--recipes .page-header__brand {
   grid-area: brand;
   width: max-content;
@@ -1773,7 +1773,7 @@ body .js-toast--visible {
 .page--gallery .page-header__title,
 .page--universe .page-header__title,
 .page--about .page-header__title,
-.recipe .page-header__title,
+.page--recipe .page-header__title,
 .page--recipes .page-header__title {
   text-align: left;
   display: inline-block;
@@ -1787,7 +1787,7 @@ body .js-toast--visible {
 .page--gallery .page-header__subtitle,
 .page--universe .page-header__subtitle,
 .page--about .page-header__subtitle,
-.recipe .page-header__subtitle,
+.page--recipe .page-header__subtitle,
 .page--recipes .page-header__subtitle {
   display: block;
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -1808,8 +1808,8 @@ body .js-toast--visible {
 .page--universe .scrim,
 .page--about .menu-drawer,
 .page--about .scrim,
-.recipe .menu-drawer,
-.recipe .scrim,
+.page--recipe .menu-drawer,
+.page--recipe .scrim,
 .page--recipes .menu-drawer,
 .page--recipes .scrim {
   position: fixed;
@@ -1819,14 +1819,14 @@ body .js-toast--visible {
 .page--gallery,
 .page--universe,
 .page--about,
-.recipe,
+.page--recipe,
 .page--recipes {
   /* パネル本体（右から） */
 }
 .page--gallery .menu-drawer,
 .page--universe .menu-drawer,
 .page--about .menu-drawer,
-.recipe .menu-drawer,
+.page--recipe .menu-drawer,
 .page--recipes .menu-drawer {
   right: 0;
   z-index: 1100; /* タイマーとバックドロップより上 */
@@ -1850,7 +1850,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__head,
 .page--universe .menu-drawer__head,
 .page--about .menu-drawer__head,
-.recipe .menu-drawer__head,
+.page--recipe .menu-drawer__head,
 .page--recipes .menu-drawer__head {
   display: flex;
   align-items: center;
@@ -1860,7 +1860,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__title,
 .page--universe .menu-drawer__title,
 .page--about .menu-drawer__title,
-.recipe .menu-drawer__title,
+.page--recipe .menu-drawer__title,
 .page--recipes .menu-drawer__title {
   margin-left: 5px;
   font-size: 1.4rem;
@@ -1868,7 +1868,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__close,
 .page--universe .menu-drawer__close,
 .page--about .menu-drawer__close,
-.recipe .menu-drawer__close,
+.page--recipe .menu-drawer__close,
 .page--recipes .menu-drawer__close {
   width: 44px;
   height: 44px;
@@ -1881,7 +1881,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__close:hover,
 .page--universe .menu-drawer__close:hover,
 .page--about .menu-drawer__close:hover,
-.recipe .menu-drawer__close:hover,
+.page--recipe .menu-drawer__close:hover,
 .page--recipes .menu-drawer__close:hover {
   color: var(--panel-bd);
   scale: 110%;
@@ -1889,14 +1889,14 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__close i,
 .page--universe .menu-drawer__close i,
 .page--about .menu-drawer__close i,
-.recipe .menu-drawer__close i,
+.page--recipe .menu-drawer__close i,
 .page--recipes .menu-drawer__close i {
   display: block;
 }
 .page--gallery .menu-drawer__list,
 .page--universe .menu-drawer__list,
 .page--about .menu-drawer__list,
-.recipe .menu-drawer__list,
+.page--recipe .menu-drawer__list,
 .page--recipes .menu-drawer__list {
   margin-left: 0.5em;
   list-style: none;
@@ -1904,7 +1904,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__link,
 .page--universe .menu-drawer__link,
 .page--about .menu-drawer__link,
-.recipe .menu-drawer__link,
+.page--recipe .menu-drawer__link,
 .page--recipes .menu-drawer__link {
   display: block;
   padding: 0.75rem 0.25rem;
@@ -1915,7 +1915,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__link:hover,
 .page--universe .menu-drawer__link:hover,
 .page--about .menu-drawer__link:hover,
-.recipe .menu-drawer__link:hover,
+.page--recipe .menu-drawer__link:hover,
 .page--recipes .menu-drawer__link:hover {
   text-decoration: underline var(--panel-pop);
   -webkit-text-decoration: underline var(--panel-pop);
@@ -1923,7 +1923,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__link[aria-current=page],
 .page--universe .menu-drawer__link[aria-current=page],
 .page--about .menu-drawer__link[aria-current=page],
-.recipe .menu-drawer__link[aria-current=page],
+.page--recipe .menu-drawer__link[aria-current=page],
 .page--recipes .menu-drawer__link[aria-current=page] {
   position: relative;
   opacity: 0.9;
@@ -1934,7 +1934,7 @@ body .js-toast--visible {
 .page--gallery .menu-drawer__link[aria-current=page]::before,
 .page--universe .menu-drawer__link[aria-current=page]::before,
 .page--about .menu-drawer__link[aria-current=page]::before,
-.recipe .menu-drawer__link[aria-current=page]::before,
+.page--recipe .menu-drawer__link[aria-current=page]::before,
 .page--recipes .menu-drawer__link[aria-current=page]::before {
   content: "▼";
   position: absolute;
@@ -1974,8 +1974,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer,
   .page--universe .menu-drawer,
   .page--about .menu-drawer,
-  .recipe .menu-drawer,
-  .body.page--recipes .menu-drawer {
+  .page--recipe .menu-drawer,
+  .page--recipes .menu-drawer {
     justify-content: flex-start;
     padding: 2rem 2.5rem;
     display: flex;
@@ -1985,8 +1985,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer__list,
   .page--universe .menu-drawer__list,
   .page--about .menu-drawer__list,
-  .recipe .menu-drawer__list,
-  .body.page--recipes .menu-drawer__list {
+  .page--recipe .menu-drawer__list,
+  .page--recipes .menu-drawer__list {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -1994,8 +1994,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer__list a,
   .page--universe .menu-drawer__list a,
   .page--about .menu-drawer__list a,
-  .recipe .menu-drawer__list a,
-  .body.page--recipes .menu-drawer__list a {
+  .page--recipe .menu-drawer__list a,
+  .page--recipes .menu-drawer__list a {
     padding: 0.85rem 0.25rem;
     font-size: 1.05rem;
   }
@@ -2004,15 +2004,15 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer,
   .page--universe .menu-drawer,
   .page--about .menu-drawer,
-  .recipe .menu-drawer,
-  .body.page--recipes .menu-drawer {
+  .page--recipe .menu-drawer,
+  .page--recipes .menu-drawer {
     --menu-w: min(360px, 40vw);
   }
   .page--gallery .menu-drawer__list a,
   .page--universe .menu-drawer__list a,
   .page--about .menu-drawer__list a,
-  .recipe .menu-drawer__list a,
-  .body.page--recipes .menu-drawer__list a {
+  .page--recipe .menu-drawer__list a,
+  .page--recipes .menu-drawer__list a {
     font-size: 1rem;
   }
 }
@@ -2020,8 +2020,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer,
   .page--universe .menu-drawer,
   .page--about .menu-drawer,
-  .recipe .menu-drawer,
-  .body.page--recipes .menu-drawer {
+  .page--recipe .menu-drawer,
+  .page--recipes .menu-drawer {
     padding: 24px 25px 25px;
     padding-block: 1rem;
     /* 中身のレイアウト　Menu+ Xbutton */
@@ -2029,31 +2029,31 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .menu-drawer__head,
   .page--universe .menu-drawer__head,
   .page--about .menu-drawer__head,
-  .recipe .menu-drawer__head,
-  .body.page--recipes .menu-drawer__head {
+  .page--recipe .menu-drawer__head,
+  .page--recipes .menu-drawer__head {
     margin-bottom: 0.5rem;
   }
   .page--gallery .menu-drawer__title,
   .page--universe .menu-drawer__title,
   .page--about .menu-drawer__title,
-  .recipe .menu-drawer__title,
-  .body.page--recipes .menu-drawer__title {
+  .page--recipe .menu-drawer__title,
+  .page--recipes .menu-drawer__title {
     margin-left: 3px;
     font-size: 1.3rem;
   }
   .page--gallery .menu-drawer__close,
   .page--universe .menu-drawer__close,
   .page--about .menu-drawer__close,
-  .recipe .menu-drawer__close,
-  .body.page--recipes .menu-drawer__close {
+  .page--recipe .menu-drawer__close,
+  .page--recipes .menu-drawer__close {
     width: 38px;
     height: 38px;
   }
   .page--gallery .menu-drawer__link,
   .page--universe .menu-drawer__link,
   .page--about .menu-drawer__link,
-  .recipe .menu-drawer__link,
-  .body.page--recipes .menu-drawer__link {
+  .page--recipe .menu-drawer__link,
+  .page--recipes .menu-drawer__link {
     padding: 0.5rem 0.25rem;
   }
 }
@@ -2168,7 +2168,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini,
 .page--universe .timer-mini,
 .page--about .timer-mini,
-.recipe .timer-mini,
+.page--recipe .timer-mini,
 .page--recipes .timer-mini {
   /* レイアウト・背景・トークンの初期値など */
   position: fixed;
@@ -2181,7 +2181,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__bg,
 .page--universe .timer-mini__bg,
 .page--about .timer-mini__bg,
-.recipe .timer-mini__bg,
+.page--recipe .timer-mini__bg,
 .page--recipes .timer-mini__bg {
   border-radius: var(--mini-border-r-16);
   background: var(--mini-background);
@@ -2201,7 +2201,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__grid,
 .page--universe .timer-mini__grid,
 .page--about .timer-mini__grid,
-.recipe .timer-mini__grid,
+.page--recipe .timer-mini__grid,
 .page--recipes .timer-mini__grid {
   display: grid;
   grid-template-areas: "count presets controls";
@@ -2213,7 +2213,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__grid--vertical,
 .page--universe .timer-mini__grid--vertical,
 .page--about .timer-mini__grid--vertical,
-.recipe .timer-mini__grid--vertical,
+.page--recipe .timer-mini__grid--vertical,
 .page--recipes .timer-mini__grid--vertical {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -2224,21 +2224,21 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery,
 .page--universe,
 .page--about,
-.recipe,
+.page--recipe,
 .page--recipes {
   /* 2. 子要素・部品（BEMの __◯◯） */
 }
 .page--gallery .timer-mini__screen,
 .page--universe .timer-mini__screen,
 .page--about .timer-mini__screen,
-.recipe .timer-mini__screen,
+.page--recipe .timer-mini__screen,
 .page--recipes .timer-mini__screen {
   grid-area: count;
 }
 .page--gallery .timer-mini__screen--grid,
 .page--universe .timer-mini__screen--grid,
 .page--about .timer-mini__screen--grid,
-.recipe .timer-mini__screen--grid,
+.page--recipe .timer-mini__screen--grid,
 .page--recipes .timer-mini__screen--grid {
   display: grid;
   grid-template-areas: "time" "help";
@@ -2249,7 +2249,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__screen--display,
 .page--universe .timer-mini__screen--display,
 .page--about .timer-mini__screen--display,
-.recipe .timer-mini__screen--display,
+.page--recipe .timer-mini__screen--display,
 .page--recipes .timer-mini__screen--display {
   grid-area: time;
   width: fit-content;
@@ -2257,7 +2257,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__screen--count,
 .page--universe .timer-mini__screen--count,
 .page--about .timer-mini__screen--count,
-.recipe .timer-mini__screen--count,
+.page--recipe .timer-mini__screen--count,
 .page--recipes .timer-mini__screen--count {
   display: block;
   width: 5ch;
@@ -2270,7 +2270,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__screen--tnum,
 .page--universe .timer-mini__screen--tnum,
 .page--about .timer-mini__screen--tnum,
-.recipe .timer-mini__screen--tnum,
+.page--recipe .timer-mini__screen--tnum,
 .page--recipes .timer-mini__screen--tnum {
   font-family: var(--ff-en);
   font-variant-numeric: tabular-nums; /* 等幅数字 */
@@ -2282,28 +2282,28 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__presets,
 .page--universe .timer-mini__presets,
 .page--about .timer-mini__presets,
-.recipe .timer-mini__presets,
+.page--recipe .timer-mini__presets,
 .page--recipes .timer-mini__presets {
   grid-area: presets;
 }
 .page--gallery .timer-mini__actions,
 .page--universe .timer-mini__actions,
 .page--about .timer-mini__actions,
-.recipe .timer-mini__actions,
+.page--recipe .timer-mini__actions,
 .page--recipes .timer-mini__actions {
   grid-area: controls;
 }
 .page--gallery .timer-mini__actions .i,
 .page--universe .timer-mini__actions .i,
 .page--about .timer-mini__actions .i,
-.recipe .timer-mini__actions .i,
+.page--recipe .timer-mini__actions .i,
 .page--recipes .timer-mini__actions .i {
   display: block;
 }
 .page--gallery .timer-mini__pill,
 .page--universe .timer-mini__pill,
 .page--about .timer-mini__pill,
-.recipe .timer-mini__pill,
+.page--recipe .timer-mini__pill,
 .page--recipes .timer-mini__pill {
   display: inline-flex;
   align-items: center;
@@ -2329,7 +2329,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__icon-btn,
 .page--universe .timer-mini__icon-btn,
 .page--about .timer-mini__icon-btn,
-.recipe .timer-mini__icon-btn,
+.page--recipe .timer-mini__icon-btn,
 .page--recipes .timer-mini__icon-btn {
   inline-size: var(--btn-size-icon);
   block-size: var(--btn-size-icon);
@@ -2344,7 +2344,7 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__screen--help,
 .page--universe .timer-mini__screen--help,
 .page--about .timer-mini__screen--help,
-.recipe .timer-mini__screen--help,
+.page--recipe .timer-mini__screen--help,
 .page--recipes .timer-mini__screen--help {
   grid-area: help;
   width: var(--btn-size-help);
@@ -2358,14 +2358,14 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery,
 .page--universe,
 .page--about,
-.recipe,
+.page--recipe,
 .page--recipes {
   /* 3. 状態（:hover, :active, :focus-visibleなど） */
 }
 .page--gallery .timer-mini__pill:active,
 .page--universe .timer-mini__pill:active,
 .page--about .timer-mini__pill:active,
-.recipe .timer-mini__pill:active,
+.page--recipe .timer-mini__pill:active,
 .page--recipes .timer-mini__pill:active {
   background-color: var(--btn-pill-bg-active); /* クリック中は背景色を薄くする */
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
@@ -2374,14 +2374,14 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__pill:focus-visible,
 .page--universe .timer-mini__pill:focus-visible,
 .page--about .timer-mini__pill:focus-visible,
-.recipe .timer-mini__pill:focus-visible,
+.page--recipe .timer-mini__pill:focus-visible,
 .page--recipes .timer-mini__pill:focus-visible {
   box-shadow: var(--btn-bxshadow-focus);
 }
 .page--gallery .timer-mini__icon-btn:active,
 .page--universe .timer-mini__icon-btn:active,
 .page--about .timer-mini__icon-btn:active,
-.recipe .timer-mini__icon-btn:active,
+.page--recipe .timer-mini__icon-btn:active,
 .page--recipes .timer-mini__icon-btn:active {
   transform: translateY(1.2px); /* ボタンを少し下に移動させる */
   border-radius: var(--mini-border-r-50);
@@ -2390,42 +2390,42 @@ body:not([data-menu-open=true]) .scrim {
 .page--gallery .timer-mini__icon-btn:focus-visible,
 .page--universe .timer-mini__icon-btn:focus-visible,
 .page--about .timer-mini__icon-btn:focus-visible,
-.recipe .timer-mini__icon-btn:focus-visible,
+.page--recipe .timer-mini__icon-btn:focus-visible,
 .page--recipes .timer-mini__icon-btn:focus-visible {
   text-shadow: var(--btn-shadow-focus);
 }
 .page--gallery #toggleTimer[aria-pressed=false] #startBtn,
 .page--universe #toggleTimer[aria-pressed=false] #startBtn,
 .page--about #toggleTimer[aria-pressed=false] #startBtn,
-.recipe #toggleTimer[aria-pressed=false] #startBtn,
+.page--recipe #toggleTimer[aria-pressed=false] #startBtn,
 .page--recipes #toggleTimer[aria-pressed=false] #startBtn {
   display: block;
 }
 .page--gallery #toggleTimer[aria-pressed=false] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=false] #stopBtn,
 .page--about #toggleTimer[aria-pressed=false] #stopBtn,
-.recipe #toggleTimer[aria-pressed=false] #stopBtn,
+.page--recipe #toggleTimer[aria-pressed=false] #stopBtn,
 .page--recipes #toggleTimer[aria-pressed=false] #stopBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #startBtn,
 .page--universe #toggleTimer[aria-pressed=true] #startBtn,
 .page--about #toggleTimer[aria-pressed=true] #startBtn,
-.recipe #toggleTimer[aria-pressed=true] #startBtn,
+.page--recipe #toggleTimer[aria-pressed=true] #startBtn,
 .page--recipes #toggleTimer[aria-pressed=true] #startBtn {
   display: none;
 }
 .page--gallery #toggleTimer[aria-pressed=true] #stopBtn,
 .page--universe #toggleTimer[aria-pressed=true] #stopBtn,
 .page--about #toggleTimer[aria-pressed=true] #stopBtn,
-.recipe #toggleTimer[aria-pressed=true] #stopBtn,
+.page--recipe #toggleTimer[aria-pressed=true] #stopBtn,
 .page--recipes #toggleTimer[aria-pressed=true] #stopBtn {
   display: block;
 }
 .page--gallery .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--universe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--about .timer-mini__icon-btn--sound > .timer__action-btn--muted,
-.recipe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
+.page--recipe .timer-mini__icon-btn--sound > .timer__action-btn--muted,
 .page--recipes .timer-mini__icon-btn--sound > .timer__action-btn--muted {
   display: block;
 }
@@ -2435,8 +2435,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__bg:hover,
   .page--universe .timer-mini__bg:hover,
   .page--about .timer-mini__bg:hover,
-  .recipe .timer-mini__bg:hover,
-  .recipes .timer-mini__bg:hover {
+  .page--recipe .timer-mini__bg:hover,
+  .page--recipes .timer-mini__bg:hover {
     background: var(--mini-background-hover);
     border: 1px solid var(--mini-background);
     box-shadow: var(--mini-background-shadow-hover);
@@ -2447,8 +2447,8 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__pill:hover,
   .page--universe .timer-mini__pill:hover,
   .page--about .timer-mini__pill:hover,
-  .recipe .timer-mini__pill:hover,
-  .recipes .timer-mini__pill:hover {
+  .page--recipe .timer-mini__pill:hover,
+  .page--recipes .timer-mini__pill:hover {
     border-color: var(--mini-color-accent);
     background-color: var(--btn-pill-bg-hover);
     color: var(--btn-fg);
@@ -2460,10 +2460,10 @@ body:not([data-menu-open=true]) .scrim {
   .page--universe .timer-mini__screen--help:hover,
   .page--about .timer-mini__icon-btn:hover,
   .page--about .timer-mini__screen--help:hover,
-  .recipe .timer-mini__icon-btn:hover,
-  .recipe .timer-mini__screen--help:hover,
-  .recipes .timer-mini__icon-btn:hover,
-  .recipes .timer-mini__screen--help:hover {
+  .page--recipe .timer-mini__icon-btn:hover,
+  .page--recipe .timer-mini__screen--help:hover,
+  .page--recipes .timer-mini__icon-btn:hover,
+  .page--recipes .timer-mini__screen--help:hover {
     text-shadow: var(--mini-icon-hover);
     color: var(--mini-color-accent);
   }
@@ -2473,7 +2473,7 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
   .page--about .timer-mini,
-  .recipe .timer-mini,
+  .page--recipe .timer-mini,
   .page--recipes .timer-mini {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 8px + 1rem);
@@ -2490,7 +2490,7 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini__screen--count,
   .page--universe .timer-mini__screen--count,
   .page--about .timer-mini__screen--count,
-  .recipe .timer-mini__screen--count,
+  .page--recipe .timer-mini__screen--count,
   .page--recipes .timer-mini__screen--count {
     font-size: 3rem;
     text-shadow: 0 1px 2px color-mix(in oklch, var(--mini-inline-text) 60%, var(--shiro) 50%);
@@ -2622,7 +2622,7 @@ body:not([data-menu-open=true]) .scrim {
   .page--gallery .timer-mini,
   .page--universe .timer-mini,
   .page--about .timer-mini,
-  .recipe .timer-mini,
+  .page--recipe .timer-mini,
   .page--recipes .timer-mini {
     max-height: 180px;
   }
@@ -5605,37 +5605,22 @@ body.page--about .about__long li {
     max-inline-size: 40ch;
   }
 }
-body.recipe,
 body.page--recipe {
-  --main-color: #2f2f2c;
-  --bg: #f6f5f2;
   --base-bg: #f6f5f2;
-  --sub-bg: #efede8;
-  --gray-1: #5e5e5e;
-  --gray-2: #cfcac2;
-  --gray-3: #b8b3aa;
-  --text-main: #2f2f2c;
-  --text-sub: #4a4a46;
-  --accent: #3e5f4b;
-  --accent-hover: #5e6f63; /* グレー寄り深緑 */
-  --accent-bg: #e7ece8; /* hover時の薄い面 */
   background-color: var(--base-bg);
   color: var(--text-main);
   font-family: "Zen Kaku Gothic New", system-ui, -apple-system, arial, sans-serif;
 }
-body.recipe main,
 body.page--recipe main {
   max-width: 1000px; /* または 960px / 1100px */
   margin: 0 auto;
   padding: 0 24px;
 }
-body.recipe .recipe_back,
 body.page--recipe .recipe_back {
   color: var(--accent);
   text-align: right;
   margin: 24px auto;
 }
-body.recipe .tags,
 body.page--recipe .tags {
   display: flex;
   flex-wrap: wrap;
@@ -5643,25 +5628,21 @@ body.page--recipe .tags {
   list-style: none;
   padding: 0;
 }
-body.recipe .tags > li,
 body.page--recipe .tags > li {
   background: #eee;
   padding: 2px 8px;
   border-radius: 999px;
   margin: 0;
 }
-body.recipe .recipe_head-wrapper,
 body.page--recipe .recipe_head-wrapper {
   display: flex;
   justify-content: space-between;
 }
-body.recipe .recipe_title,
 body.page--recipe .recipe_title {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-body.recipe .recipe_title h2,
 body.page--recipe .recipe_title h2 {
   font-family: "Kosugi Maru", sans-serif;
   font-weight: 400;
@@ -5670,14 +5651,11 @@ body.page--recipe .recipe_title h2 {
   font-size: 2rem;
   margin-bottom: 12px;
 }
-body.recipe .recipe_time,
-body.recipe .recipe_servings,
 body.page--recipe .recipe_time,
 body.page--recipe .recipe_servings {
   font-size: 0.9rem;
   opacity: 0.7;
 }
-body.recipe .recipe_image,
 body.page--recipe .recipe_image {
   margin: 20px 0 0;
   width: 320px;
@@ -5685,84 +5663,67 @@ body.page--recipe .recipe_image {
   overflow: hidden;
   border-radius: 12px;
 }
-body.recipe .recipe_image img,
 body.page--recipe .recipe_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-body.recipe h3,
 body.page--recipe h3 {
   margin-bottom: 0.3rem;
 }
-body.recipe .recipe_body,
 body.page--recipe .recipe_body {
   display: grid;
   grid-template-columns: minmax(240px, 300px) 1fr;
   gap: 48px;
   margin-top: 30px;
 }
-body.recipe ol,
-body.recipe ul,
 body.page--recipe ol,
 body.page--recipe ul {
   list-style-position: inside;
 }
-body.recipe ol li,
-body.recipe ul li,
 body.page--recipe ol li,
 body.page--recipe ul li {
   margin-bottom: 0.6em;
   line-height: 1.6;
 }
-body.recipe li,
 body.page--recipe li {
   margin: 0.45em 0;
 }
-body.recipe li > p,
 body.page--recipe li > p {
   margin: 0.35em 0;
 }
-body.recipe,
 body.page--recipe {
   /* もしli内にpが出ても破綻しない保険 */
 }
-body.recipe .ingredients li,
 body.page--recipe .ingredients li {
   list-style: none; /* リストの点を削除 */
   line-height: 1.8;
   padding: 4px 0;
 }
-body.recipe .recipe_tips,
 body.page--recipe .recipe_tips {
   width: 600px;
   margin: 20px auto;
 }
-body.recipe .recipe_card,
 body.page--recipe .recipe_card {
   padding: 24px;
   border-radius: 12px;
   background: var(--shiro);
 }
-body.recipe .recipe_main > h4,
 body.page--recipe .recipe_main > h4 {
   margin-top: 12px;
   line-height: 2.4;
 }
-body.recipe .recipe_card_accent,
 body.page--recipe .recipe_card_accent {
   background-color: var(--accent-bg);
   border-radius: 18px;
   padding: 16px;
   margin-bottom: 32px;
 }
-body.recipe .recipe_image-fin > img,
 body.page--recipe .recipe_image-fin > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-body.recipe .recipe_image-fin,
 body.page--recipe .recipe_image-fin {
   max-width: 1000px; /* mainと揃える */
   margin: 10px auto 0;
@@ -5771,7 +5732,6 @@ body.page--recipe .recipe_image-fin {
   border-radius: 16px;
   margin-bottom: 120px;
 }
-body.recipe .recipe-actions,
 body.page--recipe .recipe-actions {
   display: flex;
   justify-content: center;
@@ -5780,15 +5740,12 @@ body.page--recipe .recipe-actions {
   margin: 40px 0;
   color: var(--accent);
 }
-body.recipe button.recipe-actions-btn,
 body.page--recipe button.recipe-actions-btn {
   margin-right: 6px;
 }
-body.recipe svg.recipe_print,
 body.page--recipe svg.recipe_print {
   margin-right: 1rem;
 }
-body.recipe ul.info__list,
 body.page--recipe ul.info__list {
   list-style: none; /* リストの点を削除 */
   text-align: right; /* 右寄せ */
@@ -5797,7 +5754,6 @@ body.page--recipe ul.info__list {
   margin: 0;
   padding: 0;
 }
-body.recipe li.info__item,
 body.page--recipe li.info__item {
   display: inline-flex;
   cursor: pointer;
@@ -5807,14 +5763,11 @@ body.page--recipe li.info__item {
   border-radius: 8px;
   border: transparent;
 }
-body.recipe li.info__item:hover,
 body.page--recipe li.info__item:hover {
   color: var(--accent-hover);
   background-color: var(--accent-bg);
   border: var(--accent-bg);
 }
-body.recipe li.info__item button,
-body.recipe li.info__item a,
 body.page--recipe li.info__item button,
 body.page--recipe li.info__item a {
   display: inline-flex;
@@ -5822,25 +5775,21 @@ body.page--recipe li.info__item a {
   justify-content: center;
   align-items: center;
 }
-body.recipe .recipe_divider,
 body.page--recipe .recipe_divider {
   width: 70vw;
   border: 1px solid var(--gray-2);
   margin: 24px auto;
 }
-body.recipe .related,
 body.page--recipe .related {
   margin-top: 100px;
   margin-bottom: 120px;
 }
-body.recipe .related-grid,
 body.page--recipe .related-grid {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   padding: 8px;
 }
-body.recipe .related-card img,
 body.page--recipe .related-card img {
   width: 100%;
   height: auto;
