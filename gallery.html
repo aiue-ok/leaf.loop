@@ -47,12 +47,7 @@
                   >00:00</time
                 >
                 <!-- 読み上げ専用（視覚には非表示） -->
-                <div
-                  id="timerLive"
-                  class="sr-only"
-                  aria-live="polite"
-                  aria-atomic="true"
-                ></div>
+                <div id="timerLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
               </div>
               <!-- gridアイテム②：ヘルプ -->
               <!-- aria-controlsは制御対象となる要素のid -->
@@ -64,12 +59,7 @@
                 type="button"
                 aria-label="タイマーの使い方を開く"
               >
-                <svg
-                  class="i i-32"
-                  viewBox="0 -960 960 960"
-                  aria-hidden="true"
-                  focusable="false"
-                >
+                <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
@@ -124,12 +114,7 @@
               aria-label="タイマーをリセット"
             >
               <!-- refresh SVG -->
-              <svg
-                class="i"
-                viewBox="0 -960 960 960"
-                aria-hidden="true"
-                focusable="false"
-              >
+              <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                 <path
                   fill="currentColor"
                   d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
@@ -148,12 +133,7 @@
 
               <!-- 6 play▶️ -->
               <span id="startBtn" class="timer-mini__icon-btn--play">
-                <svg
-                  class="i"
-                  viewBox="0 -960 960 960"
-                  aria-hidden="true"
-                  focusable="false"
-                >
+                <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
@@ -162,12 +142,7 @@
               </span>
               <!-- 7 stop🔲 -->
               <span id="stopBtn" class="timer__action-btn--paused is-active">
-                <svg
-                  class="i"
-                  viewBox="0 -960 960 960"
-                  aria-hidden="true"
-                  focusable="false"
-                >
+                <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
@@ -187,12 +162,7 @@
 
               <!-- 2 ON=波線あり-->
               <span class="timer__action-btn--alarm-on timer__action-btn">
-                <svg
-                  class="i"
-                  viewBox="0 -960 960 960"
-                  aria-hidden="true"
-                  focusable="false"
-                >
+                <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481t-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481M280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80M400-606l-86 86H200v80h114l86 86zM300-480"
@@ -200,15 +170,8 @@
                 </svg>
               </span>
               <!-- 4 MUTE=斜線あり-->
-              <span
-                class="timer__action-btn timer__action-btn--muted timer__action-btn--alarm-off"
-              >
-                <svg
-                  class="i"
-                  viewBox="0 -960 960 960"
-                  aria-hidden="true"
-                  focusable="false"
-                >
+              <span class="timer__action-btn timer__action-btn--muted timer__action-btn--alarm-off">
+                <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                   <path
                     fill="currentColor"
                     d="M671-177q-11 7-22 13t-23 11q-15 7-30.5 0T574-176q-6-15 1.5-29.5T598-227q4-2 7.5-4t7.5-4L480-368v111q0 27-24.5 37.5T412-228L280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h88L84-764q-11-11-11-28t11-28 28-11 28 11l680 680q11 11 11 28t-11 28-28 11-28-11zm89-304q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131t58 197q0 33-6 65.5T817-353q-8 22-24.5 27.5t-30.5.5-22.5-18-.5-30q11-26 16-52.5t5-55.5M591-623q33 21 51 63t18 80v10q0 5-1 10-2 13-14 17t-22-6l-51-51q-6-6-9-13.5t-3-15.5v-77q0-12 10.5-17.5t20.5.5m-201-59q-6-6-6-14t6-14l22-22q19-19 43.5-8.5T480-703v63q0 14-12 19t-22-5zm10 328v-94l-72-72H200v80h114zm-36-130"
@@ -475,10 +438,7 @@
                   <img
                     class="gallery__img"
                     src="assets/gallery/thumbs/011.webp"
-                    srcset="
-                      assets/gallery/thumbs/011.webp    1x,
-                      assets/gallery/thumbs/011@2x.webp 2x
-                    "
+                    srcset="assets/gallery/thumbs/011.webp 1x, assets/gallery/thumbs/011@2x.webp 2x"
                     style="aspect-ratio: 1/1; object-fit: cover"
                     loading="lazy"
                     decoding="async"
@@ -616,13 +576,7 @@
     </main>
 
     <!-- /* ≡≡≡ Lightboxここから */ -->
-    <div
-      id="lightbox"
-      class="lightbox hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-    >
+    <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-hidden="true">
       <!-- 背景 -->
       <div class="lightbox__backdrop"></div>
       <!-- // Lightbox画像 コンテンツ領域 -->
@@ -630,18 +584,9 @@
         <!-- // ヘッダー（情報行） 閉じるボタン -->
         <div class="lightbox__header">
           <!-- クローズボタン -->
-          <button
-            id="lightbox-close"
-            aria-label="閉じる"
-            class="lightbox__close"
-          >
+          <button id="lightbox-close" aria-label="閉じる" class="lightbox__close">
             <!-- ヘルプカード 7close -->
-            <svg
-              class="i i-44"
-              viewBox="0 -960 960 960"
-              aria-hidden="true"
-              focusable="false"
-            >
+            <svg class="i i-44" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
               <path
                 fill="currentColor"
                 d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
@@ -684,19 +629,12 @@
       hidden
     >
       <div class="info-help-container">
-        <div
-          class="visual-card-help-bg theme-gal help-content m-plus-1p-regular"
-        >
+        <div class="visual-card-help-bg theme-gal help-content m-plus-1p-regular">
           <!-- ヘッド -->
           <div class="flex-parent-help-h">
             <h2>
               <!-- ヘルプカード①ヘルプマーク「？」 -->
-              <svg
-                class="i i-32"
-                viewBox="0 -960 960 960"
-                aria-hidden="true"
-                focusable="false"
-              >
+              <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                 <path
                   fill="currentColor"
                   d="M478-240q21 0 35.5-14.5T528-290t-14.5-35.5T478-340t-35.5 14.5T428-290t14.5 35.5T478-240m2 160q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m4-492q25 0 43.5 16t18.5 40q0 22-13.5 39T502-525q-23 20-40.5 44T444-427q0 14 10.5 23.5T479-394q15 0 25.5-10t13.5-25q4-21 18-37.5t30-31.5q23-22 39.5-48t16.5-58q0-51-41.5-83.5T484-720q-38 0-72.5 16T359-655q-7 12-4.5 25.5T368-609q14 8 29 5t25-17q11-15 27.5-23t34.5-8"
@@ -714,12 +652,7 @@
               aria-controls="helpCard"
             >
               <!-- ヘルプカード 7close -->
-              <svg
-                class="i i-44"
-                viewBox="0 -960 960 960"
-                aria-hidden="true"
-                focusable="false"
-              >
+              <svg class="i i-44" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                 <path
                   fill="currentColor"
                   d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
@@ -746,12 +679,7 @@
               <div class="wrap-help-unit-r">
                 <div class="flex-parent-help-p info-line-spacing">
                   <!-- ヘルプカード 6 play -->
-                  <svg
-                    class="i i-32"
-                    viewBox="0 -960 960 960"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
+                  <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                     <path
                       fill="currentColor"
                       d="m426-330 195-125q14-9 14-25t-14-25L426-630q-15-10-30.5-1.5T380-605v250q0 18 15.5 26.5T426-330m54 250q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
@@ -761,12 +689,7 @@
                 </div>
                 <div class="flex-parent-help-p info-line-spacing">
                   <!-- ヘルプカード 8 stop -->
-                  <svg
-                    class="i i-32"
-                    viewBox="0 -960 960 960"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
+                  <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                     <path
                       fill="currentColor"
                       d="M360-320h240q17 0 28.5-11.5T640-360v-240q0-17-11.5-28.5T600-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320M480-80q-83 0-156-31.5T197-197t-85.5-127T80-480t31.5-156T197-763t127-85.5T480-880t156 31.5T763-763t85.5 127T880-480t-31.5 156T763-197t-127 85.5T480-80m0-80q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"
@@ -790,12 +713,7 @@
                 </div>
                 <div class="flex-parent-help-p info-line-spacing">
                   <!-- ヘルプカード 5 　リフレッシュ -->
-                  <svg
-                    class="i i-32"
-                    viewBox="0 -960 960 960"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
+                  <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                     <path
                       fill="currentColor"
                       d="M480-160q-134 0-227-93t-93-227 93-227 227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800t28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560t11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170 70 170 170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48"
@@ -805,12 +723,7 @@
                 </div>
                 <div class="flex-parent-help-p info-line-spacing">
                   <!-- ヘルプカード 2 ON=波線あり-->
-                  <svg
-                    class="i i-32"
-                    viewBox="0 -960 960 960"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
+                  <svg class="i i-32" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
                     <path
                       fill="currentColor"
                       d="M760-481q0-83-44-151.5T598-735q-15-7-22-21.5t-2-29.5q6-16 21.5-23t31.5 0q97 43 155 131.5T840-481t-58 196.5T627-153q-16 7-31.5 0T574-176q-5-15 2-29.5t22-21.5q74-34 118-102.5T760-481M280-360H160q-17 0-28.5-11.5T120-400v-160q0-17 11.5-28.5T160-600h120l132-132q19-19 43.5-8.5T480-703v446q0 27-24.5 37.5T412-228zm380-120q0 42-19 79.5T591-339q-10 6-20.5.5T560-356v-250q0-12 10.5-17.5t20.5.5q31 25 50 63t19 80M400-606l-86 86H200v80h114l86 86zM300-480"
@@ -835,12 +748,7 @@
           <!-- 閉じるボタンSVG -->
           <button class="menu-drawer__close" aria-label="メニューを閉じる">
             <!-- メニュー close × -->
-            <svg
-              class="i"
-              viewBox="0 -960 960 960"
-              aria-hidden="true"
-              focusable="false"
-            >
+            <svg class="i" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
               <path
                 fill="currentColor"
                 d="M480-424 284-228q-11 11-28 11t-28-11-11-28 11-28l196-196-196-196q-11-11-11-28t11-28 28-11 28 11l196 196 196-196q11-11 28-11t28 11 11 28-11 28L536-480l196 196q11 11 11 28t-11 28-28 11-28-11z"
@@ -856,27 +764,23 @@
           </li>
 
           <li class="menu-drawer__item">
-            <span class="menu-drawer__link" aria-current="page"
-              >世界のお茶を少しだけ</span
-            >
+            <a class="menu-drawer__link" href="hero.html">旧トップ</a>
           </li>
 
           <li class="menu-drawer__item">
-            <a class="menu-drawer__link" href="universe.html"
-              >遠くのことを少しだけ</a
-            >
+            <span class="menu-drawer__link" aria-current="page">世界のお茶を少しだけ</span>
           </li>
 
           <li class="menu-drawer__item">
-            <a class="menu-drawer__link" href="recipes.html"
-              >おいしいものを少しだけ</a
-            >
+            <a class="menu-drawer__link" href="universe.html">遠くのことを少しだけ</a>
           </li>
 
           <li class="menu-drawer__item">
-            <a class="menu-drawer__link" href="about.html"
-              >このサイトについて</a
-            >
+            <a class="menu-drawer__link" href="recipes.html">おいしいものを少しだけ</a>
+          </li>
+
+          <li class="menu-drawer__item">
+            <a class="menu-drawer__link" href="about.html">このサイトについて</a>
           </li>
         </ul>
       </div>
@@ -952,13 +856,7 @@
             />
 
             <!-- 中心の丸（お好みで） -->
-            <circle
-              class="decor-clock__center"
-              cx="0"
-              cy="0"
-              r="2.5"
-              fill="currentColor"
-            />
+            <circle class="decor-clock__center" cx="0" cy="0" r="2.5" fill="currentColor" />
           </g>
         </svg>
       </div>
