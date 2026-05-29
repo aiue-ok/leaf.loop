@@ -1,0 +1,114 @@
+:root {
+  --bg-color: var(--cloudy);
+  --text-color: #000000;
+  --button-bg: #eeeeee;
+  --button-text: #000000;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --button-bg: #333333;
+  --button-text: #ffffff;
+}
+
+body.teatime {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--ff-jp);
+  font-size: var(--text-hero);
+  text-align: center;
+  margin: 0;
+  padding: var(--space-02);
+
+  // 🌙モード
+  .dark {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --button-bg: #333333;
+    --button-text: #ffffff;
+  }
+
+  h1 {
+    // font-size: 1.8rem;
+  } /* 約32px */
+
+  h2.text-hero-lead {
+    font-size: 1.6rem;
+  } /* 約29px */
+
+  .text-hero-lead {
+    font-weight: 400;
+  }
+
+  .text-hero-copy {
+    font-size: 1.8rem;
+  } /* 約32px */
+
+  // タイマー
+  .timer-area {
+    background-color: bisque;
+    font-size: var(--text-hero);
+    line-height: 1.5555555556;
+    font-weight: 400;
+    letter-spacing: normal;
+    // font-family: "Space Grotesk", sans-serif;
+    font-family: "IBM Plex Mono", monospace;
+  }
+
+  time {
+    font-size: 15vw;
+    margin: 30px 0;
+  }
+
+  .inputs,
+  .buttons {
+    margin: 20px 0;
+  }
+
+  /* 数値を入力するためのコントロールです。
+      スピナーを表示し、既定の検証を追加します。
+      動的キーボードを持つ一部の端末では、テンキーを表示します。 */
+  input[type="number"] {
+    font-size: 6vw; // 6vw
+    line-height: 12vw;
+    width: 20vw;
+    text-align: center;
+  }
+
+  button {
+    font-size: 6vw;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 10px;
+  }
+
+  input[type="range"] {
+    font-size: 6vw; // 6vw
+    line-height: 12vw;
+    width: 20vw;
+    text-align: center;
+    margin: 0;
+  }
+
+  #themeToggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 4vw;
+    padding: 5px 10px;
+  }
+  /* スピンボタンを非表示 */
+  /* input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      } */
+
+  /* input[type="number"] {
+        -moz-appearance: textfield;
+      } */
+}
