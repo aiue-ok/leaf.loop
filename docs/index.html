@@ -58,9 +58,23 @@
             <div class="image-area">
               <div class="image-frame">
                 <div class="image-track">
-                  <img src="assets/introduction/hero_desktop.webp" />
-                  <img src="assets/introduction/gallery_Pixel 7_P.webp" alt="" />
-                  <img src="assets/introduction/recipes_Pixel 7_P.webp" alt="" />
+                  <img
+                    fetchpriority="high"
+                    decoding="async"
+                    src="assets/introduction/hero_desktop.webp"
+                  />
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src="assets/introduction/gallery_Pixel 7_P.webp"
+                    alt=""
+                  />
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src="assets/introduction/recipes_Pixel 7_P.webp"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -146,12 +160,13 @@
             </div>
           </section>
           <section class="grid-production-period section-inner section--tone-b">
-            <h3><summary>制作期間</summary></h3>
+            <h3>制作期間</h3>
             <div class="timeline timeline--production-period surface">
               <div class="content">
                 <p>2025年6月から継続的に制作しています。</p>
               </div>
               <details class="accordion-content">
+                <summary>制作期間</summary>
                 <div class="content">
                   <time datetime="">2025年6月〜</time>
                   <p>コンセプト＆ゴール定義 → 情報設計 → ワイヤーをFigmaで作成</p>
@@ -294,7 +309,12 @@
               </div>
 
               <div class="image-track filter">
-                <img src="assets/introduction/hero_desktop_hover_gallery.webp" alt="" />
+                <img
+                  src="assets/introduction/hero_desktop_hover_gallery.webp"
+                  alt=""
+                  fetchpriority="high"
+                  decoding="async"
+                />
               </div>
             </div>
           </section>
@@ -354,13 +374,30 @@
               <div class="image-area">
                 <div class="image-frame">
                   <div class="image-track">
-                    <img src="assets/introduction/hero_desktop_timer_5min.webp" alt="" />
-                    <img src="assets/introduction/hero_iPad Air_P.webp" alt="" />
-                    <img src="assets/introduction/hero_iPhone SE_L.webp" alt="" />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/hero_desktop_timer_5min.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/hero_iPad Air_P.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/hero_iPhone SE_L.webp"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
-              <div class="explore-box"><a href="hero.html" class="explore-link">View more</a></div>
+              <div class="explore-box">
+                <a href="hero.html" class="explore-link" style="color: #4f4f4f">View more</a>
+              </div>
             </div>
           </section>
           <!-- セクション④ギャラリー -->
@@ -373,12 +410,39 @@
               <div class="image-area">
                 <div class="image-frame">
                   <div class="image-track">
-                    <img src="assets/introduction/gallery_desktop.webp" alt="" />
-                    <img src="assets/introduction/gallery_Pixel 7_P.webp" alt="" />
-                    <img src="assets/introduction/gallery_iPad Air_P.webp" alt="" />
-                    <img src="assets/introduction/gallery_lightbox_desktop.webp" alt="" />
-                    <img src="assets/introduction/gallery_lightbox_iPad Air_L.webp" alt="" />
                     <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_desktop.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_Pixel 7_P.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_iPad Air_P.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_lightbox_desktop.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_lightbox_iPad Air_L.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
                       src="assets/introduction/gallery_lightbox_iPhone 14 Pro Max_P.webp"
                       alt=""
                     />
@@ -393,25 +457,39 @@
                 </p>
               </div>
               <div class="grid grid--center grid--2col">
-                <div class="card-gallery card card--split card-tone-01">
-                  <h4>拡大表示に対応</h4>
-                  <p>
-                    Lightbox（拡大画像・キャプション表示付き）を実装。
-                    Tabキー、十字キーやEnterで画像の移動、拡大・キャンセルをキーボード操作できます。
-                  </p>
-                  <div class="img-sec4 img-gallery">
-                    <img src="assets/introduction/gallery_lightbox_iPad Air_L.webp" alt="" />
+                <div class="card-gallery card card-tone-01 card--double">
+                  <div class="card--text">
+                    <h4>拡大表示に対応</h4>
+                    <p>
+                      Lightbox（拡大画像・キャプション表示付き）を実装。
+                      Tabキー、十字キーやEnterで画像の移動、拡大・キャンセルをキーボード操作できます。
+                    </p>
+                  </div>
+                  <div class="img-gallery image-frame">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_lightbox_iPad Air_L.webp"
+                      alt=""
+                    />
                   </div>
                 </div>
-                <div class="card-gallery card card--split card-tone-02">
-                  <h4>画像を軽く（WebP / AVIF）</h4>
-                  <p>
-                    最初に読み込む画像を1枚に決め、最初はサムネイルを表示。
-                    拡大表示をする際に、ブラウザに合わせWebP /
-                    AVIF形式を自動で表示し、軽量化をしました。
-                  </p>
-                  <div class="img-sec4 img-gallery">
-                    <img src="assets/introduction/gallery_iPad Air_L.webp" alt="" />
+                <div class="card-gallery card card-tone-02 card--double">
+                  <div class="card--text">
+                    <h4>画像を軽く (WebP / AVIF)</h4>
+                    <p>
+                      最初に読み込む画像を1枚に決め、最初はサムネイルを表示。
+                      拡大表示をする際に、ブラウザに合わせWebP /
+                      AVIF形式を自動で表示し、軽量化をしました。
+                    </p>
+                  </div>
+                  <div class="img-gallery image-frame">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/gallery_iPad Air_L.webp"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
@@ -442,23 +520,68 @@
                 <div class="image-area">
                   <div class="image-frame">
                     <div class="image-track">
-                      <img src="assets/introduction/universe_desktop_ginga.webp" alt="" />
-                      <img src="assets/introduction/universe_Pixel 7_P.webp" alt="" />
-                      <img src="assets/introduction/universe_Pixel 7_P_kounen.webp" alt="" />
-                      <img src="assets/introduction/universe_desktop_mirai.webp" alt="" />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/universe_desktop_ginga.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/universe_Pixel 7_P.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/universe_Pixel 7_P_kounen.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/universe_desktop_mirai.webp"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
               </div>
               <div class="image-list">
-                <img src="assets/introduction/universe_cp1_desktop.webp" alt="" />
-                <img src="assets/introduction/universe_cp2_desktop.webp" alt="" />
-                <img src="assets/introduction/universe_cp3_desktop.webp" alt="" />
-                <img src="assets/introduction/universe_cp4_desktop.webp" alt="" />
-                <img src="assets/introduction/universe_cp5_desktop.webp" alt="" />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="assets/introduction/universe_cp1_desktop.webp"
+                  alt=""
+                />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="assets/introduction/universe_cp2_desktop.webp"
+                  alt=""
+                />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="assets/introduction/universe_cp3_desktop.webp"
+                  alt=""
+                />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="assets/introduction/universe_cp4_desktop.webp"
+                  alt=""
+                />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="assets/introduction/universe_cp5_desktop.webp"
+                  alt=""
+                />
               </div>
               <div class="explore-box">
-                <a href="universe.html" class="explore-link">View more</a>
+                <a href="universe.html" class="explore-link" style="color: #484848">View more</a>
               </div>
             </div>
           </section>
@@ -475,10 +598,30 @@
                 <div class="image-area">
                   <div class="image-frame">
                     <div class="image-track">
-                      <img src="assets/introduction/recipes_desktop.webp" alt="" />
-                      <img src="assets/introduction/recipes_Pixel 7_P.webp" alt="" />
-                      <img src="assets/introduction/recipe_desktop_lemonade.webp" alt="" />
-                      <img src="assets/introduction/recipe_iPad Air_P.webp" alt="" />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipes_desktop.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipes_Pixel 7_P.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipe_desktop_lemonade.webp"
+                        alt=""
+                      />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipe_iPad Air_P.webp"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -491,8 +634,13 @@
                 </div>
                 <div class="grid grid--center grid--2col">
                   <div class="card-cooking card card--single">
-                    <div class="img-cooking card-cooking image-frame">
-                      <img src="assets/introduction/recipe_id_desktop.webp" alt="" />
+                    <div class="img-cooking image-frame">
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipe_id_desktop.webp"
+                        alt=""
+                      />
                     </div>
                     <div class="text-cooking">
                       <h4>作り方の詳細ページ</h4>
@@ -504,7 +652,12 @@
 
                   <div class="card-cooking card card--single">
                     <div class="img-cooking image-frame">
-                      <img src="assets/introduction/recipe_print.webp" alt="" />
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src="assets/introduction/recipe_print.webp"
+                        alt=""
+                      />
                     </div>
                     <div class="text-cooking">
                       <h4>印刷にも対応</h4>
@@ -516,7 +669,7 @@
                 </div>
               </div>
               <div class="explore-box">
-                <a href="recipes.html" class="explore-link">View more</a>
+                <a href="recipes.html" class="explore-link" style="color: #4f4f4f">View more</a>
               </div>
             </div>
           </section>
@@ -537,14 +690,31 @@
               <div class="about-image">
                 <div class="image-frame">
                   <div class="image-track">
-                    <img src="assets/introduction/about_desktop.webp" alt="" />
-                    <img src="assets/introduction/about_iPad Air_P.webp" alt="" />
-                    <img src="assets/introduction/about_Pixel 7_P.webp" alt="" />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/about_desktop.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/about_iPad Air_P.webp"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/introduction/about_Pixel 7_P.webp"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="explore-box"><a href="about.html" class="explore-link">View more</a></div>
+            <div class="explore-box">
+              <a href="about.html" class="explore-link" style="color: #525252">View more</a>
+            </div>
           </section>
           <!-- セクション⑧ -->
           <section id="component" class="component">
@@ -553,13 +723,16 @@
             </div>
             <div class="sticky-notes-box">
               <div id="timer-anypage" class="sticky-note timer-anypage colored-tab-show">
-                どのページにいても、タイマーが使える
+                <span class="tab-label-pc">どのページにいても、タイマーが使える</span>
+                <span class="tab-label-sp">タイマー</span>
               </div>
               <div id="menu-anypage" class="sticky-note menu-anypage">
-                どのページにいても、ナビメニュー
+                <span class="tab-label-pc">どのページにいても、ナビメニュー</span>
+                <span class="tab-label-sp">ナビ</span>
               </div>
               <div id="help-anypage" class="sticky-note help-anypage">
-                どのページにいても、ヘルプカードを確認
+                <span class="tab-label-pc">どのページにいても、ヘルプカードを確認</span>
+                <span class="tab-label-sp">ヘルプカード</span>
               </div>
             </div>
             <div class="displayed-content-container">
@@ -577,10 +750,30 @@
                     <div class="image-area">
                       <div class="image-frame">
                         <div class="image-track">
-                          <img src="assets/introduction/hero_desktop_timer_5min.webp" alt="" />
-                          <img src="assets/introduction/universe_Pixel 7_L_yoake.webp" alt="" />
-                          <img src="assets/introduction/gallery_iPad Air_P.webp" alt="" />
-                          <img src="assets/introduction/about_Pixel 7_P.webp" alt="" />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/hero_desktop_timer_5min.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/universe_Pixel 7_L_yoake.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/gallery_iPad Air_P.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/about_Pixel 7_P.webp"
+                            alt=""
+                          />
                         </div>
                       </div>
                     </div>
@@ -598,11 +791,33 @@
                     <div class="image-area">
                       <div class="image-frame">
                         <div class="image-track">
-                          <img src="assets/introduction/scrim_gallery_desktop.webp" alt="" />
-                          <img src="assets/introduction/scrim_gallery_Pixel 7_P.webp" alt="" />
-                          <img src="assets/introduction/scrim_universe_Pixel 7_P_01.webp" alt="" />
-                          <img src="assets/introduction/scrim_recipes_Pixel 7_P.webp" alt="" />
                           <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/scrim_gallery_desktop.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/scrim_gallery_Pixel 7_P.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/scrim_universe_Pixel 7_P_01.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/scrim_recipes_Pixel 7_P.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
                             src="assets/introduction/scrim_about_iPhone 14 Pro Max_P.webp"
                             alt=""
                           />
@@ -623,13 +838,28 @@
                     <div class="image-area">
                       <div class="image-frame">
                         <div class="image-track">
-                          <img src="assets/introduction/helpcard_universe_desktop.webp" alt="" />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/helpcard_universe_desktop.webp"
+                            alt=""
+                          />
                           <img
                             src="assets/introduction/helpcard_about_iPhone 14 Pro Max_L.webp"
                             alt=""
                           />
-                          <img src="assets/introduction/helpcard_universe_Pixel 7_P.webp" alt="" />
-                          <img src="assets/introduction/helpcard_recipes_Pixel 7_L.webp" alt="" />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/helpcard_universe_Pixel 7_P.webp"
+                            alt=""
+                          />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src="assets/introduction/helpcard_recipes_Pixel 7_L.webp"
+                            alt=""
+                          />
                         </div>
                       </div>
                     </div>
