@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/aiue-ok/leaf.loop/compare/v0.1.9...v0.1.10) (2026-05-29)
+
+
+### Features
+
+* **performance:** improve mobile Lighthouse score ([91afe39](https://github.com/aiue-ok/leaf.loop/commit/91afe39640bfe66aeafd4ba0d4d8c02b5cb46d8c))
+
+
+### Bug Fixes
+
+* **docs:** sync updated files to docs/ ([13e1316](https://github.com/aiue-ok/leaf.loop/commit/13e1316c3f2854d87c083c352d3de60ef6863a39))
+* **recipe:** remove unnecessary flex and use width clamp for mobile layout ([a40cdcb](https://github.com/aiue-ok/leaf.loop/commit/a40cdcb165f510cae8034d14d31f8b7d10e61f2c))
+* resolve 404 errors for svg, favicon, and assets_credit ([65af692](https://github.com/aiue-ok/leaf.loop/commit/65af692c439bc5b39229ba681508079ccd6979a8))
+* ナビゲーションリンクの修正 ([cc25143](https://github.com/aiue-ok/leaf.loop/commit/cc25143103f745f3cc5d454164941d3e6e022f5b))
+
 ### [0.1.9](https://github.com/aiue-ok/leaf.loop/compare/v0.1.8...v0.1.9) (2026-02-17)
 
 ### Features
