@@ -16,7 +16,7 @@ body.hero_new {
   --powderblue-soft: #d6f0f3;
   --peach-soft: #ffe6cc;
   --darkgray: #a9a9a9;
-  --journey: #8a37a1;
+  --journey: #84359a; //a11y対応で変更（元 #8a37a1）
   --coral: #ff6f61;
   --kinari: #dac6b5;
   --seiji: #7ba7a1;
@@ -133,7 +133,7 @@ body.hero_new {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 48px;
+    height: 44px;
     align-items: baseline;
     border-bottom: 1px solid var(--color-divider-soft);
     margin-top: 20px;
@@ -143,14 +143,14 @@ body.hero_new {
   header {
     position: relative;
     top: 0px;
-    left: 20px;
+    left: 10px;
     padding: 0 1rem;
   }
 
   nav {
     display: block;
     height: 100%;
-    margin-left: var(--space-05);
+    margin-left: var(--space-02);
     max-width: 100%;
 
     & ul {
@@ -451,6 +451,10 @@ body.hero_new {
     background-color: #e6e6fa;
   }
 
+  .skills .skill-list h5 {
+    color: #752f88;
+  }
+
   .skills .item-skill {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -696,6 +700,11 @@ body.hero_new {
     grid-template-columns: max-content 1fr;
   }
 
+  // 詳細 > ギャラリー　> カード
+  .gallery .grid--2col {
+    align-items: stretch;
+  }
+
   // - - - - -
   // カード３並べ
   .grid--3col {
@@ -740,49 +749,78 @@ body.hero_new {
     flex-direction: row-reverse;
   }
 
+  // ━━━━━━
+  // カード
+
   .card {
     border-radius: 1.5rem;
     overflow: hidden;
     position: relative;
   }
 
-  .card--split {
+  .card-gallery {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
+    height: 100%;
+    color: #555;
+  }
+
+  .card--text {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    // display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  // 詳細 > レシピ > カード
+  .card-cooking {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-color: var(--cloudy);
+    min-height: 480px;
   }
 
   .card--single {
-    min-height: 480px;
     padding: var(--space-02);
   }
 
-  // ━━━━━━
-
-  // 詳細 > ギャラリー　> カード
-  .card-gallery {
-    height: 100%;
+  .card--double {
     padding: var(--space-05);
-    color: #555;
+  }
 
-    & p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
+  .text-cooking {
+    min-height: 200px;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 8px solid #fff;
-      border-radius: 8px;
-    }
+  .card-gallery p,
+  .card-cooking p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 
-    .img-gallery {
-      margin-top: var(--space-02);
-      margin-bottom: var(--space-03);
-      aspect-ratio: 1/1;
-    }
+  .card-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 8px solid #fff;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .card-cooking img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .card-gallery .image-frame,
+  .card-cooking .image-frame {
+    aspect-ratio: 1/1;
+    margin: 0;
+    overflow: hidden;
   }
 
   .card-tone-01 {
@@ -793,40 +831,12 @@ body.hero_new {
     background-color: var(--peach-soft);
   }
 
-  // 詳細 > レシピ > カード
-  .card-cooking {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    background-color: var(--cloudy);
-
-    & p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-  }
-
-  .img-cooking {
-    aspect-ratio: 1/1;
-  }
-
-  .text-cooking {
-    min-height: 200px;
-  }
-
   // ━━━━━━
 
   // ふせんタブ　並び
   .sticky-notes-box {
     display: flex;
     justify-content: center;
-    border-bottom-width: 4px;
   }
 
   // ふせんタブ
@@ -839,17 +849,26 @@ body.hero_new {
     background-image: linear-gradient(to top, var(--darkgray), var(--darkgray));
     background-repeat: no-repeat;
     background-position: left bottom;
-    background-size: 100% 10px;
+    background-size: 100% 3px;
     padding-bottom: 37px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
   }
 
   .colored-tab-show {
     font-weight: bold;
-    background-image: linear-gradient(to top, var(--coral), var(--coral));
+    background-color: var(--paper);
+    border-color: var(--antiflash);
+    // background-image: linear-gradient(to top, var(--coral), var(--coral));
+    background-image: linear-gradient(to right, #ff6b5f, #ff8f85);
     background-repeat: no-repeat;
     background-position: left bottom;
-    background-size: 100% 10px;
+    background-size: 100% 3px;
     padding-bottom: 37px;
+    border-radius: 16px 16px 0 0;
+
+    transform: translateY(2px);
+    z-index: 2;
   }
 
   // 表示内容
@@ -866,12 +885,17 @@ body.hero_new {
   }
 
   .displayed-content-inner {
-    margin: var(--space-03) 0;
+    // margin: var(--space-03) 0;
+    margin: 0;
     padding: 100px 50px 80px;
   }
 
   .displayed-content-text {
     padding: 36px auto;
+  }
+
+  .tab-label-sp {
+    display: none;
   }
 
   // ━━━━━━
@@ -959,6 +983,24 @@ body.hero_new {
     gap: var(--space-03);
   }
 
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: "＋";
+    margin-right: 0.5rem;
+  }
+
+  details[open] summary::before {
+    content: "－";
+  }
+
   .item {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -989,7 +1031,8 @@ body.hero_new {
     background-color: #f1f3f4;
     padding: 100px 0 60px;
     text-align: center;
-    color: #999;
+    // color: #999;
+    color: #535353; //アクセシビリティ
     font-size: 0.9rem;
   }
 
@@ -1013,12 +1056,27 @@ body.hero_new {
   }
 }
 
-// 📍📍📍 幅768px（スマホ横向き）以下
-@media screen and (width <= 768px) and (orientation: portrait) {
+// 📍📍📍 幅768px以下
+@media screen and (width <= 768px) {
   body.hero_new {
     .header {
       margin-top: 0;
       margin-left: 0;
+    }
+
+    header {
+      position: relative;
+      top: 0px;
+      left: 4px;
+      padding: 0 8px;
+    }
+
+    nav {
+      margin-left: var(--space-01);
+    }
+
+    nav ul li {
+      padding: 0 6px;
     }
 
     main {
@@ -1118,7 +1176,7 @@ body.hero_new {
     .universe .grid--2col,
     .cooking .grid--2col {
       grid-template-columns: unset;
-      grid-template-rows: auto;
+      grid-template-rows: auto auto;
     }
 
     .grid--3col {
@@ -1178,18 +1236,20 @@ body.hero_new {
     }
 
     .card--split {
+      // display: block;
       display: grid;
-      grid-template-rows: max-content;
+      grid-template-rows: auto auto;
+
       gap: var(--space-01);
     }
 
     .card-cooking {
       display: grid;
-      grid-template-rows: auto;
+      grid-template-rows: auto auto;
     }
 
     .text-cooking {
-      min-height: max-content;
+      min-height: unset;
       padding: var(--space-01) 14px;
     }
 
@@ -1263,7 +1323,7 @@ body.hero_new {
 
     h6 {
       font-size: 1rem;
-    } /* 約18px */
+    }
 
     h2,
     h3,
@@ -1273,6 +1333,19 @@ body.hero_new {
 
     time {
       font-weight: bold;
+    }
+
+    // 学習履歴　表の見出し
+    .journey h5,
+    h6,
+    p,
+    li:not(.sitetree) {
+      font-size: 1rem; // /* 約18px */
+      line-height: 1.5;
+    }
+
+    .journey p {
+      font-size: 0.9rem; /* 基準を16px相当に落とす */
     }
 
     // -------
@@ -1292,22 +1365,34 @@ body.hero_new {
 
     .sticky-notes-box {
       display: flex;
-      flex-direction: column;
-      border-bottom-width: 2px;
     }
 
     .sticky-note {
-      padding: 8px 0;
-      padding-bottom: 8px;
+      padding: var(--space-01) 0;
+      padding-bottom: var(--space-02);
+      background-size: 100% 4px;
     }
 
     .colored-tab-show {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-01);
+      border-radius: 10px 10px 0 0;
+      background-size: 100% 4px;
+
+      transform: none;
+      z-index: unset;
     }
 
     .displayed-content-inner {
       margin: var(--space-01) 0;
       padding: 16px 8px 24px;
+    }
+
+    .tab-label-pc {
+      display: none;
+    }
+
+    .tab-label-sp {
+      display: inline;
     }
 
     .goal {
@@ -1347,6 +1432,8 @@ body.hero_new {
     .jump-link::-webkit-scrollbar {
       display: none;
     }
+
+    // >
   }
 }
 
